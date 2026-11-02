@@ -371,8 +371,8 @@ async function openNow() {
   const sheet = openSheet(`<header><span class="mini-plub">${plub('point', 36, '')}</span><h1>Near me now</h1><button class="close" aria-label="Close">×</button></header>
     <div class="now-ctl">
       <div class="seg range" role="group" aria-label="How far">
-        <button data-range="walk" aria-pressed="${nowState.range === 'walk'}">Walk · ~10 min</button>
-        <button data-range="drive" aria-pressed="${nowState.range === 'drive'}">Drive · ~5 min</button>
+        <button data-range="walk" aria-pressed="${nowState.range === 'walk'}">Walk · ≤ 800 m</button>
+        <button data-range="drive" aria-pressed="${nowState.range === 'drive'}">Drive · ≤ 2 km</button>
       </div>
       <div class="feel needs" role="group" aria-label="I need">${NEEDS.map(([k, l]) => `<button data-need="${k}" aria-pressed="${nowState.needs.has(k)}">${l}</button>`).join('')}</div>
     </div>
