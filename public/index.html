@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BKK Co. — where to work in Bangkok</title>
+<meta name="description" content="Every café, co-working space, library and restaurant in Bangkok on one map, rated by the people who work there.">
+<meta property="og:title" content="BKK Co. — where to work in Bangkok">
+<meta property="og:description" content="Cafés, co-working, libraries and restaurants on one map. Wi-Fi, outlets and quiet, rated by people who work there.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Prompt:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+<link rel="preload" href="data/places-work.json" as="fetch" crossorigin>
+</head>
+<body>
+<header class="bar">
+  <a class="mark" href="/" aria-label="BKK Co. home">BKK&nbsp;Co.</a>
+  <label class="search">
+    <span class="sr">Search places</span>
+    <input id="q" type="search" placeholder="Search 57,000 places · ค้นหา" autocomplete="off" enterkeyhint="search">
+  </label>
+  <button id="about" class="info" aria-label="About BKK Co. and its sources">ⓘ</button>
+  <ul id="hits" class="hits" role="listbox" hidden></ul>
+</header>
+
+<nav class="chips" aria-label="Filters">
+  <button data-kind="cafe" aria-pressed="true"><i class="dot cafe"></i>Café</button>
+  <button data-kind="coworking" aria-pressed="true"><i class="dot coworking"></i>Co-work</button>
+  <button data-kind="library" aria-pressed="true"><i class="dot library"></i>Library</button>
+  <button data-kind="restaurant" aria-pressed="true"><i class="dot restaurant"></i>Food</button>
+  <span class="sep" aria-hidden="true"></span>
+  <button data-flag="wifi" aria-pressed="false">Wi-Fi</button>
+  <button data-flag="open" aria-pressed="false">Open now</button>
+  <button data-flag="rated" aria-pressed="false">Rated</button>
+  <output id="count" class="count" aria-live="polite">…</output>
+</nav>
+
+<main id="map" aria-label="Map of work spots in Bangkok"></main>
+
+<aside id="side" class="side">
+  <section id="list-wrap" class="list-wrap">
+    <h2 class="micro">In view · work spots first</h2>
+    <ol id="list" class="list"></ol>
+  </section>
+  <section id="sheet" class="sheet" hidden aria-live="polite"></section>
+</aside>
+
+<template id="about-tpl">
+  <p>BKK Co. maps places in Bangkok where you can sit down with a laptop. The map draws on two open datasets, <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (ODbL, extract of 24 Oct 2026) and <a href="https://overturemaps.org" target="_blank" rel="noopener">Overture Maps Places</a> (CDLA-Permissive-2.0, release 2026-10-21). The Wi-Fi, outlet, quiet and laptop scores come from visitors to this site. Places nobody has rated yet show as not rated, never with an invented score.</p>
+  <p>This is a working pilot, so expect some pins to be stale or wrong. If you spot one, fix it on OpenStreetMap and the next rebuild will pick it up.</p>
+</template>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="hours.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

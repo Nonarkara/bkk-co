@@ -1,0 +1,61 @@
+{
+ "builtFrom": [
+  {
+   "name": "OpenStreetMap",
+   "url": "https://download.geofabrik.de/asia/thailand-261024.osm.pbf",
+   "asOf": "2026-10-24T20:20:51Z",
+   "licence": "ODbL-1.0",
+   "attribution": "© OpenStreetMap contributors",
+   "sha256": "e8373240cf0be47cc641f2c8627e674064d8c47f4ff2a11f6a33fcbfc9a50949"
+  },
+  {
+   "name": "Overture Maps Places",
+   "url": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=places/type=place/*",
+   "release": "2026-10-21.0",
+   "licence": "CDLA-Permissive-2.0",
+   "attribution": "© Overture Maps Foundation",
+   "sha256": "fe6f5b5b9edb5d0ebbe28f9b887d0e63bcd2badd3b1850519e981737279b26bb",
+   "confidenceFloor": {
+    "cafe": 0.6,
+    "restaurant": 0.8,
+    "coworking": 0.5,
+    "library": 0.6
+   }
+  }
+ ],
+ "bounds": [
+  100.3,
+  13.45,
+  100.95,
+  14.1
+ ],
+ "cellsPerDegree": 20,
+ "total": 57819,
+ "kinds": {
+  "cafe": 20372,
+  "coworking": 57,
+  "library": 429,
+  "restaurant": 36961
+ },
+ "bySource": {
+  "osm": 7404,
+  "overture": 50415
+ },
+ "skipped": {
+  "osm_unnamed": 931,
+  "overture_duplicate": 357,
+  "overture_merged": 2102
+ },
+ "wifiTagged": 533,
+ "hoursTagged": 1561,
+ "files": {
+  "work": {
+   "bytes": 1545402,
+   "sha256": "5889d4b7160907b4e85e739c6ae8ed1b5ad6630445e1ccf9db4ed5a30498f7eb"
+  },
+  "food": {
+   "bytes": 3341350,
+   "sha256": "db310cfe5377e04fbf13a810c77844c4489f9c708c90f92e349a0e1e76692796"
+  }
+ }
+}

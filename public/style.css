@@ -1,0 +1,122 @@
+/* BKK Co. — civic daylight register. Tokens from bangkok-ioc /places.
+   Radius 0, no shadows, no gradients, one amber (co-working only). Sizes: 20 / 14 / 11. */
+:root {
+  --ink: #20201d; --muted: #575951; --rule: #d5d7cf; --paper: #ffffff; --wash: #f4f4f0;
+  --amber: #f59e0b; --food: #8f918a;
+  --big: 20px; --body: 14px; --micro: 11px;
+  --font: "Jost", "Prompt", sans-serif;
+  --pad: 12px;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { height: 100%; }
+body {
+  font: 400 var(--body)/1.4 var(--font); color: var(--ink); background: var(--paper);
+  display: grid; grid-template: "bar" auto "chips" auto "map" 1fr / 100%;
+  height: 100dvh; overflow: hidden;
+}
+:lang(th), .th { font-family: "Prompt", "Jost", sans-serif; }
+a { color: inherit; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.micro { font-size: var(--micro); font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+
+/* Bar: wordmark + search, one line, as tall as the input */
+.bar { grid-area: bar; position: relative; display: flex; align-items: center; gap: var(--pad);
+  padding: 6px var(--pad); border-bottom: 1px solid var(--rule); }
+.mark { font-weight: 600; font-size: var(--body); letter-spacing: .02em; text-decoration: none; white-space: nowrap; }
+.search { flex: 1; }
+.info { width: 36px; height: 36px; margin-right: -6px; font-size: var(--big); color: var(--muted); }
+.search input { width: 100%; height: 36px; padding: 0 10px; font: inherit; color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 0; background: var(--wash); }
+.search input:focus { outline: none; border-color: var(--ink); background: var(--paper); }
+.hits { position: absolute; z-index: 30; top: 100%; left: 0; right: 0; list-style: none; padding: 0;
+  background: var(--paper); border-bottom: 1px solid var(--ink); max-height: 60dvh; overflow-y: auto; }
+.hits li, .list li { display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 4px var(--pad);
+  border-top: 1px solid var(--rule); cursor: pointer; }
+.hits li[aria-selected="true"], .hits li:hover, .list li:hover { background: var(--wash); }
+.hits .nm, .list .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hits .meta, .list .meta { color: var(--muted); font-size: var(--micro); white-space: nowrap; }
+
+/* Chips: one scrolling row on phone, label-plus-padding boxes */
+.chips { grid-area: chips; display: flex; align-items: center; gap: 4px; padding: 4px var(--pad);
+  overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--rule); }
+.chips::-webkit-scrollbar { display: none; }
+.chips button { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px;
+  white-space: nowrap; border: 1px solid var(--rule); }
+.chips button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.chips .sep { flex: none; width: 1px; height: 20px; background: var(--rule); margin: 0 4px; }
+.count { margin-left: auto; padding-left: 8px; color: var(--muted); font-size: var(--micro); white-space: nowrap; }
+
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.dot.cafe { background: var(--ink); }
+.dot.coworking { background: var(--amber); }
+.dot.library { background: var(--paper); box-shadow: inset 0 0 0 2px var(--ink); }
+.dot.restaurant { background: var(--food); }
+[aria-pressed="true"] .dot.cafe { background: var(--paper); }
+[aria-pressed="true"] .dot.library { box-shadow: inset 0 0 0 2px var(--paper); background: var(--ink); }
+
+#map { grid-area: map; min-height: 0; }
+
+/* Phone: the list stays hidden; a place opens as a bottom sheet over the lower map */
+.side { display: contents; }
+.list-wrap { display: none; }
+.sheet { position: fixed; z-index: 20; left: 0; right: 0; bottom: 0; max-height: 58dvh; overflow-y: auto;
+  background: var(--paper); border-top: 2px solid var(--ink);
+  padding: var(--pad) var(--pad) calc(var(--pad) + env(safe-area-inset-bottom)); }
+.sheet[hidden] { display: none; }
+
+.sheet header { display: flex; align-items: flex-start; gap: 8px; }
+.sheet h1 { flex: 1; font-size: var(--big); font-weight: 500; line-height: 1.2; }
+.sheet .th { display: block; font-size: var(--body); color: var(--muted); font-weight: 400; margin-top: 2px; }
+.close { width: 44px; height: 44px; margin: -10px -10px 0 0; font-size: var(--big); line-height: 1; }
+.kindline { display: flex; align-items: center; gap: 6px; margin-top: 4px; color: var(--muted); }
+.facts { list-style: none; padding: 0; margin-top: 10px; display: grid; grid-template-columns: 20px 1fr; gap: 4px 8px; }
+.facts .sym { color: var(--muted); text-align: center; }
+.facts a { overflow-wrap: anywhere; }
+
+.scores { margin-top: 12px; border-top: 1px solid var(--rule); padding-top: 10px; }
+.scores table { border-collapse: collapse; margin-top: 6px; }
+.scores td { padding: 2px 16px 2px 0; }
+.scores td:last-child { color: var(--muted); font-size: var(--micro); white-space: nowrap; }
+.bars { letter-spacing: 2px; }
+.bars b { font-weight: 400; color: var(--ink); }
+.bars s { text-decoration: none; color: var(--rule); }
+
+.rate { margin-top: 10px; display: grid; grid-template-columns: auto 1fr; gap: 4px 8px; align-items: center; }
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.seg button { height: 32px; border: 1px solid var(--rule); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.send { grid-column: 1 / -1; height: 44px; padding: 0 16px; margin-top: 4px; background: var(--ink); color: var(--paper); }
+.send:disabled { background: var(--rule); color: var(--muted); cursor: default; }
+.note { grid-column: 1 / -1; color: var(--muted); font-size: var(--micro); }
+.note:empty { display: none; }
+.rate[hidden] { display: none; }
+.rate-open { width: 100%; margin-top: 8px; }
+
+.links { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--rule); }
+.links a, .links button { display: inline-flex; align-items: center; min-height: 32px; text-decoration: underline;
+  text-underline-offset: 3px; }
+.src { margin-top: 8px; color: var(--muted); font-size: var(--micro); }
+.about p { max-width: 65ch; margin-top: 8px; }
+
+/* MapLibre chrome, flattened to the house style */
+.maplibregl-ctrl-group { border-radius: 0 !important; box-shadow: none !important; border: 1px solid var(--rule); }
+.maplibregl-ctrl-group button { width: 44px !important; height: 44px !important; }
+.maplibregl-ctrl-attrib { font: 400 var(--micro)/1.4 var(--font) !important; }
+
+/* Desktop: a 360px instrument column, map takes the rest (~75% at 1440) */
+@media (min-width: 900px) {
+  body { grid-template: "bar map" auto "chips map" auto "side map" 1fr / 360px 1fr; }
+  .bar, .chips, .side { border-right: 1px solid var(--rule); }
+  .chips { flex-wrap: wrap; overflow: visible; }
+  .side { grid-area: side; display: flex; flex-direction: column; min-height: 0; }
+  .list-wrap { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+  .list-wrap h2 { padding: 10px var(--pad) 6px; }
+  .list { list-style: none; padding: 0; overflow-y: auto; flex: 1; }
+  .sheet { position: static; max-height: none; flex: 1; border-top: 0; }
+  .sheet:not([hidden]) + * , .side:has(.sheet:not([hidden])) .list-wrap { display: none; }
+  .hits { max-height: 70dvh; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
