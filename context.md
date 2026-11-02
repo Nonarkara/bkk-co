@@ -45,6 +45,15 @@ IndexedDB on the device only: visits, 1-5 stars, feeling words, note, up to 4 ph
 ## Nong Plub (v2) — `public/plub.js`
 Hand-drawn chibi SVG with a crayon displacement filter, six poses (wave, point, sketch, stamp, map, cheer). Not AI-generated; based on the SCITI drawings' hair, cheeks and plaid dress.
 
+## Link previews (v2)
+`public/og/{default,ari,samyan,charoenkrung,thonglo}.png` (1200×630) carry real numbers, so **regenerate after every `build-hoods.py`**:
+run `scripts/og-cards.js` in the browser console on `wrangler dev`, with a local receiver on :8811 that writes POSTed data-URL PNGs to `public/og/`.
+The Worker (`withPreview`, HTMLRewriter) sets title / og:description / og:image for `?hood=` and `?p=` links.
+
+## Chain detection (Character)
+Chain = brand tag, or name seen ≥3×, or brand key (name minus branch suffix: `(`, `@`, ` - `, `สาขา`, ` at `) seen ≥3×,
+or a name starting with a brand key of 6+ letters seen ≥3×. 16,487 of 57,537 places flagged (2026-11-02).
+
 ## Runtime
 - Cloudflare Worker `bkk-co` (static assets + `/api/scores`), account `74ad6bf8dfaaccf82de6f0847f7d2d54`.
 - D1 `bkk-co` (id in `wrangler.toml`), table `ratings`. Secret `IP_SALT` (salted IP hash only, PDPA; no raw IPs, no accounts).

@@ -50,12 +50,12 @@
  "hoursTagged": 1558,
  "files": {
   "work": {
-   "bytes": 1783321,
-   "sha256": "19fff496110fb74ac8cd82c9382df3de1a1f210c9a2fb6999e3c4ffc738a5590"
+   "bytes": 1783451,
+   "sha256": "96c646e23b06b079d7e09c30db04c90f13bfba4faec4ec40fbcf26053852a983"
   },
   "food": {
-   "bytes": 3766004,
-   "sha256": "d5502715f1cc35b362e6c9fe6fae0fe0173cfe3d5f1812f20b1d54eadb56e0bf"
+   "bytes": 3766307,
+   "sha256": "7ec253375f158f48abfe590d953acb412684ff8e124912f0e7b1b7daed047ede"
   }
  }
 }

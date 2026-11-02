@@ -7,6 +7,10 @@
 <meta name="description" content="Bangkok's Great Good Places on one map: 57,537 cafés, co-working spaces, libraries and restaurants, scored from open data, with Nong Plub as your guide.">
 <meta property="og:title" content="PLUB · Placemaking Laboratory Urban Bureau">
 <meta property="og:description" content="Find your Great Good Place in Bangkok. Neighbourhood stories, data-driven scores, and a passport of where you've been.">
+<meta property="og:image" content="https://co.nonarkara.org/og/default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,23 +31,24 @@
 </header>
 
 <nav class="chips" aria-label="Filters">
-  <button id="list-toggle" class="phone-only" aria-pressed="false">☰ List</button>
+  <button id="list-toggle" class="phone-only" aria-pressed="false" title="List and filters">☰ List</button>
   <button data-kind="cafe" aria-pressed="true"><i class="dot cafe"></i>Café</button>
   <button data-kind="coworking" aria-pressed="true"><i class="dot coworking"></i>Co-work</button>
   <button data-kind="library" aria-pressed="true"><i class="dot library"></i>Library</button>
   <button data-kind="restaurant" aria-pressed="false"><i class="dot restaurant"></i>Food</button>
-  <span class="sep" aria-hidden="true"></span>
-  <button data-flag="wifi" aria-pressed="false" title="Wi-Fi listed or rated">≋ Wi-Fi</button>
-  <button data-flag="open" aria-pressed="false" title="Open now (where hours are known)">◷ Open</button>
-  <button data-flag="indie" aria-pressed="false" title="Independent, not a chain">◇ Indie</button>
-  <button data-flag="visited" aria-pressed="false" title="Places you've been">✓ Been</button>
-  <output id="count" class="count" aria-live="polite">…</output>
 </nav>
 
 <main id="map" aria-label="Map of Great Good Places in Bangkok"></main>
 
 <aside id="side" class="side">
   <section id="list-wrap" class="list-wrap" aria-label="Places in view">
+    <div class="flags" aria-label="Filters">
+      <button data-flag="wifi" aria-pressed="false" title="Wi-Fi listed or rated">≋ Wi-Fi</button>
+      <button data-flag="open" aria-pressed="false" title="Open now (where hours are known)">◷ Open</button>
+      <button data-flag="indie" aria-pressed="false" title="Independent, not a chain">◇ Indie</button>
+      <button data-flag="visited" aria-pressed="false" title="Places you've been">✓ Been</button>
+      <output id="count" class="count" aria-live="polite">…</output>
+    </div>
     <div class="sorts" role="tablist" aria-label="Sort places">
       <button role="tab" data-sort="great" aria-selected="true" title="Great Good Place index">✦ Great</button>
       <button role="tab" data-sort="near" aria-selected="false" title="Nearest to the map centre">◎ Near</button>

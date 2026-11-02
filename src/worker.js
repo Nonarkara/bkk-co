@@ -79,12 +79,12 @@ export default {
 const KIND = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library' };
 async function withPreview(request, env, url) {
   const page = await env.ASSETS.fetch(new URL('/', url));
-  let title, desc;
+  let title, desc, image;
   try {
     if (url.searchParams.has('hood')) {
       if (!hoods) hoods = Object.fromEntries((await (await env.ASSETS.fetch(new URL('/data/hoods.json', url))).json()).hoods.map(h => [h.slug, h]));
       const h = hoods[url.searchParams.get('hood')];
-      if (h) { title = `${h.name} ${h.th} · for ${h.for.toLowerCase()} · PLUB`; desc = `${h.stats.work} work spots within ~10 min of ${h.anchorLabel}. ${h.plub}`; }
+      if (h) { title = `${h.name} ${h.th} · for ${h.for.toLowerCase()} · PLUB`; desc = `${h.stats.work} work spots within ~10 min of ${h.anchorLabel}. ${h.plub}`; image = `https://co.nonarkara.org/og/${h.slug}.png`; }
     } else {
       await knownIds(env, request.url);
       const n = names.get(url.searchParams.get('p'));
@@ -98,5 +98,6 @@ async function withPreview(request, env, url) {
     .on('meta[property="og:title"]', set(title))
     .on('meta[property="og:description"]', set(desc))
     .on('meta[name="description"]', set(desc))
+    .on('meta[property="og:image"]', image ? set(image) : {})
     .transform(page);
 }

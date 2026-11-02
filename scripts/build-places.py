@@ -44,6 +44,13 @@ GENERIC = {'entrance', 'exit', 'toilet', 'restroom', 'parking', 'lobby', 'cafe',
 def latin(name):
     return re.sub(r'[^a-z0-9]+', '', unicodedata.normalize('NFKD', name).casefold())
 
+BRANCH = re.compile(r"\s*(?:\(|\[|@|\||\s[-\u2013\u2014]\s|\sat\s|\sby\s|\u0e2a\u0e32\u0e02\u0e32|branch).*$", re.I)
+
+def brand_key(name):
+    """'McCafé (แมคคาเฟ่)', 'Café Amazon @ Siam', 'Doi Chaang สาขา X' -> the brand part, for chain counting."""
+    head = BRANCH.sub('', name).strip() or name
+    return latin(head) or norm(head)
+
 def norm(name):
     s = unicodedata.normalize('NFKC', name).casefold()
     return re.sub(r'[\W_]+', '', s)
@@ -205,6 +212,7 @@ def score_places(places, stations):
     pgrid = collections.defaultdict(list)
     for p in places: pgrid[cell(p['y'], p['x'], 0.0025)].append(p)
     names = collections.Counter(norm(p['n']) for p in places)
+    brands = collections.Counter(brand_key(p['n']) for p in places)
     walk, scene, foot, work = [], [], [], []
     for p in places:
         gy, gx = cell(p['y'], p['x'], 0.01); best = 9e9; r = 1
@@ -222,7 +230,10 @@ def score_places(places, stations):
                     bool(p.get('web')) + bool(p.get('social')) + bool(p.get('tel')))
         # being a co-working space or library is the strongest work signal; tags add to it
         work.append((6 if p['k'] in ('coworking', 'library') else 0) + (2 if p.get('w') == 'yes' else 0) + (1 if p.get('h') else 0))
-        p['chain'] = bool(p.get('brand')) or names[norm(p['n'])] >= 3
+        k = brand_key(p['n'])
+        # a name that starts with a brand seen 3+ times (6+ letters) is that brand ('McCafe J Avenue' -> 'mccafe')
+        p['chain'] = bool(p.get('brand')) or names[norm(p['n'])] >= 3 or brands[k] >= 3 or \
+            any(brands[k[:i]] >= 3 for i in range(6, len(k)))
     A, S, F = deciles(walk, reverse=True), deciles(scene), deciles(foot)
     pA, pS, pF = percentiles(walk, reverse=True), percentiles(scene), percentiles(foot)
     for i, p in enumerate(places):

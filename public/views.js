@@ -28,8 +28,10 @@ window.addHoodLayers = () => {
   map.addSource('hoods', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
   map.addLayer({ id: 'hood-fill', type: 'fill', source: 'hoods', filter: ['==', '$type', 'Polygon'], paint: { 'fill-color': '#20201d', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 11, 0.05, 15, 0.02] } });
   map.addLayer({ id: 'hood-line', type: 'line', source: 'hoods', filter: ['==', '$type', 'Polygon'], paint: { 'line-color': '#20201d', 'line-width': 1.5, 'line-dasharray': [3, 2] } });
+  // labels go on top of the pins once those exist (see window.raiseHoodLabels)
   map.addLayer({ id: 'hood-label', type: 'symbol', source: 'hoods', filter: ['==', '$type', 'Point'], maxzoom: 16,
-    layout: { 'text-field': ['get', 'label'], 'text-size': 13, 'text-font': ['Noto Sans Bold'], 'text-anchor': 'bottom', 'text-allow-overlap': true },
+    layout: { 'text-field': ['step', ['zoom'], ['get', 'name'], 12.5, ['get', 'label']], 'text-size': 13, 'text-font': ['Noto Sans Bold'],
+      'text-anchor': ['match', ['get', 'slug'], [...LABEL_BELOW], 'top', 'bottom'], 'text-allow-overlap': false, 'symbol-sort-key': 0 },
     paint: { 'text-color': '#20201d', 'text-halo-color': '#ffffff', 'text-halo-width': 2 } });
   map.on('click', 'hood-fill', e => {
     if (map.queryRenderedFeatures(e.point, { layers: PIN_LAYERS }).length) return; // a pin wins
@@ -41,16 +43,18 @@ window.addHoodLayers = () => {
 window.fitAllHoods = async () => {
   await hoodsReady;
   const pts = hoods.list.flatMap(h => ring(h, 8)), xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
-  map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]], { padding: 40, animate: false });
+  map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]], { padding: { top: 60, bottom: 40, left: 70, right: 70 }, animate: false });
 };
+const LABEL_BELOW = new Set(['charoenkrung']);
 function drawHoods() {
   const src = map.getSource && map.getSource('hoods');
   if (!src || !hoods.list.length) return;
   src.setData({ type: 'FeatureCollection', features: hoods.list.flatMap(h => {
-    const c = ring(h), top = c.reduce((a, b) => (b[1] > a[1] ? b : a));
+    // Charoen Krung's ring sits just south-west of Sam Yan's: its name goes under its ring so both stay readable
+    const c = ring(h), top = LABEL_BELOW.has(h.slug) ? c.reduce((a, b) => (b[1] < a[1] ? b : a)) : c.reduce((a, b) => (b[1] > a[1] ? b : a));
     return [
       { type: 'Feature', geometry: { type: 'Polygon', coordinates: [c] }, properties: { slug: h.slug } },
-      { type: 'Feature', geometry: { type: 'Point', coordinates: top }, properties: { slug: h.slug, label: `${h.name} · ${h.for}` } },
+      { type: 'Feature', geometry: { type: 'Point', coordinates: top }, properties: { slug: h.slug, name: h.name, label: `${h.name} · ${h.for}` } },
     ];
   }) });
 }

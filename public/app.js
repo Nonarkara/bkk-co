@@ -71,7 +71,7 @@ async function loadVisits() {
 async function cellDetail(p) {
   const key = `${Math.floor(p.y * CELL)}-${Math.floor(p.x * CELL)}`;
   if (!state.cells.has(key)) state.cells.set(key, fetch(`data/cells/${key}.json`).then(r => (r.ok ? r.json() : {})).catch(() => ({})));
-  return (await state.cells.get(key))[p.id] || {};
+  return { ...((await state.cells.get(key))[p.id] || {}), loaded: true };
 }
 
 // share of Bangkok places this one beats, from the sorted index list
@@ -150,6 +150,7 @@ map.on('load', async () => {
     map.on('mouseenter', l, () => { map.getCanvas().style.cursor = 'pointer'; });
     map.on('mouseleave', l, () => { map.getCanvas().style.cursor = ''; });
   }
+  if (map.getLayer('hood-label')) map.moveLayer('hood-label'); // neighbourhood names stay readable above the pins
   map.on('moveend', renderList);
   document.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show');
 
@@ -255,8 +256,8 @@ $('#hits').addEventListener('click', e => {
 document.addEventListener('click', e => { if (!e.target.closest('.bar')) $('#hits').hidden = true; });
 
 // ---------- filters ----------
-$('.chips').addEventListener('click', e => {
-  const b = e.target.closest('button[data-kind], button[data-flag]');
+document.addEventListener('click', e => {
+  const b = e.target.closest('.chips button[data-kind], .flags button[data-flag]');
   if (!b) return;
   const on = b.getAttribute('aria-pressed') !== 'true';
   b.setAttribute('aria-pressed', on);
@@ -319,6 +320,7 @@ async function select(p, fly) {
 }
 
 function rawValue(key, p, d) {
+  if (!d.loaded && ['A', 'S', 'F'].includes(key)) return '…';
   const m = d.m || {};
   return {
     A: m.walk != null ? `~${Math.max(1, Math.round(m.walk / 80))} min to rail (straight line)` : 'walk to rail',
