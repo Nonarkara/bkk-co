@@ -1,7 +1,7 @@
-# BKK Co. · Bangkok Co(working) — project context
+# PLUB · Placemaking Laboratory Urban Bureau — project context
 
 **Live:** https://co.nonarkara.org · **Repo:** github.com/Nonarkara/bkk-co (private) · **Tier:** T1 Pilot
-**Name:** Bangkok Co(working), short form BKK Co. It replaces the old "Bangkok IOC" identity of this folder; do not use that name for this system.
+**Name:** PLUB, Placemaking Laboratory Urban Bureau (owner's choice, 2026-11-02). Nong Plub is the bureau's guide. Earlier names, in order: Bangkok IOC (retired), BKK Co. / Bangkok Co(working). Infra ids keep `bkk-co` (Worker, D1, repo, passport file `app` field) so nothing breaks; never show them as the name.
 **Home folder:** `~/Projects/bangkok-ioc/bkk-co` (folder name is historical). Sibling checkouts there are other projects with their own deploys — never deploy them from here.
 **Domain history:** co.nonarkara.org is primary (owner's choice). bkkco.nonarkara.org, used briefly on 2026-11-02, 301-redirects to it.
 
@@ -31,7 +31,7 @@ Six per-place deciles (`metrics` string `ASCFWN`) plus a 0-100 index (mean of th
 | ⁘ S | Scene | third places within 250 m | Adelfio et al. 2020 (third places as clusters) |
 | ◇ C | Character | not a chain: no brand tag, name seen < 3× | Mehta & Bosson 2010 (personalization) |
 | ◎ F | Footprint | datasets + channels that know it (OSM, Meta, Foursquare, AllThePlaces, Microsoft, web, social, phone) | Adelfio et al. 2020 (cross-validate sources) — popularity proxy |
-| ≋ W | Work | co-working/library, Wi-Fi tag, hours; visitor scores add live | BKK Co. |
+| ≋ W | Work | co-working/library, Wi-Fi tag, hours; visitor scores add live | PLUB |
 | ✦ N | Notable | Wikidata/Wikipedia/heritage tag on the venue | prestige; only 15 places — shown, kept out of the index |
 Sorts in the UI: Great (index), Near, Popular (F), Notable (N), Work (W + visitor scores).
 

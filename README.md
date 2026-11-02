@@ -1,4 +1,4 @@
-# BKK Co. · Bangkok Co(working)
+# PLUB · Placemaking Laboratory Urban Bureau
 
 Where to work in Bangkok, on one map: **[co.nonarkara.org](https://co.nonarkara.org)**
 

@@ -1,4 +1,4 @@
-// BKK Co. · Bangkok Co(working). Map, filters, sorting, search, place sheet. No bundler, no framework.
+// PLUB · Placemaking Laboratory Urban Bureau. Map, filters, sorting, search, place sheet. No bundler, no framework.
 // views.js adds the guide, neighbourhood and passport sheets on top of the helpers defined here.
 const KIND_LABEL = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library' };
 const F = { WIFI: 1, NOWIFI: 2, HOURS: 4, OUTDOOR: 8, OVERTURE: 16, CHAIN: 32, NOTABLE: 64 };

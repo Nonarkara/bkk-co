@@ -1,4 +1,4 @@
-// BKK Co. views: Nong Plub's guide, neighbourhood sheets, the passport, and "I've been here".
+// PLUB views: Nong Plub's guide, neighbourhood sheets, the passport, and "I've been here".
 // Uses helpers from app.js (state, map, $, esc, fmt, select, openSheet, petals, dots, GGP, F, KIND_LABEL).
 const TRAIT_SYM = { neutral: '○', leveler: '=', talk: '❝', access: '↦', regulars: '↺', low: '▁', playful: '✳', home: '⌂' };
 const FEELINGS = ['Calm', 'Focused', 'Cozy', 'Buzzing', 'Social', 'Inspiring', 'Slow', 'Meh'];
@@ -116,7 +116,7 @@ async function openHood(slug, jump) {
   };
   sheet.querySelector('.show-map').onclick = () => { closeSheet(); fit(); };
   sheet.querySelector('.share').onclick = async () => {
-    if (navigator.share) { try { await navigator.share({ title: `${h.name} · BKK Co.`, url: location.href }); } catch { /* cancelled */ } return; }
+    if (navigator.share) { try { await navigator.share({ title: `${h.name} · PLUB`, url: location.href }); } catch { /* cancelled */ } return; }
     await navigator.clipboard?.writeText(location.href); sheet.querySelector('.share').textContent = 'Link copied';
   };
   fit(jump ? 'jump' : undefined);
@@ -148,12 +148,12 @@ $('#guide').addEventListener('click', async () => {
     S: 'Adelfio et al. 2020: third places show up as clusters of social activity',
     C: 'Mehta & Bosson 2010: third places are personal and distinctive, not uniform',
     F: 'Adelfio et al. 2020: no single dataset is enough, so we count agreement across them',
-    W: 'BKK Co.: places you can actually sit and work',
+    W: 'PLUB: places you can actually sit and work',
     N: 'Prestige, only where a public record says so',
   };
   const top = d.leaderboard.slice(0, 10), max = top[0].work, anchors = new Set(d.hoods.map(h => h.anchor.osmName));
   const sheet = openSheet(`
-    <header><h1>Bangkok's Great Good Places</h1><button class="close" aria-label="Close">×</button></header>
+    <header><h1>Bangkok's Great Good Places<span class="th">Placemaking Laboratory Urban Bureau</span></h1><button class="close" aria-label="Close">×</button></header>
     <div class="plub-say">${plub('map', 104)}<p><q>Bangkok has ${fmt(P.length)} places to sit down. A great good place is the one you keep coming back to. Pick a neighbourhood, I'll walk you through it.</q></p></div>
     <section><h2 class="micro">The line · four neighbourhoods, live now</h2>
       <ol class="line">${d.hoods.map(h => { const been = h.ids.filter(id => state.visited.has(id)).length; return `<li data-hood="${h.slug}">

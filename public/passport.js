@@ -51,13 +51,13 @@
       const out = [];
       for (const v of visits) out.push({ ...v, photos: await Promise.all(v.photos.map(toDataUrl)) });
       const blob = new Blob([JSON.stringify({ app: 'bkk-co', version: 1, exported: new Date().toISOString(), visits: out })], { type: 'application/json' });
-      const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `bkk-co-passport-${new Date().toISOString().slice(0, 10)}.json` });
+      const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `plub-passport-${new Date().toISOString().slice(0, 10)}.json` });
       a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
       return visits.length;
     },
     async importFile(file) {
       const data = JSON.parse(await file.text());
-      if (data.app !== 'bkk-co' || !Array.isArray(data.visits)) throw new Error('Not a BKK Co. passport file');
+      if (data.app !== 'bkk-co' || !Array.isArray(data.visits)) throw new Error('Not a PLUB passport file');
       const have = new Set((await this.all()).map(v => v.place + v.at));
       let n = 0;
       for (const v of data.visits) {
