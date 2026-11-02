@@ -1,5 +1,6 @@
 // node test/check.mjs            -> catalogue, validator, hours parser
-// node test/check.mjs <base-url> -> also the live API: reject, accept, rate-limit, n = rows
+// node test/check.mjs <base-url>          -> also the live API: rejects bad input (writes nothing)
+// node test/check.mjs <base-url> --write  -> also accept, rate-limit, n = rows (writes one rating: local only)
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
@@ -59,6 +60,7 @@ if (base) {
   assert.equal((await post({ ...ok, place: 'n0' })).status, 400);
   assert.equal((await post({ ...ok, place, wifi: 9 })).status, 400);
   assert.equal((await fetch(`${base}/api/scores`, { method: 'POST', body: 'x' })).status, 415);
+  if (!process.argv.includes('--write')) { console.log(`api ok (read-only): ${base}`); process.exit(0); }
   assert.equal((await post({ ...ok, place })).status, 201);
   assert.equal((await post({ ...ok, place })).status, 429, 'second rating same day must be refused');
   const scores = await (await fetch(`${base}/api/scores`)).json();

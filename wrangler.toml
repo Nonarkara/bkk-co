@@ -5,7 +5,7 @@ compatibility_date = "2026-04-01"
 [assets]
 directory = "./public"
 binding = "ASSETS"
-run_worker_first = ["/api/*"]
+run_worker_first = true  # needed so bkkco.nonarkara.org can 301 before assets are served
 
 [[d1_databases]]
 binding = "DB"

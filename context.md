@@ -52,7 +52,7 @@ Hand-drawn chibi SVG with a crayon displacement filter, six poses (wave, point, 
 - Front end: no bundler. `public/app.js`, `hours.js`, `style.css`. MapLibre 4.7.1 + OpenFreeMap positron.
 
 ## Checks
-`node test/check.mjs` (catalogue conservation law, validator, hours) · `node test/check.mjs https://co.nonarkara.org` (also live API; writes one real rating).
+`node test/check.mjs` (catalogue conservation law, validator, hours) · `node test/check.mjs https://co.nonarkara.org` (live API, read-only) · add `--write` only against `wrangler dev`.
 
 ## Design
 Civic daylight register, MSH (`~/Projects/_reference/MSH.md`). Jost + Prompt, ink/muted/rule, one amber = co-working.
