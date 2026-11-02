@@ -38,6 +38,11 @@ window.addHoodLayers = () => {
     openHood(e.features[0].properties.slug);
   });
   map.on('click', 'hood-label', e => openHood(e.features[0].properties.slug));
+  // finder results and café-hop routes: numbered amber stops, dashed straight legs
+  map.addSource('route', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+  map.addLayer({ id: 'route-line', type: 'line', source: 'route', filter: ['==', '$type', 'LineString'], paint: { 'line-color': '#f59e0b', 'line-width': 3, 'line-dasharray': [2, 1.5] } });
+  map.addLayer({ id: 'route-stop', type: 'circle', source: 'route', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': 11, 'circle-color': '#f59e0b', 'circle-stroke-color': '#20201d', 'circle-stroke-width': 2 } });
+  map.addLayer({ id: 'route-num', type: 'symbol', source: 'route', filter: ['==', '$type', 'Point'], layout: { 'text-field': ['get', 'n'], 'text-size': 12, 'text-font': ['Noto Sans Bold'], 'text-allow-overlap': true }, paint: { 'text-color': '#20201d' } });
   drawHoods();
 };
 window.fitAllHoods = async () => {
@@ -89,6 +94,7 @@ function traitsRow(h) {
 }
 
 // ---------- neighbourhood sheet ----------
+const moodOf = slug => Object.keys(MOODS).find(k => MOODS[k].hood === slug);
 const POSE = { ari: 'sketch', samyan: 'cheer', charoenkrung: 'point', thonglo: 'wave' };
 async function openHood(slug, jump) {
   await hoodsReady;
@@ -100,7 +106,7 @@ async function openHood(slug, jump) {
   const s = h.stats, workIds = h.ids.filter(id => { const p = state.byId.get(id); return p && p.k !== 'restaurant'; });
   const sheet = openSheet(`
     <header><h1>${esc(h.name)}<span class="th" lang="th">${esc(h.th)}</span></h1><button class="close" aria-label="Close">×</button></header>
-    <div class="plub-say">${plub(POSE[slug] || 'wave', 104)}<p><span class="micro">Socially optimized for</span><b class="for">${esc(h.for)}</b><span class="th" lang="th">${esc(h.forTh)}</span><q>${esc(h.plub)}</q></p></div>
+    <div class="plub-say">${plub(POSE[slug] || 'wave', 104)}<p><span class="micro">Socially optimized for</span><b class="for">${esc(h.for)}</b><span class="th" lang="th">${esc(h.forTh)}</span><q>${esc(h.plub)}</q>${moodOf(slug) ? `<button class="linkish" data-mood="${moodOf(slug)}">◐ Find “${esc(h.for.toLowerCase())}” places citywide</button>` : ''}</p></div>
     <section class="hood-stats">
       <div class="stat"><span class="big">${fmt(s.work)}</span><span class="micro">work spots within ~10 min (800 m) of ${esc(h.anchorLabel)}</span></div>
       <div class="stat"><span class="big">#${s.stationRank}</span><span class="micro">${/^(BTS|MRT)/.test(h.anchorLabel) ? `of ${s.stations} rail stations` : `vs ${s.stations} rail-station circles`}</span></div>
@@ -171,7 +177,7 @@ $('#guide').addEventListener('click', async () => {
       <ol class="line">${d.hoods.map(h => { const been = h.ids.filter(id => state.visited.has(id)).length; return `<li data-hood="${h.slug}">
         <span class="stop ${been ? 'stamped' : ''}" aria-hidden="true">${been ? '✓' : ''}</span>
         <span class="nm"><b>${esc(h.name)}</b> <span class="th" lang="th">${esc(h.th)}</span><span class="micro">for ${esc(h.for.toLowerCase())}</span></span>
-        <span class="meta">${fmt(h.stats.work)} spots · #${h.stats.stationRank}</span></li>`; }).join('')}</ol>
+        <span class="meta">${fmt(h.stats.work)} spots · #${h.stats.stationRank}${moodOf(h.slug) ? `<br><button class="linkish" data-mood="${moodOf(h.slug)}">◐ citywide</button>` : ''}</span></li>`; }).join('')}</ol>
     </section>
     <section><h2 class="micro">Most work spots within ~800 m · ${d.stations} rail stations</h2>
       <ol class="board">${top.map(s => `<li class="${anchors.has(s.th) ? 'hl' : ''}"><span class="nm">${s.rank}. ${esc(s.name)}</span><span class="barwrap"><i style="width:${s.work / max * 100}%"></i></span><span class="meta">${s.work}</span></li>`).join('')}</ol>
@@ -185,9 +191,9 @@ $('#guide').addEventListener('click', async () => {
     </section>
     <section class="about"><h2 class="micro">Sources</h2>
       <p class="src">Ray Oldenburg, <i>The Great Good Place</i> (1989). Jeffres, Bracken, Jian & Casey, "The Impact of Third Places on Community Quality of Life", <i>Applied Research in Quality of Life</i> 4 (2009). Mehta & Bosson, "Third Places and the Social Life of Streets", <i>Environment and Behavior</i> 42:6 (2010). Adelfio et al., "Social Activity in Gothenburg's Intermediate City: Mapping Third Places through Social Media Data", <i>Applied Spatial Analysis and Policy</i> (2020).</p>
-      <p class="src">Places: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (ODbL, 24 Oct 2026) and <a href="https://overturemaps.org" target="_blank" rel="noopener">Overture Maps</a> (CDLA-P-2.0, 2026-10-21). Visitor ratings (Wi-Fi, outlets, quiet, laptop) come from visitors; ≋ Work comes from map tags. Nobody has paid to appear here. A working pilot: if a pin is wrong, fix it on OpenStreetMap.</p>
+      <p class="src">Places: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (ODbL, 24 Oct 2026) and <a href="https://overturemaps.org" target="_blank" rel="noopener">Overture Maps</a> (CDLA-P-2.0, 2026-10-21). Visitor ratings (Wi-Fi, outlets, quiet, laptop) come from visitors; ≋ Work comes from map tags. Nobody has paid to appear here. A working pilot: if a pin is wrong, fix it on OpenStreetMap. <a href="${osmNote(map.getCenter().lat, map.getCenter().lng)}" target="_blank" rel="noopener">Missing a place? Leave a note on OpenStreetMap</a>, and it appears here after mappers add it and the map is rebuilt. Hand pins (✎) mark places someone has visited that no open dataset has yet.</p>
     </section>`);
-  sheet.querySelector('.line').addEventListener('click', e => { const li = e.target.closest('li[data-hood]'); if (li) openHood(li.dataset.hood); });
+  sheet.querySelector('.line').addEventListener('click', e => { if (e.target.closest('[data-mood]')) return; const li = e.target.closest('li[data-hood]'); if (li) openHood(li.dataset.hood); });
 });
 
 // ---------- passport ----------
@@ -326,3 +332,150 @@ async function stampCard(places) {
   g.fillStyle = '#575951'; g.font = '400 30px Jost, sans-serif'; g.fillText('co.nonarkara.org', 80, H - 70);
   return new Promise(ok => c.toBlob(ok, 'image/png'));
 }
+
+// ---------- shared: highlight a set of places on the map, optionally as a numbered walking route ----------
+function showRoute(stops, line) {
+  const src = map.getSource('route');
+  if (!src) return;
+  src.setData({ type: 'FeatureCollection', features: [
+    ...(line && stops.length > 1 ? [{ type: 'Feature', geometry: { type: 'LineString', coordinates: stops.map(p => [p.x, p.y]) }, properties: {} }] : []),
+    ...stops.map((p, i) => ({ type: 'Feature', geometry: { type: 'Point', coordinates: [p.x, p.y] }, properties: { n: String(i + 1) } })),
+  ] });
+  if (!stops.length) return;
+  const xs = stops.map(p => p.x), ys = stops.map(p => p.y);
+  map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]],
+    { padding: { top: 50, left: 50, right: 50, bottom: isPhone() ? $('#sheet').offsetHeight + 30 : 50 }, maxZoom: 16 });
+}
+window.clearRoute = () => showRoute([]);
+const gmaps = (p, mode) => `https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}&travelmode=${mode}`;
+const amaps = (p, mode) => `https://maps.apple.com/?daddr=${p.y},${p.x}&dirflg=${mode === 'driving' ? 'd' : 'w'}`;
+const near = (a, b) => metres(a, b);
+
+// ---------- Near me now: a few places that fit what you need, with directions ----------
+const NEEDS = [
+  ['wifi', '≋ Wi-Fi', p => (p.flags & F.WIFI) || (state.scores[p.id]?.wifi || 0) >= 2],
+  ['park', 'P Parking', p => p.flags & F.PARK],
+  ['calm', '◡ Calm', p => (state.scores[p.id]?.quiet || 0) >= 2.5],
+  ['coffee', '☕\uFE0E Good coffee', p => p.k === 'cafe' && !(p.flags & F.CHAIN)],
+];
+const nowState = { range: 'drive', needs: new Set(['wifi', 'park', 'calm', 'coffee']), origin: null, from: '' };
+
+async function locate() {
+  if (!navigator.geolocation) return null;
+  return new Promise(ok => navigator.geolocation.getCurrentPosition(
+    pos => ok({ y: pos.coords.latitude, x: pos.coords.longitude }), () => ok(null), { timeout: 6000, maximumAge: 60000 }));
+}
+
+async function openNow() {
+  const sheet = openSheet(`<header><h1>Near me now</h1><button class="close" aria-label="Close">×</button></header>
+    <div class="plub-say">${plub('point', 88)}<p><q>Tell me what you need. I'll pick a few and show you how to get there.</q></p></div>
+    <div class="now-ctl">
+      <div class="seg range" role="group" aria-label="How far">
+        <button data-range="walk" aria-pressed="${nowState.range === 'walk'}">Walk · ~10 min</button>
+        <button data-range="drive" aria-pressed="${nowState.range === 'drive'}">Drive · ~5 min</button>
+      </div>
+      <div class="feel needs" role="group" aria-label="I need">${NEEDS.map(([k, l]) => `<button data-need="${k}" aria-pressed="${nowState.needs.has(k)}">${l}</button>`).join('')}</div>
+    </div>
+    <p class="micro now-from">Finding you…</p>
+    <ol class="now-list"></ol>
+    <p class="src">✓ = known from map data or visitor ratings · ? = not known yet, so check before you go. Distances are straight lines: ~10-min walk ≈ 800 m, ~5-min drive ≈ 2 km in city traffic. Work spots only (café, co-working, library), and never a place listed as closed right now.</p>`);
+  sheet.querySelector('.range').addEventListener('click', e => { const b = e.target.closest('[data-range]'); if (!b) return; nowState.range = b.dataset.range; sheet.querySelectorAll('[data-range]').forEach(x => x.setAttribute('aria-pressed', x === b)); renderNow(); });
+  sheet.querySelector('.needs').addEventListener('click', e => { const b = e.target.closest('[data-need]'); if (!b) return; const k = b.dataset.need; nowState.needs.has(k) ? nowState.needs.delete(k) : nowState.needs.add(k); b.setAttribute('aria-pressed', nowState.needs.has(k)); renderNow(); });
+  const here = await locate();
+  const c = map.getCenter();
+  nowState.origin = here || { y: c.lat, x: c.lng };
+  nowState.from = here ? 'From where you are' : 'From the middle of the map (location is off — move the map to your area)';
+  renderNow();
+}
+window.openNow = openNow;
+
+async function renderNow() {
+  const sheet = $('#sheet'), list = sheet.querySelector('.now-list');
+  if (!list || !nowState.origin) return;
+  const o = nowState.origin, max = nowState.range === 'walk' ? 800 : 2000, mode = nowState.range === 'walk' ? 'walking' : 'driving';
+  const now = new Date();
+  const picks = state.places
+    .filter(p => p.k !== 'restaurant' && window.isOpen(p.hours, now) !== false)
+    .map(p => ({ p, d: near(p, o) })).filter(r => r.d <= max && (nowState.range === 'drive' || !crossesRiver(o, r.p)))
+    .map(r => {
+      const met = NEEDS.filter(([k]) => nowState.needs.has(k)).map(([k, l, test]) => [k, l, !!test(r.p)]);
+      // what you asked for counts most; the Great Good Place index breaks ties; distance costs a little
+      return { ...r, met, score: met.filter(m => m[2]).length * 40 + r.p.idx - r.d / (nowState.range === 'walk' ? 40 : 100) };
+    })
+    .sort((a, b) => b.score - a.score).slice(0, 5);
+  const details = await Promise.all(picks.map(r => cellDetail(r.p))); // measured car-park distance lives here
+  sheet.querySelector('.now-from').textContent = `${nowState.from} · ${picks.length ? 'top ' + picks.length : 'nothing within range — try the other distance'}`;
+  list.innerHTML = picks.map(({ p, d, met }, i) => {
+    const park = details[i].m?.park;
+    const mins = nowState.range === 'walk' ? Math.max(1, Math.round(d / 80)) : Math.max(1, Math.round(d / 400));
+    return `<li data-id="${esc(p.id)}"><span class="stop">${i + 1}</span><div class="now-body">
+      <button class="linkish nm" data-open="${esc(p.id)}">${esc(p.n)}</button>
+      <span class="micro">${KIND_LABEL[p.k]} · ${Math.round(d / 10) * 10} m · ~${mins} min ${nowState.range === 'walk' ? 'walk' : 'drive'} · ✦${p.idx}</span>
+      <span class="needs-met">${met.map(([k, l, ok]) => k === 'park'
+        ? `<span class="${ok ? 'ok' : 'unk'}">${ok ? '✓' : '?'} P ${park != null ? `car park ${Math.round(park / 10) * 10} m` : 'no car park mapped nearby'}</span>`
+        : `<span class="${ok ? 'ok' : 'unk'}">${ok ? '✓' : '?'} ${l.split(' ').slice(1).join(' ')}</span>`).join('')}</span>
+      <span class="go"><a href="${gmaps(p, mode)}" target="_blank" rel="noopener">Google Maps ↗</a><a href="${amaps(p, mode)}" target="_blank" rel="noopener">Apple Maps ↗</a></span>
+    </div></li>`;
+  }).join('');
+  list.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => select(state.byId.get(b.dataset.open), true)));
+  showRoute(picks.map(r => r.p), false);
+}
+
+// The Chao Phraya (OSM line): a leg that crosses it needs a ferry or a bridge, so walking legs never do.
+let river = [];
+fetch('data/barriers.json').then(r => r.json()).then(d => { river = d.lines.flatMap(l => l.slice(1).map((p, i) => [l[i], p])); }).catch(() => {});
+function crossesRiver(a, b) {
+  const ccw = (p, q, r) => (r[1] - p[1]) * (q[0] - p[0]) > (q[1] - p[1]) * (r[0] - p[0]);
+  const A = [a.x, a.y], B = [b.x, b.y];
+  return river.some(([C, D]) => ccw(A, C, D) !== ccw(B, C, D) && ccw(A, B, C) !== ccw(A, B, D));
+}
+
+// ---------- Café hop: a walkable day through the best independent cafés ----------
+const hopState = { start: null };
+function planHop(start) {
+  const today11 = new Date(); today11.setHours(11, 0, 0, 0);
+  const pool = state.places.filter(p => p.k === 'cafe' && !(p.flags & F.CHAIN) && p.idx >= 70 &&
+    window.isOpen(p.hours, today11) !== false && near(p, start) <= 1500 && !crossesRiver(start, p));
+  const stops = [];
+  let here = start;
+  for (let i = 0; i < 5; i++) {
+    // each hop: 250-800 m on foot (first one within 500 m of the start), best index wins, distance costs a little
+    const lo = i ? 250 : 0, hi = i ? 800 : 500;
+    const next = pool.filter(p => !stops.includes(p) && stops.every(s => near(s, p) >= 250))
+      .map(p => ({ p, d: near(p, here) })).filter(r => r.d >= lo && r.d <= hi && !crossesRiver(here, r.p))
+      .sort((a, b) => (b.p.idx - b.d / 25) - (a.p.idx - a.d / 25))[0];
+    if (!next) break;
+    stops.push(next.p); here = next.p;
+  }
+  return stops;
+}
+
+async function openHop(startKey) {
+  await hoodsReady;
+  const starts = hoods.list.map(h => [h.slug, h.name, { y: h.anchor.y, x: h.anchor.x }]);
+  const c = map.getCenter();
+  starts.push(['here', 'Here (map centre)', { y: c.lat, x: c.lng }]);
+  hopState.start = startKey || hopState.start || 'charoenkrung';
+  const [, label, origin] = starts.find(s => s[0] === hopState.start) || starts[0];
+  const stops = planHop(origin);
+  const legs = stops.slice(1).map((p, i) => near(stops[i], p));
+  const km = legs.reduce((a, b) => a + b, 0) / 1000;
+  const g = stops.length > 1 ? `https://www.google.com/maps/dir/?api=1&origin=${stops[0].y},${stops[0].x}&destination=${stops.at(-1).y},${stops.at(-1).x}&travelmode=walking${stops.length > 2 ? '&waypoints=' + stops.slice(1, -1).map(p => `${p.y},${p.x}`).join('%7C') : ''}` : '';
+  const sheet = openSheet(`<header><h1>Café hop</h1><button class="close" aria-label="Close">×</button></header>
+    <div class="plub-say">${plub('map', 88)}<p><q>Five independent cafés, a short walk apart. Pace yourself: one coffee, one pastry, one water.</q></p></div>
+    <div class="feel hop-starts" role="group" aria-label="Start in">${starts.map(([k, l]) => `<button data-start="${k}" aria-pressed="${k === hopState.start}">${esc(l)}</button>`).join('')}</div>
+    ${stops.length ? `<p class="micro">${esc(label)} · ${stops.length} stops · ~${km.toFixed(1)} km on foot · ~${Math.round(km * 1000 / 80)} min walking</p>
+    <ol class="walk hop">${stops.map((p, i) => `<li data-id="${esc(p.id)}"><span class="stop">${i + 1}</span><span class="nm">${esc(p.n)}</span>${i ? `<span class="micro">${Math.round(legs[i - 1])} m</span>` : ''}<span class="idx">✦${p.idx}</span></li>`).join('')}</ol>
+    <nav class="links">${g ? `<a href="${g}" target="_blank" rel="noopener">Walk it in Google Maps ↗</a>` : ''}<button type="button" class="share">Share</button></nav>`
+    : '<p class="micro">Not enough independent cafés with a high index close together here. Try another start.</p>'}
+    <p class="src">Picked from independent cafés with ✦ ≥ 70, not listed as closed at 11 am, each 250–800 m from the last. Legs never cross the Chao Phraya. Lines on the map are straight; Google Maps gives the real path. Apple Maps takes one stop at a time: open a stop to get its link.</p>`);
+  sheet.querySelector('.hop-starts').addEventListener('click', e => { const b = e.target.closest('[data-start]'); if (b) openHop(b.dataset.start); });
+  sheet.querySelector('.hop')?.addEventListener('click', e => { const li = e.target.closest('li[data-id]'); if (li) select(state.byId.get(li.dataset.id), true); });
+  sheet.querySelector('.share')?.addEventListener('click', async ev => {
+    const url = `${location.origin}/?hop=${hopState.start}`;
+    if (navigator.share) { try { await navigator.share({ title: `Café hop from ${label} · PLUB`, url }); } catch { /* cancelled */ } return; }
+    await navigator.clipboard?.writeText(url); ev.target.textContent = 'Link copied';
+  });
+  showRoute(stops, true);
+}
+window.openHop = openHop;

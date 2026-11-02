@@ -29,7 +29,9 @@ OV_RULES = {'cafe': ("basic_category IN ('coffee_shop','cafe')", 0.6),
             'library': ("basic_category = 'library'", 0.6)}
 MERGE_M = 60  # same normalised name within 60 m = same venue
 WIFI = {'wlan': 'yes', 'yes': 'yes', 'wifi': 'yes', 'no': 'no', 'terminal': 'no'}
-F_WIFI, F_NOWIFI, F_HOURS, F_OUTDOOR, F_OVERTURE, F_CHAIN, F_NOTABLE = 1, 2, 4, 8, 16, 32, 64
+F_WIFI, F_NOWIFI, F_HOURS, F_OUTDOOR, F_OVERTURE, F_CHAIN, F_NOTABLE, F_HAND, F_PARK = 1, 2, 4, 8, 16, 32, 64, 128, 256
+PARK_M = 150  # a car park within 150 m counts as 'parking nearby'
+ADDITIONS = ROOT / 'data' / 'additions.json'  # hand pins from real visits, for places no open dataset has yet
 
 def sha(path, algo='sha256'):
     h = hashlib.new(algo)
@@ -107,6 +109,16 @@ def load_osm(skipped):
                         'notable': bool(t.get('wikidata') or t.get('wikipedia') or t.get('heritage'))})
     return out
 
+def load_additions():
+    """Hand pins: a named place, a location confirmed by someone who was there, and the date. Never a guess."""
+    out = []
+    for a in json.loads(ADDITIONS.read_text()) if ADDITIONS.exists() else []:
+        assert a['pin'] == 'hand_pin' and a['name'] and a['visited'] and a['kind'] in KINDS and inside(a['lng'], a['lat']), a
+        out.append({'id': a['id'], 'n': a['name'], 'k': a['kind'], 'y': round(a['lat'], 5), 'x': round(a['lng'], 5),
+                    'w': {True: 'yes', False: 'no'}.get(a.get('wifi')), 'h': a.get('hours'), 'src': 'hand',
+                    'about': a.get('about'), 'visit': a.get('note'), 'pinned': f"{a['by']}, {a['visited']}"})
+    return out
+
 def load_overture():
     import duckdb
     db = duckdb.connect()
@@ -176,6 +188,26 @@ def merge(osm, ov, skipped):
 METRICS = {'A': 'Access', 'S': 'Scene', 'C': 'Character', 'F': 'Footprint', 'W': 'Work', 'N': 'Notable'}
 SCENE_M = 250
 
+def load_parking():
+    """Car parks: OSM amenity=parking (not private) + Overture 'parking'. Points or the car park's own footprint centre."""
+    pts = []
+    with tempfile.TemporaryDirectory() as tmp:
+        f, c, seq = [str(pathlib.Path(tmp) / n) for n in ('f.pbf', 'c.pbf', 'p.seq')]
+        subprocess.run(['osmium', 'tags-filter', str(OSM_PBF), 'nwr/amenity=parking', '-o', f, '--no-progress'], check=True)
+        subprocess.run(['osmium', 'extract', f, '--bbox', ','.join(map(str, BOUNDS)), '-s', 'complete_ways', '-o', c, '--no-progress'], check=True)
+        subprocess.run(['osmium', 'export', c, '-f', 'geojsonseq', '--geometry-types', 'point,polygon', '-o', seq, '--no-progress'], check=True)
+        for line in open(seq, encoding='utf-8'):
+            feat = json.loads(line.strip('\x1e\n'))
+            if feat['properties'].get('access') in ('private', 'no'): continue
+            x, y = centre(feat['geometry'])
+            if inside(x, y): pts.append((y, x))
+    import duckdb
+    db = duckdb.connect(); db.sql("INSTALL spatial; LOAD spatial;")
+    for y, x in db.sql(f"""SELECT ST_Y(geometry), ST_X(geometry) FROM read_parquet('{OV_FILE}')
+            WHERE basic_category = 'parking' AND confidence >= 0.5""").fetchall():
+        if inside(x, y): pts.append((y, x))
+    return pts
+
 def load_stations():
     with tempfile.TemporaryDirectory() as tmp:
         f, seq = str(pathlib.Path(tmp) / 'f.pbf'), str(pathlib.Path(tmp) / 's.seq')
@@ -205,10 +237,12 @@ def percentiles(values, reverse=False):
         i = j + 1
     return out
 
-def score_places(places, stations):
+def score_places(places, stations, parking=()):
     cell = lambda y, x, size: (int(y / size), int(x / size))
     sgrid = collections.defaultdict(list)
     for y, x in stations: sgrid[cell(y, x, 0.01)].append((y, x))
+    kgrid = collections.defaultdict(list)
+    for y, x in parking: kgrid[cell(y, x, 0.004)].append((y, x))
     pgrid = collections.defaultdict(list)
     for p in places: pgrid[cell(p['y'], p['x'], 0.0025)].append(p)
     names = collections.Counter(norm(p['n']) for p in places)
@@ -223,10 +257,13 @@ def score_places(places, stations):
                         best = min(best, metres(p, {'y': y, 'x': x}))
             r += 1
         walk.append(best)
+        gy4, gx4 = cell(p['y'], p['x'], 0.004)  # nearest car park, looked for up to ~900 m away
+        near = [metres(p, {'y': y, 'x': x}) for dy in (-2, -1, 0, 1, 2) for dx in (-2, -1, 0, 1, 2) for y, x in kgrid.get((gy4 + dy, gx4 + dx), ())]
+        p['park'] = round(min(near)) if near else None
         gy, gx = cell(p['y'], p['x'], 0.0025)
         scene.append(sum(1 for dy in (-1, 0, 1) for dx in (-1, 0, 1) for q in pgrid.get((gy + dy, gx + dx), ())
                          if q is not p and metres(p, q) <= SCENE_M))
-        foot.append((p['src'] == 'osm') + len(p.get('ds') or []) +
+        foot.append((p['src'] in ('osm', 'hand')) + len(p.get('ds') or []) +
                     bool(p.get('web')) + bool(p.get('social')) + bool(p.get('tel')))
         # being a co-working space or library is the strongest work signal; tags add to it
         work.append((6 if p['k'] in ('coworking', 'library') else 0) + (2 if p.get('w') == 'yes' else 0) + (1 if p.get('h') else 0))
@@ -243,13 +280,13 @@ def score_places(places, stations):
         W = min(9, work[i])
         N = 9 if p.get('notable') else 0
         p['g'] = f"{A[i]}{S[i]}{C}{F[i]}{W}{N}"
-        p['m'] = {'walk': round(walk[i]), 'scene': scene[i], 'sources': foot[i]}  # raw values for the sheet
+        p['m'] = {'walk': round(walk[i]), 'scene': scene[i], 'sources': foot[i], 'park': p['park']}  # raw values for the sheet
 
 def build():
     skipped = collections.Counter()
-    osm, ov = load_osm(skipped), load_overture()
+    osm, ov = load_osm(skipped) + load_additions(), load_overture()  # hand pins merge like OSM: a human placed them
     places = sorted(merge(osm, ov, skipped), key=lambda r: r['id'])
-    score_places(places, load_stations())
+    score_places(places, load_stations(), load_parking())
     ids = [p['id'] for p in places]
     assert len(ids) == len(set(ids)), 'id collision'
     data = ROOT / 'public' / 'data'
@@ -258,9 +295,10 @@ def build():
     for p in places:
         flags = (F_WIFI if p.get('w') == 'yes' else F_NOWIFI if p.get('w') == 'no' else 0) | \
                 (F_HOURS if p.get('h') else 0) | (F_OUTDOOR if p.get('o') else 0) | (F_OVERTURE if p['src'] == 'overture' else 0) | \
-                (F_CHAIN if p['chain'] else 0) | (F_NOTABLE if p.get('notable') else 0)
+                (F_CHAIN if p['chain'] else 0) | (F_NOTABLE if p.get('notable') else 0) | (F_HAND if p['src'] == 'hand' else 0) | \
+                (F_PARK if p['park'] is not None and p['park'] <= PARK_M else 0)
         rows.append([p['id'], p['n'], KINDS.index(p['k']), p['y'], p['x'], flags, p['g'], p['i']] + ([p['h']] if p.get('h') else []))
-        detail = {k: p[k] for k in ('th', 'h', 'c', 'web', 'social', 'tel', 'addr', 'conf', 'ds', 'm') if p.get(k)}
+        detail = {k: p[k] for k in ('th', 'h', 'c', 'web', 'social', 'tel', 'addr', 'conf', 'ds', 'm', 'about', 'visit', 'pinned') if p.get(k)}
         if detail: cells[f"{math.floor(p['y'] * CELL)}-{math.floor(p['x'] * CELL)}"][p['id']] = detail
     # Two files so work spots paint first; restaurants (2/3 of rows) stream in after.
     files = {}
@@ -281,7 +319,7 @@ def build():
              'confidenceFloor': {k: v[1] for k, v in OV_RULES.items()}}],
         'bounds': BOUNDS, 'cellsPerDegree': CELL, 'total': len(places), 'kinds': dict(sorted(counts.items())),
         'bySource': dict(collections.Counter(p['src'] for p in places)), 'skipped': dict(sorted(skipped.items())),
-        'wifiTagged': sum(1 for p in places if p.get('w') == 'yes'), 'hoursTagged': sum(1 for p in places if p.get('h')),
+        'wifiTagged': sum(1 for p in places if p.get('w') == 'yes'), 'parkingNearby': sum(1 for p in places if p['park'] is not None and p['park'] <= PARK_M), 'hoursTagged': sum(1 for p in places if p.get('h')),
         'files': files}
     (data / 'manifest.json').write_text(json.dumps(manifest, indent=1, ensure_ascii=False) + '\n')
     print(json.dumps({k: manifest[k] for k in ('total', 'kinds', 'bySource', 'skipped', 'files')}, indent=1))

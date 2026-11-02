@@ -104,6 +104,21 @@ def within(rows, y, x):
     dy = RADIUS_M / 111_320; dx = dy / math.cos(math.radians(y))
     return [r for r in rows if abs(r['y'] - y) <= dy and abs(r['x'] - x) <= dx and metres(y, x, r['y'], r['x']) <= RADIUS_M]
 
+def river():
+    """The Chao Phraya as line segments: a walking hop must never cross it (that needs a ferry or a bridge)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        f, c, seq = [str(pathlib.Path(tmp) / n) for n in ('f.pbf', 'c.pbf', 'r.seq')]
+        subprocess.run(['osmium', 'tags-filter', str(PBF), 'w/waterway=river', '-o', f, '--no-progress'], check=True)
+        subprocess.run(['osmium', 'extract', f, '--bbox', ','.join(map(str, BOUNDS)), '-s', 'complete_ways', '-o', c, '--no-progress'], check=True)
+        subprocess.run(['osmium', 'export', c, '-f', 'geojsonseq', '-o', seq, '--no-progress'], check=True)
+        lines = []
+        for line in open(seq, encoding='utf-8'):
+            feat = json.loads(line.strip('\x1e\n')); p = feat['properties']
+            if (p.get('name:en') or p.get('name') or '') in ('Chao Phraya River', 'แม่น้ำเจ้าพระยา') and feat['geometry']['type'] == 'LineString':
+                lines.append([[round(x, 5), round(y, 5)] for x, y in feat['geometry']['coordinates']])
+    (DATA / 'barriers.json').write_text(json.dumps({'source': 'OSM waterway=river, Chao Phraya River', 'lines': lines}, separators=(',', ':')))
+    print('river ways', len(lines), 'points', sum(map(len, lines)))
+
 def build():
     byid, stations = osm_points()
     rows = load_places()
@@ -151,3 +166,4 @@ def build():
 
 if __name__ == '__main__':
     build()
+    river()

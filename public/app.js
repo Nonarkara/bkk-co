@@ -1,7 +1,9 @@
 // PLUB · Placemaking Laboratory Urban Bureau. Map, filters, sorting, search, place sheet. No bundler, no framework.
 // views.js adds the guide, neighbourhood and passport sheets on top of the helpers defined here.
 const KIND_LABEL = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library' };
-const F = { WIFI: 1, NOWIFI: 2, HOURS: 4, OUTDOOR: 8, OVERTURE: 16, CHAIN: 32, NOTABLE: 64 };
+const F = { WIFI: 1, NOWIFI: 2, HOURS: 4, OUTDOOR: 8, OVERTURE: 16, CHAIN: 32, NOTABLE: 64, HAND: 128 };
+// a place nobody has mapped yet goes to OpenStreetMap as a note; the next rebuild picks it up once mapped
+const osmNote = (y, x) => `https://www.openstreetmap.org/note/new#map=19/${y.toFixed(5)}/${x.toFixed(5)}`;
 const SCORES = [
   ['wifi', 'Wi-Fi', ['None', 'Slow', 'Fast']],
   ['power', 'Outlets', ['None', 'Few', 'Plenty']],
@@ -17,6 +19,28 @@ const GGP = [
   ['W', '≋', 'Work', 'co-working, library, Wi-Fi, hours'],
   ['N', '✦', 'Notable', 'Wikidata, Wikipedia or heritage record'],
 ];
+// Moods: each neighbourhood's "for" line, searched across the whole city with data we really have.
+const nextAt = (h, m, weekday) => { // the next time this clock time comes round (on a weekday if asked)
+  const d = new Date(); d.setHours(h, m, 0, 0);
+  if (d <= new Date()) d.setDate(d.getDate() + 1);
+  while (weekday && (d.getDay() === 0 || d.getDay() === 6)) d.setDate(d.getDate() + 1);
+  return d;
+};
+const MOODS = {
+  slow: { label: 'Slow mornings', hood: 'ari', kinds: ['cafe'],
+    how: 'Independent cafés away from the busiest strips (⁘ ≤ 6 of 9).',
+    test: p => !(p.flags & F.CHAIN) && p.d[1] <= 6 },
+  midnight: { label: 'Past midnight', hood: 'samyan', kinds: ['cafe', 'coworking', 'library'],
+    how: 'Work spots listed as open at 00:30. Only places with listed hours can show here, so this list is short.',
+    test: p => window.isOpen(p.hours, nextAt(0, 30)) === true },
+  crossing: { label: 'Crossing paths', hood: 'charoenkrung', kinds: ['cafe', 'coworking', 'library'],
+    how: 'Independent work spots in the densest clusters (⁘ ≥ 8 of 9).',
+    test: p => !(p.flags & F.CHAIN) && p.d[1] >= 8 },
+  afterwork: { label: 'After work', hood: 'thonglo', kinds: ['cafe', 'coworking', 'library', 'restaurant'],
+    how: 'Open at 8 pm on a weekday, food included. Only places with listed hours.',
+    test: p => window.isOpen(p.hours, nextAt(20, 0, true)) === true },
+};
+
 const CELL = 20;
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -28,7 +52,7 @@ const digits = p => [...p.g].map(Number);
 const state = {
   places: [], byId: new Map(), scores: {}, cells: new Map(), visited: new Map(),
   kinds: new Set(['cafe', 'coworking', 'library']), flags: new Set(), // Food is one tap away, off by default
-  sort: 'great', selected: null, foodLoaded: false, sortedIdx: [],
+  sort: 'great', mood: null, selected: null, foodLoaded: false, sortedIdx: [],
 };
 
 const map = new maplibregl.Map({
@@ -89,6 +113,7 @@ function workScore(p) {
 // ---------- filtering ----------
 function visible(p, now) {
   if (!state.kinds.has(p.k)) return false;
+  if (state.mood && !MOODS[state.mood].test(p)) return false;
   if (state.flags.has('wifi') && !(p.flags & F.WIFI) && !((state.scores[p.id]?.wifi || 0) >= 2)) return false;
   if (state.flags.has('open') && window.isOpen(p.hours, now) !== true) return false;
   if (state.flags.has('indie') && p.flags & F.CHAIN) return false;
@@ -104,11 +129,12 @@ function refresh() {
     type: 'FeatureCollection',
     features: lastList.map(p => ({
       type: 'Feature', geometry: { type: 'Point', coordinates: [p.x, p.y] },
-      properties: { id: p.id, n: p.n, k: p.k, i: p.idx, v: state.visited.has(p.id) ? 1 : 0 },
+      properties: { id: p.id, n: p.n, k: p.k, i: p.idx, v: state.visited.has(p.id) ? 1 : 0, m: state.mood ? 1 : 0 },
     })),
   });
   const total = state.places.length;
   $('#count').textContent = `${fmt(lastList.length)}${lastList.length === total ? '' : ' of ' + fmt(total)}${state.foodLoaded ? '' : ' · loading food'}`;
+  renderMood();
   renderList();
   performance.mark(map.getSource('places') ? 'bkk:pins' : 'bkk:data');
 }
@@ -126,7 +152,8 @@ map.on('load', async () => {
   // Pin size grows with the Great Good Place index, and the city view shows only the strongest
   // places (index ≥ 92), then ≥ 70 from street level, then everything. Places you've been always show.
   const r = (base, top) => ['interpolate', ['linear'], ['get', 'i'], 0, base, 100, top];
-  const tier = (min, max, at) => ({ minzoom: min, maxzoom: max, filter: ['any', ['>=', ['get', 'i'], at], ['==', ['get', 'v'], 1]] });
+  // a mood search shows every match at every zoom: the point of a mood is to see all of them
+  const tier = (min, max, at) => ({ minzoom: min, maxzoom: max, filter: ['any', ['>=', ['get', 'i'], at], ['==', ['get', 'v'], 1], ['==', ['get', 'm'], 1]] });
   for (const [id, t] of [['pins-city', tier(0, 13, 92)], ['pins-street', tier(13, 15, 70)], ['pins', tier(15, 24, 0)]]) map.addLayer({ id, type: 'circle', source: 'places', ...t, paint: {
     'circle-color': ['match', ['get', 'k'], 'cafe', '#20201d', 'coworking', '#f59e0b', 'library', '#ffffff', '#8f918a'],
     'circle-stroke-color': ['case', ['==', ['get', 'v'], 1], '#20201d', ['match', ['get', 'k'], 'library', '#20201d', 'coworking', '#20201d', '#ffffff']],
@@ -225,7 +252,7 @@ let hitIdx = -1;
 $('#q').addEventListener('input', () => {
   const q = $('#q').value.trim().toLowerCase();
   const hits = $('#hits');
-  if (q.length < 2) { hits.hidden = true; return; }
+  if (q.length < 2) { hits.innerHTML = moodHits(); hits.hidden = false; return; }
   const starts = [], has = [];
   for (const p of state.places) {
     if (p.low.startsWith(q)) starts.push(p); else if (p.low.includes(q)) has.push(p);
@@ -236,11 +263,13 @@ $('#q').addEventListener('input', () => {
   const rank = (a, z) => (z.idx - a.idx) * 40 + (metres(a, centre) - metres(z, centre)) / 100;
   const top = [...starts.sort(rank), ...has.sort(rank)].slice(0, 8);
   hitIdx = -1;
-  hits.innerHTML = (window.hoodHits?.(q) || '') + (top.length ? top.map(row).join('') : '<li class="meta">No place by that name. Try Thai or English.</li>');
+  const c2 = map.getCenter();
+  const missing = `<li class="meta missing"><a href="${osmNote(c2.lat, c2.lng)}" target="_blank" rel="noopener">Missing a place? Tell OpenStreetMap ↗</a></li>`;
+  hits.innerHTML = (window.hoodHits?.(q) || '') + (top.length ? top.map(row).join('') : '<li class="meta">No place by that name. Try Thai or English.</li>') + missing;
   hits.hidden = false;
 });
 $('#q').addEventListener('keydown', e => {
-  const items = [...$('#hits').querySelectorAll('li[data-id], li[data-hood]')];
+  const items = [...$('#hits').querySelectorAll('li[data-id], li[data-hood], li[data-mood], li[data-act]')];
   if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
     e.preventDefault();
     hitIdx = Math.max(0, Math.min(items.length - 1, hitIdx + (e.key === 'ArrowDown' ? 1 : -1)));
@@ -280,6 +309,7 @@ function openSheet(html) {
 
 function closeSheet() {
   state.selected = null;
+  window.clearRoute?.();
   $('#sheet').hidden = true;
   map.getSource('sel')?.setData({ type: 'FeatureCollection', features: [] });
   const u = new URL(location.href); u.searchParams.delete('p'); u.searchParams.delete('hood'); history.replaceState(null, '', u);
@@ -338,6 +368,8 @@ function renderSheet(p, d, visits) {
   const open = window.isOpen(p.hours, new Date());
   const hood = window.hoodOf?.(p);
   const facts = [
+    d.about && ['✎', esc(d.about)],
+    d.visit && ['✓', esc(d.visit)],
     p.hours && ['◷', `${open === true ? '<b>Open now</b> · ' : open === false ? 'Closed now · ' : ''}${esc(p.hours)}`],
     p.flags & F.OUTDOOR && ['☀', 'Outdoor seating'],
     d.c && ['·', esc(d.c.replace(/[_;]/g, ' '))],
@@ -346,7 +378,9 @@ function renderSheet(p, d, visits) {
     d.social && ['↗', `<a href="${esc(d.social)}" target="_blank" rel="noopener nofollow">${esc(d.social.replace(/^https?:\/\/(www\.)?/, ''))}</a>`],
     d.tel && ['☎', `<a href="tel:${esc(d.tel.replace(/\s/g, ''))}">${esc(d.tel)}</a>`],
   ].filter(Boolean);
-  const src = p.flags & F.OVERTURE
+  const src = p.flags & F.HAND
+    ? `Hand pin · ${esc(d.pinned || 'a visit')} · not on OpenStreetMap yet · <a href="${osmNote(p.y, p.x)}" target="_blank" rel="noopener">add it</a>`
+    : p.flags & F.OVERTURE
     ? `Overture Maps${d.ds?.length ? ' via ' + esc(d.ds.join(', ')) : ''}${d.conf ? ` · confidence ${d.conf}` : ''}`
     : `OpenStreetMap${d.ds?.length ? ' + ' + esc(d.ds.join(', ')) : ''} · <a href="https://www.openstreetmap.org/${{ n: 'node', w: 'way', r: 'relation' }[p.id[0]]}/${p.id.slice(1)}" target="_blank" rel="noopener">fix on OSM</a>`;
 
@@ -391,5 +425,57 @@ function openFromUrl() {
   const u = new URL(location.href), id = u.searchParams.get('p');
   if (id && !state.selected && state.byId.has(id)) select(state.byId.get(id), 'jump');
   else if (u.searchParams.get('hood') && $('#sheet').hidden) window.openHood?.(u.searchParams.get('hood'), true);
+  else if (u.searchParams.get('hop') && !openFromUrl.framed) { openFromUrl.framed = true; window.openHop?.(u.searchParams.get('hop')); }
+  else if (MOODS[u.searchParams.get('mood')] && !state.mood && !openFromUrl.framed) { openFromUrl.framed = true; setMood(u.searchParams.get('mood')); }
   else if (!id && !u.searchParams.get('hood') && !openFromUrl.framed) { openFromUrl.framed = true; window.fitAllHoods?.(); }
 }
+
+// ---------- moods ----------
+function setMood(key) {
+  state.mood = MOODS[key] ? key : null;
+  if (state.mood) {
+    state.kinds = new Set(MOODS[key].kinds);
+    document.querySelectorAll('.chips [data-kind]').forEach(b => b.setAttribute('aria-pressed', state.kinds.has(b.dataset.kind)));
+    state.sort = 'great';
+    document.querySelectorAll('.sorts [data-sort]').forEach(x => x.setAttribute('aria-selected', x.dataset.sort === 'great'));
+  }
+  const u = new URL(location.href);
+  state.mood ? u.searchParams.set('mood', key) : u.searchParams.delete('mood');
+  u.searchParams.delete('p'); u.searchParams.delete('hood'); history.replaceState(null, '', u);
+  $('#hits').hidden = true;
+  refresh();
+  if (!state.mood) return;
+  setListOpen(true);
+  // frame every match, so a short list (Past midnight) is as visible as a long one
+  const xs = lastList.map(p => p.x), ys = lastList.map(p => p.y);
+  if (xs.length) map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]],
+    { padding: { top: 30, left: 30, right: 30, bottom: isPhone() ? $('#list-wrap').offsetHeight + 20 : 30 }, maxZoom: 15 });
+}
+window.setMood = setMood;
+
+function renderMood() {
+  const el = $('#mood'), m = MOODS[state.mood];
+  el.hidden = !m;
+  document.querySelectorAll('.moods [data-mood]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mood === state.mood));
+  if (!m) return;
+  el.innerHTML = `<b>◐ ${esc(m.label)}</b> · ${fmt(lastList.length)} ${lastList.length === 1 ? 'place' : 'places'}
+    <button class="linkish" data-hood="${m.hood}">why this mood</button><button class="close mood-off" aria-label="Clear mood">×</button>
+    <span class="how">${esc(m.how)}</span>`;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-mood]');
+  if (b) { setMood(b.dataset.mood === state.mood ? null : b.dataset.mood); return; }
+  if (e.target.closest('.mood-off')) setMood(null);
+  const act = e.target.closest('[data-act]');
+  if (act) { $('#hits').hidden = true; act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.(); }
+  const h = e.target.closest('#mood [data-hood]');
+  if (h) window.openHood?.(h.dataset.hood);
+});
+
+// an empty search box offers the moods: most people search by purpose before they know a name
+const moodHits = () => `<li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
+  <li data-act="hop" role="option"><span class="mood-dot" aria-hidden="true">☕︎</span><span class="nm"><b>Plan a café hop</b></span><span class="meta">5 stops on foot</span></li>` + Object.entries(MOODS).map(([k, m]) =>
+  `<li data-mood="${k}" role="option"><span class="mood-dot" aria-hidden="true">◐</span><span class="nm">${esc(m.label)}</span><span class="meta">citywide</span></li>`).join('');
+$('#q').addEventListener('focus', () => {
+  if ($('#q').value.trim().length < 2) { $('#hits').innerHTML = moodHits(); $('#hits').hidden = false; }
+});

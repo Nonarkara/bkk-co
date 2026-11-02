@@ -1,0 +1,16 @@
+[
+  {
+    "id": "h0001",
+    "name": "Maison space",
+    "kind": "coworking",
+    "lat": 13.8644208,
+    "lng": 100.6161835,
+    "pin": "hand_pin",
+    "by": "PLUB (owner's visit)",
+    "visited": "2026-11-02",
+    "about": "Art space with coffee, a working room, a board-game room and meeting rooms.",
+    "note": "Visited 2 Nov 2026: good coffee.",
+    "wifi": null,
+    "hours": null
+  }
+]

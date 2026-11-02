@@ -4,7 +4,7 @@ export const FIELDS = ['wifi', 'power', 'quiet', 'laptop'];
 export function validateScore(body, knownIds) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) return { error: 'body must be an object' };
   const id = body.place;
-  if (typeof id !== 'string' || !/^(?:[nwr]\d{1,12}|o[0-9a-f]{12})$/.test(id) || !knownIds.has(id)) return { error: 'unknown place' };
+  if (typeof id !== 'string' || !/^(?:[nwr]\d{1,12}|o[0-9a-f]{12}|h\d{4})$/.test(id) || !knownIds.has(id)) return { error: 'unknown place' };
   const out = { place: id };
   for (const f of FIELDS) {
     const v = body[f];

@@ -70,7 +70,7 @@ export default {
       if (request.method === 'POST') return postScore(request, env);
       return json({ error: 'method not allowed' }, 405, { allow: 'GET, POST' });
     }
-    if (url.pathname === '/' && (url.searchParams.has('hood') || url.searchParams.has('p'))) return withPreview(request, env, url);
+    if (url.pathname === '/' && ['hood', 'p', 'mood'].some(k => url.searchParams.has(k))) return withPreview(request, env, url);
     return env.ASSETS.fetch(request);
   },
 };
@@ -81,7 +81,11 @@ async function withPreview(request, env, url) {
   const page = await env.ASSETS.fetch(new URL('/', url));
   let title, desc, image;
   try {
-    if (url.searchParams.has('hood')) {
+    const MOOD = { slow: 'slow mornings', midnight: 'studying past midnight', crossing: 'crossing paths', afterwork: 'after work' };
+    if (MOOD[url.searchParams.get('mood')]) {
+      title = `Bangkok places for ${MOOD[url.searchParams.get('mood')]} · PLUB`;
+      desc = 'Great Good Places across the whole city, picked from open data. Nong Plub shows you where.';
+    } else if (url.searchParams.has('hood')) {
       if (!hoods) hoods = Object.fromEntries((await (await env.ASSETS.fetch(new URL('/data/hoods.json', url))).json()).hoods.map(h => [h.slug, h]));
       const h = hoods[url.searchParams.get('hood')];
       if (h) { title = `${h.name} ${h.th} · for ${h.for.toLowerCase()} · PLUB`; desc = `${h.stats.work} work spots within ~10 min of ${h.anchorLabel}. ${h.plub}`; image = `https://co.nonarkara.org/og/${h.slug}.png`; }

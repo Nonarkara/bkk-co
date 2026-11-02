@@ -54,6 +54,15 @@ The Worker (`withPreview`, HTMLRewriter) sets title / og:description / og:image 
 Chain = brand tag, or name seen ≥3×, or brand key (name minus branch suffix: `(`, `@`, ` - `, `สาขา`, ` at `) seen ≥3×,
 or a name starting with a brand key of 6+ letters seen ≥3×. 16,487 of 57,537 places flagged (2026-11-02).
 
+## Finding places (v3)
+- **Moods** (`MOODS` in app.js): each neighbourhood's "for" line searched citywide. Slow mornings = independent cafés with ⁘ ≤ 6; Past midnight = work spots listed open at 00:30 (31 — hours are sparse, and the UI says so); Crossing paths = independent work spots with ⁘ ≥ 8; After work = open 8 pm weekday incl. food. `?mood=` links have their own preview title.
+- **Near me now** (views.js `openNow`): your location (or map centre, said so), ~10-min walk (800 m) or ~5-min drive (2 km), needs Wi-Fi / Parking / Calm / Good coffee ranked not required, each shown ✓ known or ? unknown, with Google and Apple Maps directions. Never a place listed as closed now.
+- **Café hop** (`openHop`, `?hop=<slug|here>`): 5 independent cafés ✦ ≥ 70, 250–800 m apart, never crossing the Chao Phraya (`data/barriers.json`, OSM river line), one Google Maps walking link with waypoints.
+- **Parking**: distance to the nearest OSM `amenity=parking` (not private) or Overture `parking`; `F_PARK` when ≤ 150 m (16,625 places). Car parks inside private lots are often unmapped, so "?" stays common.
+
+## Hand pins — `data/additions.json`
+Places no open dataset has yet, added after a real visit: name, kind, location confirmed by the visitor, date, description. Built in like OSM (`src: hand`, flag 128) and labelled "Hand pin · who, when · not on OpenStreetMap yet". First: Maison space, Ram Inthra (owner's visit, 2026-11-02). The lasting fix is an OpenStreetMap note (the "Missing a place?" links).
+
 ## Runtime
 - Cloudflare Worker `bkk-co` (static assets + `/api/scores`), account `74ad6bf8dfaaccf82de6f0847f7d2d54`.
 - D1 `bkk-co` (id in `wrangler.toml`), table `ratings`. Secret `IP_SALT` (salted IP hash only, PDPA; no raw IPs, no accounts).
