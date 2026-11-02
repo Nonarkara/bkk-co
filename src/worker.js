@@ -1,4 +1,5 @@
 import { validateScore } from './validate.js';
+import { notebookApi, readBody } from './notebook.js';
 
 const DAILY_LIMIT = 20;
 let ids; // catalogue ids, loaded once per isolate from the static asset
@@ -38,10 +39,8 @@ async function getScores(env) {
 async function postScore(request, env) {
   if (!env.IP_SALT) return json({ error: 'ratings are closed' }, 503); // fail closed without a salt
   if ((request.headers.get('content-type') || '').split(';')[0] !== 'application/json') return json({ error: 'json only' }, 415);
-  const text = await request.text();
-  if (text.length > 512) return json({ error: 'too large' }, 413);
   let body;
-  try { body = JSON.parse(text); } catch { return json({ error: 'invalid json' }, 400); }
+  try { body = await readBody(request,512); } catch(e) { return json({ error:e.message },e.status||400); }
   const { value, error } = validateScore(body, await knownIds(env, request.url));
   if (error) return json({ error }, 400);
 
@@ -59,12 +58,20 @@ async function postScore(request, env) {
 }
 
 export default {
+  async scheduled(_event, env) {
+    const now=Date.now(),bucket=Math.floor(now/3600000);
+    await env.DB.batch([
+      env.DB.prepare('DELETE FROM notebook_limits WHERE bucket<?').bind(bucket-24),
+      env.DB.prepare('DELETE FROM notebook_sessions WHERE expires<?').bind(now),
+    ]);
+  },
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.hostname === 'bkkco.nonarkara.org') { // links shared on 2 Nov 2026 keep working
       url.hostname = 'co.nonarkara.org';
       return Response.redirect(url.toString(), 301);
     }
+    if (/^\/api\/(account|notebook|community|moderation|research)(?:\/|$)/.test(url.pathname)) return notebookApi(request, env, () => knownIds(env, request.url));
     if (url.pathname === '/api/scores') {
       if (request.method === 'GET') return getScores(env);
       if (request.method === 'POST') return postScore(request, env);

@@ -1,0 +1,1 @@
+Shared Wi-Fi account allowance/rate cap, daily privacy cleanup, held-auth account deletion, foreign-key containment, impossible dates, Bangkok legacy date, JPEG metadata before/after scans, format/trailing-data rejection pass.

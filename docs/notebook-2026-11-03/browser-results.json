@@ -1,0 +1,218 @@
+{
+  "results": [
+    {
+      "width": 390,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bar": {
+        "top": 0,
+        "bottom": 49,
+        "height": 49,
+        "width": 390
+      },
+      "chips": {
+        "top": 49,
+        "bottom": 90,
+        "height": 41,
+        "width": 390
+      },
+      "sheet": {
+        "top": 139.421875,
+        "bottom": 844,
+        "height": 704.578125,
+        "width": 390
+      },
+      "action": {
+        "top": 324.421875,
+        "bottom": 356.421875,
+        "height": 32,
+        "width": 95.703125
+      },
+      "map": {
+        "top": 90,
+        "bottom": 844,
+        "height": 754,
+        "width": 390
+      },
+      "bleed": false,
+      "edit": true,
+      "privateBackup": true,
+      "photoOptional": true,
+      "previewSnapshotPreserved": true,
+      "entryAction": {
+        "x": 24,
+        "y": 460.984375,
+        "width": 354,
+        "height": 32
+      },
+      "utilityBandFalsifier": {
+        "top": 783.984375,
+        "bottom": 815.984375
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 1024,
+      "viewport": {
+        "width": 1024,
+        "height": 900
+      },
+      "bar": {
+        "top": 0,
+        "bottom": 49,
+        "height": 49,
+        "width": 360
+      },
+      "chips": {
+        "top": 49,
+        "bottom": 90,
+        "height": 41,
+        "width": 360
+      },
+      "sheet": {
+        "top": 90,
+        "bottom": 900,
+        "height": 810,
+        "width": 359
+      },
+      "action": {
+        "top": 273,
+        "bottom": 305,
+        "height": 32,
+        "width": 95.703125
+      },
+      "map": {
+        "top": 0,
+        "bottom": 900,
+        "height": 900,
+        "width": 664
+      },
+      "bleed": false,
+      "edit": true,
+      "privateBackup": true,
+      "photoOptional": true,
+      "previewSnapshotPreserved": true,
+      "entryAction": {
+        "x": 24,
+        "y": 436.984375,
+        "width": 323,
+        "height": 32
+      },
+      "utilityBandFalsifier": {
+        "top": 759.984375,
+        "bottom": 791.984375
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bar": {
+        "top": 0,
+        "bottom": 49,
+        "height": 49,
+        "width": 360
+      },
+      "chips": {
+        "top": 49,
+        "bottom": 90,
+        "height": 41,
+        "width": 360
+      },
+      "sheet": {
+        "top": 90,
+        "bottom": 900,
+        "height": 810,
+        "width": 359
+      },
+      "action": {
+        "top": 273,
+        "bottom": 305,
+        "height": 32,
+        "width": 95.703125
+      },
+      "map": {
+        "top": 0,
+        "bottom": 900,
+        "height": 900,
+        "width": 1080
+      },
+      "bleed": false,
+      "edit": true,
+      "privateBackup": true,
+      "photoOptional": true,
+      "previewSnapshotPreserved": true,
+      "entryAction": {
+        "x": 24,
+        "y": 436.984375,
+        "width": 323,
+        "height": 32
+      },
+      "utilityBandFalsifier": {
+        "top": 759.984375,
+        "bottom": 791.984375
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "bar": {
+        "top": 0,
+        "bottom": 49,
+        "height": 49,
+        "width": 360
+      },
+      "chips": {
+        "top": 49,
+        "bottom": 90,
+        "height": 41,
+        "width": 360
+      },
+      "sheet": {
+        "top": 90,
+        "bottom": 720,
+        "height": 630,
+        "width": 359
+      },
+      "action": {
+        "top": 273,
+        "bottom": 305,
+        "height": 32,
+        "width": 95.703125
+      },
+      "map": {
+        "top": 0,
+        "bottom": 720,
+        "height": 720,
+        "width": 920
+      },
+      "bleed": false,
+      "edit": true,
+      "privateBackup": true,
+      "photoOptional": true,
+      "previewSnapshotPreserved": true,
+      "entryAction": {
+        "x": 24,
+        "y": 436.984375,
+        "width": 323,
+        "height": 32
+      },
+      "utilityBandFalsifier": {
+        "top": 759.984375,
+        "bottom": 791.984375
+      },
+      "pageErrors": []
+    }
+  ],
+  "crossDeviceRestore": true,
+  "cloudTimeoutLeavesLocalControls": true
+}

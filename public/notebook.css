@@ -1,0 +1,58 @@
+/* Wada273, credited local catalogue conversions: pink atmosphere, purple ink,
+   gray structure. Existing guide artwork retains its own colours. */
+:root { --ink:#7d133a; --paper:#fff; --wash:color-mix(in srgb,#f9c1ce 12%,white); --rule:#b6bfc1; --muted:color-mix(in srgb,#7d133a 80%,white); --micro:12px; --guide-paper:#f9c1ce; }
+.bar, .chips { background:var(--paper); }
+.notebook-sheet .plub-say { background:var(--wash); padding:0 4px; }
+.notebook-sheet .plub-say p { padding:8px 0; }
+.notebook-sheet .plub-say svg { background:var(--guide-paper); }
+.sheet.notebook-sheet { max-height:calc(100dvh - 112px); }
+.notebook-sheet > section { margin-top:10px; }
+.notebook-sheet .stamps { margin-top:8px; }
+.notebook-actions,.moment-actions { display:flex; flex-wrap:wrap; align-items:center; gap:4px 8px; }
+.notebook-actions { margin:8px 0; }
+.notebook-actions button,.moment-actions button,.cloud-account button,.new-notebook-key button,.local-settings button,.edit-visit button { min-height:32px; padding:4px 8px; border:1px solid var(--ink); }
+.moment-actions { margin:4px 0 6px; }
+.moment-actions button { padding:2px 8px; }
+.cloud-state { font-size:var(--micro); color:var(--muted); }
+.notebook-sheet label, .edit-visit label,.been-form label:not(.photo-pick) { display:block; margin-top:6px; font-weight:500; }
+.notebook-sheet input:not([type=checkbox]),.notebook-sheet textarea,.notebook-sheet select,.been-form input[type=date] { width:100%; min-height:36px; border:1px solid var(--ink); background:var(--paper); border-radius:0; padding:6px; font:inherit; color:var(--ink); }
+.notebook-sheet input[type=checkbox] { width:18px; height:18px; flex:none; accent-color:var(--ink); }
+.notebook-sheet textarea { resize:vertical; }
+.notebook-search input { margin-top:4px; }
+.notebook-sheet details { margin-top:8px; border-top:1px solid var(--rule); padding-top:6px; }
+.notebook-sheet summary { min-height:32px; cursor:pointer; padding:4px 0; font-weight:500; }
+.notebook-sheet p,.notebook-sheet li,.notebook-sheet code { overflow-wrap:anywhere; max-width:65ch; }
+.notebook-sheet p { margin-top:6px; }
+.cloud-account form { margin:8px 0; }
+.cloud-account form button { margin-top:6px; }
+.notebook-sheet .research { display:flex; align-items:flex-start; gap:8px; font-weight:400; }
+.new-notebook-key { margin-top:8px; padding:8px; background:var(--guide-paper); border:2px solid var(--ink); }
+.new-notebook-key h2,.cloud-visits h2,.community-notes h2 { font-size:var(--big); font-weight:500; }
+.new-notebook-key button { margin-top:6px; }
+.notebook-message { padding:6px 0; border-bottom:2px solid var(--ink); font-weight:500; }
+.cloud-visits ul { list-style:none; padding:0; }
+.cloud-visits li,.moderation-results article,.community-note { padding:8px 0; border-top:1px solid var(--rule); }
+.community-note .thumbs { display:flex; flex-wrap:wrap; gap:6px; }
+.community-note .thumbs img { max-width:104px; max-height:104px; object-fit:cover; }
+.notebook-sheet blockquote { padding:8px 0; border-block:1px solid var(--rule); margin:8px 0; }
+.notebook-sheet .moment-place { cursor:pointer; }
+.notebook-sheet .moment { padding-top:4px; }
+.notebook-sheet [hidden] { display:none!important; }
+@media(min-width:900px) {
+ .sheet.notebook-sheet { max-height:100%; height:100%; flex:1; }
+ .side:has(.notebook-sheet:not([hidden])) .list-wrap { display:none; }
+}
+@media(max-width:420px) {
+ .bar { gap:6px; }
+ .pass-btn { padding:0 5px; gap:4px; }
+ .search { min-width:0; }
+ .chips { flex-wrap:nowrap; overflow-x:auto; }
+ .chips button { flex:none; }
+}
+
+/* Text enlargement changes box height rather than cropping the label. */
+.search input { height:auto; min-height:36px; line-height:1.4; padding-block:6px; }
+.pass-btn { height:auto; min-height:36px; }
+.chips button { height:auto; min-height:32px; padding-block:4px; line-height:1.35; }
+.notebook-sheet .send,.been-form .send { height:auto; min-height:44px; padding:8px 12px; line-height:1.35; }
+.notebook-sheet .local-settings,.notebook-sheet > details:not(.notebook-stamps) { margin-top:10px; }

@@ -1,0 +1,23 @@
+{
+  "photoModeration": true,
+  "moderatorRestoreAndRemove": true,
+  "cloudDeleteThenRebackup": true,
+  "localNoResurrection": true,
+  "preserved": [
+    {
+      "width": 390,
+      "firstResultTop": 522.078125,
+      "pageErrors": []
+    },
+    {
+      "width": 1024,
+      "firstResultTop": 255.59375,
+      "pageErrors": []
+    },
+    {
+      "width": 1440,
+      "firstResultTop": 255.59375,
+      "pageErrors": []
+    }
+  ]
+}

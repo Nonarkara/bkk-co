@@ -200,15 +200,16 @@ $('#guide').addEventListener('click', async () => {
 const urls = [];
 const photoUrl = blob => { const u = URL.createObjectURL(blob); urls.push(u); return u; };
 window.momentHtml = v => `<li class="moment" data-key="${v.key}">
-  <div class="moment-head"><span>${new Date(v.at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
-  <span class="stars" aria-label="${v.stars || 0} of 5">${'★'.repeat(v.stars || 0)}<s>${'★'.repeat(5 - (v.stars || 0))}</s></span>
+  <div class="moment-head"><span>${new Date(Passport.day(v)+'T12:00:00+07:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone:'Asia/Bangkok' })}</span>
+  <span class="stars" aria-label="${v.stars ? v.stars+' of 5' : 'Not rated yet'}">${v.stars ? '★'.repeat(v.stars)+'<s>'+'★'.repeat(5-v.stars)+'</s>' : '<span class="micro">Not rated yet</span>'}</span>
   <button class="del" aria-label="Delete this moment">×</button></div>
+  <div class="moment-actions"><button type="button" data-note-edit="${v.key}">Edit</button><button type="button" data-note-backup="${v.key}">Back up</button><button type="button" data-note-share="${v.key}">Share…</button><span class="cloud-state">${v.cloudOwner ? (v.cloudAt === (v.updated || v.at) ? 'Cloud copy saved' : 'Cloud copy may be older') : 'Device only'}</span></div>
   ${v.words?.length ? `<div class="words">${v.words.map(w => `<span>${esc(w)}</span>`).join('')}</div>` : ''}
   ${v.note ? `<p>${esc(v.note)}</p>` : ''}
   ${v.photos?.length ? `<div class="thumbs">${v.photos.map(b => `<a href="${photoUrl(b)}" target="_blank" rel="noopener"><img src="${urls[urls.length - 1]}" alt="Photo from this visit"></a>`).join('')}</div>` : ''}</li>`;
 
 window.bindMoments = root => root.querySelectorAll('.moment .del').forEach(b => b.addEventListener('click', async () => {
-  if (!confirm('Delete this moment and its photos from this device?')) return;
+  if (!confirm('Delete this moment and its photos from this device? Cloud copies and public recommendations remain until removed separately.')) return;
   await Passport.remove(+b.closest('.moment').dataset.key);
   b.closest('.moment').remove();
   await loadVisits(); refresh();
@@ -217,18 +218,22 @@ window.bindMoments = root => root.querySelectorAll('.moment .del').forEach(b => 
 window.beenForm = (p, btn, done) => {
   const form = document.createElement('form');
   form.className = 'been-form';
+  form.dataset.place = p.id;
   form.innerHTML = `
     <div class="stars-pick" role="group" aria-label="How was it">${[1, 2, 3, 4, 5].map(i => `<button type="button" data-s="${i}" aria-label="${i} of 5" aria-pressed="false">★</button>`).join('')}</div>
     <div class="feel" role="group" aria-label="It felt">${FEELINGS.map(w => `<button type="button" aria-pressed="false">${w}</button>`).join('')}</div>
-    <textarea rows="2" maxlength="600" placeholder="What do you want to remember?"></textarea>
+    <label>Visit date<input name="visit-date" type="date" required value="${new Date(Date.now()+7*3600000).toISOString().slice(0,10)}"></label>
+    <label>Your private note<textarea rows="2" maxlength="600" placeholder="What do you want to remember?"></textarea></label>
     <label class="photo-pick">＋ Photos<input type="file" accept="image/*" multiple hidden></label><span class="micro picked"></span>
     <details class="work-q"><summary>For people who work here (optional, shared)</summary>
       <div class="rate">${SCORES.map(([k, label, opts]) => `<span>${label}</span><div class="seg" data-k="${k}" role="group" aria-label="${label}">${opts.map((o, i) => `<button type="button" data-v="${i + 1}" aria-pressed="false">${o}</button>`).join('')}</div>`).join('')}</div>
     </details>
-    <button class="send" type="submit">Save to passport</button>
-    <p class="micro note">Stars, words, note and photos stay on this device. The four work answers, if all given, are shared anonymously.</p>`;
+    <button class="send" type="submit">Save visit</button>
+    <p class="micro note">Stars, words, note and photos save on this device. Back up or share later from your notebook. The four work answers, if all given, are shared anonymously.</p>`;
   btn.replaceWith(form);
   let stars = 0;
+  try { const draft = JSON.parse(sessionStorage.getItem('plub-draft-'+p.id)||'null'); if (draft) { form.querySelector('textarea').value = draft.note || ''; form.querySelector('[name=visit-date]').value = draft.at || form.querySelector('[name=visit-date]').value; } } catch {}
+  form.addEventListener('input', () => { try { sessionStorage.setItem('plub-draft-'+p.id, JSON.stringify({ note:form.querySelector('textarea').value, at:form.querySelector('[name=visit-date]').value })); } catch {} });
   form.querySelector('.stars-pick').addEventListener('click', e => {
     const b = e.target.closest('[data-s]'); if (!b) return;
     stars = +b.dataset.s;
@@ -249,30 +254,33 @@ window.beenForm = (p, btn, done) => {
     e.preventDefault();
     const send = form.querySelector('.send'); send.disabled = true; send.textContent = 'Saving…';
     try {
-      await Passport.add({ place: p.id, name: p.n, kind: p.k, y: p.y, x: p.x, stars,
+      await Passport.add({ at: form.querySelector('[name=visit-date]').value, place: p.id, name: p.n, kind: p.k, y: p.y, x: p.x, stars,
         words: [...form.querySelectorAll('.feel [aria-pressed="true"]')].map(b => b.textContent),
         note: form.querySelector('textarea').value, files: input.files });
       if (SCORES.every(([k]) => vote[k])) {
         const r = await fetch('/api/scores', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ place: p.id, ...vote }) }).catch(() => null);
         if (r?.ok) await loadScores(); // a refused rating (e.g. already rated today) never blocks the passport entry
       }
-      await loadVisits(); refresh(); done();
+      sessionStorage.removeItem('plub-draft-'+p.id);
+      await loadVisits(); refresh(); const active=form.isConnected; form.remove(); if(active)done();
     } catch (err) { send.disabled = false; send.textContent = 'Not saved. Try again'; console.error(err); }
   });
 };
 
 $('#passport').addEventListener('click', openPassport);
+window.openPassport = openPassport;
 async function openPassport() {
   await hoodsReady;
   const visits = (await Passport.all().catch(() => [])).sort((a, b) => b.at.localeCompare(a.at));
   const places = new Set(visits.map(v => v.place));
   const stamped = hoods.list.filter(h => h.ids.some(id => places.has(id)));
   const sheet = openSheet(`
-    <header><h1>Your passport</h1><button class="close" aria-label="Close">×</button></header>
-    <div class="plub-say">${plub('stamp', 104)}<p><q>${visits.length ? `${places.size} ${places.size === 1 ? 'place' : 'places'}, ${stamped.length} of ${hoods.list.length} neighbourhoods stamped. Keep going.` : 'Nothing stamped yet. Open any place and tap "I\'ve been here".'}</q></p></div>
-    <section><h2 class="micro">Neighbourhood stamps</h2>
+    <header><h1>Your notebook</h1><button class="close" aria-label="Close">×</button></header>
+    <div class="plub-say">${plub('stamp', 104)}<p><q>${visits.length ? `${places.size} ${places.size === 1 ? 'place' : 'places'}, ${stamped.length} of ${hoods.list.length} neighbourhoods stamped. Keep going.` : 'Start with a place you visited. Save a note or photo; back it up or share it when you choose.'}</q></p></div>
+    <div id="notebook-tools"></div>
+    <details class="notebook-stamps"><summary>Neighbourhood stamps</summary>
       <ul class="stamps">${hoods.list.map(h => { const n = h.ids.filter(id => places.has(id)).length; return `<li data-hood="${h.slug}" class="${n ? 'on' : ''}"><span class="stamp">${n ? '✓' : ''}<b>${esc(h.name)}</b><span class="th" lang="th">${esc(h.th)}</span></span><span class="micro">${n} been</span></li>`; }).join('')}</ul>
-    </section>
+    </details>
     <section><h2 class="micro">Moments · ${visits.length}</h2>
       ${visits.length ? `<ul class="moments">${visits.map(v => `<li class="moment-place" data-id="${esc(v.place)}"><i class="dot ${esc(v.kind)}"></i><b>${esc(v.name)}</b></li>${momentHtml(v)}`).join('')}</ul>` : '<p class="micro">Your visits, impressions and photos will collect here.</p>'}
     </section>
@@ -281,7 +289,8 @@ async function openPassport() {
       <button type="button" class="export">↓ Export backup</button>
       <label class="importer">↑ Import<input type="file" accept="application/json" hidden></label>
     </nav>
-    <p class="src">Saved on this device only, never uploaded. Export a backup before clearing your browser or changing phones.</p>`);
+    <p class="src">Device copies stay here until you delete them. Cloud backup and public sharing are separate choices. Export before clearing your browser.</p>`);
+  window.Notebook?.mount(sheet, visits);
   sheet.querySelector('.stamps').addEventListener('click', e => { const li = e.target.closest('[data-hood]'); if (li) openHood(li.dataset.hood); });
   sheet.querySelectorAll('.moment-place').forEach(li => li.addEventListener('click', () => select(state.byId.get(li.dataset.id), true)));
   bindMoments(sheet);

@@ -1,0 +1,1 @@
+Photo moderation, review restore/remove, delete/rebackup, atomic local deletion, finder/hop/mood preservation pass.
