@@ -79,6 +79,7 @@ function refresh() {
     });
   }
   const total = state.places.length;
+  $('#q').placeholder = `Search ${fmt(list.length)} places · ค้นหา`;
   $('#count').textContent = `${fmt(list.length)}${list.length === total ? '' : ' of ' + fmt(total)}${state.foodLoaded ? '' : ' · loading food'}`;
   renderList(list);
   performance.mark(src ? 'bkk:pins' : 'bkk:data'); // load timing, read via performance.getEntriesByType('mark')
@@ -100,7 +101,7 @@ map.on('load', async () => {
     paint: { 'text-color': '#20201d' } });
   map.addLayer({ id: 'pins', type: 'circle', source: 'places', filter: ['!', ['has', 'point_count']], paint: {
     'circle-color': ['match', ['get', 'k'], 'cafe', '#20201d', 'coworking', '#f59e0b', 'library', '#ffffff', '#8f918a'],
-    'circle-stroke-color': ['match', ['get', 'k'], 'library', '#20201d', '#ffffff'],
+    'circle-stroke-color': ['match', ['get', 'k'], 'library', '#20201d', 'coworking', '#20201d', '#ffffff'],
     'circle-stroke-width': ['case', ['==', ['get', 'r'], 1], 3, ['==', ['get', 'k'], 'library'], 2, 1],
     'circle-radius': ['interpolate', ['linear'], ['zoom'], 13, ['match', ['get', 'k'], 'restaurant', 3.5, 5], 18, ['match', ['get', 'k'], 'restaurant', 6, 8]] } });
   map.addLayer({ id: 'pin-names', type: 'symbol', source: 'places', minzoom: 16, filter: ['!', ['has', 'point_count']],
@@ -120,6 +121,7 @@ map.on('load', async () => {
     map.on('mouseleave', l, () => { map.getCanvas().style.cursor = ''; });
   }
   map.on('moveend', () => renderList());
+  document.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show');
 
   await firstData; refresh(); openFromUrl();
   await foodData; refresh(); openFromUrl();
@@ -133,8 +135,8 @@ function renderList(list) {
   const b = map.getBounds(), c = map.getCenter();
   const k = Math.cos(c.lat * Math.PI / 180);
   const inView = lastList.filter(p => b.contains([p.x, p.y]))
-    .map(p => [(((p.x - c.lng) * k) ** 2 + (p.y - c.lat) ** 2) * (p.k === 'restaurant' ? 9 : 1), p]) // work spots rank ~3x closer
-    .sort((a, z) => a[0] - z[0]).slice(0, 60).map(a => a[1]);
+    .map(p => [p.k === 'restaurant' ? 1 : 0, ((p.x - c.lng) * k) ** 2 + (p.y - c.lat) ** 2, p])
+    .sort((a, z) => a[0] - z[0] || a[1] - z[1]).slice(0, 60).map(a => a[2]);
   $('#list').innerHTML = inView.length
     ? inView.map(p => row(p)).join('')
     : '<li class="meta">Nothing here with these filters. Zoom out or clear a filter.</li>';
@@ -143,7 +145,7 @@ function renderList(list) {
 function row(p) {
   const s = state.scores[p.id];
   return `<li data-id="${esc(p.id)}" role="option"><i class="dot ${p.k}"></i><span class="nm">${esc(p.n)}</span>` +
-    `<span class="meta">${p.flags & F.WIFI ? 'Wi-Fi · ' : ''}${s ? '★ ' + s.n : KIND_LABEL[p.k]}</span></li>`;
+    `<span class="meta">${[p.flags & F.WIFI ? '≋' : '', s ? '★ ' + s.n : ''].filter(Boolean).join(' ')}</span></li>`;
 }
 
 $('#list').addEventListener('click', e => {
@@ -210,7 +212,8 @@ async function select(p, fly) {
   // keep the pin visible above the phone sheet
   const phone = !window.matchMedia('(min-width: 900px)').matches;
   const padding = { top: 40, bottom: phone ? $('#sheet').offsetHeight + 24 : 40, left: 40, right: 40 };
-  map.flyTo({ center: [p.x, p.y], zoom: fly ? Math.max(map.getZoom(), 16.5) : map.getZoom(), padding, speed: 1.6 });
+  const view = { center: [p.x, p.y], zoom: fly ? Math.max(map.getZoom(), 16.5) : map.getZoom(), padding };
+  fly === 'jump' ? map.jumpTo(view) : map.flyTo({ ...view, speed: 1.6 }); // shared links land, no flight
   renderSheet(p, await cellDetail(p));
 }
 
@@ -302,7 +305,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#sheet
 
 function openFromUrl() {
   const id = new URL(location.href).searchParams.get('p');
-  if (id && !state.selected && state.byId.has(id)) select(state.byId.get(id), true);
+  if (id && !state.selected && state.byId.has(id)) select(state.byId.get(id), 'jump');
 }
 
 $('#about').addEventListener('click', () => {
