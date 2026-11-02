@@ -1,4 +1,9 @@
 // Real Worker + local D1. Never run writes on the public host.
+// The suite is stateful: rate-limit buckets persist in local D1 (caps per IP per hour:
+// create 20, publish 20, save 120). A rerun inside the hour fails on 429s — that is the
+// limiter working, not a regression. Reset first: stop wrangler dev, `rm -rf .wrangler/state`,
+// start `npx wrangler dev --port 4186 --local`, and confirm `curl -s localhost:4186/api/account`
+// answers JSON (a cold server can return an empty body on the first hit).
 import assert from 'node:assert/strict';import{randomUUID}from'node:crypto';import{readFile}from'node:fs/promises';
 const base=process.argv[2]||'http://localhost:4186';if(!/^http:\/\/(localhost|127\.0\.0\.1):/.test(base))throw new Error('Local write tests only.');
 const data=JSON.parse(await readFile(new URL('../public/data/places-work.json',import.meta.url))),place=data.rows[0][0];let checks=0;const owners=new Map();
