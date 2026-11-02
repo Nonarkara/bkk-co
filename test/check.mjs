@@ -18,7 +18,9 @@ assert.deepEqual(byKind, manifest.kinds);
 assert.equal(Object.values(manifest.kinds).reduce((a, b) => a + b, 0), manifest.total);
 
 const [x0, y0, x1, y1] = manifest.bounds, ids = new Set();
-for (const [id, name, , lat, lng] of rows) {
+for (const [id, name, , lat, lng, , g, idx] of rows) {
+  assert.ok(/^\d{6}$/.test(g), `metrics ${id}`);
+  assert.ok(Number.isInteger(idx) && idx >= 0 && idx <= 100, `index ${id}`);
   assert.ok(name && name.trim(), `unnamed ${id}`);
   assert.ok(lng >= x0 && lng <= x1 && lat >= y0 && lat <= y1, `outside bounds ${id}`);
   assert.ok(!ids.has(id), `duplicate ${id}`); ids.add(id);

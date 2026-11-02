@@ -58,6 +58,10 @@ async function postScore(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.hostname === 'bkkco.nonarkara.org') { // links shared on 2 Nov 2026 keep working
+      url.hostname = 'co.nonarkara.org';
+      return Response.redirect(url.toString(), 301);
+    }
     if (url.pathname === '/api/scores') {
       if (request.method === 'GET') return getScores(env);
       if (request.method === 'POST') return postScore(request, env);

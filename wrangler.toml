@@ -13,5 +13,9 @@ database_name = "bkk-co"
 database_id = "543b6326-c7a5-410d-aa30-81d6a92ea4a0"
 
 [[routes]]
+pattern = "co.nonarkara.org"
+custom_domain = true
+
+[[routes]]
 pattern = "bkkco.nonarkara.org"
 custom_domain = true
