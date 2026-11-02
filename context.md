@@ -1,7 +1,9 @@
-# BKK Co. — project context
+# BKK Co. · Bangkok Co(working) — project context
 
-**Live:** https://co.nonarkara.org · **Repo:** github.com/Nonarkara/bkk-co (private) · **Tier:** T1 Pilot
-**Home folder:** `~/Projects/bangkok-ioc/bkk-co` (new life for the bangkok-ioc folder; the Atlas and IOC checkouts beside it are separate deploys — never deploy them from here).
+**Live:** https://bkkco.nonarkara.org · **Repo:** github.com/Nonarkara/bkk-co (private) · **Tier:** T1 Pilot
+**Name:** Bangkok Co(working), short form BKK Co. It replaces the old "Bangkok IOC" identity of this folder; do not use that name for this system.
+**Home folder:** `~/Projects/bangkok-ioc/bkk-co` (folder name is historical). Sibling checkouts there are other projects with their own deploys — never deploy them from here.
+**Domain history:** briefly served at co.nonarkara.org on 2026-11-02, moved to bkkco.nonarkara.org the same day.
 
 ## What it is
 One map of Bangkok places you can work from: cafés, co-working, libraries, restaurants.
@@ -27,7 +29,7 @@ Only 535 carry a Wi-Fi tag and ~1,500 carry opening hours; the crowd scores are 
 - Front end: no bundler. `public/app.js`, `hours.js`, `style.css`. MapLibre 4.7.1 + OpenFreeMap positron.
 
 ## Checks
-`node test/check.mjs` (catalogue conservation law, validator, hours) · `node test/check.mjs https://co.nonarkara.org` (also live API; writes one real rating).
+`node test/check.mjs` (catalogue conservation law, validator, hours) · `node test/check.mjs https://bkkco.nonarkara.org` (also live API; writes one real rating).
 
 ## Design
 Civic daylight register, MSH (`~/Projects/_reference/MSH.md`). Jost + Prompt, ink/muted/rule, one amber = co-working.
