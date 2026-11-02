@@ -31,12 +31,12 @@
   <button data-kind="cafe" aria-pressed="true"><i class="dot cafe"></i>Café</button>
   <button data-kind="coworking" aria-pressed="true"><i class="dot coworking"></i>Co-work</button>
   <button data-kind="library" aria-pressed="true"><i class="dot library"></i>Library</button>
-  <button data-kind="restaurant" aria-pressed="true"><i class="dot restaurant"></i>Food</button>
+  <button data-kind="restaurant" aria-pressed="false"><i class="dot restaurant"></i>Food</button>
   <span class="sep" aria-hidden="true"></span>
-  <button data-flag="wifi" aria-pressed="false">≋ Wi-Fi</button>
-  <button data-flag="open" aria-pressed="false">◷ Open now</button>
-  <button data-flag="indie" aria-pressed="false">◇ Independent</button>
-  <button data-flag="visited" aria-pressed="false">✓ Been</button>
+  <button data-flag="wifi" aria-pressed="false" title="Wi-Fi listed or rated">≋ Wi-Fi</button>
+  <button data-flag="open" aria-pressed="false" title="Open now (where hours are known)">◷ Open</button>
+  <button data-flag="indie" aria-pressed="false" title="Independent, not a chain">◇ Indie</button>
+  <button data-flag="visited" aria-pressed="false" title="Places you've been">✓ Been</button>
   <output id="count" class="count" aria-live="polite">…</output>
 </nav>
 
@@ -47,7 +47,7 @@
     <div class="sorts" role="tablist" aria-label="Sort places">
       <button role="tab" data-sort="great" aria-selected="true" title="Great Good Place index">✦ Great</button>
       <button role="tab" data-sort="near" aria-selected="false" title="Nearest to the map centre">◎ Near</button>
-      <button role="tab" data-sort="popular" aria-selected="false" title="Known to the most datasets and channels">▲ Popular</button>
+      <button role="tab" data-sort="popular" aria-selected="false" title="Listed by the most datasets and channels (not foot traffic)">▲ Known</button>
       <button role="tab" data-sort="notable" aria-selected="false" title="Wikidata, Wikipedia or heritage record">◆ Notable</button>
       <button role="tab" data-sort="work" aria-selected="false" title="Co-working, library, Wi-Fi, visitor scores">≋ Work</button>
       <button class="close list-close phone-only" aria-label="Close list">×</button>

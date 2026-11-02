@@ -2,13 +2,16 @@ import { validateScore } from './validate.js';
 
 const DAILY_LIMIT = 20;
 let ids; // catalogue ids, loaded once per isolate from the static asset
+let names; // id -> [name, kind, index], for link previews
+let hoods; // slug -> neighbourhood, for link previews
 
 async function knownIds(env, url) {
   if (!ids) {
-    ids = new Set();
+    ids = new Set(); names = new Map();
     for (const f of ['work', 'food']) {
       const r = await env.ASSETS.fetch(new URL(`/data/places-${f}.json`, url));
-      for (const row of (await r.json()).rows) ids.add(row[0]);
+      const d = await r.json();
+      for (const row of d.rows) { ids.add(row[0]); names.set(row[0], [row[1], d.kinds[row[2]], row[7]]); }
     }
   }
   return ids;
@@ -67,6 +70,33 @@ export default {
       if (request.method === 'POST') return postScore(request, env);
       return json({ error: 'method not allowed' }, 405, { allow: 'GET, POST' });
     }
+    if (url.pathname === '/' && (url.searchParams.has('hood') || url.searchParams.has('p'))) return withPreview(request, env, url);
     return env.ASSETS.fetch(request);
   },
 };
+
+// Shared links (LINE, WhatsApp, X) show the place or neighbourhood, not the generic page.
+const KIND = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library' };
+async function withPreview(request, env, url) {
+  const page = await env.ASSETS.fetch(new URL('/', url));
+  let title, desc;
+  try {
+    if (url.searchParams.has('hood')) {
+      if (!hoods) hoods = Object.fromEntries((await (await env.ASSETS.fetch(new URL('/data/hoods.json', url))).json()).hoods.map(h => [h.slug, h]));
+      const h = hoods[url.searchParams.get('hood')];
+      if (h) { title = `${h.name} ${h.th} · for ${h.for.toLowerCase()} · PLUB`; desc = `${h.stats.work} work spots within ~10 min of ${h.anchorLabel}. ${h.plub}`; }
+    } else {
+      await knownIds(env, request.url);
+      const n = names.get(url.searchParams.get('p'));
+      if (n) { title = `${n[0]} · PLUB`; desc = `${KIND[n[1]] || 'Place'} in Bangkok · Great Good Place index ${n[2]} of 100. Scored from open data, with Nong Plub as your guide.`; }
+    }
+  } catch { /* fall back to the generic preview */ }
+  if (!title) return page;
+  const set = (attr) => ({ element(e) { e.setAttribute('content', attr); } });
+  return new HTMLRewriter()
+    .on('title', { element(e) { e.setInnerContent(title); } })
+    .on('meta[property="og:title"]', set(title))
+    .on('meta[property="og:description"]', set(desc))
+    .on('meta[name="description"]', set(desc))
+    .transform(page);
+}

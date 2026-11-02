@@ -32,11 +32,16 @@ window.addHoodLayers = () => {
     layout: { 'text-field': ['get', 'label'], 'text-size': 13, 'text-font': ['Noto Sans Bold'], 'text-anchor': 'bottom', 'text-allow-overlap': true },
     paint: { 'text-color': '#20201d', 'text-halo-color': '#ffffff', 'text-halo-width': 2 } });
   map.on('click', 'hood-fill', e => {
-    if (map.queryRenderedFeatures(e.point, { layers: ['pins', 'clusters'] }).length) return; // a pin wins
+    if (map.queryRenderedFeatures(e.point, { layers: PIN_LAYERS }).length) return; // a pin wins
     openHood(e.features[0].properties.slug);
   });
   map.on('click', 'hood-label', e => openHood(e.features[0].properties.slug));
   drawHoods();
+};
+window.fitAllHoods = async () => {
+  await hoodsReady;
+  const pts = hoods.list.flatMap(h => ring(h, 8)), xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+  map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]], { padding: 40, animate: false });
 };
 function drawHoods() {
   const src = map.getSource && map.getSource('hoods');
@@ -93,18 +98,18 @@ async function openHood(slug, jump) {
     <header><h1>${esc(h.name)}<span class="th" lang="th">${esc(h.th)}</span></h1><button class="close" aria-label="Close">×</button></header>
     <div class="plub-say">${plub(POSE[slug] || 'wave', 104)}<p><span class="micro">Socially optimized for</span><b class="for">${esc(h.for)}</b><span class="th" lang="th">${esc(h.forTh)}</span><q>${esc(h.plub)}</q></p></div>
     <section class="hood-stats">
-      <div class="stat"><span class="big">${fmt(s.work)}</span><span class="micro">work spots within a 10-min walk of ${esc(h.anchorLabel)}</span></div>
-      <div class="stat"><span class="big">#${s.stationRank}</span><span class="micro">of ${s.stations} rail stations</span></div>
+      <div class="stat"><span class="big">${fmt(s.work)}</span><span class="micro">work spots within ~10 min (800 m) of ${esc(h.anchorLabel)}</span></div>
+      <div class="stat"><span class="big">#${s.stationRank}</span><span class="micro">${/^(BTS|MRT)/.test(h.anchorLabel) ? `of ${s.stations} rail stations` : `vs ${s.stations} rail-station circles`}</span></div>
       <div class="stat"><span class="big">✦${s.ggp}</span><span class="micro">average index</span></div>
       <div class="stat"><span class="big">${been}<small>/${fmt(workIds.length)}</small></span><span class="micro">✓ you've been</span></div>
       ${strip(h)}
       ${compBar(s.kinds)}
       <p class="micro data-note">≋ ${s.wifiTagged} list Wi-Fi · ◷ ${s.hoursKnown} list hours · ${fmt(Math.round(s.perKm2))} per km²</p>
     </section>
-    <section><h2 class="micro">Oldenburg's traits this place shows</h2>${traitsRow(h)}</section>
+    <section><h2 class="micro">Plub's read · Oldenburg's traits, from the story below</h2>${traitsRow(h)}</section>
     <section class="story">${h.story.map(t => `<p>${esc(t)}</p>`).join('')}</section>
-    <section><h2 class="micro">Plub's walk · six highest-scoring work spots</h2>
-      <ol class="walk">${h.walk.map((id, i) => { const p = state.byId.get(id); return p ? `<li data-id="${esc(id)}"><span class="stop">${i + 1}</span><span class="nm">${esc(p.n)}</span>${state.visited.has(id) ? '<b>✓</b>' : ''}<span class="idx">${p.idx}</span></li>` : ''; }).join('')}</ol>
+    <section><h2 class="micro">Plub's walk · co-working &amp; libraries first, then Wi-Fi, then ✦</h2>
+      <ol class="walk">${h.walk.map((id, i) => { const p = state.byId.get(id); return p ? `<li data-id="${esc(id)}"><span class="stop">${i + 1}</span><span class="nm">${esc(p.n)}</span>${state.visited.has(id) ? '<b>✓</b>' : ''}<span class="idx">✦${p.idx}</span></li>` : ''; }).join('')}</ol>
     </section>
     <nav class="links"><button type="button" class="show-map">◎ Show on map</button><button type="button" class="share">Share</button></nav>
     <p class="src">Sources: ${h.sources.map(([t, url]) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(t)}</a>`).join(' · ')}. Numbers computed from OpenStreetMap and Overture Maps places within ${h.radius} m of OSM ${esc(h.anchor.id)}.</p>`);
@@ -139,15 +144,18 @@ function histogram(P) {
 $('#guide').addEventListener('click', async () => {
   await hoodsReady;
   const d = hoods.data, P = state.places, n = P.length || 1;
+  // what the bar shows: A/S/F are computed for every place; C is the share that is independent;
+  // W and N are the share of places that carry any signal at all (the honest coverage gap)
   const cov = {
-    A: P.length, S: P.length, C: P.filter(p => !(p.flags & F.CHAIN)).length, F: P.length,
-    W: P.filter(p => p.d[4] > 0).length, N: P.filter(p => p.d[5] > 0).length,
+    A: [P.length, 'computed for all'], S: [P.length, 'computed for all'], F: [P.length, 'computed for all'],
+    C: [P.filter(p => !(p.flags & F.CHAIN)).length, 'independent'],
+    W: [P.filter(p => p.d[4] > 0).length, 'have a signal'], N: [P.filter(p => p.d[5] > 0).length, 'have a record'],
   };
   const why = {
     A: 'Jeffres et al. 2009: perceived access to third places predicts community quality of life',
     S: 'Adelfio et al. 2020: third places show up as clusters of social activity',
     C: 'Mehta & Bosson 2010: third places are personal and distinctive, not uniform',
-    F: 'Adelfio et al. 2020: no single dataset is enough, so we count agreement across them',
+    F: 'Adelfio et al. 2020: no single dataset is enough. ▲ Known counts how many list a place; it is not foot traffic',
     W: 'PLUB: places you can actually sit and work',
     N: 'Prestige, only where a public record says so',
   };
@@ -161,19 +169,19 @@ $('#guide').addEventListener('click', async () => {
         <span class="nm"><b>${esc(h.name)}</b> <span class="th" lang="th">${esc(h.th)}</span><span class="micro">for ${esc(h.for.toLowerCase())}</span></span>
         <span class="meta">${fmt(h.stats.work)} spots · #${h.stats.stationRank}</span></li>`; }).join('')}</ol>
     </section>
-    <section><h2 class="micro">Most work spots within a 10-min walk · ${d.stations} rail stations</h2>
+    <section><h2 class="micro">Most work spots within ~800 m · ${d.stations} rail stations</h2>
       <ol class="board">${top.map(s => `<li class="${anchors.has(s.th) ? 'hl' : ''}"><span class="nm">${s.rank}. ${esc(s.name)}</span><span class="barwrap"><i style="width:${s.work / max * 100}%"></i></span><span class="meta">${s.work}</span></li>`).join('')}</ol>
       <p class="micro data-note">Median station: ${d.stationMedian}. Work spot = café, co-working or library.</p>
     </section>
     <section><h2 class="micro">How every place is scored</h2>
       ${histogram(P)}
-      <table class="ggp-table how">${GGP.map(([k, sym, label, what], i) => `<tr><td class="sym">${sym}</td><td><b>${label}</b> <span class="what">${what}</span></td><td class="raw"><span class="cov" title="${fmt(cov[k])} of ${fmt(P.length)} places carry this signal"><i style="width:${Math.max(1, cov[k] / n * 100)}%"></i></span>${cov[k] / n < 0.01 ? '<1' : Math.round(cov[k] / n * 100)}%</td></tr>
+      <table class="ggp-table how">${GGP.map(([k, sym, label, what], i) => `<tr><td class="sym">${sym}</td><td><b>${label}</b> <span class="what">${what}</span></td><td class="raw"><span class="cov" title="${fmt(cov[k][0])} of ${fmt(P.length)} places"><i style="width:${Math.max(1, cov[k][0] / n * 100)}%"></i></span>${cov[k][0] / n < 0.01 ? '<1' : Math.round(cov[k][0] / n * 100)}% ${cov[k][1]}</td></tr>
         <tr class="why"><td></td><td colspan="2">${esc(why[k])}</td></tr>`).join('')}</table>
-      <p class="data-note">✦ Great Good Place index = the average of ↦ ⁘ ◇ ◎, each ranked against all ${fmt(P.length)} places, 0–100. ≋ and ✦ are shown but kept out of the index: too few places carry them yet to be fair.</p>
+      <p class="data-note">✦ index = average of ↦ ⁘ ◎ (each ranked against all ${fmt(P.length)} places) and ◇ (three steps: chain, small chain, independent), 0–100. ≋ Work and ✦ Notable are shown but kept out: too few places carry them yet to be fair. Walk times are straight-line estimates.</p>
     </section>
     <section class="about"><h2 class="micro">Sources</h2>
       <p class="src">Ray Oldenburg, <i>The Great Good Place</i> (1989). Jeffres, Bracken, Jian & Casey, "The Impact of Third Places on Community Quality of Life", <i>Applied Research in Quality of Life</i> 4 (2009). Mehta & Bosson, "Third Places and the Social Life of Streets", <i>Environment and Behavior</i> 42:6 (2010). Adelfio et al., "Social Activity in Gothenburg's Intermediate City: Mapping Third Places through Social Media Data", <i>Applied Spatial Analysis and Policy</i> (2020).</p>
-      <p class="src">Places: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (ODbL, 24 Oct 2026) and <a href="https://overturemaps.org" target="_blank" rel="noopener">Overture Maps</a> (CDLA-P-2.0, 2026-10-21). Work scores come from visitors. Nobody has paid to appear here. A working pilot: if a pin is wrong, fix it on OpenStreetMap.</p>
+      <p class="src">Places: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (ODbL, 24 Oct 2026) and <a href="https://overturemaps.org" target="_blank" rel="noopener">Overture Maps</a> (CDLA-P-2.0, 2026-10-21). Visitor ratings (Wi-Fi, outlets, quiet, laptop) come from visitors; ≋ Work comes from map tags. Nobody has paid to appear here. A working pilot: if a pin is wrong, fix it on OpenStreetMap.</p>
     </section>`);
   sheet.querySelector('.line').addEventListener('click', e => { const li = e.target.closest('li[data-hood]'); if (li) openHood(li.dataset.hood); });
 });
@@ -204,8 +212,11 @@ window.beenForm = (p, btn, done) => {
     <div class="feel" role="group" aria-label="It felt">${FEELINGS.map(w => `<button type="button" aria-pressed="false">${w}</button>`).join('')}</div>
     <textarea rows="2" maxlength="600" placeholder="What do you want to remember?"></textarea>
     <label class="photo-pick">＋ Photos<input type="file" accept="image/*" multiple hidden></label><span class="micro picked"></span>
+    <details class="work-q"><summary>For people who work here (optional, shared)</summary>
+      <div class="rate">${SCORES.map(([k, label, opts]) => `<span>${label}</span><div class="seg" data-k="${k}" role="group" aria-label="${label}">${opts.map((o, i) => `<button type="button" data-v="${i + 1}" aria-pressed="false">${o}</button>`).join('')}</div>`).join('')}</div>
+    </details>
     <button class="send" type="submit">Save to passport</button>
-    <p class="micro">Saved on this device only.</p>`;
+    <p class="micro note">Stars, words, note and photos stay on this device. The four work answers, if all given, are shared anonymously.</p>`;
   btn.replaceWith(form);
   let stars = 0;
   form.querySelector('.stars-pick').addEventListener('click', e => {
@@ -216,6 +227,12 @@ window.beenForm = (p, btn, done) => {
   form.querySelector('.feel').addEventListener('click', e => {
     const b = e.target.closest('button'); if (b) b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true');
   });
+  const vote = {};
+  form.querySelector('.rate').addEventListener('click', e => {
+    const b = e.target.closest('.seg button'); if (!b) return;
+    b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    vote[b.parentElement.dataset.k] = +b.dataset.v;
+  });
   const input = form.querySelector('input[type=file]');
   input.addEventListener('change', () => { form.querySelector('.picked').textContent = input.files.length ? `${Math.min(4, input.files.length)} photo(s)` : ''; });
   form.addEventListener('submit', async e => {
@@ -225,6 +242,10 @@ window.beenForm = (p, btn, done) => {
       await Passport.add({ place: p.id, name: p.n, kind: p.k, y: p.y, x: p.x, stars,
         words: [...form.querySelectorAll('.feel [aria-pressed="true"]')].map(b => b.textContent),
         note: form.querySelector('textarea').value, files: input.files });
+      if (SCORES.every(([k]) => vote[k])) {
+        const r = await fetch('/api/scores', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ place: p.id, ...vote }) }).catch(() => null);
+        if (r?.ok) await loadScores(); // a refused rating (e.g. already rated today) never blocks the passport entry
+      }
       await loadVisits(); refresh(); done();
     } catch (err) { send.disabled = false; send.textContent = 'Not saved. Try again'; console.error(err); }
   });
@@ -246,6 +267,7 @@ async function openPassport() {
       ${visits.length ? `<ul class="moments">${visits.map(v => `<li class="moment-place" data-id="${esc(v.place)}"><i class="dot ${esc(v.kind)}"></i><b>${esc(v.name)}</b></li>${momentHtml(v)}`).join('')}</ul>` : '<p class="micro">Your visits, impressions and photos will collect here.</p>'}
     </section>
     <nav class="links">
+      <button type="button" class="card">⇪ Share stamp card</button>
       <button type="button" class="export">↓ Export backup</button>
       <label class="importer">↑ Import<input type="file" accept="application/json" hidden></label>
     </nav>
@@ -253,9 +275,50 @@ async function openPassport() {
   sheet.querySelector('.stamps').addEventListener('click', e => { const li = e.target.closest('[data-hood]'); if (li) openHood(li.dataset.hood); });
   sheet.querySelectorAll('.moment-place').forEach(li => li.addEventListener('click', () => select(state.byId.get(li.dataset.id), true)));
   bindMoments(sheet);
+  sheet.querySelector('.card').onclick = async e => {
+    const blob = await stampCard(places);
+    const file = new File([blob], 'plub-stamps.png', { type: 'image/png' });
+    if (navigator.canShare?.({ files: [file] })) { try { await navigator.share({ files: [file], title: 'My PLUB stamps', url: location.origin }); } catch { /* cancelled */ } return; }
+    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'plub-stamps.png' });
+    a.click(); e.target.textContent = '⇪ Card saved';
+  };
   sheet.querySelector('.export').onclick = async e => { const n = await Passport.exportFile(); e.target.textContent = `↓ Exported ${n}`; };
   sheet.querySelector('.importer input').onchange = async e => {
     try { const n = await Passport.importFile(e.target.files[0]); await loadVisits(); refresh(); openPassport(); alert(`${n} moments imported.`); }
     catch (err) { alert(err.message); }
   };
+}
+
+// A 1080×1350 card (portrait, phone-share size): Plub, four stamps, the count. Drawn locally; nothing uploads.
+async function stampCard(places) {
+  const W = 1080, H = 1350, c = document.createElement('canvas'); c.width = W; c.height = H;
+  const g = c.getContext('2d');
+  await document.fonts.ready;
+  g.fillStyle = '#ffffff'; g.fillRect(0, 0, W, H);
+  g.fillStyle = '#20201d'; g.font = '600 64px Jost, Prompt, sans-serif'; g.fillText('PLUB', 80, 140);
+  g.fillStyle = '#575951'; g.font = '400 30px Jost, Prompt, sans-serif'; g.fillText('Placemaking Laboratory Urban Bureau · Bangkok', 80, 190);
+  const img = new Image();
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(plub('stamp', 300, 'Nong Plub'));
+  await img.decode().catch(() => {});
+  if (img.naturalWidth) g.drawImage(img, W - 380, 40, 300, 350);
+  g.strokeStyle = '#20201d'; g.lineWidth = 2; g.beginPath(); g.moveTo(80, 390); g.lineTo(W - 80, 390); g.stroke();
+  hoods.list.forEach((h, i) => {
+    const n = h.ids.filter(id => places.has(id)).length;
+    const cx = 80 + 230 + (i % 2) * 460, cy = 560 + Math.floor(i / 2) * 360, r = 150;
+    g.save(); g.translate(cx, cy); if (n) g.rotate(-0.1);
+    g.beginPath(); g.arc(0, 0, r, 0, 2 * Math.PI);
+    if (n) { g.fillStyle = '#fff4dc'; g.fill(); g.setLineDash([]); g.strokeStyle = '#20201d'; g.lineWidth = 6; }
+    else { g.setLineDash([14, 12]); g.strokeStyle = '#d5d7cf'; g.lineWidth = 4; }
+    g.stroke(); g.setLineDash([]);
+    g.textAlign = 'center'; g.fillStyle = n ? '#20201d' : '#a7a99f';
+    let fs = 44; do { g.font = `600 ${fs}px Jost, Prompt, sans-serif`; } while (g.measureText(h.name).width > 2 * r - 40 && --fs > 20);
+    g.fillText(h.name, 0, n ? 10 : 0);
+    g.font = '400 30px Prompt, Jost, sans-serif'; g.fillText(h.th, 0, n ? 52 : 44);
+    if (n) { g.font = '600 52px Jost, sans-serif'; g.fillStyle = '#f59e0b'; g.fillText('✓', 0, -50); g.fillStyle = '#20201d'; g.font = '400 28px Jost, sans-serif'; g.fillText(`${n} been`, 0, 98); }
+    g.restore();
+  });
+  g.textAlign = 'left'; g.fillStyle = '#20201d'; g.font = '500 40px Jost, Prompt, sans-serif';
+  g.fillText(`${places.size} great good ${places.size === 1 ? 'place' : 'places'} · ${hoods.list.filter(h => h.ids.some(id => places.has(id))).length} of ${hoods.list.length} neighbourhoods`, 80, H - 120);
+  g.fillStyle = '#575951'; g.font = '400 30px Jost, sans-serif'; g.fillText('co.nonarkara.org', 80, H - 70);
+  return new Promise(ok => c.toBlob(ok, 'image/png'));
 }

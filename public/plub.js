@@ -29,7 +29,7 @@
 
   function plub(pose = 'wave', size = 96, label = 'Nong Plub, your guide') {
     const id = 'p' + (++uid);
-    return `<svg class="plub" viewBox="0 0 120 140" width="${size}" height="${Math.round(size * 140 / 120)}" role="img" aria-label="${label}">
+    return `<svg class="plub" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140" width="${size}" height="${Math.round(size * 140 / 120)}" role="img" aria-label="${label}">
   <defs>
     <filter id="${id}c" x="-5%" y="-5%" width="110%" height="110%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>

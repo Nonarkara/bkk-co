@@ -43,13 +43,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hits .meta, .list .meta { color: var(--muted); font-size: var(--micro); white-space: nowrap; }
 
 /* Chips: one scrolling row on phone, label-plus-padding boxes */
-.chips { grid-area: chips; display: flex; align-items: center; gap: 4px; padding: 4px var(--pad);
-  overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--rule); }
+.chips { grid-area: chips; display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 4px var(--pad);
+  border-bottom: 1px solid var(--rule); }
 .chips::-webkit-scrollbar { display: none; }
-.chips button { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px;
+.chips button { display: inline-flex; align-items: center; gap: 5px; height: 32px; padding: 0 8px;
   white-space: nowrap; border: 1px solid var(--rule); }
 .chips button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
-.chips .sep { flex: none; width: 1px; height: 20px; background: var(--rule); margin: 0 4px; }
+.chips .sep { display: none; }
 .count { display: none; margin-left: auto; padding-left: 8px; color: var(--muted); font-size: var(--micro); white-space: nowrap; }
 
 .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex: none; }
@@ -109,11 +109,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .src { margin-top: 8px; color: var(--muted); font-size: var(--micro); }
 .about p { max-width: 65ch; margin-top: 8px; }
 
-/* sheets that tell a story are reading surfaces: they may take more of the phone */
-.sheet:has(.plub-say) { max-height: 82dvh; }
 .sheet section { margin-top: 14px; }
 .sheet h2.micro { margin-bottom: 6px; }
-.big { font-size: 28px; font-weight: 500; line-height: 1; font-variant-numeric: tabular-nums; }
+.big { font-size: var(--big); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
 .big small { font-size: var(--body); color: var(--muted); font-weight: 400; }
 .data-note { color: var(--muted); font-size: var(--micro); margin-top: 6px; max-width: 65ch; }
 .linkish { text-decoration: underline; text-underline-offset: 3px; min-height: 32px; }
@@ -128,7 +126,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* Great Good Place glyph */
 .ggp { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; align-items: center; }
-.petals text { font-size: 9px; fill: var(--muted); }
 .ggp-num { display: flex; flex-direction: column; gap: 4px; }
 .ggp-table { grid-column: 1 / -1; border-collapse: collapse; width: 100%; }
 .ggp-table td { padding: 3px 8px 3px 0; vertical-align: top; }
@@ -139,7 +136,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .cov { display: inline-block; width: 48px; height: 6px; background: var(--wash); margin-right: 6px; vertical-align: middle; }
 .cov i { display: block; height: 100%; background: var(--ink); }
 .hist { width: 100%; height: auto; margin-bottom: 6px; }
-.hist text { font-size: 9px; fill: var(--muted); font-family: var(--font); }
+.hist text { font-size: var(--micro); fill: var(--muted); font-family: var(--font); }
 .ggp-table .why td { padding-top: 0; color: var(--muted); font-size: var(--micro); }
 
 /* been here */
@@ -150,6 +147,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .feel { display: flex; flex-wrap: wrap; gap: 4px; }
 .feel button { height: 32px; padding: 0 10px; border: 1px solid var(--rule); }
 .feel button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.work-q summary { cursor: pointer; min-height: 32px; display: flex; align-items: center; color: var(--muted); }
+.work-q .rate { margin-top: 6px; }
 .been-form textarea { font: inherit; padding: 8px; border: 1px solid var(--rule); border-radius: 0; resize: vertical; }
 .photo-pick { display: inline-flex; align-items: center; height: 36px; padding: 0 12px; border: 1px dashed var(--ink); cursor: pointer; justify-self: start; }
 .moments { list-style: none; padding: 0; margin-top: 8px; }
@@ -170,7 +169,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .stat { display: flex; flex-direction: column; gap: 4px; }
 .strip, .comp, .comp-legend, .hood-stats .data-note { grid-column: 1 / -1; }
 .strip { width: 100%; height: auto; overflow: visible; }
-.strip text { font-size: 9px; fill: var(--muted); font-family: var(--font); }
+.strip text { font-size: var(--micro); fill: var(--muted); font-family: var(--font); }
 .comp { display: flex; height: 10px; }
 .comp i { display: block; min-width: 2px; }
 .seg-cafe { background: var(--ink); } .seg-coworking { background: var(--amber); }
@@ -232,7 +231,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (min-width: 900px) {
   body { grid-template: "bar map" auto "chips map" auto "side map" 1fr / 360px 1fr; }
   .bar, .chips, .side { border-right: 1px solid var(--rule); }
-  .chips { flex-wrap: wrap; overflow: visible; }
   .count { display: inline; }
   .side { grid-area: side; display: flex; flex-direction: column; min-height: 0; }
   .list-wrap { display: flex; flex-direction: column; min-height: 0; flex: 1; }
@@ -242,7 +240,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .hits { max-height: 70dvh; }
   .phone-only { display: none !important; }
   .sheet { max-height: 78%; }
-  .sheet:has(.plub-say) { max-height: 78%; }
 }
 
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }

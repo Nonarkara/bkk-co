@@ -164,7 +164,7 @@ def merge(osm, ov, skipped):
 # F Footprint how many independent datasets and channels know the venue (OSM, Meta,
 #             Foursquare, AllThePlaces, Microsoft, website, social, phone). A popularity proxy;
 #             Adelfio et al. warn one source alone misleads, so this counts agreement.
-# W Work      co-working/library, tagged Wi-Fi, known hours. Visitor scores add to it live.
+# W Work      co-working/library 6, tagged Wi-Fi 2, known hours 1 (max 9). Visitor ratings feed the Work sort live.
 # N Notable   Wikidata/Wikipedia/heritage tag on the venue itself (prestige; sparse, honest).
 METRICS = {'A': 'Access', 'S': 'Scene', 'C': 'Character', 'F': 'Footprint', 'W': 'Work', 'N': 'Notable'}
 SCENE_M = 250
@@ -220,7 +220,8 @@ def score_places(places, stations):
                          if q is not p and metres(p, q) <= SCENE_M))
         foot.append((p['src'] == 'osm') + len(p.get('ds') or []) +
                     bool(p.get('web')) + bool(p.get('social')) + bool(p.get('tel')))
-        work.append((4 if p['k'] in ('coworking', 'library') else 0) + (3 if p.get('w') == 'yes' else 0) + (1 if p.get('h') else 0))
+        # being a co-working space or library is the strongest work signal; tags add to it
+        work.append((6 if p['k'] in ('coworking', 'library') else 0) + (2 if p.get('w') == 'yes' else 0) + (1 if p.get('h') else 0))
         p['chain'] = bool(p.get('brand')) or names[norm(p['n'])] >= 3
     A, S, F = deciles(walk, reverse=True), deciles(scene), deciles(foot)
     pA, pS, pF = percentiles(walk, reverse=True), percentiles(scene), percentiles(foot)
@@ -228,7 +229,7 @@ def score_places(places, stations):
         C = 1 if p['chain'] else 5 if names[norm(p['n'])] == 2 else 9
         # Great Good Place index: mean of the four Oldenburg-facing percentiles, 0-100 (fine-grained, few ties)
         p['i'] = round((pA[i] + pS[i] + C / 9 + pF[i]) / 4 * 100)
-        W = min(9, round(work[i] * 9 / 8))
+        W = min(9, work[i])
         N = 9 if p.get('notable') else 0
         p['g'] = f"{A[i]}{S[i]}{C}{F[i]}{W}{N}"
         p['m'] = {'walk': round(walk[i]), 'scene': scene[i], 'sources': foot[i]}  # raw values for the sheet

@@ -27,7 +27,7 @@ const digits = p => [...p.g].map(Number);
 
 const state = {
   places: [], byId: new Map(), scores: {}, cells: new Map(), visited: new Map(),
-  kinds: new Set(['cafe', 'coworking', 'library', 'restaurant']), flags: new Set(),
+  kinds: new Set(['cafe', 'coworking', 'library']), flags: new Set(), // Food is one tap away, off by default
   sort: 'great', selected: null, foodLoaded: false, sortedIdx: [],
 };
 
@@ -108,7 +108,6 @@ function refresh() {
     })),
   });
   const total = state.places.length;
-  $('#q').placeholder = `Search ${fmt(lastList.length)} places · ค้นหา`;
   $('#count').textContent = `${fmt(lastList.length)}${lastList.length === total ? '' : ' of ' + fmt(total)}${state.foodLoaded ? '' : ' · loading food'}`;
   renderList();
   performance.mark(map.getSource('places') ? 'bkk:pins' : 'bkk:data');
@@ -117,40 +116,37 @@ function refresh() {
 const firstData = Promise.all([loadRows('work'), loadScores(), loadVisits()]).then(() => refresh());
 const foodData = firstData.then(() => loadRows('food')).then(() => { state.foodLoaded = true; refresh(); });
 
+const PIN_LAYERS = ['pins-city', 'pins-street', 'pins'];
+
 // ---------- map layers ----------
 map.on('load', async () => {
-  map.addSource('places', { type: 'geojson', data: { type: 'FeatureCollection', features: [] }, cluster: true, clusterMaxZoom: 15, clusterRadius: 44 });
+  map.addSource('places', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
   map.addSource('sel', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
   window.addHoodLayers?.(); // views.js: neighbourhood rings sit under the pins
-  map.addLayer({ id: 'clusters', type: 'circle', source: 'places', filter: ['has', 'point_count'], paint: {
-    'circle-color': '#ffffff', 'circle-stroke-color': '#20201d', 'circle-stroke-width': 1.5,
-    'circle-radius': ['step', ['get', 'point_count'], 13, 50, 17, 500, 22, 5000, 28] } });
-  map.addLayer({ id: 'cluster-n', type: 'symbol', source: 'places', filter: ['has', 'point_count'],
-    layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-size': 11, 'text-font': ['Noto Sans Regular'] },
-    paint: { 'text-color': '#20201d' } });
-  // pin size grows with the Great Good Place index, so the eye finds the strong places first
+  // Pin size grows with the Great Good Place index, and the city view shows only the strongest
+  // places (index ≥ 92), then ≥ 70 from street level, then everything. Places you've been always show.
   const r = (base, top) => ['interpolate', ['linear'], ['get', 'i'], 0, base, 100, top];
-  map.addLayer({ id: 'pins', type: 'circle', source: 'places', filter: ['!', ['has', 'point_count']], paint: {
+  const tier = (min, max, at) => ({ minzoom: min, maxzoom: max, filter: ['any', ['>=', ['get', 'i'], at], ['==', ['get', 'v'], 1]] });
+  for (const [id, t] of [['pins-city', tier(0, 13, 92)], ['pins-street', tier(13, 15, 70)], ['pins', tier(15, 24, 0)]]) map.addLayer({ id, type: 'circle', source: 'places', ...t, paint: {
     'circle-color': ['match', ['get', 'k'], 'cafe', '#20201d', 'coworking', '#f59e0b', 'library', '#ffffff', '#8f918a'],
     'circle-stroke-color': ['case', ['==', ['get', 'v'], 1], '#20201d', ['match', ['get', 'k'], 'library', '#20201d', 'coworking', '#20201d', '#ffffff']],
     'circle-stroke-width': ['case', ['==', ['get', 'v'], 1], 3, ['==', ['get', 'k'], 'library'], 2, 1],
     'circle-radius': ['interpolate', ['linear'], ['zoom'],
       13, ['match', ['get', 'k'], 'restaurant', r(2.5, 4.5), r(3.5, 6.5)],
       18, ['match', ['get', 'k'], 'restaurant', r(4.5, 8), r(6, 11)]] } });
-  map.addLayer({ id: 'pin-names', type: 'symbol', source: 'places', minzoom: 16, filter: ['!', ['has', 'point_count']],
+  map.addLayer({ id: 'pin-city-names', type: 'symbol', source: 'places', minzoom: 12.5, maxzoom: 15, filter: ['>=', ['get', 'i'], 96],
+    layout: { 'text-field': ['get', 'n'], 'text-size': 11, 'text-offset': [0, 1], 'text-anchor': 'top', 'text-optional': true,
+      'text-font': ['Noto Sans Regular'], 'symbol-sort-key': ['-', 100, ['get', 'i']] },
+    paint: { 'text-color': '#575951', 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } });
+  map.addLayer({ id: 'pin-names', type: 'symbol', source: 'places', minzoom: 16,
     layout: { 'text-field': ['get', 'n'], 'text-size': 11, 'text-offset': [0, 1.2], 'text-anchor': 'top', 'text-optional': true,
       'text-font': ['Noto Sans Regular'], 'symbol-sort-key': ['-', 100, ['get', 'i']] },
     paint: { 'text-color': '#575951', 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } });
   map.addLayer({ id: 'sel', type: 'circle', source: 'sel', paint: {
     'circle-radius': 13, 'circle-color': 'rgba(0,0,0,0)', 'circle-stroke-color': '#20201d', 'circle-stroke-width': 2.5 } });
 
-  map.on('click', 'clusters', async e => {
-    const f = e.features[0];
-    const zoom = await map.getSource('places').getClusterExpansionZoom(f.properties.cluster_id);
-    map.easeTo({ center: f.geometry.coordinates, zoom: Math.min(zoom, 17) });
-  });
-  map.on('click', 'pins', e => select(state.byId.get(e.features[0].properties.id), false));
-  for (const l of ['clusters', 'pins']) {
+  for (const l of PIN_LAYERS) {
+    map.on('click', l, e => select(state.byId.get(e.features[0].properties.id), false));
     map.on('mouseenter', l, () => { map.getCanvas().style.cursor = 'pointer'; });
     map.on('mouseleave', l, () => { map.getCanvas().style.cursor = ''; });
   }
@@ -178,11 +174,21 @@ function renderList() {
     ? inView.map(p => [metres(p, centre), p]).sort((a, z) => a[0] - z[0]).map(a => a[1])
     : inView.sort(SORTS[state.sort]);
   $('#list').innerHTML = inView.length
-    ? inView.slice(0, 60).map(row).join('')
+    ? inView.slice(0, 60).map(p => row(p, sortKey(p, centre))).join('')
     : '<li class="meta">Nothing here with these filters. Zoom out or clear a filter.</li>';
 }
 
-function row(p) {
+function sortKey(p, centre) {
+  return {
+    great: `✦${p.idx}`,
+    near: `~${Math.round(metres(p, centre) / 10) * 10} m`,
+    popular: `◎${p.d[3]}`,
+    notable: p.d[5] ? '✦' : '–',
+    work: `≋${Math.round(workScore(p))}`,
+  }[state.sort];
+}
+
+function row(p, key = `✦${p.idx}`) {
   const s = state.scores[p.id];
   const tail = [
     state.visited.has(p.id) ? '<b title="You have been here">✓</b>' : '',
@@ -191,7 +197,7 @@ function row(p) {
     s ? `<span title="Visitor ratings">★${s.n}</span>` : '',
   ].join(' ');
   return `<li data-id="${esc(p.id)}" role="option"><i class="dot ${p.k}"></i><span class="nm">${esc(p.n)}</span>` +
-    `<span class="meta">${tail}</span><span class="idx" title="Great Good Place index">${p.idx}</span></li>`;
+    `<span class="meta">${tail}</span><span class="idx">${key}</span></li>`;
 }
 
 $('#list').addEventListener('click', e => {
@@ -288,9 +294,8 @@ function petals(p, size = 76) {
     const tx = cx + Math.cos(a) * len, ty = cy + Math.sin(a) * len;
     const nx = Math.cos(a + Math.PI / 2) * w, ny = Math.sin(a + Math.PI / 2) * w;
     const mx = cx + Math.cos(a) * len * 0.55, my = cy + Math.sin(a) * len * 0.55;
-    const lx = cx + Math.cos(a) * 47, ly = cy + Math.sin(a) * 47;
     return `<path d="M${cx} ${cy} Q${mx + nx} ${my + ny} ${tx} ${ty} Q${mx - nx} ${my - ny} ${cx} ${cy}Z" fill="${i < 4 ? '#20201d' : '#a7a99f'}"/>` +
-      `<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="central">${sym}</text>`;
+''; // labels live in the table beside it
   }).join('');
   return `<svg class="petals" viewBox="0 0 100 100" width="${size}" height="${size}" role="img" aria-label="Great Good Place profile">
     <circle cx="50" cy="50" r="43" fill="none" stroke="#d5d7cf" stroke-dasharray="2 3"/>${leaves}
@@ -316,11 +321,11 @@ async function select(p, fly) {
 function rawValue(key, p, d) {
   const m = d.m || {};
   return {
-    A: m.walk != null ? `${Math.max(1, Math.round(m.walk / 80))} min walk to rail` : 'walk to rail',
+    A: m.walk != null ? `~${Math.max(1, Math.round(m.walk / 80))} min to rail (straight line)` : 'walk to rail',
     S: m.scene != null ? `${m.scene} third places within 250 m` : 'nearby third places',
     C: p.flags & F.CHAIN ? 'chain or brand' : 'independent',
-    F: m.sources != null ? `known to ${m.sources} sources` : 'datasets and channels',
-    W: [p.k === 'coworking' || p.k === 'library' ? KIND_LABEL[p.k] : '', p.flags & F.WIFI ? 'Wi-Fi listed' : '', p.hours ? 'hours known' : ''].filter(Boolean).join(' · ') || 'no work signal yet',
+    F: m.sources != null ? `listed by ${m.sources} sources` : 'datasets and channels',
+    W: [p.k === 'coworking' || p.k === 'library' ? KIND_LABEL[p.k] : '', p.flags & F.WIFI ? 'Wi-Fi listed' : 'Wi-Fi not tagged', p.hours ? 'hours known' : ''].filter(Boolean).join(' · '),
     N: p.flags & F.NOTABLE ? 'has a Wikidata or heritage record' : 'no record',
   }[key];
 }
@@ -352,7 +357,7 @@ function renderSheet(p, d, visits) {
     <section class="ggp">
       ${petals(p)}
       <div class="ggp-num"><span class="big">${p.idx}</span><span class="micro">Great Good Place index · top ${topShare(p)}% of Bangkok</span></div>
-      <table class="ggp-table">${GGP.map(([k, sym, label], i) => `<tr><td class="sym">${sym}</td><td>${label}</td><td>${dots(p.d[i])}</td><td class="raw">${esc(rawValue(k, p, d))}</td></tr>`).join('')}</table>
+      <table class="ggp-table">${GGP.map(([k, sym, label], i) => `<tr><td class="sym">${sym}</td><td>${label}</td><td class="raw">${esc(rawValue(k, p, d))}</td></tr>`).join('')}</table>
     </section>
     ${facts.length ? `<ul class="facts">${facts.map(([sym, t]) => `<li class="sym" aria-hidden="true">${sym}</li><li>${t}</li>`).join('')}</ul>` : ''}
     <section class="been">
@@ -360,14 +365,8 @@ function renderSheet(p, d, visits) {
       ${visits.length ? `<ul class="moments">${visits.slice().reverse().map(window.momentHtml).join('')}</ul>` : ''}
     </section>
     <section class="scores">
-      <h2 class="micro">${s ? `Work score · ${s.n} ${s.n === 1 ? 'rating' : 'ratings'} · last ${esc(s.last)}` : 'Work score · not rated yet'}</h2>
+      <h2 class="micro">${s ? `Visitor work score · ${s.n} ${s.n === 1 ? 'rating' : 'ratings'} · last ${esc(s.last)}` : 'Visitor work score · not rated yet · add yours with ✓'}</h2>
       ${s ? `<table>${SCORES.map(([k, label]) => `<tr><td>${label}</td><td>${dots(s[k], 3)}</td><td>${s[k].toFixed(1)} / 3</td></tr>`).join('')}</table>` : ''}
-      <button type="button" class="send rate-open">${s ? 'Add your rating' : 'Be the first to rate'}</button>
-      <form class="rate" aria-label="Rate this place" hidden>
-        ${SCORES.map(([k, label, opts]) => `<span>${label}</span><div class="seg" data-k="${k}" role="group" aria-label="${label}">${opts.map((o, i) => `<button type="button" data-v="${i + 1}" aria-pressed="false">${o}</button>`).join('')}</div>`).join('')}
-        <button class="send" type="submit" disabled>Save rating</button>
-        <p class="note" role="status"></p>
-      </form>
     </section>
     <nav class="links">
       <a href="https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}" target="_blank" rel="noopener">Directions</a>
@@ -378,28 +377,6 @@ function renderSheet(p, d, visits) {
   sheet.querySelector('[data-hood]')?.addEventListener('click', e => window.openHood?.(e.target.dataset.hood));
   sheet.querySelector('.been-open').addEventListener('click', e => window.beenForm?.(p, e.target, () => select(p, false)));
   window.bindMoments?.(sheet);
-  const form = sheet.querySelector('.rate'), vote = {};
-  sheet.querySelector('.rate-open').onclick = e => { e.target.hidden = true; form.hidden = false; form.querySelector('.seg button').focus(); };
-  form.addEventListener('click', e => {
-    const b = e.target.closest('.seg button');
-    if (!b) return;
-    const seg = b.parentElement;
-    seg.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
-    vote[seg.dataset.k] = +b.dataset.v;
-    form.querySelector('.send').disabled = SCORES.some(([k]) => !vote[k]);
-  });
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const note = form.querySelector('.note'), send = form.querySelector('.send');
-    send.disabled = true; note.textContent = 'Saving…';
-    try {
-      const r = await fetch('/api/scores', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ place: p.id, ...vote }) });
-      const body = await r.json().catch(() => ({}));
-      if (!r.ok) { note.textContent = body.error ? `Not saved: ${body.error}.` : `Not saved (${r.status}).`; send.disabled = false; return; }
-      await loadScores(); refresh(); renderSheet(p, d, visits);
-      const btn = $('#sheet .rate-open'); btn.textContent = 'Saved. Thank you. Rate again tomorrow'; btn.disabled = true;
-    } catch { note.textContent = 'Not saved: no connection.'; send.disabled = false; }
-  });
   sheet.querySelector('.share').onclick = async () => {
     const url = location.href;
     if (navigator.share) { try { await navigator.share({ title: p.n, url }); } catch { /* cancelled */ } return; }
@@ -412,4 +389,5 @@ function openFromUrl() {
   const u = new URL(location.href), id = u.searchParams.get('p');
   if (id && !state.selected && state.byId.has(id)) select(state.byId.get(id), 'jump');
   else if (u.searchParams.get('hood') && $('#sheet').hidden) window.openHood?.(u.searchParams.get('hood'), true);
+  else if (!id && !u.searchParams.get('hood') && !openFromUrl.framed) { openFromUrl.framed = true; window.fitAllHoods?.(); }
 }
