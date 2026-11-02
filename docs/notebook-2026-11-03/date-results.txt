@@ -1,0 +1,1 @@
+Date-only and legacy instant both display3Nov in a New York browser; an ungiven score says Not rated yet.

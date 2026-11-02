@@ -19,7 +19,7 @@ Merge rule: same normalised name within 60 m = one venue, OSM wins and borrows O
 Raw sources live in `../source-cache/` (outside the repo). Refresh Overture: `--fetch-overture`, then bump `OV_RELEASE`.
 Not used on purpose: Google Maps scraping or API (ToS, takedown risk, cost). Add the paid Places API later if cash flow allows.
 
-Counts (build of 2026-11-02, v2): 57,537 places = 20,235 café + 36,818 restaurant + 56 co-working + 428 library.
+Counts (build of 2026-11-02, v2): 57,538 places = 20,235 café + 36,818 restaurant + 57 co-working + 428 library.
 Names that only describe a category ("Entrance", "ร้านอาหาร" = "restaurant") are dropped like unnamed ones; Latin-letter matching merges OSM/Overture twins.
 Only 535 carry a Wi-Fi tag and ~1,500 carry opening hours; the crowd scores are what fills the gap.
 
@@ -40,7 +40,7 @@ Ari (BTS Ari), Sam Yan (MRT Sam Yan), Charoen Krung (TCDC node), Thong Lo (BTS T
 Stories with sources live in the script. Stats, station rank (of 200 merged OSM stations), and "Plub's walk" (co-working/libraries first, then Wi-Fi, then index) are computed.
 
 ## Passport (v2) — `public/passport.js`
-IndexedDB on the device only: visits, 1-5 stars, feeling words, note, up to 4 photos shrunk to 1280 px JPEG. Export/import JSON is the backup. No server copy (PDPA-simple). Sync is an app-stage feature.
+IndexedDB remains the device notebook: visits, optional1–5 stars, feelings, notes and up to4 resized photos. Existing v1 exports/imports and stamps remain supported. The3November increment adds explicit per-visit cloud backup/restore, separate notebook-key accounts and optional public recommendations. Nothing uploads or publishes automatically. There is no passive location log. See the notebook section below.
 
 ## Nong Plub (v2) — `public/plub.js`
 Hand-drawn chibi SVG with a crayon displacement filter, six poses (wave, point, sketch, stamp, map, cheer). Not AI-generated; based on the SCITI drawings' hair, cheeks and plaid dress.
@@ -52,7 +52,7 @@ The Worker (`withPreview`, HTMLRewriter) sets title / og:description / og:image 
 
 ## Chain detection (Character)
 Chain = brand tag, or name seen ≥3×, or brand key (name minus branch suffix: `(`, `@`, ` - `, `สาขา`, ` at `) seen ≥3×,
-or a name starting with a brand key of 6+ letters seen ≥3×, or a `KNOWN_CHAINS` brand (short manual list for chains with few Bangkok branches). 16,487 of 57,537 places flagged (2026-11-02).
+or a name starting with a brand key of 6+ letters seen ≥3×, or a `KNOWN_CHAINS` brand (short manual list for chains with few Bangkok branches). 16,487 of 57,538 places flagged (2026-11-02).
 
 ## Finding places (v3)
 - **Moods** (`MOODS` in app.js): each neighbourhood's "for" line searched citywide. Slow mornings = independent cafés with ⁘ ≤ 6; Past midnight = work spots listed open at 00:30 and not closed at 2 pm, so no night-only bars (30; hours are sparse, and the UI says so); Crossing paths = independent work spots with ⁘ ≥ 8; After work = open 8 pm weekday incl. food. `?mood=` links have their own preview title.
@@ -64,8 +64,8 @@ or a name starting with a brand key of 6+ letters seen ≥3×, or a `KNOWN_CHAIN
 Places no open dataset has yet, added after a real visit: name, kind, location confirmed by the visitor, date, description. Built in like OSM (`src: hand`, flag 128) and labelled "Hand pin · who, when · not on OpenStreetMap yet". First: Maison space, Ram Inthra (owner's visit, 2026-11-02). The lasting fix is an OpenStreetMap note (the "Missing a place?" links).
 
 ## Runtime
-- Cloudflare Worker `bkk-co` (static assets + `/api/scores`), account `74ad6bf8dfaaccf82de6f0847f7d2d54`.
-- D1 `bkk-co` (id in `wrangler.toml`), table `ratings`. Secret `IP_SALT` (salted IP hash only, PDPA; no raw IPs, no accounts).
+- Cloudflare Worker `bkk-co` (static assets + `/api/scores` + notebook/community APIs), account `74ad6bf8dfaaccf82de6f0847f7d2d54`.
+- D1 `bkk-co` (id in `wrangler.toml`), table `ratings`. Secret `IP_SALT` (salted IP hash only, PDPA; no raw IPs in the ratings table; separate notebook accounts).
 - Limits: 1 rating per place per IP per day, 20 per IP per day. Writes fail closed (503) without the salt.
 - Front end: no bundler. `public/app.js`, `hours.js`, `style.css`. MapLibre 4.7.1 + OpenFreeMap positron.
 
@@ -75,3 +75,24 @@ Places no open dataset has yet, added after a real visit: name, kind, location c
 ## Design
 Civic daylight register, MSH (`~/Projects/_reference/MSH.md`). Jost + Prompt, ink/muted/rule, one amber = co-working.
 Zero radius, no shadows, sizes 20/14/11. Map ≥60% on load; phone sheet opens only on tap and keeps the pin in view.
+
+
+## Notebook release · 3 November2026
+
+Owner chose notebook-key accounts now; Google sign-in later. User task: find a real place, keep a dated note/photo, reopen it tomorrow and optionally recommend it. The invariant is private/device, private/cloud, public and research are four distinct choices. Backups target one authenticated account and expected revision; publishing uses the reviewed snapshot. No default research opt-in, no GPS trail, no sale of private notes.
+
+Schema `db/notebook.sql` adds accounts, hash-only session/recovery credentials, private entries, separate published snapshots, reports and security limits; all ownership relations cascade on deletion. It never drops/changes ratings. Apply additively before Worker deploy. Worker has a daily18:15UTC cleanup for expired sessions/security buckets. Each cloud account supports100 visits; up to4 bounded metadata-stripped JPEGs per visit. Public lists return5 recent recommendations, moderation10 prioritised posts; full private/public exports fetch individual snapshots to bound memory. Active reports cap200/account.
+
+Nong Plub's crayon SVG is preserved as the guide and rendered into home-screen icons. Wada plate273 (local credited catalogue): Hermosa Pink#f9c1ce guide field; Pansy Purple#7d133a reading ink; Neutral Gray#b6bfc1 structure; These three interface colours are a subset of the four-colour plate (its unused fourth is Sudan Brown#a36752); existing guide artwork keeps its own recognisable colours. White is the reading carrier; wash/muted tokens are derived tints. Existing source map colours and amber co-working category remain unchanged. This named palette update is owner-directed; it supersedes the older monochrome ink value. Sizes are20/14/12 (12px qualifications improve phone reading). Geometry stays sharp, with no decorative shadows or gradients.
+
+Notebook composition: entries and their actions precede guide/stamps/device/moderation tools when populated. First saved action group must end before600px and within the working viewport at390/1024/1440 and1280×720. The older utility-first arrangement must fail. Map-first on-load composition stays intact. Enlarged text can reflow/scroll and must still support editing. See docs/notebook-2026-11-03 for captures and independent closure.
+
+Cloud session:30-day HttpOnly/SameSite=Strict cookie, Secure on HTTPS. Key is generated once and downloadable; lost keys cannot be recovered. No Google OAuth credential is configured or claimed. The authenticated UI must match x-plub-account before private operations; never use a new tab's account silently. Sign-out retains device copies, with explicit Clear device. Deleting a cloud copy removes its public snapshot and unlinks local cloud metadata. Account removal deletes live cloud data; provider recovery backups can remain up to30 days.
+
+Owner moderation: MODERATION_KEY is a Worker secret, saved in macOS Keychain as `co.nonarkara.org · PLUB moderation` (account `nonarkara`). Retrieve through Keychain Access and use Notes → Moderation · owner. Never put the value in Markdown, Git or URLs. Queue shows reported photo copies and can keep visible/clear reports or remove posts. Three distinct reports temporarily hide a post. Operator public contact is nonsmartcity@gmail.com, verified on nonarkara.org.
+
+Research: only opted-in accounts' saved place IDs/counts enter the aggregate; public totals require5 distinct consenting accounts per place. Notes/photos/dates are excluded. Withdrawal excludes the account immediately on the next query. Consent version2026-11-03 is recorded. This is a pilot; names and visits are user assertions, not verified footfall or continuous travel observations.
+
+Web manifest/icons enable home-screen installation. No offline map/sync or Google Play listing is claimed. A future store release still needs packaging, OAuth choices and wider operational testing.
+
+Tests: existing `node test/check.mjs [base]`; `node test/notebook-races.mjs`; `node test/notebook-dates.mjs`; local Worker/D1 `node test/notebook-api.mjs`; sequential local real-browser notebook/edge/draft scripts. Write tests refuse a public URL. Read-only production verification remains separate. Build: `npx wrangler deploy --dry-run`; deploy from this repo only with `npx wrangler deploy`.

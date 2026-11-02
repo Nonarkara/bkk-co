@@ -1,0 +1,1 @@
+Late catalogue response preserves typed note and selected photo; reopening restores the text draft; successful save removes the form and stores exactly one visit.

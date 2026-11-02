@@ -1,0 +1,20 @@
+name: PLUB notebook boundaries
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node test/check.mjs
+      - run: node test/notebook-races.mjs
+      - run: node test/notebook-dates.mjs
+      - name: Check browser and Worker syntax
+        run: |
+          for file in public/*.js src/*.js test/*.mjs; do node --check "$file"; done
+      - name: Bundle Worker
+        run: npx --yes wrangler@4.81.1 deploy --dry-run

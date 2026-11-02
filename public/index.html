@@ -2,21 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>PLUB · Placemaking Laboratory Urban Bureau</title>
-<meta name="description" content="Bangkok's Great Good Places on one map: 57,537 cafés, co-working spaces, libraries and restaurants, scored from open data, with Nong Plub as your guide.">
+<meta name="description" content="Bangkok's Great Good Places on one map: 57,538 cafés, co-working spaces, libraries and restaurants, scored from open data, with Nong Plub as your guide.">
 <meta property="og:title" content="PLUB · Placemaking Laboratory Urban Bureau">
 <meta property="og:description" content="Find your Great Good Place in Bangkok. Neighbourhood stories, data-driven scores, and a passport of where you've been.">
 <meta property="og:image" content="https://co.nonarkara.org/og/default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#7d133a">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/plub-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Prompt:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
-<link href="style.css" rel="stylesheet">
+<link href="style.css?v=notebook-20261103" rel="stylesheet">
+<link href="notebook.css?v=notebook-20261103" rel="stylesheet">
 </head>
 <body>
 <header class="bar">
@@ -26,7 +30,7 @@
     <input id="q" type="search" placeholder="Search places · ค้นหา" autocomplete="off" enterkeyhint="search">
   </label>
   <button id="guide" class="iconbtn plub-btn" aria-label="Nong Plub's guide: neighbourhoods and how places are scored"></button>
-  <button id="passport" class="iconbtn pass-btn" aria-label="Your passport"><span aria-hidden="true">✓</span><b id="pass-n">0</b></button>
+  <button id="passport" class="iconbtn pass-btn" aria-label="Your notebook"><span>Notes</span><b id="pass-n">0</b></button>
   <ul id="hits" class="hits" role="listbox" hidden></ul>
 </header>
 
@@ -72,10 +76,11 @@
 </aside>
 
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-<script src="hours.js"></script>
-<script src="plub.js"></script>
-<script src="passport.js"></script>
-<script src="app.js"></script>
-<script src="views.js"></script>
+<script src="hours.js?v=notebook-20261103"></script>
+<script src="plub.js?v=notebook-20261103"></script>
+<script src="passport.js?v=notebook-20261103"></script>
+<script src="app.js?v=notebook-20261103"></script>
+<script src="views.js?v=notebook-20261103"></script>
+<script src="notebook.js?v=notebook-20261103"></script>
 </body>
 </html>

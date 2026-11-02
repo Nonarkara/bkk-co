@@ -1,6 +1,7 @@
 // PLUB · Placemaking Laboratory Urban Bureau. Map, filters, sorting, search, place sheet. No bundler, no framework.
 // views.js adds the guide, neighbourhood and passport sheets on top of the helpers defined here.
 const KIND_LABEL = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library' };
+const safeLink = value => { try { const u=new URL(value); return ['https:','http:'].includes(u.protocol) && !u.username && !u.password ? u.href : null; } catch { return null; } };
 const F = { WIFI: 1, NOWIFI: 2, HOURS: 4, OUTDOOR: 8, OVERTURE: 16, CHAIN: 32, NOTABLE: 64, HAND: 128, PARK: 256, COFFEE: 512 }; // same bits as build-places.py
 // a place nobody has mapped yet goes to OpenStreetMap as a note; the next rebuild picks it up once mapped
 const osmNote = (y, x) => `https://www.openstreetmap.org/note/new#map=19/${y.toFixed(5)}/${x.toFixed(5)}`;
@@ -78,10 +79,13 @@ async function loadRows(name) {
 }
 
 async function loadScores() {
+  state.scoresStatus='loading';
+  const controller=new AbortController(),deadline=setTimeout(()=>controller.abort(),8000);
   try {
-    const r = await fetch('/api/scores');
-    if (r.ok) state.scores = await r.json();
-  } catch { /* no API in a static preview: scores simply stay empty */ }
+    const r = await fetch('/api/scores', { signal:controller.signal });
+    if (r.ok) { state.scores = await r.json(); state.scoresStatus='available'; } else state.scoresStatus='unavailable';
+  } catch { state.scoresStatus='unavailable'; }
+  finally { clearTimeout(deadline); }
 }
 
 async function loadVisits() {
@@ -297,11 +301,15 @@ document.addEventListener('click', e => {
 });
 
 // ---------- sheets ----------
-function openSheet(html) {
+function openSheet(html, { place = false } = {}) {
+  if (!place) { state.selected = null; map.getSource('sel')?.setData({ type:'FeatureCollection', features:[] }); }
   setListOpen(false);
   const sheet = $('#sheet');
+  sheet.classList.remove('notebook-sheet');
   sheet.hidden = false;
   sheet.innerHTML = html;
+  const heading = sheet.querySelector('h1');
+  if (heading) { heading.tabIndex = -1; heading.focus({ preventScroll: true }); }
   sheet.scrollTop = 0;
   sheet.querySelector('.close')?.addEventListener('click', closeSheet);
   return sheet;
@@ -311,6 +319,7 @@ function closeSheet() {
   state.selected = null;
   window.clearRoute?.();
   $('#sheet').hidden = true;
+  if (document.activeElement && $('#sheet').contains(document.activeElement)) $('#passport').focus();
   map.getSource('sel')?.setData({ type: 'FeatureCollection', features: [] });
   const u = new URL(location.href); u.searchParams.delete('p'); u.searchParams.delete('hood'); history.replaceState(null, '', u);
   renderList();
@@ -364,6 +373,8 @@ function rawValue(key, p, d) {
 
 function renderSheet(p, d, visits) {
   if (state.selected !== p) return;
+  // Late catalogue details must not replace a visit form someone is already writing.
+  if (!$('#sheet').hidden && $('#sheet .been-form')?.dataset.place === p.id) return;
   const s = state.scores[p.id];
   const open = window.isOpen(p.hours, new Date());
   const hood = window.hoodOf?.(p);
@@ -374,8 +385,8 @@ function renderSheet(p, d, visits) {
     p.flags & F.OUTDOOR && ['☀', 'Outdoor seating'],
     d.c && ['·', esc(d.c.replace(/[_;]/g, ' '))],
     d.addr && ['⌖', esc(d.addr)],
-    d.web && ['↗', `<a href="${esc(d.web)}" target="_blank" rel="noopener nofollow">${esc(d.web.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</a>`],
-    d.social && ['↗', `<a href="${esc(d.social)}" target="_blank" rel="noopener nofollow">${esc(d.social.replace(/^https?:\/\/(www\.)?/, ''))}</a>`],
+    safeLink(d.web) && ['↗', `<a href="${esc(safeLink(d.web))}" target="_blank" rel="noopener nofollow">${esc(d.web.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</a>`],
+    safeLink(d.social) && ['↗', `<a href="${esc(safeLink(d.social))}" target="_blank" rel="noopener nofollow">${esc(d.social.replace(/^https?:\/\/(www\.)?/, ''))}</a>`],
     d.tel && ['☎', `<a href="tel:${esc(d.tel.replace(/\s/g, ''))}">${esc(d.tel)}</a>`],
   ].filter(Boolean);
   const src = p.flags & F.HAND
@@ -401,14 +412,14 @@ function renderSheet(p, d, visits) {
       ${visits.length ? `<ul class="moments">${visits.slice().reverse().map(window.momentHtml).join('')}</ul>` : ''}
     </section>
     <section class="scores">
-      <h2 class="micro">${s ? `Visitor work score · ${s.n} ${s.n === 1 ? 'rating' : 'ratings'} · last ${esc(s.last)}` : 'Visitor work score · not rated yet · add yours with ✓'}</h2>
+      <h2 class="micro">${s ? `Visitor work score · ${s.n} ${s.n === 1 ? 'rating' : 'ratings'} · last ${esc(s.last)}` : state.scoresStatus==='unavailable' ? 'Visitor work score · unavailable right now' : state.scoresStatus==='loading' ? 'Visitor work score · loading' : 'Visitor work score · not rated yet · add yours with ✓'}</h2>
       ${s ? `<table>${SCORES.map(([k, label]) => `<tr><td>${label}</td><td>${dots(s[k], 3)}</td><td>${s[k].toFixed(1)} / 3</td></tr>`).join('')}</table>` : ''}
     </section>
     <nav class="links">
       <a href="https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}" target="_blank" rel="noopener">Directions</a>
       <button type="button" class="share">Share</button>
     </nav>
-    <p class="src">Source: ${src}</p>`);
+    <p class="src">Source: ${src}</p>`, { place:true });
 
   sheet.querySelector('[data-hood]')?.addEventListener('click', e => window.openHood?.(e.target.dataset.hood));
   sheet.querySelector('.been-open').addEventListener('click', e => window.beenForm?.(p, e.target, () => select(p, false)));
