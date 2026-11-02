@@ -52,12 +52,12 @@ The Worker (`withPreview`, HTMLRewriter) sets title / og:description / og:image 
 
 ## Chain detection (Character)
 Chain = brand tag, or name seen ≥3×, or brand key (name minus branch suffix: `(`, `@`, ` - `, `สาขา`, ` at `) seen ≥3×,
-or a name starting with a brand key of 6+ letters seen ≥3×. 16,487 of 57,537 places flagged (2026-11-02).
+or a name starting with a brand key of 6+ letters seen ≥3×, or a `KNOWN_CHAINS` brand (short manual list for chains with few Bangkok branches). 16,487 of 57,537 places flagged (2026-11-02).
 
 ## Finding places (v3)
-- **Moods** (`MOODS` in app.js): each neighbourhood's "for" line searched citywide. Slow mornings = independent cafés with ⁘ ≤ 6; Past midnight = work spots listed open at 00:30 (31 — hours are sparse, and the UI says so); Crossing paths = independent work spots with ⁘ ≥ 8; After work = open 8 pm weekday incl. food. `?mood=` links have their own preview title.
-- **Near me now** (views.js `openNow`): your location (or map centre, said so), ~10-min walk (800 m) or ~5-min drive (2 km), needs Wi-Fi / Parking / Calm / Good coffee ranked not required, each shown ✓ known or ? unknown, with Google and Apple Maps directions. Never a place listed as closed now.
-- **Café hop** (`openHop`, `?hop=<slug|here>`): 5 independent cafés ✦ ≥ 70, 250–800 m apart, never crossing the Chao Phraya (`data/barriers.json`, OSM river line), one Google Maps walking link with waypoints.
+- **Moods** (`MOODS` in app.js): each neighbourhood's "for" line searched citywide. Slow mornings = independent cafés with ⁘ ≤ 6; Past midnight = work spots listed open at 00:30 and not closed at 2 pm, so no night-only bars (30; hours are sparse, and the UI says so); Crossing paths = independent work spots with ⁘ ≥ 8; After work = open 8 pm weekday incl. food. `?mood=` links have their own preview title.
+- **Near me now** (views.js `openNow`): your location (or map centre, said so), walk ≈ 800 m or drive ≈ 2 km straight line, same bank of the Chao Phraya only. Needs Wi-Fi / Parking (mapped car park ≤ 150 m) / Calm (visitor quiet ≥ 2.5) / Coffee (independent café or a visit noting good coffee, flag 512) are ranked, not required, each ✓ known or ? unknown, with Google and Apple Maps directions. Never a place listed as closed now.
+- **Café hop** (`openHop`, `?hop=<slug|here>`): 5 independent cafés ✦ ≥ 70, 250–800 m apart, never crossing the Chao Phraya (`data/barriers.json`, OSM river line), one Google Maps walking link with waypoints; distances are straight lines, so 'at least'. `?hop=@lat,lng` shares a 'here' hop.
 - **Parking**: distance to the nearest OSM `amenity=parking` (not private) or Overture `parking`; `F_PARK` when ≤ 150 m (16,625 places). Car parks inside private lots are often unmapped, so "?" stays common.
 
 ## Hand pins — `data/additions.json`

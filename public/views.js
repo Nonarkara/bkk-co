@@ -356,7 +356,8 @@ const NEEDS = [
   ['wifi', '≋ Wi-Fi', p => (p.flags & F.WIFI) || (state.scores[p.id]?.wifi || 0) >= 2],
   ['park', 'P Parking', p => p.flags & F.PARK],
   ['calm', '◡ Calm', p => (state.scores[p.id]?.quiet || 0) >= 2.5],
-  ['coffee', '☕\uFE0E Good coffee', p => p.k === 'cafe' && !(p.flags & F.CHAIN)],
+  // what we can actually know about coffee: an independent café, or a visit that noted good coffee
+  ['coffee', '☕\uFE0E Coffee', p => (p.k === 'cafe' && !(p.flags & F.CHAIN)) || (p.flags & F.COFFEE)],
 ];
 const nowState = { range: 'drive', needs: new Set(['wifi', 'park', 'calm', 'coffee']), origin: null, from: '' };
 
@@ -367,8 +368,7 @@ async function locate() {
 }
 
 async function openNow() {
-  const sheet = openSheet(`<header><h1>Near me now</h1><button class="close" aria-label="Close">×</button></header>
-    <div class="plub-say">${plub('point', 88)}<p><q>Tell me what you need. I'll pick a few and show you how to get there.</q></p></div>
+  const sheet = openSheet(`<header><span class="mini-plub">${plub('point', 36, '')}</span><h1>Near me now</h1><button class="close" aria-label="Close">×</button></header>
     <div class="now-ctl">
       <div class="seg range" role="group" aria-label="How far">
         <button data-range="walk" aria-pressed="${nowState.range === 'walk'}">Walk · ~10 min</button>
@@ -378,7 +378,7 @@ async function openNow() {
     </div>
     <p class="micro now-from">Finding you…</p>
     <ol class="now-list"></ol>
-    <p class="src">✓ = known from map data or visitor ratings · ? = not known yet, so check before you go. Distances are straight lines: ~10-min walk ≈ 800 m, ~5-min drive ≈ 2 km in city traffic. Work spots only (café, co-working, library), and never a place listed as closed right now.</p>`);
+    <p class="src">✓ = known from map data, a visit or visitor ratings · ? = not known yet, so check before you go. P ✓ = a mapped car park within 150 m. ☕ Coffee ✓ = an independent café, or a visit that noted good coffee. Walk ≈ 800 m and drive ≈ 2 km are straight lines; neither crosses the Chao Phraya. Work spots only, never one listed as closed now.</p>`);
   sheet.querySelector('.range').addEventListener('click', e => { const b = e.target.closest('[data-range]'); if (!b) return; nowState.range = b.dataset.range; sheet.querySelectorAll('[data-range]').forEach(x => x.setAttribute('aria-pressed', x === b)); renderNow(); });
   sheet.querySelector('.needs').addEventListener('click', e => { const b = e.target.closest('[data-need]'); if (!b) return; const k = b.dataset.need; nowState.needs.has(k) ? nowState.needs.delete(k) : nowState.needs.add(k); b.setAttribute('aria-pressed', nowState.needs.has(k)); renderNow(); });
   const here = await locate();
@@ -396,7 +396,7 @@ async function renderNow() {
   const now = new Date();
   const picks = state.places
     .filter(p => p.k !== 'restaurant' && window.isOpen(p.hours, now) !== false)
-    .map(p => ({ p, d: near(p, o) })).filter(r => r.d <= max && (nowState.range === 'drive' || !crossesRiver(o, r.p)))
+    .map(p => ({ p, d: near(p, o) })).filter(r => r.d <= max && !crossesRiver(o, r.p)) // bridges are few: same bank only
     .map(r => {
       const met = NEEDS.filter(([k]) => nowState.needs.has(k)).map(([k, l, test]) => [k, l, !!test(r.p)]);
       // what you asked for counts most; the Great Good Place index breaks ties; distance costs a little
@@ -407,12 +407,12 @@ async function renderNow() {
   sheet.querySelector('.now-from').textContent = `${nowState.from} · ${picks.length ? 'top ' + picks.length : 'nothing within range — try the other distance'}`;
   list.innerHTML = picks.map(({ p, d, met }, i) => {
     const park = details[i].m?.park;
-    const mins = nowState.range === 'walk' ? Math.max(1, Math.round(d / 80)) : Math.max(1, Math.round(d / 400));
+    const dist = nowState.range === 'walk' ? `~${Math.max(1, Math.round(d / 80))} min walk` : `${(d / 1000).toFixed(1)} km straight line`;
     return `<li data-id="${esc(p.id)}"><span class="stop">${i + 1}</span><div class="now-body">
       <button class="linkish nm" data-open="${esc(p.id)}">${esc(p.n)}</button>
-      <span class="micro">${KIND_LABEL[p.k]} · ${Math.round(d / 10) * 10} m · ~${mins} min ${nowState.range === 'walk' ? 'walk' : 'drive'} · ✦${p.idx}</span>
+      <span class="micro">${KIND_LABEL[p.k]} · ${dist} · ✦${p.idx}</span>
       <span class="needs-met">${met.map(([k, l, ok]) => k === 'park'
-        ? `<span class="${ok ? 'ok' : 'unk'}">${ok ? '✓' : '?'} P ${park != null ? `car park ${Math.round(park / 10) * 10} m` : 'no car park mapped nearby'}</span>`
+        ? (ok ? `<span class="ok">✓ P ${Math.round(park / 10) * 10} m</span>` : `<span class="unk" title="${park != null ? `nearest mapped car park ${Math.round(park / 10) * 10} m` : 'no car park mapped nearby'}">? P</span>`)
         : `<span class="${ok ? 'ok' : 'unk'}">${ok ? '✓' : '?'} ${l.split(' ').slice(1).join(' ')}</span>`).join('')}</span>
       <span class="go"><a href="${gmaps(p, mode)}" target="_blank" rel="noopener">Google Maps ↗</a><a href="${amaps(p, mode)}" target="_blank" rel="noopener">Apple Maps ↗</a></span>
     </div></li>`;
@@ -454,8 +454,9 @@ async function openHop(startKey) {
   await hoodsReady;
   const starts = hoods.list.map(h => [h.slug, h.name, { y: h.anchor.y, x: h.anchor.x }]);
   const c = map.getCenter();
-  starts.push(['here', 'Here (map centre)', { y: c.lat, x: c.lng }]);
-  hopState.start = startKey || hopState.start || 'charoenkrung';
+  const at = /^@(-?\d+\.?\d*),(-?\d+\.?\d*)$/.exec(startKey || ''); // shared "here" hops carry their own point
+  starts.push(['here', at ? 'Shared spot' : 'Here (map centre)', at ? { y: +at[1], x: +at[2] } : { y: c.lat, x: c.lng }]);
+  hopState.start = at ? 'here' : startKey || hopState.start || 'charoenkrung';
   const [, label, origin] = starts.find(s => s[0] === hopState.start) || starts[0];
   const stops = planHop(origin);
   const legs = stops.slice(1).map((p, i) => near(stops[i], p));
@@ -464,15 +465,15 @@ async function openHop(startKey) {
   const sheet = openSheet(`<header><h1>Café hop</h1><button class="close" aria-label="Close">×</button></header>
     <div class="plub-say">${plub('map', 88)}<p><q>Five independent cafés, a short walk apart. Pace yourself: one coffee, one pastry, one water.</q></p></div>
     <div class="feel hop-starts" role="group" aria-label="Start in">${starts.map(([k, l]) => `<button data-start="${k}" aria-pressed="${k === hopState.start}">${esc(l)}</button>`).join('')}</div>
-    ${stops.length ? `<p class="micro">${esc(label)} · ${stops.length} stops · ~${km.toFixed(1)} km on foot · ~${Math.round(km * 1000 / 80)} min walking</p>
+    ${stops.length ? `<p class="micro">${esc(label)} · ${stops.length} stops · at least ${km.toFixed(1)} km on foot · ${Math.round(km * 1000 / 80)}+ min walking</p>
     <ol class="walk hop">${stops.map((p, i) => `<li data-id="${esc(p.id)}"><span class="stop">${i + 1}</span><span class="nm">${esc(p.n)}</span>${i ? `<span class="micro">${Math.round(legs[i - 1])} m</span>` : ''}<span class="idx">✦${p.idx}</span></li>`).join('')}</ol>
     <nav class="links">${g ? `<a href="${g}" target="_blank" rel="noopener">Walk it in Google Maps ↗</a>` : ''}<button type="button" class="share">Share</button></nav>`
     : '<p class="micro">Not enough independent cafés with a high index close together here. Try another start.</p>'}
-    <p class="src">Picked from independent cafés with ✦ ≥ 70, not listed as closed at 11 am, each 250–800 m from the last. Legs never cross the Chao Phraya. Lines on the map are straight; Google Maps gives the real path. Apple Maps takes one stop at a time: open a stop to get its link.</p>`);
+    <p class="src">Picked from independent cafés with ✦ ≥ 70, not listed as closed at 11 am, each 250–800 m from the last. Legs never cross the Chao Phraya; they can cross big roads, so use crossings. Distances are straight lines, so the real walk is longer: Google Maps gives the path. Apple Maps takes one stop at a time: open a stop to get its link.</p>`);
   sheet.querySelector('.hop-starts').addEventListener('click', e => { const b = e.target.closest('[data-start]'); if (b) openHop(b.dataset.start); });
   sheet.querySelector('.hop')?.addEventListener('click', e => { const li = e.target.closest('li[data-id]'); if (li) select(state.byId.get(li.dataset.id), true); });
   sheet.querySelector('.share')?.addEventListener('click', async ev => {
-    const url = `${location.origin}/?hop=${hopState.start}`;
+    const url = `${location.origin}/?hop=${hopState.start === 'here' ? `@${origin.y.toFixed(4)},${origin.x.toFixed(4)}` : hopState.start}`;
     if (navigator.share) { try { await navigator.share({ title: `Café hop from ${label} · PLUB`, url }); } catch { /* cancelled */ } return; }
     await navigator.clipboard?.writeText(url); ev.target.textContent = 'Link copied';
   });

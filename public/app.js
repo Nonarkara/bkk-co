@@ -1,7 +1,7 @@
 // PLUB · Placemaking Laboratory Urban Bureau. Map, filters, sorting, search, place sheet. No bundler, no framework.
 // views.js adds the guide, neighbourhood and passport sheets on top of the helpers defined here.
 const KIND_LABEL = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library' };
-const F = { WIFI: 1, NOWIFI: 2, HOURS: 4, OUTDOOR: 8, OVERTURE: 16, CHAIN: 32, NOTABLE: 64, HAND: 128 };
+const F = { WIFI: 1, NOWIFI: 2, HOURS: 4, OUTDOOR: 8, OVERTURE: 16, CHAIN: 32, NOTABLE: 64, HAND: 128, PARK: 256, COFFEE: 512 }; // same bits as build-places.py
 // a place nobody has mapped yet goes to OpenStreetMap as a note; the next rebuild picks it up once mapped
 const osmNote = (y, x) => `https://www.openstreetmap.org/note/new#map=19/${y.toFixed(5)}/${x.toFixed(5)}`;
 const SCORES = [
@@ -31,8 +31,8 @@ const MOODS = {
     how: 'Independent cafés away from the busiest strips (⁘ ≤ 6 of 9).',
     test: p => !(p.flags & F.CHAIN) && p.d[1] <= 6 },
   midnight: { label: 'Past midnight', hood: 'samyan', kinds: ['cafe', 'coworking', 'library'],
-    how: 'Work spots listed as open at 00:30. Only places with listed hours can show here, so this list is short.',
-    test: p => window.isOpen(p.hours, nextAt(0, 30)) === true },
+    how: 'Work spots listed as open at 00:30 and also open in the afternoon (so not a night-only bar). Only places with listed hours can show here, so this list is short.',
+    test: p => window.isOpen(p.hours, nextAt(0, 30)) === true && window.isOpen(p.hours, nextAt(14, 0)) !== false },
   crossing: { label: 'Crossing paths', hood: 'charoenkrung', kinds: ['cafe', 'coworking', 'library'],
     how: 'Independent work spots in the densest clusters (⁘ ≥ 8 of 9).',
     test: p => !(p.flags & F.CHAIN) && p.d[1] >= 8 },
@@ -435,6 +435,8 @@ function setMood(key) {
   state.mood = MOODS[key] ? key : null;
   if (state.mood) {
     state.kinds = new Set(MOODS[key].kinds);
+    state.flags.clear(); // a citywide mood count must not be silently cut by an old filter
+    document.querySelectorAll('.flags [data-flag]').forEach(b => b.setAttribute('aria-pressed', false));
     document.querySelectorAll('.chips [data-kind]').forEach(b => b.setAttribute('aria-pressed', state.kinds.has(b.dataset.kind)));
     state.sort = 'great';
     document.querySelectorAll('.sorts [data-sort]').forEach(x => x.setAttribute('aria-selected', x.dataset.sort === 'great'));

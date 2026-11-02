@@ -29,7 +29,10 @@ OV_RULES = {'cafe': ("basic_category IN ('coffee_shop','cafe')", 0.6),
             'library': ("basic_category = 'library'", 0.6)}
 MERGE_M = 60  # same normalised name within 60 m = same venue
 WIFI = {'wlan': 'yes', 'yes': 'yes', 'wifi': 'yes', 'no': 'no', 'terminal': 'no'}
-F_WIFI, F_NOWIFI, F_HOURS, F_OUTDOOR, F_OVERTURE, F_CHAIN, F_NOTABLE, F_HAND, F_PARK = 1, 2, 4, 8, 16, 32, 64, 128, 256
+F_WIFI, F_NOWIFI, F_HOURS, F_OUTDOOR, F_OVERTURE, F_CHAIN, F_NOTABLE, F_HAND, F_PARK, F_COFFEE = 1, 2, 4, 8, 16, 32, 64, 128, 256, 512
+# Chains with too few Bangkok branches in the data for the counting rule to catch (audit 2026-11-02). Brand keys.
+KNOWN_CHAINS = {'maidreamin', 'popmart', 'popmartcafe', 'starbucks', 'cafeamazon', 'truecoffee', 'inthanin', 'blackcanyon',
+                'doichaang', 'punthai', 'mccafe', 'tomntoms', 'hollyscoffee', 'arabica', 'bluebottle', 'dunkin', 'kfc', 'mcdonalds'}
 PARK_M = 150  # a car park within 150 m counts as 'parking nearby'
 ADDITIONS = ROOT / 'data' / 'additions.json'  # hand pins from real visits, for places no open dataset has yet
 
@@ -116,7 +119,8 @@ def load_additions():
         assert a['pin'] == 'hand_pin' and a['name'] and a['visited'] and a['kind'] in KINDS and inside(a['lng'], a['lat']), a
         out.append({'id': a['id'], 'n': a['name'], 'k': a['kind'], 'y': round(a['lat'], 5), 'x': round(a['lng'], 5),
                     'w': {True: 'yes', False: 'no'}.get(a.get('wifi')), 'h': a.get('hours'), 'src': 'hand',
-                    'about': a.get('about'), 'visit': a.get('note'), 'pinned': f"{a['by']}, {a['visited']}"})
+                    'about': a.get('about'), 'visit': a.get('note'), 'pinned': f"{a['by']}, {a['visited']}",
+                    'coffee': bool(a.get('coffee'))})
     return out
 
 def load_overture():
@@ -270,7 +274,7 @@ def score_places(places, stations, parking=()):
         k = brand_key(p['n'])
         # a name that starts with a brand seen 3+ times (6+ letters) is that brand ('McCafe J Avenue' -> 'mccafe')
         p['chain'] = bool(p.get('brand')) or names[norm(p['n'])] >= 3 or brands[k] >= 3 or \
-            any(brands[k[:i]] >= 3 for i in range(6, len(k)))
+            any(brands[k[:i]] >= 3 for i in range(6, len(k))) or any(k.startswith(c) for c in KNOWN_CHAINS)
     A, S, F = deciles(walk, reverse=True), deciles(scene), deciles(foot)
     pA, pS, pF = percentiles(walk, reverse=True), percentiles(scene), percentiles(foot)
     for i, p in enumerate(places):
@@ -296,7 +300,7 @@ def build():
         flags = (F_WIFI if p.get('w') == 'yes' else F_NOWIFI if p.get('w') == 'no' else 0) | \
                 (F_HOURS if p.get('h') else 0) | (F_OUTDOOR if p.get('o') else 0) | (F_OVERTURE if p['src'] == 'overture' else 0) | \
                 (F_CHAIN if p['chain'] else 0) | (F_NOTABLE if p.get('notable') else 0) | (F_HAND if p['src'] == 'hand' else 0) | \
-                (F_PARK if p['park'] is not None and p['park'] <= PARK_M else 0)
+                (F_PARK if p['park'] is not None and p['park'] <= PARK_M else 0) | (F_COFFEE if p.get('coffee') else 0)
         rows.append([p['id'], p['n'], KINDS.index(p['k']), p['y'], p['x'], flags, p['g'], p['i']] + ([p['h']] if p.get('h') else []))
         detail = {k: p[k] for k in ('th', 'h', 'c', 'web', 'social', 'tel', 'addr', 'conf', 'ds', 'm', 'about', 'visit', 'pinned') if p.get(k)}
         if detail: cells[f"{math.floor(p['y'] * CELL)}-{math.floor(p['x'] * CELL)}"][p['id']] = detail
