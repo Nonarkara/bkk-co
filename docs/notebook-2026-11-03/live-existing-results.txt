@@ -1,0 +1,2 @@
+catalogue ok: 57538 places { cafe: 20235, coworking: 57, library: 428, restaurant: 36818 }
+api ok (read-only): https://co.nonarkara.org

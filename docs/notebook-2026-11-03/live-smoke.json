@@ -1,0 +1,20 @@
+{
+  "observedAt": "2026-11-02T19:13:06.636Z",
+  "origin": "https://co.nonarkara.org",
+  "browser": "Chrome",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "signup": true,
+  "secureCookieBrowserLogin": true,
+  "privateSave": true,
+  "newDeviceRestore": true,
+  "privatePhotoRestored": true,
+  "defaultResearchOff": true,
+  "noOwnPublicPost": true,
+  "anonymousRejected": true,
+  "wrongAccountRejected": true,
+  "temporaryAccountAndVisitDeleted": true,
+  "pageErrors": []
+}
