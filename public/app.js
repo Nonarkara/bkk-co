@@ -390,7 +390,7 @@ function renderSheet(p, d, visits) {
   const hood = window.hoodOf?.(p);
   const facts = [
     d.about && ['✎', esc(d.about)],
-    d.visit && ['✓', esc(d.visit)],
+    d.visit && ['✓', `<span class="hand">${esc(d.visit)}</span>`], // Non's own note, in his own hand
     venueHours(p) && ['◷', `${open === true ? '<b>Open now</b> · ' : open === false ? 'Closed now · ' : ''}${esc(venueHours(p))}`],
     p.flags & F.OUTDOOR && ['☀', 'Outdoor seating'],
     d.c && ['·', esc(d.c.replace(/[_;]/g, ' '))],
