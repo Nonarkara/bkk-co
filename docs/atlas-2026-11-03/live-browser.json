@@ -1,0 +1,132 @@
+[
+  {
+    "width": 390,
+    "initial": {
+      "active": 20720,
+      "source": 20720,
+      "clusters": 30
+    },
+    "modes": [
+      {
+        "lens": "hotspots",
+        "active": 20235,
+        "source": 20235,
+        "loops": 0
+      },
+      {
+        "lens": "independent",
+        "active": 13849,
+        "source": 13849,
+        "loops": 0
+      },
+      {
+        "lens": "hidden",
+        "active": 2501,
+        "source": 2501,
+        "loops": 0
+      },
+      {
+        "lens": "nature",
+        "active": 4468,
+        "source": 4468,
+        "loops": 0
+      },
+      {
+        "lens": "talk",
+        "active": 3,
+        "source": 3,
+        "loops": 0
+      },
+      {
+        "lens": "design",
+        "active": 5,
+        "source": 5,
+        "loops": 0
+      },
+      {
+        "lens": "streets",
+        "active": 2871,
+        "source": 2871,
+        "loops": 0
+      },
+      {
+        "lens": "districts",
+        "active": 20235,
+        "source": 20235,
+        "loops": 0
+      },
+      {
+        "lens": "triangles",
+        "active": 13849,
+        "source": 13849,
+        "loops": 8
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "initial": {
+      "active": 20720,
+      "source": 20720,
+      "clusters": 29
+    },
+    "modes": [
+      {
+        "lens": "hotspots",
+        "active": 20235,
+        "source": 20235,
+        "loops": 0
+      },
+      {
+        "lens": "independent",
+        "active": 13849,
+        "source": 13849,
+        "loops": 0
+      },
+      {
+        "lens": "hidden",
+        "active": 2501,
+        "source": 2501,
+        "loops": 0
+      },
+      {
+        "lens": "nature",
+        "active": 4468,
+        "source": 4468,
+        "loops": 0
+      },
+      {
+        "lens": "talk",
+        "active": 3,
+        "source": 3,
+        "loops": 0
+      },
+      {
+        "lens": "design",
+        "active": 5,
+        "source": 5,
+        "loops": 0
+      },
+      {
+        "lens": "streets",
+        "active": 2871,
+        "source": 2871,
+        "loops": 0
+      },
+      {
+        "lens": "districts",
+        "active": 20235,
+        "source": 20235,
+        "loops": 0
+      },
+      {
+        "lens": "triangles",
+        "active": 13849,
+        "source": 13849,
+        "loops": 8
+      }
+    ],
+    "errors": []
+  }
+]

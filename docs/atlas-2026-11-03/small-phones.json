@@ -1,0 +1,30 @@
+[
+  {
+    "size": 17,
+    "width": 360,
+    "body": 360,
+    "chipBottom": 92.734375,
+    "dockTop": 104.734375
+  },
+  {
+    "size": 30,
+    "width": 360,
+    "body": 360,
+    "chipBottom": 128.5,
+    "dockTop": 140.5
+  },
+  {
+    "size": 17,
+    "width": 393,
+    "body": 393,
+    "chipBottom": 92.734375,
+    "dockTop": 104.734375
+  },
+  {
+    "size": 30,
+    "width": 393,
+    "body": 393,
+    "chipBottom": 128.5,
+    "dockTop": 140.5
+  }
+]
