@@ -372,7 +372,7 @@ function rawValue(key, p, d) {
   if (!d.loaded && ['A', 'S', 'F'].includes(key)) return '…';
   const m = d.m || {};
   return {
-    A: m.walk != null ? `~${Math.max(1, Math.round(m.walk / 80))} min to rail (straight line)` : 'walk to rail',
+    A: m.walk != null ? `${fmt(m.walk)} m to mapped rail point (straight line)` : 'walk to rail',
     S: m.scene != null ? `${m.scene} third places within 250 m` : 'nearby third places',
     C: p.flags & F.CHAIN ? 'chain or brand' : 'independent',
     F: m.sources != null ? `listed by ${m.sources} sources` : 'datasets and channels',
