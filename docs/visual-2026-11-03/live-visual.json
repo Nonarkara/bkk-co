@@ -1,0 +1,70 @@
+{
+  "observedAt": "2026-11-03T06:12:01.975Z",
+  "origin": "https://co.nonarkara.org",
+  "results": [
+    {
+      "width": 390,
+      "height": 844,
+      "oneIntactArtwork": true,
+      "moodAction": true,
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "routeClick": "w1215326210",
+      "pageErrors": [],
+      "apiWrites": []
+    },
+    {
+      "width": 1024,
+      "height": 900,
+      "oneIntactArtwork": true,
+      "moodAction": true,
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "routeClick": "w1215326210",
+      "pageErrors": [],
+      "apiWrites": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "oneIntactArtwork": true,
+      "moodAction": true,
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "routeClick": "w1215326210",
+      "pageErrors": [],
+      "apiWrites": []
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "oneIntactArtwork": true,
+      "moodAction": true,
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "routeClick": "w1215326210",
+      "pageErrors": [],
+      "apiWrites": []
+    }
+  ]
+}

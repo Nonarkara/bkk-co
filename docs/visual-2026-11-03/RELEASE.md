@@ -27,3 +27,11 @@ Route numbers are visible above pins and select the correct existing source ID. 
 - Pure tests: catalogue conservation, API/race/privacy, date/clock,100-source-entry shape and scoped counts/ranks; branding/preview metadata. Wrangler dry-run passes. Independent closure in REVIEW.md.
 
 Live deployment, byte proof and browser verification appended after ship. Static-source publication dates are not verification that every café is still operating. Public discussions are an incomplete convenience sample.
+
+## Shipped and verified
+
+PR https://github.com/Nonarkara/bkk-co/pull/3 merged. Featurefeee8fdc8351b79a3650f36f92beca6c6143b96a; merge/sourcec29cb50abf0c6ac20e3f7fecda7cb9b13b3fd703. Worker7e0b094c-4184-4ddf-8bfc-b1389cb66e9b deployed from clean main.16changed/new static files uploaded,181reused; all197actualpublicfiles match this checkout byte-for-byte. The legacy domain still301-redirects with its query intact; daily privacy cleanup retained.
+
+Live verification: read-only byte verifier; metadata checks for root and four neighbourhood preview URLs; original catalogue/API checks; discovery source/paging/search/branch/retry at358/390/1024/1440/1280; Ari branding/composition/mood action and allfive rendered route numbers/exactstop3click at390/1024/1440/1280. Browser tests recorded zero JavaScript errors and zero API writes. No synthetic visits, photographs, ratings or public posts were published. live-visual.json, live-discovery-browser.json and live screenshots hold the proof. live-ari-rail.png is a2×density crop of the real1440pxdesktopcapture for comparison with the owner's screenshot; the full viewport capture is preserved too.
+
+Both branch/PR runs and main passed:41588020254,41588083545,41588202747. This follow-up adds proof only; no runtime bytes changed after the verified deployment. Physical devices, exhaustive source claims, full screen-reader behaviour and walking crossings remain outside this release's tested scope.
