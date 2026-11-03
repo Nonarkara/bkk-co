@@ -31,7 +31,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* The wordmark: PL;UB in his lettering. The semicolon is the seam between the two phrases. */
 .mark { font: 700 17px/1 "Sao Chingcha", var(--font); letter-spacing: .07em; text-decoration: none; white-space: nowrap; }
 .mark .semi { color: #e88ba1; }
-.plub-badge { display: block; width: 30px; height: 30px; }
+.plub-badge { display:block; width:30px; height:30px; object-fit:cover; object-position:center top; }
 .brand-hero { display: block; width: 104px; height: 104px; }
 .search { flex: 1; }
 .iconbtn { flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 2px; height: 44px; min-width: 44px; margin: -4px 0; }
@@ -113,7 +113,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .sheet[hidden] { display: none; }
 
 .sheet header { display: flex; align-items: flex-start; gap: 8px; }
-.sheet h1 { flex: 1; font-size: var(--big); font-weight: 500; line-height: 1.2; }
+.sheet h1 { flex: 0 1 auto; margin-right:auto; min-width:0; font-size: var(--big); font-weight: 500; line-height: 1.2; }
 .sheet .th { display: block; font-size: var(--body); color: var(--muted); font-weight: 400; margin-top: 2px; }
 .close { width: 44px; height: 44px; margin: -10px -10px 0 0; font-size: var(--big); line-height: 1; }
 .kindline { display: flex; align-items: center; gap: 6px; margin-top: 4px; color: var(--muted); }
@@ -155,7 +155,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .linkish { text-decoration: underline; text-underline-offset: 3px; min-height: 32px; }
 
 /* Nong Plub beside her line: art at the size it reads, standing on a hairline */
-.plub-say { display: flex; align-items: flex-end; gap: 12px; margin-top: 8px; border-bottom: 1px solid var(--rule); }
+.plub-say { display: flex; align-items: center; gap: 12px; margin-top: 8px; border-bottom: 1px solid var(--rule); }
 .plub-say svg { flex: none; margin-bottom: -1px; }
 .plub-say p { padding-bottom: 10px; max-width: 46ch; }
 .plub-say q { display: block; quotes: none; }

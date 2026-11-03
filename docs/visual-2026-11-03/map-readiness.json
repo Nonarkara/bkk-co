@@ -1,0 +1,18 @@
+[
+  {
+    "mode": "route",
+    "pass": true
+  },
+  {
+    "mode": "cancel",
+    "pass": true
+  },
+  {
+    "mode": "selection",
+    "pass": true
+  },
+  {
+    "mode": "notebook",
+    "pass": true
+  }
+]

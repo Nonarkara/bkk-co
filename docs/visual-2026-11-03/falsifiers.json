@@ -1,0 +1,198 @@
+[
+  {
+    "width": 390,
+    "current": {
+      "title": 64.953125,
+      "caption": 293,
+      "rows": [
+        558.484375,
+        585.28125,
+        612.078125,
+        638.875
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "oldTitle": {
+      "title": 324,
+      "caption": 293,
+      "rows": [
+        558.484375,
+        585.28125,
+        612.078125,
+        638.875
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "oldArt": {
+      "title": 64.953125,
+      "caption": 250,
+      "rows": [
+        558.484375,
+        585.28125,
+        612.078125,
+        638.875
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "oldStats": {
+      "title": 64.953125,
+      "caption": 293,
+      "rows": [
+        558.484375,
+        558.484375,
+        602.078125,
+        602.078125
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "hopCost": 342.59375,
+    "oldHop": 453.59375
+  },
+  {
+    "width": 1024,
+    "current": {
+      "title": 64.953125,
+      "caption": 262,
+      "rows": [
+        292,
+        318.796875,
+        345.59375,
+        372.390625
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "oldTitle": {
+      "title": 293,
+      "caption": 262,
+      "rows": [
+        292,
+        318.796875,
+        345.59375,
+        372.390625
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "oldArt": {
+      "title": 64.953125,
+      "caption": 219,
+      "rows": [
+        292,
+        318.796875,
+        345.59375,
+        372.390625
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "oldStats": {
+      "title": 64.953125,
+      "caption": 262,
+      "rows": [
+        292,
+        292,
+        352.390625,
+        352.390625
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "hopCost": 342.59375,
+    "oldHop": 453.59375
+  },
+  {
+    "width": 1440,
+    "current": {
+      "title": 64.953125,
+      "caption": 262,
+      "rows": [
+        292,
+        318.796875,
+        345.59375,
+        372.390625
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "oldTitle": {
+      "title": 293,
+      "caption": 262,
+      "rows": [
+        292,
+        318.796875,
+        345.59375,
+        372.390625
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "oldArt": {
+      "title": 64.953125,
+      "caption": 219,
+      "rows": [
+        292,
+        318.796875,
+        345.59375,
+        372.390625
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "oldStats": {
+      "title": 64.953125,
+      "caption": 262,
+      "rows": [
+        292,
+        292,
+        352.390625,
+        352.390625
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "hopCost": 342.59375,
+    "oldHop": 453.59375
+  },
+  {
+    "width": 1280,
+    "current": {
+      "title": 64.953125,
+      "caption": 262,
+      "rows": [
+        292,
+        318.796875,
+        345.59375,
+        372.390625
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "oldTitle": {
+      "title": 293,
+      "caption": 262,
+      "rows": [
+        292,
+        318.796875,
+        345.59375,
+        372.390625
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "oldArt": {
+      "title": 64.953125,
+      "caption": 219,
+      "rows": [
+        292,
+        318.796875,
+        345.59375,
+        372.390625
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "oldStats": {
+      "title": 64.953125,
+      "caption": 262,
+      "rows": [
+        292,
+        292,
+        352.390625,
+        352.390625
+      ],
+      "art": "plub/nong-plub.png"
+    },
+    "hopCost": 342.59375,
+    "oldHop": 453.59375
+  }
+]
