@@ -1,0 +1,695 @@
+non-slop scan .  ·  25 files  ·  style: (none)
+
+public/plub.js
+  P1        cream-terracotta     L6  #fbf6ea + #9a6240
+            Cream ground + terracotta accent: the second-order 'tasteful' default
+            fix: If it isn't your brand, derive ground and accent from the subject.
+
+public/passport.js
+  REVIEW    agentless-passive    L52  This device visit was removed.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+public/privacy.html
+  REVIEW    agentless-passive    L3  The visit date is not published.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+  REVIEW    agentless-passive    L6  Reposts of removed material can also be removed.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+src/notebook.js
+  REVIEW    agentless-passive    L146  Cloudflare may retain database recovery backups for up to 30 days; live account data is deleted.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+  REVIEW    agentless-passive    L158  Cloud notebook is full (100 visits), or this copy was deleted.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+docs/atlas-2026-11-03/after-city-1024.png
+  P2        heavy-image            604 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-city-1280.png
+  P2        heavy-image            653 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-city-1440.png
+  P2        heavy-image            907 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-design-1024.png
+  P2        heavy-image            585 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-design-1280.png
+  P2        heavy-image            640 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-design-1440.png
+  P2        heavy-image            890 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-districts-1024.png
+  P2        heavy-image            607 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-districts-1280.png
+  P2        heavy-image            648 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-districts-1440.png
+  P2        heavy-image            905 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-hidden-1024.png
+  P2        heavy-image            594 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-hidden-1280.png
+  P2        heavy-image            636 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-hidden-1440.png
+  P2        heavy-image            893 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-hotspots-1024.png
+  P2        heavy-image            589 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-hotspots-1280.png
+  P2        heavy-image            635 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-hotspots-1440.png
+  P2        heavy-image            943 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-independent-1024.png
+  P2        heavy-image            592 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-independent-1280.png
+  P2        heavy-image            632 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-independent-1440.png
+  P2        heavy-image            887 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-menu-1024.png
+  P2        heavy-image            622 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-menu-1280.png
+  P2        heavy-image            665 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-menu-1440.png
+  P2        heavy-image            926 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-nature-1024.png
+  P2        heavy-image            617 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-nature-1280.png
+  P2        heavy-image            657 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-nature-1440.png
+  P2        heavy-image            915 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-streets-1024.png
+  P2        heavy-image            618 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-streets-1280.png
+  P2        heavy-image            661 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-streets-1440.png
+  P2        heavy-image            921 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-talk-1024.png
+  P2        heavy-image            577 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-talk-1280.png
+  P2        heavy-image            633 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/after-talk-1440.png
+  P2        heavy-image            882 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/before-city-1024.png
+  P2        heavy-image            629 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/before-city-1280.png
+  P2        heavy-image            675 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/before-city-1440.png
+  P2        heavy-image            933 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/atlas-2026-11-03/route-numbers-1440.png
+  P2        heavy-image            642 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/enlarged-form-1024.png
+  P2        heavy-image            792 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/enlarged-form-1280.png
+  P2        heavy-image            819 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/enlarged-form-1440.png
+  P2        heavy-image            698 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/facts-1024.png
+  P2        heavy-image            765 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/facts-1280.png
+  P2        heavy-image            806 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/facts-1440.png
+  P2        heavy-image            918 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/map-1024.png
+  P2        heavy-image            753 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/map-1280.png
+  P2        heavy-image            729 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/map-1440.png
+  P2        heavy-image            896 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/notebook-1280.png
+  P2        heavy-image            659 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/notebook-1440.png
+  P2        heavy-image            861 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/old-utility-1280.png
+  P2        heavy-image            571 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/old-utility-1440.png
+  P2        heavy-image            855 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/photo-1024.png
+  P2        heavy-image            534 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/photo-1280.png
+  P2        heavy-image            565 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/audit-2026-11-03/photo-1440.png
+  P2        heavy-image            654 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/notebook-2026-11-03/after-empty-1024.png
+  P2        heavy-image            768 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/notebook-2026-11-03/after-empty-1440.png
+  P2        heavy-image            853 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/notebook-2026-11-03/after-map-1024.png
+  P2        heavy-image            690 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/notebook-2026-11-03/preserved-finder-1440.png
+  P2        heavy-image            664 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-ari-1024.png
+  P2        heavy-image            649 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-ari-1280.png
+  P2        heavy-image            656 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-ari-1440.png
+  P2        heavy-image            876 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-charoenkrung-1024.png
+  P2        heavy-image            636 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-charoenkrung-1280.png
+  P2        heavy-image            633 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-charoenkrung-1440.png
+  P2        heavy-image            832 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-finder-1024.png
+  P2        heavy-image            510 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-finder-1280.png
+  P2        heavy-image            524 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-finder-1440.png
+  P2        heavy-image            679 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-guide-1024.png
+  P2        heavy-image            816 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-guide-1280.png
+  P2        heavy-image            778 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-guide-1440.png
+  P2        heavy-image            947 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-hop-1024.png
+  P2        heavy-image            506 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-hop-1440.png
+  P2        heavy-image            653 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-list-1024.png
+  P2        heavy-image            767 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-list-1280.png
+  P2        heavy-image            729 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-list-1440.png
+  P2        heavy-image            896 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-map-1024.png
+  P2        heavy-image            767 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-map-1280.png
+  P2        heavy-image            729 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-map-1440.png
+  P2        heavy-image            896 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-notebook-1280.png
+  P2        heavy-image            519 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-notebook-1440.png
+  P2        heavy-image            665 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-samyan-1024.png
+  P2        heavy-image            658 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-samyan-1280.png
+  P2        heavy-image            668 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-samyan-1440.png
+  P2        heavy-image            886 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-thonglo-1024.png
+  P2        heavy-image            526 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-thonglo-1280.png
+  P2        heavy-image            530 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/after-thonglo-1440.png
+  P2        heavy-image            696 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-ari-1024.png
+  P2        heavy-image            635 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-ari-1280.png
+  P2        heavy-image            646 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-ari-1440.png
+  P2        heavy-image            844 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-charoenkrung-1024.png
+  P2        heavy-image            622 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-charoenkrung-1280.png
+  P2        heavy-image            619 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-charoenkrung-1440.png
+  P2        heavy-image            817 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-finder-1024.png
+  P2        heavy-image            510 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-finder-1280.png
+  P2        heavy-image            523 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-finder-1440.png
+  P2        heavy-image            678 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-guide-1024.png
+  P2        heavy-image            815 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-guide-1280.png
+  P2        heavy-image            776 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-guide-1440.png
+  P2        heavy-image            946 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-hop-1024.png
+  P2        heavy-image            512 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-hop-1440.png
+  P2        heavy-image            607 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-map-1024.png
+  P2        heavy-image            767 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-map-1280.png
+  P2        heavy-image            729 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-map-1440.png
+  P2        heavy-image            896 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-notebook-1280.png
+  P2        heavy-image            509 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-notebook-1440.png
+  P2        heavy-image            657 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-samyan-1024.png
+  P2        heavy-image            649 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-samyan-1280.png
+  P2        heavy-image            659 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-samyan-1440.png
+  P2        heavy-image            875 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-thonglo-1024.png
+  P2        heavy-image            512 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-thonglo-1280.png
+  P2        heavy-image            518 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/before-thonglo-1440.png
+  P2        heavy-image            683 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/branch-label-1024.png
+  P2        heavy-image            773 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/branch-label-1440.png
+  P2        heavy-image            858 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/discussion-flow-1024.png
+  P2        heavy-image            777 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/discussion-flow-1280.png
+  P2        heavy-image            724 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/discussion-flow-1440.png
+  P2        heavy-image            877 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/live-ari-1024.png
+  P2        heavy-image            649 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/live-ari-1280.png
+  P2        heavy-image            658 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/live-ari-1440.png
+  P2        heavy-image            2168 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/live-discussion-flow-1024.png
+  P2        heavy-image            791 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/live-discussion-flow-1280.png
+  P2        heavy-image            765 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/live-discussion-flow-1440.png
+  P2        heavy-image            1147 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/live-hop-1440.png
+  P2        heavy-image            1381 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/notebook-full-regression/after-empty-1280.png
+  P2        heavy-image            720 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/notebook-full-regression/after-empty-1440.png
+  P2        heavy-image            1104 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/notebook-regression/enlarged-form-1280.png
+  P2        heavy-image            810 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/notebook-regression/enlarged-form-1440.png
+  P2        heavy-image            1146 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/notebook-regression/facts-1024.png
+  P2        heavy-image            670 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/notebook-regression/facts-1280.png
+  P2        heavy-image            660 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/notebook-regression/facts-1440.png
+  P2        heavy-image            901 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/notebook-regression/map-1024.png
+  P2        heavy-image            753 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/notebook-regression/map-1280.png
+  P2        heavy-image            699 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/notebook-regression/map-1440.png
+  P2        heavy-image            852 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/notebook-regression/notebook-1280.png
+  P2        heavy-image            640 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/notebook-regression/old-utility-1280.png
+  P2        heavy-image            640 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/notebook-regression/old-utility-1440.png
+  P2        heavy-image            741 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+docs/visual-2026-11-03/notebook-regression/photo-1440.png
+  P2        heavy-image            639 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+Verdict: REVIEW  points 3 (distinct rules: P0 0 · P1 1 · P2 1)  ·  allowed 0  ·  review 5 (sentences to read; not scored, not rewritten)
+SLOP = ≥8 points, a P0 stacked with another P0/P1, or P0/P1 hits in ≥3 categories. REVIEW = 3–7. A screen, not a judge: render it and get a second reviewer.

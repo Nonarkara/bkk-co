@@ -1,0 +1,185 @@
+/* Map tools use map space; the catalogue and notebook keep their existing rails. */
+.atlas-dock {
+  position: fixed;
+  z-index: 2;
+  top: 12px;
+  left: 372px;
+  max-width: min(390px, calc(100vw - 452px));
+  pointer-events: none;
+  color: #7d133a;
+}
+.atlas-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  pointer-events: auto;
+}
+.atlas-tools button,
+.atlas-reset {
+  background: #fff;
+  border: 1px solid #7d133a;
+  color: #7d133a;
+  min-height: 36px;
+  padding: 4px 10px;
+  font:
+    500 15px Jost,
+    sans-serif;
+  cursor: pointer;
+}
+.atlas-state {
+  display: table;
+  margin: 4px 0 0;
+  background: #fff;
+  padding: 2px 6px;
+  font:
+    500 13px/1.4 Jost,
+    sans-serif;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.atlas-reset {
+  pointer-events: auto;
+  font-size: 13px;
+  min-height: 32px;
+  margin-top: 4px;
+}
+.atlas-modes {
+  display: grid;
+  gap: 4px;
+  margin: 12px 0;
+}
+.atlas-modes button {
+  display: block;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid #b6bfc1;
+  background: #fff;
+  color: #7d133a;
+  padding: 8px 4px;
+  cursor: pointer;
+  font: inherit;
+  min-height: 44px;
+}
+.atlas-modes button[aria-pressed='true'] {
+  border-left: 3px solid #7d133a;
+  padding-left: 8px;
+  background: #fff4f7;
+}
+.atlas-modes b,
+.atlas-modes small {
+  display: block;
+}
+.atlas-modes small {
+  font-size: 13px;
+  line-height: 1.4;
+  margin-top: 2px;
+  color: #595959;
+}
+.atlas-area {
+  border-top: 1px solid #b6bfc1;
+  padding-top: 10px;
+}
+.atlas-area summary {
+  min-height: 32px;
+  cursor: pointer;
+}
+.atlas-area select {
+  display: block;
+  width: 100%;
+  font: inherit;
+  min-height: 44px;
+  margin: 8px 0;
+}
+.atlas-places,
+.atlas-key,
+.atlas-triangles {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+.atlas-places li,
+.atlas-triangles li {
+  border-top: 1px solid #b6bfc1;
+}
+.atlas-places button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 48px;
+  text-align: left;
+  padding: 8px 0;
+  border: 0;
+  background: #fff;
+  color: #7d133a;
+  font: inherit;
+  cursor: pointer;
+}
+.atlas-places img {
+  flex: none;
+}
+.atlas-places b {
+  font-weight: 500;
+}
+.atlas-places small,
+.atlas-triangles small {
+  display: block;
+  color: #595959;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.atlas-key li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 42px;
+  line-height: 1.4;
+}
+.atlas-key img {
+  flex: none;
+}
+.atlas-triangles button {
+  width: 100%;
+  text-align: left;
+  min-height: 44px;
+  padding: 10px 0;
+  color: #7d133a;
+  background: #fff;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+.atlas-sheet p {
+  line-height: 1.5;
+}
+.atlas-facts {
+  border-top: 1px solid #b6bfc1;
+  padding: 8px 0;
+  font-size: 14px;
+}
+.atlas-facts summary {
+  min-height: 32px;
+  cursor: pointer;
+}
+.atlas-facts p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+@media (max-width: 899px) {
+  .atlas-dock {
+    left: 10px;
+    top: 102px;
+    max-width: calc(100vw - 76px);
+  }
+  .atlas-tools button {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+  .atlas-state {
+    font-size: 12px;
+    max-width: 230px;
+  }
+  .atlas-sheet {
+    max-height: 58dvh;
+  }
+}

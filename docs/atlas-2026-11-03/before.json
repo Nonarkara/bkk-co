@@ -1,0 +1,30 @@
+[
+  {
+    "width": 390,
+    "zoom": 11,
+    "catalogue": 57538,
+    "active": 57538,
+    "renderedFeatures": 704
+  },
+  {
+    "width": 1024,
+    "zoom": 11,
+    "catalogue": 57538,
+    "active": 57538,
+    "renderedFeatures": 785
+  },
+  {
+    "width": 1440,
+    "zoom": 11,
+    "catalogue": 57538,
+    "active": 57538,
+    "renderedFeatures": 788
+  },
+  {
+    "width": 1280,
+    "zoom": 11,
+    "catalogue": 57538,
+    "active": 57538,
+    "renderedFeatures": 787
+  }
+]

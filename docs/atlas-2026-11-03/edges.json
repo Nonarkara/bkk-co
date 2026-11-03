@@ -1,0 +1,17 @@
+{
+  "baseFeaturedEvidence": true,
+  "actualNotebookStars": true,
+  "clusterPagination": true,
+  "coLocatedActualIDs": [
+    "n10670078705",
+    "ob80372ad6bc6"
+  ],
+  "atlas-geo.json": {
+    "rejected": true,
+    "basePreserved": true
+  },
+  "barriers.json": {
+    "rejected": true,
+    "basePreserved": true
+  }
+}
