@@ -1,0 +1,43 @@
+
+ ⛅️ wrangler 4.81.1 (update available 4.157.0)
+──────────────────────────────────────────────
+🌀 Building list of assets...
+✨ Read 217 files from the assets directory /Users/nonarkara/Projects/bangkok-ioc/bkk-co/public
+🌀 Starting asset upload...
+🌀 Found 19 new or modified static assets to upload. Proceeding with upload...
++ /data/manifest.json
++ /index.html
++ /notebook.js
++ /data/atlas-evidence.json
++ /og/default.png
++ /data/atlas-geo.json
++ /data/atlas-places.json
++ /place-tools.js
++ /discovery.js
++ /app.js
++ /views.js
++ /data/cells/275-2012.json
++ /data/places-work.json
++ /discovery.css
++ /journeys.js
++ /atlas.js
++ /data/atlas-streets.json
++ /data/journey-geo.json
++ /data/journey-places.json
+Uploaded 6 of 19 assets
+Uploaded 12 of 19 assets
+Uploaded 19 of 19 assets
+✨ Success! Uploaded 19 files (192 already uploaded) (3.86 sec)
+
+Total Upload: 27.92 KiB / gzip: 8.06 KiB
+Your Worker has access to the following bindings:
+Binding                  Resource         
+env.DB (bkk-co)          D1 Database      
+env.ASSETS               Assets           
+
+Uploaded bkk-co (10.39 sec)
+Deployed bkk-co triggers (3.31 sec)
+  co.nonarkara.org (custom domain)
+  bkkco.nonarkara.org (custom domain)
+  schedule: 15 18 * * *
+Current Version ID: 22427c9f-79c4-48fe-b7e9-94e0298c74de

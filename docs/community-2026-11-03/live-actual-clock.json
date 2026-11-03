@@ -1,0 +1,24 @@
+{
+  "observedAt": "2026-11-03T16:22:17.969Z",
+  "bangkok": "03/11/2026, 23:22:17",
+  "hours": "Mo-Su 07:00-20:00",
+  "openNow": false,
+  "vichReturned": false,
+  "returned": [],
+  "origin": {
+    "id": "n12718519202",
+    "sourceID": "n12718519202",
+    "name": "Thananchai barbershop",
+    "nameTh": "Thananchai barbershop",
+    "x": 100.6458077,
+    "y": 13.7639174,
+    "kind": "place",
+    "tags": {
+      "name": "Thananchai barbershop",
+      "shop": "hairdresser"
+    },
+    "label": "Thananchai barbershop"
+  },
+  "writes": [],
+  "errors": []
+}

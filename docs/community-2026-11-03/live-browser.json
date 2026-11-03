@@ -1,0 +1,257 @@
+[
+  {
+    "width": 390,
+    "height": 844,
+    "start": {
+      "chrome": 102,
+      "mapHeight": 742,
+      "mapWidth": 390,
+      "bleed": false
+    },
+    "action": {
+      "visit": {
+        "top": 451.078125,
+        "bottom": 495.078125,
+        "height": 44,
+        "width": 181
+      },
+      "directions": {
+        "top": 451.078125,
+        "bottom": 495.078125,
+        "height": 44,
+        "width": 181
+      },
+      "social": {
+        "top": 495.078125,
+        "bottom": 540.078125,
+        "height": 45,
+        "width": 366
+      },
+      "sheet": {
+        "top": 354.484375,
+        "bottom": 844,
+        "height": 489.515625,
+        "width": 390
+      },
+      "bleed": false
+    },
+    "saved": {
+      "x": 0,
+      "y": 710.0625,
+      "width": 390,
+      "height": 133.9375
+    },
+    "featuredFirst": {
+      "x": 12,
+      "y": 508.875,
+      "width": 366,
+      "height": 142.59375
+    },
+    "errors": [],
+    "apiWrites": []
+  },
+  {
+    "width": 1024,
+    "height": 900,
+    "start": {
+      "chrome": 102,
+      "mapHeight": 900,
+      "mapWidth": 664,
+      "bleed": false
+    },
+    "action": {
+      "visit": {
+        "top": 196.59375,
+        "bottom": 240.59375,
+        "height": 44,
+        "width": 165.5
+      },
+      "directions": {
+        "top": 196.59375,
+        "bottom": 240.59375,
+        "height": 44,
+        "width": 165.5
+      },
+      "social": {
+        "top": 240.59375,
+        "bottom": 329.59375,
+        "height": 89,
+        "width": 335
+      },
+      "sheet": {
+        "top": 102,
+        "bottom": 724.4375,
+        "height": 622.4375,
+        "width": 359
+      },
+      "bleed": false
+    },
+    "saved": {
+      "x": 0,
+      "y": 102,
+      "width": 359,
+      "height": 133.9375
+    },
+    "featuredFirst": {
+      "x": 12,
+      "y": 254.390625,
+      "width": 335,
+      "height": 142.59375
+    },
+    "errors": [],
+    "apiWrites": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "start": {
+      "chrome": 102,
+      "mapHeight": 900,
+      "mapWidth": 1080,
+      "bleed": false
+    },
+    "action": {
+      "visit": {
+        "top": 196.59375,
+        "bottom": 240.59375,
+        "height": 44,
+        "width": 165.5
+      },
+      "directions": {
+        "top": 196.59375,
+        "bottom": 240.59375,
+        "height": 44,
+        "width": 165.5
+      },
+      "social": {
+        "top": 240.59375,
+        "bottom": 329.59375,
+        "height": 89,
+        "width": 335
+      },
+      "sheet": {
+        "top": 102,
+        "bottom": 724.4375,
+        "height": 622.4375,
+        "width": 359
+      },
+      "bleed": false
+    },
+    "saved": {
+      "x": 0,
+      "y": 102,
+      "width": 359,
+      "height": 133.9375
+    },
+    "featuredFirst": {
+      "x": 12,
+      "y": 254.390625,
+      "width": 335,
+      "height": 142.59375
+    },
+    "errors": [],
+    "apiWrites": []
+  },
+  {
+    "width": 360,
+    "height": 844,
+    "start": {
+      "chrome": 102,
+      "mapHeight": 742,
+      "mapWidth": 360,
+      "bleed": false
+    },
+    "action": {
+      "visit": {
+        "top": 451.078125,
+        "bottom": 495.078125,
+        "height": 44,
+        "width": 166
+      },
+      "directions": {
+        "top": 451.078125,
+        "bottom": 495.078125,
+        "height": 44,
+        "width": 166
+      },
+      "social": {
+        "top": 495.078125,
+        "bottom": 584.078125,
+        "height": 89,
+        "width": 336
+      },
+      "sheet": {
+        "top": 354.484375,
+        "bottom": 844,
+        "height": 489.515625,
+        "width": 360
+      },
+      "bleed": false
+    },
+    "saved": {
+      "x": 0,
+      "y": 710.0625,
+      "width": 360,
+      "height": 133.9375
+    },
+    "featuredFirst": {
+      "x": 12,
+      "y": 508.875,
+      "width": 336,
+      "height": 142.59375
+    },
+    "errors": [],
+    "apiWrites": []
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "start": {
+      "chrome": 102,
+      "mapHeight": 720,
+      "mapWidth": 920,
+      "bleed": false
+    },
+    "action": {
+      "visit": {
+        "top": 196.59375,
+        "bottom": 240.59375,
+        "height": 44,
+        "width": 165.5
+      },
+      "directions": {
+        "top": 196.59375,
+        "bottom": 240.59375,
+        "height": 44,
+        "width": 165.5
+      },
+      "social": {
+        "top": 240.59375,
+        "bottom": 329.59375,
+        "height": 89,
+        "width": 335
+      },
+      "sheet": {
+        "top": 102,
+        "bottom": 584.03125,
+        "height": 482.03125,
+        "width": 359
+      },
+      "bleed": false
+    },
+    "saved": {
+      "x": 0,
+      "y": 102,
+      "width": 359,
+      "height": 133.9375
+    },
+    "featuredFirst": {
+      "x": 12,
+      "y": 254.390625,
+      "width": 335,
+      "height": 142.59375
+    },
+    "errors": [],
+    "apiWrites": []
+  }
+]

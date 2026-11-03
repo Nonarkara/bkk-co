@@ -1,0 +1,21 @@
+Start 390
+DOM 390
+Data 390
+Fonts 390
+Start 1024
+DOM 1024
+Data 1024
+Fonts 1024
+Start 1440
+DOM 1440
+Data 1440
+Fonts 1440
+Start 360
+DOM 360
+Data 360
+Fonts 360
+Start 1280
+DOM 1280
+Data 1280
+Fonts 1280
+live: exact missing-place search/Maps-link recovery, symbols, source-backed features, sharing, private contribution and compact actions at5widths pass.

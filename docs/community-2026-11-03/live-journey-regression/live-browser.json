@@ -1,0 +1,94 @@
+[
+  {
+    "width": 390,
+    "clock": "simulated Bangkok 2026-11-03 10:00",
+    "geometry": {
+      "ctaTop": 707,
+      "ctaBottom": 751,
+      "sheetTop": 389.421875,
+      "bleed": false,
+      "bodyWidth": 390
+    },
+    "drive": "https://www.google.com/maps/dir/?api=1&destination=13.75239%2C100.63924&travelmode=driving&origin=13.7639174%2C100.6458077",
+    "barberID": "n12718519202",
+    "railCount": 1,
+    "controlClear": [
+      {
+        "id": "n6237362243",
+        "right": 328.9999999982863,
+        "controlLeft": 334
+      }
+    ],
+    "legacyCollisionRejected": false,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "clock": "simulated Bangkok 2026-11-03 10:00",
+    "geometry": {
+      "ctaTop": 434.359375,
+      "ctaBottom": 478.359375,
+      "sheetTop": 102,
+      "bleed": false,
+      "bodyWidth": 1024
+    },
+    "drive": "https://www.google.com/maps/dir/?api=1&destination=13.75239%2C100.63924&travelmode=driving&origin=13.7639174%2C100.6458077",
+    "barberID": "n12718519202",
+    "railCount": 1,
+    "controlClear": [
+      {
+        "id": "n6237362243",
+        "right": 916.5839954460992,
+        "controlLeft": 968
+      }
+    ],
+    "legacyCollisionRejected": false,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "clock": "simulated Bangkok 2026-11-03 10:00",
+    "geometry": {
+      "ctaTop": 434.359375,
+      "ctaBottom": 478.359375,
+      "sheetTop": 102,
+      "bleed": false,
+      "bodyWidth": 1440
+    },
+    "drive": "https://www.google.com/maps/dir/?api=1&destination=13.75239%2C100.63924&travelmode=driving&origin=13.7639174%2C100.6458077",
+    "barberID": "n12718519202",
+    "railCount": 1,
+    "controlClear": [
+      {
+        "id": "n6237362243",
+        "right": 1124.5839954460992,
+        "controlLeft": 1384
+      }
+    ],
+    "legacyCollisionRejected": false,
+    "errors": []
+  },
+  {
+    "width": 360,
+    "clock": "simulated Bangkok 2026-11-03 10:00",
+    "geometry": {
+      "ctaTop": 707,
+      "ctaBottom": 751,
+      "sheetTop": 372.640625,
+      "bleed": false,
+      "bodyWidth": 360
+    },
+    "drive": "https://www.google.com/maps/dir/?api=1&destination=13.75239%2C100.63924&travelmode=driving&origin=13.7639174%2C100.6458077",
+    "barberID": "n12718519202",
+    "railCount": 1,
+    "controlClear": [
+      {
+        "id": "n6237362243",
+        "right": 299,
+        "controlLeft": 304
+      }
+    ],
+    "legacyCollisionRejected": false,
+    "errors": []
+  }
+]

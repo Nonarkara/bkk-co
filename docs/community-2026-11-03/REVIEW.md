@@ -49,3 +49,7 @@ All map layers, catalogue content, notebook storage/key model, photos, existing 
 ## Final resilience recheck · key-save → preview
 
 The builder added a catch/retry guard to the new key-continue handler after the primary review. Independently re-ran `independent-account.mjs` with the actual app and mocked accountAPI returning503 exactly once after the key-save gate. The error appears in the current account slot, the continue button re-enables, the private device visit remains, and no backup/publish request occurs. Clicking the same continue button again opens the correct recommendation preview; only the later explicit publish issuesPUT+POST. Photos remain unchecked, zero pageerrors. Evidence: `independent-account.json` (`keyPreview503Retry:true`) and `audit-key-preview-retry-390.png`. **PASS retained.**
+
+## Final distance-honesty field recheck
+
+Independently rendered meet's direct place link at390×844 and1440×900 after removing the inherited straight-line-meter-to-minutes heuristic. The Access field reads **1,175 m to mapped rail point (straight line)** atboth widths, exactly matching the unchanged raw`m.walk` value. The label remains complete, retains its straight-line/source-point qualification, and has no sheet/page horizontal overflow or pageerrors. No travel-time promise remains in this field. Evidence: `independent-rail-field.mjs/json`, `audit-rail-distance-390.png`, `audit-rail-distance-1440.png`. **PASS retained.**
