@@ -326,6 +326,7 @@ def build():
         'wifiTagged': sum(1 for p in places if p.get('w') == 'yes'), 'parkingNearby': sum(1 for p in places if p['park'] is not None and p['park'] <= PARK_M), 'hoursTagged': sum(1 for p in places if p.get('h')),
         'files': files}
     (data / 'manifest.json').write_text(json.dumps(manifest, indent=1, ensure_ascii=False) + '\n')
+    subprocess.run([sys.executable, str(ROOT/'scripts/enrich-places.py')], check=True)
     print(json.dumps({k: manifest[k] for k in ('total', 'kinds', 'bySource', 'skipped', 'files')}, indent=1))
 
 def fetch_overture():

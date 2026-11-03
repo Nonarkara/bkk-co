@@ -197,7 +197,7 @@ $('#guide').addEventListener('click', async () => {
 });
 
 // ---------- passport ----------
-const urls = [];
+const urls = window.visitPhotoUrls = [];
 const photoUrl = blob => { const u = URL.createObjectURL(blob); urls.push(u); return u; };
 window.momentHtml = v => `<li class="moment" data-key="${v.key}">
   <div class="moment-head"><span>${new Date(Passport.day(v)+'T12:00:00+07:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone:'Asia/Bangkok' })}</span>
@@ -223,8 +223,8 @@ window.beenForm = (p, btn, done) => {
     <div class="stars-pick" role="group" aria-label="How was it">${[1, 2, 3, 4, 5].map(i => `<button type="button" data-s="${i}" aria-label="${i} of 5" aria-pressed="false">★</button>`).join('')}</div>
     <div class="feel" role="group" aria-label="It felt">${FEELINGS.map(w => `<button type="button" aria-pressed="false">${w}</button>`).join('')}</div>
     <label>Visit date<input name="visit-date" type="date" required value="${new Date(Date.now()+7*3600000).toISOString().slice(0,10)}"></label>
-    <label>Your private note<textarea rows="2" maxlength="600" placeholder="What do you want to remember?"></textarea></label>
-    <label class="photo-pick">＋ Photos<input type="file" accept="image/*" multiple hidden></label><span class="micro picked"></span>
+    <label>Your private note<textarea rows="2" maxlength="600" placeholder="Coffee, Wi-Fi, outlets, noise — what should you remember?"></textarea></label>
+    <label class="photo-pick">＋ Photos · up to 4<input type="file" accept="image/*" multiple class="sr"></label><span class="micro picked" role="status"></span><div class="thumbs photo-preview"></div>
     <details class="work-q"><summary>For people who work here (optional, shared)</summary>
       <div class="rate">${SCORES.map(([k, label, opts]) => `<span>${label}</span><div class="seg" data-k="${k}" role="group" aria-label="${label}">${opts.map((o, i) => `<button type="button" data-v="${i + 1}" aria-pressed="false">${o}</button>`).join('')}</div>`).join('')}</div>
     </details>
@@ -249,7 +249,10 @@ window.beenForm = (p, btn, done) => {
     vote[b.parentElement.dataset.k] = +b.dataset.v;
   });
   const input = form.querySelector('input[type=file]');
-  input.addEventListener('change', () => { form.querySelector('.picked').textContent = input.files.length ? `${Math.min(4, input.files.length)} photo(s)` : ''; });
+  input.addEventListener('change', () => {
+    form.querySelector('.picked').textContent = input.files.length ? `${Math.min(4,input.files.length)} photo(s) selected${input.files.length>4?' · only the first 4 will save':''}` : '';
+    form.querySelector('.photo-preview').innerHTML=[...input.files].slice(0,4).map(file=>`<a href="${photoUrl(file)}"><img src="${urls[urls.length-1]}" alt="Selected visit photo"></a>`).join('');
+  });
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const send = form.querySelector('.send'); send.disabled = true; send.textContent = 'Saving…';
@@ -258,12 +261,14 @@ window.beenForm = (p, btn, done) => {
         words: [...form.querySelectorAll('.feel [aria-pressed="true"]')].map(b => b.textContent),
         note: form.querySelector('textarea').value, files: input.files });
       if (SCORES.every(([k]) => vote[k])) {
-        const r = await fetch('/api/scores', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ place: p.id, ...vote }) }).catch(() => null);
+        const deadline=new AbortController(),timer=setTimeout(()=>deadline.abort(),8000);
+        const r = await fetch('/api/scores', { signal:deadline.signal, method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ place: p.id, ...vote }) }).catch(() => null);
+        clearTimeout(timer);
         if (r?.ok) await loadScores(); // a refused rating (e.g. already rated today) never blocks the passport entry
       }
       sessionStorage.removeItem('plub-draft-'+p.id);
       await loadVisits(); refresh(); const active=form.isConnected; form.remove(); if(active)done();
-    } catch (err) { send.disabled = false; send.textContent = 'Not saved. Try again'; console.error(err); }
+    } catch (err) { send.disabled = false; send.textContent = 'Save visit'; form.querySelector('.picked').textContent=err.message||'Could not save. Your form is kept; try again.'; }
   });
 };
 
@@ -287,7 +292,7 @@ async function openPassport() {
     <nav class="links">
       <button type="button" class="card">⇪ Share stamp card</button>
       <button type="button" class="export">↓ Export backup</button>
-      <label class="importer">↑ Import<input type="file" accept="application/json" hidden></label>
+      <label class="importer">↑ Import<input type="file" accept="application/json" class="sr"></label>
     </nav>
     <p class="src">Device copies stay here until you delete them. Cloud backup and public sharing are separate choices. Export before clearing your browser.</p>`);
   window.Notebook?.mount(sheet, visits);
@@ -301,7 +306,15 @@ async function openPassport() {
     const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'plub-stamps.png' });
     a.click(); e.target.textContent = '⇪ Card saved';
   };
-  sheet.querySelector('.export').onclick = async e => { const n = await Passport.exportFile(); e.target.textContent = `↓ Exported ${n}`; };
+  sheet.querySelector('.export').onclick = async e => {
+    const button=e.target;button.disabled=true;
+    try {
+      const {count,parts}=await Passport.exportFile();
+      let area=sheet.querySelector('.backup-parts');if(!area){area=document.createElement('div');area.className='backup-parts';button.closest('nav').after(area)}
+      area.replaceChildren();const note=document.createElement('p');note.className='src';note.textContent=`${count} visits in ${parts.length} backup ${parts.length===1?'file':'files'}. Download every part; import each to restore. Files include private photos.`;area.append(note);
+      parts.forEach((blob,i)=>{const a=document.createElement('a');a.href=photoUrl(blob);a.download=`plub-passport-${new Date().toISOString().slice(0,10)}-part-${i+1}.json`;a.textContent=`↓ Download part ${i+1} of ${parts.length}`;area.append(a)});
+    } catch(err) {button.textContent=err.message}finally{button.disabled=false}
+  };
   sheet.querySelector('.importer input').onchange = async e => {
     try { const n = await Passport.importFile(e.target.files[0]); await loadVisits(); refresh(); openPassport(); alert(`${n} moments imported.`); }
     catch (err) { alert(err.message); }
@@ -448,7 +461,8 @@ function crossesRiver(a, b) {
 // ---------- Café hop: a walkable day through the best independent cafés ----------
 const hopState = { start: null };
 function planHop(start) {
-  const today11 = new Date(); today11.setHours(11, 0, 0, 0);
+  const local = new Date(Date.now()+7*3600000);
+  const today11 = new Date(Date.UTC(local.getUTCFullYear(),local.getUTCMonth(),local.getUTCDate(),4));
   const pool = state.places.filter(p => p.k === 'cafe' && !(p.flags & F.CHAIN) && p.idx >= 70 &&
     window.isOpen(p.hours, today11) !== false && near(p, start) <= 1500 && !crossesRiver(start, p));
   const stops = [];
