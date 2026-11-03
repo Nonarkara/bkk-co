@@ -4,7 +4,7 @@
     empty = () => ({ type: 'FeatureCollection', features: [] });
   const modes = {
     all: ['All places', 'Every selected kind, grouped without an index cutoff.'],
-    hotspots: ['Hotspots', 'Catalogue café density, not visits or foot traffic.'],
+    hotspots: ['Hotspots', 'Catalogue café density as hat tiles, not visits or foot traffic.'],
     independent: [
       'Independent',
       'Cafés with no chain signal in the catalogue; ownership is not independently certified.'
@@ -48,7 +48,8 @@
     last = [],
     images = {},
     mapReady = false,
-    provenance = new Map();
+    provenance = new Map(),
+    hatGeom = null;
   const get = async (path) => {
     const r = await fetch(path, { signal: AbortSignal.timeout(15000) });
     if (!r.ok) throw new Error('Map evidence unavailable. The base map and notebook still work.');
@@ -336,32 +337,30 @@
       },
       paint: { 'text-color': '#7d133a', 'text-halo-color': '#fff', 'text-halo-width': 2 }
     });
-    m.addSource('atlas-density', { type: 'geojson', data: empty() });
+    m.addSource('atlas-hats', { type: 'geojson', data: empty() });
     m.addLayer(
       {
-        id: 'atlas-heat',
-        type: 'heatmap',
-        source: 'atlas-density',
-        maxzoom: 16,
+        id: 'atlas-hats',
+        type: 'fill',
+        source: 'atlas-hats',
         layout: { visibility: 'none' },
         paint: {
-          'heatmap-weight': 1,
-          'heatmap-intensity': 0.7,
-          'heatmap-radius': 34,
-          'heatmap-opacity': 0.52,
-          'heatmap-color': [
-            'interpolate',
-            ['linear'],
-            ['heatmap-density'],
-            0,
-            'rgba(249,193,206,0)',
-            0.2,
-            '#f9c1ce',
-            0.65,
-            '#b65779',
-            1,
-            '#7d133a'
-          ]
+          'fill-color': ['step', ['get', 'n'], '#f9c1ce', 12, '#7d133a'],
+          'fill-opacity': ['interpolate', ['linear'], ['get', 'n'], 1, 0.2, 6, 0.32, 12, 0.4, 40, 0.48, 100, 0.54]
+        }
+      },
+      'pins-city'
+    );
+    m.addLayer(
+      {
+        id: 'atlas-hat-line',
+        type: 'line',
+        source: 'atlas-hats',
+        layout: { visibility: 'none' },
+        paint: {
+          'line-color': '#7d133a',
+          'line-opacity': 0.72,
+          'line-width': ['interpolate', ['linear'], ['get', 'n'], 1, 0.6, 12, 1, 40, 1.35]
         }
       },
       'pins-city'
@@ -613,24 +612,184 @@
     if (fit)
       fit.hidden =
         !mapReady || !last.length || last.some((p) => map.getBounds().contains([p.x, p.y]));
-    if (lens === 'hotspots') e.textContent += ' · density: pale → dark';
+    if (lens === 'hotspots') e.textContent += ' · hat tiles';
     if (lens === 'districts') e.textContent += ' · cafés/km²: 0 · 5 · 35+';
     if (lens === 'triangles' && loop) e.textContent = `3 café stops · ${loop.perimeter} m straight-line triangle`;
+  }
+  function pip(x, y, ring) {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const xi = ring[i][0],
+        yi = ring[i][1],
+        xj = ring[j][0],
+        yj = ring[j][1];
+      if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  }
+  function buildHatGeom() {
+    const bucket = Math.round(map.getZoom() * 2) / 2;
+    const b = map.getBounds();
+    const lat = (b.getNorth() + b.getSouth()) / 2;
+    const mLng = 111320 * Math.cos((lat * Math.PI) / 180);
+    const mLat = 111320;
+    const mpp = (156543.03392 * Math.cos((lat * Math.PI) / 180)) / 2 ** bucket;
+    const needW = (b.getEast() - b.getWest()) * mLng * 1.7;
+    const needH = (b.getNorth() - b.getSouth()) * mLat * 1.7;
+    const target = 44 * mpp;
+    let chosen = null;
+    for (let level = 1; level <= 5; level++) {
+      const patch = EinsteinHat.patch(level);
+      const scale = target / patch.hatSpan;
+      chosen = { patch, scale };
+      if (patch.width * scale >= needW && patch.height * scale >= needH) break;
+      if (level === 5) {
+        const fit = Math.max(needW / patch.width, needH / patch.height, scale);
+        chosen = { patch, scale: fit };
+      }
+    }
+    const { patch, scale } = chosen;
+    const cx = (patch.minX + patch.maxX) / 2,
+      cy = (patch.minY + patch.maxY) / 2,
+      clng = (b.getWest() + b.getEast()) / 2,
+      clat = lat;
+    let west = Infinity,
+      south = Infinity,
+      east = -Infinity,
+      north = -Infinity;
+    const full = [],
+      draw = [],
+      boxes = [];
+    for (const h of patch.hats) {
+      let gx = 0,
+        gy = 0;
+      for (const p of h.ring) {
+        gx += p[0];
+        gy += p[1];
+      }
+      gx /= h.ring.length;
+      gy /= h.ring.length;
+      const project = (x, y) => [clng + ((x - cx) * scale) / mLng, clat + ((y - cy) * scale) / mLat];
+      const ring = h.ring.map(([x, y]) => project(x, y));
+      const shown = h.ring.map(([x, y]) => project(gx + (x - gx) * 0.92, gy + (y - gy) * 0.92));
+      let wind = 0;
+      for (let i = 0, j = shown.length - 1; i < shown.length; j = i++)
+        wind += shown[j][0] * shown[i][1] - shown[i][0] * shown[j][1];
+      if (wind < 0) shown.reverse();
+      let x0 = Infinity,
+        y0 = Infinity,
+        x1 = -Infinity,
+        y1 = -Infinity;
+      for (const p of ring) {
+        x0 = Math.min(x0, p[0]);
+        y0 = Math.min(y0, p[1]);
+        x1 = Math.max(x1, p[0]);
+        y1 = Math.max(y1, p[1]);
+      }
+      west = Math.min(west, x0);
+      east = Math.max(east, x1);
+      south = Math.min(south, y0);
+      north = Math.max(north, y1);
+      full.push(ring);
+      draw.push(shown);
+      boxes.push([x0, y0, x1, y1]);
+    }
+    return {
+      bucket,
+      west,
+      south,
+      east,
+      north,
+      areaKm2: (patch.hatArea * scale * scale) / 1e6,
+      full,
+      draw,
+      boxes,
+      counts: null
+    };
+  }
+  function hatCovers(b) {
+    if (!hatGeom) return false;
+    const mx = (hatGeom.east - hatGeom.west) * 0.14,
+      my = (hatGeom.north - hatGeom.south) * 0.14;
+    return (
+      b.getWest() > hatGeom.west + mx &&
+      b.getEast() < hatGeom.east - mx &&
+      b.getSouth() > hatGeom.south + my &&
+      b.getNorth() < hatGeom.north - my
+    );
+  }
+  function tallyHats(cafes) {
+    const counts = new Uint16Array(hatGeom.full.length);
+    if (!cafes.length || !hatGeom.full.length) return counts;
+    const cell = Math.max(hatGeom.boxes[0][2] - hatGeom.boxes[0][0], 1e-8);
+    const bins = new Map();
+    for (let i = 0; i < hatGeom.boxes.length; i++) {
+      const [x0, y0, x1, y1] = hatGeom.boxes[i];
+      for (let ix = Math.floor(x0 / cell); ix <= Math.floor(x1 / cell); ix++)
+        for (let iy = Math.floor(y0 / cell); iy <= Math.floor(y1 / cell); iy++) {
+          const k = ix + ',' + iy;
+          const list = bins.get(k);
+          if (list) list.push(i);
+          else bins.set(k, [i]);
+        }
+    }
+    for (const p of cafes) {
+      const list = bins.get(Math.floor(p.x / cell) + ',' + Math.floor(p.y / cell));
+      if (!list) continue;
+      for (const i of list) {
+        const box = hatGeom.boxes[i];
+        if (p.x < box[0] || p.x > box[2] || p.y < box[1] || p.y > box[3]) continue;
+        if (pip(p.x, p.y, hatGeom.full[i])) counts[i]++;
+      }
+    }
+    return counts;
+  }
+  function sameCounts(a, b) {
+    if (!a || a.length !== b.length) return false;
+    for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
+    return true;
+  }
+  function cafeStamp(cafes) {
+    let h = cafes.length >>> 0;
+    for (let i = 0; i < cafes.length; i++) {
+      const id = cafes[i].id;
+      h = (h * 33 + id.charCodeAt(0) + id.charCodeAt(id.length - 1)) >>> 0;
+    }
+    return h;
+  }
+  function syncHats(cafes) {
+    if (lens !== 'hotspots' || !map.getSource('atlas-hats')) return;
+    try {
+      const b = map.getBounds();
+      const bucket = Math.round(map.getZoom() * 2) / 2;
+      const stale = !hatGeom || hatGeom.bucket !== bucket || !hatCovers(b);
+      if (stale) hatGeom = buildHatGeom();
+      const stamp = cafeStamp(cafes);
+      if (!stale && hatGeom.stamp === stamp) return;
+      hatGeom.stamp = stamp;
+      const counts = tallyHats(cafes);
+      if (sameCounts(hatGeom.counts, counts)) return;
+      hatGeom.counts = counts;
+      const features = [];
+      for (let i = 0; i < counts.length; i++) {
+        if (!counts[i]) continue;
+        const ring = hatGeom.draw[i];
+        features.push({
+          type: 'Feature',
+          geometry: { type: 'Polygon', coordinates: [[...ring, ring[0]]] },
+          properties: { n: counts[i], d: Math.round((counts[i] / hatGeom.areaKm2) * 10) / 10 }
+        });
+      }
+      map.getSource('atlas-hats').setData({ type: 'FeatureCollection', features });
+    } catch {
+      status('Hat density is unavailable. The catalogue map still works.');
+    }
   }
   function onRefresh(ps) {
     last = ps;
     updateDock();
     if (!mapReady) return;
-    map.getSource('atlas-density').setData({
-      type: 'FeatureCollection',
-      features: ps
-        .filter((p) => p.k === 'cafe')
-        .map((p) => ({
-          type: 'Feature',
-          geometry: { type: 'Point', coordinates: [p.x, p.y] },
-          properties: {}
-        }))
-    });
+    syncHats(ps.filter((p) => p.k === 'cafe'));
     if (data) {
       const counts = new Map(),
         active = new Set(ps.map((p) => p.id));
@@ -670,7 +829,8 @@
   function visibility() {
     if (!mapReady) return;
     const visible = (id, on) => map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none');
-    visible('atlas-heat', lens === 'hotspots');
+    visible('atlas-hats', lens === 'hotspots');
+    visible('atlas-hat-line', lens === 'hotspots');
     for (const id of ['atlas-district-fill', 'atlas-district-line'])
       visible(id, lens === 'districts' || !!district);
     for (const id of ['atlas-park-fill', 'atlas-park-line']) visible(id, lens === 'nature');
@@ -891,7 +1051,7 @@
         .map(([i, t]) => `<li><img src="${images[i]}" alt="" width="34" height="34">${t}</li>`)
         .join(
           ''
-        )}</ul><p>Numbered hexagons group actual places; they are not venue pins. Their icon is the most common selected kind. Tap to zoom; co-located places can be opened from a list. Every active record is counted, regardless of its index.</p><p><b>${esc(modes[lens][0])}</b> · ${esc(modes[lens][1])}</p><p class="src">OSM geography 24 Oct 2026; Overture places 21 Oct 2026. A low footprint is missing information, not bad coffee. Park proximity does not establish access. Publication/discussion evidence is dated and branch-specific; missing evidence means unknown. Districts are OSM administrative geometry, not our 800 m neighbourhood story circles.</p>`
+        )}</ul><p>Numbered hexagons group actual places; they are not venue pins. Their icon is the most common selected kind. Tap to zoom; co-located places can be opened from a list. Every active record is counted, regardless of its index.</p><p><b>${esc(modes[lens][0])}</b> · ${esc(modes[lens][1])}</p><div class="atlas-hat-note">${EinsteinHat.legendSVG()}<p class="src">Hotspot tiles are the hat monotile of Smith, Myers, Kaplan and Goodman-Strauss, 2023. Tiles stay a readable size as you zoom. Each one counts the catalogue cafés inside it: pink below 12, purple from 12 up, darker as the count rises. Empty land stays clear. Not visits or foot traffic. <a href="https://arxiv.org/abs/2303.10798" target="_blank" rel="noopener">Paper ↗</a></p></div><p class="src">OSM geography 24 Oct 2026; Overture places 21 Oct 2026. A low footprint is missing information, not bad coffee. Park proximity does not establish access. Publication/discussion evidence is dated and branch-specific; missing evidence means unknown. Districts are OSM administrative geometry, not our 800 m neighbourhood story circles.</p>`
     );
     sheet.classList.add('atlas-sheet');
   }

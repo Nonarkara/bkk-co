@@ -135,8 +135,18 @@
   min-height: 42px;
   line-height: 1.4;
 }
-.atlas-key img {
+.atlas-key img,
+.atlas-hat {
   flex: none;
+}
+.atlas-hat-note {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 8px 0;
+}
+.atlas-hat-note p {
+  margin: 0;
 }
 .atlas-triangles button {
   width: 100%;

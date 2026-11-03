@@ -62,7 +62,7 @@ const map = new maplibregl.Map({
   style: 'https://tiles.openfreemap.org/styles/positron',
   center: [100.535, 13.745], zoom: 12.5, minZoom: 9, maxZoom: 19,
   maxBounds: [[99.9, 13.1], [101.35, 14.45]], renderWorldCopies: false,
-  attributionControl: { compact: true, customAttribution: 'Places © <a href="https://overturemaps.org">Overture Maps</a> · © OSM contributors' },
+  attributionControl: { compact: true, customAttribution: 'Places © <a href="https://overturemaps.org">Overture Maps</a> · © OSM contributors · <a href="https://arxiv.org/abs/2303.10798">Hat tile</a>' },
 });
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
 if ('geolocation' in navigator) map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true } }), 'top-right');
