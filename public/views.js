@@ -464,7 +464,7 @@ async function renderNow() {
 
 // The Chao Phraya (OSM line): a leg that crosses it needs a ferry or a bridge, so walking legs never do.
 let river = [];
-fetch('data/barriers.json').then(r => r.json()).then(d => { river = d.lines.flatMap(l => l.slice(1).map((p, i) => [l[i], p])); }).catch(() => {});
+window.barriersReady = fetch('data/barriers.json', {signal:AbortSignal.timeout(10000)}).then(r => {if(!r.ok)throw new Error('No river geometry');return r.json()}).then(d => { river = d.lines.flatMap(l => l.slice(1).map((p, i) => [l[i], p])); return river.length>0; }).catch(() => false);
 function crossesRiver(a, b) {
   const ccw = (p, q, r) => (r[1] - p[1]) * (q[0] - p[0]) > (q[1] - p[1]) * (r[0] - p[0]);
   const A = [a.x, a.y], B = [b.x, b.y];

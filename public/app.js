@@ -51,7 +51,7 @@ const metres = (a, b) => Math.hypot((a.y - b.y) * 111320, (a.x - b.x) * 111320 *
 const digits = p => [...p.g].map(Number);
 
 const state = {
-  places: [], byId: new Map(), scores: {}, cells: new Map(), visited: new Map(),
+  places: [], byId: new Map(), scores: {}, cells: new Map(), visited: new Map(), personalRatings: new Map(),
   kinds: new Set(['cafe', 'coworking', 'library']), flags: new Set(), // Food is one tap away, off by default
   sort: 'great', mood: null, selected: null, foodLoaded: false, sortedIdx: [],
 };
@@ -91,7 +91,11 @@ async function loadScores() {
 async function loadVisits() {
   try {
     state.visited = new Map();
-    for (const v of await Passport.all()) state.visited.set(v.place, (state.visited.get(v.place) || 0) + 1);
+    state.personalRatings = new Map();
+    for (const v of await Passport.all()) {
+      state.visited.set(v.place, (state.visited.get(v.place) || 0) + 1);
+      if (Number.isInteger(v.stars) && v.stars > 0 && v.stars <= 5 && (!state.personalRatings.has(v.place) || v.at > state.personalRatings.get(v.place).at)) state.personalRatings.set(v.place, {stars:v.stars,at:v.at});
+    }
   } catch { /* private window without IndexedDB: the passport stays empty */ }
   $('#pass-n').textContent = state.visited.size;
 }
@@ -116,7 +120,7 @@ function workScore(p) {
 
 // ---------- filtering ----------
 function visible(p, now) {
-  if (!state.kinds.has(p.k)) return false;
+  if (!state.kinds.has(p.k) || !Atlas.includes(p)) return false;
   if (state.mood && !MOODS[state.mood].test(p)) return false;
   if (state.flags.has('wifi') && !(p.flags & F.WIFI) && !((state.scores[p.id]?.wifi || 0) >= 2)) return false;
   if (state.flags.has('open') && window.isOpen(p.hours, now) !== true) return false;
@@ -133,9 +137,10 @@ function refresh() {
     type: 'FeatureCollection',
     features: lastList.map(p => ({
       type: 'Feature', geometry: { type: 'Point', coordinates: [p.x, p.y] },
-      properties: { id: p.id, n: p.n, k: p.k, i: p.idx, v: state.visited.has(p.id) ? 1 : 0, m: state.mood ? 1 : 0 },
+      properties: { ...Atlas.props(p), id: p.id, n: p.n, k: p.k, i: p.idx, v: state.visited.has(p.id) ? 1 : 0, m: state.mood ? 1 : 0 },
     })),
   });
+  Atlas.onRefresh(lastList);
   const total = state.places.length;
   $('#count').textContent = `${fmt(lastList.length)}${lastList.length === total ? '' : ' of ' + fmt(total)}${state.foodLoaded ? '' : ' · loading food'}`;
   renderMood();
@@ -146,45 +151,37 @@ function refresh() {
 const firstData = Promise.all([loadRows('work'), loadScores(), loadVisits()]).then(() => refresh());
 const foodData = firstData.then(() => loadRows('food')).then(() => { state.foodLoaded = true; refresh(); });
 
-const PIN_LAYERS = ['pins-city', 'pins-street', 'pins'];
+const PIN_LAYERS = ['pins-city', 'pins-street', 'pins', 'place-icons'];
 
 // ---------- map layers ----------
 map.on('load', async () => {
-  map.addSource('places', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+  map.addSource('places', { type: 'geojson', cluster:true, clusterRadius:72, clusterMaxZoom:19, maxzoom:20, clusterProperties:Object.fromEntries([['cafes','cafe'],['food','restaurant'],['work','coworking'],['books','library']].map(([key,kind])=>[key,['+',['case',['==',['get','k'],kind],1,0]]])), data: { type: 'FeatureCollection', features: [] } });
   map.addSource('sel', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
   window.addHoodLayers?.(); // views.js: neighbourhood rings sit under the pins
-  // Pin size grows with the Great Good Place index, and the city view shows only the strongest
-  // places (index ≥ 92), then ≥ 70 from street level, then everything. Places you've been always show.
-  const r = (base, top) => ['interpolate', ['linear'], ['get', 'i'], 0, base, 100, top];
-  // a mood search shows every match at every zoom: the point of a mood is to see all of them
-  const tier = (min, max, at) => ({ minzoom: min, maxzoom: max, filter: ['any', ['>=', ['get', 'i'], at], ['==', ['get', 'v'], 1], ['==', ['get', 'm'], 1]] });
-  for (const [id, t] of [['pins-city', tier(0, 13, 92)], ['pins-street', tier(13, 15, 70)], ['pins', tier(15, 24, 0)]]) map.addLayer({ id, type: 'circle', source: 'places', ...t, paint: {
-    'circle-color': ['match', ['get', 'k'], 'cafe', '#20201d', 'coworking', '#f59e0b', 'library', '#ffffff', '#8f918a'],
-    'circle-stroke-color': ['case', ['==', ['get', 'v'], 1], '#20201d', ['match', ['get', 'k'], 'library', '#20201d', 'coworking', '#20201d', '#ffffff']],
-    'circle-stroke-width': ['case', ['==', ['get', 'v'], 1], 3, ['==', ['get', 'k'], 'library'], 2, 1],
-    'circle-radius': ['interpolate', ['linear'], ['zoom'],
-      13, ['match', ['get', 'k'], 'restaurant', r(2.5, 4.5), r(3.5, 6.5)],
-      18, ['match', ['get', 'k'], 'restaurant', r(4.5, 8), r(6, 11)]] } });
-  map.addLayer({ id: 'pin-city-names', type: 'symbol', source: 'places', minzoom: 12.5, maxzoom: 15, filter: ['>=', ['get', 'i'], 96],
+  // Every matching record participates in clustering. These transparent backing layers
+  // retain the legacy interaction surfaces; semantic symbols carry the visible marks.
+  for (const [id,minzoom,maxzoom] of [['pins-city',0,13],['pins-street',13,15],['pins',15,24]]) map.addLayer({id,type:'circle',source:'places',minzoom,maxzoom,filter:['!',['has','point_count']],paint:{'circle-radius':14,'circle-opacity':0}});
+  map.addLayer({ id: 'pin-city-names', type: 'symbol', source: 'places', minzoom: 12.5, maxzoom: 15, filter: ['all',['!',['has','point_count']],['>=', ['get', 'i'], 96]],
     layout: { 'text-field': ['get', 'n'], 'text-size': 11, 'text-offset': [0, 1], 'text-anchor': 'top', 'text-optional': true,
       'text-font': ['Noto Sans Regular'], 'symbol-sort-key': ['-', 100, ['get', 'i']] },
     paint: { 'text-color': '#575951', 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } });
-  map.addLayer({ id: 'pin-names', type: 'symbol', source: 'places', minzoom: 16,
+  map.addLayer({ id: 'pin-names', type: 'symbol', source: 'places', minzoom: 16, filter:['!',['has','point_count']],
     layout: { 'text-field': ['get', 'n'], 'text-size': 11, 'text-offset': [0, 1.2], 'text-anchor': 'top', 'text-optional': true,
       'text-font': ['Noto Sans Regular'], 'symbol-sort-key': ['-', 100, ['get', 'i']] },
     paint: { 'text-color': '#575951', 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } });
   map.addLayer({ id: 'sel', type: 'circle', source: 'sel', paint: {
-    'circle-radius': 13, 'circle-color': 'rgba(0,0,0,0)', 'circle-stroke-color': '#20201d', 'circle-stroke-width': 2.5 } });
+    'circle-radius': 20, 'circle-color': 'rgba(0,0,0,0)', 'circle-stroke-color': '#20201d', 'circle-stroke-width': 2.5 } });
 
+  Atlas.install(map);
   for (const l of PIN_LAYERS) {
-    map.on('click', l, e => { if(map.getLayer('route-stop')&&map.queryRenderedFeatures(e.point,{layers:['route-stop']}).length)return; select(state.byId.get(e.features[0].properties.id),false); });
+    map.on('click', l, e => { if(l!=='place-icons'&&map.queryRenderedFeatures(e.point,{layers:['place-icons']}).length)return; if(map.getLayer('route-stop')&&map.queryRenderedFeatures(e.point,{layers:['route-stop']}).length)return; select(state.byId.get(e.features[0].properties.id),false); });
     map.on('mouseenter', l, () => { map.getCanvas().style.cursor = 'pointer'; });
     map.on('mouseleave', l, () => { map.getCanvas().style.cursor = ''; });
   }
   if (map.getLayer('hood-label')) map.moveLayer('hood-label'); // neighbourhood names stay readable above the pins
   for(const layer of ['route-line','route-stop','route-num'])if(map.getLayer(layer))map.moveLayer(layer); // route order stays readable above catalogue pins
   window.flushRoute?.();
-  if(state.selected)map.getSource('sel').setData({type:'Feature',geometry:{type:'Point',coordinates:[state.selected.x,state.selected.y]},properties:{}});
+  if(state.selected)map.getSource('sel').setData(Atlas.selection(state.selected));
   map.on('moveend', renderList);
   document.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show');
 
@@ -310,7 +307,7 @@ function openSheet(html, { place = false } = {}) {
   setListOpen(false);
   $('#hits').hidden = true;
   const sheet = $('#sheet');
-  sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet');
+  sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet','atlas-sheet');
   sheet.hidden = false;
   sheet.innerHTML = html;
   const heading = sheet.querySelector('h1');
@@ -353,7 +350,7 @@ async function select(p, fly) {
   if (!p) return;
   state.selected = p;
   $('#hits').hidden = true;
-  map.getSource('sel')?.setData({ type: 'Feature', geometry: { type: 'Point', coordinates: [p.x, p.y] }, properties: {} });
+  map.getSource('sel')?.setData(Atlas.selection(p));
   const u = new URL(location.href); u.searchParams.set('p', p.id); u.searchParams.delete('hood'); history.replaceState(null, '', u);
   renderSheet(p, {}, []);
   const padding = { top: 40, bottom: isPhone() ? $('#sheet').offsetHeight + 24 : 40, left: 40, right: 40 };
@@ -407,6 +404,7 @@ function renderSheet(p, d, visits) {
     </header>
     <div class="kindline"><i class="dot ${p.k}"></i>${KIND_LABEL[p.k]}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>
     <section class="been"><button type="button" class="send been-open">✓ I've been here</button></section>
+    ${Atlas.facts(p)}
     <section class="ggp">
       ${petals(p)}
       <div class="ggp-num"><span class="big">${p.idx}</span><span class="micro">Great Good Place index · top ${topShare(p)}% of Bangkok</span></div>
@@ -448,6 +446,7 @@ function openFromUrl() {
 
 // ---------- moods ----------
 function setMood(key) {
+  Atlas.reset();
   state.mood = MOODS[key] ? key : null;
   if (state.mood) {
     state.kinds = new Set(MOODS[key].kinds);
