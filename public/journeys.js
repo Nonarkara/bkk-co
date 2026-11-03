@@ -396,7 +396,7 @@
       choice.mode === 'rail'
         ? `${(r.stationDistance / 1000).toFixed(2)} km from ${r.station.systems.join('/') || 'rail'} ${r.station.name} · straight line`
         : `${(r.d / 1000).toFixed(2)} km straight line from ${name(choice.origin)}`;
-    return `<li data-journey-place="${esc(p.id)}"><div class="journey-result-head"><span class="journey-number">${i + 1}</span><button class="journey-name" data-work-place="${esc(p.id)}">${esc(p.n)}</button></div><p class="journey-distance">${esc(distance)}</p><div class="journey-facilities">${['wifi', 'power', ...(choice.mode === 'drive' ? ['parking'] : [])].map((k) => badge(k, f[k])).join('')}<span class="journey-match">${r.missing.length ? 'Check ' + r.missing.map((k) => ({ wifi: 'Wi-Fi', power: 'outlets', parking: 'parking' })[k]).join(' + ') : r.required.length ? 'Needs documented' : 'No equipment filter'}</span></div><p class="journey-hours">${hours}${entry ? ' · ' + esc(entry) : ''}</p><div class="journey-go"><a class="journey-primary" data-journey-directions href="${esc(route(p))}" target="_blank" rel="noopener">${choice.mode === 'drive' ? 'Drive & check traffic' : choice.mode === 'rail' ? 'Transit directions' : 'Walk directions'} ↗</a><button data-work-place="${esc(p.id)}">Place &amp; photos</button></div>${choice.mode === 'rail' ? `<a class="journey-lastmile" href="${esc(M.directions(p, r.station, choice.lastMile === 'ride' ? 'two-wheeler' : 'walking'))}" target="_blank" rel="noopener">From ${esc(r.station.name)} · ${choice.lastMile === 'ride' ? 'check motorcycle route' : 'check walking route'} ↗</a>` : ''}${sourceFacts(p, f)}</li>`;
+    return `<li data-journey-place="${esc(p.id)}"><div class="journey-result-head"><span class="journey-number">${i + 1}</span><button class="journey-name" data-work-place="${esc(p.id)}">${esc(p.n)}</button></div><p class="journey-distance">${esc(KIND_LABEL[p.k])} · ${esc(distance)}</p><div class="journey-facilities">${['wifi', 'power', ...(choice.mode === 'drive' ? ['parking'] : [])].map((k) => badge(k, f[k])).join('')}<span class="journey-match">${r.missing.length ? 'Check ' + r.missing.map((k) => ({ wifi: 'Wi-Fi', power: 'outlets', parking: 'parking' })[k]).join(' + ') : r.required.length ? 'Needs documented' : 'No equipment filter'}</span></div><p class="journey-hours">${hours}${entry ? ' · ' + esc(entry) : ''}</p><div class="journey-go"><a class="journey-primary" data-journey-directions href="${esc(route(p))}" target="_blank" rel="noopener">${choice.mode === 'drive' ? 'Drive & check traffic' : choice.mode === 'rail' ? 'Transit directions' : 'Walk directions'} ↗</a><button data-work-place="${esc(p.id)}">Place &amp; photos</button></div>${choice.mode === 'rail' ? `<a class="journey-lastmile" href="${esc(M.directions(p, r.station, choice.lastMile === 'ride' ? 'two-wheeler' : 'walking'))}" target="_blank" rel="noopener">From ${esc(r.station.name)} · ${choice.lastMile === 'ride' ? 'check motorcycle route' : 'check walking route'} ↗</a>` : ''}${sourceFacts(p, f)}</li>`;
   }
   function installMap() {
     if (!map.getLayer('pins-city') || map.getSource('journey-context')) return;
@@ -488,7 +488,7 @@
     sheet.dataset.journeyRevision = token;
     limit = 5;
     rows = M.rank(
-      state.places,
+      state.places.filter(p=>state.kinds.has(p.k)),
       data,
       state.scores,
       choice,
@@ -537,7 +537,8 @@
   async function open(mode) {
     state.mood = null;
     state.flags.clear();
-    state.kinds = new Set(['cafe', 'coworking', 'library']);
+    const resume=(active&&current(active))||document.querySelector('#sheet:not([hidden]) [data-work-back]');
+    if(!resume)state.kinds = new Set(['cafe', 'coworking', 'library']);
     document.querySelectorAll('[data-flag]').forEach((b) => b.setAttribute('aria-pressed', false));
     document
       .querySelectorAll('[data-kind]')
@@ -588,6 +589,7 @@
     open,
     load,
     placePanel,
+    kindsChanged(){if(active&&current(active)&&data)render(active)},
     directions: route,
     hours: (p) => evidence?.places?.[p.id]?.facts?.hours?.value || p.hours,
     warmEvidence: () =>

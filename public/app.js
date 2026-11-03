@@ -300,6 +300,7 @@ document.addEventListener('click', e => {
   const key = b.dataset.kind || b.dataset.flag;
   on ? set.add(key) : set.delete(key);
   refresh();
+  if(b.dataset.kind)window.WorkFinder?.kindsChanged();
 });
 
 // ---------- sheets ----------
