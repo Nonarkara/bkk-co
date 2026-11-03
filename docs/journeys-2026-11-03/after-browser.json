@@ -11,6 +11,14 @@
     "drive": "https://www.google.com/maps/dir/?api=1&destination=13.75239%2C100.63924&travelmode=driving&origin=13.7639174%2C100.6458077",
     "barberID": "n12718519202",
     "railCount": 1,
+    "controlClear": [
+      {
+        "id": "n6237362243",
+        "right": 328.99999999662714,
+        "controlLeft": 334
+      }
+    ],
+    "legacyCollisionRejected": true,
     "errors": []
   },
   {
@@ -25,6 +33,14 @@
     "drive": "https://www.google.com/maps/dir/?api=1&destination=13.75239%2C100.63924&travelmode=driving&origin=13.7639174%2C100.6458077",
     "barberID": "n12718519202",
     "railCount": 1,
+    "controlClear": [
+      {
+        "id": "n6237362243",
+        "right": 916.5839954517505,
+        "controlLeft": 968
+      }
+    ],
+    "legacyCollisionRejected": false,
     "errors": []
   },
   {
@@ -39,6 +55,14 @@
     "drive": "https://www.google.com/maps/dir/?api=1&destination=13.75239%2C100.63924&travelmode=driving&origin=13.7639174%2C100.6458077",
     "barberID": "n12718519202",
     "railCount": 1,
+    "controlClear": [
+      {
+        "id": "n6237362243",
+        "right": 1124.5839954460992,
+        "controlLeft": 1384
+      }
+    ],
+    "legacyCollisionRejected": false,
     "errors": []
   },
   {
@@ -53,6 +77,14 @@
     "drive": "https://www.google.com/maps/dir/?api=1&destination=13.75239%2C100.63924&travelmode=driving&origin=13.7639174%2C100.6458077",
     "barberID": "n12718519202",
     "railCount": 1,
+    "controlClear": [
+      {
+        "id": "n6237362243",
+        "right": 299.00000000337286,
+        "controlLeft": 304
+      }
+    ],
+    "legacyCollisionRejected": false,
     "errors": []
   }
 ]

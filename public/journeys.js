@@ -461,7 +461,8 @@
       const xs = points.map((p) => p.x),
         ys = points.map((p) => p.y),
         dock = document.querySelector('.atlas-dock'),
-        mapBox = document.querySelector('#map').getBoundingClientRect();
+        mapBox = document.querySelector('#map').getBoundingClientRect(),
+        controls = document.querySelector('.maplibregl-ctrl-top-right')?.getBoundingClientRect();
       map.fitBounds(
         [
           [Math.min(...xs), Math.min(...ys)],
@@ -472,8 +473,8 @@
             top: isPhone()
               ? Math.max(100, dock.getBoundingClientRect().bottom - mapBox.top + 12)
               : 70,
-            left: 35,
-            right: 55,
+            left: 72,
+            right: Math.max(72,controls ? mapBox.right-controls.left+20 : 80),
             bottom: isPhone() ? active.offsetHeight + 25 : 50
           },
           maxZoom: 16

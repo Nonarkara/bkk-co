@@ -39,3 +39,7 @@ Source spot-checks: [VichSpace's operator page](https://vichspace.co/) supports 
 ## Limits
 
 No remaining confirmed blocker. Physical route/parking access, live traffic, current seat/outlet availability, GPS precision, exhaustive source accuracy and screen-reader behavior are unverified. Normal-size first-result visibility is established; enlarged text necessarily uses scrolling while retaining access. This review did not repeat cloud writes or the full atlas/notebook release suites.
+
+## Final production geometry follow-up
+
+The builder's first live phone capture exposed a result marker partly behind the location control. After fitting to measured control bounds, the independent auditor retested390px GPS-at-Siam: the TK Park marker's right edge is329px; controls begin334px. The required4px gap passes after camera movement stops. Venue-kind chips were also independently checked: Library off removes TK Park from strict BTS Laptop results, and Library on restores it; the card identifies Library explicitly. No new concern found.
