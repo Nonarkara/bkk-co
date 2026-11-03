@@ -177,11 +177,14 @@ map.on('load', async () => {
     'circle-radius': 13, 'circle-color': 'rgba(0,0,0,0)', 'circle-stroke-color': '#20201d', 'circle-stroke-width': 2.5 } });
 
   for (const l of PIN_LAYERS) {
-    map.on('click', l, e => select(state.byId.get(e.features[0].properties.id), false));
+    map.on('click', l, e => { if(map.getLayer('route-stop')&&map.queryRenderedFeatures(e.point,{layers:['route-stop']}).length)return; select(state.byId.get(e.features[0].properties.id),false); });
     map.on('mouseenter', l, () => { map.getCanvas().style.cursor = 'pointer'; });
     map.on('mouseleave', l, () => { map.getCanvas().style.cursor = ''; });
   }
   if (map.getLayer('hood-label')) map.moveLayer('hood-label'); // neighbourhood names stay readable above the pins
+  for(const layer of ['route-line','route-stop','route-num'])if(map.getLayer(layer))map.moveLayer(layer); // route order stays readable above catalogue pins
+  window.flushRoute?.();
+  if(state.selected)map.getSource('sel').setData({type:'Feature',geometry:{type:'Point',coordinates:[state.selected.x,state.selected.y]},properties:{}});
   map.on('moveend', renderList);
   document.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show');
 
@@ -302,10 +305,12 @@ document.addEventListener('click', e => {
 
 // ---------- sheets ----------
 function openSheet(html, { place = false } = {}) {
-  if (!place) { state.selected = null; map.getSource('sel')?.setData({ type:'FeatureCollection', features:[] }); }
+  if (!place) { window.clearRoute?.(); state.selected = null; map.getSource('sel')?.setData({ type:'FeatureCollection', features:[] }); }
+  openFromUrl.framed=true;
   setListOpen(false);
+  $('#hits').hidden = true;
   const sheet = $('#sheet');
-  sheet.classList.remove('notebook-sheet');
+  sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet');
   sheet.hidden = false;
   sheet.innerHTML = html;
   const heading = sheet.querySelector('h1');
@@ -434,7 +439,7 @@ function renderSheet(p, d, visits) {
 
 function openFromUrl() {
   const u = new URL(location.href), id = u.searchParams.get('p');
-  if (id && !state.selected && state.byId.has(id)) select(state.byId.get(id), 'jump');
+  if (id && !state.selected && $('#sheet').hidden && state.byId.has(id)) select(state.byId.get(id), 'jump');
   else if (u.searchParams.get('hood') && $('#sheet').hidden) window.openHood?.(u.searchParams.get('hood'), true);
   else if (u.searchParams.get('hop') && !openFromUrl.framed) { openFromUrl.framed = true; window.openHop?.(u.searchParams.get('hop')); }
   else if (MOODS[u.searchParams.get('mood')] && !state.mood && !openFromUrl.framed) { openFromUrl.framed = true; setMood(u.searchParams.get('mood')); }
@@ -480,14 +485,14 @@ document.addEventListener('click', e => {
   if (b) { setMood(b.dataset.mood === state.mood ? null : b.dataset.mood); return; }
   if (e.target.closest('.mood-off')) setMood(null);
   const act = e.target.closest('[data-act]');
-  if (act) { $('#hits').hidden = true; act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.(); }
+  if (act) { $('#hits').hidden = true; if(act.dataset.act==='discovery')window.openDiscovery?.();else act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.(); }
   const h = e.target.closest('#mood [data-hood]');
   if (h) window.openHood?.(h.dataset.hood);
 });
 
 // an empty search box offers the moods: most people search by purpose before they know a name
-const moodHits = () => `<li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
-  <li data-act="hop" role="option"><span class="mood-dot" aria-hidden="true">☕︎</span><span class="nm"><b>Plan a café hop</b></span><span class="meta">5 stops on foot</span></li>` + Object.entries(MOODS).map(([k, m]) =>
+const moodHits = () => `<li data-act="discovery" role="option"><span class="nm"><b>50 + 50 cafés</b></span><span class="meta">editorial · discussed</span></li><li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
+  <li data-act="hop" role="option"><span class="nm"><b>Plan a café hop</b></span><span class="meta">5 stops on foot</span></li>` + Object.entries(MOODS).map(([k, m]) =>
   `<li data-mood="${k}" role="option"><span class="mood-dot" aria-hidden="true">◐</span><span class="nm">${esc(m.label)}</span><span class="meta">citywide</span></li>`).join('');
 $('#q').addEventListener('focus', () => {
   if ($('#q').value.trim().length < 2) { $('#hits').innerHTML = moodHits(); $('#hits').hidden = false; }

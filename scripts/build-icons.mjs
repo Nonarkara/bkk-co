@@ -1,4 +1,9 @@
 import {createRequire} from 'node:module';import{mkdir,writeFile}from'node:fs/promises';
 const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE_PATH||'/Users/nonarkara/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+// Retained only to reproduce archived vector icons; public builds use the intact sticker.
+export async function archivedVectorIcons(){
 const b=await chromium.launch({headless:true,executablePath:process.env.CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
 try{const p=await b.newPage();await p.addScriptTag({path:new URL('../public/plub.js',import.meta.url).pathname});await mkdir(new URL('../public/icons/',import.meta.url),{recursive:true});for(const n of[192,512]){const url=await p.evaluate(async n=>{const c=document.createElement('canvas');c.width=c.height=n;const g=c.getContext('2d');g.fillStyle='#f9c1ce';g.fillRect(0,0,n,n);const i=new Image();i.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(plub('sketch',120));await i.decode();g.drawImage(i,n*.16,n*.08,n*.68,n*.79);return c.toDataURL('image/png')},n);await writeFile(new URL(`../public/icons/plub-${n}.png`,import.meta.url),Buffer.from(url.split(',')[1],'base64'))}}finally{await b.close()}
+
+}
+await import('./build-brand-assets.mjs');

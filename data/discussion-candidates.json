@@ -1,0 +1,1064 @@
+{
+  "version": 1,
+  "researched_at": "2026-11-03",
+  "label": "50 cafés mentioned in public discussions",
+  "scope": "Manually selected discovery cohort from four public r/Bangkok threads; not the top 50 in Bangkok. Names may refer to a brand or an individual venue.",
+  "method": "Count each distinct thread once per named entity, including the post and visible comments. Repeated comments in one thread do not increase the count. Discussion sentiment is not scored. Counts cover only the four sampled threads, not all Reddit.",
+  "date_semantics": "Dates are thread publication dates from the search provider’s dated primary Reddit result. Individual comment dates and current operating status are not verified.",
+  "limitations": [
+    "No time series: no claim of current trend, rising popularity, footfall, or citywide rank.",
+    "Convenience sample of English-language Reddit discussions; incomplete comments and indexing may miss mentions.",
+    "Generic brand references are not branch recommendations. All catalogue IDs are candidates requiring identity review; no pins are added.",
+    "Public availability does not grant a bulk-content licence; only names, source links and minimal evidence metadata are retained."
+  ],
+  "sources": [
+    {
+      "id": "reddit-1vmd4tk",
+      "url": "https://www.reddit.com/r/Bangkok/comments/1vmd4tk/coffee_spots_recommendations/",
+      "title": "Coffee spots recommendations?",
+      "published_at": "2026-08-12"
+    },
+    {
+      "id": "reddit-1sbb075",
+      "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+      "title": "Great, less popular, Coffee Spot recommendations",
+      "published_at": "2026-04-03"
+    },
+    {
+      "id": "reddit-1vs2j95",
+      "url": "https://www.reddit.com/r/Bangkok/comments/1vs2j95/specialty_coffee_recommendations_bangkok/",
+      "title": "Specialty Coffee recommendations Bangkok",
+      "published_at": "2026-08-18"
+    },
+    {
+      "id": "reddit-1rsloga",
+      "url": "https://www.reddit.com/r/Bangkok/comments/1rsloga/best_coffee_bangkok_sour/",
+      "title": "Best Coffee Bangkok - Sour?",
+      "published_at": "2026-03-13"
+    }
+  ],
+  "entries": [
+    {
+      "id": "discussion-01",
+      "name": "NANA Coffee Roasters",
+      "area_hint": "Ari",
+      "distinct_threads": 4,
+      "sources": [
+        {
+          "source_id": "reddit-1vmd4tk",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vmd4tk/coffee_spots_recommendations/",
+          "thread_published_at": "2026-08-12"
+        },
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        },
+        {
+          "source_id": "reddit-1vs2j95",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vs2j95/specialty_coffee_recommendations_bangkok/",
+          "thread_published_at": "2026-08-18"
+        },
+        {
+          "source_id": "reddit-1rsloga",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1rsloga/best_coffee_bangkok_sour/",
+          "thread_published_at": "2026-03-13"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "n13235748218"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "NANA coffee roasters"
+    },
+    {
+      "id": "discussion-02",
+      "name": "Gallery Drip Coffee",
+      "area_hint": "Bangkok Art and Culture Centre",
+      "distinct_threads": 3,
+      "sources": [
+        {
+          "source_id": "reddit-1vmd4tk",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vmd4tk/coffee_spots_recommendations/",
+          "thread_published_at": "2026-08-12"
+        },
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        },
+        {
+          "source_id": "reddit-1vs2j95",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vs2j95/specialty_coffee_recommendations_bangkok/",
+          "thread_published_at": "2026-08-18"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "n4297612395"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Gallery Drip Coffee"
+    },
+    {
+      "id": "discussion-03",
+      "name": "PAGA Microroastery",
+      "area_hint": null,
+      "distinct_threads": 3,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        },
+        {
+          "source_id": "reddit-1vs2j95",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vs2j95/specialty_coffee_recommendations_bangkok/",
+          "thread_published_at": "2026-08-18"
+        },
+        {
+          "source_id": "reddit-1rsloga",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1rsloga/best_coffee_bangkok_sour/",
+          "thread_published_at": "2026-03-13"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "n8883249617"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "PAGA Microroastery"
+    },
+    {
+      "id": "discussion-04",
+      "name": "Single Lane Specialty Coffee",
+      "area_hint": "Phra Khanong / W Market",
+      "distinct_threads": 2,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        },
+        {
+          "source_id": "reddit-1rsloga",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1rsloga/best_coffee_bangkok_sour/",
+          "thread_published_at": "2026-03-13"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "n6315676694"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Single Lane Specialty Coffee"
+    },
+    {
+      "id": "discussion-05",
+      "name": "Sarnies",
+      "area_hint": null,
+      "distinct_threads": 2,
+      "sources": [
+        {
+          "source_id": "reddit-1vmd4tk",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vmd4tk/coffee_spots_recommendations/",
+          "thread_published_at": "2026-08-12"
+        },
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-06",
+      "name": "Rough & Round",
+      "area_hint": "Song Wat",
+      "distinct_threads": 2,
+      "sources": [
+        {
+          "source_id": "reddit-1vmd4tk",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vmd4tk/coffee_spots_recommendations/",
+          "thread_published_at": "2026-08-12"
+        },
+        {
+          "source_id": "reddit-1rsloga",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1rsloga/best_coffee_bangkok_sour/",
+          "thread_published_at": "2026-03-13"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "o9a82535390d7"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Rough and Round"
+    },
+    {
+      "id": "discussion-07",
+      "name": "Terroir.bkk",
+      "area_hint": "Song Wat",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1vmd4tk",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vmd4tk/coffee_spots_recommendations/",
+          "thread_published_at": "2026-08-12"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "ofd558be954fe"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Terroir.BKK SONGWAT"
+    },
+    {
+      "id": "discussion-08",
+      "name": "Roast8ry BKK",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1rsloga",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1rsloga/best_coffee_bangkok_sour/",
+          "thread_published_at": "2026-03-13"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "o2d21abfd4ca4"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Roast8ry BKK"
+    },
+    {
+      "id": "discussion-09",
+      "name": "UNO Coffee",
+      "area_hint": null,
+      "distinct_threads": 3,
+      "sources": [
+        {
+          "source_id": "reddit-1vmd4tk",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vmd4tk/coffee_spots_recommendations/",
+          "thread_published_at": "2026-08-12"
+        },
+        {
+          "source_id": "reddit-1vs2j95",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vs2j95/specialty_coffee_recommendations_bangkok/",
+          "thread_published_at": "2026-08-18"
+        },
+        {
+          "source_id": "reddit-1rsloga",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1rsloga/best_coffee_bangkok_sour/",
+          "thread_published_at": "2026-03-13"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-10",
+      "name": "Greydient & Them",
+      "area_hint": null,
+      "distinct_threads": 2,
+      "sources": [
+        {
+          "source_id": "reddit-1vs2j95",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vs2j95/specialty_coffee_recommendations_bangkok/",
+          "thread_published_at": "2026-08-18"
+        },
+        {
+          "source_id": "reddit-1rsloga",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1rsloga/best_coffee_bangkok_sour/",
+          "thread_published_at": "2026-03-13"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "o970ca7eafbd0"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Greydient & Them"
+    },
+    {
+      "id": "discussion-11",
+      "name": "Y’EST WORKS",
+      "area_hint": null,
+      "distinct_threads": 2,
+      "sources": [
+        {
+          "source_id": "reddit-1vs2j95",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vs2j95/specialty_coffee_recommendations_bangkok/",
+          "thread_published_at": "2026-08-18"
+        },
+        {
+          "source_id": "reddit-1rsloga",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1rsloga/best_coffee_bangkok_sour/",
+          "thread_published_at": "2026-03-13"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-12",
+      "name": "Rolling Roasters",
+      "area_hint": null,
+      "distinct_threads": 2,
+      "sources": [
+        {
+          "source_id": "reddit-1vs2j95",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vs2j95/specialty_coffee_recommendations_bangkok/",
+          "thread_published_at": "2026-08-18"
+        },
+        {
+          "source_id": "reddit-1rsloga",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1rsloga/best_coffee_bangkok_sour/",
+          "thread_published_at": "2026-03-13"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-13",
+      "name": "y.ours specialty coffee home roaster",
+      "area_hint": null,
+      "distinct_threads": 2,
+      "sources": [
+        {
+          "source_id": "reddit-1vs2j95",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vs2j95/specialty_coffee_recommendations_bangkok/",
+          "thread_published_at": "2026-08-18"
+        },
+        {
+          "source_id": "reddit-1rsloga",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1rsloga/best_coffee_bangkok_sour/",
+          "thread_published_at": "2026-03-13"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "n13355072701"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Y.ours Specialty Coffee Home Roaster"
+    },
+    {
+      "id": "discussion-14",
+      "name": "Ministry of Roasters",
+      "area_hint": "Sukhumvit 101",
+      "distinct_threads": 2,
+      "sources": [
+        {
+          "source_id": "reddit-1vs2j95",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vs2j95/specialty_coffee_recommendations_bangkok/",
+          "thread_published_at": "2026-08-18"
+        },
+        {
+          "source_id": "reddit-1rsloga",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1rsloga/best_coffee_bangkok_sour/",
+          "thread_published_at": "2026-03-13"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "o2ee137ffe79f"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "กระทรวงการคั่ว Ministry of Roasters"
+    },
+    {
+      "id": "discussion-15",
+      "name": "Feast Monday",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "ofe7e19ca3fb3"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Feast Monday"
+    },
+    {
+      "id": "discussion-16",
+      "name": "Anonymous Coffee",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "o0846f1f6732d"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Anonymous Coffee"
+    },
+    {
+      "id": "discussion-17",
+      "name": "Aribica Specialty Coffee X Amplify Coffee Roasters",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "n6197828372"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Aribica Specialty Coffee X Amplify Coffee Roasters"
+    },
+    {
+      "id": "discussion-18",
+      "name": "Coffee number 9",
+      "area_hint": "Ari",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-19",
+      "name": "Slow Jam",
+      "area_hint": "Ari",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "o96f86d96c1ac"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Slow Jam"
+    },
+    {
+      "id": "discussion-20",
+      "name": "Dots Coffee",
+      "area_hint": "Wireless Road",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "o82b311cbb48b"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Dots Coffee"
+    },
+    {
+      "id": "discussion-21",
+      "name": "MWHandbrew",
+      "area_hint": "Ekkamai",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-22",
+      "name": "Pobnar",
+      "area_hint": "Silom",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "o5939d701dadd"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Pobnar"
+    },
+    {
+      "id": "discussion-23",
+      "name": "Born to Bean",
+      "area_hint": "Phra Khanong / W Market",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "o223c680aeaca"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Born to Bean"
+    },
+    {
+      "id": "discussion-24",
+      "name": "Clix",
+      "area_hint": "Phra Khanong / W Market",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-25",
+      "name": "Coffee Horizon",
+      "area_hint": "Phra Khanong / W Market",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-26",
+      "name": "Hands and Heart",
+      "area_hint": "Phra Khanong / W Market",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-27",
+      "name": "Knowhere",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "o631d5e8ec223"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Knowhere"
+    },
+    {
+      "id": "discussion-28",
+      "name": "Citylight Coffee",
+      "area_hint": "Nana",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "w1312364705"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "CityLight Coffee"
+    },
+    {
+      "id": "discussion-29",
+      "name": "RAWR Café",
+      "area_hint": "Phra Khanong",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-30",
+      "name": "Chalet roaster",
+      "area_hint": "Bang Sue / Bang Pho",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-31",
+      "name": "Viva Cafe",
+      "area_hint": "Sukhumvit Soi 8",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "oda3432ceedb2"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Cafe Viva Sukhumvit Soi 8"
+    },
+    {
+      "id": "discussion-32",
+      "name": "Black Specialty Coffee",
+      "area_hint": "The Hib Ari",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "of61f717bf247"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Black Specialty Coffee"
+    },
+    {
+      "id": "discussion-33",
+      "name": "Playroom Ari",
+      "area_hint": "Ari",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-34",
+      "name": "WonderRoom",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "ob6aacdb63ea9"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "WonderRoom BKK"
+    },
+    {
+      "id": "discussion-35",
+      "name": "Sometimes I Feel",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "n6177985085"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Sometimes I Feel"
+    },
+    {
+      "id": "discussion-36",
+      "name": "Unfinished",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "oac69ab9c8078"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Unfinished Coffee Roaster"
+    },
+    {
+      "id": "discussion-37",
+      "name": "Figure Ground",
+      "area_hint": "Huai Khwang",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-38",
+      "name": "Sound Pop Coffee",
+      "area_hint": "Sukhumvit Soi 8",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "of8036b3f16fd"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Sound Pop Coffee"
+    },
+    {
+      "id": "discussion-39",
+      "name": "Anytime",
+      "area_hint": "Sukhumvit 21",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "ofb474d667feb"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Anytime - Brunch, Focaccia, Coffee"
+    },
+    {
+      "id": "discussion-40",
+      "name": "Everyday Handcraft Coffee",
+      "area_hint": "Flower Market / Sanam Chai",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "oc1c5cc9a0d41"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Everyday Handcraft Coffee"
+    },
+    {
+      "id": "discussion-41",
+      "name": "Kurasu",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1sbb075",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1sbb075/great_less_popular_coffee_spot_recommendations/",
+          "thread_published_at": "2026-04-03"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-42",
+      "name": "Factory Coffee",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1vmd4tk",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vmd4tk/coffee_spots_recommendations/",
+          "thread_published_at": "2026-08-12"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-43",
+      "name": "Rise Coffee",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1vmd4tk",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vmd4tk/coffee_spots_recommendations/",
+          "thread_published_at": "2026-08-12"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-44",
+      "name": "Roots",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1vmd4tk",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vmd4tk/coffee_spots_recommendations/",
+          "thread_published_at": "2026-08-12"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-45",
+      "name": "The Summer Coffee Company",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1vmd4tk",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vmd4tk/coffee_spots_recommendations/",
+          "thread_published_at": "2026-08-12"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-46",
+      "name": "Go Cafe",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1vmd4tk",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vmd4tk/coffee_spots_recommendations/",
+          "thread_published_at": "2026-08-12"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-47",
+      "name": "Pacamara",
+      "area_hint": null,
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1vmd4tk",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vmd4tk/coffee_spots_recommendations/",
+          "thread_published_at": "2026-08-12"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-48",
+      "name": "Beans Coffee Roaster",
+      "area_hint": "Phrom Phong",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1vs2j95",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vs2j95/specialty_coffee_recommendations_bangkok/",
+          "thread_published_at": "2026-08-18"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [],
+      "match_status": "unresolved_branch_or_missing_catalogue",
+      "match_basis": "No branch assigned. No new coordinates created."
+    },
+    {
+      "id": "discussion-49",
+      "name": "Halo Koffee",
+      "area_hint": "Phrom Phong",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1vs2j95",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vs2j95/specialty_coffee_recommendations_bangkok/",
+          "thread_published_at": "2026-08-18"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "o469d617ae8a0"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "Halo Koffee , Phrom Phong"
+    },
+    {
+      "id": "discussion-50",
+      "name": "B89 Caffè",
+      "area_hint": "Phrom Phong",
+      "distinct_threads": 1,
+      "sources": [
+        {
+          "source_id": "reddit-1vs2j95",
+          "url": "https://www.reddit.com/r/Bangkok/comments/1vs2j95/specialty_coffee_recommendations_bangkok/",
+          "thread_published_at": "2026-08-18"
+        }
+      ],
+      "place_id": null,
+      "catalogue_candidate_ids": [
+        "obf77ae01a273"
+      ],
+      "match_status": "candidate_requires_identity_review",
+      "match_basis": "Name and, where available, area compared with existing open-data catalogue; not independently verified.",
+      "catalogue_candidate_name": "B89 Caffe"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 // PLUB views: Nong Plub's guide, neighbourhood sheets, the passport, and "I've been here".
 // Uses helpers from app.js (state, map, $, esc, fmt, select, openSheet, petals, dots, GGP, F, KIND_LABEL).
 const TRAIT_SYM = { neutral: '○', leveler: '=', talk: '❝', access: '↦', regulars: '↺', low: '▁', playful: '✳', home: '⌂' };
+function guideArt(size=104) { return `<img class="guide-art ${size<50?'guide-portrait':''}" src="plub/nong-plub.png" alt="Nong Plub" width="${size<50?size:Math.round(size*246/420)}" height="${size}">`; }
 const FEELINGS = ['Calm', 'Focused', 'Cozy', 'Buzzing', 'Social', 'Inspiring', 'Slow', 'Meh'];
 const hoods = { list: [], bySlug: {}, ofId: new Map(), data: null };
 
@@ -10,7 +11,7 @@ const hoodsReady = fetch('data/hoods.json').then(r => r.json()).then(d => {
   drawHoods();
 }).catch(() => {});
 
-$('#guide').innerHTML = '<img class="plub-badge" src="plub/nong-plub-head.png" alt="" width="30" height="30">';
+$('#guide').innerHTML = '<img class="plub-badge" src="plub/nong-plub.png" alt="" width="30" height="30">';
 
 window.hoodOf = p => hoods.ofId.get(p.id);
 window.hoodHits = q => hoods.list.filter(h => [h.name, h.th, h.for].some(s => s.toLowerCase().includes(q)))
@@ -25,6 +26,7 @@ function ring(h, steps = 72) {
   return c;
 }
 window.addHoodLayers = () => {
+  if(map.getSource('hoods'))return;
   map.addSource('hoods', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
   map.addLayer({ id: 'hood-fill', type: 'fill', source: 'hoods', filter: ['==', '$type', 'Polygon'], paint: { 'fill-color': '#20201d', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 11, 0.05, 15, 0.02] } });
   map.addLayer({ id: 'hood-line', type: 'line', source: 'hoods', filter: ['==', '$type', 'Polygon'], paint: { 'line-color': '#20201d', 'line-width': 1.5, 'line-dasharray': [3, 2] } });
@@ -34,7 +36,7 @@ window.addHoodLayers = () => {
       'text-anchor': ['match', ['get', 'slug'], [...LABEL_BELOW], 'top', 'bottom'], 'text-allow-overlap': false, 'symbol-sort-key': 0 },
     paint: { 'text-color': '#20201d', 'text-halo-color': '#ffffff', 'text-halo-width': 2 } });
   map.on('click', 'hood-fill', e => {
-    if (map.queryRenderedFeatures(e.point, { layers: PIN_LAYERS }).length) return; // a pin wins
+    if (map.queryRenderedFeatures(e.point, { layers: [...PIN_LAYERS,'route-stop'] }).length) return; // a place or routed stop wins
     openHood(e.features[0].properties.slug);
   });
   map.on('click', 'hood-label', e => openHood(e.features[0].properties.slug));
@@ -43,6 +45,11 @@ window.addHoodLayers = () => {
   map.addLayer({ id: 'route-line', type: 'line', source: 'route', filter: ['==', '$type', 'LineString'], paint: { 'line-color': '#f59e0b', 'line-width': 3, 'line-dasharray': [2, 1.5] } });
   map.addLayer({ id: 'route-stop', type: 'circle', source: 'route', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': 11, 'circle-color': '#f59e0b', 'circle-stroke-color': '#20201d', 'circle-stroke-width': 2 } });
   map.addLayer({ id: 'route-num', type: 'symbol', source: 'route', filter: ['==', '$type', 'Point'], layout: { 'text-field': ['get', 'n'], 'text-size': 12, 'text-font': ['Noto Sans Bold'], 'text-allow-overlap': true }, paint: { 'text-color': '#20201d' } });
+  map.on('click','route-stop',e=>{const p=state.byId.get(e.features[0].properties.id);if(p)select(p,false)});
+  map.on('mouseenter','route-stop',()=>{map.getCanvas().style.cursor='pointer'});
+  map.on('mouseleave','route-stop',()=>{map.getCanvas().style.cursor=''});
+  const before=PIN_LAYERS.find(id=>map.getLayer(id));
+  if(before){for(const layer of ['hood-fill','hood-line'])map.moveLayer(layer,before);map.moveLayer('hood-label');for(const layer of ['route-line','route-stop','route-num'])map.moveLayer(layer);window.flushRoute?.()}
   drawHoods();
 };
 window.fitAllHoods = async () => {
@@ -106,9 +113,9 @@ async function openHood(slug, jump) {
   const s = h.stats, workIds = h.ids.filter(id => { const p = state.byId.get(id); return p && p.k !== 'restaurant'; });
   const sheet = openSheet(`
     <header><h1>${esc(h.name)}<span class="th" lang="th">${esc(h.th)}</span></h1><button class="close" aria-label="Close">×</button></header>
-    <div class="plub-say">${plub(POSE[slug] || 'wave', 104)}<p><span class="micro">Socially optimized for</span><b class="for">${esc(h.for)}</b><span class="th" lang="th">${esc(h.forTh)}</span><q>${esc(h.plub)}</q>${moodOf(slug) ? `<button class="linkish" data-mood="${moodOf(slug)}">◐ Find “${esc(h.for.toLowerCase())}” places citywide</button>` : ''}</p></div>
+    <div class="hood-intro"><div class="hood-mood"><span class="micro">For</span><b class="for">${esc(h.for)}</b><span lang="th">${esc(h.forTh)}</span></div><div class="plub-say">${guideArt()}<p><q>${esc(h.plub)}</q>${moodOf(slug) ? `<button class="linkish" data-mood="${moodOf(slug)}">◐ Find ${esc(h.for.toLowerCase())} citywide</button>` : ''}</p></div></div>
     <section class="hood-stats">
-      <div class="stat"><span class="big">${fmt(s.work)}</span><span class="micro">work spots within ~10 min (800 m) of ${esc(h.anchorLabel)}</span></div>
+      <div class="stat"><span class="big">${fmt(s.work)}</span><span class="micro">work spots within 800 m of ${esc(h.anchorLabel)}</span></div>
       <div class="stat"><span class="big">#${s.stationRank}</span><span class="micro">${/^(BTS|MRT)/.test(h.anchorLabel) ? `of ${s.stations} rail stations` : `vs ${s.stations} rail-station circles`}</span></div>
       <div class="stat"><span class="big">✦${s.ggp}</span><span class="micro">average index</span></div>
       <div class="stat"><span class="big">${been}<small>/${fmt(workIds.length)}</small></span><span class="micro">✓ you've been</span></div>
@@ -123,6 +130,7 @@ async function openHood(slug, jump) {
     </section>
     <nav class="links"><button type="button" class="show-map">◎ Show on map</button><button type="button" class="share">Share</button></nav>
     <p class="src">Sources: ${h.sources.map(([t, url]) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(t)}</a>`).join(' · ')}. Numbers computed from OpenStreetMap and Overture Maps places within ${h.radius} m of OSM ${esc(h.anchor.id)}.</p>`);
+  sheet.classList.add('hood-sheet');
   sheet.querySelector('.walk').addEventListener('click', e => { const li = e.target.closest('li[data-id]'); if (li) select(state.byId.get(li.dataset.id), true); });
   const fit = how => {
     const c = ring(h), xs = c.map(p => p[0]), ys = c.map(p => p[1]);
@@ -172,8 +180,9 @@ $('#guide').addEventListener('click', async () => {
   const top = d.leaderboard.slice(0, 10), max = top[0].work, anchors = new Set(d.hoods.map(h => h.anchor.osmName));
   const sheet = openSheet(`
     <header><h1>Bangkok's Great Good Places<span class="th">Placemaking Laboratory Urban Bureau</span></h1><button class="close" aria-label="Close">×</button></header>
-    <div class="plub-say"><img class="brand-hero" src="plub/nong-plub.png" alt="Nong Plub, your guide" width="104" height="104"><p><q>Bangkok has ${fmt(P.length)} places to sit down. A great good place is the one you keep coming back to. Pick a neighbourhood, I'll walk you through it.</q></p></div>
-    <section><h2 class="micro">The line · four neighbourhoods, live now</h2>
+    <p class="discovery-entry"><button class="linkish" data-act="discovery">Explore 50 editorial picks + 50 discussed cafés →</button></p>
+    <div class="plub-say">${guideArt()}<p><q>Bangkok has ${fmt(P.length)} places to sit down. A great good place is the one you keep coming back to. Pick a neighbourhood, I'll walk you through it.</q></p></div>
+    <section><h2 class="micro">Four neighbourhoods</h2>
       <ol class="line">${d.hoods.map(h => { const been = h.ids.filter(id => state.visited.has(id)).length; return `<li data-hood="${h.slug}">
         <span class="stop ${been ? 'stamped' : ''}" aria-hidden="true">${been ? '✓' : ''}</span>
         <span class="nm"><b>${esc(h.name)}</b> <span class="th" lang="th">${esc(h.th)}</span><span class="micro">for ${esc(h.for.toLowerCase())}</span></span>
@@ -281,7 +290,7 @@ async function openPassport() {
   const stamped = hoods.list.filter(h => h.ids.some(id => places.has(id)));
   const sheet = openSheet(`
     <header><h1>Your notebook</h1><button class="close" aria-label="Close">×</button></header>
-    <div class="plub-say">${plub('stamp', 104)}<p><q>${visits.length ? `${places.size} ${places.size === 1 ? 'place' : 'places'}, ${stamped.length} of ${hoods.list.length} neighbourhoods stamped. Keep going.` : 'Start with a place you visited. Save a note or photo; back it up or share it when you choose.'}</q></p></div>
+    <div class="plub-say">${guideArt()}<p><q>${visits.length ? `${places.size} ${places.size === 1 ? 'place' : 'places'}, ${stamped.length} of ${hoods.list.length} neighbourhoods stamped. Keep going.` : 'Start with a place you visited. Save a note or photo; back it up or share it when you choose.'}</q></p></div>
     <div id="notebook-tools"></div>
     <details class="notebook-stamps"><summary>Neighbourhood stamps</summary>
       <ul class="stamps">${hoods.list.map(h => { const n = h.ids.filter(id => places.has(id)).length; return `<li data-hood="${h.slug}" class="${n ? 'on' : ''}"><span class="stamp">${n ? '✓' : ''}<b>${esc(h.name)}</b><span class="th" lang="th">${esc(h.th)}</span></span><span class="micro">${n} been</span></li>`; }).join('')}</ul>
@@ -362,18 +371,22 @@ async function stampCard(places) {
 }
 
 // ---------- shared: highlight a set of places on the map, optionally as a numbered walking route ----------
+let pendingRoute={stops:[],line:false};
 function showRoute(stops, line) {
+  pendingRoute={stops,line};
+  if(stops.length)openFromUrl.framed=true;
   const src = map.getSource('route');
   if (!src) return;
   src.setData({ type: 'FeatureCollection', features: [
     ...(line && stops.length > 1 ? [{ type: 'Feature', geometry: { type: 'LineString', coordinates: stops.map(p => [p.x, p.y]) }, properties: {} }] : []),
-    ...stops.map((p, i) => ({ type: 'Feature', geometry: { type: 'Point', coordinates: [p.x, p.y] }, properties: { n: String(i + 1) } })),
+    ...stops.map((p, i) => ({ type: 'Feature', geometry: { type: 'Point', coordinates: [p.x, p.y] }, properties: { n: String(i + 1), id:p.id } })),
   ] });
   if (!stops.length) return;
   const xs = stops.map(p => p.x), ys = stops.map(p => p.y);
   map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]],
     { padding: { top: 50, left: 50, right: 50, bottom: isPhone() ? $('#sheet').offsetHeight + 30 : 50 }, maxZoom: 16 });
 }
+window.flushRoute = () => showRoute(pendingRoute.stops,pendingRoute.line);
 window.clearRoute = () => showRoute([]);
 const gmaps = (p, mode) => `https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}&travelmode=${mode}`;
 const amaps = (p, mode) => `https://maps.apple.com/?daddr=${p.y},${p.x}&dirflg=${mode === 'driving' ? 'd' : 'w'}`;
@@ -396,7 +409,7 @@ async function locate() {
 }
 
 async function openNow() {
-  const sheet = openSheet(`<header><span class="mini-plub">${plub('point', 36, '')}</span><h1>Near me now</h1><button class="close" aria-label="Close">×</button></header>
+  const sheet = openSheet(`<header><span class="mini-plub">${guideArt(32)}</span><h1>Near me now</h1><button class="close" aria-label="Close">×</button></header>
     <div class="now-ctl">
       <div class="seg range" role="group" aria-label="How far">
         <button data-range="walk" aria-pressed="${nowState.range === 'walk'}">Walk · ≤ 800 m</button>
@@ -492,13 +505,15 @@ async function openHop(startKey) {
   const km = legs.reduce((a, b) => a + b, 0) / 1000;
   const g = stops.length > 1 ? `https://www.google.com/maps/dir/?api=1&origin=${stops[0].y},${stops[0].x}&destination=${stops.at(-1).y},${stops.at(-1).x}&travelmode=walking${stops.length > 2 ? '&waypoints=' + stops.slice(1, -1).map(p => `${p.y},${p.x}`).join('%7C') : ''}` : '';
   const sheet = openSheet(`<header><h1>Café hop</h1><button class="close" aria-label="Close">×</button></header>
-    <div class="plub-say">${plub('map', 88)}<p><q>Five independent cafés, a short walk apart. Pace yourself: one coffee, one pastry, one water.</q></p></div>
+
     <div class="feel hop-starts" role="group" aria-label="Start in">${starts.map(([k, l]) => `<button data-start="${k}" aria-pressed="${k === hopState.start}">${esc(l)}</button>`).join('')}</div>
     ${stops.length ? `<p class="micro">${esc(label)} · ${stops.length} stops · at least ${km.toFixed(1)} km on foot · ${Math.round(km * 1000 / 80)}+ min walking</p>
     <ol class="walk hop">${stops.map((p, i) => `<li data-id="${esc(p.id)}"><span class="stop">${i + 1}</span><span class="nm">${esc(p.n)}</span>${i ? `<span class="micro">${Math.round(legs[i - 1])} m</span>` : ''}<span class="idx">✦${p.idx}</span></li>`).join('')}</ol>
     <nav class="links">${g ? `<a href="${g}" target="_blank" rel="noopener">Walk it in Google Maps ↗</a>` : ''}<button type="button" class="share">Share</button></nav>`
     : '<p class="micro">Not enough independent cafés with a high index close together here. Try another start.</p>'}
+    <details class="hop-guide"><summary>Plub’s walking tip</summary><div class="plub-say">${guideArt()}<p><q>Five independent cafés, a short walk apart. Pace yourself: one coffee, one pastry, one water.</q></p></div></details>
     <p class="src">Picked from independent cafés with ✦ ≥ 70, not listed as closed at 11 am, each 250–800 m from the last. Legs never cross the Chao Phraya; they can cross big roads, so use crossings. Distances are straight lines, so the real walk is longer: Google Maps gives the path. Apple Maps takes one stop at a time: open a stop to get its link.</p>`);
+  sheet.classList.add('hop-sheet');
   sheet.querySelector('.hop-starts').addEventListener('click', e => { const b = e.target.closest('[data-start]'); if (b) openHop(b.dataset.start); });
   sheet.querySelector('.hop')?.addEventListener('click', e => { const li = e.target.closest('li[data-id]'); if (li) select(state.byId.get(li.dataset.id), true); });
   sheet.querySelector('.share')?.addEventListener('click', async ev => {
@@ -509,3 +524,6 @@ async function openHop(startKey) {
   showRoute(stops, true);
 }
 window.openHop = openHop;
+
+// A cached map can load before this script arrives. Initialise once in either order.
+queueMicrotask(()=>{if(map.isStyleLoaded()&&!map.getSource('hoods'))window.addHoodLayers()});

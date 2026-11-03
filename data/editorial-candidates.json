@@ -1,0 +1,1817 @@
+{
+  "version": 1,
+  "checked_at": "2026-11-03",
+  "cohort_label": "Editorial and institutional café candidates",
+  "ranking_note": "No citywide Top 50 rank. Time Out 2026 publisher_rank applies only to its 20 new-cafe article. Other article positions are not ranks.",
+  "location_policy": "No new or moved pins. Candidate IDs are matching leads, never verified matches.",
+  "sources": [
+    {
+      "id": "timeout-2025",
+      "publisher": "Time Out Bangkok",
+      "title": "Bangkok’s best new cafes of 2025",
+      "url": "https://www.timeout.com/bangkok/restaurants/bangkoks-best-new-cafes-of-2025",
+      "published_at": "2025-08-11",
+      "checked_at": "2026-11-03",
+      "evidence_type": "editorial_selection"
+    },
+    {
+      "id": "timeout-2026",
+      "publisher": "Time Out Bangkok",
+      "title": "Bangkok’s 20 best new cafes of 2026",
+      "url": "https://www.timeout.com/bangkok/restaurants/bangkok-best-new-cafes-of-2026",
+      "published_at": "2026-03-06",
+      "checked_at": "2026-11-03",
+      "evidence_type": "editorial_selection"
+    },
+    {
+      "id": "thaiger-2025",
+      "publisher": "The Thaiger",
+      "title": "New cafes to check out in Bangkok [2025 edition]",
+      "url": "https://thethaiger.com/guides/best-of/food/new-cafes-to-check-out-in-bangkok-2024-edition",
+      "published_at": "2025-07-31",
+      "checked_at": "2026-11-03",
+      "evidence_type": "editorial_selection"
+    },
+    {
+      "id": "tat-talatnoi",
+      "publisher": "Tourism Authority of Thailand",
+      "title": "1 day in Talat Noi",
+      "url": "https://www.tourismthailand.org/Articles/1-day-in-talat-noi",
+      "published_at": "2025-01-30",
+      "checked_at": "2026-11-03",
+      "evidence_type": "institutional_feature"
+    },
+    {
+      "id": "tat-workshops",
+      "publisher": "Tourism Authority of Thailand",
+      "title": "Workshop around Bangkok",
+      "url": "https://www.tourismthailand.org/Articles/workshop-around-bangkok",
+      "published_at": "2025-01-09",
+      "checked_at": "2026-11-03",
+      "evidence_type": "institutional_feature"
+    },
+    {
+      "id": "bacc-gallery",
+      "publisher": "Bangkok Art and Culture Centre",
+      "title": "Gallery Drip Coffee",
+      "url": "https://www.bacc.or.th/en/directories/62255",
+      "published_at": null,
+      "checked_at": "2026-11-03",
+      "evidence_type": "institutional_directory"
+    },
+    {
+      "id": "bacc-mini",
+      "publisher": "Bangkok Art and Culture Centre",
+      "title": "Mini ミニ oriental speedbar",
+      "url": "https://www.bacc.or.th/en/directories/62674",
+      "published_at": null,
+      "checked_at": "2026-11-03",
+      "evidence_type": "institutional_directory"
+    },
+    {
+      "id": "roadbook-2026",
+      "publisher": "Roadbook",
+      "title": "Coffee shops in Bangkok that are masters of their craft",
+      "url": "https://roadbook.com/bangkok/city-guide/best-coffee-shops-bangkok-thailand/",
+      "published_at": "2026-04-30",
+      "checked_at": "2026-11-03",
+      "evidence_type": "editorial_selection",
+      "date_note": "Last updated date, original publication date not shown."
+    }
+  ],
+  "candidates": [
+    {
+      "candidate_id": "editorial-001",
+      "name": "Rough & Round",
+      "area": "Yaowarat",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 1,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-002",
+      "name": "Kurasu Thonglor (Sukhumvit 57)",
+      "area": "Thonglor",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 2,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o73efdd02d344"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o73efdd02d344",
+          "name": "Kurasu Thonglor (Sukhumvit 57)",
+          "lat": 13.72335,
+          "lng": 100.58015
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-003",
+      "name": "Sauce Coffee at Friend Friend",
+      "area": "Sukhumvit 24",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 3,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-004",
+      "name": "Rise Coffee at One Bangkok",
+      "area": "Lumphini",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 4,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "n10904121605",
+        "n12586874806"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "n10904121605",
+          "name": "RISE Coffee",
+          "lat": 13.74189,
+          "lng": 100.54855
+        },
+        {
+          "id": "n12586874806",
+          "name": "Rise Coffee",
+          "lat": 13.72838,
+          "lng": 100.58099
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-005",
+      "name": "Morgen Coffee",
+      "area": "Phrom Phong",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 5,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "odd526161e656"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "odd526161e656",
+          "name": "Morgen Coffee",
+          "lat": 13.73656,
+          "lng": 100.57314
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-006",
+      "name": "FellBoy",
+      "area": "Bangkok",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 6,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-007",
+      "name": "Piccolo Vicolo at Wang Burapha",
+      "area": "Rattanakosin",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 7,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "alias_needs_branch_check",
+      "candidate_place_ids": [
+        "o21b641350855"
+      ],
+      "match_note": "Alias and area are plausible; confirm branch against cited article before publication.",
+      "catalogue_leads": [
+        {
+          "id": "o21b641350855",
+          "name": "Piccolo Vicolo Café at Wang Burapha-Samyot",
+          "lat": 13.74722,
+          "lng": 100.50382
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-008",
+      "name": "Cuckoo & Friends",
+      "area": "Ekamai",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 8,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-009",
+      "name": "Coffee Room Yaowarat",
+      "area": "Yaowarat",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 9,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-010",
+      "name": "Leek Coffee",
+      "area": "Watthana",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 10,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "alias_needs_branch_check",
+      "candidate_place_ids": [
+        "oad9849e82413"
+      ],
+      "match_note": "Alias and area are plausible; confirm branch against cited article before publication.",
+      "catalogue_leads": [
+        {
+          "id": "oad9849e82413",
+          "name": "Leek",
+          "lat": 13.73592,
+          "lng": 100.60268
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-011",
+      "name": "Halfway Brunch & Roastery",
+      "area": "Lumphini",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 11,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "n12325633844"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "n12325633844",
+          "name": "Halfway Brunch & Roastery",
+          "lat": 13.71886,
+          "lng": 100.54457
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-012",
+      "name": "Double Slash (Rama II)",
+      "area": "Bang Khun Thian",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 12,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-013",
+      "name": "Craftsman at Oldtown",
+      "area": "Rattanakosin",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 13,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "w1204952881"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "w1204952881",
+          "name": "Craftsman",
+          "lat": 13.69888,
+          "lng": 100.52887
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-014",
+      "name": "Little Giant",
+      "area": "Phaya Thai",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 14,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "oed0625e72c75"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "oed0625e72c75",
+          "name": "Little Giant",
+          "lat": 13.76301,
+          "lng": 100.54214
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-015",
+      "name": "Thirdbase",
+      "area": "Ekamai",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 15,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "oaf193f8b3b23"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "oaf193f8b3b23",
+          "name": "SPOT Thirdbase",
+          "lat": 13.7314,
+          "lng": 100.58527
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-016",
+      "name": "Table Talk Cafe",
+      "area": "Bangkok Noi",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 16,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o9be545fe5c80"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o9be545fe5c80",
+          "name": "Table Talk Cafe",
+          "lat": 13.7638,
+          "lng": 100.47292
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-017",
+      "name": "WWA Hua Lamphong",
+      "area": "Charoenkrung",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 17,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-018",
+      "name": "Edspaze Cafe",
+      "area": "Taling Chan",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 18,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "o7e1618038164"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "o7e1618038164",
+          "name": "edspaze",
+          "lat": 13.76663,
+          "lng": 100.444
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-019",
+      "name": "Early BKK",
+      "area": "Bang Khen",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 19,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o0fa72a586c2d"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o0fa72a586c2d",
+          "name": "earlybkk",
+          "lat": 13.77205,
+          "lng": 100.67673
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-020",
+      "name": "Lie Awake",
+      "area": "Phasi Charoen",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 20,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-021",
+      "name": "Mansion in Copenh",
+      "area": "Lat Phrao",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 21,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o0e970dc44194"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o0e970dc44194",
+          "name": "Mansion in Copenh",
+          "lat": 13.8077,
+          "lng": 100.60555
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-022",
+      "name": "So am I Coffee and Bakery",
+      "area": "Bang Khae",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 22,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o08377c24ad63"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o08377c24ad63",
+          "name": "So Am I Coffee and Bakery",
+          "lat": 13.73636,
+          "lng": 100.40545
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-023",
+      "name": "Two Hands Coffee",
+      "area": "Silom",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 23,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "o07cc5939f6fb",
+        "o3563a3fe74a6",
+        "o9c8b711ee2b7"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "o07cc5939f6fb",
+          "name": "Two Hands Crafted Coffee Space",
+          "lat": 13.7243,
+          "lng": 100.52968
+        },
+        {
+          "id": "o3563a3fe74a6",
+          "name": "Two Hands",
+          "lat": 13.78118,
+          "lng": 100.46356
+        },
+        {
+          "id": "o9c8b711ee2b7",
+          "name": "Two Hands Coffee Roaster",
+          "lat": 13.74191,
+          "lng": 100.62279
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-024",
+      "name": "Klor BKK",
+      "area": "Lat Phrao",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 24,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "of163724e0616"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "of163724e0616",
+          "name": "KLOR BKK",
+          "lat": 13.80824,
+          "lng": 100.59799
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-025",
+      "name": "Patchworks BKK",
+      "area": "Bang Phlat",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 25,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "alias_needs_branch_check",
+      "candidate_place_ids": [
+        "o323da5747be8"
+      ],
+      "match_note": "Alias and area are plausible; confirm branch against cited article before publication.",
+      "catalogue_leads": [
+        {
+          "id": "o323da5747be8",
+          "name": "Patchworks Fine Pastry and Dessert",
+          "lat": 13.79906,
+          "lng": 100.50943
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-026",
+      "name": "RW Coffee and Wine",
+      "area": "Ekamai",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 26,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "n13188044801"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "n13188044801",
+          "name": "RW Coffee and Wine",
+          "lat": 13.73144,
+          "lng": 100.58694
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-027",
+      "name": "Haps",
+      "area": "Watthana",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 27,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "alias_needs_branch_check",
+      "candidate_place_ids": [
+        "n13208111701"
+      ],
+      "match_note": "Alias and area are plausible; confirm branch against cited article before publication.",
+      "catalogue_leads": [
+        {
+          "id": "n13208111701",
+          "name": "haps - Brunch & More",
+          "lat": 13.73199,
+          "lng": 100.57657
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-028",
+      "name": "Curving Dining",
+      "area": "Saphan Sung",
+      "source_ids": [
+        "timeout-2025"
+      ],
+      "article_order": 28,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-029",
+      "name": "Bo.bkk",
+      "area": "Yenarkat",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 1,
+      "publisher_rank": 1,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-030",
+      "name": "City Cup",
+      "area": "Khlong Toei",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 2,
+      "publisher_rank": 2,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "ocb9fd7f095ad"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "ocb9fd7f095ad",
+          "name": "Citycup.bkk",
+          "lat": 13.71373,
+          "lng": 100.55804
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-031",
+      "name": "Hand and Hearts Coffee Roaster",
+      "area": "Watthana",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 3,
+      "publisher_rank": 3,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-032",
+      "name": "Sydny Bagels Charoenkrung",
+      "area": "Yaowarat",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 4,
+      "publisher_rank": 4,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-033",
+      "name": "Rocket Coffeebar Lumphini",
+      "area": "Ratchadamri",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 5,
+      "publisher_rank": 5,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-034",
+      "name": "Onibus Coffee Central Park",
+      "area": "Saladaeng",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 6,
+      "publisher_rank": 6,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o678cf86edd66"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o678cf86edd66",
+          "name": "ONIBUS COFFEE Central Park",
+          "lat": 13.7291,
+          "lng": 100.53701
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-035",
+      "name": "Bones Cafe",
+      "area": "Bang Kapi",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 7,
+      "publisher_rank": 7,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o1e8f46c3382b"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o1e8f46c3382b",
+          "name": "Bones cafe",
+          "lat": 13.81471,
+          "lng": 100.62277
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-036",
+      "name": "Batchworks Collective",
+      "area": "Phra Khanong",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 8,
+      "publisher_rank": 8,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "of031799d162c"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "of031799d162c",
+          "name": "Batchworks Collective",
+          "lat": 13.69909,
+          "lng": 100.5965
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-037",
+      "name": "Pinki’s Deli",
+      "area": "Ekamai",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 9,
+      "publisher_rank": 9,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-038",
+      "name": "Slow Butter",
+      "area": "Charoenkrung",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 10,
+      "publisher_rank": 10,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-039",
+      "name": "Unhour",
+      "area": "Suan Luang",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 11,
+      "publisher_rank": 11,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o42c9bef3ad4f"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o42c9bef3ad4f",
+          "name": "UNHOUR",
+          "lat": 13.73645,
+          "lng": 100.64026
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-040",
+      "name": "Norman’s Collective",
+      "area": "Chatuchak",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 12,
+      "publisher_rank": 12,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o7490237b58bd"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o7490237b58bd",
+          "name": "norman’s collective",
+          "lat": 13.82641,
+          "lng": 100.56513
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-041",
+      "name": "Findfoundfounded",
+      "area": "Chula-Samyan",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 13,
+      "publisher_rank": 13,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-042",
+      "name": "Fimue Bangkok",
+      "area": "Khlong Toei",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 14,
+      "publisher_rank": 14,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-043",
+      "name": "Back of House Pattakarn",
+      "area": "Suan Luang",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 15,
+      "publisher_rank": 15,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-044",
+      "name": "Roast8ry BKK",
+      "area": "Yaowarat",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 16,
+      "publisher_rank": 16,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o2d21abfd4ca4"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o2d21abfd4ca4",
+          "name": "Roast8ry BKK",
+          "lat": 13.74018,
+          "lng": 100.50445
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-045",
+      "name": "Butchery Coffee Sukhumvit 49",
+      "area": "Watthana",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 17,
+      "publisher_rank": 17,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o3d1c1c490b96"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o3d1c1c490b96",
+          "name": "Butchery Coffee Sukhumvit 49",
+          "lat": 13.73115,
+          "lng": 100.57529
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-046",
+      "name": "Ksana Central Park",
+      "area": "Saladaeng",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 18,
+      "publisher_rank": 18,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-047",
+      "name": "TFD Coffee",
+      "area": "Silom",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 19,
+      "publisher_rank": 19,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-048",
+      "name": "Brown Matcha House",
+      "area": "Dusit",
+      "source_ids": [
+        "timeout-2026"
+      ],
+      "article_order": 20,
+      "publisher_rank": 20,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o04168a482e77"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o04168a482e77",
+          "name": "Brown Matcha House",
+          "lat": 13.7588,
+          "lng": 100.51504
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-049",
+      "name": "CULT Thailand",
+      "area": "Ruamrudee",
+      "source_ids": [
+        "thaiger-2025"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-050",
+      "name": "Dusha Cafe",
+      "area": "Surasak",
+      "source_ids": [
+        "thaiger-2025"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "o8d55d79ae4f6",
+        "oc2b838dbd2fb"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "o8d55d79ae4f6",
+          "name": "Dusha Cafe (Chatuchak Mixt)",
+          "lat": 13.80256,
+          "lng": 100.55144
+        },
+        {
+          "id": "oc2b838dbd2fb",
+          "name": "Dusha Cafe ดูช่า คาเฟ่ New Wave coffee (Sathorn)",
+          "lat": 13.72119,
+          "lng": 100.5195
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-051",
+      "name": "Walden Woods Bangkok",
+      "area": "Ekkamai",
+      "source_ids": [
+        "thaiger-2025"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o85211630c3d9"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o85211630c3d9",
+          "name": "Walden Woods Bangkok",
+          "lat": 13.72965,
+          "lng": 100.58848
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-052",
+      "name": "Get Some Coffee",
+      "area": "Lang Suan",
+      "source_ids": [
+        "thaiger-2025"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "o56e99a298fab"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "o56e99a298fab",
+          "name": "Get Some Coffee Velaa Lang Suan",
+          "lat": 13.73678,
+          "lng": 100.5429
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-053",
+      "name": "Pralet Thailand",
+      "area": "Ekkamai Corner",
+      "source_ids": [
+        "thaiger-2025"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-054",
+      "name": "Sips Cafe & Bar",
+      "area": "Sathorn",
+      "source_ids": [
+        "thaiger-2025"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-055",
+      "name": "Ripple Coffee Roasters",
+      "area": "Wong Sawang",
+      "source_ids": [
+        "thaiger-2025"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-056",
+      "name": "BeanBoys",
+      "area": "Ramintra",
+      "source_ids": [
+        "thaiger-2025"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o0bdba8b7341e"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o0bdba8b7341e",
+          "name": "BeanBoys",
+          "lat": 13.83504,
+          "lng": 100.63248
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-057",
+      "name": "Two Men Bagel House",
+      "area": "Silom",
+      "source_ids": [
+        "thaiger-2025"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-058",
+      "name": "Timo Sathorn",
+      "area": "Sathorn",
+      "source_ids": [
+        "thaiger-2025"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-059",
+      "name": "Sunset Coffee roaster",
+      "area": "Charoen Krung–Talat Noi",
+      "source_ids": [
+        "tat-talatnoi"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-060",
+      "name": "Timo and Tintin",
+      "area": "Talat Noi",
+      "source_ids": [
+        "tat-talatnoi"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "n12619476346"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "n12619476346",
+          "name": "Timo and Tintin",
+          "lat": 13.73517,
+          "lng": 100.51147
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-061",
+      "name": "SOUL’S CAFE",
+      "area": "Talat Noi",
+      "source_ids": [
+        "tat-talatnoi"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "o5647054a0e49",
+        "o9e55a7f73aaa"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "o5647054a0e49",
+          "name": "SOULS LOVER 〜Cafe&Bar〜",
+          "lat": 13.73582,
+          "lng": 100.57243
+        },
+        {
+          "id": "o9e55a7f73aaa",
+          "name": "Hope Soul Specialty Coffee House Bar",
+          "lat": 13.83875,
+          "lng": 100.51059
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-062",
+      "name": "So Heng Tai Mansion",
+      "area": "Talat Noi",
+      "source_ids": [
+        "tat-talatnoi"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-063",
+      "name": "Taiban Cafe",
+      "area": "Hua Lamphong",
+      "source_ids": [
+        "tat-workshops"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "w1186500387"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "w1186500387",
+          "name": "Taiban Cafe",
+          "lat": 13.73814,
+          "lng": 100.51783
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-064",
+      "name": "Gallery Drip Coffee",
+      "area": "BACC",
+      "source_ids": [
+        "bacc-gallery"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "n4297612395",
+        "n4638909190"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "n4297612395",
+          "name": "Gallery Drip Coffee",
+          "lat": 13.74662,
+          "lng": 100.53032
+        },
+        {
+          "id": "n4638909190",
+          "name": "Gallery Drip Coffee",
+          "lat": 13.74676,
+          "lng": 100.50319
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-065",
+      "name": "Mini ミニ oriental speedbar",
+      "area": "BACC",
+      "source_ids": [
+        "bacc-mini"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "o36b676228396",
+        "o6717eb0ac947",
+        "o9f0deba48f5a",
+        "oc7a1dfeb13c5"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "o36b676228396",
+          "name": "mini ミニ oriental speedbar (EMSPHERE)",
+          "lat": 13.73223,
+          "lng": 100.56678
+        },
+        {
+          "id": "o6717eb0ac947",
+          "name": "mini ミニ oriental speedbar (The mall bangkapi)",
+          "lat": 13.7669,
+          "lng": 100.64218
+        },
+        {
+          "id": "o9f0deba48f5a",
+          "name": "mini ミニ oriental speedbar (Central Chidlom)",
+          "lat": 13.74473,
+          "lng": 100.54536
+        },
+        {
+          "id": "oc7a1dfeb13c5",
+          "name": "Mini ミニ oriental speedbar - One Bangkok",
+          "lat": 13.7271,
+          "lng": 100.5456
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-066",
+      "name": "Karo Coffee Roasters",
+      "area": "Pridi Banomyong 26",
+      "source_ids": [
+        "roadbook-2026"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-067",
+      "name": "Paga Microroastery",
+      "area": "Sukhumvit 31",
+      "source_ids": [
+        "roadbook-2026"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "n8883249617"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "n8883249617",
+          "name": "PAGA Microroastery",
+          "lat": 13.73874,
+          "lng": 100.56646
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-068",
+      "name": "Kaizen Coffee",
+      "area": "Ekkamai",
+      "source_ids": [
+        "roadbook-2026"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o1a9bede5a91c"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o1a9bede5a91c",
+          "name": "Kaizen Coffee",
+          "lat": 13.73289,
+          "lng": 100.57629
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-069",
+      "name": "Hands and Heart",
+      "area": "Sukhumvit 67",
+      "source_ids": [
+        "roadbook-2026"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "n6280554885",
+        "o255257417b82",
+        "o668ce13bf6fd"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "n6280554885",
+          "name": "Hands and Heart Cafe",
+          "lat": 13.72169,
+          "lng": 100.57934
+        },
+        {
+          "id": "o255257417b82",
+          "name": "Hands and Heart Coffee Roasters",
+          "lat": 13.72775,
+          "lng": 100.59307
+        },
+        {
+          "id": "o668ce13bf6fd",
+          "name": "Hands and Heart Coffee Roasters",
+          "lat": 13.71756,
+          "lng": 100.5907
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-070",
+      "name": "Rolling Roasters Ekkamai",
+      "area": "Ekkamai",
+      "source_ids": [
+        "roadbook-2026"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-071",
+      "name": "Samadool Coffee",
+      "area": "Sukhumvit 49/1",
+      "source_ids": [
+        "roadbook-2026"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "n13148695701"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "n13148695701",
+          "name": "Samadool",
+          "lat": 13.73326,
+          "lng": 100.57575
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-072",
+      "name": "Nana Coffee Roasters",
+      "area": "Ari",
+      "source_ids": [
+        "roadbook-2026"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "n13235748218",
+        "n9751175392",
+        "oa8043a5d3403"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "n13235748218",
+          "name": "NANA coffee roasters",
+          "lat": 13.78269,
+          "lng": 100.54197
+        },
+        {
+          "id": "n9751175392",
+          "name": "Nana Coffee Roasters",
+          "lat": 13.67092,
+          "lng": 100.61603
+        },
+        {
+          "id": "oa8043a5d3403",
+          "name": "NANA Coffee Roasters",
+          "lat": 13.69621,
+          "lng": 100.64869
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-073",
+      "name": "Mother Roaster",
+      "area": "Talat Noi",
+      "source_ids": [
+        "roadbook-2026"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "n8017968685"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "n8017968685",
+          "name": "Mother Roaster",
+          "lat": 13.733,
+          "lng": 100.51231
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-074",
+      "name": "Piccolo Vicolo Café",
+      "area": "Wang Burapha",
+      "source_ids": [
+        "roadbook-2026"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "alias_needs_branch_check",
+      "candidate_place_ids": [
+        "o21b641350855"
+      ],
+      "match_note": "Alias and area are plausible; confirm branch against cited article before publication.",
+      "catalogue_leads": [
+        {
+          "id": "o21b641350855",
+          "name": "Piccolo Vicolo Café at Wang Burapha-Samyot",
+          "lat": 13.74722,
+          "lng": 100.50382
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-075",
+      "name": "Factory",
+      "area": "Phaya Thai",
+      "source_ids": [
+        "roadbook-2026"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "n9805340217"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "n9805340217",
+          "name": "Factory",
+          "lat": 13.75688,
+          "lng": 100.5348
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-076",
+      "name": "Sarnies",
+      "area": "Charoen Krung 44",
+      "source_ids": [
+        "roadbook-2026"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [
+        "n7177878885",
+        "o0e409d786862",
+        "o130745fc3a9e",
+        "o72393c233e30",
+        "o84f23ae60fa7",
+        "o924c8eef9b88",
+        "oa2e2367c649b",
+        "ofcad4ca314cd"
+      ],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": [
+        {
+          "id": "n7177878885",
+          "name": "Sarnies Sourdough",
+          "lat": 13.72119,
+          "lng": 100.51563
+        },
+        {
+          "id": "o0e409d786862",
+          "name": "Sarnies One Bangkok",
+          "lat": 13.74261,
+          "lng": 100.54721
+        },
+        {
+          "id": "o130745fc3a9e",
+          "name": "Sarnies Roastery",
+          "lat": 13.74258,
+          "lng": 100.54508
+        },
+        {
+          "id": "o72393c233e30",
+          "name": "Sarnies Cantina",
+          "lat": 13.7233,
+          "lng": 100.56479
+        },
+        {
+          "id": "o84f23ae60fa7",
+          "name": "Sarnies Cafe Sukhumvit",
+          "lat": 13.73071,
+          "lng": 100.57026
+        },
+        {
+          "id": "o924c8eef9b88",
+          "name": "Sarnies One Bangkok",
+          "lat": 13.72701,
+          "lng": 100.54749
+        },
+        {
+          "id": "oa2e2367c649b",
+          "name": "Sarnies & Friends",
+          "lat": 13.7321,
+          "lng": 100.51501
+        },
+        {
+          "id": "ofcad4ca314cd",
+          "name": "Sarnies x Pimp My Salad Emporium Tower",
+          "lat": 13.73026,
+          "lng": 100.56851
+        }
+      ]
+    },
+    {
+      "candidate_id": "editorial-077",
+      "name": "The Living Room at Baan Trok Tua Ngork",
+      "area": "Chinatown",
+      "source_ids": [
+        "roadbook-2026"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unresolved",
+      "candidate_place_ids": [],
+      "match_note": "No pin created; branch identity requires confirmation.",
+      "catalogue_leads": []
+    },
+    {
+      "candidate_id": "editorial-078",
+      "name": "Songwat Coffee Roasters",
+      "area": "Song Wat",
+      "source_ids": [
+        "roadbook-2026"
+      ],
+      "article_order": null,
+      "publisher_rank": null,
+      "place_id": null,
+      "match_status": "unique_name_needs_branch_check",
+      "candidate_place_ids": [
+        "o1ac11083bd82"
+      ],
+      "match_note": "Unique normalized name in catalogue; geography still requires source branch review.",
+      "catalogue_leads": [
+        {
+          "id": "o1ac11083bd82",
+          "name": "Song Wat Coffee Roasters",
+          "lat": 13.73915,
+          "lng": 100.50665
+        }
+      ]
+    }
+  ]
+}

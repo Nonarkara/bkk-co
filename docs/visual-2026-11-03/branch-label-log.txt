@@ -1,0 +1,1 @@
+Real long catalogue names remain readable; original branch clipping fails at phone and desktop widths.

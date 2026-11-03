@@ -1,7 +1,7 @@
 import {createRequire} from 'node:module';import{writeFile,mkdir}from'node:fs/promises';import assert from'node:assert/strict';
 const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE_PATH||'/Users/nonarkara/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const base=process.env.PLUB_URL||'http://localhost:4186';if(!/^http:\/\/(localhost|127\.0\.0\.1):/.test(base))throw new Error('Local write tests only.');
-const out=new URL('../docs/notebook-2026-11-03/',import.meta.url);await mkdir(out,{recursive:true});
+const out=new URL(process.env.PLUB_EVIDENCE_URL||'../docs/notebook-2026-11-03/',import.meta.url);await mkdir(out,{recursive:true});
 const b=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'}),results=[];let key,accountId;
 async function ready(p){await p.goto(base);await p.waitForFunction(()=>typeof state!=='undefined'&&state.byId.size>10000,{},{timeout:120000});await p.evaluate(()=>document.fonts.ready)}
 try{

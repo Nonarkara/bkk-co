@@ -1,0 +1,42 @@
+/* One intact character source, compact reading groups, no reserved empty art column. */
+.guide-art { display:block; flex:none; object-fit:contain; }
+.guide-portrait { object-fit:cover; object-position:center top; }
+.plub-say p { min-width:0; flex:1; padding-block:6px; }
+.notebook-sheet .plub-say { background:none; padding:0; }
+.sheet header .close { flex:none; }
+.hood-sheet h1 .th { display:inline; margin:0 0 0 8px; }
+.hood-intro { margin-top:6px; }
+.hood-mood { display:flex; align-items:baseline; flex-wrap:wrap; gap:2px 8px; }
+.hood-mood .for { font-size:var(--big); font-weight:500; }
+.hood-mood [lang=th] { color:var(--muted); }
+.hood-intro .plub-say { margin-top:4px; border-bottom:0; }
+.hood-intro [data-mood] { display:block; text-align:left; margin-top:2px; }
+.hop-guide { margin-top:8px; }
+.hop-guide summary { min-height:32px; cursor:pointer; }
+.hop-sheet .hop-starts { margin-top:6px; }
+.hop-sheet .walk li { min-height:36px; }
+.discovery-entry { margin-top:6px; }
+.discovery-tabs { display:flex; flex-wrap:wrap; gap:4px 12px; margin:6px 0; }
+.discovery-tabs button { min-height:32px; padding:2px 0; border-bottom:2px solid transparent; }
+.discovery-tabs [aria-pressed=true] { border-color:var(--ink); font-weight:600; }
+.discovery-intro { max-width:65ch; margin:6px 0; }
+.discovery-list { list-style:none; padding:0; }
+.discovery-list li { padding:8px 0; border-top:1px solid var(--rule); }
+.discovery-row { display:flex; align-items:baseline; flex-wrap:wrap; gap:4px 8px; }
+.discovery-row b { font-weight:500; }
+.discovery-row .area { font-size:var(--micro); color:var(--muted); }
+.discovery-list .sources { font-size:var(--micro); color:var(--muted); overflow-wrap:anywhere; }
+.discovery-list .linkish { padding:0; text-align:left; }
+.discovery-method { margin:8px 0; }
+.discovery-method summary { min-height:32px; cursor:pointer; }
+.discovery-search { display:block; margin:6px 0; }
+.discovery-search input { width:100%; min-height:36px; font:inherit; padding:6px; border:1px solid var(--rule); color:var(--ink); border-radius:0; background:var(--paper); }
+.discovery-more { min-height:36px; text-decoration:underline; padding:4px 0; }
+.discovery-sheet p { max-width:65ch; }
+/* Statistics are short comparison records, not equal-height cards. */
+.hood-stats { grid-template-columns:minmax(0,1fr); gap:6px; }
+.hood-stats > .stat { display:grid; grid-template-columns:4.6em minmax(0,1fr); align-items:baseline; gap:8px; }
+.hood-stats > .stat .micro { letter-spacing:.02em; text-transform:none; }
+/* A branch suffix is decision information; never hide it behind an ellipsis. */
+.hits .nm,.list .nm { white-space:normal; overflow:visible; text-overflow:clip; overflow-wrap:anywhere; }
+.hits .meta,.list .meta { flex:none; }
