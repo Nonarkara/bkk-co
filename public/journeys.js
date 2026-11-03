@@ -351,8 +351,8 @@
   }
   const badge = (key, f) =>
     `<span class="${f.value === true ? 'known' : f.value === false ? 'no' : 'unknown'}" data-facility="${key}" data-value="${f.value === null ? 'unknown' : f.value}">${f.value === true ? '✓' : f.value === false ? '×' : '?'} ${{ wifi: 'Wi-Fi', power: 'Outlets', parking: 'Parking' }[key]}</span>`;
-  function sourceFacts(p, f) {
-    const record = data.evidence.get(p.id),
+  function sourceFacts(p, f, context = data) {
+    const record = context.evidence.get(p.id),
       bits = ['wifi', 'power', 'parking', 'work_allowed']
         .filter((k) => f[k]?.value !== null || (k === 'parking' && f[k]?.source_ids.length))
         .map(
@@ -369,7 +369,7 @@
     );
     const links = [...ids]
       .map((id) => {
-        const s = data.raw.evidence.sources[id];
+        const s = context.raw.evidence.sources[id];
         if (s)
           return `<a href="${esc(s.url)}" target="_blank" rel="noopener nofollow">${esc(s.publisher)}</a> · ${s.tier === 'editorial' ? 'editorial' : 'operator'} · ${esc(s.updated_at || s.published_at || 'publication date unstated')} · checked ${esc(s.checked_at)}`;
         if (/^[nwr]\d+$/.test(id))
@@ -579,9 +579,9 @@
     }
   }
   function placePanel(p) {
-    if (!data) return '';
-    const f = M.facilities(p, data, state.scores);
-    return `<div class="journey-place-facts">${contextIDs.has(p.id) ? '<button class="linkish" data-work-back>← Back to work spots</button><p>Directions start: ' + esc(choice.mode === 'rail' ? (railOrigin ? name(railOrigin) : 'choose in Maps') : name(choice.origin)) + '</p>' : ''}<div class="journey-facilities">${['wifi', 'power', 'parking'].map((k) => badge(k, f[k])).join('')}</div>${sourceFacts(p, f)}</div>`;
+    const context=data || M.makeData({}, {}, evidence || {});
+    const f = M.facilities(p, context, state.scores);
+    return `<div class="journey-place-facts">${contextIDs.has(p.id) ? '<button class="linkish" data-work-back>← Back to work spots</button><p>Directions start: ' + esc(choice.mode === 'rail' ? (railOrigin ? name(railOrigin) : 'choose in Maps') : name(choice.origin)) + '</p>' : ''}<div class="journey-facilities">${['wifi', 'power', 'parking'].map((k) => badge(k, f[k])).join('')}</div>${sourceFacts(p, f, context)}</div>`;
   }
   document.addEventListener('click', (e) => {
     if (e.target.closest('[data-work-back]')) open();
@@ -595,7 +595,11 @@
     hours: (p) => evidence?.places?.[p.id]?.facts?.hours?.value || p.hours,
     warmEvidence: () =>
       loadEvidence()
-        .then(() => refresh())
+        .then(() => {
+          refresh();
+          const p=state.selected,slot=document.querySelector('.journey-place-facts');
+          if(p&&slot&&!document.querySelector('.been-form'))slot.outerHTML=placePanel(p);
+        })
         .catch(() => {}),
     get data() {
       return data;

@@ -35,8 +35,10 @@ def main():
     catalogues=[ROOT/'public/data'/f'places-{s}.json' for s in ('work','food')]
     fingerprints={p.name:contract.sha(p) for p in catalogues}
     all_rows=[r for p in catalogues for r in json.loads(p.read_text())['rows']]
-    assert len(all_rows)==57538 and len({r[0] for r in all_rows})==57538
-    cafes=sorted((r for r in all_rows if r[2]==0),key=lambda r:r[0]); assert len(cafes)==20235
+    catalogue_manifest=json.loads((ROOT/'public/data/manifest.json').read_text())
+    expected=catalogue_manifest['total']
+    assert len(all_rows)==expected and len({r[0] for r in all_rows})==expected
+    cafes=sorted((r for r in all_rows if r[2]==0),key=lambda r:r[0]); assert len(cafes)==catalogue_manifest['kinds']['cafe']
     points=[transform(FORWARD,Point(r[4],r[3])) for r in cafes]; tree=STRtree(points)
     joins=json.loads((ROOT/'public/data/atlas-places.json').read_text())
     district_by_place={r[0]:r[1] for r in joins['rows']}

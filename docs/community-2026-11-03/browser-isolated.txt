@@ -1,0 +1,124 @@
+
+ ⛅️ wrangler 4.81.1 (update available 4.157.0)
+──────────────────────────────────────────────
+Resource location: local 
+
+Use --remote if you want to access the remote instance.
+
+🌀 Executing on local database bkk-co (543b6326-c7a5-410d-aa30-81d6a92ea4a0) from ../../../../../../../var/folders/4h/tw90t1j92mq90w5j_d9fy7rh0000gn/T/plub-api-OR8CbQ/v3/d1:
+🌀 To execute on your remote database, add a --remote flag to your wrangler command.
+🚣 3 commands executed successfully.
+[
+  {
+    "results": [],
+    "success": true,
+    "meta": {
+      "duration": 0
+    }
+  },
+  {
+    "results": [],
+    "success": true,
+    "meta": {
+      "duration": 1
+    }
+  },
+  {
+    "results": [],
+    "success": true,
+    "meta": {
+      "duration": 0
+    }
+  }
+]
+
+ ⛅️ wrangler 4.81.1 (update available 4.157.0)
+──────────────────────────────────────────────
+Resource location: local 
+
+Use --remote if you want to access the remote instance.
+
+🌀 Executing on local database bkk-co (543b6326-c7a5-410d-aa30-81d6a92ea4a0) from ../../../../../../../var/folders/4h/tw90t1j92mq90w5j_d9fy7rh0000gn/T/plub-api-OR8CbQ/v3/d1:
+🌀 To execute on your remote database, add a --remote flag to your wrangler command.
+🚣 8 commands executed successfully.
+[
+  {
+    "results": [],
+    "success": true,
+    "meta": {
+      "duration": 0
+    }
+  },
+  {
+    "results": [],
+    "success": true,
+    "meta": {
+      "duration": 0
+    }
+  },
+  {
+    "results": [],
+    "success": true,
+    "meta": {
+      "duration": 0
+    }
+  },
+  {
+    "results": [],
+    "success": true,
+    "meta": {
+      "duration": 1
+    }
+  },
+  {
+    "results": [],
+    "success": true,
+    "meta": {
+      "duration": 0
+    }
+  },
+  {
+    "results": [],
+    "success": true,
+    "meta": {
+      "duration": 0
+    }
+  },
+  {
+    "results": [],
+    "success": true,
+    "meta": {
+      "duration": 0
+    }
+  },
+  {
+    "results": [],
+    "success": true,
+    "meta": {
+      "duration": 0
+    }
+  }
+]
+Notebook browser flows pass at390/1024/1440/1280; cross-device restore and cloud timeout pass.
+Start 390
+DOM 390
+Data 390
+Fonts 390
+Start 1024
+DOM 1024
+Data 1024
+Fonts 1024
+Start 1440
+DOM 1440
+Data 1440
+Fonts 1440
+Start 360
+DOM 360
+Data 360
+Fonts 360
+Start 1280
+DOM 1280
+Data 1280
+Fonts 1280
+after: exact missing-place search/Maps-link recovery, symbols, source-backed features, sharing, private contribution and compact actions at5widths pass.
+Disposable test state retained at /var/folders/4h/tw90t1j92mq90w5j_d9fy7rh0000gn/T/plub-api-OR8CbQ; immutable source at /var/folders/4h/tw90t1j92mq90w5j_d9fy7rh0000gn/T/plub-api-source-ml2Rk9

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "checked_at": "2026-11-03",
+  "inclusions": [
+    {
+      "source_id": "825832f9-4e7f-441a-af0e-eb4b86f65e6d",
+      "place_id": "o825832f94e7f",
+      "source_release": "2026-10-21.0",
+      "source_name": "Meet's space Cafe",
+      "source_category": "restaurant",
+      "source_taxonomy": "halal_restaurant",
+      "reviewed_kind": "cafe",
+      "reason": "Named café in the pinned open source, independently identified as a café in its operator's Ramkhamhaeng 53 posts and by Non's visit on 2026-11-03. Source restaurant classification put its 0.775496 confidence below the restaurant 0.8 floor. Reviewed café classification passes the existing cafe 0.6 floor; no global threshold is lowered.",
+      "visited_by": "Non",
+      "visited_at": "2026-11-03",
+      "coordinates": "Original Overture POINT geometry, never the Google URL or address geocoding.",
+      "sources": [
+        {
+          "url": "https://www.lemon8-app.com/@meets.space.cafe/7524259820657000977?region=th",
+          "publisher": "meet’s space cafe",
+          "published_at": "2025-07-07",
+          "basis": "Operator's first-person founder post identifies a café in Ramkhamhaeng 53. No Wi-Fi, outlet, parking or opening-hour claims imported."
+        },
+        {
+          "url": "https://www.smemarketingcenter.com/blog/9132/10-%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%B2%E0%B9%80%E0%B8%9F%E0%B9%88-%E0%B8%99%E0%B8%B1%E0%B9%88%E0%B8%87%E0%B8%8A%E0%B8%B4%E0%B8%A5%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%84%E0%B8%B3%E0%B9%81%E0%B8%AB%E0%B8%87-%E0%B8%9B%E0%B8%B5-2026",
+          "publisher": "SME Marketing Center",
+          "updated_at": "2026-08-18",
+          "basis": "Exact café name, Ramkhamhaeng locality and phone 097-2234003 match the pinned Overture record. This is identity evidence, not a quality/popularity score."
+        }
+      ]
+    }
+  ]
+}

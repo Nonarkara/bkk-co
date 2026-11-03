@@ -1,0 +1,138 @@
+{
+  "checked_at": "2026-11-03",
+  "source_release": "2026-10-21.0",
+  "new_place_id": "o825832f94e7f",
+  "conservation": {
+    "places-work.json": {
+      "original_rows": 20720,
+      "current_rows": 20721,
+      "originals_identical": true
+    },
+    "places-food.json": {
+      "original_rows": 36818,
+      "current_rows": 36818,
+      "originals_identical": true
+    },
+    "atlas-places.json": {
+      "original_rows": 57538,
+      "current_rows": 57539,
+      "originals_identical": true
+    },
+    "journey-places.json": {
+      "original_rows": 20720,
+      "current_rows": 20721,
+      "originals_identical": true
+    }
+  },
+  "street_features_identical": 308,
+  "files": {
+    "data/places-work.json": {
+      "bytes": 1789855,
+      "sha256": "0bb9a767b51606ee5a785bf441daefe387ea50b377ff847dcd747e18296ebc30"
+    },
+    "data/places-food.json": {
+      "bytes": 3779251,
+      "sha256": "df43c22e5ea54a151e25c7abdda8bc6ae876114df5a5da9755625749428df29a"
+    },
+    "data/manifest.json": {
+      "bytes": 1645,
+      "sha256": "07c656f439f5e945592a9f1b6dcbc020f00710c43d94c471d462bfad2a970c1c"
+    },
+    "data/atlas-geo.json": {
+      "bytes": 508566,
+      "sha256": "ac5beba024d07cd714f29271ccdf6d584b6047b4a36ef429ec2844e4e0916ddb"
+    },
+    "data/atlas-places.json": {
+      "bytes": 2606745,
+      "sha256": "93bf104d70cceac6031d44392654aed7757ea41d0345088d9d3c65ba5c81da9a"
+    },
+    "data/atlas-streets.json": {
+      "bytes": 199979,
+      "sha256": "d37311741da63f0641237566a4750ebdc379c4bdabc36b4eb45b0af172ea6430"
+    },
+    "data/journey-geo.json": {
+      "bytes": 425719,
+      "sha256": "14cb3adf1e25c3731821522392663d94c220f72c2d87a339256bdb35c814e184"
+    },
+    "data/journey-places.json": {
+      "bytes": 2114385,
+      "sha256": "5c5a5c6ce44ec89f2e8b9381932d301f2f2bbd50b0a2add6dec4dbc96b8ee04b"
+    },
+    "data/atlas-evidence.json": {
+      "bytes": 44616,
+      "sha256": "aadb787e2ed79c88d158c966224942203b254bdb22afc89b4eefbd06e9f573d8"
+    }
+  },
+  "source_archives": [
+    {
+      "url": "https://www.bkmagazine.com/restaurant/hong-sieng-kong/",
+      "status": 200,
+      "checked_at": "2026-11-03",
+      "sha256": "d1f49552c2c83bb82e5449bc0ab8ac3b6710dfa5b4f68c628d58878e851da0e0",
+      "bytes": 69696
+    },
+    {
+      "url": "https://www.lemon8-app.com/robots.txt",
+      "status": 200,
+      "checked_at": "2026-11-03",
+      "sha256": "ab9fabea53190c3018f5cd1eb37d39c7e39409d2bcd9559b606a58511f7d0d38",
+      "bytes": 401
+    },
+    {
+      "url": "https://www.bkmagazine.com/robots.txt",
+      "status": 200,
+      "checked_at": "2026-11-03",
+      "sha256": "17db465a299d74e2d0507b90f219dff560fadde2e7729ab601f21d3aaaefc6fe",
+      "bytes": 164
+    },
+    {
+      "url": "https://www.thailandtravel.or.jp/robots.txt",
+      "status": 200,
+      "checked_at": "2026-11-03",
+      "sha256": "acce8507a11fb21662de8709f80479e91a1109f3cfe430b2f8bbe89ef54896c5",
+      "bytes": 235
+    },
+    {
+      "url": "https://www.smemarketingcenter.com/robots.txt",
+      "status": 200,
+      "checked_at": "2026-11-03",
+      "sha256": "97ca69bb43bde4682975edcf6ca1838da3c03db3e8715fa94e39e3ca1834efc7",
+      "bytes": 119
+    },
+    {
+      "url": "https://www.thailandtravel.or.jp/mother-roaster/",
+      "status": 200,
+      "checked_at": "2026-11-03",
+      "sha256": "177fdba6424f10cac13d349a44da6bcf246e82dcf7390425edb45c16e58485f6",
+      "bytes": 142119
+    },
+    {
+      "url": "https://www.smemarketingcenter.com/blog/9132/10-%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%B2%E0%B9%80%E0%B8%9F%E0%B9%88-%E0%B8%99%E0%B8%B1%E0%B9%88%E0%B8%87%E0%B8%8A%E0%B8%B4%E0%B8%A5%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%84%E0%B8%B3%E0%B9%81%E0%B8%AB%E0%B8%87-%E0%B8%9B%E0%B8%B5-2026",
+      "status": 200,
+      "checked_at": "2026-11-03",
+      "sha256": "179393f64f8b4e22deb48dc5158b763ac5b896865919b33f0bde1de701d0599f",
+      "bytes": 835117
+    },
+    {
+      "url": "https://www.lemon8-app.com/@meets.space.cafe/7524259820657000977?region=th",
+      "status": 200,
+      "checked_at": "2026-11-03",
+      "sha256": "3ae1628fc79c6122801b69669ed5c9103b4fac53bd781f49fc28cd2c69a280a8",
+      "bytes": 1544116
+    }
+  ],
+  "isolated_full_rebuild": {
+    "result": "PASS",
+    "total": 57539,
+    "files": {
+      "work": {
+        "bytes": 1789855,
+        "sha256": "0bb9a767b51606ee5a785bf441daefe387ea50b377ff847dcd747e18296ebc30"
+      },
+      "food": {
+        "bytes": 3779251,
+        "sha256": "df43c22e5ea54a151e25c7abdda8bc6ae876114df5a5da9755625749428df29a"
+      }
+    }
+  }
+}

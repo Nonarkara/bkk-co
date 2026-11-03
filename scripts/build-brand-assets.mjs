@@ -3,7 +3,7 @@ import{createRequire}from'node:module';import{readFile,writeFile,mkdir}from'node
 const{chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE_PATH||'/Users/nonarkara/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const base=process.env.PLUB_URL||'http://localhost:43827',root=new URL('../public/',import.meta.url),art='data:image/png;base64,'+(await readFile(new URL('plub/nong-plub.png',root))).toString('base64');
 const b=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
-try{const p=await b.newPage();await p.goto(base);await p.waitForFunction(()=>state.byId.size===57538,{},{timeout:120000});await p.evaluate(()=>document.fonts.ready);
+try{const p=await b.newPage();await p.goto(base);await p.waitForFunction(()=>state.byId.size===57539,{},{timeout:120000});await p.evaluate(()=>document.fonts.ready);
 const assets=await p.evaluate(async art=>{
  await hoodsReady;const img=new Image();img.src=art;await img.decode();const out=[];
  for(const n of[192,512]){const c=document.createElement('canvas');c.width=c.height=n;const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,n,n);const h=n*.88,w=h*img.naturalWidth/img.naturalHeight;g.drawImage(img,(n-w)/2,n*.06,w,h);out.push({path:`icons/plub-${n}.png`,url:c.toDataURL('image/png')})}

@@ -230,7 +230,7 @@ function row(p, key = `✦${p.idx}`) {
     p.flags & F.WIFI ? '<span title="Wi-Fi listed">≋</span>' : '',
     s ? `<span title="Visitor ratings">★${s.n}</span>` : '',
   ].join(' ');
-  return `<li data-id="${esc(p.id)}" role="option"><i class="dot ${p.k}"></i><span class="nm">${esc(p.n)}</span>` +
+  return `<li data-id="${esc(p.id)}" role="option" aria-label="${esc(p.n + ' · ' + KIND_LABEL[p.k])}">${PlaceTools.icon(p)}<span class="nm">${esc(p.n)}</span>` +
     `<span class="meta">${tail}</span><span class="idx">${key}</span></li>`;
 }
 
@@ -256,12 +256,12 @@ function setListOpen(on) {
 // ---------- search ----------
 let hitIdx = -1;
 $('#q').addEventListener('input', () => {
-  const q = $('#q').value.trim().toLowerCase();
+  const q = PlaceTools.normalize(PlaceTools.query($('#q').value));
   const hits = $('#hits');
   if (q.length < 2) { hits.innerHTML = moodHits(); hits.hidden = false; return; }
   const starts = [], has = [];
   for (const p of state.places) {
-    if (p.low.startsWith(q)) starts.push(p); else if (p.low.includes(q)) has.push(p);
+    if (PlaceTools.normalize(p.n).startsWith(q)) starts.push(p); else if (PlaceTools.matches(p, q)) has.push(p);
     if (starts.length >= 40) break;
   }
   // best first, nearest on ties: what people mean by "the good one near here"
@@ -312,7 +312,7 @@ function openSheet(html, { place = false } = {}) {
   setListOpen(false);
   $('#hits').hidden = true;
   const sheet = $('#sheet');
-  sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet','atlas-sheet','journey-sheet');
+  sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet','atlas-sheet','journey-sheet','featured-sheet','recommend-sheet','community-sheet');
   sheet.hidden = false;
   sheet.innerHTML = html;
   const heading = sheet.querySelector('h1');
@@ -363,15 +363,16 @@ async function select(p, fly) {
   const padding = { top: 40, bottom: isPhone() ? $('#sheet').offsetHeight + 24 : 40, left: 40, right: 40 };
   const view = { center: [p.x, p.y], zoom: fly ? Math.max(map.getZoom(), 16.5) : map.getZoom(), padding };
   fly === 'jump' ? map.jumpTo(view) : map.flyTo({ ...view, speed: 1.6 }); // shared links land, no flight
+  const generation=sheetGeneration;
   const [d, visits] = await Promise.all([cellDetail(p), Passport.forPlace(p.id).catch(() => [])]);
-  renderSheet(p, d, visits);
+  if(generation===sheetGeneration)renderSheet(p, d, visits);
 }
 
 function rawValue(key, p, d) {
   if (!d.loaded && ['A', 'S', 'F'].includes(key)) return '…';
   const m = d.m || {};
   return {
-    A: m.walk != null ? `~${Math.max(1, Math.round(m.walk / 80))} min to rail (straight line)` : 'walk to rail',
+    A: m.walk != null ? `${fmt(m.walk)} m to mapped rail point (straight line)` : 'walk to rail',
     S: m.scene != null ? `${m.scene} third places within 250 m` : 'nearby third places',
     C: p.flags & F.CHAIN ? 'chain or brand' : 'independent',
     F: m.sources != null ? `listed by ${m.sources} sources` : 'datasets and channels',
@@ -409,8 +410,9 @@ function renderSheet(p, d, visits) {
       <h1>${esc(p.n)}${d.th ? `<span class="th" lang="th">${esc(d.th)}</span>` : ''}</h1>
       <button class="close" aria-label="Close">×</button>
     </header>
-    <div class="kindline"><i class="dot ${p.k}"></i>${KIND_LABEL[p.k]}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>
+    <div class="kindline">${PlaceTools.symbol(p.k)}${KIND_LABEL[p.k]}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>
     <section class="been place-actions"><button type="button" class="send been-open">✓ I've been here</button><a href="${esc(window.WorkFinder?.directions(p)||`https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}`)}" target="_blank" rel="noopener">Directions ↗</a></section>
+    <nav class="place-social" aria-label="Place contributions"><button type="button" data-place-community>Notes &amp; photos</button><button type="button" data-place-recommend>Add recommendation</button><button type="button" class="share">Share place</button></nav>
     ${window.WorkFinder?.placePanel(p)||''}
     ${Atlas.facts(p)}
     <section class="ggp">
@@ -426,20 +428,17 @@ function renderSheet(p, d, visits) {
     </section>
     <nav class="links">
       ${['cafe', 'restaurant'].includes(p.k) ? `<a href="https://www.wongnai.com/restaurants?q=${encodeURIComponent(p.n)}" target="_blank" rel="noopener nofollow" title="Photos and reviews on Wongnai, opens their site">Photos &amp; reviews ↗ Wongnai</a>` : ''}
-      <button type="button" class="share">Share</button>
     </nav>
     <p class="src">Source: ${src}</p>
+    ${d.provenance ? `<details class="src reviewed-source"><summary>Reviewed café classification · original open-data location</summary><p>Overture Maps ${esc(d.provenance.release)} · ${esc(d.provenance.licence)} · source ID ${esc(d.provenance.sourceID)}. The source called this a ${esc(d.provenance.sourceTaxonomy)}; the café identity was checked ${esc(d.provenance.checkedAt)}. Original source coordinates retained. Wi-Fi, outlets and parking remain unconfirmed.</p>${(d.provenance.sources||[]).map(v=>`<p><a href="${esc(safeLink(v.url))}" target="_blank" rel="noopener nofollow">${esc(v.publisher)}</a> · ${esc(v.published_at||v.updated_at||'date unstated')}</p>`).join('')}</details>` : ''}
     ${d.enrichment ? `<details class="src enrichment-source"><summary>Added ${Object.keys(d.enrichment).map(k=>k==='addr'?'address':'phone').join(' &amp; ')} · AllThePlaces · snapshot ${esc(Object.values(d.enrichment)[0].asOf)}</summary><p>CC0 Café Amazon export, published at the end of the 24–31 October run; venue details may have changed. <a href="https://alltheplaces-data.openaddresses.io/runs/2026-10-24-13-32-37/output/cafe_amazon.geojson" target="_blank" rel="noopener">Download source</a>. ${Object.values(d.enrichment).map(v=>`Branch ${esc(v.ref)} · ${esc(v.branch)} · record ${esc(v.id)} · matched within ${esc(v.distanceM)} m`).filter((v,i,a)=>a.indexOf(v)===i).join('; ')}</p></details>` : ''}`, { place:true });
 
   sheet.querySelector('[data-hood]')?.addEventListener('click', e => window.openHood?.(e.target.dataset.hood));
   sheet.querySelector('.been-open').addEventListener('click', e => window.beenForm?.(p, e.target, () => select(p, false)));
   window.bindMoments?.(sheet);
-  sheet.querySelector('.share').onclick = async () => {
-    const url = location.href;
-    if (navigator.share) { try { await navigator.share({ title: p.n, url }); } catch { /* cancelled */ } return; }
-    await navigator.clipboard?.writeText(url);
-    sheet.querySelector('.share').textContent = 'Link copied';
-  };
+  sheet.querySelector('[data-place-community]').onclick = () => window.Notebook?.showCommunity(p);
+  sheet.querySelector('[data-place-recommend]').onclick = () => window.Notebook?.recommend(p);
+  sheet.querySelector('.share').onclick = () => PlaceTools.share({title:p.n,url:new URL('?p='+encodeURIComponent(p.id),location.origin).href},sheet);
 }
 
 function openFromUrl() {
@@ -491,15 +490,17 @@ document.addEventListener('click', e => {
   if (b) { setMood(b.dataset.mood === state.mood ? null : b.dataset.mood); return; }
   if (e.target.closest('.mood-off')) setMood(null);
   const act = e.target.closest('[data-act]');
-  if (act) { $('#hits').hidden = true; if(act.dataset.act==='discovery')window.openDiscovery?.();else act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.(); }
+  if (act) { $('#hits').hidden = true; if(act.dataset.act==='work')window.WorkFinder?.open();else if(act.dataset.act==='featured')window.openFeatured?.();else if(act.dataset.act==='discovery')window.openDiscovery?.();else act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.(); }
   const h = e.target.closest('#mood [data-hood]');
   if (h) window.openHood?.(h.dataset.hood);
 });
 
 // an empty search box offers the moods: most people search by purpose before they know a name
-const moodHits = () => `<li data-act="discovery" role="option"><span class="nm"><b>50 + 50 cafés</b></span><span class="meta">editorial · discussed</span></li><li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
+const moodHits = () => `<li data-act="featured" role="option"><span class="nm"><b>Featured places</b></span><span class="meta">verified branches · sources</span></li><li data-act="work" role="option"><span class="nm"><b>Find a work spot</b></span><span class="meta">Drive · BTS · nearby</span></li><li data-act="discovery" role="option"><span class="nm"><b>50 + 50 cafés</b></span><span class="meta">editorial · discussed</span></li><li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
   <li data-act="hop" role="option"><span class="nm"><b>Plan a café hop</b></span><span class="meta">5 stops on foot</span></li>` + Object.entries(MOODS).map(([k, m]) =>
   `<li data-mood="${k}" role="option"><span class="mood-dot" aria-hidden="true">◐</span><span class="nm">${esc(m.label)}</span><span class="meta">citywide</span></li>`).join('');
 $('#q').addEventListener('focus', () => {
   if ($('#q').value.trim().length < 2) { $('#hits').innerHTML = moodHits(); $('#hits').hidden = false; }
 });
+
+for (const b of document.querySelectorAll('.chips [data-kind]')) b.querySelector('.dot')?.replaceWith(document.createRange().createContextualFragment(PlaceTools.symbol(b.dataset.kind)));

@@ -1,0 +1,530 @@
+[
+  {
+    "width": 390,
+    "phase": "map",
+    "geometry": {
+      "width": 390,
+      "bodyWidth": 390,
+      "chrome": 102,
+      "map": {
+        "x": 0,
+        "y": 102,
+        "w": 390,
+        "h": 742,
+        "bottom": 844
+      },
+      "sheet": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bottom": 0
+      },
+      "actions": null,
+      "social": null,
+      "firstFeatured": null,
+      "firstFeaturedActions": null,
+      "bleed": false
+    }
+  },
+  {
+    "width": 390,
+    "phase": "place",
+    "geometry": {
+      "width": 390,
+      "bodyWidth": 390,
+      "chrome": 102,
+      "map": {
+        "x": 0,
+        "y": 102,
+        "w": 390,
+        "h": 742,
+        "bottom": 844
+      },
+      "sheet": {
+        "x": 0,
+        "y": 354.484375,
+        "w": 390,
+        "h": 489.515625,
+        "bottom": 844
+      },
+      "actions": {
+        "x": 12,
+        "y": 440.078125,
+        "w": 366,
+        "h": 55,
+        "bottom": 495.078125
+      },
+      "social": {
+        "x": 12,
+        "y": 495.078125,
+        "w": 366,
+        "h": 45,
+        "bottom": 540.078125
+      },
+      "firstFeatured": null,
+      "firstFeaturedActions": null,
+      "bleed": false
+    }
+  },
+  {
+    "width": 390,
+    "phase": "saved",
+    "geometry": {
+      "width": 390,
+      "bodyWidth": 390,
+      "chrome": 102,
+      "map": {
+        "x": 0,
+        "y": 102,
+        "w": 390,
+        "h": 742,
+        "bottom": 844
+      },
+      "sheet": {
+        "x": 0,
+        "y": 710.0625,
+        "w": 390,
+        "h": 133.9375,
+        "bottom": 844
+      },
+      "actions": null,
+      "social": null,
+      "firstFeatured": null,
+      "firstFeaturedActions": null,
+      "bleed": false
+    }
+  },
+  {
+    "width": 390,
+    "phase": "featured",
+    "geometry": {
+      "width": 390,
+      "bodyWidth": 390,
+      "chrome": 102,
+      "map": {
+        "x": 0,
+        "y": 102,
+        "w": 390,
+        "h": 742,
+        "bottom": 844
+      },
+      "sheet": {
+        "x": 0,
+        "y": 354.484375,
+        "w": 390,
+        "h": 489.515625,
+        "bottom": 844
+      },
+      "actions": null,
+      "social": null,
+      "firstFeatured": {
+        "x": 12,
+        "y": 508.875,
+        "w": 366,
+        "h": 142.59375,
+        "bottom": 651.46875
+      },
+      "firstFeaturedActions": {
+        "x": 48,
+        "y": 599.46875,
+        "w": 330,
+        "h": 44,
+        "bottom": 643.46875
+      },
+      "bleed": false
+    }
+  },
+  {
+    "width": 390,
+    "phase": "featured30px",
+    "geometry": {
+      "width": 390,
+      "bodyWidth": 390,
+      "chrome": 128.5,
+      "map": {
+        "x": 0,
+        "y": 128.5,
+        "w": 390,
+        "h": 715.5,
+        "bottom": 844
+      },
+      "sheet": {
+        "x": 0,
+        "y": 354.484375,
+        "w": 390,
+        "h": 489.515625,
+        "bottom": 844
+      },
+      "actions": null,
+      "social": null,
+      "firstFeatured": {
+        "x": 12,
+        "y": 552.875,
+        "w": 366,
+        "h": 186.59375,
+        "bottom": 739.46875
+      },
+      "firstFeaturedActions": {
+        "x": 48,
+        "y": 643.46875,
+        "w": 330,
+        "h": 88,
+        "bottom": 731.46875
+      },
+      "bleed": false
+    }
+  },
+  {
+    "width": 1024,
+    "phase": "map",
+    "geometry": {
+      "width": 1024,
+      "bodyWidth": 1024,
+      "chrome": 102,
+      "map": {
+        "x": 360,
+        "y": 0,
+        "w": 664,
+        "h": 900,
+        "bottom": 900
+      },
+      "sheet": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bottom": 0
+      },
+      "actions": null,
+      "social": null,
+      "firstFeatured": null,
+      "firstFeaturedActions": null,
+      "bleed": false
+    }
+  },
+  {
+    "width": 1024,
+    "phase": "place",
+    "geometry": {
+      "width": 1024,
+      "bodyWidth": 1024,
+      "chrome": 102,
+      "map": {
+        "x": 360,
+        "y": 0,
+        "w": 664,
+        "h": 900,
+        "bottom": 900
+      },
+      "sheet": {
+        "x": 0,
+        "y": 102,
+        "w": 359,
+        "h": 622.4375,
+        "bottom": 724.4375
+      },
+      "actions": {
+        "x": 12,
+        "y": 185.59375,
+        "w": 335,
+        "h": 55,
+        "bottom": 240.59375
+      },
+      "social": {
+        "x": 12,
+        "y": 240.59375,
+        "w": 335,
+        "h": 89,
+        "bottom": 329.59375
+      },
+      "firstFeatured": null,
+      "firstFeaturedActions": null,
+      "bleed": false
+    }
+  },
+  {
+    "width": 1024,
+    "phase": "saved",
+    "geometry": {
+      "width": 1024,
+      "bodyWidth": 1024,
+      "chrome": 102,
+      "map": {
+        "x": 360,
+        "y": 0,
+        "w": 664,
+        "h": 900,
+        "bottom": 900
+      },
+      "sheet": {
+        "x": 0,
+        "y": 102,
+        "w": 359,
+        "h": 133.9375,
+        "bottom": 235.9375
+      },
+      "actions": null,
+      "social": null,
+      "firstFeatured": null,
+      "firstFeaturedActions": null,
+      "bleed": false
+    }
+  },
+  {
+    "width": 1024,
+    "phase": "featured",
+    "geometry": {
+      "width": 1024,
+      "bodyWidth": 1024,
+      "chrome": 102,
+      "map": {
+        "x": 360,
+        "y": 0,
+        "w": 664,
+        "h": 900,
+        "bottom": 900
+      },
+      "sheet": {
+        "x": 0,
+        "y": 102,
+        "w": 359,
+        "h": 622.4375,
+        "bottom": 724.4375
+      },
+      "actions": null,
+      "social": null,
+      "firstFeatured": {
+        "x": 12,
+        "y": 254.390625,
+        "w": 335,
+        "h": 142.59375,
+        "bottom": 396.984375
+      },
+      "firstFeaturedActions": {
+        "x": 48,
+        "y": 344.984375,
+        "w": 299,
+        "h": 44,
+        "bottom": 388.984375
+      },
+      "bleed": false
+    }
+  },
+  {
+    "width": 1024,
+    "phase": "featured30px",
+    "geometry": {
+      "width": 1024,
+      "bodyWidth": 1024,
+      "chrome": 183,
+      "map": {
+        "x": 360,
+        "y": 0,
+        "w": 664,
+        "h": 900,
+        "bottom": 900
+      },
+      "sheet": {
+        "x": 0,
+        "y": 183,
+        "w": 359,
+        "h": 559.25,
+        "bottom": 742.25
+      },
+      "actions": null,
+      "social": null,
+      "firstFeatured": {
+        "x": 12,
+        "y": 379.390625,
+        "w": 335,
+        "h": 186.59375,
+        "bottom": 565.984375
+      },
+      "firstFeaturedActions": {
+        "x": 48,
+        "y": 469.984375,
+        "w": 299,
+        "h": 88,
+        "bottom": 557.984375
+      },
+      "bleed": false
+    }
+  },
+  {
+    "width": 1440,
+    "phase": "map",
+    "geometry": {
+      "width": 1440,
+      "bodyWidth": 1440,
+      "chrome": 102,
+      "map": {
+        "x": 360,
+        "y": 0,
+        "w": 1080,
+        "h": 900,
+        "bottom": 900
+      },
+      "sheet": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bottom": 0
+      },
+      "actions": null,
+      "social": null,
+      "firstFeatured": null,
+      "firstFeaturedActions": null,
+      "bleed": false
+    }
+  },
+  {
+    "width": 1440,
+    "phase": "place",
+    "geometry": {
+      "width": 1440,
+      "bodyWidth": 1440,
+      "chrome": 102,
+      "map": {
+        "x": 360,
+        "y": 0,
+        "w": 1080,
+        "h": 900,
+        "bottom": 900
+      },
+      "sheet": {
+        "x": 0,
+        "y": 102,
+        "w": 359,
+        "h": 622.4375,
+        "bottom": 724.4375
+      },
+      "actions": {
+        "x": 12,
+        "y": 185.59375,
+        "w": 335,
+        "h": 55,
+        "bottom": 240.59375
+      },
+      "social": {
+        "x": 12,
+        "y": 240.59375,
+        "w": 335,
+        "h": 89,
+        "bottom": 329.59375
+      },
+      "firstFeatured": null,
+      "firstFeaturedActions": null,
+      "bleed": false
+    }
+  },
+  {
+    "width": 1440,
+    "phase": "saved",
+    "geometry": {
+      "width": 1440,
+      "bodyWidth": 1440,
+      "chrome": 102,
+      "map": {
+        "x": 360,
+        "y": 0,
+        "w": 1080,
+        "h": 900,
+        "bottom": 900
+      },
+      "sheet": {
+        "x": 0,
+        "y": 102,
+        "w": 359,
+        "h": 133.9375,
+        "bottom": 235.9375
+      },
+      "actions": null,
+      "social": null,
+      "firstFeatured": null,
+      "firstFeaturedActions": null,
+      "bleed": false
+    }
+  },
+  {
+    "width": 1440,
+    "phase": "featured",
+    "geometry": {
+      "width": 1440,
+      "bodyWidth": 1440,
+      "chrome": 102,
+      "map": {
+        "x": 360,
+        "y": 0,
+        "w": 1080,
+        "h": 900,
+        "bottom": 900
+      },
+      "sheet": {
+        "x": 0,
+        "y": 102,
+        "w": 359,
+        "h": 622.4375,
+        "bottom": 724.4375
+      },
+      "actions": null,
+      "social": null,
+      "firstFeatured": {
+        "x": 12,
+        "y": 254.390625,
+        "w": 335,
+        "h": 142.59375,
+        "bottom": 396.984375
+      },
+      "firstFeaturedActions": {
+        "x": 48,
+        "y": 344.984375,
+        "w": 299,
+        "h": 44,
+        "bottom": 388.984375
+      },
+      "bleed": false
+    }
+  },
+  {
+    "width": 1440,
+    "phase": "featured30px",
+    "geometry": {
+      "width": 1440,
+      "bodyWidth": 1440,
+      "chrome": 183,
+      "map": {
+        "x": 360,
+        "y": 0,
+        "w": 1080,
+        "h": 900,
+        "bottom": 900
+      },
+      "sheet": {
+        "x": 0,
+        "y": 183,
+        "w": 359,
+        "h": 559.25,
+        "bottom": 742.25
+      },
+      "actions": null,
+      "social": null,
+      "firstFeatured": {
+        "x": 12,
+        "y": 379.390625,
+        "w": 335,
+        "h": 186.59375,
+        "bottom": 565.984375
+      },
+      "firstFeaturedActions": {
+        "x": 48,
+        "y": 469.984375,
+        "w": 299,
+        "h": 88,
+        "bottom": 557.984375
+      },
+      "bleed": false
+    }
+  }
+]

@@ -5,14 +5,14 @@ import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),M=require('../public/journey-model.js'),{isOpen}=require('../public/hours.js');
 const load=async p=>JSON.parse(await readFile(new URL('../'+p,import.meta.url),'utf8'));
 let checks=0;const check=(name,fn)=>{fn();checks++};
-const hashes={work:'67fe00fb832aeb49663083b10acc21350c5f93278402c090a530e39554f71395',food:'df43c22e5ea54a151e25c7abdda8bc6ae876114df5a5da9755625749428df29a'};let work;
+const hashes={work:'0bb9a767b51606ee5a785bf441daefe387ea50b377ff847dcd747e18296ebc30',food:'df43c22e5ea54a151e25c7abdda8bc6ae876114df5a5da9755625749428df29a'};let work;
 for(const[name,hash]of Object.entries(hashes)){
  const bytes=await readFile(new URL(`../public/data/places-${name}.json`,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),hash);if(name==='work')work=JSON.parse(bytes);
 }
-const places=work.rows.map(([id,n,k,y,x,flags,g,idx,hours])=>({id,n,k:work.kinds[k],y,x,flags,g,idx,hours}));assert.equal(places.length,20720);
+const places=work.rows.map(([id,n,k,y,x,flags,g,idx,hours])=>({id,n,k:work.kinds[k],y,x,flags,g,idx,hours}));assert.equal(places.length,20721);
 const[geo,join,evidence]=await Promise.all(['public/data/journey-geo.json','public/data/journey-places.json','public/data/journey-evidence.json'].map(load)),actual=M.makeData(geo,join,evidence);
 check('real source references',()=>{
- assert.equal(actual.joinById.size,20720);assert.equal(actual.stationById.size,geo.stations.length);assert.equal(actual.parkingById.size,Object.keys(join.parking).length);
+ assert.equal(actual.joinById.size,20721);assert.equal(actual.stationById.size,geo.stations.length);assert.equal(actual.parkingById.size,Object.keys(join.parking).length);
  assert.strictEqual(actual.raw.geo,geo);assert.strictEqual(actual.raw.join,join);assert.strictEqual(actual.raw.evidence,evidence);
  for(const p of places){const j=actual.joinById.get(p.id);assert(j);assert(actual.stationById.has(j.railID));assert(M.stationEligible(actual.stationById.get(j.railID)),'Builder must join only eligible rail stations');assert(M.stationEligible(actual.stationById.get(j.btsID)),'Builder must join only eligible BTS stations');assert(actual.stationById.get(j.btsID).systems.includes('BTS'));
   for(const[id,d]of[['parkingID','parkingM'],['parkingNotRestrictedID','parkingNotRestrictedM'],['parkingExplicitAccessID','parkingExplicitAccessM']]){

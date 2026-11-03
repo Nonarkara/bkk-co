@@ -30,9 +30,9 @@
   14.1
  ],
  "cellsPerDegree": 20,
- "total": 57538,
+ "total": 57539,
  "kinds": {
-  "cafe": 20235,
+  "cafe": 20236,
   "coworking": 57,
   "library": 428,
   "restaurant": 36818
@@ -40,7 +40,7 @@
  "bySource": {
   "hand": 1,
   "osm": 7379,
-  "overture": 50158
+  "overture": 50159
  },
  "skipped": {
   "osm_unnamed": 956,
@@ -52,12 +52,21 @@
  "hoursTagged": 1558,
  "files": {
   "work": {
-   "bytes": 1789781,
-   "sha256": "67fe00fb832aeb49663083b10acc21350c5f93278402c090a530e39554f71395"
+   "bytes": 1789855,
+   "sha256": "0bb9a767b51606ee5a785bf441daefe387ea50b377ff847dcd747e18296ebc30"
   },
   "food": {
    "bytes": 3779251,
    "sha256": "df43c22e5ea54a151e25c7abdda8bc6ae876114df5a5da9755625749428df29a"
   }
- }
+ },
+ "reviewedInclusions": [
+  {
+   "sourceID": "825832f9-4e7f-441a-af0e-eb4b86f65e6d",
+   "placeID": "o825832f94e7f",
+   "kind": "cafe",
+   "decision": "data/reviewed-inclusions.json",
+   "checkedAt": "2026-11-03"
+  }
+ ]
 }

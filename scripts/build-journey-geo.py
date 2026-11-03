@@ -73,7 +73,9 @@ def display(g):
 def main():
  assert C.sha(C.OSM_PBF,'md5')==C.OSM_MD5
  data=ROOT/'public/data';files=[data/f'places-{s}.json' for s in ('work','food')];hashes={p.name:C.sha(p) for p in files}
- rows=json.loads(files[0].read_text())['rows'];assert len(rows)==20720 and len({r[0] for r in rows})==20720
+ rows=json.loads(files[0].read_text())['rows']
+ expected=sum(n for kind,n in json.loads((data/'manifest.json').read_text())['kinds'].items() if kind!='restaurant')
+ assert len(rows)==expected and len({r[0] for r in rows})==expected
  work_ids={r[0] for r in rows}
  routefile=cache('routes',['r/route=subway,train,light_rail,monorail'],relations=True)
  routes={};member_routes=collections.defaultdict(set)
@@ -180,7 +182,7 @@ def main():
  assert len(DUMP(geo).encode())<=500000
  for name,obj in [('journey-geo.json',geo),('journey-places.json',join)]: (data/name).write_text(DUMP(obj))
  assert all(C.sha(p)==hashes[p.name] for p in files)
- assert len(joins)==20720 and {r[0] for r in joins}==work_ids
+ assert len(joins)==expected and {r[0] for r in joins}==work_ids
  station_ids={s['id'] for s in published_stations}
  for r in joins:
   assert r[1] in station_ids and r[3] in station_ids

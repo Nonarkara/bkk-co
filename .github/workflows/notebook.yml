@@ -10,6 +10,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - run: node test/place-tools.mjs
       - run: node test/check.mjs
       - run: node test/atlas.mjs
       - run: node test/journeys.mjs

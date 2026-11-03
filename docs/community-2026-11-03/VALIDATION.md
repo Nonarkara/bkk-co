@@ -1,0 +1,22 @@
+# Verification · 3 November 2026
+
+Independent local audit: PASS, [REVIEW.md](REVIEW.md). No production writes.
+
+- New `node test/community-browser.mjs`: all5widths390/1024/1440/360/1280 pass against actual local backend. Exact source café, name/curly-apostrophe/token-order/Google-link-name search; category symbols; direct featured branch/source/directions; no horizontal bleed and28pxtext; manualcopy fallback; private device save haszeroAPIwrites; guest create/key and signed-in continuation; preview uploads nothing; explicit publish issuesPUT+POST; own posts visible/removable. Current evidence `after-browser.json` and after*.png.
+- Original `node test/journeys-browser.mjs`: Drive+park/BTS+rail/SiamGPS at360/390/1024/1440, exact directions, work/parking/hours/rail constraints, marker-control clearance/falsifier PASS. Preserved release evidence below journey-regression/.
+- Original `node test/discovery-browser.mjs`: both50entry lists, search, paging, branch recovery, source qualifications and failed-feed retry at5widths PASS; evidence below discovery-regression/.
+- `node scripts/test-notebook-isolated.mjs`:67/67 actual API assertions pass; fresh DB/immutable source snapshot. Isolation/revisions/privacy/consent/moderation/deletion retained. `api-regression.txt`.
+- Catalogue/model/validator, atlas source/geometry/falsifiers, journey model15cases, discovery, notebook dates/races, Bangkoktimezone, enrichment pass; JS syntax checks pass. `test/place-tools.mjs` reconstructs the complete original workfile SHA after removing only the new record, proves all57538oldrows unchanged, retains Thai marks and verifies open-source UUID/geometry and no inferred facilities. CI runs this new conservation test.
+- Independent fixtures: held successful/failed privatePUT cannot publish or overwrite a newer finder; delayed clipboard cannot inject status; missing clipboard gives exact manualcopy; feature focus, feed503/retry and abandoned loads; explicit create/key/preview/publish boundary. See independent-*.json/mjs.
+- Independent MSH budget rejects original fullheight confirmation, parent gate rejects original fullspan primary button;44px changed targets. Short confirmation133.94px, initial phonechrome102px and map742of844px. Full measurements in review.
+- Non-Slop REVIEW3points, noSLOP: inherited archived vector colours (unused on visible surfaces); PNG evidence in docs is notpublicpayload. Six passiveprivacy/status sentences intentionally name the state rather than distract from the privacy boundary. Scanner is advisory, actual UI reviewed separately.
+- Worker dryrun pass. Data ingestion fresh full rebuild reproduces current exact hashes; all3geo builders pass. [DATA.md](DATA.md), data-validation.json.
+
+## Runner corrections / limits
+An early browser attempt raced active data generation; it was rerun after data stabilized. A new test initially waited for a collapsed sign-in input before opening its disclosure; fixed the test ordering. Its terminated process wrote late into the next log's old descriptor, so community-runner-retries.txt contains retry output together; the final process exits0 and complete after-browser.json records all5actual completed flows. Production read-only browser checks are a separate release gate.
+
+Distances/parking/equipment remain evidence-bound; no live traffic guarantee, visitor stars or inferred place location. No real phone hardware, assistive-device user study, live capacity or business-operation inspection claimed. No OAuth/schema/backend changes. Physical café equipment remains unknown for meet's space.
+
+The original notebook browser suite subsequently passed in the immutable test Worker at390/1024/1440/1280, including photo edit/backup/share/remove, device reset, cross-device restore and cloud timeout. The earlier dev-server run's JSON errors came from rewriting assets while Wrangler watched the same tree; they disappear under the fresh isolated runner. `browser-isolated.txt` captures the final full original-notebook and new-community run. Default share card regenerated from57539actual catalogue rows;6other brand artifacts remain byte-identical.
+
+Final honesty correction: the legacy Access row divided raw straight-line rail distance by80to show minutes. It now shows recorded metres to a mapped rail point, explicitly straight-line, while retaining original rawmetrics/index and separate eligible-station journey data. No route/access/walking-time claim is inferred.
