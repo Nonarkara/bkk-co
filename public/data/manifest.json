@@ -68,5 +68,14 @@
    "decision": "data/reviewed-inclusions.json",
    "checkedAt": "2026-11-03"
   }
- ]
+ ],
+ "sidecars": {
+  "talk-media": {
+   "file": "talk-media.json",
+   "role": "enrichment",
+   "bytes": 350162,
+   "sha256": "2d9de66df8b9705c4335ca4edb6648ed1c7142d8fbc73bd74ff158b19505928f",
+   "note": "Not a catalogue. Null place_id stays unmatched. Does not add or move pins."
+  }
+ }
 }

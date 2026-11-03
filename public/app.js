@@ -312,7 +312,7 @@ function openSheet(html, { place = false } = {}) {
   setListOpen(false);
   $('#hits').hidden = true;
   const sheet = $('#sheet');
-  sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet','atlas-sheet','journey-sheet','featured-sheet','recommend-sheet','community-sheet');
+  sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet','atlas-sheet','journey-sheet','featured-sheet','recommend-sheet','community-sheet','talk-sheet');
   sheet.hidden = false;
   sheet.innerHTML = html;
   const heading = sheet.querySelector('h1');
@@ -426,6 +426,7 @@ function renderSheet(p, d, visits) {
       <h2 class="micro">${s ? `Visitor work score · ${s.n} ${s.n === 1 ? 'rating' : 'ratings'} · last ${esc(s.last)}` : state.scoresStatus==='unavailable' ? 'Visitor work score · unavailable right now' : state.scoresStatus==='loading' ? 'Visitor work score · loading' : 'Visitor work score · not rated yet · add yours with ✓'}</h2>
       ${s ? `<table>${SCORES.map(([k, label]) => `<tr><td>${label}</td><td>${dots(s[k], 3)}</td><td>${s[k].toFixed(1)} / 3</td></tr>`).join('')}</table>` : ''}
     </section>
+    ${window.TalkMedia?.section(p.id) || ''}
     <nav class="links">
       ${['cafe', 'restaurant'].includes(p.k) ? `<a href="https://www.wongnai.com/restaurants?q=${encodeURIComponent(p.n)}" target="_blank" rel="noopener nofollow" title="Photos and reviews on Wongnai, opens their site">Photos &amp; reviews ↗ Wongnai</a>` : ''}
     </nav>
@@ -439,6 +440,7 @@ function renderSheet(p, d, visits) {
   sheet.querySelector('[data-place-community]').onclick = () => window.Notebook?.showCommunity(p);
   sheet.querySelector('[data-place-recommend]').onclick = () => window.Notebook?.recommend(p);
   sheet.querySelector('.share').onclick = () => PlaceTools.share({title:p.n,url:new URL('?p='+encodeURIComponent(p.id),location.origin).href},sheet);
+  window.TalkMedia?.attach(sheet, p);
 }
 
 function openFromUrl() {
@@ -490,13 +492,13 @@ document.addEventListener('click', e => {
   if (b) { setMood(b.dataset.mood === state.mood ? null : b.dataset.mood); return; }
   if (e.target.closest('.mood-off')) setMood(null);
   const act = e.target.closest('[data-act]');
-  if (act) { $('#hits').hidden = true; if(act.dataset.act==='work')window.WorkFinder?.open();else if(act.dataset.act==='featured')window.openFeatured?.();else if(act.dataset.act==='discovery')window.openDiscovery?.();else act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.(); }
+  if (act) { $('#hits').hidden = true; if(act.dataset.act==='work')window.WorkFinder?.open();else if(act.dataset.act==='featured')window.openFeatured?.();else if(act.dataset.act==='discovery')window.openDiscovery?.();else if(act.dataset.act==='talk')window.TalkMedia?.open();else act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.(); }
   const h = e.target.closest('#mood [data-hood]');
   if (h) window.openHood?.(h.dataset.hood);
 });
 
 // an empty search box offers the moods: most people search by purpose before they know a name
-const moodHits = () => `<li data-act="featured" role="option"><span class="nm"><b>Featured places</b></span><span class="meta">verified branches · sources</span></li><li data-act="work" role="option"><span class="nm"><b>Find a work spot</b></span><span class="meta">Drive · BTS · nearby</span></li><li data-act="discovery" role="option"><span class="nm"><b>50 + 50 cafés</b></span><span class="meta">editorial · discussed</span></li><li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
+const moodHits = () => `<li data-act="featured" role="option"><span class="nm"><b>Featured places</b></span><span class="meta">verified branches · sources</span></li><li data-act="work" role="option"><span class="nm"><b>Find a work spot</b></span><span class="meta">Drive · BTS · nearby</span></li><li data-act="discovery" role="option"><span class="nm"><b>50 + 50 cafés</b></span><span class="meta">editorial · discussed</span></li><li data-act="talk" role="option"><span class="nm"><b>Watch / talk</b></span><span class="meta">YouTube · unmatched stays off the map</span></li><li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
   <li data-act="hop" role="option"><span class="nm"><b>Plan a café hop</b></span><span class="meta">5 stops on foot</span></li>` + Object.entries(MOODS).map(([k, m]) =>
   `<li data-mood="${k}" role="option"><span class="mood-dot" aria-hidden="true">◐</span><span class="nm">${esc(m.label)}</span><span class="meta">citywide</span></li>`).join('');
 $('#q').addEventListener('focus', () => {

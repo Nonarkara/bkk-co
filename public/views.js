@@ -193,7 +193,7 @@ $('#guide').addEventListener('click', async () => {
   const top = d.leaderboard.slice(0, 10), max = top[0].work, anchors = new Set(d.hoods.map(h => h.anchor.osmName));
   const sheet = openSheet(`
     <header><h1>Bangkok's Great Good Places<span class="th">Placemaking Laboratory Urban Bureau</span></h1><button class="close" aria-label="Close">×</button></header>
-    <p class="discovery-entry"><button class="linkish" data-act="discovery">Explore 50 editorial picks + 50 discussed cafés →</button></p>
+    <p class="discovery-entry"><button class="linkish" data-act="discovery">Explore 50 editorial picks + 50 discussed cafés →</button> <button class="linkish" data-act="talk">Watch / talk →</button></p>
     <div class="plub-say">${guideArt()}<p><q>Bangkok has ${fmt(P.length)} places to sit down. A great good place is the one you keep coming back to. Pick a neighbourhood, I'll walk you through it.</q></p></div>
     <section><h2 class="micro">Four neighbourhoods</h2>
       <ol class="line">${d.hoods.map(h => { const been = h.ids.filter(id => state.visited.has(id)).length; return `<li data-hood="${h.slug}">

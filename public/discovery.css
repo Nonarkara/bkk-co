@@ -80,3 +80,24 @@
 .moods { flex-wrap: wrap; overflow: visible; }
 .moods [data-act], .moods [data-proxy] { background: var(--paper, #fff); color: inherit; }
 .moods button[aria-pressed="true"] { background: var(--amber); }
+
+/* Watch / talk: enrichment beside a place, or an unmatched list. No card chrome. */
+.talk { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--rule); }
+.talk-frame { display: block; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--rule); background: var(--wash); }
+.talk-video { margin: 10px 0 0; }
+.talk-video figcaption { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; margin-top: 4px; }
+.talk-video figcaption a, .talk-tiktok a, .talk-name, .talk-back { text-decoration: underline; text-underline-offset: 3px; }
+.talk-closed { margin: 6px 0; padding: 6px 8px; border-left: 2px solid var(--ink); }
+.talk-unmatched { margin: 6px 0; }
+.talk-list { list-style: none; padding: 0; margin: 0; }
+.talk-list li { padding: 8px 0; border-top: 1px solid var(--rule); }
+.talk-name { display: block; min-height: 44px; padding: 0; text-align: left; font-weight: 500; font-size: var(--big); line-height: 1.2; overflow-wrap: anywhere; }
+.talk-tabs { display: flex; flex-wrap: wrap; gap: 4px 12px; margin: 6px 0; }
+.talk-tabs button { min-height: 32px; padding: 2px 0; border-bottom: 2px solid transparent; }
+.talk-tabs [aria-pressed="true"] { border-bottom-color: var(--ink); font-weight: 600; }
+.talk-search { display: block; margin: 6px 0; }
+.talk-search input { width: 100%; min-height: 36px; font: inherit; padding: 6px; border: 1px solid var(--rule); color: var(--ink); border-radius: 0; background: var(--paper); }
+.talk-more, .talk-back { min-height: 44px; padding: 4px 0; text-align: left; }
+.talk-fallback { color: var(--muted); font-size: var(--micro); }
+.talk-sheet p, .talk p { max-width: 65ch; overflow-wrap: anywhere; }
+.talk-area { color: var(--muted); font-size: var(--micro); }

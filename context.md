@@ -154,6 +154,10 @@ Place-level Notes&photos and Addrecommendation expose the existing backend. Comp
 
 Independent MSH reviewer /root/community_audit PASS; geometry at390/1024/1440 and30pxbody; original fullheight and fullspan faults falsified. Local actual browser flows at360/390/1024/1440/1280; original journeys/discovery and67/67API assertions pass. Fresh immutable browser runner avoids active-dev Worker restart corrupting streamed JSON/POSTs. Detailed final release proof: docs/community-2026-11-03/SHIP.md. No backend schema/privacy/OAuth/traffic API change.
 
+## Talk media sidecar · 4 November 2026
+
+`public/data/talk-media.json` is enrichment, not catalogue. Schema v1 pilot: 157 entries, 102 with a video, 361 YouTube embeds via youtube-nocookie, 0 TikTok embeds. Place sheets show Watch / talk only for `location_status: catalogue_seed` with that row's `place_id`. `candidate_only` keeps a null `place_id` and is labelled unmatched discovery; `catalogue_name_candidates` are hints, never pins. Kamaboko Coffee Camp is flagged closed (May 2022); its videos are historical. No Wongnai scrape, no new coordinates, no rewrite of `places-work.json` or `places-food.json`. See `docs/TALK-MEDIA.md`.
+
 ## Improve pass (2026-11-03, persona walkthrough by an independent agent)
 - Search rows no longer show the list position as a score (`top.map(p => row(p))`).
 - Neighbourhood sheets: Plub's walk sits under the intro; numbers, traits and story fold into "Numbers and story".

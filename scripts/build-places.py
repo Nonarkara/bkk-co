@@ -325,6 +325,14 @@ def build():
         'bySource': dict(collections.Counter(p['src'] for p in places)), 'skipped': dict(sorted(skipped.items())),
         'wifiTagged': sum(1 for p in places if p.get('w') == 'yes'), 'parkingNearby': sum(1 for p in places if p['park'] is not None and p['park'] <= PARK_M), 'hoursTagged': sum(1 for p in places if p.get('h')),
         'files': files}
+    # Talk-media and any later enrichment files are sidecars. A catalogue rebuild must not drop them or rewrite their bytes.
+    if (data / 'manifest.json').exists():
+        try:
+            prior = json.loads((data / 'manifest.json').read_text()).get('sidecars')
+        except (OSError, json.JSONDecodeError):
+            prior = None
+        if prior:
+            manifest['sidecars'] = prior
     (data / 'manifest.json').write_text(json.dumps(manifest, indent=1, ensure_ascii=False) + '\n')
     subprocess.run([sys.executable, str(ROOT/'scripts/enrich-places.py')], check=True)
     # Apply the bounded, reviewed exact-source café exception after the frozen base.
