@@ -10,7 +10,7 @@ const hoodsReady = fetch('data/hoods.json').then(r => r.json()).then(d => {
   drawHoods();
 }).catch(() => {});
 
-$('#guide').innerHTML = plub('wave', 34, '');
+$('#guide').innerHTML = '<img class="plub-badge" src="plub/nong-plub-head.png" alt="" width="30" height="30">';
 
 window.hoodOf = p => hoods.ofId.get(p.id);
 window.hoodHits = q => hoods.list.filter(h => [h.name, h.th, h.for].some(s => s.toLowerCase().includes(q)))
@@ -172,7 +172,7 @@ $('#guide').addEventListener('click', async () => {
   const top = d.leaderboard.slice(0, 10), max = top[0].work, anchors = new Set(d.hoods.map(h => h.anchor.osmName));
   const sheet = openSheet(`
     <header><h1>Bangkok's Great Good Places<span class="th">Placemaking Laboratory Urban Bureau</span></h1><button class="close" aria-label="Close">×</button></header>
-    <div class="plub-say">${plub('map', 104)}<p><q>Bangkok has ${fmt(P.length)} places to sit down. A great good place is the one you keep coming back to. Pick a neighbourhood, I'll walk you through it.</q></p></div>
+    <div class="plub-say"><img class="brand-hero" src="plub/nong-plub.png" alt="Nong Plub, your guide" width="104" height="104"><p><q>Bangkok has ${fmt(P.length)} places to sit down. A great good place is the one you keep coming back to. Pick a neighbourhood, I'll walk you through it.</q></p></div>
     <section><h2 class="micro">The line · four neighbourhoods, live now</h2>
       <ol class="line">${d.hoods.map(h => { const been = h.ids.filter(id => state.visited.has(id)).length; return `<li data-hood="${h.slug}">
         <span class="stop ${been ? 'stamped' : ''}" aria-hidden="true">${been ? '✓' : ''}</span>
@@ -314,12 +314,18 @@ async function stampCard(places) {
   const g = c.getContext('2d');
   await document.fonts.ready;
   g.fillStyle = '#ffffff'; g.fillRect(0, 0, W, H);
-  g.fillStyle = '#20201d'; g.font = '600 64px Jost, Prompt, sans-serif'; g.fillText('PLUB', 80, 140);
-  g.fillStyle = '#575951'; g.font = '400 30px Jost, Prompt, sans-serif'; g.fillText('Placemaking Laboratory Urban Bureau · Bangkok', 80, 190);
+  // Wordmark in his lettering; the semicolon is the seam.
+  g.fillStyle = '#7d133a'; g.font = '700 74px "Sao Chingcha", Jost, Prompt, sans-serif'; g.fillText('PL', 80, 148);
+  let wm = 80 + g.measureText('PL').width;
+  g.fillStyle = '#e88ba1'; g.fillText(';', wm, 148);
+  wm += g.measureText(';').width;
+  g.fillStyle = '#7d133a'; g.fillText('UB', wm + 4, 148);
+  g.fillStyle = '#575951'; g.font = '300 30px "Sao Chingcha", Jost, Prompt, sans-serif';
+  g.fillText('placemaking laboratory ; urban bureau · bangkok', 80, 198);
   const img = new Image();
-  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(plub('stamp', 300, 'Nong Plub'));
+  img.src = 'plub/nong-plub.png';
   await img.decode().catch(() => {});
-  if (img.naturalWidth) g.drawImage(img, W - 380, 40, 300, 350);
+  if (img.naturalWidth) { const mh = 330, mw = img.naturalWidth * mh / img.naturalHeight; g.drawImage(img, W - 80 - mw, 40, mw, mh); }
   g.strokeStyle = '#20201d'; g.lineWidth = 2; g.beginPath(); g.moveTo(80, 390); g.lineTo(W - 80, 390); g.stroke();
   hoods.list.forEach((h, i) => {
     const n = h.ids.filter(id => places.has(id)).length;

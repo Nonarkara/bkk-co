@@ -417,6 +417,7 @@ function renderSheet(p, d, visits) {
     </section>
     <nav class="links">
       <a href="https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}" target="_blank" rel="noopener">Directions</a>
+      ${['cafe', 'restaurant'].includes(p.k) ? `<a href="https://www.wongnai.com/restaurants?q=${encodeURIComponent(p.n)}" target="_blank" rel="noopener nofollow" title="Photos and reviews on Wongnai, opens their site">Photos &amp; reviews ↗ Wongnai</a>` : ''}
       <button type="button" class="share">Share</button>
     </nav>
     <p class="src">Source: ${src}</p>`, { place:true });

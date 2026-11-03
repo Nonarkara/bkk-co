@@ -1,5 +1,9 @@
 /* PLUB · Placemaking Laboratory Urban Bureau — civic daylight register.
    Radius 0, no shadows, no gradients, one amber (co-working only). Sizes: 20 / 14 / 11. */
+/* Sao Chingcha: Dr Non's own lettering. PL;UB is read as Placemaking Laboratory ; Urban Bureau. */
+@font-face { font-family: "Sao Chingcha"; src: url("fonts/SaoChingcha-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Sao Chingcha"; src: url("fonts/SaoChingcha-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Sao Chingcha"; src: url("fonts/SaoChingcha-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
 :root {
   --ink: #20201d; --muted: #575951; --rule: #d5d7cf; --paper: #ffffff; --wash: #f4f4f0;
   --amber: #f59e0b; --food: #8f918a;
@@ -24,7 +28,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* Bar: wordmark + search, one line, as tall as the input */
 .bar { grid-area: bar; position: relative; display: flex; align-items: center; gap: var(--pad);
   padding: 6px var(--pad); border-bottom: 1px solid var(--rule); }
-.mark { font-weight: 600; font-size: var(--body); letter-spacing: .02em; text-decoration: none; white-space: nowrap; }
+/* The wordmark: PL;UB in his lettering. The semicolon is the seam between the two phrases. */
+.mark { font: 700 17px/1 "Sao Chingcha", var(--font); letter-spacing: .07em; text-decoration: none; white-space: nowrap; }
+.mark .semi { color: #e88ba1; }
+.plub-badge { display: block; width: 30px; height: 30px; }
+.brand-hero { display: block; width: 104px; height: 104px; }
 .search { flex: 1; }
 .iconbtn { flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 2px; height: 44px; min-width: 44px; margin: -4px 0; }
 .plub-btn { margin-right: -6px; }
