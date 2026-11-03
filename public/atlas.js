@@ -519,7 +519,7 @@
     const dock = document.createElement('div');
     dock.className = 'atlas-dock';
     dock.innerHTML =
-      '<div class="atlas-tools"><button data-atlas-open>Explore map ↓</button><button data-atlas-key>Map key</button><button data-atlas-fit hidden>Show matches</button></div><p class="atlas-state" role="status"></p><button class="atlas-reset" hidden>Clear map view ×</button>';
+      '<div class="atlas-tools"><button data-work-start>Find a work spot</button><button data-atlas-open>Explore ↓</button><button data-atlas-key aria-label="Map key">Key</button><button data-atlas-fit hidden>Show matches</button></div><p class="atlas-state" role="status"></p><button class="atlas-reset" hidden>Clear map view ×</button>';
     document.body.append(dock);
     const positionDock=()=>{dock.style.top=(isPhone()?document.querySelector('.chips').getBoundingClientRect().bottom+12:12)+'px'};
     const observer=new ResizeObserver(positionDock);
@@ -530,6 +530,8 @@
       lens === 'triangles' && loops.length
         ? triangleSheet()
         : open().catch((e) => status(e.message));
+    dock.querySelector('[data-work-start]').onclick=()=>window.WorkFinder?.open();
+    window.WorkFinder?.warmEvidence();
     dock.querySelector('[data-atlas-key]').onclick = key;
     dock.querySelector('[data-atlas-fit]').onclick = fitMatches;
     m.on('moveend', updateDock);
@@ -604,7 +606,7 @@
     e.textContent = `${lens === 'all' ? '' : modes[lens][0] + ' · '}${fmt(last.length)} mapped${state.foodLoaded ? '' : ' · loading food'}${area ? ' · ' + area : ''}`;
     document.querySelector('.atlas-reset').hidden = lens === 'all' && !district;
     document.querySelector('[data-atlas-open]').textContent =
-      lens === 'triangles' && loops.length ? 'Triangle stops ↓' : 'Explore map ↓';
+      lens === 'triangles' && loops.length ? 'Triangle stops ↓' : 'Explore ↓';
     e.title = modes[lens][1];
     e.dataset.lens = lens;
     const fit = document.querySelector('[data-atlas-fit]');

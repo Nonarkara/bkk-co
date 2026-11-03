@@ -133,3 +133,11 @@ Explore offers catalogue-density hotspots, no-chain-signal cafés, low-footprint
 Compact map tools follow the measured phone header height, including enlarged text. Sparse evidence modes fit actual matches; panning to an empty area offers Show matches. Six independent district spotlights rotate by Bangkok date, not quality ranking or owner affiliation. New data is lazy except the small publication badge feed; failures preserve the base map/notebook and river failure refuses triangle suggestions. Validation/review/release proof lives in docs/atlas-2026-11-03.
 
 Atlas shipped through PR4, final runtime source fced672, Worker c227db3d-cc4a-406e-8ac9-a7ffc9fdb26d.204/204livefiles match; public390/1440all-nine-mode checks pass. Final runtime CI41592895888 passes. Proof/limits: docs/atlas-2026-11-03/SHIP.md.
+
+## Task-first work journeys · 3 November 2026
+
+Find a work spot is now the primary compact on-map action. Drive+park, BTS/rail and two-hours-nearby searches share Laptop/Online/Reading needs. All model answers carry operator/editorial/visitor/OSM basis; unknown is not positive. Visitor scores use1=None/No,2–3positive, intermediate averagesunknown. Nearby parking with unknown/private/customer access does not become usable venue parking. First-party branch hours take precedence in displayed hours/open filters without changing source catalogue rows.
+
+New OSM snapshots:226 raw station nodes (225eligible),63explicitBTS,286point-only named barber origins,20720workplacejoins; restricted Chitlada remains metadata and never contributes a public rail match. Public source evidence covers6existingbranches/11sources, including VichSpaceRamkhamhaeng equipment/buildingparking and TKPark/TrueSpace/Samyan work facts. Source tables in docs/journeys-2026-11-03/GEO.md/EVIDENCE.md. No geocoder dependency, new traffic API or backend schema. GPS is click-only/in-memory. Directions carry actual chosen origin/destination; Rail does not inherit an invisible old barber origin. Last-mile distances are station-point straight lines, not entrance/walking routes.
+
+A small sheetGeneration guard makes Notebook loading immediate and prevents delayed device reads from replacing a newer finder. Existing notebook tools/photos/moderation, map routes/atlas/discovery and branding stay available. Tests/review/live proof: docs/journeys-2026-11-03.

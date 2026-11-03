@@ -14,5 +14,5 @@ console.log('Bangkok hours and next weekday mood time pass across visitor timezo
 
 const views=readFileSync(new URL('../public/views.js',import.meta.url),'utf8');const hs=views.indexOf('function planHop('),he=views.indexOf('\nasync function openHop',hs);
 let tested;
-vm.runInNewContext(views.slice(hs,he)+'; planHop({x:0,y:0})',{Date:Clock,state:{places:[{k:'cafe',flags:0,idx:80,hours:'Fr 10:00-12:00',x:0,y:0}]},F:{CHAIN:32},window:{isOpen:(s,at)=>{tested=at.toISOString();return false}},near:()=>0,crossesRiver:()=>false});
+vm.runInNewContext(views.slice(hs,he)+'; planHop({x:0,y:0})',{Date:Clock,state:{places:[{k:'cafe',flags:0,idx:80,hours:'Fr 10:00-12:00',x:0,y:0}]},F:{CHAIN:32},venueHours:p=>p.hours,window:{isOpen:(s,at)=>{tested=at.toISOString();return false}},near:()=>0,crossesRiver:()=>false});
 assert.equal(tested,'2026-11-07T04:00:00.000Z','hop checks11am on theBangkokday');
