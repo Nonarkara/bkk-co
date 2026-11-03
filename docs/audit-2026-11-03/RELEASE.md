@@ -16,3 +16,11 @@ MSH task: read a place and log a visit; or reopen a saved visit and act. All4vie
 Final gate also caught a keyboard-input CSS regression: notebook full-width styling overrode the visuallyhidden Import input, making the1024px page1365px wide. The file-input rule now explicitly wins, retains nativekeyboardfocus, and is covered by the existing rendered overflow gate.
 
 Live deployment and CI proof appended after release. Physical-device/fullscreen-reader tests and walking road/canal crossings are outside this audit; venue contact facts remain dated source snapshots.
+
+## Shipped and live-verified
+
+PR https://github.com/Nonarkara/bkk-co/pull/2 merged; feature7a6ff04, merge/source4e11de943574973e1cc6a663cd777cac8c600e63. Worker3fc3fdfa-b81b-45b7-974a-58d35679da0c, deployed from clean main with npx wrangler deploy.95new/changed assets uploaded,99reused;194actualpublicfiles byte-match this checkout. Legacydomain301/querypreservationpasses. Dailyprivacycleanup retained.
+
+Read-only verifier: PLUB_RELEASE_REPORT=docs/audit-2026-11-03/live-bytes.json node scripts/verify-notebook-release.mjs (source/Worker supplied in environment). Live node test/check.mjs https://co.nonarkara.org passes. node test/audit-live.mjs passes at390/1024/1440/1280: dated exact-source disclosure, visible log action, selected-photo preview/viewer/keyboard close, anonymousaccount state; zeroAPIwrites and zeroJavaScripterrors. live-browser.json and live-facts screenshots record evidence. No synthetic public recommendations or cloud data created for this release audit.
+
+GitHub branch/PR/main checks all passed:41583591537,41583612836,41583699876. This follow-up contains proof/docs only; runtime remains the byte-verified merge/source above. Independent finalCSScheck confirms1024pxpagewidth,359pxnotebookrail and keyboardImport working after file-input specificity fix.
