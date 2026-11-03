@@ -1,0 +1,46 @@
+# Journey geography · 3 November 2026
+
+Build: `python3 scripts/build-journey-geo.py`. Dependencies: osmium, Shapely2, pyproj (already installed; no new dependency or source service). This offline builder reads the pinned PBF and unchanged catalogue; it writes only `public/data/journey-geo.json` and `public/data/journey-places.json`. The source cache is outside Git (`../source-cache/journey-215e1ff3-*`; exact venue tags reuse the atlas's equivalent pinned extraction when available). Delete those specific caches when testing a fresh extraction. The PBF's MD5 is checked on every build, including cached builds.
+
+Source: [OpenStreetMap via Geofabrik Thailand](https://download.geofabrik.de/asia/thailand-261024.osm.pbf), **2026-10-24T20:20:51Z**, MD5 `215e1ff30fe4d4adef2db3d664dab9da`; [© OpenStreetMap contributors / ODbL-1.0](https://www.openstreetmap.org/copyright). Positions are WGS84/EPSG:4326; distances use UTM47N/EPSG:32647 original geometries. Source IDs, source tags, date and catalogue hashes remain in the payloads. No scraped review service, external geocoder or visitor-coordinate request is involved.
+
+## Runtime schema
+
+`journey-geo.json` (425,719bytes) contains:
+
+- `manifest`: version/source/licence/asof/bounds/hashes, exact computation meanings and counts.
+- `stations`: **226** original named `railway=station` node records with `id/sourceID`, original `x/y`, names, source `network/operator/ref`, full `tags`, `systems`, explicit `systemBasis` source IDs, `lines` (route relation IDs) and `stopAreaIDs`. Includes **63 BTS,108 MRT,8 ARL**, and **47 other or unknown system** nodes. **34** associated route relations are stored in `routes`, keyed by OSM relation ID, preserving source line names, refs, operator, network and direction. Directional route variants are separate source records, not distinct invented lines.
+- `origins`: **286** named original `shop=hairdresser/barber` node points inside the unchanged catalogue bounds, retaining source tags, IDs, names and `kind:'hairdresser'`. Polygon shops and unnamed points are deliberately omitted. This is a limited offline origin index, not a complete barber directory; names do not establish opening or current operation.
+- `parkingGeometry`: **713** referenced car-park geometries within30m of at least one workplace. Original node coordinates stay intact; polygon display geometry is topology-preserving simplified30m and rounded to five decimals. This is optional map evidence, not a parking entrance pin. Metadata for every referenced car park is in the join payload. Distances never use display simplification. The builder can move this optional section to the join file if future data would exceed the500KB geographic limit; the current file is below the limit.
+
+`journey-places.json` (2,114,298bytes, separate lazy join) contains:
+
+- `workCols`: `[placeID,railID,railM,btsID,btsM,parkingID,parkingM,parkingNotRestrictedID,parkingNotRestrictedM,parkingExplicitAccessID,parkingExplicitAccessM]`.
+- `workRows`: exactly **20,720** original café/co-working/library row IDs. Rail IDs resolve to the station list; car-park IDs resolve to `parking`. Distances are rounded metres. Rail and BTS fields always have a source point; each parking pair is null if no qualifying geometry is≤150m.
+- `venueTags`: **412** exact retained OSM venue IDs with `{sourceID,tags}`. No address/brand/proximity join is used to attach venue attributes.
+- `parking`: **1,763** referenced source `amenity=parking` features with `{sourceID,tags,accessClass}`. Includes restricted parks for honest distinction; their presence is not a recommendation.
+
+## Meaning for the three journeys
+
+For BTS discovery, the builder searches all named Thai station nodes, then publishes every referenced closest station and every station within the catalogue's0.05-degree padded window. **7,592** workplaces are within a rounded800m of the nearest mapped rail station; **3,540** of a nearest explicitly identified BTS station. Every system classification comes from an explicit source network/operator/English line name or a route associated directly or via shared members of an explicit `public_transport=stop_area` relation. No station-code-prefix, nearby-station, name similarity or geographic inference is used. Missing line/system association stays unknown. Mainline rail and airport internal rail remain distinguishable from BTS/MRT/ARL through source tags and explicit systems.
+
+**Siam** is the original station node `n1692209237`, ref `CEN`, BTS. **Ramkhamhaeng** is original ARL station node `n6711009224`, ref `A5`. They can serve as named station origins, explicitly labelled as station points. A station point is **not an entrance**, a pedestrian destination, an accessible route, an interchange transfer or a travel-time estimate. Neither800m proximity nor a two-hour time budget proves the café is reachable, open or suitable. Service operation/timetable status is not verified by this snapshot.
+
+For driving, **2,992** mapped car parks were examined. **6,069** workplaces have some car-park geometry within150m; **4,721** have a nearby park without an explicit access restriction, including unknown access; only **446** have an explicit `access=yes/permissive/designated` car park within150m. Three separate nearest-car-park pairs prevent a nearer private, customer-only or unknown park from hiding an explicitly tagged alternative. **1,214** workplaces' nearest-any distance rounds to≤30m; rounding can place a slightly greater actual distance at30m. The raw≤150m cutoff is applied before rounding.
+
+`parkingID` is closest **any access**, and may be private. Its access breakdown is3,832unknown /994private-or-no /861customers /284access-tagged /98other-restriction. `parkingNotRestrictedID` excludes explicit private/no/customers/other restriction but includes unknown. `parkingExplicitAccessID` accepts only `access=yes/permissive/designated`. An unknown access tag must stay unknown; permissive access may be withdrawn and fees may apply. All source `access`, `fee`, capacity and parking-type tags remain available. No nearby car park is inferred to belong to the venue, offer laptop customers a space, be open/available, or have a usable car entrance. **Even distance0 or≤30m does not establish on-site venue parking**. Publisher-confirmed venue parking is separate evidence.
+
+Exact venue tags provide **404** `internet_access`,160internet-fee,10SSID,3`parking=yes`,2access and4fee records (keys can overlap). The three venue `parking=yes` records are `n2112417772` sweet it is, `n2112420629` penguin likes chocolate, and `n7455588263` ชลธีคอฟฟี่. These are explicit tags on the venue, stronger than mere nearby geometry but still snapshot assertions, not current space availability. **Zero exact retained venue socket/power-supply/electricity tags exist** in this source. Do not convert independent cafés, library type, Wi-Fi presence or car-park proximity into outlet availability or permission to work. Missing Wi-Fi/outlet/access evidence stays unknown; a fee tag applies only to the feature carrying it.
+
+## Conservation and validation
+
+All57,538 base catalogue rows remain byte-identical, including coordinates, IDs, flags and rankings. Work-file SHA256 `67fe00fb832aeb49663083b10acc21350c5f93278402c090a530e39554f71395`; food-file SHA256 `df43c22e5ea54a151e25c7abdda8bc6ae876114df5a5da9755625749428df29a`.
+
+The builder asserts source MD5, original20,720unique work IDs, both original catalogue hashes, station/parking foreign keys, synchronized null parking fields, valid display geometry and bounded geographic payload. A long-polygon fixture distinguishes point-to-edge distance from centroid distance and checks zero for interior points. Additional independent validation reads the original cached station/parking/origin features, compares published coordinates and attributes, recomputes source-geometry distances, and checks nearest candidates by brute force on a bounded sample. Raw cache geometry remains the auditable source for all simplified display shapes.
+
+
+## Restricted station correction
+
+Public proximity joins now exclude explicit station `access=no/private/permit/military` and explicit disused/proposed/construction/abandoned/demolished lifecycle tags, including railway lifecycle namespaces. Unknown entry access remains unknown; eligibility is not proof of current public access or operation. Station `internet_access=no` is unrelated to entry eligibility and does **not** exclude Sala Daeng (`n451697335`) or Phra Khanong (`n5391610985`).
+
+The226 raw station records are retained for provenance, with `eligible` and `ineligibility` fields; **225** are eligible and **1** is explicitly restricted. **Chitlada `n259723396` has `access=no`** and is excluded from all nearest-rail/BTS trees and joins. It must also be excluded from origin selectors/GPS nearest-station choices using `JourneyModel.stationEligible`. The model rejects restricted source stations even with a stale join or explicit station selection. After rebuilding,7,592workplaces are within a rounded800m of eligible rail; the3,540BTS count is unchanged. These eligible distances replace the earlier all-station distances. Base catalogue hashes, parking joins and original source coordinates remain unchanged.

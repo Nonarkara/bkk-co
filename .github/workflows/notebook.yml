@@ -12,6 +12,7 @@ jobs:
           node-version: '22'
       - run: node test/check.mjs
       - run: node test/atlas.mjs
+      - run: node test/journeys.mjs
       - run: node test/notebook-races.mjs
       - run: node test/notebook-dates.mjs
       - run: node test/discovery.mjs

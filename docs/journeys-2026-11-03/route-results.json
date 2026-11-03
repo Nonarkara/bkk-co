@@ -1,0 +1,114 @@
+[
+  {
+    "width": 390,
+    "current": {
+      "pin": 72,
+      "stop": 77,
+      "num": 78,
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "old": {
+      "pin": 75,
+      "stop": 66,
+      "num": 67,
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "clickOpenedExactStop": "n2400027603"
+  },
+  {
+    "width": 1024,
+    "current": {
+      "pin": 72,
+      "stop": 77,
+      "num": 78,
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "old": {
+      "pin": 75,
+      "stop": 66,
+      "num": 67,
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "clickOpenedExactStop": "n2400027603"
+  },
+  {
+    "width": 1440,
+    "current": {
+      "pin": 72,
+      "stop": 77,
+      "num": 78,
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "old": {
+      "pin": 75,
+      "stop": 66,
+      "num": 67,
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "clickOpenedExactStop": "n2400027603"
+  },
+  {
+    "width": 1280,
+    "current": {
+      "pin": 72,
+      "stop": 77,
+      "num": 78,
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "old": {
+      "pin": 75,
+      "stop": 66,
+      "num": 67,
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "clickOpenedExactStop": "n2400027603"
+  }
+]

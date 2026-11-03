@@ -33,13 +33,13 @@ const MOODS = {
     test: p => !(p.flags & F.CHAIN) && p.d[1] <= 6 },
   midnight: { label: 'Past midnight', hood: 'samyan', kinds: ['cafe', 'coworking', 'library'],
     how: 'Work spots listed as open at 00:30 and also open in the afternoon (so not a night-only bar). Only places with listed hours can show here, so this list is short.',
-    test: p => window.isOpen(p.hours, nextAt(0, 30)) === true && window.isOpen(p.hours, nextAt(14, 0)) !== false },
+    test: p => window.isOpen(venueHours(p), nextAt(0, 30)) === true && window.isOpen(venueHours(p), nextAt(14, 0)) !== false },
   crossing: { label: 'Crossing paths', hood: 'charoenkrung', kinds: ['cafe', 'coworking', 'library'],
     how: 'Independent work spots in the densest clusters (⁘ ≥ 8 of 9).',
     test: p => !(p.flags & F.CHAIN) && p.d[1] >= 8 },
   afterwork: { label: 'After work', hood: 'thonglo', kinds: ['cafe', 'coworking', 'library', 'restaurant'],
     how: 'Open at 8 pm on a weekday, food included. Only places with listed hours.',
-    test: p => window.isOpen(p.hours, nextAt(20, 0, true)) === true },
+    test: p => window.isOpen(venueHours(p), nextAt(20, 0, true)) === true },
 };
 
 const CELL = 20;
@@ -49,6 +49,7 @@ const fmt = n => n.toLocaleString('en-US');
 const isPhone = () => !window.matchMedia('(min-width: 900px)').matches;
 const metres = (a, b) => Math.hypot((a.y - b.y) * 111320, (a.x - b.x) * 111320 * Math.cos(a.y * Math.PI / 180));
 const digits = p => [...p.g].map(Number);
+const venueHours = p => window.WorkFinder?.hours(p) || p.hours;
 
 const state = {
   places: [], byId: new Map(), scores: {}, cells: new Map(), visited: new Map(), personalRatings: new Map(),
@@ -123,7 +124,7 @@ function visible(p, now) {
   if (!state.kinds.has(p.k) || !Atlas.includes(p)) return false;
   if (state.mood && !MOODS[state.mood].test(p)) return false;
   if (state.flags.has('wifi') && !(p.flags & F.WIFI) && !((state.scores[p.id]?.wifi || 0) >= 2)) return false;
-  if (state.flags.has('open') && window.isOpen(p.hours, now) !== true) return false;
+  if (state.flags.has('open') && window.isOpen(venueHours(p), now) !== true) return false;
   if (state.flags.has('indie') && p.flags & F.CHAIN) return false;
   if (state.flags.has('visited') && !state.visited.has(p.id)) return false;
   return true;
@@ -173,6 +174,7 @@ map.on('load', async () => {
     'circle-radius': 20, 'circle-color': 'rgba(0,0,0,0)', 'circle-stroke-color': '#20201d', 'circle-stroke-width': 2.5 } });
 
   Atlas.install(map);
+  window.WorkFinder?.onViewsReady();
   for (const l of PIN_LAYERS) {
     map.on('click', l, e => { if(l!=='place-icons'&&map.queryRenderedFeatures(e.point,{layers:['place-icons']}).length)return; if(map.getLayer('route-stop')&&map.queryRenderedFeatures(e.point,{layers:['route-stop']}).length)return; select(state.byId.get(e.features[0].properties.id),false); });
     map.on('mouseenter', l, () => { map.getCanvas().style.cursor = 'pointer'; });
@@ -298,16 +300,19 @@ document.addEventListener('click', e => {
   const key = b.dataset.kind || b.dataset.flag;
   on ? set.add(key) : set.delete(key);
   refresh();
+  if(b.dataset.kind)window.WorkFinder?.kindsChanged();
 });
 
 // ---------- sheets ----------
+let sheetGeneration=0;
 function openSheet(html, { place = false } = {}) {
-  if (!place) { window.clearRoute?.(); state.selected = null; map.getSource('sel')?.setData({ type:'FeatureCollection', features:[] }); }
+  sheetGeneration++;
+  if (!place) { window.WorkFinder?.clearMap(); window.clearRoute?.(); state.selected = null; map.getSource('sel')?.setData({ type:'FeatureCollection', features:[] }); }
   openFromUrl.framed=true;
   setListOpen(false);
   $('#hits').hidden = true;
   const sheet = $('#sheet');
-  sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet','atlas-sheet');
+  sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet','atlas-sheet','journey-sheet');
   sheet.hidden = false;
   sheet.innerHTML = html;
   const heading = sheet.querySelector('h1');
@@ -318,6 +323,8 @@ function openSheet(html, { place = false } = {}) {
 }
 
 function closeSheet() {
+  sheetGeneration++;
+  window.WorkFinder?.clearMap();
   state.selected = null;
   window.clearRoute?.();
   $('#sheet').hidden = true;
@@ -378,12 +385,12 @@ function renderSheet(p, d, visits) {
   // Late catalogue details must not replace a visit form someone is already writing.
   if (!$('#sheet').hidden && $('#sheet .been-form')?.dataset.place === p.id) return;
   const s = state.scores[p.id];
-  const open = window.isOpen(p.hours, new Date());
+  const open = window.isOpen(venueHours(p), new Date());
   const hood = window.hoodOf?.(p);
   const facts = [
     d.about && ['✎', esc(d.about)],
     d.visit && ['✓', esc(d.visit)],
-    p.hours && ['◷', `${open === true ? '<b>Open now</b> · ' : open === false ? 'Closed now · ' : ''}${esc(p.hours)}`],
+    venueHours(p) && ['◷', `${open === true ? '<b>Open now</b> · ' : open === false ? 'Closed now · ' : ''}${esc(venueHours(p))}`],
     p.flags & F.OUTDOOR && ['☀', 'Outdoor seating'],
     d.c && ['·', esc(d.c.replace(/[_;]/g, ' '))],
     d.addr && ['⌖', esc(d.addr)],
@@ -403,7 +410,8 @@ function renderSheet(p, d, visits) {
       <button class="close" aria-label="Close">×</button>
     </header>
     <div class="kindline"><i class="dot ${p.k}"></i>${KIND_LABEL[p.k]}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>
-    <section class="been"><button type="button" class="send been-open">✓ I've been here</button></section>
+    <section class="been place-actions"><button type="button" class="send been-open">✓ I've been here</button><a href="${esc(window.WorkFinder?.directions(p)||`https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}`)}" target="_blank" rel="noopener">Directions ↗</a></section>
+    ${window.WorkFinder?.placePanel(p)||''}
     ${Atlas.facts(p)}
     <section class="ggp">
       ${petals(p)}
@@ -417,7 +425,6 @@ function renderSheet(p, d, visits) {
       ${s ? `<table>${SCORES.map(([k, label]) => `<tr><td>${label}</td><td>${dots(s[k], 3)}</td><td>${s[k].toFixed(1)} / 3</td></tr>`).join('')}</table>` : ''}
     </section>
     <nav class="links">
-      <a href="https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}" target="_blank" rel="noopener">Directions</a>
       ${['cafe', 'restaurant'].includes(p.k) ? `<a href="https://www.wongnai.com/restaurants?q=${encodeURIComponent(p.n)}" target="_blank" rel="noopener nofollow" title="Photos and reviews on Wongnai, opens their site">Photos &amp; reviews ↗ Wongnai</a>` : ''}
       <button type="button" class="share">Share</button>
     </nav>

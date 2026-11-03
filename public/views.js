@@ -284,8 +284,12 @@ window.beenForm = (p, btn, done) => {
 $('#passport').addEventListener('click', openPassport);
 window.openPassport = openPassport;
 async function openPassport() {
+  const pending=openSheet('<header><h1>Your notebook</h1><button class="close" aria-label="Close">×</button></header><p role="status">Loading your device visits…</p>');
+  pending.classList.add('notebook-sheet');
+  const generation=sheetGeneration;
   await hoodsReady;
   const visits = (await Passport.all().catch(() => [])).sort((a, b) => b.at.localeCompare(a.at));
+  if(generation!==sheetGeneration||pending.hidden)return;
   const places = new Set(visits.map(v => v.place));
   const stamped = hoods.list.filter(h => h.ids.some(id => places.has(id)));
   const sheet = openSheet(`
@@ -409,6 +413,7 @@ async function locate() {
 }
 
 async function openNow() {
+  if(window.WorkFinder)return window.WorkFinder.open('nearby');
   const sheet = openSheet(`<header><span class="mini-plub">${guideArt(32)}</span><h1>Near me now</h1><button class="close" aria-label="Close">×</button></header>
     <div class="now-ctl">
       <div class="seg range" role="group" aria-label="How far">
@@ -436,7 +441,7 @@ async function renderNow() {
   const o = nowState.origin, max = nowState.range === 'walk' ? 800 : 2000, mode = nowState.range === 'walk' ? 'walking' : 'driving';
   const now = new Date();
   const picks = state.places
-    .filter(p => p.k !== 'restaurant' && window.isOpen(p.hours, now) !== false)
+    .filter(p => p.k !== 'restaurant' && window.isOpen(venueHours(p), now) !== false)
     .map(p => ({ p, d: near(p, o) })).filter(r => r.d <= max && !crossesRiver(o, r.p)) // bridges are few: same bank only
     .map(r => {
       const met = NEEDS.filter(([k]) => nowState.needs.has(k)).map(([k, l, test]) => [k, l, !!test(r.p)]);
@@ -477,7 +482,7 @@ function planHop(start) {
   const local = new Date(Date.now()+7*3600000);
   const today11 = new Date(Date.UTC(local.getUTCFullYear(),local.getUTCMonth(),local.getUTCDate(),4));
   const pool = state.places.filter(p => p.k === 'cafe' && !(p.flags & F.CHAIN) && p.idx >= 70 &&
-    window.isOpen(p.hours, today11) !== false && near(p, start) <= 1500 && !crossesRiver(start, p));
+    window.isOpen(venueHours(p), today11) !== false && near(p, start) <= 1500 && !crossesRiver(start, p));
   const stops = [];
   let here = start;
   for (let i = 0; i < 5; i++) {
@@ -526,4 +531,4 @@ async function openHop(startKey) {
 window.openHop = openHop;
 
 // A cached map can load before this script arrives. Initialise once in either order.
-queueMicrotask(()=>{if(map.isStyleLoaded()&&!map.getSource('hoods'))window.addHoodLayers()});
+queueMicrotask(()=>{if(map.getLayer('pins-city')&&!map.getSource('hoods'))window.addHoodLayers();window.WorkFinder?.onViewsReady()});

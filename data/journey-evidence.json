@@ -1,0 +1,506 @@
+{
+  "version": 1,
+  "checked_at": "2026-11-03",
+  "scope": "Branch-specific operator and attributed editorial working-facility facts on existing catalogue pins. Missing facts are unknown, not false.",
+  "places": {
+    "oe0a5a241cfc8": {
+      "name": "VichSpace Cafe and Co-Working Space",
+      "area": "Hua Mak · Ramkhamhaeng",
+      "source_ids": [
+        "vichspace"
+      ],
+      "identity": {
+        "publisher_address": "6/4 Hua Mak Road, Hua Mak, Bang Kapi, Bangkok 10240",
+        "catalogue_address": "6, 4 Hua Mak Road",
+        "catalogue_website": "https://vichspace.co/",
+        "reason": "Exact operator website, house number/street and telephone +66863414867 match existing detail."
+      },
+      "facts": {
+        "wifi": {
+          "value": true,
+          "note": "Free Wi-Fi stated by this venue.",
+          "source_ids": [
+            "vichspace"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "power": {
+          "value": true,
+          "note": "Power outlets stated in the second-floor work area.",
+          "source_ids": [
+            "vichspace"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "parking": {
+          "value": true,
+          "note": "Parking in the building; operator does not specify fees or validation.",
+          "source_ids": [
+            "vichspace"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "work_allowed": {
+          "value": true,
+          "note": "Second-floor coworking area is stated to be free to use; seat availability is not live.",
+          "source_ids": [
+            "vichspace"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "hours": {
+          "value": "Mo-Su 07:00-20:00",
+          "note": "Daily 07:00–20:00 stated by operator.",
+          "source_ids": [
+            "vichspace"
+          ],
+          "checked_at": "2026-11-03"
+        }
+      }
+    },
+    "w1493003495": {
+      "name": "Davin Cafe",
+      "area": "Ram Inthra · Khlong Lam Chiak",
+      "source_ids": [
+        "davin-faq",
+        "davin-work"
+      ],
+      "identity": {
+        "publisher_address": "108 Soi Khlong Lam Chiak, Nawamin, Bueng Kum, Bangkok 10230",
+        "catalogue_address": "108 Khlong Lam Chiak Rd",
+        "catalogue_website": "https://davincafe.com/",
+        "reason": "Exact name, operator website, number/street and +66918866999 phone match existing detail; this is Ram Inthra, not Ramkhamhaeng."
+      },
+      "facts": {
+        "wifi": {
+          "value": true,
+          "note": "Complimentary Wi-Fi stated; speed is an operator claim, not measured here.",
+          "source_ids": [
+            "davin-faq"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "power": {
+          "value": true,
+          "note": "Outlets at long tables and wall-side areas; available seat/outlet not guaranteed.",
+          "source_ids": [
+            "davin-work"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "parking": {
+          "value": true,
+          "note": "On-site parking stated, over 150 cars; availability/fees not confirmed.",
+          "source_ids": [
+            "davin-faq"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "work_allowed": {
+          "value": true,
+          "note": "Remote work welcomed; no time limit, operator recommends another food/drink order after 3 hours.",
+          "source_ids": [
+            "davin-work"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "hours": {
+          "value": "Mo-Su 08:30-24:00",
+          "note": "Daily 08:30–midnight; evening bar/music can change the working atmosphere.",
+          "source_ids": [
+            "davin-faq"
+          ],
+          "checked_at": "2026-11-03"
+        }
+      }
+    },
+    "n10960662791": {
+      "name": "C asean Samyan CO-OP",
+      "area": "Sam Yan · Chula",
+      "source_ids": [
+        "samyan-about",
+        "samyan-terms",
+        "ktc-workspaces",
+        "tvbs-samyan"
+      ],
+      "identity": {
+        "publisher_address": "C ASEAN Samyan CO-OP, 2nd floor, Samyan Mitrtown",
+        "catalogue_address": "Samyan Mitrtown",
+        "catalogue_website": "https://caseansamyancoop.samyan-mitrtown.com",
+        "reason": "Exact name, named building and branch-specific registration-domain URL match existing catalogue."
+      },
+      "facts": {
+        "work_allowed": {
+          "value": true,
+          "note": "Free co-learning space with separate Focus and Collaborate zones.",
+          "source_ids": [
+            "samyan-about"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "hours": {
+          "value": "24/7",
+          "note": "Operator states 24/7. Special events/closures are not live.",
+          "source_ids": [
+            "samyan-about"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "access": {
+          "value": "registration_required",
+          "note": "Membership requires online registration plus in-person ID/passport and photo verification; students also present student ID.",
+          "source_ids": [
+            "samyan-terms"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "day_pass": {
+          "value": {
+            "amount_thb": 0,
+            "currency": "THB"
+          },
+          "note": "Space is stated to be free; registration rules still apply.",
+          "source_ids": [
+            "samyan-about"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "power": {
+          "value": true,
+          "note": "Outlets explicitly reported for Samyan CO-OP by KTC, updated February 2026; verify a usable socket at your seat.",
+          "source_ids": [
+            "ktc-workspaces"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "wifi": {
+          "value": true,
+          "note": "Wi-Fi explicitly reported for the second-floor Samyan CO-OP in TVBS January 2025 coverage; current login and service availability require on-site confirmation.",
+          "source_ids": [
+            "tvbs-samyan"
+          ],
+          "checked_at": "2026-11-03"
+        }
+      }
+    },
+    "n6237362243": {
+      "name": "TK Park",
+      "area": "Ratchaprasong · near Siam",
+      "source_ids": [
+        "tk-access",
+        "ktc-workspaces"
+      ],
+      "identity": {
+        "publisher_address": "TK Park, 8th floor, centralwOrld",
+        "catalogue_address": "เซ็นทรัลเวิลด์-ทางเข้า 5, 9 ถนน ราชดําริ",
+        "catalogue_website": "https://www.tkpark.or.th/",
+        "reason": "Exact operator domain and centralwOrld institution match catalogue CentralWorld/Ratchadamri address; excludes TK Park True Digital Park branch."
+      },
+      "facts": {
+        "wifi": {
+          "value": true,
+          "note": "Visitor-pass Wi-Fi code supplied on QR admission slip; other methods involve MyTK/Thai ID.",
+          "source_ids": [
+            "tk-access"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "hours": {
+          "value": "Tu-Su 10:00-20:00; Mo off",
+          "note": "September 2026 operator notice states Tue–Sun 10–20, overriding older catalogue 22:00.",
+          "source_ids": [
+            "tk-access"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "day_pass": {
+          "value": {
+            "currency": "THB",
+            "amount_thb": null
+          },
+          "note": "Visitor Pass offered; current price not stated by this source.",
+          "source_ids": [
+            "tk-access"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "access": {
+          "value": "visitor_pass",
+          "note": "QR admission; Thai-only self-service kiosk requires Thai ID. International visitors should use staffed entry guidance.",
+          "source_ids": [
+            "tk-access"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "power": {
+          "value": true,
+          "note": "Outlets explicitly reported for TK Park centralwOrld by KTC, updated February 2026; usable outlet availability is not live.",
+          "source_ids": [
+            "ktc-workspaces"
+          ],
+          "checked_at": "2026-11-03"
+        }
+      }
+    },
+    "w292574906": {
+      "name": "The Hive",
+      "area": "Thong Lo · Sukhumvit49",
+      "source_ids": [
+        "hive-membership"
+      ],
+      "identity": {
+        "publisher_address": "46/9 Soi Sukhumvit49, Khlong Tan Nuea, Watthana, Bangkok",
+        "catalogue_address": null,
+        "catalogue_website": "http://thehive.co.th/",
+        "reason": "Catalogue name and exact thehive.co.th branch website resolve to The Hive Thonglor; source page gives this branch address. No other Hive catalogue branch uses this URL."
+      },
+      "facts": {
+        "wifi": {
+          "value": true,
+          "note": "Complimentary Wi-Fi listed on this branch membership page.",
+          "source_ids": [
+            "hive-membership"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "work_allowed": {
+          "value": true,
+          "note": "Hot desk/day-pass coworking, with phone booths listed.",
+          "source_ids": [
+            "hive-membership"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "day_pass": {
+          "value": {
+            "amount_thb": 393,
+            "currency": "THB",
+            "vat_included": false,
+            "vat_percent": 7,
+            "access_hours": "09:00-18:00"
+          },
+          "note": "Day pass 393 THB before 7% VAT;09–18 access, weekdays not specified;24/7 belongs to full-time members.",
+          "source_ids": [
+            "hive-membership"
+          ],
+          "checked_at": "2026-11-03"
+        }
+      }
+    },
+    "obb9ca0d75c80": {
+      "name": "True Space Asoke สาขาอโศก",
+      "area": "Asoke · MRT Phetchaburi",
+      "source_ids": [
+        "true-asoke",
+        "true-faq"
+      ],
+      "identity": {
+        "publisher_address": "235/3-5 Sukhumvit21, Khlong Toei Nuea, Watthana, Bangkok10110",
+        "catalogue_address": "Asoke",
+        "catalogue_website": "www.truespaceth.com",
+        "reason": "Exact True Space Asoke branch name, Asoke locality and truespaceth.com operator domain match catalogue. Catalogue contact number is malformed and is not used as evidence."
+      },
+      "facts": {
+        "work_allowed": {
+          "value": true,
+          "note": "Branch sells hot desks and day/entry passes.",
+          "source_ids": [
+            "true-asoke"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "hours": {
+          "value": "Mo-Su 08:00-20:00",
+          "note": "Asoke FAQ states 08–20 daily except special festivals; check current notices.",
+          "source_ids": [
+            "true-faq"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "day_pass": {
+          "value": {
+            "amount_thb": 250,
+            "currency": "THB"
+          },
+          "note": "Day pass 250 THB; non-True/Dtac customers can buy passes.",
+          "source_ids": [
+            "true-asoke",
+            "true-faq"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "short_pass": {
+          "value": {
+            "amount_thb": 100,
+            "currency": "THB",
+            "duration_hours": 3
+          },
+          "note": "Entry pass 100 THB/3 h.",
+          "source_ids": [
+            "true-asoke"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "wifi": {
+          "value": true,
+          "note": "Operator FAQ states free Wi-Fi with a login page; the FAQ explicitly identifies Asoke.",
+          "source_ids": [
+            "true-faq"
+          ],
+          "checked_at": "2026-11-03"
+        },
+        "power": {
+          "value": true,
+          "note": "Asoke-context operator FAQ states power sockets and extension leads to borrow; individual seat availability is not live.",
+          "source_ids": [
+            "true-faq"
+          ],
+          "checked_at": "2026-11-03"
+        }
+      }
+    }
+  },
+  "sources": {
+    "vichspace": {
+      "publisher": "VichSpace",
+      "url": "https://vichspace.co/",
+      "published_at": null,
+      "checked_at": "2026-11-03",
+      "tier": "first_party",
+      "raw_archive": "../source-cache/journeys-2026-11-03/0136196c9b59.html",
+      "raw_sha256": "9fa1a1601d71bd83250e2e630ec0358d25501a67cb073bd453a58cae6bcd2a33",
+      "fetch_status": 200
+    },
+    "davin-faq": {
+      "publisher": "Davin Cafe",
+      "url": "https://www.davincafe.com/faq/",
+      "published_at": null,
+      "checked_at": "2026-11-03",
+      "tier": "first_party",
+      "raw_archive": "../source-cache/journeys-2026-11-03/ad7a6c601188.html",
+      "raw_sha256": "b0c77444b6b01e42110392000fbe468d444787c5f7142b241f068e29fafc5848",
+      "fetch_status": 200
+    },
+    "davin-work": {
+      "publisher": "Davin Cafe",
+      "url": "https://www.davincafe.com/davin-cafe-working-space-bangkok-en/",
+      "published_at": null,
+      "checked_at": "2026-11-03",
+      "tier": "first_party",
+      "raw_archive": "../source-cache/journeys-2026-11-03/f59689a4cf84.html",
+      "raw_sha256": "b9a91104a9a5fa6295e9692428d245600cfa7c1e96fb14555c8537bbaadc973a",
+      "fetch_status": 200
+    },
+    "samyan-about": {
+      "publisher": "Samyan Mitrtown",
+      "url": "https://www.samyan-mitrtown.com/home/about/",
+      "published_at": null,
+      "checked_at": "2026-11-03",
+      "tier": "first_party",
+      "raw_archive": "../source-cache/journeys-2026-11-03/f7317688dee9.html",
+      "raw_sha256": "bb8b6ccac29523825cfaa45452e30860278d856601e55a94b31da72e9184aa94",
+      "fetch_status": 200
+    },
+    "samyan-terms": {
+      "publisher": "C ASEAN Samyan CO-OP",
+      "url": "https://caseansamyancoop.samyan-mitrtown.com/terms",
+      "published_at": null,
+      "checked_at": "2026-11-03",
+      "tier": "first_party",
+      "raw_archive": "../source-cache/journeys-2026-11-03/4b8562ec9f10.html",
+      "raw_sha256": "491cf9060dc62c3d45fc87318bcde8177db9f6f9993644fb29e1e3ecfa515139",
+      "fetch_status": 200
+    },
+    "tk-access": {
+      "publisher": "TK Park",
+      "url": "https://mytk.tkpark.or.th/News/NewsInformation?id=355",
+      "published_at": "2026-09-15",
+      "checked_at": "2026-11-03",
+      "tier": "first_party",
+      "raw_archive": "../source-cache/journeys-2026-11-03/d1d9ad329cc8.html",
+      "raw_sha256": "60f6d344aaab9aa9edd5b5cdb34707d23600505d127a2c57b9a657e1eb3ca33c",
+      "fetch_status": 200
+    },
+    "hive-membership": {
+      "publisher": "The Hive Thonglor",
+      "url": "https://thehive.co.th/membership/",
+      "published_at": null,
+      "checked_at": "2026-11-03",
+      "tier": "first_party",
+      "raw_archive": "../source-cache/journeys-2026-11-03/hive-web-response.json",
+      "raw_sha256": "fe6d9d018f220bed956b2a420e10295c0d3cae6cdfbd04ae2f039b2dfeebb823",
+      "fetch_status": 403,
+      "archive_note": "Direct HTTP fetch returned403; archived successful public web-tool source response without bypassing access controls."
+    },
+    "true-asoke": {
+      "publisher": "True Space",
+      "url": "https://www.truespaceth.com/en/true-space-asoke/",
+      "published_at": null,
+      "checked_at": "2026-11-03",
+      "tier": "first_party",
+      "raw_archive": "../source-cache/journeys-2026-11-03/3889ec29c20d.html",
+      "raw_sha256": "bded5adb09c602bbbb90b8f045eefa786def910bd6a8f4e60e8db3ae0dcd81a0",
+      "fetch_status": 200
+    },
+    "true-faq": {
+      "publisher": "True Space",
+      "url": "https://www.truespaceth.com/faqs/",
+      "published_at": null,
+      "checked_at": "2026-11-03",
+      "tier": "first_party",
+      "raw_archive": "../source-cache/journeys-2026-11-03/68a5c19d4d6d.html",
+      "raw_sha256": "2ef48a55e633d8cc0412486e2a7afd9bdd56d6bed1b801a7b440d054f511e05f",
+      "fetch_status": 200
+    },
+    "ktc-workspaces": {
+      "publisher": "KTC editorial",
+      "url": "https://www.ktc.co.th/article/knowledge/salary-man/co-working-space-bangkok",
+      "published_at": null,
+      "updated_at": "2026-02-21",
+      "checked_at": "2026-11-03",
+      "tier": "editorial",
+      "raw_archive": "../source-cache/journeys-2026-11-03/e7d76d667200.html",
+      "raw_sha256": "68ad7bbb9a8a6e42eae5815eb6d09282661a462a9f41e704fb449e062b164fac",
+      "fetch_status": 200
+    },
+    "tvbs-samyan": {
+      "publisher": "TVBS Super Taste",
+      "url": "https://supertaste.tvbs.com.tw/amp/travel/352798",
+      "published_at": "2025-01-04",
+      "updated_at": null,
+      "checked_at": "2026-11-03",
+      "tier": "editorial",
+      "raw_archive": "../source-cache/journeys-2026-11-03/0ba28e516715.html",
+      "raw_sha256": "6dfb1eb9d1daa532360dc0d7406965b3afe8ce84747fef4eae1b333f470295b6",
+      "fetch_status": 200
+    }
+  },
+  "unresolved": [
+    {
+      "name": "TrueSpace Siam Square Soi2",
+      "reason": "Operator page gives232/5SiamSquareSoi2 and100THB/3h,250/day; no existing catalogue row securely identifies coworking branch. Nearby TrueMove telecom row is not assumed to be it."
+    },
+    {
+      "name": "NapLab Chula",
+      "reason": "Catalogue address differs from contemporary third-party descriptions; no clear first-party identity/facility source verified."
+    },
+    {
+      "name": "DoubleDot LatPhrao",
+      "reason": "First-party site found, but no unique matching catalogue ID verified."
+    },
+    {
+      "name": "RoastLine Ramintra",
+      "reason": "First-party address/hours found; no catalogue ID verified."
+    },
+    {
+      "name": "HUB24/ThinkHub/SpaceBar",
+      "reason": "No branch-specific first-party work-facility facts and existing pin identity verified in this pass."
+    }
+  ],
+  "editorial_caveats": [
+    "KTC explicitly names the Samyan Mitrtown CO-OP and centralwOrld TK Park branches; only factual outlet availability is retained. No review prose/photos are copied.",
+    "KTC TK Park prose says eighth floor but its address line says seventh; current TK Park operator notice establishes eighth floor. KTC floor, price and hours are not used.",
+    "TVBS January2025 reports Samyan CO-OP Wi-Fi explicitly. It is dated editorial evidence, not a fresh operator availability guarantee.",
+    "True Space FAQ facilities text is accepted only for its explicitly named Asoke context; no amenities are propagated to Siam or every branch."
+  ]
+}

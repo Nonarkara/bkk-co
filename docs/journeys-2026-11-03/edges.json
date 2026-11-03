@@ -1,0 +1,8 @@
+{
+  "lateNotebookCannotReplaceFinder": true,
+  "deniedGPSRetainsResults": true,
+  "staleGPSIgnored": true,
+  "unselectedSearchCannotBecomeOrigin": true,
+  "geoOutageRecovery": true,
+  "lateViewsReplayExactResults": true
+}
