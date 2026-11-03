@@ -22,10 +22,10 @@ const GGP = [
 ];
 // Moods: each neighbourhood's "for" line, searched across the whole city with data we really have.
 const nextAt = (h, m, weekday) => { // the next time this clock time comes round (on a weekday if asked)
-  const d = new Date(); d.setHours(h, m, 0, 0);
-  if (d <= new Date()) d.setDate(d.getDate() + 1);
-  while (weekday && (d.getDay() === 0 || d.getDay() === 6)) d.setDate(d.getDate() + 1);
-  return d;
+  const d = new Date(Date.now()+7*3600000); d.setUTCHours(h,m,0,0);
+  if (d.getTime()-7*3600000 <= Date.now()) d.setUTCDate(d.getUTCDate()+1);
+  while (weekday && (d.getUTCDay()===0 || d.getUTCDay()===6)) d.setUTCDate(d.getUTCDate()+1);
+  return new Date(d.getTime()-7*3600000);
 };
 const MOODS = {
   slow: { label: 'Slow mornings', hood: 'ari', kinds: ['cafe'],
@@ -324,7 +324,7 @@ function closeSheet() {
   const u = new URL(location.href); u.searchParams.delete('p'); u.searchParams.delete('hood'); history.replaceState(null, '', u);
   renderList();
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#sheet').hidden && document.activeElement !== $('#q')) closeSheet(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !document.querySelector('.photo-viewer[open]') && !$('#sheet').hidden && document.activeElement !== $('#q')) closeSheet(); });
 
 // petal glyph: six petals, one per metric, length = decile; the four index metrics in ink
 function petals(p, size = 76) {
@@ -401,16 +401,14 @@ function renderSheet(p, d, visits) {
       <button class="close" aria-label="Close">×</button>
     </header>
     <div class="kindline"><i class="dot ${p.k}"></i>${KIND_LABEL[p.k]}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>
+    <section class="been"><button type="button" class="send been-open">✓ I've been here</button></section>
     <section class="ggp">
       ${petals(p)}
       <div class="ggp-num"><span class="big">${p.idx}</span><span class="micro">Great Good Place index · top ${topShare(p)}% of Bangkok</span></div>
       <table class="ggp-table">${GGP.map(([k, sym, label], i) => `<tr><td class="sym">${sym}</td><td>${label}</td><td class="raw">${esc(rawValue(k, p, d))}</td></tr>`).join('')}</table>
     </section>
     ${facts.length ? `<ul class="facts">${facts.map(([sym, t]) => `<li class="sym" aria-hidden="true">${sym}</li><li>${t}</li>`).join('')}</ul>` : ''}
-    <section class="been">
-      <button type="button" class="send been-open">✓ I've been here</button>
-      ${visits.length ? `<ul class="moments">${visits.slice().reverse().map(window.momentHtml).join('')}</ul>` : ''}
-    </section>
+    ${visits.length ? `<section><ul class="moments">${visits.slice().reverse().map(window.momentHtml).join('')}</ul></section>` : ''}
     <section class="scores">
       <h2 class="micro">${s ? `Visitor work score · ${s.n} ${s.n === 1 ? 'rating' : 'ratings'} · last ${esc(s.last)}` : state.scoresStatus==='unavailable' ? 'Visitor work score · unavailable right now' : state.scoresStatus==='loading' ? 'Visitor work score · loading' : 'Visitor work score · not rated yet · add yours with ✓'}</h2>
       ${s ? `<table>${SCORES.map(([k, label]) => `<tr><td>${label}</td><td>${dots(s[k], 3)}</td><td>${s[k].toFixed(1)} / 3</td></tr>`).join('')}</table>` : ''}
@@ -420,7 +418,8 @@ function renderSheet(p, d, visits) {
       ${['cafe', 'restaurant'].includes(p.k) ? `<a href="https://www.wongnai.com/restaurants?q=${encodeURIComponent(p.n)}" target="_blank" rel="noopener nofollow" title="Photos and reviews on Wongnai, opens their site">Photos &amp; reviews ↗ Wongnai</a>` : ''}
       <button type="button" class="share">Share</button>
     </nav>
-    <p class="src">Source: ${src}</p>`, { place:true });
+    <p class="src">Source: ${src}</p>
+    ${d.enrichment ? `<details class="src enrichment-source"><summary>Added ${Object.keys(d.enrichment).map(k=>k==='addr'?'address':'phone').join(' &amp; ')} · AllThePlaces · snapshot ${esc(Object.values(d.enrichment)[0].asOf)}</summary><p>CC0 Café Amazon export, published at the end of the 24–31 October run; venue details may have changed. <a href="https://alltheplaces-data.openaddresses.io/runs/2026-10-24-13-32-37/output/cafe_amazon.geojson" target="_blank" rel="noopener">Download source</a>. ${Object.values(d.enrichment).map(v=>`Branch ${esc(v.ref)} · ${esc(v.branch)} · record ${esc(v.id)} · matched within ${esc(v.distanceM)} m`).filter((v,i,a)=>a.indexOf(v)===i).join('; ')}</p></details>` : ''}`, { place:true });
 
   sheet.querySelector('[data-hood]')?.addEventListener('click', e => window.openHood?.(e.target.dataset.hood));
   sheet.querySelector('.been-open').addEventListener('click', e => window.beenForm?.(p, e.target, () => select(p, false)));

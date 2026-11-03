@@ -67,26 +67,40 @@
     async remove(key) { return tx('readwrite', s => s.delete(key)); },
     async exportFile() {
       const visits = await this.all();
-      const out = [];
-      for (const v of visits) out.push({ ...v, photos: await Promise.all(v.photos.map(toDataUrl)) });
-      const blob = new Blob([JSON.stringify({ app: 'bkk-co', version: 1, exported: new Date().toISOString(), visits: out })], { type: 'application/json' });
-      const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `plub-passport-${new Date().toISOString().slice(0, 10)}.json` });
-      a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-      return visits.length;
+      const parts=[];let out=[],bytes=0;
+      const envelope=values=>new Blob(['{"app":"bkk-co","version":1,"exported":'+JSON.stringify(new Date().toISOString())+',"visits":[',values.join(','),']}'],{type:'application/json'});
+      for(const v of visits) {
+        const value=JSON.stringify({...v,photos:await Promise.all((v.photos||[]).map(toDataUrl))});
+        const size=new Blob([value]).size;
+        if(size>14000000)throw new Error('A visit exceeds the backup limit. Export it after reducing its photos.');
+        if(out.length && (bytes+size>14000000 || out.length>=1000)){parts.push(envelope(out));out=[];bytes=0}
+        out.push(value);bytes+=size+1;
+      }
+      if(out.length||!parts.length)parts.push(envelope(out));
+      return {count:visits.length,parts};
     },
     async importFile(file) {
       if (!file || file.size > 15000000) throw new Error('Backup must be under 15 MB.');
       const data = JSON.parse(await file.text());
       if (data.app !== 'bkk-co' || !Array.isArray(data.visits) || data.visits.length > 1000) throw new Error('Not a PLUB passport file');
-      const have = new Set((await this.all()).map(v => v.place + v.at));
+      const validId=value=>typeof value==='string' && /^(?:[a-f0-9]{64}|[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$/i.test(value);
+      const identity=async(v,local=false)=>{
+        if(validId(v.backupId))return v.backupId;
+        if(validId(v.uid))return v.uid;
+        const photos=local?await Promise.all((v.photos||[]).map(toDataUrl)):v.photos||[];
+        const bytes=new TextEncoder().encode(JSON.stringify([v.place,v.at,v.stars,v.words,v.note,photos]));
+        return [...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');
+      };
+      const have = new Set(await Promise.all((await this.all()).map(v=>identity(v,true))));
       let n = 0;
       for (const v of data.visits) {
-        if (!v || typeof v.place !== 'string' || typeof v.at !== 'string' || !Number.isFinite(Date.parse(v.at)) || have.has(v.place + v.at)) continue;
+        if (!v || typeof v.place !== 'string' || typeof v.at !== 'string' || !Number.isFinite(Date.parse(v.at))) continue;
         if (!Number.isInteger(v.stars) || v.stars < 0 || v.stars > 5 || typeof v.note !== 'string' || v.note.length > 600 || !Array.isArray(v.words) || v.words.some(w => typeof w !== 'string' || w.length > 40)) throw new Error('Invalid visit in backup.');
+        const backupId=await identity(v);if(have.has(backupId))continue;
         const photos = await Promise.all((v.photos || []).slice(0,4).filter(p => typeof p === 'string' && p.length <= 3000000 && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(p)).map(p => fetch(p).then(r => r.blob()).then(b => shrink(b))));
         // Imported files cannot smuggle cloud identities/revisions or arbitrary fields.
-        await tx('readwrite', s => s.add({ uid: crypto.randomUUID(), place:v.place, name:String(v.name || '').slice(0,200), kind:String(v.kind || ''), y:Number(v.y), x:Number(v.x), stars:v.stars, words:v.words, note:v.note, at:v.at, photos }));
-        have.add(v.place + v.at); n++;
+        await tx('readwrite', s => s.add({ uid: crypto.randomUUID(), backupId, place:v.place, name:String(v.name || '').slice(0,200), kind:String(v.kind || ''), y:Number(v.y), x:Number(v.x), stars:v.stars, words:v.words, note:v.note, at:v.at, photos }));
+        have.add(backupId); n++;
       }
       return n;
     },

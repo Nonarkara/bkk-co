@@ -38,7 +38,7 @@ assert.ok(validateScore([], ids).error);
 
 // Hours: open / closed / unknown, never guessed.
 const { isOpen } = createRequire(import.meta.url)('../public/hours.js');
-const at = (d, h, m = 0) => new Date(2026, 10, 1 + d, h, m); // 1 Nov 2026 is a Sunday
+const at = (d, h, m = 0) => new Date(Date.UTC(2026,10,1+d,h-7,m)); // 1 Nov 2026 is a Sunday
 assert.equal(isOpen('24/7', at(0, 3)), true);
 assert.equal(isOpen('08:00-18:00', at(2, 9)), true);
 assert.equal(isOpen('08:00-18:00', at(2, 19)), false);

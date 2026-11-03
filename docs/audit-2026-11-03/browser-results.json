@@ -1,0 +1,158 @@
+{
+  "metrics": [
+    {
+      "width": 390,
+      "height": 844,
+      "bar": {
+        "top": 0,
+        "bottom": 49,
+        "height": 49,
+        "width": 390
+      },
+      "chips": {
+        "top": 49,
+        "bottom": 90,
+        "height": 41,
+        "width": 390
+      },
+      "action": {
+        "top": 421.390625,
+        "bottom": 453.390625,
+        "height": 32,
+        "width": 354
+      },
+      "sheet": {
+        "top": 112,
+        "bottom": 844,
+        "height": 732,
+        "width": 390
+      },
+      "bleed": false,
+      "oldDisplacedBottom": 776.390625,
+      "placeActionGap": {
+        "current": 73,
+        "old": 395.34375
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 1024,
+      "height": 900,
+      "bar": {
+        "top": 0,
+        "bottom": 49,
+        "height": 49,
+        "width": 360
+      },
+      "chips": {
+        "top": 49,
+        "bottom": 90,
+        "height": 41,
+        "width": 360
+      },
+      "action": {
+        "top": 397.390625,
+        "bottom": 429.390625,
+        "height": 32,
+        "width": 323
+      },
+      "sheet": {
+        "top": 90,
+        "bottom": 900,
+        "height": 810,
+        "width": 359
+      },
+      "bleed": false,
+      "oldDisplacedBottom": 752.390625,
+      "placeActionGap": {
+        "current": 73,
+        "old": 395.34375
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "bar": {
+        "top": 0,
+        "bottom": 49,
+        "height": 49,
+        "width": 360
+      },
+      "chips": {
+        "top": 49,
+        "bottom": 90,
+        "height": 41,
+        "width": 360
+      },
+      "action": {
+        "top": 397.390625,
+        "bottom": 429.390625,
+        "height": 32,
+        "width": 323
+      },
+      "sheet": {
+        "top": 90,
+        "bottom": 900,
+        "height": 810,
+        "width": 359
+      },
+      "bleed": false,
+      "oldDisplacedBottom": 752.390625,
+      "placeActionGap": {
+        "current": 73,
+        "old": 395.34375
+      },
+      "pageErrors": []
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "bar": {
+        "top": 0,
+        "bottom": 49,
+        "height": 49,
+        "width": 360
+      },
+      "chips": {
+        "top": 49,
+        "bottom": 90,
+        "height": 41,
+        "width": 360
+      },
+      "action": {
+        "top": 397.390625,
+        "bottom": 429.390625,
+        "height": 32,
+        "width": 323
+      },
+      "sheet": {
+        "top": 90,
+        "bottom": 720,
+        "height": 630,
+        "width": 359
+      },
+      "bleed": false,
+      "oldDisplacedBottom": 752.390625,
+      "placeActionGap": {
+        "current": 73,
+        "old": 395.34375
+      },
+      "pageErrors": []
+    }
+  ],
+  "photoViewer": true,
+  "photoURLReclaimed": true,
+  "backup": {
+    "count": 8,
+    "parts": 3,
+    "sizes": [
+      10796734,
+      10796726,
+      7197843
+    ],
+    "imported": 8,
+    "countAfter": 8,
+    "again": 0
+  }
+}

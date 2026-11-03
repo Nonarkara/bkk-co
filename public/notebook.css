@@ -56,3 +56,23 @@
 .chips button { height:auto; min-height:32px; padding-block:4px; line-height:1.35; }
 .notebook-sheet .send,.been-form .send { height:auto; min-height:44px; padding:8px 12px; line-height:1.35; }
 .notebook-sheet .local-settings,.notebook-sheet > details:not(.notebook-stamps) { margin-top:10px; }
+
+.photo-viewer { max-width:calc(100vw - 24px); max-height:calc(100dvh - 24px); padding:8px; border:1px solid var(--ink); background:var(--paper); color:var(--ink); }
+.photo-viewer::backdrop { background:rgb(0 0 0 / 65%); }
+.photo-viewer button { display:block; min-height:44px; padding:6px 12px; margin-bottom:6px; border:1px solid var(--ink); }
+.photo-viewer img { display:block; max-width:100%; max-height:calc(100dvh - 100px); width:auto; height:auto; object-fit:contain; }
+
+.backup-parts a { display:block; width:fit-content; min-height:36px; padding:6px 0; }
+
+.photo-pick:focus-within { outline:2px solid var(--ink); outline-offset:2px; }
+/* Visit controls grow with text; labels remain beside their own wrapping choices. */
+.been-form .photo-pick { height:auto; min-height:44px; padding:6px 12px; }
+.been-form .feel button,.been-form .seg button { height:auto; min-height:32px; padding:4px 8px; line-height:1.35; }
+.been-form .rate { grid-template-columns:max-content minmax(0,1fr); }
+.been-form .seg { grid-column:auto; display:flex; flex-wrap:wrap; gap:4px; }
+.thumbs { flex-wrap:wrap; }
+.photo-pick,.backup-parts a,.cloud-create button,.cloud-login button,[data-account-save] { min-height:44px; }
+.links label:focus-within { outline:2px solid var(--ink); outline-offset:2px; }
+/* File inputs stay in keyboard order without inheriting full-width notebook fields. */
+.photo-pick,.importer { position:relative; }
+.sheet input[type=file].sr { position:absolute; left:0; top:0; width:1px; height:1px; min-height:0; padding:0; border:0; overflow:hidden; clip-path:inset(50%); }
