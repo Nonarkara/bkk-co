@@ -553,7 +553,9 @@
       choice.radius = mode === 'drive' ? 5000 : 800;
       if (mode === 'nearby') choice.duration = 120;
     }
-    if (!choice.origin) choice.origin = centre();
+    // A start the user can no longer see is a silent lie about "near": follow the map unless the chosen start is still in view.
+    const o = choice.origin;
+    if (!o || o.kind === 'map' || !map.getBounds().contains([o.x, o.y])) choice.origin = centre();
     const sheet = openSheet(controls());
     sheet.classList.add('journey-sheet');
     active = sheet;

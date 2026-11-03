@@ -153,3 +153,12 @@ PlaceTools supplies category SVGs for filter/list/search, token/apostrophe/Latin
 Place-level Notes&photos and Addrecommendation expose the existing backend. Compose→private device save→optional contextual account/key→preview→explicit publish. Photos unchecked by default. Never auto-upload from saving/preview. Short recommendation/community states fit content and restore related catalogue rows beneath ondesktop; long notebook keeps its established fullheight.44px changed targets and original styles/brand/maps retained. Source evidence loads on direct place entry without waiting for largegeo feeds. New async guards prevent late details/auth/backup/clipboard/errors replacing newer intent or borrowing another preview's photo choice.
 
 Independent MSH reviewer /root/community_audit PASS; geometry at390/1024/1440 and30pxbody; original fullheight and fullspan faults falsified. Local actual browser flows at360/390/1024/1440/1280; original journeys/discovery and67/67API assertions pass. Fresh immutable browser runner avoids active-dev Worker restart corrupting streamed JSON/POSTs. Detailed final release proof: docs/community-2026-11-03/SHIP.md. No backend schema/privacy/OAuth/traffic API change.
+
+## Improve pass (2026-11-03, persona walkthrough by an independent agent)
+- Search rows no longer show the list position as a score (`top.map(p => row(p))`).
+- Neighbourhood sheets: Plub's walk sits under the intro; numbers, traits and story fold into "Numbers and story".
+- Phone: the floating "Find a work spot / Explore / Key" row is gone; those live in the List panel (`data-proxy` buttons press the atlas controls). Only an active view's status and "Clear map view ×" float.
+- Search finds neighbourhoods by Thai/English aliases (`HOOD_ALIASES`; Siam/สยาม → Sam Yan, labelled "near").
+- Work finder: a start that is off-screen (or "Map centre") follows the map when the finder opens.
+- Non's handwriting (`Non Architecture`, Latin only) for voice lines: Plub's speech, neighbourhood purpose, Non's visit notes. Never data, numbers or Thai.
+- **Parked (needs the reviewed-row guard re-signed in `scripts/include-reviewed-place.py`):** drop names saying the place is closed (3 rows), merge same-kind twins ≤ 8 m with matching numbers / Latin names / phone + shared word (e.g. THIRTY 3 CAFE ↔ ร้าน 33 Cafa), non-café mislabels, branch names on chain results.

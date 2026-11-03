@@ -14,8 +14,19 @@ const hoodsReady = fetch('data/hoods.json').then(r => r.json()).then(d => {
 $('#guide').innerHTML = '<img class="plub-badge" src="plub/nong-plub.png" alt="" width="30" height="30">';
 
 window.hoodOf = p => hoods.ofId.get(p.id);
-window.hoodHits = q => hoods.list.filter(h => [h.name, h.th, h.for].some(s => s.toLowerCase().includes(q)))
-  .map(h => `<li data-hood="${h.slug}" role="option"><span class="ring" aria-hidden="true"></span><span class="nm">${esc(h.name)} <span class="th" lang="th">${esc(h.th)}</span></span><span class="meta">for ${esc(h.for.toLowerCase())}</span></li>`).join('');
+// How people actually name these areas, in Thai and English. "near" = an alias that is a neighbouring area, said so.
+const HOOD_ALIASES = {
+  ari: [['aree', 'อารี', 'phahonyothin 7', 'พหลโยธิน 7', 'ซอยอารีย์']],
+  samyan: [['chula', 'จุฬา', 'chulalongkorn', 'mitrtown', 'มิตรทาวน์', 'สามย่านมิตรทาวน์', 'samyan'], ['siam', 'สยาม', 'สามย่าน', 'rama 4', 'พระราม 4']],
+  charoenkrung: [['talat noi', 'talad noi', 'ตลาดน้อย', 'tcdc', 'bang rak', 'บางรัก', 'saphan taksin', 'สะพานตากสิน', 'riverside']],
+  thonglo: [['thonglor', 'thong lor', 'ทองหล่อ', 'sukhumvit 55', 'สุขุมวิท 55', 'ekkamai', 'เอกมัย']],
+};
+const NEAR_ALIAS = { samyan: ['siam', 'สยาม'], thonglo: ['ekkamai', 'เอกมัย'] }; // close by, not the same place
+window.hoodHits = q => hoods.list.filter(h => [h.name, h.th, h.for, ...(HOOD_ALIASES[h.slug] || []).flat()].some(s => s.toLowerCase().includes(q)))
+  .map(h => {
+    const near = (NEAR_ALIAS[h.slug] || []).find(a => a.includes(q) || q.includes(a));
+    return `<li data-hood="${h.slug}" role="option"><span class="ring" aria-hidden="true"></span><span class="nm">${esc(h.name)} <span class="th" lang="th">${esc(h.th)}</span></span><span class="meta">${near ? `near ${esc(near)} · ` : ''}for ${esc(h.for.toLowerCase())}</span></li>`;
+  }).join('');
 $('#hits').addEventListener('click', e => { const li = e.target.closest('li[data-hood]'); if (li) openHood(li.dataset.hood); });
 
 // ---------- map: one 10-minute-walk ring per neighbourhood ----------
@@ -114,6 +125,10 @@ async function openHood(slug, jump) {
   const sheet = openSheet(`
     <header><h1>${esc(h.name)}<span class="th" lang="th">${esc(h.th)}</span></h1><button class="close" aria-label="Close">×</button></header>
     <div class="hood-intro"><div class="hood-mood"><span class="micro">For</span><b class="for">${esc(h.for)}</b><span lang="th">${esc(h.forTh)}</span></div><div class="plub-say">${guideArt()}<p><q>${esc(h.plub)}</q>${moodOf(slug) ? `<button class="linkish" data-mood="${moodOf(slug)}">◐ Find ${esc(h.for.toLowerCase())} citywide</button>` : ''}</p></div></div>
+    <section><h2 class="micro">Plub's walk · co-working &amp; libraries first, then Wi-Fi, then ✦</h2>
+      <ol class="walk">${h.walk.map((id, i) => { const p = state.byId.get(id); return p ? `<li data-id="${esc(id)}"><span class="stop">${i + 1}</span><span class="nm">${esc(p.n)}</span>${state.visited.has(id) ? '<b>✓</b>' : ''}<span class="idx">✦${p.idx}</span></li>` : ''; }).join('')}</ol>
+    </section>
+    <details class="hood-more"><summary>Numbers and story</summary>
     <section class="hood-stats">
       <div class="stat"><span class="big">${fmt(s.work)}</span><span class="micro">work spots within 800 m of ${esc(h.anchorLabel)}</span></div>
       <div class="stat"><span class="big">#${s.stationRank}</span><span class="micro">${/^(BTS|MRT)/.test(h.anchorLabel) ? `of ${s.stations} rail stations` : `vs ${s.stations} rail-station circles`}</span></div>
@@ -125,9 +140,7 @@ async function openHood(slug, jump) {
     </section>
     <section><h2 class="micro">Plub's read · Oldenburg's traits, from the story below</h2>${traitsRow(h)}</section>
     <section class="story">${h.story.map(t => `<p>${esc(t)}</p>`).join('')}</section>
-    <section><h2 class="micro">Plub's walk · co-working &amp; libraries first, then Wi-Fi, then ✦</h2>
-      <ol class="walk">${h.walk.map((id, i) => { const p = state.byId.get(id); return p ? `<li data-id="${esc(id)}"><span class="stop">${i + 1}</span><span class="nm">${esc(p.n)}</span>${state.visited.has(id) ? '<b>✓</b>' : ''}<span class="idx">✦${p.idx}</span></li>` : ''; }).join('')}</ol>
-    </section>
+    </details>
     <nav class="links"><button type="button" class="show-map">◎ Show on map</button><button type="button" class="share">Share</button></nav>
     <p class="src">Sources: ${h.sources.map(([t, url]) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(t)}</a>`).join(' · ')}. Numbers computed from OpenStreetMap and Overture Maps places within ${h.radius} m of OSM ${esc(h.anchor.id)}.</p>`);
   sheet.classList.add('hood-sheet');

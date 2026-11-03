@@ -74,3 +74,5 @@
 .chips button { min-height:44px; }
 .atlas-tools button { min-height:44px; }
 .hits li[data-id],.list li[data-id] { min-height:44px; }
+/* phone: five chips must fit 390 px without a hidden sliver (audit 2026-11-03) */
+@media (max-width: 899px) { .chips { gap: 3px; } .chips button { padding-inline: 7px; } }

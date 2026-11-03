@@ -271,7 +271,7 @@ $('#q').addEventListener('input', () => {
   hitIdx = -1;
   const c2 = map.getCenter();
   const missing = `<li class="meta missing"><a href="${osmNote(c2.lat, c2.lng)}" target="_blank" rel="noopener">Missing a place? Tell OpenStreetMap ↗</a></li>`;
-  hits.innerHTML = (window.hoodHits?.(q) || '') + (top.length ? top.map(row).join('') : '<li class="meta">No place by that name. Try Thai or English.</li>') + missing;
+  hits.innerHTML = (window.hoodHits?.(q) || '') + (top.length ? top.map(p => row(p)).join('') : '<li class="meta">No place by that name. Try Thai or English.</li>') + missing;
   hits.hidden = false;
 });
 $('#q').addEventListener('keydown', e => {
@@ -504,3 +504,12 @@ $('#q').addEventListener('focus', () => {
 });
 
 for (const b of document.querySelectorAll('.chips [data-kind]')) b.querySelector('.dot')?.replaceWith(document.createRange().createContextualFragment(PlaceTools.symbol(b.dataset.kind)));
+
+// Phone: the map tools live in the Explore panel instead of floating over the map (MSH: nothing on top of the map).
+// These buttons press the real atlas controls, so behaviour stays in atlas.js.
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-proxy]');
+  if (!b) return;
+  setListOpen(false);
+  document.querySelector(`.atlas-dock [data-${b.dataset.proxy}]`)?.click();
+});

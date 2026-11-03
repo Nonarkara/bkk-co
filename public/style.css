@@ -287,3 +287,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* neighbourhood sheet: the places first; numbers and story one tap away */
+.hood-more { margin-top: 12px; border-top: 1px solid var(--rule); }
+.hood-more > summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 500; }
+.hood-more[open] > summary { margin-bottom: 4px; }

@@ -166,6 +166,9 @@
   line-height: 1.5;
 }
 @media (max-width: 899px) {
+  /* phone: tools moved into the Explore panel; only an active view's status and its way out stay on the map */
+  .atlas-tools [data-work-start], .atlas-tools [data-atlas-open], .atlas-tools [data-atlas-key] { display: none !important; }
+  .atlas-dock:not(:has(.atlas-reset:not([hidden]))) .atlas-state { display: none; }
   .atlas-dock {
     left: 10px;
     top: 102px;
