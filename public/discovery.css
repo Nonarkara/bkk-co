@@ -40,3 +40,37 @@
 /* A branch suffix is decision information; never hide it behind an ellipsis. */
 .hits .nm,.list .nm { white-space:normal; overflow:visible; text-overflow:clip; overflow-wrap:anywhere; }
 .hits .meta,.list .meta { flex:none; }
+/* Shared silhouettes and adjacent decisions, not another stack of cards. */
+.place-symbol { display:inline-block; width:20px; height:20px; flex:none; vertical-align:middle; }
+.place-badge { width:28px; height:28px; object-fit:contain; }
+.chips .place-symbol { width:16px; height:16px; }
+.kindline .place-symbol { width:18px; height:18px; }
+.sheet .place-actions .send { grid-column:auto; justify-self:stretch; }
+.sheet .place-actions .been-form { grid-column:1/-1; }
+.place-social,.featured-nav,.featured-actions { display:flex; align-items:center; flex-wrap:wrap; gap:0 12px; }
+.place-social button,.featured-nav button,.featured-actions button,.featured-actions a { min-height:44px; text-align:left; text-decoration:underline; text-underline-offset:3px; }
+.place-social { border-bottom:1px solid var(--rule); }
+.share-status { margin:4px 0; font-size:var(--body); overflow-wrap:anywhere; }
+.share-status input { display:block; width:100%; padding:6px; font:inherit; border:1px solid var(--ink); }
+.featured-entry { display:block; min-height:44px; text-align:left; }
+.featured-list { list-style:none; margin:4px 0; padding:0; }
+.featured-list li { display:flex; align-items:flex-start; gap:8px; border-top:1px solid var(--rule); padding:8px 0; }
+.featured-list li > div { min-width:0; flex:1; }
+.featured-name { display:block; min-height:44px; text-align:left; font-weight:500; font-size:var(--big); line-height:1.2; overflow-wrap:anywhere; }
+.featured-list .src { margin-top:2px; overflow-wrap:anywhere; }
+.featured-actions { gap:0 16px; }
+.featured-sheet p { max-width:65ch; }
+.featured-sheet .place-badge { margin-top:6px; }
+.recommend-sheet .been-form { margin-top:8px; }
+.recommend-sheet .cloud-account { margin-top:8px; }
+@media(min-width:900px) {
+ .sheet.notebook-sheet.recommend-sheet,.sheet.notebook-sheet.community-sheet { height:auto; flex:none; max-height:calc(100dvh - 104px); }
+ .side:has(.recommend-sheet:not([hidden])) .list-wrap,.side:has(.community-sheet:not([hidden])) .list-wrap { display:flex; }
+}
+.recommend-sheet .linkish,.recommend-account button { display:inline-flex; align-items:center; min-height:44px; padding:6px 8px; text-align:left; }
+.recommend-account button { border:1px solid var(--ink); margin:4px 4px 0 0; }
+.recommend-account [data-key-continue] { background:var(--ink); color:var(--paper); }
+.recommend-account h2 { font-size:var(--big); font-weight:500; }
+.chips button { min-height:44px; }
+.atlas-tools button { min-height:44px; }
+.hits li[data-id],.list li[data-id] { min-height:44px; }

@@ -327,6 +327,10 @@ def build():
         'files': files}
     (data / 'manifest.json').write_text(json.dumps(manifest, indent=1, ensure_ascii=False) + '\n')
     subprocess.run([sys.executable, str(ROOT/'scripts/enrich-places.py')], check=True)
+    # Apply the bounded, reviewed exact-source café exception after the frozen base.
+    # Geography builders run separately against the resulting current catalogue.
+    subprocess.run([sys.executable, str(ROOT/'scripts/include-reviewed-place.py'), '--catalogue-only'], check=True)
+    manifest = json.loads((data / 'manifest.json').read_text())
     print(json.dumps({k: manifest[k] for k in ('total', 'kinds', 'bySource', 'skipped', 'files')}, indent=1))
 
 def fetch_overture():

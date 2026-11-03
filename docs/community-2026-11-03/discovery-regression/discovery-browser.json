@@ -1,0 +1,110 @@
+{
+  "results": [
+    {
+      "width": 358,
+      "height": 844,
+      "editorFirst": {
+        "x": 12,
+        "y": 614.0625,
+        "width": 334,
+        "height": 85.390625
+      },
+      "discussionFirst": {
+        "x": 12,
+        "y": 614.0625,
+        "width": 334,
+        "height": 85.390625
+      },
+      "search": true,
+      "branchSearch": true,
+      "pagination": true,
+      "pageErrors": [],
+      "apiWrites": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "editorFirst": {
+        "x": 12,
+        "y": 594.46875,
+        "width": 366,
+        "height": 85.390625
+      },
+      "discussionFirst": {
+        "x": 12,
+        "y": 614.0625,
+        "width": 366,
+        "height": 85.390625
+      },
+      "search": true,
+      "branchSearch": true,
+      "pagination": true,
+      "pageErrors": [],
+      "apiWrites": []
+    },
+    {
+      "width": 1024,
+      "height": 900,
+      "editorFirst": {
+        "x": 12,
+        "y": 339.984375,
+        "width": 335,
+        "height": 85.390625
+      },
+      "discussionFirst": {
+        "x": 12,
+        "y": 359.578125,
+        "width": 335,
+        "height": 85.390625
+      },
+      "search": true,
+      "branchSearch": true,
+      "pagination": true,
+      "pageErrors": [],
+      "apiWrites": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "editorFirst": {
+        "x": 12,
+        "y": 339.984375,
+        "width": 335,
+        "height": 85.390625
+      },
+      "discussionFirst": {
+        "x": 12,
+        "y": 359.578125,
+        "width": 335,
+        "height": 85.390625
+      },
+      "search": true,
+      "branchSearch": true,
+      "pagination": true,
+      "pageErrors": [],
+      "apiWrites": []
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "editorFirst": {
+        "x": 12,
+        "y": 339.984375,
+        "width": 335,
+        "height": 85.390625
+      },
+      "discussionFirst": {
+        "x": 12,
+        "y": 359.578125,
+        "width": 335,
+        "height": 85.390625
+      },
+      "search": true,
+      "branchSearch": true,
+      "pagination": true,
+      "pageErrors": [],
+      "apiWrites": []
+    }
+  ],
+  "failedFeedRetry": true
+}

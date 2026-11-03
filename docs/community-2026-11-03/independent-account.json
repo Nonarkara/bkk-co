@@ -1,0 +1,20 @@
+{
+  "contextualCreate": true,
+  "keyGate": true,
+  "privateUntilPreview": true,
+  "explicitPublish": true,
+  "writes": [
+    "create",
+    {
+      "method": "PUT",
+      "path": "/api/notebook/92595a04-be5f-42ff-9275-9f4dfcae51fe",
+      "photos": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/notebook/92595a04-be5f-42ff-9275-9f4dfcae51fe/publish",
+      "photos": false,
+      "confirm": true
+    }
+  ]
+}

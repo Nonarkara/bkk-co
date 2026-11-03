@@ -266,7 +266,7 @@ window.beenForm = (p, btn, done) => {
     e.preventDefault();
     const send = form.querySelector('.send'); send.disabled = true; send.textContent = 'Saving…';
     try {
-      await Passport.add({ at: form.querySelector('[name=visit-date]').value, place: p.id, name: p.n, kind: p.k, y: p.y, x: p.x, stars,
+      const savedKey=await Passport.add({ at: form.querySelector('[name=visit-date]').value, place: p.id, name: p.n, kind: p.k, y: p.y, x: p.x, stars,
         words: [...form.querySelectorAll('.feel [aria-pressed="true"]')].map(b => b.textContent),
         note: form.querySelector('textarea').value, files: input.files });
       if (SCORES.every(([k]) => vote[k])) {
@@ -276,7 +276,7 @@ window.beenForm = (p, btn, done) => {
         if (r?.ok) await loadScores(); // a refused rating (e.g. already rated today) never blocks the passport entry
       }
       sessionStorage.removeItem('plub-draft-'+p.id);
-      await loadVisits(); refresh(); const active=form.isConnected; form.remove(); if(active)done();
+      await loadVisits(); refresh(); const active=form.isConnected; form.remove(); if(active)await done(savedKey);
     } catch (err) { send.disabled = false; send.textContent = 'Save visit'; form.querySelector('.picked').textContent=err.message||'Could not save. Your form is kept; try again.'; }
   });
 };

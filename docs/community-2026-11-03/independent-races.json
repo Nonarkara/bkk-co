@@ -1,0 +1,36 @@
+{
+  "result": {
+    "lateBackupNoPublish": true,
+    "lateBackupErrorNoPollution": true,
+    "manualCopyFallback": true,
+    "lateClipboardCannotPolluteNewScreen": true
+  },
+  "writes": [
+    {
+      "method": "PUT",
+      "url": "http://localhost:43827/api/notebook/7d1713bb-bcbf-48c2-8f29-4d7e1e447162",
+      "body": {
+        "place": "o825832f94e7f",
+        "at": "2026-11-03",
+        "stars": 0,
+        "words": [],
+        "note": "Audit private visit",
+        "photos": [],
+        "revision": 0
+      }
+    },
+    {
+      "method": "PUT",
+      "url": "http://localhost:43827/api/notebook/4ef30244-2661-4b71-a8e1-181306135b14",
+      "body": {
+        "place": "o825832f94e7f",
+        "at": "2026-11-03",
+        "stars": 0,
+        "words": [],
+        "note": "Audit private visit",
+        "photos": [],
+        "revision": 0
+      }
+    }
+  ]
+}

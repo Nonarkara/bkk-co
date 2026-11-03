@@ -22,3 +22,32 @@
   }catch(e){if(sheet.classList.contains('discovery-sheet')){const p=sheet.querySelector('p');p.textContent=e.message;const retry=document.createElement('button');retry.className='linkish';retry.textContent='Retry';retry.onclick=()=>openDiscovery();sheet.append(retry)}}
  };
 })();
+
+// Unlike name-only selections, these branches already have explicit source identity checks.
+window.openFeatured = async function () {
+  const sheet=openSheet('<header><h1>Featured places</h1><button class="close" aria-label="Close">×</button></header><p role="status">Loading verified branches…</p>');
+  sheet.classList.add('featured-sheet');
+  const generation=sheetGeneration;
+  try {
+    const [d]=await Promise.all([Atlas.load(),foodData]);
+    if(generation!==sheetGeneration||sheet.hidden)return;
+    const c=map.getCenter(),centre={x:c.lng,y:c.lat};
+    const entries=d.evidence.places.filter(e=>e.editorial_count>0&&state.byId.has(e.place_id))
+      .map(e=>({e,p:state.byId.get(e.place_id)})).sort((a,b)=>metres(a.p,centre)-metres(b.p,centre));
+    const publishers=new Map(d.evidence.sources.map(s=>[s.id,s]));
+    sheet.innerHTML=`<header><h1>Featured places</h1><button class="close" aria-label="Close">×</button></header><p class="src">Publisher picks with verified branch matches, nearest this map centre first. Coverage is not a live popularity or quality score. Check hours and facilities before travelling.</p><nav class="featured-nav"><button data-feature-work>Find a work spot</button><button data-feature-lists>50 + 50 source lists</button></nav><ol class="featured-list">${entries.map(({e,p})=>{
+      const sources=e.evidence.filter(v=>v.evidence_type!=='public_discussion');
+      const reasons=[e.attributes.shophouse?'Source-described shophouse':e.attributes.architecture?'Source-described architecture':null].filter(Boolean);
+      return `<li>${PlaceTools.icon(p)}<div><button class="featured-name" data-feature-place="${esc(p.id)}">${esc(p.n)}</button><p class="src">${esc(sources[0]?.identity.publisher_location||'')}${reasons.length?' · '+reasons.join(' · '):''}</p><p class="src">${sources.map(v=>`<a href="${esc(v.source_url)}" target="_blank" rel="noopener nofollow">${esc(publishers.get(v.source_id)?.publisher||'Publication')}</a> · ${esc(v.published_at||'date unstated')}`).join(' · ')} · checked ${esc(d.evidence.checked_at)}</p><div class="featured-actions"><button data-feature-place="${esc(p.id)}">Place &amp; work facts</button><a href="${esc(JourneyModel.directions(p,null))}" target="_blank" rel="noopener">Directions ↗</a></div></div></li>`;
+    }).join('')}</ol>`;
+    sheet.querySelector('.close').onclick=closeSheet;
+    const heading=sheet.querySelector('h1');heading.tabIndex=-1;heading.focus({preventScroll:true});
+    sheet.querySelector('[data-feature-work]').onclick=()=>WorkFinder.open();
+    sheet.querySelector('[data-feature-lists]').onclick=()=>openDiscovery();
+    sheet.querySelectorAll('[data-feature-place]').forEach(b=>b.onclick=()=>select(state.byId.get(b.dataset.featurePlace),true));
+  } catch(e) {
+    if(generation!==sheetGeneration||sheet.hidden)return;
+    sheet.querySelector('[role=status]').textContent=e.message;
+    const b=document.createElement('button');b.className='linkish';b.textContent='Retry featured places';b.onclick=openFeatured;sheet.append(b);
+  }
+};

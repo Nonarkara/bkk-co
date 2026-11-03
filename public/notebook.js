@@ -42,15 +42,16 @@
    <form class="cloud-login"><label>Have a notebook key?<input type="password" name="key" autocomplete="off" spellcheck="false" required minlength="43" maxlength="43" placeholder="Paste your private notebook key"></label><button>Sign in</button></form>`}
   <p class="src">A notebook key opens your cloud data. Keep it private. We cannot recover a lost key. Device notes remain after signing out; use Clear device on a shared phone. Cloudflare processes hosting data; see <a href="/privacy.html" target="_blank" rel="noopener">privacy and community rules</a>.</p></details>`;
  }
- function bindAccount(tools){
+ function bindAccount(tools,onSignedIn=openPassport){
+  const generation=sheetGeneration;
   tools.querySelector('.cloud-create')?.addEventListener('submit',async e=>{
    e.preventDefault();const b=e.target.querySelector('button');b.disabled=true;
-   try{const r=await api('account/create','POST',{name:e.target.elements.name.value});who=r.account;createdKey=r.recoveryKey;await openPassport()}
+   try{const r=await api('account/create','POST',{name:e.target.elements.name.value});who=r.account;createdKey=r.recoveryKey;if(generation===sheetGeneration&&!tools.closest('[hidden]'))await onSignedIn()}
    catch(err){message(tools,err.message);b.disabled=false}
   });
   tools.querySelector('.cloud-login')?.addEventListener('submit',async e=>{
    e.preventDefault();const b=e.target.querySelector('button');b.disabled=true;
-   try{who=(await api('account/login','POST',{key:e.target.elements.key.value.trim()})).account;createdKey=null;await openPassport()}
+   try{who=(await api('account/login','POST',{key:e.target.elements.key.value.trim()})).account;createdKey=null;if(generation===sheetGeneration&&!tools.closest('[hidden]'))await onSignedIn()}
    catch(err){message(tools,err.message);b.disabled=false}
   });
   tools.querySelector('[data-cloud-out]')?.addEventListener('click',async()=>{try{await api('account/logout','POST',{});who=null;createdKey=null;await openPassport()}catch(e){message(tools,e.message)}});
@@ -89,19 +90,22 @@
   sheet.querySelector('form').onsubmit=async e=>{e.preventDefault();const b=e.target.querySelector('.send');b.disabled=true;try{await Passport.update(key,{at:e.target.elements.at.value,stars:+e.target.elements.stars.value,note:e.target.elements.note.value});await refreshNotebook()}catch(err){message(sheet,err.message);b.disabled=false}};
  }
  async function sharing(key,expectedOwner=who?.id){
-  const stored=await Passport.get(key);if(!stored)return;
+  const generation=sheetGeneration;
+  const stored=await Passport.get(key);if(!stored||generation!==sheetGeneration)return;
   const v={...stored,words:[...(stored.words||[])],photos:[...(stored.photos||[])]}, actor=(await api('account')).account;
+  if(generation!==sheetGeneration)return;
   if(!expectedOwner||actor?.id!==expectedOwner)throw new Error('Account changed or not signed in. Open Notes before sharing.');
-  const sheet=openSheet(`<header><h1>Recommend this place</h1><button class="close" aria-label="Close">×</button></header><p><b>${esc(v.name)}</b></p><div class="plub-say">${guideArt()}<p>Share what helped you. Be kind, describe your own visit, and keep other people's private details out.</p></div><p>This publishes as <b>${esc(actor.name)}</b>: your note, stars and feelings on the place's community page. Your visit date is kept private.</p><blockquote>${esc(v.note||'No written note')} · ${v.stars?v.stars+'/5':'Not rated yet'}</blockquote><label class="research"><input type="checkbox" data-share-photos> Also publish ${v.photos?.length||0} ${(v.photos?.length||0)===1?'photo':'photos'}. I have permission from anyone identifiable.</label><p>Photos are resized and metadata removed before upload. Public copies can be saved by other people.</p><button class="send" data-publish>Back up &amp; publish recommendation</button><button class="linkish" data-cancel-share>Keep private</button><p class="src">Requires a signed-in cloud notebook. You can remove your post on the place page. Three reports temporarily hide a post for review.</p>`);sheet.classList.add('notebook-sheet');
+  const sheet=openSheet(`<header><h1>Recommend this place</h1><button class="close" aria-label="Close">×</button></header><p><b>${esc(v.name)}</b></p><div class="plub-say">${guideArt()}<p>Share what helped you. Be kind, describe your own visit, and keep other people's private details out.</p></div><p>This publishes as <b>${esc(actor.name)}</b>: your note, stars and feelings on the place's community page. Your visit date is kept private.</p><blockquote>${esc(v.note||'No written note')} · ${v.stars?v.stars+'/5':'Not rated yet'}</blockquote><label class="research"><input type="checkbox" data-share-photos> Also publish ${v.photos?.length||0} ${(v.photos?.length||0)===1?'photo':'photos'}. I have permission from anyone identifiable.</label><p>Photos are resized and metadata removed before upload. Public copies can be saved by other people.</p><button class="send" data-publish>Back up &amp; publish recommendation</button><button class="linkish" data-cancel-share>Keep private</button><p class="src">Requires a signed-in cloud notebook. You can remove your post on the place page. Three reports temporarily hide a post for review.</p>`);sheet.classList.add('notebook-sheet','recommend-sheet');
   sheet.querySelector('[data-cancel-share]').onclick=openPassport;
-  sheet.querySelector('[data-publish]').onclick=async e=>{const b=e.target;b.disabled=true;try{if(!actor)throw new Error('Create or sign in to your cloud notebook first.');const saved=await backup(key,v,actor.id);await auth('notebook/'+saved.id+'/publish','POST',{confirm:true,photos:sheet.querySelector('[data-share-photos]').checked,revision:saved.revision},actor);await refreshNotebook();message($('#notebook-tools'),'Recommendation published. Your device copy is kept.')}catch(err){message(sheet,err.message);b.disabled=false}};
+  sheet.querySelector('[data-publish]').onclick=async e=>{const generation=sheetGeneration,b=e.target,includePhotos=sheet.querySelector('[data-share-photos]').checked;b.disabled=true;try{if(!actor)throw new Error('Create or sign in to your cloud notebook first.');const saved=await backup(key,v,actor.id);if(generation!==sheetGeneration)return;await auth('notebook/'+saved.id+'/publish','POST',{confirm:true,photos:includePhotos,revision:saved.revision},actor);if(generation===sheetGeneration){await refreshNotebook();message($('#notebook-tools'),'Recommendation published. Your device copy is kept.')}}catch(err){if(generation===sheetGeneration){message(sheet,err.message);b.disabled=false}}};
  }
  async function community(container,p){
+  const generation=sheetGeneration;
   container.innerHTML='<h2>Community notes</h2><p role="status">Loading recommendations…</p>';
-  try{const actor=(await api('account')).account;const {posts}=await api('community?place='+encodeURIComponent(p.id));if(!container.isConnected)return;
+  try{const actor=(await api('account')).account;const {posts}=await api('community?place='+encodeURIComponent(p.id));if(!container.isConnected||generation!==sheetGeneration)return;
    container.innerHTML=`<h2>Community notes</h2><p>Recent 5 recommendations. Personal experiences, not verified facts. Be kind.</p>${posts.length?posts.map(v=>`<article class="community-note"><b>${esc(v.name)}</b> · ${v.stars?esc(v.stars)+'/5':'Not rated'}<p>${esc(v.note)}</p>${v.words.length?`<p>${v.words.map(esc).join(' · ')}</p>`:''}<div class="thumbs">${v.photos.map(u=>`<a href="${u}" target="_blank" rel="noopener"><img src="${u}" alt="Photo shared by ${esc(v.name)}" loading="lazy"></a>`).join('')}</div><button data-post="${esc(v.id)}" data-own="${v.mine}" class="linkish">${v.mine?'Remove my post':'Report'}</button></article>`).join(''):'<p>No recommendations yet. Log a visit, then choose Share in your notebook.</p>'}`;
    container.querySelectorAll('[data-post]').forEach(b=>b.onclick=async()=>{try{if(b.dataset.own==='true'){if(!confirm('Remove your public recommendation and photos?'))return;await auth('community/'+b.dataset.post,'DELETE',undefined,actor)}else{let reason=prompt('Report reason: rude, privacy, spam, or other');if(!reason)return;await auth('community/'+b.dataset.post+'/report','POST',{reason:reason.trim().toLowerCase()},actor)}await community(container,p);message(container,b.dataset.own==='true'?'Removed.':'Report sent. Thank you.')}catch(e){message(container,e.message)}});
-  }catch(e){container.innerHTML='<h2>Community notes</h2>';message(container,e.message)}
+  }catch(e){if(!container.isConnected||generation!==sheetGeneration)return;container.innerHTML='<h2>Community notes</h2>';message(container,e.message);const retry=document.createElement('button');retry.textContent='Retry community notes';retry.className='linkish';retry.onclick=()=>community(container,p);container.append(retry)}
  }
  async function moderation(root){
   const section=document.createElement('details');section.innerHTML='<summary>Moderation · owner</summary><label>Moderator key<input type="password" autocomplete="off"></label><button>Open review queue</button><p class="src">Owner access only. The key is kept in memory for this open view.</p><div class="moderation-results"></div>';root.append(section);
@@ -113,7 +117,46 @@
    research.addEventListener('toggle',async()=>{if(!research.open)return;const pane=research.querySelector('div');pane.textContent='Loading contributed visit counts…';try{const d=await api('research');pane.innerHTML=`<p>Saved visits from people who chose to contribute. At least 5 accounts per place; up to 100 places. Not a citywide popularity measure.</p><p>Updated ${esc(new Date(d.asOf).toLocaleString('en-GB',{timeZone:'Asia/Bangkok'}))} Bangkok time.</p>${d.places.length?'<ul>'+d.places.map(p=>`<li>${esc(state.byId.get(p.place_id)?.n||p.place_id)} · ${p.contributors} contributors · ${p.visits} saved visits</li>`).join('')+'</ul>':'<p>No place has five contributing accounts yet. Smaller groups stay private.</p>'}`}catch(e){pane.textContent=e.message}});
    moderation(tools);
  }
+ // The shortest contribution path starts at its place, with a device save before any upload.
+ async function recommend(p){
+  const sheet=openSheet(`<header><h1>Recommend ${esc(p.n)}</h1><button class="close" aria-label="Close">×</button></header><p>Your visit, in your own words. Save privately first; preview before publishing.</p><button data-start-visit>Write visit</button>`,{place:true});
+  sheet.classList.add('notebook-sheet','recommend-sheet');
+  beenForm(p,sheet.querySelector('[data-start-visit]'),key=>recommendSaved(key,p));
+ }
+ async function recommendSaved(key,p){
+  const sheet=openSheet(`<header><h1>Visit saved privately</h1><button class="close" aria-label="Close">×</button></header><p>${esc(p.n)} · nothing has been published.</p><button class="send" data-preview-share>Preview public recommendation</button><button class="linkish" data-private-done>Keep private</button><div class="recommend-account"></div>`,{place:true});
+  sheet.classList.add('notebook-sheet','recommend-sheet');
+  sheet.querySelector('[data-private-done]').onclick=()=>select(p,false);
+  sheet.querySelector('[data-preview-share]').onclick=async e=>{
+   const generation=sheetGeneration,b=e.target;b.disabled=true;
+   try{
+    const actor=(await api('account')).account;if(generation!==sheetGeneration)return;who=actor;
+    if(actor){await sharing(key,actor.id);return;}
+    const slot=sheet.querySelector('.recommend-account');
+    slot.innerHTML='<p>Sign in or create a free cloud notebook to publish. Your device visit stays private until you confirm the preview.</p>'+accountHtml();
+    slot.querySelector('.cloud-account').open=true;
+    bindAccount(slot,async()=>{
+     if(!createdKey){await sharing(key,who.id);return;}
+     slot.innerHTML=`<h2>Save your notebook key</h2><p>This key opens your private cloud data. We cannot recover it. Keep it private.</p><input readonly type="password" aria-label="Private notebook key"><button data-key-save>Save key file</button><button data-key-show>Show key</button><button data-key-continue>I saved my key · preview recommendation</button>`;
+     slot.querySelector('input').value=createdKey;
+     slot.querySelector('[data-key-save]').onclick=()=>saveFile('plub-private-notebook-key.txt',createdKey,'text/plain');
+     slot.querySelector('[data-key-show]').onclick=()=>{const i=slot.querySelector('input');i.type=i.type==='password'?'text':'password'};
+     slot.querySelector('[data-key-continue]').onclick=async e=>{const generation=sheetGeneration,b=e.target;b.disabled=true;createdKey=null;try{await sharing(key,who.id)}catch(err){if(generation===sheetGeneration){message(slot,err.message);b.disabled=false}}};
+    });
+    b.hidden=true;slot.querySelector('input')?.focus();
+   }catch(err){if(generation===sheetGeneration){message(sheet,err.message);b.disabled=false}}
+  };
+ }
+ function showCommunity(p){
+  const sheet=openSheet(`<header><h1>${esc(p.n)}</h1><button class="close" aria-label="Close">×</button></header><nav class="place-social"><button data-community-back>← Place &amp; directions</button><button data-community-write>Add recommendation</button><button data-community-share>Share place</button></nav><div class="community-thread"></div>`,{place:true});
+  sheet.classList.add('notebook-sheet','community-sheet');
+  sheet.querySelector('[data-community-back]').onclick=()=>select(p,false);
+  sheet.querySelector('[data-community-write]').onclick=()=>recommend(p);
+  sheet.querySelector('[data-community-share]').onclick=()=>PlaceTools.share({title:p.n,url:new URL('?p='+encodeURIComponent(p.id),location.origin).href},sheet);
+  community(sheet.querySelector('.community-thread'),p);
+ }
  const Notebook=window.Notebook={
+  recommend,showCommunity,
   async mount(sheet,visits){
    sheet.classList.add('notebook-sheet');const tools=sheet.querySelector('#notebook-tools');
    tools.innerHTML=`<div class="notebook-actions"><button data-find-place>＋ Log a visit</button><a href="/privacy.html" target="_blank" rel="noopener">Privacy &amp; kindness</a></div><label class="notebook-search">Find in your notebook<input type="search" placeholder="Place, note or feeling" autocomplete="off"></label><div class="cloud-slot"><p role="status">Checking cloud sign-in…</p></div>`;

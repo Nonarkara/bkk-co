@@ -54,7 +54,8 @@ def main():
     files = [ROOT/'public/data'/f'places-{s}.json' for s in ('work','food')]
     fingerprints = {p.name:contract.sha(p) for p in files}
     rows = [r for p in files for r in json.loads(p.read_text())['rows']]
-    assert len(rows)==57538 and len({r[0] for r in rows})==57538
+    expected=json.loads((ROOT/'public/data/manifest.json').read_text())['total']
+    assert len(rows)==expected and len({r[0] for r in rows})==expected
     bbox = box(*BOUNDS)
     admins=[]
     for f in extract('admin',['r/boundary=administrative']):
@@ -140,7 +141,7 @@ def main():
     for name,data in [('atlas-geo.json',geo),('atlas-places.json',joined)]:
         (target/name).write_text(DUMP(data))
     assert all(contract.sha(p)==fingerprints[p.name] for p in files), 'Catalogue changed'
-    assert sum(c['total'] for c in counts.values())==57538
+    assert sum(c['total'] for c in counts.values())==expected
     assert all((j[2] is None)==(j[3] is None) for j in joins)
     # Edge regression fixtures distinguish polygon/edge distance from centroid distance.
     long_park=box(0,0,1000,100)

@@ -828,7 +828,7 @@
   }
   async function open() {
     const sheet = openSheet(
-      `<header><h1>Explore the coffee city</h1><button class="close" aria-label="Close">×</button></header><p class="src">Choose a view. The map counts all matching records, including small cafés with sparse information.</p>${lens === 'triangles' && loops.length ? '<button class="linkish" data-atlas-stops>See triangle stops →</button>' : ''}<div class="atlas-modes">${Object.entries(
+      `<header><h1>Explore the coffee city</h1><button class="close" aria-label="Close">×</button></header><p class="src">Choose a view. The map counts all matching records, including small cafés with sparse information.</p>${lens === 'triangles' && loops.length ? '<button class="linkish" data-atlas-stops>See triangle stops →</button>' : ''}<button class="linkish featured-entry" data-featured-open>Featured places · verified branches →</button><div class="atlas-modes">${Object.entries(
         modes
       )
         .map(
@@ -841,6 +841,7 @@
     );
     sheet.classList.add('atlas-sheet');
     sheet.querySelector('[data-atlas-stops]')?.addEventListener('click', triangleSheet);
+    sheet.querySelector('[data-featured-open]').onclick=()=>window.openFeatured?.();
     sheet.querySelectorAll('[data-atlas-lens]').forEach(
       (b) =>
         (b.onclick = async () => {

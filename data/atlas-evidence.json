@@ -103,6 +103,24 @@
       "checked_at": "2026-11-03",
       "evidence_type": "public_discussion",
       "date_note": "Thread date from dated primary Reddit search result; individual comment date is not separately asserted."
+    },
+    {
+      "id": "tat-mother-taladnoi",
+      "publisher": "Tourism Authority of Thailand (Japan)",
+      "title": "Mother Roaster · Talat Noi",
+      "url": "https://www.thailandtravel.or.jp/mother-roaster/",
+      "published_at": null,
+      "checked_at": "2026-11-03",
+      "evidence_type": "institutional_feature"
+    },
+    {
+      "id": "bk-hongsiengkong",
+      "publisher": "BK Magazine",
+      "title": "Hong Sieng Kong",
+      "url": "https://www.bkmagazine.com/restaurant/hong-sieng-kong/",
+      "published_at": "2021-06-09",
+      "checked_at": "2026-11-03",
+      "evidence_type": "editorial_feature"
     }
   ],
   "places": [
@@ -1031,6 +1049,69 @@
           "attribute_basis": "Source explicitly identifies conversion of a five-storey shophouse."
         }
       ]
+    },
+    {
+      "place_id": "n8017968685",
+      "name": "Mother Roaster",
+      "editorial_count": 1,
+      "discussion_count": 0,
+      "attributes": {
+        "editorial": true,
+        "architecture": false,
+        "shophouse": false,
+        "discussion": false
+      },
+      "evidence": [
+        {
+          "source_id": "tat-mother-taladnoi",
+          "source_url": "https://www.thailandtravel.or.jp/mother-roaster/",
+          "published_at": null,
+          "checked_at": "2026-11-03",
+          "evidence_type": "institutional_feature",
+          "attributes": [
+            "editorial"
+          ],
+          "identity": {
+            "publisher_location": "1172 San Chao Rong Kueak, Talat Noi, Samphanthawong; phone061-216-2277",
+            "catalogue_location": "1172 Soi Chareonkrung22; phone+66612162277",
+            "catalogue_name": "Mother Roaster",
+            "reason": "Same1172TalatNoi address, exact phone and MotherRoasterInstagram/Facebook identity. Excludes PratuPhi, SongWat and Sutthisan branches."
+          },
+          "attribute_basis": null
+        }
+      ]
+    },
+    {
+      "place_id": "n9329112618",
+      "name": "Hong Sieng Kong",
+      "editorial_count": 1,
+      "discussion_count": 0,
+      "attributes": {
+        "editorial": true,
+        "architecture": true,
+        "shophouse": false,
+        "discussion": false
+      },
+      "evidence": [
+        {
+          "source_id": "bk-hongsiengkong",
+          "source_url": "https://www.bkmagazine.com/restaurant/hong-sieng-kong/",
+          "published_at": "2021-06-09",
+          "checked_at": "2026-11-03",
+          "evidence_type": "editorial_feature",
+          "attributes": [
+            "editorial",
+            "architecture"
+          ],
+          "identity": {
+            "publisher_location": "Talat Noi; Soi2; phone095-998-9895",
+            "catalogue_location": "2 ซอย เจริญกรุง22; phone+66959989895",
+            "catalogue_name": "Hong Sieng Kong",
+            "reason": "Exact unique name, TalatNoi locality, Soi2 and phone match. The separate TimeOut page identifies734/736SoiWanit2; do not rewrite the source catalogue address."
+          },
+          "attribute_basis": "A family renovated six older buildings into this riverside café. This is evidence of adaptive reuse, not a building-age survey or architectural-quality rating."
+        }
+      ]
     }
   ],
   "rejected": [
@@ -1081,6 +1162,10 @@
     {
       "name": "Norman’s Collective",
       "reason": "Publisher and catalogue location descriptions are too broad for an exact branch join."
+    },
+    {
+      "candidate": "Patina Cafe / patina.asvin",
+      "reason": "Old TimeOut TalatNoi page is marked closed. Current catalogue patina.asvin n14211879531 is at a different location. No old-branch editorial/architecture evidence was propagated to the relocated branch."
     }
   ],
   "discussion_sampling_note": "Five manually inspected primary threads support three existing branches. This convenience sample spans February 2025–August 2026 and is not a recent-only or representative popularity sample. A photo-thread identification counts as discussion presence, not endorsement.",
