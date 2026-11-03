@@ -45,3 +45,7 @@ Evidence/scripts: `independent-audit.mjs`, `independent-browser.json`, `independ
 ## Kept / unverified
 
 All map layers, catalogue content, notebook storage/key model, photos, existing moderation and explicit publication consent remain. Real traffic, entrance routing, equipment availability, actual parking access/spaces, physical-device GPS and assistive-technology hardware are not independently certified by this browser audit. Source checkdate is not a current opening guarantee. Local PASS is not a claim that deployment bytes reached edge users; the parent must verify the public release.
+
+## Final resilience recheck · key-save → preview
+
+The builder added a catch/retry guard to the new key-continue handler after the primary review. Independently re-ran `independent-account.mjs` with the actual app and mocked accountAPI returning503 exactly once after the key-save gate. The error appears in the current account slot, the continue button re-enables, the private device visit remains, and no backup/publish request occurs. Clicking the same continue button again opens the correct recommendation preview; only the later explicit publish issuesPUT+POST. Photos remain unchecked, zero pageerrors. Evidence: `independent-account.json` (`keyPreview503Retry:true`) and `audit-key-preview-retry-390.png`. **PASS retained.**

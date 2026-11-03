@@ -1,18 +1,20 @@
 {
   "contextualCreate": true,
   "keyGate": true,
+  "keyPreview503Retry": true,
+  "pageErrors": [],
   "privateUntilPreview": true,
   "explicitPublish": true,
   "writes": [
     "create",
     {
       "method": "PUT",
-      "path": "/api/notebook/92595a04-be5f-42ff-9275-9f4dfcae51fe",
+      "path": "/api/notebook/99e01ab6-8aef-4dd0-95c1-6228e95b5434",
       "photos": []
     },
     {
       "method": "POST",
-      "path": "/api/notebook/92595a04-be5f-42ff-9275-9f4dfcae51fe/publish",
+      "path": "/api/notebook/99e01ab6-8aef-4dd0-95c1-6228e95b5434/publish",
       "photos": false,
       "confirm": true
     }
