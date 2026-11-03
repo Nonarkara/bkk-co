@@ -1,0 +1,54 @@
+# STYLE.md: deliberate choices. Do not strip.
+
+Owner: Non Arkaraprasertkul. Last checked: 2026-11-04.
+
+Everything here was chosen on purpose. Agents and reviewers read this before any design review, never remove or "fix" what it lists, and ask the owner if a choice seems to cause a real problem. This file beats every generic rule, including Non-Slop's and MSH's defaults — but never the accessibility floor, the pin law (`GEO-SPATIAL-HALLUCINATION`) or the honesty laws.
+
+Governing design law, in order: **MSH** (`~/Projects/_reference/MSH.md`) → **glance path** (`GLANCE-PATH-FOR-AI.md`) → **kinetic grids** (`KINETIC-GRIDS-FOR-AI.md`). Canonical pack and scanner: `~/Projects/Non-Slop/`.
+
+## Type
+- **Sao Chingcha** — the owner's own lettering. The wordmark `PL;UB` and Nong Plub's voice lines / owner's visit notes. Self-hosted (`public/fonts/*.woff2`, preloaded). This is a chosen face; never swap it for a default.
+- **Jost** — UI and body (400/500/600). House face.
+- **Prompt** — Thai, non-looped only (IBM Plex Sans Thai / Noto Sans Thai / Kanit are the alternates). Never a looped face (Sarabun, TH Sarabun New): looped heads read as "not made by Thais".
+- Scale: 20 / 14 / 12 px, with 11 px tracked micro for qualifications. ≤4 sizes per view.
+
+## Colour
+Wada plate 273 (locally credited catalogue: `~/Projects/palette/data/colors.json`). One plate owns the interface; chrome never competes with it.
+- Ground **#ffffff** paper, wash **#f4f4f0**.
+- Ink **#7d133a** (Pansy Purple, plate 273) — reading text and the wordmark. Contrast on white 10.36:1.
+- Guide field **#f9c1ce** (Hermosa Pink, plate 273) — Nong Plub's bounded surfaces. Ink on it 6.69:1.
+- Wordmark seam **#e88ba1** — the semicolon in `PL;UB` only. Nowhere else.
+- Structure **#b6bfc1** (Neutral Gray, plate 273) — hairlines and arcs.
+- Accent **#f59e0b** (amber) — **one job only: the co-working category dot.** Never a second accent, never Tailwind blue `#3B82F6`.
+- Unused plate colour: **#a36752** (Sudan Brown). Deliberately not in the interface.
+- **Zero** border-radius except a true circle. **Zero** drop shadows except inset hairlines and `:focus-visible`. **Zero** gradients except a flat veil where text must sit on a photo or map.
+
+## Devices
+- Hairline 1px rules; boxes are their label plus ~0.5–1× padding. Nothing is inflated to fill a container.
+- **Symbols over words** where the meaning is one glance: `▲▼ → ✓ ▾ ◐ ✦ ↦ ⁘ ◇ ◎ ≋ ✎`. Each carries a fact; none is decoration.
+- The semicolon in `PL;UB` is the seam: `PL` = Placemaking Laboratory, `UB` = Urban Bureau.
+- Numbers always carry a source and a tier. "Not rated yet" is the honest state; never show a score a visitor did not give.
+
+## Layout
+- **Map-first.** The map is ≥60% of the first desktop and phone screen and is the entry (glance law). Readouts and actions dock its edge, never a dead band above it.
+- Desktop is a **column** grid: a 360 px rail (bar, filters, list/sheet) + the map. Phone is the map behind a sheet that opens **only on tap** and keeps the pin in view.
+- **Named grid: `modular`** for the stamp board (a grid of stamp modules). Its `transform: rotate(-6deg)` on a stamped cell is the deliberate ink-stamp mark, not a stray break. **No other rotation, diagonal or overlap is licensed** — this is a map-first civic tool; the governed grids are `column` and `modular`.
+- Chrome is as tall as its contents: bar 49 px + chips 53 px ≈ 15% of a 700 px viewport.
+- One screen first; scroll only for reading depth or genuinely more detail.
+
+## Voice
+- EN: plain, civic, confident — state the fact, skip the jargon, no hedging.
+- TH: formal-neutral register. First person is strictly **ผม**. Never Sarabun.
+- ZH: Simplified.
+- The PLUB / Samsamastiti / SCITI wordplay chain is permanent — never "correct" it.
+
+## Protected voice
+- phrase "Samastiti": the intended Thai phonetic brand term; never corrected to "Smart City".
+- marker "PL;UB": the wordmark construction; the semicolon is load-bearing.
+- phrase "straight line": distances are straight-line estimates, never silently sold as walking routes.
+
+## Allow
+- rule cream-terracotta: Nong Plub's crayon palette (warm paper, brown hair, brick cheek) is character illustration, not the interface palette. The interface ground is white with Wada plate 273 ink.
+
+- colour #fbf6ea: crayon character paper (illustration only).
+- colour #9a6240: crayon character hair highlight (illustration only).

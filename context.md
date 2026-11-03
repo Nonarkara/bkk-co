@@ -72,6 +72,8 @@ Places no open dataset has yet, added after a real visit: name, kind, location c
 
 ## Design
 Civic daylight register, MSH (`~/Projects/_reference/MSH.md`). Jost + Prompt, ink/muted/rule, one amber = co-working.
+
+Three laws govern every screen, in this order: **MSH** (boxes fit content, compact first, no void), then **glance path** (`_reference/GLANCE-PATH-FOR-AI.md`: the map is the entry on load; a place or notebook sheet puts its headline, key number and action on the exit of whatever is heaviest; Tab order equals eye order), then **kinetic grids** (`_reference/KINETIC-GRIDS-FOR-AI.md`: this is a map-first product, so the governed grids are `column` and `modular` — no rotation, no diagonal, no overlap without a named grid in the brief). Canonical scanner and skills: `~/Projects/Non-Slop/`.
 Zero radius, no shadows, sizes 20/14/11. Map ≥60% on load; phone sheet opens only on tap and keeps the pin in view.
 
 

@@ -155,7 +155,7 @@ export async function notebookApi(request,env,knownIds) {
    if(method==='PUT'&&!m[2]){
     await limit(env,request,'save',120);const b=await readBody(request);const entry=validateEntry(b,await knownIds());const payload=JSON.stringify(entry);
     const r=await env.DB.prepare(`INSERT INTO notebook_entries(id,account_id,place_id,payload,revision,updated_at) SELECT ?,?,?,?,1,? WHERE ((?=0 AND (SELECT COUNT(*) FROM notebook_entries WHERE account_id=?)<100) OR EXISTS(SELECT 1 FROM notebook_entries WHERE account_id=? AND id=?)) ON CONFLICT(account_id,id) DO UPDATE SET payload=?,place_id=?,revision=notebook_entries.revision+1,updated_at=? WHERE notebook_entries.revision=? RETURNING revision`).bind(id,a.id,entry.place,payload,new Date().toISOString(),b.revision,a.id,a.id,id,payload,entry.place,new Date().toISOString(),b.revision).first();
-    if(!r){const existing=await env.DB.prepare('SELECT revision FROM notebook_entries WHERE account_id=? AND id=?').bind(a.id,id).first();fail(existing?'Cloud copy changed. Restore it before replacing it.':'Cloud notebook is full (100 visits), or this copy was deleted.',409)}
+    if(!r){const existing=await env.DB.prepare('SELECT revision FROM notebook_entries WHERE account_id=? AND id=?').bind(a.id,id).first();fail(existing?'Cloud copy changed. Restore it before replacing it.':'Your cloud notebook is full (100 visits), or you deleted this copy.',409)}
     return response(r);
    }
    const row=await env.DB.prepare('SELECT * FROM notebook_entries WHERE account_id=? AND id=?').bind(a.id,id).first();if(!row)fail('Visit not found.',404);

@@ -251,6 +251,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   align-items: center; justify-content: center; color: var(--muted); font-size: var(--micro); }
 .stamp b { font-weight: 600; }
 .stamp .th { display: block; margin: 0; font-size: var(--micro); }
+/* Stamp board is a named `modular` grid; this tilt is the deliberate ink-stamp mark, not a stray break. No other rotation is licensed (see STYLE.md). */
 .stamps li.on .stamp { border: 2px solid var(--ink); color: var(--ink); background: #fff4dc; transform: rotate(-6deg); }
 .sorts { flex: none; display: flex; gap: 0; padding: 6px var(--pad); border-bottom: 1px solid var(--rule); overflow-x: auto; scrollbar-width: none; }
 .sorts button { height: 32px; padding: 0 5px; white-space: nowrap; color: var(--muted); border-bottom: 2px solid transparent; }
