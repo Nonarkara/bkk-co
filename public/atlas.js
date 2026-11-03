@@ -613,6 +613,7 @@
         !mapReady || !last.length || last.some((p) => map.getBounds().contains([p.x, p.y]));
     if (lens === 'hotspots') e.textContent += ' · density: pale → dark';
     if (lens === 'districts') e.textContent += ' · cafés/km²: 0 · 5 · 35+';
+    if (lens === 'triangles' && loop) e.textContent = `3 café stops · ${loop.perimeter} m straight-line triangle`;
   }
   function onRefresh(ps) {
     last = ps;
@@ -792,7 +793,7 @@
       ]
     });
     showRoute(ps, true);
-    status(`Coffee triangle · ${t.perimeter} m straight-line perimeter · Explore for stops`);
+    updateDock();
   }
   function triangleSheet() {
     const sheet = openSheet(
