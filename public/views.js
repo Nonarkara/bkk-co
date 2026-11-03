@@ -21,10 +21,10 @@ const HOOD_ALIASES = {
   charoenkrung: [['talat noi', 'talad noi', 'ตลาดน้อย', 'tcdc', 'bang rak', 'บางรัก', 'saphan taksin', 'สะพานตากสิน', 'riverside']],
   thonglo: [['thonglor', 'thong lor', 'ทองหล่อ', 'sukhumvit 55', 'สุขุมวิท 55', 'ekkamai', 'เอกมัย']],
 };
-const NEAR_ALIAS = { samyan: ['siam', 'สยาม'], thonglo: ['ekkamai', 'เอกมัย'] }; // close by, not the same place
+const NEAR_ALIAS = { samyan: [['siam', 'Siam'], ['สยาม', 'สยาม']], thonglo: [['ekkamai', 'Ekkamai'], ['เอกมัย', 'เอกมัย']] }; // close by, not the same place
 window.hoodHits = q => hoods.list.filter(h => [h.name, h.th, h.for, ...(HOOD_ALIASES[h.slug] || []).flat()].some(s => s.toLowerCase().includes(q)))
   .map(h => {
-    const near = (NEAR_ALIAS[h.slug] || []).find(a => a.includes(q) || q.includes(a));
+    const near = ((NEAR_ALIAS[h.slug] || []).find(([a]) => a.includes(q) || q.includes(a)) || [])[1];
     return `<li data-hood="${h.slug}" role="option"><span class="ring" aria-hidden="true"></span><span class="nm">${esc(h.name)} <span class="th" lang="th">${esc(h.th)}</span></span><span class="meta">${near ? `near ${esc(near)} · ` : ''}for ${esc(h.for.toLowerCase())}</span></li>`;
   }).join('');
 $('#hits').addEventListener('click', e => { const li = e.target.closest('li[data-hood]'); if (li) openHood(li.dataset.hood); });

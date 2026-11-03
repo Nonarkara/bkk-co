@@ -76,3 +76,7 @@
 .hits li[data-id],.list li[data-id] { min-height:44px; }
 /* phone: five chips must fit 390 px without a hidden sliver (audit 2026-11-03) */
 @media (max-width: 899px) { .chips { gap: 3px; } .chips button { padding-inline: 7px; } }
+/* List panel: every finder visible (wrap, no hidden sideways scroll); actions are outlines, filled means "on" */
+.moods { flex-wrap: wrap; overflow: visible; }
+.moods [data-act], .moods [data-proxy] { background: var(--paper, #fff); color: inherit; }
+.moods button[aria-pressed="true"] { background: var(--amber); }
