@@ -99,7 +99,7 @@ async function withPreview(request, env, url) {
     } else if (url.searchParams.has('hood')) {
       if (!hoods) hoods = Object.fromEntries((await (await env.ASSETS.fetch(new URL('/data/hoods.json', url))).json()).hoods.map(h => [h.slug, h]));
       const h = hoods[url.searchParams.get('hood')];
-      if (h) { title = `${h.name} ${h.th} · for ${h.for.toLowerCase()} · PLUB`; desc = `${h.stats.work} work spots within 800 m of ${h.anchorLabel}. ${h.plub}`; image = `https://co.nonarkara.org/og/${h.slug}.png?v=clean-20261104`; }
+      if (h) { title = `${h.name} ${h.th} · for ${h.for.toLowerCase()} · PLUB`; desc = `${h.stats.work} work spots within 800 m of ${h.anchorLabel}. ${h.plub}`; image = `https://co.nonarkara.org/og/${h.slug}.png?v=clean-20261104b`; }
     } else {
       await knownIds(env, request.url);
       const n = names.get(canon(url.searchParams.get('p'))); // old shared links preview the survivor

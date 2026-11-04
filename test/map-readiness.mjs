@@ -1,7 +1,7 @@
-// Catalogue re-signed 2026-11-04 after scripts/clean-catalogue.py (76 dropped, 87 twins merged; every decision in public/data/cleanup.json, old ids in aliases.json).
+// Catalogue re-signed 2026-11-04 after scripts/clean-catalogue.py (74 dropped, 86 twins merged after independent review; every decision in public/data/cleanup.json, old ids in aliases.json).
 import{createRequire}from'node:module';import assert from'node:assert/strict';import{writeFile}from'node:fs/promises';
 const{chromium}=createRequire(import.meta.url)('/Users/nonarkara/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');const b=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'}),results=[];
-try{for(const mode of['route','cancel','selection','notebook']){const p=await b.newPage({viewport:{width:1280,height:720}});let release;const gate=new Promise(r=>release=r);await p.route('**/styles/positron',async r=>{await gate;await r.continue()});await p.goto('http://localhost:43827');await p.waitForFunction(()=>state.byId.size===57376,{},{timeout:120000});
+try{for(const mode of['route','cancel','selection','notebook']){const p=await b.newPage({viewport:{width:1280,height:720}});let release;const gate=new Promise(r=>release=r);await p.route('**/styles/positron',async r=>{await gate;await r.continue()});await p.goto('http://localhost:43827');await p.waitForFunction(()=>state.byId.size===57379,{},{timeout:120000});
 if(mode==='route'||mode==='cancel'){await p.evaluate(()=>openHop('charoenkrung'));assert.equal(await p.evaluate(()=>pendingRoute.stops.length),5);if(mode==='cancel')await p.evaluate(()=>closeSheet())}
 else{await p.evaluate(()=>select(state.byId.get('h0001'),false));if(mode==='notebook')await p.evaluate(()=>openPassport())}
 release();await p.waitForFunction(()=>map.getSource('route')&&map.loaded(),{},{timeout:60000});

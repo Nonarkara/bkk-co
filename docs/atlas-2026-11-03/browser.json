@@ -2,29 +2,29 @@
   {
     "width": 390,
     "lens": "hotspots",
-    "count": 20158,
-    "source": 20158,
+    "count": 20160,
+    "source": 20160,
     "loop": 0
   },
   {
     "width": 390,
     "lens": "independent",
-    "count": 13785,
-    "source": 13785,
+    "count": 13787,
+    "source": 13787,
     "loop": 0
   },
   {
     "width": 390,
     "lens": "hidden",
-    "count": 2482,
-    "source": 2482,
+    "count": 2483,
+    "source": 2483,
     "loop": 0
   },
   {
     "width": 390,
     "lens": "nature",
-    "count": 4445,
-    "source": 4445,
+    "count": 4446,
+    "source": 4446,
     "loop": 0
   },
   {
@@ -51,43 +51,43 @@
   {
     "width": 390,
     "lens": "districts",
-    "count": 20158,
-    "source": 20158,
+    "count": 20160,
+    "source": 20160,
     "loop": 0
   },
   {
     "width": 390,
     "lens": "triangles",
-    "count": 13785,
-    "source": 13785,
+    "count": 13787,
+    "source": 13787,
     "loop": 8
   },
   {
     "width": 1024,
     "lens": "hotspots",
-    "count": 20158,
-    "source": 20158,
+    "count": 20160,
+    "source": 20160,
     "loop": 0
   },
   {
     "width": 1024,
     "lens": "independent",
-    "count": 13785,
-    "source": 13785,
+    "count": 13787,
+    "source": 13787,
     "loop": 0
   },
   {
     "width": 1024,
     "lens": "hidden",
-    "count": 2482,
-    "source": 2482,
+    "count": 2483,
+    "source": 2483,
     "loop": 0
   },
   {
     "width": 1024,
     "lens": "nature",
-    "count": 4445,
-    "source": 4445,
+    "count": 4446,
+    "source": 4446,
     "loop": 0
   },
   {
@@ -114,43 +114,43 @@
   {
     "width": 1024,
     "lens": "districts",
-    "count": 20158,
-    "source": 20158,
+    "count": 20160,
+    "source": 20160,
     "loop": 0
   },
   {
     "width": 1024,
     "lens": "triangles",
-    "count": 13785,
-    "source": 13785,
+    "count": 13787,
+    "source": 13787,
     "loop": 8
   },
   {
     "width": 1440,
     "lens": "hotspots",
-    "count": 20158,
-    "source": 20158,
+    "count": 20160,
+    "source": 20160,
     "loop": 0
   },
   {
     "width": 1440,
     "lens": "independent",
-    "count": 13785,
-    "source": 13785,
+    "count": 13787,
+    "source": 13787,
     "loop": 0
   },
   {
     "width": 1440,
     "lens": "hidden",
-    "count": 2482,
-    "source": 2482,
+    "count": 2483,
+    "source": 2483,
     "loop": 0
   },
   {
     "width": 1440,
     "lens": "nature",
-    "count": 4445,
-    "source": 4445,
+    "count": 4446,
+    "source": 4446,
     "loop": 0
   },
   {
@@ -177,43 +177,43 @@
   {
     "width": 1440,
     "lens": "districts",
-    "count": 20158,
-    "source": 20158,
+    "count": 20160,
+    "source": 20160,
     "loop": 0
   },
   {
     "width": 1440,
     "lens": "triangles",
-    "count": 13785,
-    "source": 13785,
+    "count": 13787,
+    "source": 13787,
     "loop": 8
   },
   {
     "width": 1280,
     "lens": "hotspots",
-    "count": 20158,
-    "source": 20158,
+    "count": 20160,
+    "source": 20160,
     "loop": 0
   },
   {
     "width": 1280,
     "lens": "independent",
-    "count": 13785,
-    "source": 13785,
+    "count": 13787,
+    "source": 13787,
     "loop": 0
   },
   {
     "width": 1280,
     "lens": "hidden",
-    "count": 2482,
-    "source": 2482,
+    "count": 2483,
+    "source": 2483,
     "loop": 0
   },
   {
     "width": 1280,
     "lens": "nature",
-    "count": 4445,
-    "source": 4445,
+    "count": 4446,
+    "source": 4446,
     "loop": 0
   },
   {
@@ -240,15 +240,15 @@
   {
     "width": 1280,
     "lens": "districts",
-    "count": 20158,
-    "source": 20158,
+    "count": 20160,
+    "source": 20160,
     "loop": 0
   },
   {
     "width": 1280,
     "lens": "triangles",
-    "count": 13785,
-    "source": 13785,
+    "count": 13787,
+    "source": 13787,
     "loop": 8
   }
 ]

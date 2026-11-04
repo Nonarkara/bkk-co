@@ -24,6 +24,12 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / 'public' / 'data'
 DUMP = lambda d: json.dumps(d, ensure_ascii=False, separators=(',', ':'))
 TWIN_M = 8
+# Human review overrides the rules (independent audit, 2026-11-04). A kept id is never dropped or merged away.
+KEEP = {
+    'n10074295417': 'OSM mapper tagged it cuisine=chinese;teahouse with opening hours; the name alone is weak evidence',
+    'oe19ceb16c2ec': "its own address field says 'good nails & cafe': a nail shop and a café in one",
+    'od7f78bf8db30': 'LukKaiThong Siam Paragon vs Siam Center: different phones, may be two branches sharing one page',
+}
 
 CLOSED = re.compile(r'ปิดกิจการ|ปิดถาวร|เลิกกิจการ|ปิดปรับปรุง|permanently closed|closed down|\(closed\)', re.I)
 # Whole words only (Maesalong is not a salon, Hathairad is not hair). Thai terms are specific phrases.
@@ -69,6 +75,7 @@ def decide(files, detail):
     drop, merge = {}, {}
     for r in rows:
         name, kind = r[1], kinds[r[2]]
+        if r[0] in KEEP: continue
         if CLOSED.search(name):
             drop[r[0]] = {'name': name, 'rule': 'name says closed'}
         elif PLACEHOLDER.match(name.strip()) and set(name.strip().split('_')) <= GENERIC | {'entrance', 'store', 'library'}:
@@ -89,7 +96,7 @@ def decide(files, detail):
         for dy in (-1, 0, 1):
             for dx in (-1, 0, 1):
                 for q in grid[(gy + dy, gx + dx)]:
-                    if q is r or q[0] in gone or q[2] != r[2]: continue
+                    if q is r or q[0] in gone or q[2] != r[2] or q[0] in KEEP or r[0] in KEEP: continue  # a reviewed id stays apart both ways
                     d = metres(r, q)
                     if d > TWIN_M: continue
                     why = None
@@ -176,7 +183,8 @@ def main():
     (DATA / 'manifest.json').write_text(json.dumps(m, indent=1, ensure_ascii=False) + '\n')
     prev = json.loads((DATA / 'cleanup.json').read_text()) if (DATA / 'cleanup.json').exists() else {'drop': {}, 'merge': {}}
     prev['drop'].update(drop); prev['merge'].update(merge)
-    prev['rules'] = __doc__.split('Three decisions')[1].split('Survivors')[0].strip()
+    prev['rules'] = 'Three decisions' + __doc__.split('Three decisions')[1].split('Survivors')[0].rstrip()
+    prev['keptByReview'] = KEEP
     (DATA / 'cleanup.json').write_text(DUMP(prev))
     print('total', m['total'], m['kinds'])
 

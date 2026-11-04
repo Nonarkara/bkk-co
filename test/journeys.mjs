@@ -1,4 +1,4 @@
-// Catalogue re-signed 2026-11-04 after scripts/clean-catalogue.py (76 dropped, 87 twins merged; every decision in public/data/cleanup.json, old ids in aliases.json).
+// Catalogue re-signed 2026-11-04 after scripts/clean-catalogue.py (74 dropped, 86 twins merged after independent review; every decision in public/data/cleanup.json, old ids in aliases.json).
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -6,14 +6,14 @@ import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),M=require('../public/journey-model.js'),{isOpen}=require('../public/hours.js');
 const load=async p=>JSON.parse(await readFile(new URL('../'+p,import.meta.url),'utf8'));
 let checks=0;const check=(name,fn)=>{fn();checks++};
-const hashes={work:'6d28b6af5371c376e5fbbb0c1d73ec13258781b8efbe35454a73b91377eaccf4',food:'a5680476951d1af6b37a25f1a660180ba76e5d7c2f2aedc948fa3c1dc58b06d8'};let work;
+const hashes={work:'8c72533b96de56992097fc08f9b6cee288a63cff982eb4964ca8d97be1141716',food:'8c7cc19345b6568c0a116ff3ac91872d5e769485138267aa5fbaa20cc409c4f6'};let work;
 for(const[name,hash]of Object.entries(hashes)){
  const bytes=await readFile(new URL(`../public/data/places-${name}.json`,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),hash);if(name==='work')work=JSON.parse(bytes);
 }
-const places=work.rows.map(([id,n,k,y,x,flags,g,idx,hours])=>({id,n,k:work.kinds[k],y,x,flags,g,idx,hours}));assert.equal(places.length,20638);
+const places=work.rows.map(([id,n,k,y,x,flags,g,idx,hours])=>({id,n,k:work.kinds[k],y,x,flags,g,idx,hours}));assert.equal(places.length,20640);
 const[geo,join,evidence]=await Promise.all(['public/data/journey-geo.json','public/data/journey-places.json','public/data/journey-evidence.json'].map(load)),actual=M.makeData(geo,join,evidence);
 check('real source references',()=>{
- assert.equal(actual.joinById.size,20638);assert.equal(actual.stationById.size,geo.stations.length);assert.equal(actual.parkingById.size,Object.keys(join.parking).length);
+ assert.equal(actual.joinById.size,20640);assert.equal(actual.stationById.size,geo.stations.length);assert.equal(actual.parkingById.size,Object.keys(join.parking).length);
  assert.strictEqual(actual.raw.geo,geo);assert.strictEqual(actual.raw.join,join);assert.strictEqual(actual.raw.evidence,evidence);
  for(const p of places){const j=actual.joinById.get(p.id);assert(j);assert(actual.stationById.has(j.railID));assert(M.stationEligible(actual.stationById.get(j.railID)),'Builder must join only eligible rail stations');assert(M.stationEligible(actual.stationById.get(j.btsID)),'Builder must join only eligible BTS stations');assert(actual.stationById.get(j.btsID).systems.includes('BTS'));
   for(const[id,d]of[['parkingID','parkingM'],['parkingNotRestrictedID','parkingNotRestrictedM'],['parkingExplicitAccessID','parkingExplicitAccessM']]){

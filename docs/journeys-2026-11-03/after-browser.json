@@ -15,7 +15,7 @@
     "controlClear": [
       {
         "id": "n6237362243",
-        "right": 329.0000000067457,
+        "right": 329,
         "controlLeft": 334
       }
     ],
@@ -38,7 +38,7 @@
     "controlClear": [
       {
         "id": "n6237362243",
-        "right": 916.5839954460992,
+        "right": 916.5839954517505,
         "controlLeft": 968
       }
     ],
