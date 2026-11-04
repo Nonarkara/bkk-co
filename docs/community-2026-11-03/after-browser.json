@@ -3,8 +3,8 @@
     "width": 390,
     "height": 844,
     "start": {
-      "chrome": 102,
-      "mapHeight": 742,
+      "chrome": 90,
+      "mapHeight": 754,
       "mapWidth": 390,
       "bleed": false
     },
@@ -50,126 +50,126 @@
     "errors": [],
     "apiWrites": [
       "POST /api/account/create",
-      "PUT /api/notebook/73dc7815-5446-46a1-bc72-7aeca3001093",
-      "POST /api/notebook/73dc7815-5446-46a1-bc72-7aeca3001093/publish"
+      "PUT /api/notebook/84a01963-557f-4434-b0b1-360b3f957bfa",
+      "POST /api/notebook/84a01963-557f-4434-b0b1-360b3f957bfa/publish"
     ]
   },
   {
     "width": 1024,
     "height": 900,
     "start": {
-      "chrome": 102,
+      "chrome": 90,
       "mapHeight": 900,
       "mapWidth": 664,
       "bleed": false
     },
     "action": {
       "visit": {
-        "top": 196.59375,
-        "bottom": 240.59375,
+        "top": 184.59375,
+        "bottom": 228.59375,
         "height": 44,
         "width": 165.5
       },
       "directions": {
-        "top": 196.59375,
-        "bottom": 240.59375,
+        "top": 184.59375,
+        "bottom": 228.59375,
         "height": 44,
         "width": 165.5
       },
       "social": {
-        "top": 240.59375,
-        "bottom": 329.59375,
+        "top": 228.59375,
+        "bottom": 317.59375,
         "height": 89,
         "width": 335
       },
       "sheet": {
-        "top": 102,
-        "bottom": 724.4375,
-        "height": 622.4375,
+        "top": 90,
+        "bottom": 721.796875,
+        "height": 631.796875,
         "width": 359
       },
       "bleed": false
     },
     "saved": {
       "x": 0,
-      "y": 102,
+      "y": 90,
       "width": 359,
       "height": 133.9375
     },
     "featuredFirst": {
       "x": 12,
-      "y": 254.390625,
+      "y": 242.390625,
       "width": 335,
       "height": 142.59375
     },
     "errors": [],
     "apiWrites": [
       "POST /api/account/login",
-      "PUT /api/notebook/013bcee9-4d14-4abe-8aaa-26e4401d477d",
-      "POST /api/notebook/013bcee9-4d14-4abe-8aaa-26e4401d477d/publish"
+      "PUT /api/notebook/9b07c3a1-65bc-416a-89e5-e093eae331a3",
+      "POST /api/notebook/9b07c3a1-65bc-416a-89e5-e093eae331a3/publish"
     ]
   },
   {
     "width": 1440,
     "height": 900,
     "start": {
-      "chrome": 102,
+      "chrome": 90,
       "mapHeight": 900,
       "mapWidth": 1080,
       "bleed": false
     },
     "action": {
       "visit": {
-        "top": 196.59375,
-        "bottom": 240.59375,
+        "top": 184.59375,
+        "bottom": 228.59375,
         "height": 44,
         "width": 165.5
       },
       "directions": {
-        "top": 196.59375,
-        "bottom": 240.59375,
+        "top": 184.59375,
+        "bottom": 228.59375,
         "height": 44,
         "width": 165.5
       },
       "social": {
-        "top": 240.59375,
-        "bottom": 329.59375,
+        "top": 228.59375,
+        "bottom": 317.59375,
         "height": 89,
         "width": 335
       },
       "sheet": {
-        "top": 102,
-        "bottom": 724.4375,
-        "height": 622.4375,
+        "top": 90,
+        "bottom": 721.796875,
+        "height": 631.796875,
         "width": 359
       },
       "bleed": false
     },
     "saved": {
       "x": 0,
-      "y": 102,
+      "y": 90,
       "width": 359,
       "height": 133.9375
     },
     "featuredFirst": {
       "x": 12,
-      "y": 254.390625,
+      "y": 242.390625,
       "width": 335,
       "height": 142.59375
     },
     "errors": [],
     "apiWrites": [
       "POST /api/account/login",
-      "PUT /api/notebook/87d30292-a158-40af-a123-8bdf2aa52637",
-      "POST /api/notebook/87d30292-a158-40af-a123-8bdf2aa52637/publish"
+      "PUT /api/notebook/1caa042d-19f5-40fa-a8a1-861213c7833e",
+      "POST /api/notebook/1caa042d-19f5-40fa-a8a1-861213c7833e/publish"
     ]
   },
   {
     "width": 360,
     "height": 844,
     "start": {
-      "chrome": 102,
-      "mapHeight": 742,
+      "chrome": 90,
+      "mapHeight": 754,
       "mapWidth": 360,
       "bleed": false
     },
@@ -215,63 +215,63 @@
     "errors": [],
     "apiWrites": [
       "POST /api/account/login",
-      "PUT /api/notebook/d483a4e8-c1b9-4375-9cc8-95315bf73408",
-      "POST /api/notebook/d483a4e8-c1b9-4375-9cc8-95315bf73408/publish"
+      "PUT /api/notebook/a1d719a7-d1a1-4678-b943-f477692905fe",
+      "POST /api/notebook/a1d719a7-d1a1-4678-b943-f477692905fe/publish"
     ]
   },
   {
     "width": 1280,
     "height": 720,
     "start": {
-      "chrome": 102,
+      "chrome": 90,
       "mapHeight": 720,
       "mapWidth": 920,
       "bleed": false
     },
     "action": {
       "visit": {
-        "top": 196.59375,
-        "bottom": 240.59375,
+        "top": 184.59375,
+        "bottom": 228.59375,
         "height": 44,
         "width": 165.5
       },
       "directions": {
-        "top": 196.59375,
-        "bottom": 240.59375,
+        "top": 184.59375,
+        "bottom": 228.59375,
         "height": 44,
         "width": 165.5
       },
       "social": {
-        "top": 240.59375,
-        "bottom": 329.59375,
+        "top": 228.59375,
+        "bottom": 317.59375,
         "height": 89,
         "width": 335
       },
       "sheet": {
-        "top": 102,
-        "bottom": 584.03125,
-        "height": 482.03125,
+        "top": 90,
+        "bottom": 581.390625,
+        "height": 491.390625,
         "width": 359
       },
       "bleed": false
     },
     "saved": {
       "x": 0,
-      "y": 102,
+      "y": 90,
       "width": 359,
       "height": 133.9375
     },
     "featuredFirst": {
       "x": 12,
-      "y": 254.390625,
+      "y": 242.390625,
       "width": 335,
       "height": 142.59375
     },
     "errors": [],
     "apiWrites": [
       "POST /api/account/login",
-      "PUT /api/notebook/4d856092-f64d-4875-9646-739258aae550",
-      "POST /api/notebook/4d856092-f64d-4875-9646-739258aae550/publish"
+      "PUT /api/notebook/2ec19762-a227-48a5-95d8-076cd037952a",
+      "POST /api/notebook/2ec19762-a227-48a5-95d8-076cd037952a/publish"
     ]
   }
 ]

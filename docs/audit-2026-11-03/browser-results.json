@@ -28,10 +28,10 @@
         "width": 390
       },
       "bleed": false,
-      "oldDisplacedBottom": 776.390625,
+      "oldDisplacedBottom": 760.390625,
       "placeActionGap": {
-        "current": 73,
-        "old": 395.34375
+        "current": 69,
+        "old": 500.53125
       },
       "pageErrors": []
     },
@@ -63,10 +63,10 @@
         "width": 359
       },
       "bleed": false,
-      "oldDisplacedBottom": 752.390625,
+      "oldDisplacedBottom": 736.390625,
       "placeActionGap": {
-        "current": 73,
-        "old": 395.34375
+        "current": 69,
+        "old": 544.53125
       },
       "pageErrors": []
     },
@@ -98,10 +98,10 @@
         "width": 359
       },
       "bleed": false,
-      "oldDisplacedBottom": 752.390625,
+      "oldDisplacedBottom": 736.390625,
       "placeActionGap": {
-        "current": 73,
-        "old": 395.34375
+        "current": 69,
+        "old": 544.53125
       },
       "pageErrors": []
     },
@@ -133,10 +133,10 @@
         "width": 359
       },
       "bleed": false,
-      "oldDisplacedBottom": 752.390625,
+      "oldDisplacedBottom": 736.390625,
       "placeActionGap": {
-        "current": 73,
-        "old": 395.34375
+        "current": 69,
+        "old": 544.53125
       },
       "pageErrors": []
     }

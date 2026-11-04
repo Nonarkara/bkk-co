@@ -47,7 +47,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .pass-btn { padding: 0 8px; border: 1px solid var(--rule); height: 36px; margin: 0 0 0 -4px; }
 .pass-btn b { font-weight: 500; }
 .search input { width: 100%; height: 36px; padding: 0 10px; font: inherit; color: var(--ink);
-  border: 1px solid var(--rule); border-radius: 0; background: var(--wash); }
+  border: 1px solid var(--rule); border-radius: 0; background: var(--paper); }
 .search input:focus { outline: none; border-color: var(--ink); background: var(--paper); }
 .hits { position: absolute; z-index: 30; top: 100%; left: 0; right: 0; list-style: none; padding: 0;
   background: var(--paper); border-bottom: 1px solid var(--ink); max-height: 60dvh; overflow-y: auto; }
@@ -62,8 +62,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border-bottom: 1px solid var(--rule); }
 .chips::-webkit-scrollbar { display: none; }
 .chips button { display: inline-flex; align-items: center; gap: 5px; height: 32px; padding: 0 8px;
-  white-space: nowrap; border: 1px solid var(--rule); }
-.chips button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+  white-space: nowrap; border: 1px solid var(--rule); color: var(--muted); }
+/* Owner audit 4 Nov, one strip: resting filters must not be three filled posters.
+   Filters are instruments: on = ink edge and ink label, off = hairline and muted.
+   Filled ground stays for primary actions inside sheets — never for resting chrome. */
+.chips button[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); }
 .chips .sep { display: none; }
 .count { margin-left: auto; padding-left: 8px; color: var(--muted); font-size: var(--micro); white-space: nowrap; }
 .moods { flex: none; display: flex; gap: 4px; padding: 6px var(--pad) 0; overflow-x: auto; scrollbar-width: none; }
@@ -100,8 +103,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .dot.coworking { background: var(--amber); }
 .dot.library { background: var(--paper); box-shadow: inset 0 0 0 2px var(--ink); }
 .dot.restaurant { background: var(--food); }
-[aria-pressed="true"] .dot.cafe { background: var(--paper); }
-[aria-pressed="true"] .dot.library { box-shadow: inset 0 0 0 2px var(--paper); background: var(--ink); }
 
 #map { grid-area: map; min-height: 0; }
 .phone-only { }

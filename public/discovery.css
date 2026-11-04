@@ -71,7 +71,6 @@
 .recommend-account button { border:1px solid var(--ink); margin:4px 4px 0 0; }
 .recommend-account [data-key-continue] { background:var(--ink); color:var(--paper); }
 .recommend-account h2 { font-size:var(--big); font-weight:500; }
-.chips button { min-height:44px; }
 .atlas-tools button { min-height:44px; }
 .hits li[data-id],.list li[data-id] { min-height:44px; }
 /* phone: five chips must fit 390 px without a hidden sliver (audit 2026-11-03) */

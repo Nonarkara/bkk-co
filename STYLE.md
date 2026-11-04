@@ -25,6 +25,7 @@ Wada plate 273 (locally credited catalogue: `~/Projects/palette/data/colors.json
 
 ## Devices
 - Hairline 1px rules; boxes are their label plus ~0.5–1× padding. Nothing is inflated to fill a container.
+- **Chrome filter chips are hairline instruments, not posters** (owner strip audit, 4 Nov 2026): off = `--rule` border + muted label, on = `--ink` border + ink label, paper ground, 32 px label-plus-padding. The chip row is a dense group — MSH wins over the 44 px rule here; 44 px belongs to isolated controls and full-width rows only. A filled ground means a primary action inside a sheet, never a resting filter state. The map dock (`atlas.css`) speaks the same language.
 - **Symbols over words** where the meaning is one glance: `▲▼ → ✓ ▾ ◐ ✦ ↦ ⁘ ◇ ◎ ≋ ✎`. Each carries a fact; none is decoration.
 - The semicolon in `PL;UB` is the seam: `PL` = Placemaking Laboratory, `UB` = Urban Bureau.
 - Numbers always carry a source and a tier. "Not rated yet" is the honest state; never show a score a visitor did not give.
