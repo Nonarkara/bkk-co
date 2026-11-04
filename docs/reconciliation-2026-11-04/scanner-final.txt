@@ -1,0 +1,43 @@
+non-slop scan public  ·  29 files  ·  style: /Users/nonarkara/Projects/bangkok-ioc/bkk-co/STYLE.md (5 rules, 0 fonts, 2 colours allowed; 2 phrases, 1 voice markers protected)
+  note: /Users/nonarkara/Projects/bangkok-ioc/bkk-co/STYLE.md: "PL;UB" is a short marker. It is honoured, and it hides every sentence that contains it.
+  note: /Users/nonarkara/Projects/bangkok-ioc/bkk-co/STYLE.md: "PL;UB" is a short marker. It is honoured, and it hides every sentence that contains it.
+  note: /Users/nonarkara/Projects/bangkok-ioc/bkk-co/STYLE.md: "PL;UB" is a short marker. It is honoured, and it hides every sentence that contains it.
+  note: /Users/nonarkara/Projects/bangkok-ioc/bkk-co/STYLE.md: "PL;UB" is a short marker. It is honoured, and it hides every sentence that contains it.
+  note: /Users/nonarkara/Projects/bangkok-ioc/bkk-co/STYLE.md: "PL;UB" is a short marker. It is honoured, and it hides every sentence that contains it.
+
+plub.js
+  ALLOWED   cream-terracotta     L6  #fbf6ea + #9a6240
+            STYLE.md: Nong Plub's crayon palette (warm paper, brown hair, brick cheek) is character illustration, not the interface palette. The interface ground is white with Wada plate 273 ink.
+
+notebook.js
+  REVIEW    agentless-passive    L127  n)} · nothing has been published.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+passport.js
+  REVIEW    agentless-passive    L55  This device visit was removed.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+privacy.html
+  REVIEW    agentless-passive    L3  The visit date is not published.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+talk-media.js
+  REVIEW    agentless-passive    L160  That catalogue place is not loaded on the map yet.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+Verdict: OK  points 0 (distinct rules: P0 0 · P1 0 · P2 0)  ·  allowed 1  ·  review 4 (sentences to read; not scored, not rewritten)
+SLOP = ≥8 points, a P0 stacked with another P0/P1, or P0/P1 hits in ≥3 categories. REVIEW = 3–7. A screen, not a judge: render it and get a second reviewer.
+non-slop scan src  ·  4 files  ·  style: /Users/nonarkara/Projects/bangkok-ioc/bkk-co/STYLE.md (1 rules, 0 fonts, 2 colours allowed; 2 phrases, 1 voice markers protected)
+  note: /Users/nonarkara/Projects/bangkok-ioc/bkk-co/STYLE.md: "PL;UB" is a short marker. It is honoured, and it hides every sentence that contains it.
+
+notebook.js
+  REVIEW    agentless-passive    L148  Cloudflare may retain database recovery backups for up to 30 days; live account data is deleted.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+Verdict: OK  points 0 (distinct rules: P0 0 · P1 0 · P2 0)  ·  allowed 0  ·  review 1 (sentences to read; not scored, not rewritten)
+SLOP = ≥8 points, a P0 stacked with another P0/P1, or P0/P1 hits in ≥3 categories. REVIEW = 3–7. A screen, not a judge: render it and get a second reviewer.

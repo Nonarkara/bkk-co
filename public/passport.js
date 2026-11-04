@@ -42,7 +42,10 @@
 
   const Passport = {
     async all() { return (await tx('readonly', s => s.getAll())) || []; },
-    async forPlace(id) { return (await tx('readonly', s => s.index('place').getAll(id))) || []; },
+    async forPlace(id, canonicalize) {
+      if (typeof canonicalize === 'function') { const target=canonicalize(id); return (await this.all()).filter(v => canonicalize(v.place) === target); }
+      return (await tx('readonly', s => s.index('place').getAll(id))) || [];
+    },
     async get(key) { return tx('readonly', s => s.get(key)); },
     async mutate(key, fn) {
       const d = await db();

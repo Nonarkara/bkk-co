@@ -1,0 +1,29 @@
+{
+  "playStarted": true,
+  "manualPaused": true,
+  "hiddenPaused": true,
+  "noHiddenResume": true,
+  "paddingPhone": {
+    "top": 30,
+    "bottom": 375.0990711032516,
+    "left": 35,
+    "right": 65
+  },
+  "paddingDesktop": {
+    "top": 30,
+    "bottom": 35,
+    "left": 35,
+    "right": 65
+  },
+  "escapeActive": false,
+  "errors": [],
+  "reduced": {
+    "playDisabled": true,
+    "moving": false
+  },
+  "lateWorld": {
+    "active": false,
+    "panelHidden": true,
+    "notebook": true
+  }
+}

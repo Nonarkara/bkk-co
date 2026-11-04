@@ -330,6 +330,8 @@ def build():
     # Apply the bounded, reviewed exact-source café exception after the frozen base.
     # Geography builders run separately against the resulting current catalogue.
     subprocess.run([sys.executable, str(ROOT/'scripts/include-reviewed-place.py'), '--catalogue-only'], check=True)
+    if (data / 'talk-media.json').is_file():
+        subprocess.run(['node', str(ROOT/'scripts/register-talk-media.mjs')], check=True)
     manifest = json.loads((data / 'manifest.json').read_text())
     print(json.dumps({k: manifest[k] for k in ('total', 'kinds', 'bySource', 'skipped', 'files')}, indent=1))
 

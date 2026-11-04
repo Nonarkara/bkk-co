@@ -110,7 +110,7 @@ export async function notebookApi(request,env,knownIds) {
    return response({posts:results.map(r=>({...r,payload:JSON.parse(r.payload)}))});
   }
   if(path==='/api/community'&&method==='GET'){
-   const place=canon(url.searchParams.get('place'));if(!(await knownIds()).has(place))fail('Unknown place.');
+   const known=await knownIds(),place=canon(url.searchParams.get('place'));if(!known.has(place))fail('Unknown place.');
    const a=await account(request,env,false);
    const {results}=await env.DB.prepare('SELECT id,account_id,payload,created_at FROM notebook_posts WHERE place_id=? AND hidden=0 ORDER BY created_at DESC LIMIT 5').bind(place).all();
    return response({posts:results.map(r=>({id:r.id,...JSON.parse(r.payload),created:r.created_at,mine:r.account_id===a?.id})),limit:5});
@@ -187,5 +187,5 @@ export async function notebookApi(request,env,knownIds) {
    if(method==='DELETE'&&!postMatch[2]){const r=await env.DB.prepare('DELETE FROM notebook_posts WHERE id=? AND account_id=?').bind(id,a.id).run();if(!r.meta.changes)fail('Recommendation not found.',404);await env.DB.prepare('DELETE FROM notebook_reports WHERE post_id=?').bind(id).run();return response({ok:true});}
   }
   return response({error:'Not found.'},404);
- }catch(e){if(e.status)return response({error:e.message},e.status);console.error('Notebook request failed',e.name);return response({error:'Cloud notebook is unavailable. Your device copy is unchanged.'},503)}
+ }catch(e){if(e.status)return response({error:e.message},e.status,e.catalogue?{'retry-after':'5'}:{});console.error('Notebook request failed',e.name);return response({error:'Cloud notebook is unavailable. Your device copy is unchanged.'},503)}
 }

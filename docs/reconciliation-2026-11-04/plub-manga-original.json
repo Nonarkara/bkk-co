@@ -1,0 +1,56 @@
+{
+  "version": 8,
+  "name": "PLUB manga",
+  "metadata": {
+    "maputsu:manga": true,
+    "register": "civic daylight",
+    "note": "Manga line-art basemap for PLUB. Bold ink outlines, hatching screen tones, limited palette. No invented depth - buildings extrude only where OSM height exists (Phase 2)."
+  },
+  "center": [100.535, 13.745],
+  "zoom": 12.5,
+  "minzoom": 9,
+  "maxzoom": 19,
+  "sources": {
+    "openfreemap": {
+      "type": "vector",
+      "url": "https://tiles.openfreemap.org/maps/@2x/general/{z}/{x}/{y}.pbf",
+      "attribution": "© OpenStreetMap contributors"
+    }
+  },
+  "sprite": "https://tiles.openfreemap.org/sprites/positron/sprite",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "layers": [
+    { "id": "background", "type": "background", "paint": { "background-color": "#f4f4f0" } },
+
+    { "id": "landuse-green", "type": "fill", "source": "openfreemap", "source-layer": "landuse",
+      "filter": ["in", "class", ["literal", ["park", "forest", "cemetery"]]],
+      "paint": { "fill-color": "#dfe3d9", "fill-opacity": 0.6 } },
+
+    { "id": "water", "type": "fill", "source": "openfreemap", "source-layer": "water",
+      "paint": { "fill-color": "#e8eef0", "fill-opacity": 0.8 } },
+    { "id": "water-line", "type": "line", "source": "openfreemap", "source-layer": "water",
+      "paint": { "line-color": "#7d133a", "line-width": 1, "line-opacity": 0.5 } },
+
+    { "id": "road-major", "type": "line", "source": "openfreemap", "source-layer": "road",
+      "filter": ["in", "class", ["literal", ["motorway", "trunk", "primary"]]],
+      "paint": { "line-color": "#7d133a", "line-width": 2, "line-opacity": 0.9 } },
+    { "id": "road-minor", "type": "line", "source": "openfreemap", "source-layer": "road",
+      "filter": ["in", "class", ["literal", ["secondary", "tertiary"]]],
+      "paint": { "line-color": "#7d133a", "line-width": 1.2, "line-opacity": 0.7 } },
+    { "id": "road-local", "type": "line", "source": "openfreemap", "source-layer": "road",
+      "filter": ["in", "class", ["literal", ["residential", "living_street"]]],
+      "paint": { "line-color": "#7d133a", "line-width": 0.8, "line-opacity": 0.5 } },
+    { "id": "road-path", "type": "line", "source": "openfreemap", "source-layer": "road",
+      "filter": ["in", "class", ["literal", ["footway", "pedestrian", "path", "cycleway"]]],
+      "paint": { "line-color": "#7d133a", "line-width": 0.6, "line-opacity": 0.4, "line-dasharray": [2, 2] } },
+
+    { "id": "building", "type": "fill", "source": "openfreemap", "source-layer": "building",
+      "paint": { "fill-color": "#ffffff", "fill-opacity": 0.9 } },
+    { "id": "building-line", "type": "line", "source": "openfreemap", "source-layer": "building",
+      "paint": { "line-color": "#20201d", "line-width": 0.9, "line-opacity": 0.9 } },
+
+    { "id": "place-label", "type": "symbol", "source": "openfreemap", "source-layer": "place_label",
+      "layout": { "text-field": ["get", "name"], "text-size": 11, "text-font": ["Prompt Regular", "Noto Sans Regular"], "text-optional": true },
+      "paint": { "text-color": "#7d133a", "text-halo-color": "#ffffff", "text-halo-width": 1.5 } }
+  ]
+}

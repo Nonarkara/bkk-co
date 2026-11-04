@@ -1,0 +1,171 @@
+// A reference sketch on the existing map, never a second canvas or an inferred city.
+(() => {
+ const M=StreetModel, empty=()=>({type:'FeatureCollection',features:[]});
+ let world,index,style,promise,panel,area,position,snapshot,baseLayers=[],installed=false,active=false,suspended=false,playing=false,timer=null,revision=0,view='overview',lastArea=null,lastRoad=null,desiredPadding=null,pendingReflow=false,cameraRevision=0,blocked=false;
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+ const get=async path=>{const r=await fetch(path,{signal:AbortSignal.timeout(25000)});if(!r.ok)throw Error('Street sketch data is unavailable. Your map and notebook still work.');return r.json()};
+ const current=t=>t===revision&&panel?.isConnected&&!panel.hidden;
+ function load(){return promise||(promise=Promise.all([get('data/street-world.json'),get('styles/plub-street.json')]).then(([w,s])=>{world=w;style=s;index=M.index(w);return w}).catch(e=>{promise=null;throw e}))}
+ function createPanel(){
+  if(!panel){panel=document.createElement('section');panel.className='street-panel';panel.setAttribute('aria-label','Street sketch controls');document.body.append(panel);panel.addEventListener('toggle',e=>{if(e.target.open)pause()},true);panel.addEventListener('focusin',e=>{if(playing&&!e.target.matches('[data-street-play]'))pause()});panel.addEventListener('pointerdown',e=>{if(!e.target.closest('[data-street-play]'))pause()});new ResizeObserver(reflow).observe(panel)}
+  panel.hidden=false;return panel;
+ }
+ function pause(){
+  ++cameraRevision;playing=false;clearTimeout(timer);timer=null;
+  const b=panel?.querySelector('[data-street-play]');if(b){b.textContent='Play';b.setAttribute('aria-pressed','false')}
+ }
+ function suspend(){++revision;pause();if(panel)panel.hidden=true;if(active&&!suspended){suspended=true;paint(false);map.setMaxPitch(snapshot.maxPitch);map.setMaxZoom(snapshot.maxZoom);map.jumpTo({pitch:snapshot.pitch,padding:{top:0,left:0,right:0,bottom:0}})}}
+ function install(){
+  if(installed)return;
+  baseLayers=map.getStyle().layers.filter(l=>l.type==='background'||['openmaptiles','ne2_shaded'].includes(l.source)).map(l=>({id:l.id,visibility:l.layout?.visibility||'visible'}));
+  const before=map.getLayer('pins-city')?'pins-city':undefined;
+  for(const layer of style.layers)map.addLayer({...layer,layout:{...(layer.layout||{}),visibility:'none'}},before);
+  const c=document.createElement('canvas');c.width=c.height=12;const g=c.getContext('2d');g.fillStyle='#ede9e3';g.fillRect(0,0,12,12);g.strokeStyle='#b6b1aa';g.lineWidth=.7;g.beginPath();for(let x=-12;x<24;x+=6){g.moveTo(x,0);g.lineTo(x+12,12)}g.stroke();
+  map.addImage('street-ink-tone',g.getImageData(0,0,12,12));
+  map.addSource('street-buildings',{type:'geojson',data:empty()});
+  map.addSource('street-selected-line',{type:'geojson',data:empty()});
+  map.addSource('street-eye',{type:'geojson',data:empty()});
+  map.addLayer({id:'street-building-flat',type:'fill',source:'street-buildings',layout:{visibility:'none'},paint:{'fill-pattern':'street-ink-tone','fill-opacity':.85}},before);
+  map.addLayer({id:'street-building-edge',type:'line',source:'street-buildings',layout:{visibility:'none'},paint:{'line-color':'#514a47','line-width':1}},before);
+  map.addLayer({id:'street-building-height',type:'fill-extrusion',source:'street-buildings',filter:['==',['get','render3D'],true],layout:{visibility:'none'},paint:{'fill-extrusion-color':'#e7e3dd','fill-extrusion-height':['get','heightM'],'fill-extrusion-base':['coalesce',['get','minHeightM'],0],'fill-extrusion-opacity':1,'fill-extrusion-vertical-gradient':false}},before);
+  map.addLayer({id:'street-selected-line',type:'line',source:'street-selected-line',layout:{visibility:'none'},paint:{'line-color':'#7d133a','line-width':3,'line-dasharray':[2,1]}},before);
+  map.addLayer({id:'street-eye',type:'circle',source:'street-eye',layout:{visibility:'none'},paint:{'circle-radius':5,'circle-color':'#7d133a','circle-stroke-color':'#fff','circle-stroke-width':2}});
+  const canvas=map.getCanvas();canvas.addEventListener('pointerdown',pause);canvas.addEventListener('wheel',pause,{passive:true});canvas.addEventListener('keydown',keyboard,true);
+  installed=true;
+ }
+ function paint(on){
+  for(const b of baseLayers)if(map.getLayer(b.id))map.setLayoutProperty(b.id,'visibility',on?'none':b.visibility);
+  for(const id of [...style.layers.map(l=>l.id),'street-building-flat','street-building-edge','street-building-height','street-selected-line','street-eye'])map.setLayoutProperty(id,'visibility',on?'visible':'none');
+ }
+ const point=()=>M.point(index.roads.get(position.streetID),position.distance);
+ function draw(){
+  const ids=new Set(area.buildingIDs),r=index.roads.get(position.streetID),p=point();
+  if(lastArea!==area.id){map.getSource('street-buildings').setData({...world.buildings,features:world.buildings.features.filter(f=>ids.has(f.id))});lastArea=area.id}
+  if(lastRoad!==r.id){map.getSource('street-selected-line').setData({type:'FeatureCollection',features:[{type:'Feature',id:r.id,geometry:r.geometry,properties:r.properties}]});lastRoad=r.id}
+  map.getSource('street-eye').setData({type:'FeatureCollection',features:[{type:'Feature',geometry:{type:'Point',coordinates:p.coordinates},properties:{}}]});
+ }
+ function layoutPadding(){return {top:30,left:35,right:65,bottom:isPhone()?Math.min(panel.offsetHeight+25,innerHeight*.45):35}}
+ function reflow(){
+  if(!active||!panel||panel.hidden)return;
+  const next=layoutPadding();if(desiredPadding&&Object.keys(next).every(k=>Math.abs(next[k]-desiredPadding[k])<1))return;
+  desiredPadding=next;
+  if(map.isMoving()){
+   if(pendingReflow)return;pendingReflow=true;const token=revision;
+   map.once('moveend',()=>{pendingReflow=false;if(active&&!panel.hidden&&token===revision)map.setPadding(desiredPadding)});
+  }else map.setPadding(next);
+ }
+ function camera(){
+  if(!active||!position)return;
+  const p=point(),r=index.roads.get(position.streetID),direction=position.direction||1;
+  const ahead=M.point(r,position.distance+direction*.5).coordinates;
+  const bearing=M.dist(p.coordinates,ahead)>.01?M.bearing(p.coordinates,ahead):p.bearing+(direction<0?180:0);
+  const padding=layoutPadding();desiredPadding=padding;
+  // A bounded artistic perspective keeps actual nearby pins in view, even at a source endpoint.
+  const token=++cameraRevision;
+  map.easeTo({center:p.coordinates,bearing,pitch:view==='walk'?72:55,zoom:view==='walk'?18.6:17.3,padding,duration:200});
+  if(view==='walk')requestAnimationFrame(()=>{
+   if(token!==cameraRevision)return;
+   const ready=()=>requestAnimationFrame(()=>{if(!map.areTilesLoaded())map.once('idle',()=>inspectView(token));else inspectView(token)});
+   map.isMoving()?map.once('moveend',ready):ready();
+  });
+ }
+ function inspectView(token){
+  if(token!==cameraRevision||!active||panel.hidden||document.hidden||view!=='walk'||map.isMoving())return;
+  const box=map.getContainer().getBoundingClientRect(),instrument=panel.getBoundingClientRect();
+  const bottom=isPhone()?Math.min(box.height-20,instrument.top-box.top-10):box.height-30;
+  if(bottom<100)return;
+  let hits=0,total=0;
+  for(let x=1;x<=5;x++)for(let y=1;y<=4;y++){
+   const px=30+(box.width-110)*x/6,py=25+(bottom-25)*y/5;
+   const screenX=box.left+px,screenY=box.top+py;
+   if(screenX>=instrument.left&&screenX<=instrument.right&&screenY>=instrument.top&&screenY<=instrument.bottom)continue;
+   total++;if(map.queryRenderedFeatures([px,py],{layers:['street-building-height']}).length)hits++;
+  }
+  if(total&&hits/total>.6){
+   blocked=true;view='overview';pause();details();
+   map.easeTo({center:point().coordinates,bearing:map.getBearing(),pitch:40,zoom:16.8,padding:layoutPadding(),duration:200});
+  }
+ }
+
+ function roadName(road){return road.properties.name||road.properties.nameTh||(['footway','path','pedestrian'].includes(road.properties.highway)?'Mapped footpath':'Unnamed lane')}
+ const directionName=b=>['N','NE','E','SE','S','SW','W','NW'][Math.round((b+360)%360/45)%8];
+ function nearby(){const p=point().coordinates;return state.places.filter(p=>['cafe','coworking','library'].includes(p.k)&&state.kinds.has(p.k)).map(v=>({p:v,metres:M.dist(p,[v.x,v.y])})).filter(v=>v.metres<=300).sort((a,b)=>a.metres-b.metres)}
+ function details(){
+  if(!active||!panel||panel.hidden)return;
+  const road=index.roads.get(position.streetID),near=nearby(),first=near[0],host=panel.querySelector('.street-nearby');
+  panel.querySelector('.street-view-notice').textContent=blocked?'A mapped building blocks that angle · using a wider overview.':'';
+  panel.querySelector('[data-street-source]').href='https://www.openstreetmap.org/way/'+road.properties.sourceID.slice(1);
+  panel.querySelector('.street-status').textContent=`${roadName(road)} · ${Math.round(position.distance)} m along source line. ${near.length} work spots within 300 m straight line.`;
+  panel.querySelector('[data-street-view]').textContent=view==='walk'?'Overview':'Low view';
+  const row=({p,metres})=>`<button class="street-place-name" data-street-place="${esc(p.id)}">${PlaceTools.symbol(p.k)} ${esc(p.n)}${p.branch?' · '+esc(p.branch):''}</button><div class="street-cafe-actions"><span class="src">${Math.round(metres)} m straight line</span><a href="${esc(JourneyModel.directions(p,null))}" target="_blank" rel="noopener">Directions ↗</a><button data-street-place="${esc(p.id)}">Notes &amp; place</button></div>`;
+  host.innerHTML=first?row(first)+(near.length>1?`<details><summary>${near.length-1} more nearby</summary>${near.slice(1,8).map(row).join('')}</details>`:''):'<p class="src">No selected work spots within 300 m. Step along the mapped street or choose another street.</p>';
+  host.querySelectorAll('[data-street-place]').forEach(b=>b.onclick=()=>{pause();panel.hidden=true;select(state.byId.get(b.dataset.streetPlace),true)});
+  const branches=M.branches(index,position,new Set(area.streetIDs)),box=panel.querySelector('.street-junction');
+  box.hidden=!branches.length;
+  box.innerHTML=branches.length?`<details><summary>Junction · ${branches.length} source directions</summary>${branches.map((v,i)=>`<button data-street-branch="${i}">${esc(roadName(index.roads.get(v.streetID)))} · ${directionName(v.bearing)}</button>`).join('')}</details>`:'';
+  box.querySelectorAll('[data-street-branch]').forEach(b=>b.onclick=()=>{pause();position={...branches[+b.dataset.streetBranch]};draw();details();camera()});
+ }
+ function render(){
+  const roads=area.streetIDs.map(id=>index.roads.get(id)).filter(Boolean).sort((a,b)=>Number(b.properties.cafeIDs.length>0)-Number(a.properties.cafeIDs.length>0)||roadName(a).localeCompare(roadName(b)));
+  const buildingIDs=new Set(area.buildingIDs),known=world.buildings.features.filter(f=>buildingIDs.has(f.id)&&f.properties.render3D).length;
+  panel.innerHTML=`<header><h2 tabindex="-1">Street sketch</h2><button class="street-close" aria-label="Return to 2D map">×</button></header><p class="street-view-notice" role="status"></p><p class="street-coverage">${esc(area.name)} · ${known?known+' mapped-height volumes; other footprints flat':'0 mapped heights · flat outlines'}</p><div class="street-nearby"></div><div class="street-controls"><button data-street-step="-20" aria-label="Step back 20 metres on source street">← 20 m</button><button data-street-play aria-pressed="false" ${reduce.matches?'disabled':''}>Play</button><button data-street-step="20" aria-label="Step forward 20 metres on source street">20 m →</button><button data-street-view>${view==='walk'?'Overview':'Low view'}</button></div><p class="street-status" role="status"></p><div class="street-junction"></div><details class="street-setup"><summary>Change area / street</summary><label>Area<select data-street-area>${world.areas.map(a=>`<option value="${esc(a.id)}" ${a.id===area.id?'selected':''}>${esc(a.name)}</option>`).join('')}</select></label><label>Street<select data-street-road aria-label="Mapped street">${roads.map(r=>`<option value="${esc(r.id)}" ${r.id===position.streetID?'selected':''}>${esc(roadName(r))}${r.properties.cafeIDs.length?' · '+r.properties.cafeIDs.length+' café pins':''}</option>`).join('')}</select></label></details><details><summary>Reference sketch · access &amp; source</summary><p class="src">Virtual exploration of mapped streets, not verified pedestrian routes or café entrances. Access and roadside conditions need checking. W/A/S/D or arrows on the map; steps pause at shared source junctions. Unknown heights stay flat.</p><p class="src">${esc(area.name)}: ${known} source-height volumes / ${area.buildingIDs.length} footprints. Schematic flat ground; Low view is an artistic perspective, not a surveyed street photograph. Buildings/streets: OSM ${esc(world.manifest.asOf.slice(0,10))}, <a href="${esc(world.manifest.licenseURL)}" target="_blank" rel="noopener">ODbL</a>. Source tags may be stale. <a data-street-source href="https://www.openstreetmap.org/way/${esc(index.roads.get(position.streetID).properties.sourceID.slice(1))}" target="_blank" rel="noopener">Current street source ↗</a>. Café pins remain the current PL;UB catalogue.</p></details>`;
+  panel.querySelector('.street-close').onclick=exit;
+  panel.querySelector('[data-street-area]').onchange=e=>choose(e.target.value);
+  panel.querySelector('[data-street-road]').onchange=e=>{pause();position={streetID:e.target.value,distance:0,direction:1};draw();details();camera()};
+  panel.querySelectorAll('[data-street-step]').forEach(b=>b.onclick=()=>{pause();step(+b.dataset.streetStep)});
+  panel.querySelector('[data-street-view]').onclick=()=>{pause();blocked=false;view=view==='walk'?'overview':'walk';details();camera()};
+  panel.querySelector('[data-street-play]').onclick=()=>{if(playing){pause();return}if(reduce.matches||document.hidden)return;playing=true;const b=panel.querySelector('[data-street-play]');b.textContent='Pause';b.setAttribute('aria-pressed','true');loop()};
+  panel.onkeydown=keyboard;
+  details();panel.querySelector('h2').focus({preventScroll:true});
+ }
+ function choose(id,near){
+  pause();blocked=false;area=world.areas.find(a=>a.id===id)||world.areas.find(a=>a.id==='samyan');
+  position=M.nearest(index,near||[area.anchor.x,area.anchor.y],area);
+  if(!position)throw Error('No source street is available in this area.');
+  render();draw();camera();
+ }
+ function step(metres){
+  if(!active||panel.hidden||document.hidden)return;
+  const result=M.move(index,position,metres,new Set(area.streetIDs));position=result.position;
+  if(result.stopped)pause();draw();details();camera();
+ }
+ function loop(){if(!playing||!active||panel.hidden||document.hidden||reduce.matches){pause();return}step(8);if(playing)timer=setTimeout(loop,700)}
+ function keyboard(e){
+  if(!active||panel.hidden||/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName))return;
+  if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();exit();return}
+  const k=e.key.toLowerCase();if(!['w','s','a','d','arrowup','arrowdown','arrowleft','arrowright'].includes(k))return;
+  e.preventDefault();e.stopImmediatePropagation();pause();
+  if(['w','arrowup'].includes(k))step(20);else if(['s','arrowdown'].includes(k))step(-20);else map.easeTo({bearing:map.getBearing()+(['a','arrowleft'].includes(k)?-20:20),duration:180});
+ }
+ function prepare(){
+  state.mood=null;state.flags.clear();document.querySelectorAll('[data-flag]').forEach(b=>b.setAttribute('aria-pressed','false'));
+  Atlas.reset();
+  const u=new URL(location.href);for(const k of ['p','hood','hop','mood'])u.searchParams.delete(k);history.replaceState(null,'',u);
+ }
+ async function open(place){
+  if(active&&!place)return resume();
+  const p=place||state.selected,token=++revision;
+  pause();openFromUrl.framed=true;closeSheet();createPanel().innerHTML='<header><h2>Street sketch</h2><button class="street-close" aria-label="Close street sketch">×</button></header><p role="status">Loading mapped streets and explicit building heights…</p>';
+  panel.querySelector('.street-close').onclick=exit;
+  try{
+   await Promise.all([load(),firstData]);
+   if(!map.getLayer('pins-city'))await new Promise((ok,fail)=>{const timer=setTimeout(()=>{map.off('idle',check);fail(Error('Map is not ready. Try the sketch again.'))},15000);function check(){if(map.getLayer('pins-city')){clearTimeout(timer);map.off('idle',check);ok()}}map.on('idle',check);check()});
+   if(!current(token))return;
+   if(!active)snapshot={center:map.getCenter().toArray(),zoom:map.getZoom(),pitch:map.getPitch(),bearing:map.getBearing(),maxPitch:map.getMaxPitch(),maxZoom:map.getMaxZoom()};
+   prepare();install();active=true;suspended=false;map.setMaxPitch(85);map.setMaxZoom(22);paint(true);
+   const origin=p?[p.x,p.y]:null,nearestArea=origin?world.areas.slice().sort((a,b)=>M.dist(origin,[a.anchor.x,a.anchor.y])-M.dist(origin,[b.anchor.x,b.anchor.y]))[0]:world.areas.find(a=>a.id==='samyan');
+   const within=origin&&M.dist(origin,[nearestArea.anchor.x,nearestArea.anchor.y])<=nearestArea.radiusM;
+   choose(nearestArea.id,within?origin:undefined);
+   if(origin&&!within){const note=document.createElement('p');note.className='src';note.textContent='That place is outside the five sketch areas. Showing '+nearestArea.name+'; choose an area above.';panel.querySelector('header').after(note)}
+  }catch(e){if(!current(token))return;panel.querySelector('[role=status]')?.remove();const msg=document.createElement('p');msg.setAttribute('role','status');msg.textContent=e.message;panel.append(msg);const b=document.createElement('button');b.textContent='Retry street sketch';b.onclick=()=>open(p);panel.append(b)}
+ }
+ function resume(){if(!active)return open();closeSheet();createPanel();prepare();map.setMaxPitch(85);map.setMaxZoom(22);suspended=false;paint(true);render();draw();camera()}
+ function exit(){
+  ++revision;pause();if(panel)panel.hidden=true;
+  if(active){paint(false);map.getSource('street-eye').setData(empty());map.getSource('street-buildings').setData(empty());map.getSource('street-selected-line').setData(empty());active=false;lastArea=null;lastRoad=null;if(snapshot){map.setMaxPitch(snapshot.maxPitch);map.setMaxZoom(snapshot.maxZoom);map.easeTo({...snapshot,padding:{top:0,left:0,right:0,bottom:0},duration:200})}}
+ }
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active&&panel&&!panel.hidden&&document.querySelector('#sheet').hidden){e.preventDefault();exit()}});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)pause()});reduce.addEventListener('change',()=>{pause();if(active&&!panel.hidden)render()});
+ window.addEventListener('resize',()=>{pause();reflow()});
+ window.StreetWorld={open,resume,exit,pause,suspend,load,get active(){return active},get playing(){return playing},get position(){return position},get data(){return world},get area(){return area},get view(){return view}};
+})();
