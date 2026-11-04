@@ -1,7 +1,7 @@
 
  ⛅️ wrangler 4.81.1 (update available 4.157.0)
 ──────────────────────────────────────────────
-Resource location: local 
+Resource location: local
 
 Use --remote if you want to access the remote instance.
 
@@ -34,7 +34,7 @@ Use --remote if you want to access the remote instance.
 
  ⛅️ wrangler 4.81.1 (update available 4.157.0)
 ──────────────────────────────────────────────
-Resource location: local 
+Resource location: local
 
 Use --remote if you want to access the remote instance.
 
