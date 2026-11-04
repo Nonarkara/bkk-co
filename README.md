@@ -2,8 +2,8 @@
 
 Where to work in Bangkok, on one map: **[co.nonarkara.org](https://co.nonarkara.org)**
 
-57,538 cafés, co-working spaces, libraries and restaurants from OpenStreetMap and Overture Maps, each scored as a Great Good Place (Oldenburg) from open data.
-Four neighbourhoods with stories and live numbers, Nong Plub as guide, and a passport of visits and photos kept on your phone.
+57,379 cafés, co-working spaces, libraries and restaurants from OpenStreetMap and Overture Maps, with separately labelled open-data indices and visitor work ratings.
+Neighbourhood stories and catalogue counts, Nong Plub as guide, and private notebooks for visits and photos on your device or synced with your notebook key.
 Visitors rate Wi-Fi, outlets, quiet and laptop-friendliness. Places nobody has rated show as not rated.
 
 Places © OpenStreetMap contributors (ODbL) · © Overture Maps Foundation (CDLA-Permissive-2.0).
@@ -27,3 +27,12 @@ Rebuild journey geography with `python3 scripts/build-journey-geo.py` and branch
 Search accepts apostrophe/accent variants, word order and the name in a full Google Maps place link without fetching Google. Featured places opens verified publisher branches directly; the two50entry research lists remain separate. Place actions expose notes/photos, a private-first recommendation composer, precise directions and share/manual-copy recovery. Publishing and photo inclusion remain explicit.
 
 Meet's space Cafe is an exact-source reviewed category correction, not a guessed pin. `scripts/include-reviewed-place.py` preserves every original row; the base builder invokes its catalogue-only step and geography builders use current manifest counts. Provenance and reproducibility: [DATA.md](docs/community-2026-11-03/DATA.md). `node test/place-tools.mjs` checks the entire original work-file reconstruction hash. Run `node scripts/test-browser-isolated.mjs test/notebook-browser.mjs test/community-browser.mjs` for fresh local DB plus immutable runtime inputs; active development cannot restart that Worker during a POST. Review/geometry/release records: [verification](docs/community-2026-11-03/VALIDATION.md), [independent review](docs/community-2026-11-03/REVIEW.md).
+
+## Compact discovery and street sketches · 4 November 2026
+The map is the first view. Open List for nearby places, Find a work spot for the three trips, or disclose Explore/Filters for secondary choices. Counts refer to the map area; index values are not star ratings. Default list tools take83px on phone and81px on desktop.
+
+Choose Street sketch from search, Explore or a place. Five optional areas cover Ari, Samyan, Charoen Krung, Thong Lo and meet’s space/Ramkhamhaeng. Steps follow original OSM nodes and shared junctions. Only explicitly tagged building heights become volumes; unknown heights remain flat. This is an oblique sketch, not a surveyed street view or current pedestrian-access promise. Playback pauses on manual input, task change, hidden page, reduced motion and exit.
+
+Rebuild: `python3 scripts/build-street-world.py` (pinned PBF, shapely/pyproj); tests: `node test/street-world.mjs`, `node test/street-model.mjs`, `node test/map-motion.mjs`, `python3 test/street-world-source.py`. Browser checks on43827: `node test/street-browser.mjs`, `node docs/reconciliation-2026-11-04/independent-rail.mjs` (96px budget plus original-defect falsifier), `node test/reconciled-prs-browser.mjs`. Release contracts, independent review and proof: [Nov4 evidence](docs/reconciliation-2026-11-04/VALIDATION.md).
+
+The integrated media sidecar requires explicit external-player choice and marks name/branch uncertainty. Optional Hotspot tiles count actual café records and rebuild on pan/zoom; the original density heatmap remains. Old IDs continue to resolve to cleaned records, including device notebook stamps and visit history.

@@ -1,0 +1,44 @@
+
+ ⛅️ wrangler 4.81.1 (update available 4.157.0)
+──────────────────────────────────────────────
+
+Cloudflare collects anonymous telemetry about your usage of Wrangler. Learn more at https://github.com/cloudflare/workers-sdk/tree/main/packages/wrangler/telemetry.md
+🌀 Building list of assets...
+✨ Read 234 files from the assets directory /Users/nonarkara/Projects/bangkok-ioc/bkk-co/public
+🌀 Starting asset upload...
+🌀 Found 18 new or modified static assets to upload. Proceeding with upload...
++ /map-motion.js
++ /data/manifest.json
++ /street-model.js
++ /index.html
++ /street-world.js
++ /views.js
++ /talk-media.css
++ /street-world.css
++ /hat-density.js
++ /einstein-hat.js
++ /app.js
++ /data/talk-media.json
++ /styles/plub-street.json
++ /list-tools.css
++ /passport.js
++ /talk-media.js
++ /atlas.js
++ /data/street-world.json
+Uploaded 6 of 18 assets
+Uploaded 12 of 18 assets
+Uploaded 18 of 18 assets
+✨ Success! Uploaded 18 files (209 already uploaded) (5.20 sec)
+
+Total Upload: 30.51 KiB / gzip: 8.64 KiB
+Your Worker has access to the following bindings:
+Binding                  Resource
+env.DB (bkk-co)          D1 Database
+env.ASSETS               Assets
+
+Uploaded bkk-co (10.08 sec)
+Deployed bkk-co triggers (2.73 sec)
+  co.nonarkara.org (custom domain)
+  bkkco.nonarkara.org (custom domain)
+  schedule: 15 18 * * *
+Current Version ID: 3936a891-39ee-4aaa-b0de-78b46880e0d3

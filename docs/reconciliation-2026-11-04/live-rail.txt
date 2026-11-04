@@ -1,0 +1,61 @@
+{
+  width: 390,
+  height: 844,
+  geometry: {
+    railTop: 354.484375,
+    firstTop: 437.484375,
+    firstBottom: 470.484375,
+    toolsCost: 83,
+    barHeight: 49,
+    chipsHeight: 41,
+    pageBleed: false,
+    listBleed: false
+  },
+  errors: [],
+  writes: [],
+  keyboardPlace: 'o10c3ba5157bf',
+  activeFilterLabel: ' · 1',
+  finderReachable: true,
+  large: { bleed: false, firstTop: 521.984375, firstBottom: 573.984375 },
+  oldExpandedRejected: 415.390625
+}
+{
+  width: 1024,
+  height: 900,
+  geometry: {
+    railTop: 90,
+    firstTop: 171,
+    firstBottom: 204,
+    toolsCost: 81,
+    barHeight: 49,
+    chipsHeight: 41,
+    pageBleed: false,
+    listBleed: false
+  },
+  errors: [],
+  writes: [],
+  keyboardPlace: 'o10c3ba5157bf',
+  activeFilterLabel: ' · 1',
+  finderReachable: true,
+  large: { bleed: false, firstTop: 348.5, firstBottom: 442.5 }
+}
+{
+  width: 1440,
+  height: 900,
+  geometry: {
+    railTop: 90,
+    firstTop: 171,
+    firstBottom: 204,
+    toolsCost: 81,
+    barHeight: 49,
+    chipsHeight: 41,
+    pageBleed: false,
+    listBleed: false
+  },
+  errors: [],
+  writes: [],
+  keyboardPlace: 'o10c3ba5157bf',
+  activeFilterLabel: ' · 1',
+  finderReachable: true,
+  large: { bleed: false, firstTop: 348.5, firstBottom: 400.5 }
+}

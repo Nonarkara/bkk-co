@@ -1,0 +1,16 @@
+{
+  "center": {
+    "lng": 100.535,
+    "lat": 13.745
+  },
+  "zoom": 15,
+  "padding": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+  },
+  "pins": 20,
+  "first": 437.484375,
+  "railTop": 354.484375
+}
