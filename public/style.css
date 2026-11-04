@@ -294,3 +294,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hood-more { margin-top: 12px; border-top: 1px solid var(--rule); }
 .hood-more > summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 500; }
 .hood-more[open] > summary { margin-bottom: 4px; }
+
+/* branch label after a repeated name: quiet, never louder than the name */
+.branch { color: var(--muted); font-weight: 400; }

@@ -1,5 +1,6 @@
 // Private notebooks and explicitly shared recommendations. No passive location tracking.
 export const NOTICE = '2026-11-03';
+import { canon } from './aliases.js';
 const enc = new TextEncoder();
 const cookieName = 'plub_session';
 const response = (body, status=200, headers={}) => new Response(JSON.stringify(body), {status,headers:{'content-type':'application/json','cache-control':'no-store','x-content-type-options':'nosniff',...headers}});
@@ -40,6 +41,7 @@ export function cleanPhoto(data) {
 }
 export function validateEntry(body,ids) {
  if(!body||typeof body!=='object'||Array.isArray(body))fail('Invalid visit.');
+ body.place=canon(body.place); // retired twin ids resolve to their survivor
  if(!ids.has(body.place))fail('This place is not in the current catalogue.');
  if(!Number.isInteger(body.revision)||body.revision<0)fail('Missing cloud version.');
  if(!Number.isInteger(body.stars)||body.stars<0||body.stars>5)fail('Choose zero to five stars.');
@@ -108,7 +110,7 @@ export async function notebookApi(request,env,knownIds) {
    return response({posts:results.map(r=>({...r,payload:JSON.parse(r.payload)}))});
   }
   if(path==='/api/community'&&method==='GET'){
-   const place=url.searchParams.get('place');if(!(await knownIds()).has(place))fail('Unknown place.');
+   const place=canon(url.searchParams.get('place'));if(!(await knownIds()).has(place))fail('Unknown place.');
    const a=await account(request,env,false);
    const {results}=await env.DB.prepare('SELECT id,account_id,payload,created_at FROM notebook_posts WHERE place_id=? AND hidden=0 ORDER BY created_at DESC LIMIT 5').bind(place).all();
    return response({posts:results.map(r=>({id:r.id,...JSON.parse(r.payload),created:r.created_at,mine:r.account_id===a?.id})),limit:5});

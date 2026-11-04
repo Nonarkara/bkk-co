@@ -163,4 +163,20 @@ Independent MSH reviewer /root/community_audit PASS; geometry at390/1024/1440 an
 - Search finds neighbourhoods by Thai/English aliases (`HOOD_ALIASES`; Siam/สยาม → Sam Yan, labelled "near").
 - Work finder: a start that is off-screen (or "Map centre") follows the map when the finder opens.
 - Non's handwriting (`Non Architecture`, Latin only) for voice lines: Plub's speech, neighbourhood purpose, Non's visit notes. Never data, numbers or Thai.
-- **Parked (needs the reviewed-row guard re-signed in `scripts/include-reviewed-place.py`):** drop names saying the place is closed (3 rows), merge same-kind twins ≤ 8 m with matching numbers / Latin names / phone + shared word (e.g. THIRTY 3 CAFE ↔ ร้าน 33 Cafa), non-café mislabels, branch names on chain results.
+- Data clean and branch names: done 2026-11-04, see "Catalogue clean" below.
+
+## Catalogue clean (2026-11-04) — `scripts/clean-catalogue.py`, `scripts/build-branches.py`
+**Build order** (each step reads the published catalogue the previous one wrote):
+1. `python3 scripts/build-places.py` (runs enrichment and `include-reviewed-place.py --catalogue-only`; that guard pins the *pre-clean* catalogue, so it still holds)
+2. `python3 scripts/clean-catalogue.py` (`--dry-run` first: prints every decision)
+3. `python3 scripts/build-atlas.py && python3 scripts/build-cafe-streets.py && python3 scripts/build-journey-geo.py && python3 scripts/build-hoods.py`
+4. `python3 scripts/build-branches.py`, then regenerate preview cards (`build-brand-assets.mjs`).
+Do not run `include-reviewed-place.py` in full mode after step 2: Meet's space is already in the catalogue.
+
+**Result:** 57,539 → 57,376 places. 76 dropped: 3 names saying "closed", 4 placeholders (`food_shop`, `library_entrance`), and non-venue businesses filed as cafés/libraries/restaurants (salons, barbers, clinics, car washes, laundries, insurers, condos, a used-car lot). Restaurants only on an unambiguous list, never when the name holds a food word. 87 twins merged (same kind, ≤ 8 m): the same number in both names (numbers after a place word such as Terminal 21 / Rama 9 / ซอย are ignored), every word of one name in the other (one a real name word, not "cafe"/"shabu"/"baan"), or an identical name. A shared phone line is not evidence (food courts share one). Survivors keep their published metrics. Every decision with its reason: `public/data/cleanup.json`.
+
+**Old ids keep working:** `public/data/aliases.json` (retired → survivor). The app's `state.byId` resolves aliases (size unchanged), saved visits and `?p=` links canonicalise; the Worker rewrites `place` to the survivor before validating ratings and notebook entries (`src/aliases.js`). Production held 0 ratings / 0 notebook entries / 0 posts at clean time.
+
+**Re-signed guards:** `test/atlas.mjs`, `journeys.mjs`, `place-tools.mjs` and the browser tests now pin the cleaned catalogue (hashes and 57,376 / 20,638 / 20,158), each with a comment pointing here.
+
+**Branch labels:** 10,674 places that share an exact name with another get `public/data/branches.json` = their own published address (tidied, ≤ 34 chars) or their OSM district. Shown after the name in search, lists, the place sheet and the work finder. Loaded after the map; catalogue rows untouched.

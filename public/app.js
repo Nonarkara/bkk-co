@@ -57,6 +57,15 @@ const state = {
   sort: 'great', mood: null, selected: null, foodLoaded: false, sortedIdx: [],
 };
 
+// Retired place ids (merged twins, scripts/clean-catalogue.py) resolve to the venue that absorbed them, so shared
+// links, saved visits and notebook entries made before the clean still open the right place. byId.size is unchanged.
+let ALIAS = {};
+const aliasesReady = fetch('data/aliases.json').then(r => (r.ok ? r.json() : {})).then(a => { ALIAS = a; }).catch(() => {});
+const canonId = id => ALIAS[id] || id;
+{ const get = state.byId.get.bind(state.byId), has = state.byId.has.bind(state.byId);
+  state.byId.get = id => get(id) ?? get(ALIAS[id]);
+  state.byId.has = id => has(id) || has(ALIAS[id]); }
+
 const map = new maplibregl.Map({
   container: 'map',
   style: 'https://tiles.openfreemap.org/styles/positron',
@@ -94,8 +103,9 @@ async function loadVisits() {
     state.visited = new Map();
     state.personalRatings = new Map();
     for (const v of await Passport.all()) {
-      state.visited.set(v.place, (state.visited.get(v.place) || 0) + 1);
-      if (Number.isInteger(v.stars) && v.stars > 0 && v.stars <= 5 && (!state.personalRatings.has(v.place) || v.at > state.personalRatings.get(v.place).at)) state.personalRatings.set(v.place, {stars:v.stars,at:v.at});
+      const place = canonId(v.place);
+      state.visited.set(place, (state.visited.get(place) || 0) + 1);
+      if (Number.isInteger(v.stars) && v.stars > 0 && v.stars <= 5 && (!state.personalRatings.has(place) || v.at > state.personalRatings.get(place).at)) state.personalRatings.set(place, {stars:v.stars,at:v.at});
     }
   } catch { /* private window without IndexedDB: the passport stays empty */ }
   $('#pass-n').textContent = state.visited.size;
@@ -149,8 +159,15 @@ function refresh() {
   performance.mark(map.getSource('places') ? 'bkk:pins' : 'bkk:data');
 }
 
-const firstData = Promise.all([loadRows('work'), loadScores(), loadVisits()]).then(() => refresh());
+const firstData = aliasesReady.then(() => Promise.all([loadRows('work'), loadScores(), loadVisits()])).then(() => refresh());
 const foodData = firstData.then(() => loadRows('food')).then(() => { state.foodLoaded = true; refresh(); });
+// Branch labels for repeated names ("Starbucks Coffee · Sathupradit Rd"): the listing's own address, or its district.
+// Fetched after the map is up; scripts/build-branches.py. A place without a published address or district gets none.
+foodData.then(() => fetch('data/branches.json')).then(r => (r.ok ? r.json() : {})).then(b => {
+  for (const [id, label] of Object.entries(b)) { const p = state.byId.get(id); if (p) p.branch = label; }
+  renderList();
+}).catch(() => {});
+const branchTag = p => (p.branch ? `<span class="branch">· ${esc(p.branch)}</span>` : '');
 
 const PIN_LAYERS = ['pins-city', 'pins-street', 'pins', 'place-icons'];
 
@@ -230,7 +247,7 @@ function row(p, key = `✦${p.idx}`) {
     p.flags & F.WIFI ? '<span title="Wi-Fi listed">≋</span>' : '',
     s ? `<span title="Visitor ratings">★${s.n}</span>` : '',
   ].join(' ');
-  return `<li data-id="${esc(p.id)}" role="option" aria-label="${esc(p.n + ' · ' + KIND_LABEL[p.k])}">${PlaceTools.icon(p)}<span class="nm">${esc(p.n)}</span>` +
+  return `<li data-id="${esc(p.id)}" role="option" aria-label="${esc(p.n + (p.branch ? ', ' + p.branch : '') + ' · ' + KIND_LABEL[p.k])}">${PlaceTools.icon(p)}<span class="nm">${esc(p.n)}${p.branch ? ' ' + branchTag(p) : ''}</span>` +
     `<span class="meta">${tail}</span><span class="idx">${key}</span></li>`;
 }
 
@@ -407,7 +424,7 @@ function renderSheet(p, d, visits) {
 
   const sheet = openSheet(`
     <header>
-      <h1>${esc(p.n)}${d.th ? `<span class="th" lang="th">${esc(d.th)}</span>` : ''}</h1>
+      <h1>${esc(p.n)}${p.branch ? `<span class="th">${esc(p.branch)}</span>` : ''}${d.th ? `<span class="th" lang="th">${esc(d.th)}</span>` : ''}</h1>
       <button class="close" aria-label="Close">×</button>
     </header>
     <div class="kindline">${PlaceTools.symbol(p.k)}${KIND_LABEL[p.k]}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>
@@ -442,7 +459,8 @@ function renderSheet(p, d, visits) {
 }
 
 function openFromUrl() {
-  const u = new URL(location.href), id = u.searchParams.get('p');
+  const u = new URL(location.href), raw = u.searchParams.get('p'), id = raw && canonId(raw);
+  if (raw && id !== raw) { u.searchParams.set('p', id); history.replaceState(null, '', u); } // an old shared link lands on the survivor
   if (id && !state.selected && $('#sheet').hidden && state.byId.has(id)) select(state.byId.get(id), 'jump');
   else if (u.searchParams.get('hood') && $('#sheet').hidden) window.openHood?.(u.searchParams.get('hood'), true);
   else if (u.searchParams.get('hop') && !openFromUrl.framed) { openFromUrl.framed = true; window.openHop?.(u.searchParams.get('hop')); }

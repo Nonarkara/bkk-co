@@ -1,3 +1,4 @@
+// Catalogue re-signed 2026-11-04 after scripts/clean-catalogue.py (76 dropped, 87 twins merged; every decision in public/data/cleanup.json, old ids in aliases.json).
 import{createRequire}from'node:module';import assert from'node:assert/strict';import{writeFile,mkdir}from'node:fs/promises';
 const{chromium}=createRequire(import.meta.url)('/Users/nonarkara/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const base=process.env.PLUB_URL||'http://localhost:43827',live=process.env.READ_ONLY==='1',phase=live?'live':'after',dir=new URL('../docs/community-2026-11-03/',import.meta.url);await mkdir(dir,{recursive:true});
@@ -8,7 +9,7 @@ try{for(const width of[390,1024,1440,360,1280]){
  console.log('Start',width);
  const height=width<=390?844:width===1280?720:900,c=await b.newContext({viewport:{width,height},timezoneId:'Asia/Bangkok'}),p=await c.newPage(),errors=[],writes=[];
  p.on('pageerror',e=>errors.push(e.message));p.on('request',r=>{if(r.url().startsWith(base+'/api/')&&!['GET','HEAD'].includes(r.method()))writes.push({method:r.method(),url:r.url()})});
- p.setDefaultTimeout(90000);await p.goto(base,{waitUntil:'domcontentloaded'});console.log('DOM',width);await p.waitForFunction(()=>state.byId.size===57539&&map.getLayer('place-icons')&&map.areTilesLoaded(),{},{timeout:120000}).catch(async e=>{console.log('initial state',width,await p.evaluate(()=>({size:state.byId.size,loaded:map.loaded(),style:map.isStyleLoaded(),tiles:map.areTilesLoaded()})),errors);throw e});console.log('Data',width);await p.evaluate(()=>document.fonts.ready);console.log('Fonts',width);
+ p.setDefaultTimeout(90000);await p.goto(base,{waitUntil:'domcontentloaded'});console.log('DOM',width);await p.waitForFunction(()=>state.byId.size===57376&&map.getLayer('place-icons')&&map.areTilesLoaded(),{},{timeout:120000}).catch(async e=>{console.log('initial state',width,await p.evaluate(()=>({size:state.byId.size,loaded:map.loaded(),style:map.isStyleLoaded(),tiles:map.areTilesLoaded()})),errors);throw e});console.log('Data',width);await p.evaluate(()=>document.fonts.ready);console.log('Fonts',width);
  const start=await p.evaluate(()=>{const b=document.querySelector('.bar').getBoundingClientRect(),c=document.querySelector('.chips').getBoundingClientRect(),m=document.querySelector('#map').getBoundingClientRect();return{chrome:b.height+c.height,mapHeight:m.height,mapWidth:m.width,bleed:document.documentElement.scrollWidth>innerWidth}});
  assert.equal(start.bleed,false);assert.ok(start.chrome<=112);assert.ok(start.mapHeight>=height*.6);assert.equal(await p.locator('.chips .place-symbol').count(),4);
  await p.screenshot({path:new URL(`${phase}-map-${width}.png`,dir).pathname});

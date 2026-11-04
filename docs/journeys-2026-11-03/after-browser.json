@@ -1,6 +1,7 @@
 [
   {
     "width": 390,
+    "clock": "simulated Bangkok 2026-11-03 10:00",
     "geometry": {
       "ctaTop": 707,
       "ctaBottom": 751,
@@ -14,7 +15,7 @@
     "controlClear": [
       {
         "id": "n6237362243",
-        "right": 328.99999999662714,
+        "right": 329.0000000067457,
         "controlLeft": 334
       }
     ],
@@ -23,6 +24,7 @@
   },
   {
     "width": 1024,
+    "clock": "simulated Bangkok 2026-11-03 10:00",
     "geometry": {
       "ctaTop": 422.359375,
       "ctaBottom": 466.359375,
@@ -36,7 +38,7 @@
     "controlClear": [
       {
         "id": "n6237362243",
-        "right": 916.5839954517505,
+        "right": 916.5839954460992,
         "controlLeft": 968
       }
     ],
@@ -45,6 +47,7 @@
   },
   {
     "width": 1440,
+    "clock": "simulated Bangkok 2026-11-03 10:00",
     "geometry": {
       "ctaTop": 422.359375,
       "ctaBottom": 466.359375,
@@ -67,6 +70,7 @@
   },
   {
     "width": 360,
+    "clock": "simulated Bangkok 2026-11-03 10:00",
     "geometry": {
       "ctaTop": 707,
       "ctaBottom": 751,
@@ -80,7 +84,7 @@
     "controlClear": [
       {
         "id": "n6237362243",
-        "right": 299.00000000337286,
+        "right": 299,
         "controlLeft": 304
       }
     ],

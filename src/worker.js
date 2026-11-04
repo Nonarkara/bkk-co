@@ -1,5 +1,6 @@
 import { validateScore } from './validate.js';
 import { notebookApi, readBody } from './notebook.js';
+import { loadAliases, canon } from './aliases.js';
 
 const DAILY_LIMIT = 20;
 let ids; // catalogue ids, loaded once per isolate from the static asset
@@ -14,6 +15,7 @@ async function knownIds(env, url) {
       const d = await r.json();
       for (const row of d.rows) { ids.add(row[0]); names.set(row[0], [row[1], d.kinds[row[2]], row[7]]); }
     }
+    await loadAliases(env, url);
   }
   return ids;
 }
@@ -41,7 +43,9 @@ async function postScore(request, env) {
   if ((request.headers.get('content-type') || '').split(';')[0] !== 'application/json') return json({ error: 'json only' }, 415);
   let body;
   try { body = await readBody(request,512); } catch(e) { return json({ error:e.message },e.status||400); }
-  const { value, error } = validateScore(body, await knownIds(env, request.url));
+  const known = await knownIds(env, request.url);
+  if (body && typeof body === 'object') body.place = canon(body.place); // a retired twin's id rates its survivor
+  const { value, error } = validateScore(body, known);
   if (error) return json({ error }, 400);
 
   const ip = request.headers.get('cf-connecting-ip') || 'unknown';
@@ -95,10 +99,10 @@ async function withPreview(request, env, url) {
     } else if (url.searchParams.has('hood')) {
       if (!hoods) hoods = Object.fromEntries((await (await env.ASSETS.fetch(new URL('/data/hoods.json', url))).json()).hoods.map(h => [h.slug, h]));
       const h = hoods[url.searchParams.get('hood')];
-      if (h) { title = `${h.name} ${h.th} · for ${h.for.toLowerCase()} · PLUB`; desc = `${h.stats.work} work spots within 800 m of ${h.anchorLabel}. ${h.plub}`; image = `https://co.nonarkara.org/og/${h.slug}.png?v=visual-20261103`; }
+      if (h) { title = `${h.name} ${h.th} · for ${h.for.toLowerCase()} · PLUB`; desc = `${h.stats.work} work spots within 800 m of ${h.anchorLabel}. ${h.plub}`; image = `https://co.nonarkara.org/og/${h.slug}.png?v=clean-20261104`; }
     } else {
       await knownIds(env, request.url);
-      const n = names.get(url.searchParams.get('p'));
+      const n = names.get(canon(url.searchParams.get('p'))); // old shared links preview the survivor
       if (n) { title = `${n[0]} · PLUB`; desc = `${KIND[n[1]] || 'Place'} in Bangkok · Great Good Place index ${n[2]} of 100. Scored from open data, with Nong Plub as your guide.`; }
     }
   } catch { /* fall back to the generic preview */ }

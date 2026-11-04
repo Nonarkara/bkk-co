@@ -1,3 +1,4 @@
+// Catalogue re-signed 2026-11-04 after scripts/clean-catalogue.py (76 dropped, 87 twins merged; every decision in public/data/cleanup.json, old ids in aliases.json).
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -5,13 +6,13 @@ import {createRequire} from 'node:module';
 import {validateEvidence} from '../scripts/build-atlas-evidence.mjs';
 const require=createRequire(import.meta.url),M=require('../public/atlas-model.js');
 const read=async p=>JSON.parse(await readFile(new URL('../'+p,import.meta.url),'utf8'));
-const hashes={work:'0bb9a767b51606ee5a785bf441daefe387ea50b377ff847dcd747e18296ebc30',food:'df43c22e5ea54a151e25c7abdda8bc6ae876114df5a5da9755625749428df29a'};
+const hashes={work:'6d28b6af5371c376e5fbbb0c1d73ec13258781b8efbe35454a73b91377eaccf4',food:'a5680476951d1af6b37a25f1a660180ba76e5d7c2f2aedc948fa3c1dc58b06d8'};
 const rows=[];
 for(const [name,hash]of Object.entries(hashes)){
  const bytes=await readFile(new URL(`../public/data/places-${name}.json`,import.meta.url));
  assert.equal(createHash('sha256').update(bytes).digest('hex'),hash,`Original ${name} catalogue changed`);rows.push(...JSON.parse(bytes).rows);
 }
-assert.equal(rows.length,57539);const catalogue=new Map(rows.map(r=>[r[0],r]));assert.equal(catalogue.size,57539);assert.equal(rows.filter(r=>r[2]===0).length,20236);
+assert.equal(rows.length,57376);const catalogue=new Map(rows.map(r=>[r[0],r]));assert.equal(catalogue.size,57376);assert.equal(rows.filter(r=>r[2]===0).length,20158);
 const [geo,joined,streets,evidence,curated]=await Promise.all(['public/data/atlas-geo.json','public/data/atlas-places.json','public/data/atlas-streets.json','public/data/atlas-evidence.json','data/atlas-evidence.json'].map(read));
 const uniqueFeatures=fc=>{assert.equal(fc.type,'FeatureCollection');const m=new Map(fc.features.map(f=>[f.id,f]));assert.equal(m.size,fc.features.length);return m};
 const districts=uniqueFeatures(geo.districts),parks=uniqueFeatures(geo.parks),ways=uniqueFeatures(streets);
@@ -24,7 +25,7 @@ for(const f of [...districts.values(),...parks.values()]){
 }
 for(const f of districts.values()){assert(f.properties.name&&f.properties.province&&f.properties.provinceCode);assert.equal(f.properties.codeSystem,'OpenStreetMap relation ID');assert(f.properties.catalogueAreaKm2>0&&f.properties.areaKm2>=f.properties.catalogueAreaKm2)}
 assert.equal(geo.manifest.crs,'EPSG:4326');assert.equal(geo.manifest.distanceCRS,'EPSG:32647');assert.equal(geo.manifest.license,'ODbL-1.0');
-assert.deepEqual(joined.cols,['placeID','districtID','parkID','parkDistanceM']);assert.equal(joined.rows.length,57539);
+assert.deepEqual(joined.cols,['placeID','districtID','parkID','parkDistanceM']);assert.equal(joined.rows.length,57376);
 const joinedIDs=new Set(),districtTotals=new Map();let unassigned=0,nearPark=0;
 for(const [id,district,park,distance]of joined.rows){
  assert(catalogue.has(id));assert(!joinedIDs.has(id));joinedIDs.add(id);

@@ -30,12 +30,12 @@
   14.1
  ],
  "cellsPerDegree": 20,
- "total": 57539,
+ "total": 57376,
  "kinds": {
-  "cafe": 20236,
+  "cafe": 20158,
   "coworking": 57,
-  "library": 428,
-  "restaurant": 36818
+  "library": 423,
+  "restaurant": 36738
  },
  "bySource": {
   "hand": 1,
@@ -52,12 +52,12 @@
  "hoursTagged": 1558,
  "files": {
   "work": {
-   "bytes": 1789855,
-   "sha256": "0bb9a767b51606ee5a785bf441daefe387ea50b377ff847dcd747e18296ebc30"
+   "bytes": 1782140,
+   "sha256": "6d28b6af5371c376e5fbbb0c1d73ec13258781b8efbe35454a73b91377eaccf4"
   },
   "food": {
-   "bytes": 3779251,
-   "sha256": "df43c22e5ea54a151e25c7abdda8bc6ae876114df5a5da9755625749428df29a"
+   "bytes": 3771263,
+   "sha256": "a5680476951d1af6b37a25f1a660180ba76e5d7c2f2aedc948fa3c1dc58b06d8"
   }
  },
  "reviewedInclusions": [
@@ -68,5 +68,11 @@
    "decision": "data/reviewed-inclusions.json",
    "checkedAt": "2026-11-03"
   }
- ]
+ ],
+ "cleanup": {
+  "dropped": 76,
+  "merged": 87,
+  "audit": "cleanup.json",
+  "aliases": "aliases.json"
+ }
 }
