@@ -1,0 +1,20 @@
+# Reconcile and make the neighbourhood explorable · 4 November 2026
+
+## Authorized decisions / preservation
+User asks orchestration of all PRs/orphan work, customer gaps, animation, Rokehan-inspired manga street exploration and persistent MSH/hierarchy rules. Execute under standing ship authorization. Preserve current cleaned57379catalogue and aliases, current32pxquietchips, Non's handwriting/sticker, maps/atlas/route layers, notebook consent/photos/accounts, sourcefacts and all prior decisions. No broad rewrite or inferred venue/building locations. Grid: column instruments around the map; map is entry, cafe/action group on its edge; no decorative hero. Motion: short intentionalcamera transitions, reducedmotion/hiddenpagesnap, opt-in playback only.
+
+## Reconciliation findings
+Main ea78b74 is ahead of the last Codex release with legitimate catalogue cleanup/branch aliases and chrome work. Six localfeature branches already merged; do not replay them. PR7media andPR8aperiodicdensitylens conflict with currentmain and need scoped adaptations, not stale cherry-picks. The only uncommitted artifact is public/styles/plub-manga.json, unreachable and incompatible with the current tile schema. Original bytes copied unchanged to plub-manga-original.json here before adopting it; a working sibling style will be made rather than silently discarding its intent. Reconciliation agent maintains PR-LEDGER.md.
+
+## Proposed changes and ownership
+- Parent: persistent projectAGENTS.md + globalCodexAGENTS.md pointers to durable MSH/glance/grid canon; explicit reducedmotion/mapgeometry release requirements. Existing workspacecanon already holds the3laws; no human-ownedKit rewrite.
+- Parent: public/street-world.js/css/model.js and repaired valid manga-layer style. Use the existingMapLibre canvas/depthbuffer; never setStyle and lose customlayers. Opt-in exploredstreet area, exactsourcevertices, branch/step controls, nearbycataloguecafes, place/directions/notebookhandoff. 2D return restorescamera/painting; unknownheightflat; explicit height only. No photoreal/currentbusiness/access claim from referencegeometry.
+- Data agent: reproducible bounded OSMfootprint+streetgraph bake for4existinghoods andmeet'sarea, exactsourceIDs/access/class/date/license; no cataloguechange.
+- Reconciliation agent: scoped PR7+PR8 adaptations to currentatlas/modules, tests+CI; explicit mediaidentitylimits, click-to-loadmedia, robust panning/count/sizing behavior. OriginalPRs resolved only after replacementreview/merge.
+- Parent: shared shortcamera-motion policy and lifecycleguards; small app/view/index integrationhooks. Protect existingaliases/search/finders and realplace clicktargets.
+
+## Verification
+Before/after realbrowser390/1024/1440 andworking1280, enlargedtext/reducedmotion/keyboard/hiddenpage; sourcegraph/buildingheight/fallback correctness; no startup modal, initialmapmajority, firstcafe/action together; originalAPI/privacy/finders/aliases/data tests. Faultfalsifiers for geometric inflation, invalidstyle and inventedheight/routeconnection. Separate auditor reviewsactualflows andalladaptedPRfeatures. Commit/push/newintegrationPR, merge/deploy, byte+publicbrowserproof; write durablehandoff. No production syntheticposts.
+
+## Owner's whole-rail screenshot · 4 November,20:54
+The new steering rejects the entire controls/list composition, beyond the previouslyrepaired chipstrip. Exact publicbeforemeasurement: firstdesktoprow303.8px with90pxheader→213.8pxtools; phoneListtop354.48→first549.48=195pxtools. Parent repair keeps oneFindwork primary, moves exploration/filterdepth intopurpose-named disclosures, attaches themaparea count to a nativeSortselect, defaults to distancefromexplicitmapcentre, labelscomputedindices honestly, and useskeyboard-native compactcomparisonrows. No filter/sort/discovery option is removed. Newnormaltoolcost81pxdesktop/83pxphone; ordinaryrows33pxinsteadof44. Globalchipsstay32pxquiet. The redundantmapFindworkcontrol remains compatibilityDOM but only therailentryisvisible. Independentbefore/after/falsifier and actualmenu/keyboardlarge-text checks are required before ship.

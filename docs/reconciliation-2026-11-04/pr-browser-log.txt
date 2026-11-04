@@ -1,0 +1,1 @@
+Reconciled PR7/8: pan/zoom retally,20independent tile counts, optional source-qualified media, explicit player choice and3viewport geometry pass.

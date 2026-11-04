@@ -303,7 +303,7 @@ async function openPassport() {
   await hoodsReady;
   const visits = (await Passport.all().catch(() => [])).sort((a, b) => b.at.localeCompare(a.at));
   if(generation!==sheetGeneration||pending.hidden)return;
-  const places = new Set(visits.map(v => v.place));
+  const places = new Set(visits.map(v => canonId(v.place)));
   const stamped = hoods.list.filter(h => h.ids.some(id => places.has(id)));
   const sheet = openSheet(`
     <header><h1>Your notebook</h1><button class="close" aria-label="Close">×</button></header>

@@ -1,23 +1,26 @@
 import { validateScore } from './validate.js';
 import { notebookApi, readBody } from './notebook.js';
-import { loadAliases, canon } from './aliases.js';
+import { loadAliases, canon, catalogueUnavailable } from './aliases.js';
 
 const DAILY_LIMIT = 20;
-let ids; // catalogue ids, loaded once per isolate from the static asset
+let ids, cataloguePending; // publish only the complete catalogue and aliases, once per isolate
 let names; // id -> [name, kind, index], for link previews
 let hoods; // slug -> neighbourhood, for link previews
 
 async function knownIds(env, url) {
-  if (!ids) {
-    ids = new Set(); names = new Map();
-    for (const f of ['work', 'food']) {
-      const r = await env.ASSETS.fetch(new URL(`/data/places-${f}.json`, url));
-      const d = await r.json();
-      for (const row of d.rows) { ids.add(row[0]); names.set(row[0], [row[1], d.kinds[row[2]], row[7]]); }
+  if(ids)return ids;
+  if(!cataloguePending)cataloguePending=(async()=>{
+    const nextIds=new Set(),nextNames=new Map();
+    for(const f of ['work','food']){
+      const r=await env.ASSETS.fetch(new URL(`/data/places-${f}.json`,url),{signal:AbortSignal.timeout(8000)});
+      if(!r.ok)throw catalogueUnavailable();
+      const d=await r.json();if(!Array.isArray(d.rows)||!Array.isArray(d.kinds))throw catalogueUnavailable();
+      for(const row of d.rows){if(!Array.isArray(row)||typeof row[0]!=='string'||!d.kinds[row[2]])throw catalogueUnavailable();nextIds.add(row[0]);nextNames.set(row[0],[row[1],d.kinds[row[2]],row[7]]);}
     }
-    await loadAliases(env, url);
-  }
-  return ids;
+    await loadAliases(env,url,nextIds);
+    names=nextNames;ids=nextIds;return ids;
+  })().catch(()=>{cataloguePending=undefined;throw catalogueUnavailable();});
+  return cataloguePending;
 }
 
 const json = (data, status = 200, headers = {}) =>
@@ -43,7 +46,7 @@ async function postScore(request, env) {
   if ((request.headers.get('content-type') || '').split(';')[0] !== 'application/json') return json({ error: 'json only' }, 415);
   let body;
   try { body = await readBody(request,512); } catch(e) { return json({ error:e.message },e.status||400); }
-  const known = await knownIds(env, request.url);
+  let known;try{known=await knownIds(env,request.url)}catch{return json({error:catalogueUnavailable().message},503,{'retry-after':'5','cache-control':'no-store'})}
   if (body && typeof body === 'object') body.place = canon(body.place); // a retired twin's id rates its survivor
   const { value, error } = validateScore(body, known);
   if (error) return json({ error }, 400);

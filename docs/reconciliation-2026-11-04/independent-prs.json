@@ -1,0 +1,12 @@
+{
+  "hatPanChanged": true,
+  "tileTitle": "5 cafés in this tile",
+  "tileCafeCount": 5,
+  "explicitBranchCaveat": true,
+  "initialFrames": 0,
+  "initialExternal": 0,
+  "framesAfterChoice": 1,
+  "externalAfterChoice": 1,
+  "errors": [],
+  "writes": []
+}

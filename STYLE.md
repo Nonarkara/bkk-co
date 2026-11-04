@@ -7,7 +7,8 @@ Everything here was chosen on purpose. Agents and reviewers read this before any
 Governing design law, in order: **MSH** (`~/Projects/_reference/MSH.md`) → **glance path** (`GLANCE-PATH-FOR-AI.md`) → **kinetic grids** (`KINETIC-GRIDS-FOR-AI.md`). Canonical pack and scanner: `~/Projects/Non-Slop/`.
 
 ## Type
-- **Sao Chingcha** — the owner's own lettering. The wordmark `PL;UB` and Nong Plub's voice lines / owner's visit notes. Self-hosted (`public/fonts/*.woff2`, preloaded). This is a chosen face; never swap it for a default.
+- **Sao Chingcha** — the owner's own lettering. The wordmark `PL;UB`. Self-hosted (`public/fonts/*.woff2`, preloaded). This is a chosen face; never swap it for a default.
+- **Non Architecture** — the owner's Latin handwriting for Nong Plub's voice, neighbourhood purpose and owner visit notes; never data, numbers or Thai. Self-hosted and preloaded.
 - **Jost** — UI and body (400/500/600). House face.
 - **Prompt** — Thai, non-looped only (IBM Plex Sans Thai / Noto Sans Thai / Kanit are the alternates). Never a looped face (Sarabun, TH Sarabun New): looped heads read as "not made by Thais".
 - Scale: 20 / 14 / 12 px, with 11 px tracked micro for qualifications. ≤4 sizes per view.
@@ -34,7 +35,7 @@ Wada plate 273 (locally credited catalogue: `~/Projects/palette/data/colors.json
 - **Map-first.** The map is ≥60% of the first desktop and phone screen and is the entry (glance law). Readouts and actions dock its edge, never a dead band above it.
 - Desktop is a **column** grid: a 360 px rail (bar, filters, list/sheet) + the map. Phone is the map behind a sheet that opens **only on tap** and keeps the pin in view.
 - **Named grid: `modular`** for the stamp board (a grid of stamp modules). Its `transform: rotate(-6deg)` on a stamped cell is the deliberate ink-stamp mark, not a stray break. **No other rotation, diagonal or overlap is licensed** — this is a map-first civic tool; the governed grids are `column` and `modular`.
-- Chrome is as tall as its contents: bar 49 px + chips 53 px ≈ 15% of a 700 px viewport.
+- Chrome is as tall as its contents: bar49px + chips41px =90px at normal type; dense filter controls remain32px. Enlarged text can increase this to preserve complete readable labels.
 - One screen first; scroll only for reading depth or genuinely more detail.
 
 ## Voice

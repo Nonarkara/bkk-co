@@ -1,0 +1,18 @@
+/* Optional media is reading depth, never first-screen chrome. Grid: column. */
+.talk-disclosure { margin-top:8px; border-top:1px solid var(--rule); padding-top:4px; }
+.talk-disclosure > summary { min-height:32px; cursor:pointer; }
+.talk-video { margin:8px 0; border-top:1px solid var(--rule); padding-top:8px; }
+.talk-video figcaption { overflow-wrap:anywhere; line-height:1.4; }
+.talk-play,.talk-back,.talk-name,.talk-more { min-height:44px; text-align:left; text-decoration:underline; text-underline-offset:3px; }
+.talk-frame { width:100%; aspect-ratio:16/9; height:auto; border:0; margin-top:4px; }
+.talk-external { margin:2px 0; }
+.talk-tabs { display:flex; flex-wrap:wrap; gap:4px; margin:6px 0; }
+.talk-tabs button { min-height:32px; padding:4px 8px; border:1px solid var(--rule); }
+.talk-tabs [aria-pressed=true] { border-color:var(--ink); font-weight:500; }
+.talk-search { display:block; margin:6px 0; }
+.talk-search input { width:100%; min-height:36px; font:inherit; border:1px solid var(--rule); border-radius:0; padding:6px; background:var(--paper); color:var(--ink); }
+.talk-list { list-style:none; padding:0; margin:8px 0; }
+.talk-list li { border-top:1px solid var(--rule); padding:6px 0; }
+.talk-area { display:block; font-size:var(--micro); color:var(--muted); }
+.talk-name { display:block; font-size:var(--big); font-weight:500; overflow-wrap:anywhere; }
+.talk-sheet p { max-width:65ch; }

@@ -1,0 +1,32 @@
+{
+  "prepared": {
+    "flags": 0,
+    "mood": null
+  },
+  "position": {
+    "streetID": "w1199779123-5950672235-11091656079",
+    "distance": 21.23321369342561,
+    "direction": -1,
+    "metres": 12.050556500782003
+  },
+  "suspend": {
+    "hidden": true,
+    "visibility": "none",
+    "maxPitch": 60,
+    "maxZoom": 19,
+    "pitch": 0
+  },
+  "resume": {
+    "position": {
+      "streetID": "w1199779123-5950672235-11091656079",
+      "distance": 21.23321369342561,
+      "direction": -1,
+      "metres": 12.050556500782003
+    },
+    "visible": true,
+    "visibility": "visible"
+  },
+  "playing": true,
+  "focusPaused": true,
+  "errors": []
+}

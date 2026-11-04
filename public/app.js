@@ -54,7 +54,7 @@ const venueHours = p => window.WorkFinder?.hours(p) || p.hours;
 const state = {
   places: [], byId: new Map(), scores: {}, cells: new Map(), visited: new Map(), personalRatings: new Map(),
   kinds: new Set(['cafe', 'coworking', 'library']), flags: new Set(), // Food is one tap away, off by default
-  sort: 'great', mood: null, selected: null, foodLoaded: false, sortedIdx: [],
+  sort: 'near', mood: null, selected: null, foodLoaded: false, sortedIdx: [],
 };
 
 // Retired place ids (merged twins, scripts/clean-catalogue.py) resolve to the venue that absorbed them, so shared
@@ -73,6 +73,7 @@ const map = new maplibregl.Map({
   maxBounds: [[99.9, 13.1], [101.35, 14.45]], renderWorldCopies: false,
   attributionControl: { compact: true, customAttribution: 'Places © <a href="https://overturemaps.org">Overture Maps</a> · © OSM contributors' },
 });
+MapMotion.bind(map);
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
 if ('geolocation' in navigator) map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true } }), 'top-right');
 
@@ -153,13 +154,20 @@ function refresh() {
   });
   Atlas.onRefresh(lastList);
   const total = state.places.length;
-  $('#count').textContent = `${fmt(lastList.length)}${lastList.length === total ? '' : ' of ' + fmt(total)}${state.foodLoaded ? '' : ' · loading food'}`;
+  $('#count').textContent = `${fmt(lastList.length)} matching`;
+  $('#list-filter-count').textContent=state.flags.size?' · '+state.flags.size:'';
+  $('#list-matching').textContent=`${fmt(lastList.length)} matching catalogue places of ${fmt(total)} across the covered Bangkok area. Wi-Fi and hours depend on documented or visitor information.`;
   renderMood();
   renderList();
   performance.mark(map.getSource('places') ? 'bkk:pins' : 'bkk:data');
 }
 
-const firstData = aliasesReady.then(() => Promise.all([loadRows('work'), loadScores(), loadVisits()])).then(() => refresh());
+const scoresReady=loadScores().then(()=>{
+  if(state.places.length)refresh();
+  const panel=document.querySelector('#sheet .scores');if(panel&&state.selected)panel.innerHTML=scoreHtml(state.selected);
+  window.WorkFinder?.kindsChanged();
+});
+const firstData = aliasesReady.then(() => Promise.all([loadRows('work'), loadVisits()])).then(() => refresh());
 const foodData = firstData.then(() => loadRows('food')).then(() => { state.foodLoaded = true; refresh(); });
 // Branch labels for repeated names ("Starbucks Coffee · Sathupradit Rd"): the listing's own address, or its district.
 // Fetched after the map is up; scripts/build-branches.py. A place without a published address or district gets none.
@@ -224,22 +232,25 @@ function renderList() {
   inView = state.sort === 'near'
     ? inView.map(p => [metres(p, centre), p]).sort((a, z) => a[0] - z[0]).map(a => a[1])
     : inView.sort(SORTS[state.sort]);
+  $('#list-order').value=state.sort;
+  $('#count').textContent=`${fmt(inView.length)} in map area${state.kinds.has('restaurant')&&!state.foodLoaded?' · food loading':''}`;
+  $('#count').title=`Showing ${Math.min(60,inView.length)} of ${fmt(inView.length)} matches in map bounds; ${fmt(lastList.length)} matching catalogue places overall. Distance is straight line from the map centre.`;
   $('#list').innerHTML = inView.length
-    ? inView.slice(0, 60).map(p => row(p, sortKey(p, centre))).join('')
+    ? inView.slice(0, 60).map(p => row(p, sortKey(p, centre),true)).join('')
     : '<li class="meta">Nothing here with these filters. Zoom out or clear a filter.</li>';
 }
 
 function sortKey(p, centre) {
   return {
-    great: `✦${p.idx}`,
+    great: `${p.idx} index`,
     near: `~${Math.round(metres(p, centre) / 10) * 10} m`,
-    popular: `◎${p.d[3]}`,
-    notable: p.d[5] ? '✦' : '–',
-    work: `≋${Math.round(workScore(p))}`,
+    popular: `${p.d[3]}/9 footprint`,
+    notable: p.d[5] ? 'record' : '—',
+    work: `${Math.round(workScore(p))} work`,
   }[state.sort];
 }
 
-function row(p, key = `✦${p.idx}`) {
+function row(p, key = `${p.idx} index`, list = false) {
   const s = state.scores[p.id];
   const tail = [
     state.visited.has(p.id) ? '<b title="You have been here">✓</b>' : '',
@@ -247,21 +258,17 @@ function row(p, key = `✦${p.idx}`) {
     p.flags & F.WIFI ? '<span title="Wi-Fi listed">≋</span>' : '',
     s ? `<span title="Visitor ratings">★${s.n}</span>` : '',
   ].join(' ');
-  return `<li data-id="${esc(p.id)}" role="option" aria-label="${esc(p.n + (p.branch ? ', ' + p.branch : '') + ' · ' + KIND_LABEL[p.k])}">${PlaceTools.icon(p)}<span class="nm">${esc(p.n)}${p.branch ? ' ' + branchTag(p) : ''}</span>` +
-    `<span class="meta">${tail}</span><span class="idx">${key}</span></li>`;
+  const label=esc(p.n+(p.branch?', '+p.branch:'')+' · '+KIND_LABEL[p.k]);
+  const name=`${esc(p.n)}${p.branch?' '+branchTag(p):''}`;
+  if(list)return `<li data-id="${esc(p.id)}"><button type="button" class="list-place" aria-label="${label}, ${esc(key)}">${PlaceTools.icon(p)}<span class="nm">${name}<span class="row-signals">${tail}</span></span><span class="idx" title="${state.sort==='near'?'Straight line from the map centre':'Computed catalogue signal, not a visitor star rating'}">${esc(key)}</span></button></li>`;
+  return `<li data-id="${esc(p.id)}" role="option" aria-label="${label}">${PlaceTools.icon(p)}<span class="nm">${name}</span><span class="meta">${tail}</span><span class="idx">${esc(key)}</span></li>`;
 }
 
 $('#list').addEventListener('click', e => {
   const li = e.target.closest('li[data-id]');
   if (li) select(state.byId.get(li.dataset.id), true);
 });
-$('.sorts').addEventListener('click', e => {
-  const b = e.target.closest('[data-sort]');
-  if (!b) return;
-  state.sort = b.dataset.sort;
-  document.querySelectorAll('.sorts [data-sort]').forEach(x => x.setAttribute('aria-selected', x === b));
-  renderList();
-});
+$('#list-order').addEventListener('change',e=>{state.sort=e.target.value;renderList()});
 $('#list-toggle').addEventListener('click', () => setListOpen(!$('#list-wrap').classList.contains('open')));
 $('.list-close').addEventListener('click', () => setListOpen(false));
 function setListOpen(on) {
@@ -324,6 +331,7 @@ document.addEventListener('click', e => {
 let sheetGeneration=0;
 function openSheet(html, { place = false } = {}) {
   sheetGeneration++;
+  window.StreetWorld?.suspend();
   if (!place) { window.WorkFinder?.clearMap(); window.clearRoute?.(); state.selected = null; map.getSource('sel')?.setData({ type:'FeatureCollection', features:[] }); }
   openFromUrl.framed=true;
   setListOpen(false);
@@ -381,7 +389,7 @@ async function select(p, fly) {
   const view = { center: [p.x, p.y], zoom: fly ? Math.max(map.getZoom(), 16.5) : map.getZoom(), padding };
   fly === 'jump' ? map.jumpTo(view) : map.flyTo({ ...view, speed: 1.6 }); // shared links land, no flight
   const generation=sheetGeneration;
-  const [d, visits] = await Promise.all([cellDetail(p), Passport.forPlace(p.id).catch(() => [])]);
+  const [d, visits] = await Promise.all([cellDetail(p), Passport.forPlace(p.id,canonId).catch(() => [])]);
   if(generation===sheetGeneration)renderSheet(p, d, visits);
 }
 
@@ -396,6 +404,13 @@ function rawValue(key, p, d) {
     W: [p.k === 'coworking' || p.k === 'library' ? KIND_LABEL[p.k] : '', p.flags & F.WIFI ? 'Wi-Fi listed' : 'Wi-Fi not tagged', p.hours ? 'hours known' : ''].filter(Boolean).join(' · '),
     N: p.flags & F.NOTABLE ? 'has a Wikidata or heritage record' : 'no record',
   }[key];
+}
+
+function scoreHtml(p){
+  const s=state.scores[p.id];
+  return `      <h2 class="micro">${s ? `Visitor work score · ${s.n} ${s.n === 1 ? 'rating' : 'ratings'} · last ${esc(s.last)}` : state.scoresStatus==='unavailable' ? 'Visitor work score · unavailable right now' : state.scoresStatus==='loading' ? 'Visitor work score · loading' : 'Visitor work score · not rated yet · add yours with ✓'}</h2>
+      ${s ? `<table>${SCORES.map(([k, label]) => `<tr><td>${label}</td><td>${dots(s[k], 3)}</td><td>${s[k].toFixed(1)} / 3</td></tr>`).join('')}</table>` : ''}
+`;
 }
 
 function renderSheet(p, d, visits) {
@@ -429,9 +444,10 @@ function renderSheet(p, d, visits) {
     </header>
     <div class="kindline">${PlaceTools.symbol(p.k)}${KIND_LABEL[p.k]}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>
     <section class="been place-actions"><button type="button" class="send been-open">✓ I've been here</button><a href="${esc(window.WorkFinder?.directions(p)||`https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}`)}" target="_blank" rel="noopener">Directions ↗</a></section>
-    <nav class="place-social" aria-label="Place contributions"><button type="button" data-place-community>Notes &amp; photos</button><button type="button" data-place-recommend>Add recommendation</button><button type="button" class="share">Share place</button></nav>
+    <nav class="place-social" aria-label="Place contributions"><button type="button" data-place-community>Notes &amp; photos</button><button type="button" data-place-recommend>Add recommendation</button><button type="button" class="share">Share place</button><button type="button" data-place-street>${window.StreetWorld?.active?'Back to street sketch':'Street sketch'}</button></nav>
     ${window.WorkFinder?.placePanel(p)||''}
     ${Atlas.facts(p)}
+    ${window.TalkMedia?.section(p.id)||''}
     <section class="ggp">
       ${petals(p)}
       <div class="ggp-num"><span class="big">${p.idx}</span><span class="micro">Great Good Place index · top ${topShare(p)}% of Bangkok</span></div>
@@ -439,10 +455,7 @@ function renderSheet(p, d, visits) {
     </section>
     ${facts.length ? `<ul class="facts">${facts.map(([sym, t]) => `<li class="sym" aria-hidden="true">${sym}</li><li>${t}</li>`).join('')}</ul>` : ''}
     ${visits.length ? `<section><ul class="moments">${visits.slice().reverse().map(window.momentHtml).join('')}</ul></section>` : ''}
-    <section class="scores">
-      <h2 class="micro">${s ? `Visitor work score · ${s.n} ${s.n === 1 ? 'rating' : 'ratings'} · last ${esc(s.last)}` : state.scoresStatus==='unavailable' ? 'Visitor work score · unavailable right now' : state.scoresStatus==='loading' ? 'Visitor work score · loading' : 'Visitor work score · not rated yet · add yours with ✓'}</h2>
-      ${s ? `<table>${SCORES.map(([k, label]) => `<tr><td>${label}</td><td>${dots(s[k], 3)}</td><td>${s[k].toFixed(1)} / 3</td></tr>`).join('')}</table>` : ''}
-    </section>
+    <section class="scores">${scoreHtml(p)}</section>
     <nav class="links">
       ${['cafe', 'restaurant'].includes(p.k) ? `<a href="https://www.wongnai.com/restaurants?q=${encodeURIComponent(p.n)}" target="_blank" rel="noopener nofollow" title="Photos and reviews on Wongnai, opens their site">Photos &amp; reviews ↗ Wongnai</a>` : ''}
     </nav>
@@ -453,6 +466,8 @@ function renderSheet(p, d, visits) {
   sheet.querySelector('[data-hood]')?.addEventListener('click', e => window.openHood?.(e.target.dataset.hood));
   sheet.querySelector('.been-open').addEventListener('click', e => window.beenForm?.(p, e.target, () => select(p, false)));
   window.bindMoments?.(sheet);
+  window.TalkMedia?.attach(sheet,p);
+  sheet.querySelector('[data-place-street]').onclick=()=>window.StreetWorld?.active?StreetWorld.resume():StreetWorld.open(p);
   sheet.querySelector('[data-place-community]').onclick = () => window.Notebook?.showCommunity(p);
   sheet.querySelector('[data-place-recommend]').onclick = () => window.Notebook?.recommend(p);
   sheet.querySelector('.share').onclick = () => PlaceTools.share({title:p.n,url:new URL('?p='+encodeURIComponent(p.id),location.origin).href},sheet);
@@ -478,7 +493,7 @@ function setMood(key) {
     document.querySelectorAll('.flags [data-flag]').forEach(b => b.setAttribute('aria-pressed', false));
     document.querySelectorAll('.chips [data-kind]').forEach(b => b.setAttribute('aria-pressed', state.kinds.has(b.dataset.kind)));
     state.sort = 'great';
-    document.querySelectorAll('.sorts [data-sort]').forEach(x => x.setAttribute('aria-selected', x.dataset.sort === 'great'));
+    $('#list-order').value='great';
   }
   const u = new URL(location.href);
   state.mood ? u.searchParams.set('mood', key) : u.searchParams.delete('mood');
@@ -508,13 +523,13 @@ document.addEventListener('click', e => {
   if (b) { setMood(b.dataset.mood === state.mood ? null : b.dataset.mood); return; }
   if (e.target.closest('.mood-off')) setMood(null);
   const act = e.target.closest('[data-act]');
-  if (act) { $('#hits').hidden = true; if(act.dataset.act==='work')window.WorkFinder?.open();else if(act.dataset.act==='featured')window.openFeatured?.();else if(act.dataset.act==='discovery')window.openDiscovery?.();else act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.(); }
+  if (act) { $('#hits').hidden = true; if(act.dataset.act==='street')window.StreetWorld?.open();else if(act.dataset.act==='media')window.TalkMedia?.open();else if(act.dataset.act==='work')window.WorkFinder?.open();else if(act.dataset.act==='featured')window.openFeatured?.();else if(act.dataset.act==='discovery')window.openDiscovery?.();else act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.(); }
   const h = e.target.closest('#mood [data-hood]');
   if (h) window.openHood?.(h.dataset.hood);
 });
 
 // an empty search box offers the moods: most people search by purpose before they know a name
-const moodHits = () => `<li data-act="featured" role="option"><span class="nm"><b>Featured places</b></span><span class="meta">verified branches · sources</span></li><li data-act="work" role="option"><span class="nm"><b>Find a work spot</b></span><span class="meta">Drive · BTS · nearby</span></li><li data-act="discovery" role="option"><span class="nm"><b>50 + 50 cafés</b></span><span class="meta">editorial · discussed</span></li><li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
+const moodHits = () => `<li data-act="street" role="option"><span class="nm"><b>Street sketch</b></span><span class="meta">manga · mapped neighbourhoods</span></li><li data-act="media" role="option"><span class="nm"><b>People &amp; café videos</b></span><span class="meta">source leads · check branch</span></li><li data-act="featured" role="option"><span class="nm"><b>Featured places</b></span><span class="meta">verified branches · sources</span></li><li data-act="work" role="option"><span class="nm"><b>Find a work spot</b></span><span class="meta">Drive · BTS · nearby</span></li><li data-act="discovery" role="option"><span class="nm"><b>50 + 50 cafés</b></span><span class="meta">editorial · discussed</span></li><li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
   <li data-act="hop" role="option"><span class="nm"><b>Plan a café hop</b></span><span class="meta">5 stops on foot</span></li>` + Object.entries(MOODS).map(([k, m]) =>
   `<li data-mood="${k}" role="option"><span class="mood-dot" aria-hidden="true">◐</span><span class="nm">${esc(m.label)}</span><span class="meta">citywide</span></li>`).join('');
 $('#q').addEventListener('focus', () => {
@@ -531,3 +546,5 @@ document.addEventListener('click', e => {
   setListOpen(false);
   document.querySelector(`.atlas-dock [data-${b.dataset.proxy}]`)?.click();
 });
+
+document.querySelector('.list-tools').addEventListener('click',e=>{if(e.target.closest('[data-act],[data-mood],[data-proxy]'))for(const d of document.querySelectorAll('.list-tools details'))d.open=false});

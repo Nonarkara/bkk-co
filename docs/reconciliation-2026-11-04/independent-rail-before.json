@@ -1,0 +1,50 @@
+[
+  {
+    "width": 390,
+    "height": 844,
+    "geometry": {
+      "railTop": 354.484375,
+      "firstTop": 549.484375,
+      "firstBottom": 593.484375,
+      "toolsCost": 195,
+      "barHeight": 49,
+      "chipsHeight": 41,
+      "pageBleed": false,
+      "listBleed": false
+    },
+    "errors": [],
+    "writes": []
+  },
+  {
+    "width": 1024,
+    "height": 900,
+    "geometry": {
+      "railTop": 90,
+      "firstTop": 303.796875,
+      "firstBottom": 347.796875,
+      "toolsCost": 213.796875,
+      "barHeight": 49,
+      "chipsHeight": 41,
+      "pageBleed": false,
+      "listBleed": false
+    },
+    "errors": [],
+    "writes": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "geometry": {
+      "railTop": 90,
+      "firstTop": 303.796875,
+      "firstBottom": 347.796875,
+      "toolsCost": 213.796875,
+      "barHeight": 49,
+      "chipsHeight": 41,
+      "pageBleed": false,
+      "listBleed": false
+    },
+    "errors": [],
+    "writes": []
+  }
+]

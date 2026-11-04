@@ -5,6 +5,7 @@
   const modes = {
     all: ['All places', 'Every selected kind, grouped without an index cutoff.'],
     hotspots: ['Hotspots', 'Catalogue café density, not visits or foot traffic.'],
+    hats: ['Hotspot tiles', 'Optional hat-monotile view: cafés counted inside each tile, not visits or foot traffic. Tiles and counts change with zoom.'],
     independent: [
       'Independent',
       'Cafés with no chain signal in the catalogue; ownership is not independently certified.'
@@ -48,7 +49,8 @@
     last = [],
     images = {},
     mapReady = false,
-    provenance = new Map();
+    provenance = new Map(),
+    hatGeom = null, hatRevision = 0, hatDrawnRevision = -1;
   const get = async (path) => {
     const r = await fetch(path, { signal: AbortSignal.timeout(15000) });
     if (!r.ok) throw new Error('Map evidence unavailable. The base map and notebook still work.');
@@ -108,6 +110,7 @@
         return p.k === 'cafe' && (e.attributes?.architecture || e.attributes?.shophouse);
       case 'streets':
         return p.k === 'cafe' && data?.streetCafes.has(p.id);
+      case 'hats':
       case 'hotspots':
       case 'districts':
         return p.k === 'cafe';
@@ -366,6 +369,9 @@
       },
       'pins-city'
     );
+    m.addSource('atlas-hats', {type:'geojson',data:empty()});
+    m.addLayer({id:'atlas-hats',type:'fill',source:'atlas-hats',layout:{visibility:'none'},paint:{'fill-color':['step',['get','n'],'#f9c1ce',12,'#7d133a'],'fill-opacity':['interpolate',['linear'],['get','n'],1,.2,12,.4,100,.54]}},'pins-city');
+    m.addLayer({id:'atlas-hat-line',type:'line',source:'atlas-hats',layout:{visibility:'none'},paint:{'line-color':'#7d133a','line-width':.7,'line-opacity':.7}},'pins-city');
     for (const id of ['atlas-districts', 'atlas-parks', 'atlas-streets', 'atlas-loops'])
       m.addSource(id, { type: 'geojson', data: empty() });
     m.addLayer(
@@ -499,6 +505,11 @@
         return;
       chooseDistrict(e.features[0].properties.id).catch((e) => status(e.message));
     });
+    m.on('click','atlas-hats',e=>{
+      if(m.queryRenderedFeatures(e.point,{layers:['atlas-clusters','place-icons','route-stop'].filter(id=>m.getLayer(id))}).length)return;
+      const f=e.features?.[0];if(!f||f.properties.patch!==hatGeom?.key){status('Tiles are updating; tap again.');return;}
+      tileSheet(Number(f.properties.tile));
+    });
     m.on('click', 'atlas-street-lines', (e) => {
       if (
         m.queryRenderedFeatures(e.point, {
@@ -534,7 +545,8 @@
     window.WorkFinder?.warmEvidence();
     dock.querySelector('[data-atlas-key]').onclick = key;
     dock.querySelector('[data-atlas-fit]').onclick = fitMatches;
-    m.on('moveend', updateDock);
+    m.on('moveend', () => {updateDock();syncHats()});
+    m.on('resize', () => syncHats());
     dock.querySelector('.atlas-reset').onclick = reset;
     updateDock();
   }
@@ -614,11 +626,37 @@
       fit.hidden =
         !mapReady || !last.length || last.some((p) => map.getBounds().contains([p.x, p.y]));
     if (lens === 'hotspots') e.textContent += ' · density: pale → dark';
+    if (lens === 'hats') e.textContent += ' · café counts per tile';
     if (lens === 'districts') e.textContent += ' · cafés/km²: 0 · 5 · 35+';
     if (lens === 'triangles' && loop) e.textContent = `3 café stops · ${loop.perimeter} m straight-line triangle`;
   }
+  function tileSheet(index){
+    const ring=hatGeom?.rings[index];if(!ring)return;
+    const ps=(hatGeom.placeIDs?.[index]||[]).map(id=>state.byId.get(id)).filter(Boolean);
+    const sheet=openSheet(`<header><h1>${fmt(ps.length)} ${ps.length===1?'café':'cafés'} in this tile</h1><button class="close" aria-label="Close">×</button></header><p class="src">Actual catalogue points inside this aggregate polygon. These are not visits or a walking route. Counts and tile boundaries change with zoom.</p><button class="linkish featured-entry" data-hat-back>← Tiles in view</button><ul class="atlas-places">${ps.map(placeRow).join('')}</ul>`);
+    sheet.classList.add('atlas-sheet');bindPlaces(sheet);sheet.querySelector('[data-hat-back]').onclick=tileList;
+  }
+  function tileList(){
+    syncHats();const b=map.getBounds(),features=map.getSource('atlas-hats')?._data?.features||[],tiles=features.filter(f=>f.geometry.coordinates[0].some(([x,y])=>b.contains([x,y]))).sort((a,b)=>b.properties.n-a.properties.n);
+    const sheet=openSheet(`<header><h1>Hotspot tiles in view</h1><button class="close" aria-label="Close">×</button></header><p class="src">Catalogue café counts per tile, most first. No visits or foot-traffic ranking. Pan or zoom the map to change this view.</p><ol class="atlas-places">${tiles.slice(0,40).map((f,i)=>`<li><button data-hat-tile="${f.properties.tile}" data-hat-patch="${esc(f.properties.patch)}"><b>Tile ${i+1} · ${fmt(f.properties.n)} ${f.properties.n===1?'café':'cafés'}</b></button></li>`).join('')||'<li>No occupied tiles in this map view.</li>'}</ol>${tiles.length>40?'<p class="src">Showing the first40tiles. Zoom in to inspect fewer at once.</p>':''}`);
+    sheet.classList.add('atlas-sheet');sheet.querySelectorAll('[data-hat-tile]').forEach(button=>button.onclick=()=>{if(button.dataset.hatPatch!==hatGeom?.key){tileList();return;}tileSheet(Number(button.dataset.hatTile))});
+  }
+  function syncHats(){
+    if(!mapReady||lens!=='hats')return;
+    try{
+      if(!window.EinsteinHat||!window.HatDensity)throw new Error('Tile module unavailable.');
+      const b=map.getBounds(),bounds=[b.getWest(),b.getSouth(),b.getEast(),b.getNorth()],zoom=map.getZoom();
+      const stale=!HatDensity.covers(hatGeom,bounds,zoom);
+      if(stale)hatGeom=HatDensity.geometry(bounds,zoom,EinsteinHat);
+      if(!stale&&hatDrawnRevision===hatRevision)return;
+      const counts=HatDensity.tally(hatGeom,last.filter(p=>p.k==='cafe'));
+      map.getSource('atlas-hats')?.setData(HatDensity.featureCollection(hatGeom,counts));
+      hatDrawnRevision=hatRevision;
+    }catch(e){map.getSource('atlas-hats')?.setData(empty());status('Hotspot tiles unavailable; choose Hotspots or All places.');}
+  }
   function onRefresh(ps) {
     last = ps;
+    hatRevision++;
     updateDock();
     if (!mapReady) return;
     map.getSource('atlas-density').setData({
@@ -665,12 +703,14 @@
           .filter((f) => f.properties.active > 0)
       });
     }
+    syncHats();
     visibility();
   }
   function visibility() {
     if (!mapReady) return;
     const visible = (id, on) => map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none');
     visible('atlas-heat', lens === 'hotspots');
+    for(const id of ['atlas-hats','atlas-hat-line'])visible(id,lens==='hats');
     for (const id of ['atlas-district-fill', 'atlas-district-line'])
       visible(id, lens === 'districts' || !!district);
     for (const id of ['atlas-park-fill', 'atlas-park-line']) visible(id, lens === 'nature');
@@ -828,7 +868,7 @@
   }
   async function open() {
     const sheet = openSheet(
-      `<header><h1>Explore the coffee city</h1><button class="close" aria-label="Close">×</button></header><p class="src">Choose a view. The map counts all matching records, including small cafés with sparse information.</p>${lens === 'triangles' && loops.length ? '<button class="linkish" data-atlas-stops>See triangle stops →</button>' : ''}<button class="linkish featured-entry" data-featured-open>Featured places · verified branches →</button><div class="atlas-modes">${Object.entries(
+      `<header><h1>Explore the coffee city</h1><button class="close" aria-label="Close">×</button></header><p class="src">Choose a view. The map counts all matching records, including small cafés with sparse information.</p>${lens === 'triangles' && loops.length ? '<button class="linkish" data-atlas-stops>See triangle stops →</button>' : ''}${lens==='hats'?'<button class="linkish featured-entry" data-atlas-tile-list>Inspect hotspot tiles in view →</button>':''}<button class="linkish featured-entry" data-featured-open>Featured places · verified branches →</button><button class="linkish featured-entry" data-street-world>Street sketch · explore the neighbourhood →</button><div class="atlas-modes">${Object.entries(
         modes
       )
         .map(
@@ -842,6 +882,8 @@
     sheet.classList.add('atlas-sheet');
     sheet.querySelector('[data-atlas-stops]')?.addEventListener('click', triangleSheet);
     sheet.querySelector('[data-featured-open]').onclick=()=>window.openFeatured?.();
+    sheet.querySelector('[data-street-world]').onclick=()=>window.StreetWorld?.open();
+    sheet.querySelector('[data-atlas-tile-list]')?.addEventListener('click',tileList);
     sheet.querySelectorAll('[data-atlas-lens]').forEach(
       (b) =>
         (b.onclick = async () => {
@@ -891,7 +933,7 @@
         .map(([i, t]) => `<li><img src="${images[i]}" alt="" width="34" height="34">${t}</li>`)
         .join(
           ''
-        )}</ul><p>Numbered hexagons group actual places; they are not venue pins. Their icon is the most common selected kind. Tap to zoom; co-located places can be opened from a list. Every active record is counted, regardless of its index.</p><p><b>${esc(modes[lens][0])}</b> · ${esc(modes[lens][1])}</p><p class="src">OSM geography 24 Oct 2026; Overture places 21 Oct 2026. A low footprint is missing information, not bad coffee. Park proximity does not establish access. Publication/discussion evidence is dated and branch-specific; missing evidence means unknown. Districts are OSM administrative geometry, not our 800 m neighbourhood story circles.</p>`
+        )}</ul><p class="src">Optional hotspot tiles: hat monotile by Smith, Myers, Kaplan and Goodman-Strauss (2023), implementation adapted from Craig Kaplan’s BSD-3 hatviz. Each tile counts catalogue cafés inside it; pink below12, purple from12. Tile geometry and counts change with zoom. <a href="https://arxiv.org/abs/2303.10798" target="_blank" rel="noopener">Paper ↗</a></p><p>Numbered hexagons group actual places; they are not venue pins. Their icon is the most common selected kind. Tap to zoom; co-located places can be opened from a list. Every active record is counted, regardless of its index.</p><p><b>${esc(modes[lens][0])}</b> · ${esc(modes[lens][1])}</p><p class="src">OSM geography 24 Oct 2026; Overture places 21 Oct 2026. A low footprint is missing information, not bad coffee. Park proximity does not establish access. Publication/discussion evidence is dated and branch-specific; missing evidence means unknown. Districts are OSM administrative geometry, not our 800 m neighbourhood story circles.</p>`
     );
     sheet.classList.add('atlas-sheet');
   }

@@ -1,0 +1,27 @@
+/* One finder wins. Exploration/filter depth is opened deliberately, before compact comparison rows. */
+.list-tools { display:flex; align-items:flex-start; flex-wrap:wrap; gap:4px 12px; padding:6px var(--pad) 2px; flex:none; }
+.list-tools > .list-find { min-height:32px; padding:4px 0; font-weight:600; text-decoration:underline; text-underline-offset:3px; }
+.list-tools > details > summary { min-height:32px; display:list-item; cursor:pointer; padding:4px 0; }
+.list-tools > details[open] { flex-basis:100%; }
+.list-tools .moods { padding:0; gap:2px 12px; flex-wrap:wrap; overflow:visible; }
+.list-tools .moods button { border:0; padding:4px 0; height:auto; min-height:32px; text-align:left; }
+.list-tools .moods button[aria-pressed=true] { background:var(--paper); font-weight:600; text-decoration:underline; }
+.list-tools .flags { padding:2px 0 0; gap:4px; }
+.list-tools .flags button { min-height:32px; height:auto; padding:4px 7px; }
+.list-tools .src { margin:2px 0 4px; }
+.list-tools .list-close { flex:none; margin:0 0 0 auto; min-width:32px; width:32px; height:32px; font-size:18px; }
+.list-scope { display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:4px 8px; padding:2px var(--pad) 6px; border-bottom:1px solid var(--rule); flex:none; }
+.list-scope .count { margin:0; padding:0; font-size:var(--micro); white-space:normal; }
+.list-order { max-width:100%; }
+.list-order select { font:inherit; font-size:var(--micro); min-height:32px; padding:2px 4px; max-width:155px; color:var(--ink); border:0; border-bottom:1px solid var(--rule); border-radius:0; background:var(--paper); }
+.list li[data-id] { padding:0; min-height:0; }
+.list-place { display:grid; grid-template-columns:20px minmax(0,1fr) auto; gap:8px; align-items:center; width:100%; min-height:32px; padding:5px var(--pad); text-align:left; }
+.list-place .place-symbol,.list-place .place-badge { width:20px; height:20px; }
+.list-place .nm { font-weight:500; }
+.list-place .idx { font-size:.857em; color:var(--muted); font-weight:400; white-space:normal; max-width:6.5em; }
+.list-place .meta:empty { display:none; }
+.list-place .row-signals { display:inline; margin-left:5px; font-size:var(--micro); color:var(--muted); font-weight:400; }
+.list-place:focus-visible { outline-offset:-2px; }
+@media(max-width:899px){ .list-wrap.open .list { min-height:0; } }
+/* The rail owns the one primary finder; the map keeps only its view/key instruments. */
+.atlas-tools [data-work-start] { display:none; }

@@ -1,0 +1,248 @@
+[
+  {
+    "width": 390,
+    "metrics": {
+      "area": "samyan",
+      "panel": {
+        "top": 469.625,
+        "bottom": 828,
+        "height": 358.375,
+        "width": 370,
+        "scrollHeight": 356,
+        "clientHeight": 356
+      },
+      "next": {
+        "top": 598.625,
+        "bottom": 634.625
+      },
+      "directions": {
+        "top": 715,
+        "bottom": 747
+      },
+      "bleed": false,
+      "canvas": 1,
+      "camera": {
+        "zoom": 17.3,
+        "pitch": 55.00000000000001
+      },
+      "bodyFont": "14px"
+    },
+    "low": {
+      "zoom": 22,
+      "pitch": 49.037674979061414,
+      "pos": {
+        "streetID": "w1199779123-5950672235-11091656079",
+        "distance": 41.23321369342561,
+        "direction": 1,
+        "metres": 12.050556500782003
+      }
+    },
+    "wasPlaying": false,
+    "suspended": {
+      "playing": false,
+      "hidden": true
+    },
+    "ram": {
+      "known": 0,
+      "height": 0,
+      "area": "ramkhamhaeng"
+    },
+    "large": {
+      "bleed": false,
+      "bodyFont": "30px",
+      "panel": {
+        "x": 10,
+        "y": 456.640625,
+        "width": 370,
+        "height": 371.359375,
+        "top": 456.640625,
+        "right": 380,
+        "bottom": 828,
+        "left": 10
+      },
+      "directions": {
+        "x": 121.375,
+        "y": 893.015625,
+        "width": 166.0625,
+        "height": 42,
+        "top": 893.015625,
+        "right": 287.4375,
+        "bottom": 935.015625,
+        "left": 121.375
+      }
+    },
+    "exited": {
+      "active": false,
+      "zoom": 19,
+      "pitch": 60,
+      "placeLayer": true,
+      "sketchVisibility": "none"
+    },
+    "errors": [],
+    "consoleErrors": []
+  },
+  {
+    "width": 1024,
+    "metrics": {
+      "area": "samyan",
+      "panel": {
+        "top": 521.625,
+        "bottom": 880,
+        "height": 358.375,
+        "width": 350,
+        "scrollHeight": 356,
+        "clientHeight": 356
+      },
+      "next": {
+        "top": 650.625,
+        "bottom": 686.625
+      },
+      "directions": {
+        "top": 767,
+        "bottom": 799
+      },
+      "bleed": false,
+      "canvas": 1,
+      "camera": {
+        "zoom": 17.3,
+        "pitch": 55.00000000000001
+      },
+      "bodyFont": "14px"
+    },
+    "low": {
+      "zoom": 22,
+      "pitch": 49.037674979061414,
+      "pos": {
+        "streetID": "w1199779123-5950672235-11091656079",
+        "distance": 41.23321369342561,
+        "direction": 1,
+        "metres": 12.050556500782003
+      }
+    },
+    "wasPlaying": false,
+    "suspended": {
+      "playing": false,
+      "hidden": true
+    },
+    "ram": {
+      "known": 0,
+      "height": 0,
+      "area": "ramkhamhaeng"
+    },
+    "large": {
+      "bleed": false,
+      "bodyFont": "30px",
+      "panel": {
+        "x": 372,
+        "y": 340,
+        "width": 350,
+        "height": 540,
+        "top": 340,
+        "right": 722,
+        "bottom": 880,
+        "left": 372
+      },
+      "directions": {
+        "x": 483.375,
+        "y": 776.375,
+        "width": 166.0625,
+        "height": 42,
+        "top": 776.375,
+        "right": 649.4375,
+        "bottom": 818.375,
+        "left": 483.375
+      }
+    },
+    "exited": {
+      "active": false,
+      "zoom": 19,
+      "pitch": 60,
+      "placeLayer": true,
+      "sketchVisibility": "none"
+    },
+    "errors": [],
+    "consoleErrors": []
+  },
+  {
+    "width": 1440,
+    "metrics": {
+      "area": "samyan",
+      "panel": {
+        "top": 521.625,
+        "bottom": 880,
+        "height": 358.375,
+        "width": 350,
+        "scrollHeight": 356,
+        "clientHeight": 356
+      },
+      "next": {
+        "top": 650.625,
+        "bottom": 686.625
+      },
+      "directions": {
+        "top": 767,
+        "bottom": 799
+      },
+      "bleed": false,
+      "canvas": 1,
+      "camera": {
+        "zoom": 17.3,
+        "pitch": 55.00000000000001
+      },
+      "bodyFont": "14px"
+    },
+    "low": {
+      "zoom": 22,
+      "pitch": 49.037674979061414,
+      "pos": {
+        "streetID": "w1199779123-5950672235-11091656079",
+        "distance": 41.23321369342561,
+        "direction": 1,
+        "metres": 12.050556500782003
+      }
+    },
+    "wasPlaying": false,
+    "suspended": {
+      "playing": false,
+      "hidden": true
+    },
+    "ram": {
+      "known": 0,
+      "height": 0,
+      "area": "ramkhamhaeng"
+    },
+    "large": {
+      "bleed": false,
+      "bodyFont": "30px",
+      "panel": {
+        "x": 372,
+        "y": 340,
+        "width": 350,
+        "height": 540,
+        "top": 340,
+        "right": 722,
+        "bottom": 880,
+        "left": 372
+      },
+      "directions": {
+        "x": 483.375,
+        "y": 776.375,
+        "width": 166.0625,
+        "height": 42,
+        "top": 776.375,
+        "right": 649.4375,
+        "bottom": 818.375,
+        "left": 483.375
+      }
+    },
+    "exited": {
+      "active": false,
+      "zoom": 19,
+      "pitch": 60,
+      "placeLayer": true,
+      "sketchVisibility": "none"
+    },
+    "errors": [],
+    "consoleErrors": []
+  }
+]

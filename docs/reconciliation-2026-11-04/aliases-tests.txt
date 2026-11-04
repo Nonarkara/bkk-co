@@ -1,0 +1,1 @@
+PASS aliases: 10 cold Worker cases; shared atomic init, first retired-id score/community, source failures/invalid aliases recover, no partial writes, alias chains canonicalize.

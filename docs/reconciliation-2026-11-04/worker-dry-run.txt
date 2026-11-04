@@ -1,0 +1,11 @@
+
+ ⛅️ wrangler 4.81.1 (update available 4.157.0)
+──────────────────────────────────────────────
+✨ Read 234 files from the assets directory /Users/nonarkara/Projects/bangkok-ioc/bkk-co/public
+Total Upload: 30.51 KiB / gzip: 8.64 KiB
+Your Worker has access to the following bindings:
+Binding                  Resource         
+env.DB (bkk-co)          D1 Database      
+env.ASSETS               Assets           
+
+--dry-run: exiting now.
