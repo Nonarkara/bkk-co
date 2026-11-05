@@ -122,7 +122,7 @@ export async function notebookApi(request,env,knownIds) {
   if(path==='/api/moderation'&&method==='GET'){
    if(!await moderator(request,env))fail('Moderator access required.',403);
    const {results}=await env.DB.prepare(`SELECT p.id,p.place_id,p.payload,p.created_at,p.hidden,COUNT(r.account_id) reports,GROUP_CONCAT(DISTINCT r.reason) reasons FROM notebook_posts p LEFT JOIN notebook_reports r ON r.post_id=p.id GROUP BY p.id ORDER BY reports DESC,p.created_at DESC LIMIT 10`).all();
-   const {results:hopRows}=await env.DB.prepare(`SELECT h.id,json_remove(h.payload,'$.stops') payload,h.created_at,h.hidden,COUNT(r.account_id) reports,GROUP_CONCAT(DISTINCT r.reason) reasons FROM notebook_hops h LEFT JOIN notebook_hop_reports r ON r.hop_id=h.id GROUP BY h.id ORDER BY reports DESC,h.created_at DESC LIMIT 10`).all();
+   const {results:hopRows}=await env.DB.prepare(`SELECT h.id,h.payload,h.created_at,h.hidden,COUNT(r.account_id) reports,GROUP_CONCAT(DISTINCT r.reason) reasons FROM notebook_hops h LEFT JOIN notebook_hop_reports r ON r.hop_id=h.id GROUP BY h.id ORDER BY reports DESC,h.created_at DESC LIMIT 10`).all();
    return response({posts:results.map(r=>({...r,payload:JSON.parse(r.payload)})),hops:hopRows.map(r=>({...r,payload:JSON.parse(r.payload)}))});
   }
   if(path==='/api/community'&&method==='GET'){
@@ -174,7 +174,8 @@ export async function notebookApi(request,env,knownIds) {
    const posts=await env.DB.prepare(`SELECT id,place_id,json_remove(payload,'$.photos') payload,created_at,hidden,json_array_length(payload,'$.photos') photoCount FROM notebook_posts WHERE account_id=? LIMIT 100`).bind(a.id).all();
    const hops=await env.DB.prepare(`SELECT id,json_remove(payload,'$.photos') payload,created_at,hidden,json_array_length(payload,'$.photos') photoCount FROM notebook_hops WHERE account_id=? LIMIT 100`).bind(a.id).all();
    const reports=await env.DB.prepare('SELECT post_id,reason,created_at FROM notebook_reports WHERE account_id=? LIMIT 200').bind(a.id).all();
-   return response({posts:posts.results.map(r=>({...r,payload:JSON.parse(r.payload)})),hops:hops.results.map(r=>({...r,payload:JSON.parse(r.payload)})),reports:reports.results});
+   const hopReports=await env.DB.prepare('SELECT hop_id,reason,created_at FROM notebook_hop_reports WHERE account_id=? LIMIT 200').bind(a.id).all();
+   return response({posts:posts.results.map(r=>({...r,payload:JSON.parse(r.payload)})),hops:hops.results.map(r=>({...r,payload:JSON.parse(r.payload)})),reports:reports.results,hopReports:hopReports.results});
   }
   if(path==='/api/account'&&method==='PATCH'){
    const b=await readBody(request,1000);if(typeof b.research!=='boolean'||(b.research&&b.notice!==NOTICE))fail('Read the current research notice first.');
@@ -231,8 +232,8 @@ export async function notebookApi(request,env,knownIds) {
    if(method==='PUT'&&!hopMatch[2]){
     await limit(env,request,'hop',60);const b=await readBody(request);const hop=validateHop(b,await knownIds());
     const payload=JSON.stringify({name:a.name,...hop});
-    const r=await env.DB.prepare('INSERT INTO notebook_hops(id,account_id,payload,created_at) VALUES(?,?,?,?) ON CONFLICT(id) DO UPDATE SET payload=excluded.payload WHERE notebook_hops.account_id=? AND notebook_hops.hidden=0 RETURNING id').bind(id,a.id,payload,new Date().toISOString(),a.id).first();
-    if(!r){const existing=await env.DB.prepare('SELECT account_id,hidden FROM notebook_hops WHERE id=?').bind(id).first();fail(existing?(existing.hidden?'This hop log is under review.':'That hop log belongs to someone else.'):'Could not save that hop log.',409)}
+    const r=await env.DB.prepare('INSERT INTO notebook_hops(id,account_id,payload,created_at) SELECT ?,?,?,? WHERE (SELECT COUNT(*) FROM notebook_hops WHERE account_id=?)<100 OR EXISTS(SELECT 1 FROM notebook_hops WHERE id=? AND account_id=?) ON CONFLICT(id) DO UPDATE SET payload=excluded.payload WHERE notebook_hops.account_id=? AND notebook_hops.hidden=0 RETURNING id').bind(id,a.id,payload,new Date().toISOString(),a.id,id,a.id,a.id).first();
+    if(!r){const existing=await env.DB.prepare('SELECT account_id,hidden FROM notebook_hops WHERE id=?').bind(id).first();fail(existing?(existing.hidden?'This hop log is under review.':'That hop log belongs to someone else.'):'Your cloud notebook is full (100 hop logs). Remove a hop log before publishing another.',409)}
     return response({id});
    }
    if(method==='POST'&&hopMatch[2]){await limit(env,request,'report',20);const b=await readBody(request,1000);if(!['rude','privacy','spam','other'].includes(b.reason))fail('Choose a report reason.');

@@ -1,0 +1,1199 @@
+[
+  {
+    "metrics": {
+      "width": 390,
+      "bleed": false,
+      "map": {
+        "x": 0,
+        "y": 90,
+        "width": 390,
+        "height": 754
+      },
+      "control": {
+        "x": 335,
+        "y": 257,
+        "width": 44,
+        "height": 44
+      },
+      "base": [
+        [
+          "manga-park",
+          "visible"
+        ],
+        [
+          "manga-landcover",
+          "visible"
+        ],
+        [
+          "manga-landuse",
+          "visible"
+        ],
+        [
+          "manga-town",
+          "visible"
+        ],
+        [
+          "manga-water",
+          "visible"
+        ],
+        [
+          "manga-water-line",
+          "visible"
+        ],
+        [
+          "manga-building",
+          "visible"
+        ],
+        [
+          "manga-building-tone",
+          "visible"
+        ],
+        [
+          "manga-building-line",
+          "visible"
+        ],
+        [
+          "manga-road-major-casing",
+          "visible"
+        ],
+        [
+          "manga-road-major-core",
+          "visible"
+        ],
+        [
+          "manga-road-minor",
+          "visible"
+        ],
+        [
+          "manga-road-path",
+          "visible"
+        ],
+        [
+          "manga-rail",
+          "visible"
+        ],
+        [
+          "manga-water-label",
+          "visible"
+        ],
+        [
+          "manga-road-label",
+          "visible"
+        ],
+        [
+          "manga-place-label",
+          "visible"
+        ],
+        [
+          "park",
+          "none"
+        ],
+        [
+          "water",
+          "none"
+        ],
+        [
+          "landcover_ice_shelf",
+          "none"
+        ],
+        [
+          "landcover_glacier",
+          "none"
+        ],
+        [
+          "landuse_residential",
+          "none"
+        ],
+        [
+          "landcover_wood",
+          "none"
+        ],
+        [
+          "waterway",
+          "none"
+        ],
+        [
+          "building",
+          "none"
+        ],
+        [
+          "tunnel_motorway_casing",
+          "none"
+        ],
+        [
+          "tunnel_motorway_inner",
+          "none"
+        ],
+        [
+          "aeroway-taxiway",
+          "none"
+        ],
+        [
+          "aeroway-runway-casing",
+          "none"
+        ],
+        [
+          "aeroway-area",
+          "none"
+        ],
+        [
+          "aeroway-runway",
+          "none"
+        ],
+        [
+          "road_area_pier",
+          "none"
+        ],
+        [
+          "road_pier",
+          "none"
+        ],
+        [
+          "highway_path",
+          "none"
+        ],
+        [
+          "highway_minor",
+          "none"
+        ],
+        [
+          "highway_major_casing",
+          "none"
+        ],
+        [
+          "highway_major_inner",
+          "none"
+        ],
+        [
+          "highway_major_subtle",
+          "none"
+        ],
+        [
+          "highway_motorway_casing",
+          "none"
+        ],
+        [
+          "highway_motorway_inner",
+          "none"
+        ],
+        [
+          "highway_motorway_subtle",
+          "none"
+        ],
+        [
+          "railway_transit",
+          "none"
+        ],
+        [
+          "railway_transit_dashline",
+          "none"
+        ],
+        [
+          "railway_service",
+          "none"
+        ],
+        [
+          "railway_service_dashline",
+          "none"
+        ],
+        [
+          "railway",
+          "none"
+        ],
+        [
+          "railway_dashline",
+          "none"
+        ],
+        [
+          "highway_motorway_bridge_casing",
+          "none"
+        ],
+        [
+          "highway_motorway_bridge_inner",
+          "none"
+        ],
+        [
+          "boundary_3",
+          "none"
+        ],
+        [
+          "boundary_2",
+          "none"
+        ],
+        [
+          "boundary_disputed",
+          "none"
+        ],
+        [
+          "waterway_line_label",
+          "none"
+        ],
+        [
+          "water_name_point_label",
+          "none"
+        ],
+        [
+          "water_name_line_label",
+          "none"
+        ],
+        [
+          "highway-name-path",
+          "none"
+        ],
+        [
+          "highway-name-minor",
+          "none"
+        ],
+        [
+          "highway-name-major",
+          "none"
+        ],
+        [
+          "highway-shield-non-us",
+          "none"
+        ],
+        [
+          "highway-shield-us-interstate",
+          "none"
+        ],
+        [
+          "road_shield_us",
+          "none"
+        ],
+        [
+          "airport",
+          "none"
+        ],
+        [
+          "label_other",
+          "none"
+        ],
+        [
+          "label_village",
+          "none"
+        ],
+        [
+          "label_town",
+          "none"
+        ],
+        [
+          "label_state",
+          "none"
+        ],
+        [
+          "label_city",
+          "none"
+        ],
+        [
+          "label_city_capital",
+          "none"
+        ],
+        [
+          "label_country_3",
+          "none"
+        ],
+        [
+          "label_country_2",
+          "none"
+        ],
+        [
+          "label_country_1",
+          "none"
+        ]
+      ],
+      "app": [
+        [
+          "hood-fill",
+          null
+        ],
+        [
+          "hood-line",
+          null
+        ],
+        [
+          "pins-city",
+          null
+        ],
+        [
+          "pins-street",
+          null
+        ],
+        [
+          "pins",
+          null
+        ],
+        [
+          "pin-city-names",
+          null
+        ],
+        [
+          "pin-names",
+          null
+        ],
+        [
+          "atlas-clusters",
+          null
+        ],
+        [
+          "place-icons",
+          null
+        ],
+        [
+          "hood-label",
+          null
+        ],
+        [
+          "route-line",
+          null
+        ],
+        [
+          "route-stop",
+          null
+        ],
+        [
+          "route-num",
+          null
+        ]
+      ],
+      "ground": "visible"
+    },
+    "keyboard": "false",
+    "street": {
+      "active": true,
+      "held": true,
+      "disabled": true,
+      "position": {
+        "streetID": "w1199779123-5950672235-11091656079",
+        "distance": 41.23321369342561,
+        "direction": -1,
+        "metres": 12.050556500782003
+      },
+      "panel": {
+        "x": 10,
+        "y": 471.71875,
+        "width": 370,
+        "height": 356.28125,
+        "top": 471.71875,
+        "right": 380,
+        "bottom": 828,
+        "left": 10
+      },
+      "status": "Unnamed lane · 41 m along source line. 52 work spots within 300 m straight line."
+    },
+    "enlarged": {
+      "bleed": false,
+      "panelBleed": false,
+      "panel": {
+        "x": 10,
+        "y": 456.640625,
+        "width": 370,
+        "height": 371.359375,
+        "top": 456.640625,
+        "right": 380,
+        "bottom": 828,
+        "left": 10
+      }
+    },
+    "errors": [
+      "Failed to load resource: the server responded with a status of 404 (File not found)"
+    ]
+  },
+  {
+    "metrics": {
+      "width": 1024,
+      "bleed": false,
+      "map": {
+        "x": 360,
+        "y": 0,
+        "width": 664,
+        "height": 900
+      },
+      "control": {
+        "x": 969,
+        "y": 167,
+        "width": 44,
+        "height": 44
+      },
+      "base": [
+        [
+          "manga-park",
+          "visible"
+        ],
+        [
+          "manga-landcover",
+          "visible"
+        ],
+        [
+          "manga-landuse",
+          "visible"
+        ],
+        [
+          "manga-town",
+          "visible"
+        ],
+        [
+          "manga-water",
+          "visible"
+        ],
+        [
+          "manga-water-line",
+          "visible"
+        ],
+        [
+          "manga-building",
+          "visible"
+        ],
+        [
+          "manga-building-tone",
+          "visible"
+        ],
+        [
+          "manga-building-line",
+          "visible"
+        ],
+        [
+          "manga-road-major-casing",
+          "visible"
+        ],
+        [
+          "manga-road-major-core",
+          "visible"
+        ],
+        [
+          "manga-road-minor",
+          "visible"
+        ],
+        [
+          "manga-road-path",
+          "visible"
+        ],
+        [
+          "manga-rail",
+          "visible"
+        ],
+        [
+          "manga-water-label",
+          "visible"
+        ],
+        [
+          "manga-road-label",
+          "visible"
+        ],
+        [
+          "manga-place-label",
+          "visible"
+        ],
+        [
+          "park",
+          "none"
+        ],
+        [
+          "water",
+          "none"
+        ],
+        [
+          "landcover_ice_shelf",
+          "none"
+        ],
+        [
+          "landcover_glacier",
+          "none"
+        ],
+        [
+          "landuse_residential",
+          "none"
+        ],
+        [
+          "landcover_wood",
+          "none"
+        ],
+        [
+          "waterway",
+          "none"
+        ],
+        [
+          "building",
+          "none"
+        ],
+        [
+          "tunnel_motorway_casing",
+          "none"
+        ],
+        [
+          "tunnel_motorway_inner",
+          "none"
+        ],
+        [
+          "aeroway-taxiway",
+          "none"
+        ],
+        [
+          "aeroway-runway-casing",
+          "none"
+        ],
+        [
+          "aeroway-area",
+          "none"
+        ],
+        [
+          "aeroway-runway",
+          "none"
+        ],
+        [
+          "road_area_pier",
+          "none"
+        ],
+        [
+          "road_pier",
+          "none"
+        ],
+        [
+          "highway_path",
+          "none"
+        ],
+        [
+          "highway_minor",
+          "none"
+        ],
+        [
+          "highway_major_casing",
+          "none"
+        ],
+        [
+          "highway_major_inner",
+          "none"
+        ],
+        [
+          "highway_major_subtle",
+          "none"
+        ],
+        [
+          "highway_motorway_casing",
+          "none"
+        ],
+        [
+          "highway_motorway_inner",
+          "none"
+        ],
+        [
+          "highway_motorway_subtle",
+          "none"
+        ],
+        [
+          "railway_transit",
+          "none"
+        ],
+        [
+          "railway_transit_dashline",
+          "none"
+        ],
+        [
+          "railway_service",
+          "none"
+        ],
+        [
+          "railway_service_dashline",
+          "none"
+        ],
+        [
+          "railway",
+          "none"
+        ],
+        [
+          "railway_dashline",
+          "none"
+        ],
+        [
+          "highway_motorway_bridge_casing",
+          "none"
+        ],
+        [
+          "highway_motorway_bridge_inner",
+          "none"
+        ],
+        [
+          "boundary_3",
+          "none"
+        ],
+        [
+          "boundary_2",
+          "none"
+        ],
+        [
+          "boundary_disputed",
+          "none"
+        ],
+        [
+          "waterway_line_label",
+          "none"
+        ],
+        [
+          "water_name_point_label",
+          "none"
+        ],
+        [
+          "water_name_line_label",
+          "none"
+        ],
+        [
+          "highway-name-path",
+          "none"
+        ],
+        [
+          "highway-name-minor",
+          "none"
+        ],
+        [
+          "highway-name-major",
+          "none"
+        ],
+        [
+          "highway-shield-non-us",
+          "none"
+        ],
+        [
+          "highway-shield-us-interstate",
+          "none"
+        ],
+        [
+          "road_shield_us",
+          "none"
+        ],
+        [
+          "airport",
+          "none"
+        ],
+        [
+          "label_other",
+          "none"
+        ],
+        [
+          "label_village",
+          "none"
+        ],
+        [
+          "label_town",
+          "none"
+        ],
+        [
+          "label_state",
+          "none"
+        ],
+        [
+          "label_city",
+          "none"
+        ],
+        [
+          "label_city_capital",
+          "none"
+        ],
+        [
+          "label_country_3",
+          "none"
+        ],
+        [
+          "label_country_2",
+          "none"
+        ],
+        [
+          "label_country_1",
+          "none"
+        ]
+      ],
+      "app": [
+        [
+          "hood-fill",
+          null
+        ],
+        [
+          "hood-line",
+          null
+        ],
+        [
+          "pins-city",
+          null
+        ],
+        [
+          "pins-street",
+          null
+        ],
+        [
+          "pins",
+          null
+        ],
+        [
+          "pin-city-names",
+          null
+        ],
+        [
+          "pin-names",
+          null
+        ],
+        [
+          "atlas-clusters",
+          null
+        ],
+        [
+          "place-icons",
+          null
+        ],
+        [
+          "hood-label",
+          null
+        ],
+        [
+          "route-line",
+          null
+        ],
+        [
+          "route-stop",
+          null
+        ],
+        [
+          "route-num",
+          null
+        ]
+      ],
+      "ground": "visible"
+    },
+    "keyboard": "false",
+    "street": {
+      "active": true,
+      "held": true,
+      "disabled": true,
+      "position": {
+        "streetID": "w1199779123-5950672235-11091656079",
+        "distance": 41.23321369342561,
+        "direction": -1,
+        "metres": 12.050556500782003
+      },
+      "panel": {
+        "x": 372,
+        "y": 523.71875,
+        "width": 350,
+        "height": 356.28125,
+        "top": 523.71875,
+        "right": 722,
+        "bottom": 880,
+        "left": 372
+      },
+      "status": "Unnamed lane · 41 m along source line. 52 work spots within 300 m straight line."
+    },
+    "enlarged": {
+      "bleed": false,
+      "panelBleed": false,
+      "panel": {
+        "x": 372,
+        "y": 340,
+        "width": 350,
+        "height": 540,
+        "top": 340,
+        "right": 722,
+        "bottom": 880,
+        "left": 372
+      }
+    },
+    "errors": [
+      "Failed to load resource: the server responded with a status of 404 (File not found)"
+    ]
+  },
+  {
+    "metrics": {
+      "width": 1440,
+      "bleed": false,
+      "map": {
+        "x": 360,
+        "y": 0,
+        "width": 1080,
+        "height": 900
+      },
+      "control": {
+        "x": 1385,
+        "y": 167,
+        "width": 44,
+        "height": 44
+      },
+      "base": [
+        [
+          "manga-park",
+          "visible"
+        ],
+        [
+          "manga-landcover",
+          "visible"
+        ],
+        [
+          "manga-landuse",
+          "visible"
+        ],
+        [
+          "manga-town",
+          "visible"
+        ],
+        [
+          "manga-water",
+          "visible"
+        ],
+        [
+          "manga-water-line",
+          "visible"
+        ],
+        [
+          "manga-building",
+          "visible"
+        ],
+        [
+          "manga-building-tone",
+          "visible"
+        ],
+        [
+          "manga-building-line",
+          "visible"
+        ],
+        [
+          "manga-road-major-casing",
+          "visible"
+        ],
+        [
+          "manga-road-major-core",
+          "visible"
+        ],
+        [
+          "manga-road-minor",
+          "visible"
+        ],
+        [
+          "manga-road-path",
+          "visible"
+        ],
+        [
+          "manga-rail",
+          "visible"
+        ],
+        [
+          "manga-water-label",
+          "visible"
+        ],
+        [
+          "manga-road-label",
+          "visible"
+        ],
+        [
+          "manga-place-label",
+          "visible"
+        ],
+        [
+          "park",
+          "none"
+        ],
+        [
+          "water",
+          "none"
+        ],
+        [
+          "landcover_ice_shelf",
+          "none"
+        ],
+        [
+          "landcover_glacier",
+          "none"
+        ],
+        [
+          "landuse_residential",
+          "none"
+        ],
+        [
+          "landcover_wood",
+          "none"
+        ],
+        [
+          "waterway",
+          "none"
+        ],
+        [
+          "building",
+          "none"
+        ],
+        [
+          "tunnel_motorway_casing",
+          "none"
+        ],
+        [
+          "tunnel_motorway_inner",
+          "none"
+        ],
+        [
+          "aeroway-taxiway",
+          "none"
+        ],
+        [
+          "aeroway-runway-casing",
+          "none"
+        ],
+        [
+          "aeroway-area",
+          "none"
+        ],
+        [
+          "aeroway-runway",
+          "none"
+        ],
+        [
+          "road_area_pier",
+          "none"
+        ],
+        [
+          "road_pier",
+          "none"
+        ],
+        [
+          "highway_path",
+          "none"
+        ],
+        [
+          "highway_minor",
+          "none"
+        ],
+        [
+          "highway_major_casing",
+          "none"
+        ],
+        [
+          "highway_major_inner",
+          "none"
+        ],
+        [
+          "highway_major_subtle",
+          "none"
+        ],
+        [
+          "highway_motorway_casing",
+          "none"
+        ],
+        [
+          "highway_motorway_inner",
+          "none"
+        ],
+        [
+          "highway_motorway_subtle",
+          "none"
+        ],
+        [
+          "railway_transit",
+          "none"
+        ],
+        [
+          "railway_transit_dashline",
+          "none"
+        ],
+        [
+          "railway_service",
+          "none"
+        ],
+        [
+          "railway_service_dashline",
+          "none"
+        ],
+        [
+          "railway",
+          "none"
+        ],
+        [
+          "railway_dashline",
+          "none"
+        ],
+        [
+          "highway_motorway_bridge_casing",
+          "none"
+        ],
+        [
+          "highway_motorway_bridge_inner",
+          "none"
+        ],
+        [
+          "boundary_3",
+          "none"
+        ],
+        [
+          "boundary_2",
+          "none"
+        ],
+        [
+          "boundary_disputed",
+          "none"
+        ],
+        [
+          "waterway_line_label",
+          "none"
+        ],
+        [
+          "water_name_point_label",
+          "none"
+        ],
+        [
+          "water_name_line_label",
+          "none"
+        ],
+        [
+          "highway-name-path",
+          "none"
+        ],
+        [
+          "highway-name-minor",
+          "none"
+        ],
+        [
+          "highway-name-major",
+          "none"
+        ],
+        [
+          "highway-shield-non-us",
+          "none"
+        ],
+        [
+          "highway-shield-us-interstate",
+          "none"
+        ],
+        [
+          "road_shield_us",
+          "none"
+        ],
+        [
+          "airport",
+          "none"
+        ],
+        [
+          "label_other",
+          "none"
+        ],
+        [
+          "label_village",
+          "none"
+        ],
+        [
+          "label_town",
+          "none"
+        ],
+        [
+          "label_state",
+          "none"
+        ],
+        [
+          "label_city",
+          "none"
+        ],
+        [
+          "label_city_capital",
+          "none"
+        ],
+        [
+          "label_country_3",
+          "none"
+        ],
+        [
+          "label_country_2",
+          "none"
+        ],
+        [
+          "label_country_1",
+          "none"
+        ]
+      ],
+      "app": [
+        [
+          "hood-fill",
+          null
+        ],
+        [
+          "hood-line",
+          null
+        ],
+        [
+          "pins-city",
+          null
+        ],
+        [
+          "pins-street",
+          null
+        ],
+        [
+          "pins",
+          null
+        ],
+        [
+          "pin-city-names",
+          null
+        ],
+        [
+          "pin-names",
+          null
+        ],
+        [
+          "atlas-clusters",
+          null
+        ],
+        [
+          "place-icons",
+          null
+        ],
+        [
+          "hood-label",
+          null
+        ],
+        [
+          "route-line",
+          null
+        ],
+        [
+          "route-stop",
+          null
+        ],
+        [
+          "route-num",
+          null
+        ]
+      ],
+      "ground": "visible"
+    },
+    "keyboard": "false",
+    "street": {
+      "active": true,
+      "held": true,
+      "disabled": true,
+      "position": {
+        "streetID": "w1199779123-5950672235-11091656079",
+        "distance": 41.23321369342561,
+        "direction": -1,
+        "metres": 12.050556500782003
+      },
+      "panel": {
+        "x": 372,
+        "y": 523.71875,
+        "width": 350,
+        "height": 356.28125,
+        "top": 523.71875,
+        "right": 722,
+        "bottom": 880,
+        "left": 372
+      },
+      "status": "Unnamed lane · 41 m along source line. 52 work spots within 300 m straight line."
+    },
+    "enlarged": {
+      "bleed": false,
+      "panelBleed": false,
+      "panel": {
+        "x": 372,
+        "y": 340,
+        "width": 350,
+        "height": 540,
+        "top": 340,
+        "right": 722,
+        "bottom": 880,
+        "left": 372
+      }
+    },
+    "errors": [
+      "Failed to load resource: the server responded with a status of 404 (File not found)"
+    ]
+  }
+]

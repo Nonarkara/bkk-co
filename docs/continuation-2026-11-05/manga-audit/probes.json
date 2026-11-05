@@ -1,0 +1,400 @@
+{
+  "omitted": {
+    "opacity": 0,
+    "design": 0.14
+  },
+  "forcedTown": 0.14,
+  "manual": {
+    "writesAfter": [
+      {
+        "t": 3007.699999988079,
+        "id": "manga-park",
+        "value": 0.62
+      },
+      {
+        "t": 3007.7999999821186,
+        "id": "manga-landcover",
+        "value": 0.42
+      },
+      {
+        "t": 3007.7999999821186,
+        "id": "manga-landuse",
+        "value": 0.3
+      },
+      {
+        "t": 3007.7999999821186,
+        "id": "manga-water",
+        "value": 0.45
+      },
+      {
+        "t": 3078.0999999940395,
+        "id": "manga-building",
+        "value": 0.92
+      },
+      {
+        "t": 3078.0999999940395,
+        "id": "manga-building-tone",
+        "value": 0.5
+      },
+      {
+        "t": 3078.0999999940395,
+        "id": "manga-building-line",
+        "value": 0.72
+      },
+      {
+        "t": 3147.0999999940395,
+        "id": "manga-road-major-casing",
+        "value": 0.82
+      },
+      {
+        "t": 3147.0999999940395,
+        "id": "manga-road-major-core",
+        "value": 1
+      },
+      {
+        "t": 3147.0999999940395,
+        "id": "manga-road-minor",
+        "value": 0.6
+      },
+      {
+        "t": 3147.0999999940395,
+        "id": "manga-road-path",
+        "value": 0.66
+      },
+      {
+        "t": 3147.0999999940395,
+        "id": "manga-rail",
+        "value": 0.62
+      },
+      {
+        "t": 3147.0999999940395,
+        "id": "manga-water-line",
+        "value": 0.8
+      },
+      {
+        "t": 3268,
+        "id": "manga-water-label",
+        "value": 1
+      },
+      {
+        "t": 3268.0999999940395,
+        "id": "manga-road-label",
+        "value": 1
+      },
+      {
+        "t": 3268.0999999940395,
+        "id": "manga-place-label",
+        "value": 1
+      }
+    ],
+    "now": false
+  },
+  "reduceChange": {
+    "writesAfter": [
+      {
+        "t": 4320.699999988079,
+        "id": "manga-park",
+        "value": 0.62
+      },
+      {
+        "t": 4320.699999988079,
+        "id": "manga-landcover",
+        "value": 0.42
+      },
+      {
+        "t": 4320.699999988079,
+        "id": "manga-landuse",
+        "value": 0.3
+      },
+      {
+        "t": 4320.699999988079,
+        "id": "manga-water",
+        "value": 0.45
+      },
+      {
+        "t": 4390,
+        "id": "manga-building",
+        "value": 0.92
+      },
+      {
+        "t": 4390,
+        "id": "manga-building-tone",
+        "value": 0.5
+      },
+      {
+        "t": 4390,
+        "id": "manga-building-line",
+        "value": 0.72
+      },
+      {
+        "t": 4460.4000000059605,
+        "id": "manga-road-major-casing",
+        "value": 0.82
+      },
+      {
+        "t": 4460.4000000059605,
+        "id": "manga-road-major-core",
+        "value": 1
+      },
+      {
+        "t": 4460.4000000059605,
+        "id": "manga-road-minor",
+        "value": 0.6
+      },
+      {
+        "t": 4460.4000000059605,
+        "id": "manga-road-path",
+        "value": 0.66
+      },
+      {
+        "t": 4460.5,
+        "id": "manga-rail",
+        "value": 0.62
+      },
+      {
+        "t": 4460.5,
+        "id": "manga-water-line",
+        "value": 0.8
+      },
+      {
+        "t": 4580.199999988079,
+        "id": "manga-water-label",
+        "value": 1
+      },
+      {
+        "t": 4580.199999988079,
+        "id": "manga-road-label",
+        "value": 1
+      },
+      {
+        "t": 4580.199999988079,
+        "id": "manga-place-label",
+        "value": 1
+      }
+    ],
+    "now": false
+  },
+  "hidden": {
+    "writesAfter": [
+      {
+        "t": 5628.299999982119,
+        "id": "manga-park",
+        "value": 0.62
+      },
+      {
+        "t": 5628.299999982119,
+        "id": "manga-landcover",
+        "value": 0.42
+      },
+      {
+        "t": 5628.299999982119,
+        "id": "manga-landuse",
+        "value": 0.3
+      },
+      {
+        "t": 5628.299999982119,
+        "id": "manga-water",
+        "value": 0.45
+      },
+      {
+        "t": 5698.0999999940395,
+        "id": "manga-building",
+        "value": 0.92
+      },
+      {
+        "t": 5698.0999999940395,
+        "id": "manga-building-tone",
+        "value": 0.5
+      },
+      {
+        "t": 5698.0999999940395,
+        "id": "manga-building-line",
+        "value": 0.72
+      },
+      {
+        "t": 5767.9000000059605,
+        "id": "manga-road-major-casing",
+        "value": 0.82
+      },
+      {
+        "t": 5767.9000000059605,
+        "id": "manga-road-major-core",
+        "value": 1
+      },
+      {
+        "t": 5767.9000000059605,
+        "id": "manga-road-minor",
+        "value": 0.6
+      },
+      {
+        "t": 5767.9000000059605,
+        "id": "manga-road-path",
+        "value": 0.66
+      },
+      {
+        "t": 5767.9000000059605,
+        "id": "manga-rail",
+        "value": 0.62
+      },
+      {
+        "t": 5767.9000000059605,
+        "id": "manga-water-line",
+        "value": 0.8
+      },
+      {
+        "t": 5888.5,
+        "id": "manga-water-label",
+        "value": 1
+      },
+      {
+        "t": 5888.5999999940395,
+        "id": "manga-road-label",
+        "value": 1
+      },
+      {
+        "t": 5888.5999999940395,
+        "id": "manga-place-label",
+        "value": 1
+      }
+    ],
+    "now": true
+  },
+  "restore": {
+    "hiddenBase": [
+      "manga-park",
+      "manga-landcover",
+      "manga-landuse",
+      "manga-town",
+      "manga-water",
+      "manga-water-line",
+      "manga-building",
+      "manga-building-tone",
+      "manga-building-line",
+      "manga-road-major-casing",
+      "manga-road-major-core",
+      "manga-road-minor",
+      "manga-road-path",
+      "manga-rail",
+      "manga-water-label",
+      "manga-road-label",
+      "manga-place-label"
+    ],
+    "visibleManga": []
+  },
+  "route": {
+    "circle": "#7d133a",
+    "text": "#20201d",
+    "data": {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                100.52973,
+                13.73277
+              ],
+              [
+                100.52735,
+                13.73438
+              ],
+              [
+                100.52474,
+                13.73465
+              ],
+              [
+                100.52527,
+                13.73194
+              ],
+              [
+                100.52623,
+                13.72843
+              ]
+            ]
+          },
+          "properties": {}
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              100.52973,
+              13.73277
+            ]
+          },
+          "properties": {
+            "n": "1",
+            "id": "o2f8b7ad9c8ed"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              100.52735,
+              13.73438
+            ]
+          },
+          "properties": {
+            "n": "2",
+            "id": "w1220676860"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              100.52474,
+              13.73465
+            ]
+          },
+          "properties": {
+            "n": "3",
+            "id": "n12428813607"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              100.52527,
+              13.73194
+            ]
+          },
+          "properties": {
+            "n": "4",
+            "id": "n11074631883"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              100.52623,
+              13.72843
+            ]
+          },
+          "properties": {
+            "n": "5",
+            "id": "n9470141517"
+          }
+        }
+      ]
+    }
+  },
+  "failure": {
+    "active": true,
+    "held": true,
+    "installed": false,
+    "pressed": "true",
+    "disabled": true,
+    "panel": "Street sketch×Sam Yan · 174 mapped-height volumes; other footprints flat True Coffee · building G floor Chamchuri Square68 m straight lineDirections ↗Notes & place51 more nearby S2M Café & Investor Club89 m straight lineDirections ↗Notes & place AUA Library90 m straight lineDirections ↗Notes & place Starbucks Coffee · Pathum Wan97 m straight lineDirections ↗Notes & place Ya Kun Kaya Toast Chamchuri101 m straight lineDirections ↗Notes & place Auntieanne’s อาคาร จามจุรี สแควร์102 m straight lineDirections ↗Notes & place 285 Cafe107 m straight lin"
+  }
+}

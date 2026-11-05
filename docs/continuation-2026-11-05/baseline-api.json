@@ -1,0 +1,11 @@
+{
+  "/api/hops": {
+    "status": 200,
+    "count": 0,
+    "limit": 10
+  },
+  "/api/account": {
+    "status": 200,
+    "signedIn": false
+  }
+}

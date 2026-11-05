@@ -1,0 +1,229 @@
+{
+  "interruptions": [
+    {
+      "event": "pointerdown",
+      "on": true,
+      "lateWrites": 0,
+      "allTransitionsZero": true
+    },
+    {
+      "event": "pointerdown",
+      "on": false,
+      "lateWrites": 0,
+      "allTransitionsZero": true
+    },
+    {
+      "event": "wheel",
+      "on": true,
+      "lateWrites": 0,
+      "allTransitionsZero": true
+    },
+    {
+      "event": "wheel",
+      "on": false,
+      "lateWrites": 0,
+      "allTransitionsZero": true
+    },
+    {
+      "event": "keydown",
+      "on": true,
+      "lateWrites": 0,
+      "allTransitionsZero": true
+    },
+    {
+      "event": "keydown",
+      "on": false,
+      "lateWrites": 0,
+      "allTransitionsZero": true
+    },
+    {
+      "event": "visibilitychange",
+      "on": true,
+      "lateWrites": 0,
+      "allTransitionsZero": true
+    },
+    {
+      "event": "visibilitychange",
+      "on": false,
+      "lateWrites": 0,
+      "allTransitionsZero": true
+    },
+    {
+      "event": "reduce",
+      "on": true,
+      "lateWrites": 0,
+      "allTransitionsZero": true
+    },
+    {
+      "event": "reduce",
+      "on": false,
+      "lateWrites": 0,
+      "allTransitionsZero": true
+    },
+    {
+      "event": "task",
+      "on": true,
+      "lateWrites": 0,
+      "allTransitionsZero": true
+    },
+    {
+      "event": "task",
+      "on": false,
+      "lateWrites": 0,
+      "allTransitionsZero": true
+    }
+  ],
+  "completed": [
+    {
+      "id": "manga-ground",
+      "opacity": 1,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-park",
+      "opacity": 0.62,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-landcover",
+      "opacity": 0.42,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-landuse",
+      "opacity": 0.3,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-town",
+      "opacity": 0.14,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-water",
+      "opacity": 0.45,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-water-line",
+      "opacity": 0.8,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-building",
+      "opacity": 0.92,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-building-tone",
+      "opacity": 0.5,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-building-line",
+      "opacity": 0.72,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-road-major-casing",
+      "opacity": 0.82,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-road-major-core",
+      "opacity": 1,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-road-minor",
+      "opacity": 0.6,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-road-path",
+      "opacity": 0.66,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-rail",
+      "opacity": 0.62,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-water-label",
+      "opacity": 1,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-road-label",
+      "opacity": 1,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    },
+    {
+      "id": "manga-place-label",
+      "opacity": 1,
+      "transition": {
+        "duration": 0,
+        "delay": 0
+      }
+    }
+  ],
+  "basemapAndAppRestore": true,
+  "failed": {
+    "active": false,
+    "installed": false,
+    "panel": "Street sketch×Manga drawing is unavailable. Your map and notebook still work. Retry the street sketch.Retry street sketch"
+  },
+  "retryRecovered": true
+}

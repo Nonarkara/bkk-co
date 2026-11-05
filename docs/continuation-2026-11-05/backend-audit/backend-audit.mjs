@@ -1,0 +1,52 @@
+// Café hop logs publish as a community feed. Posts, notebooks and account boundaries still hold.
+import {DatabaseSync} from 'node:sqlite';import{readFile}from'node:fs/promises';import assert from'node:assert/strict';
+import {notebookApi,validateHop}from'/Users/nonarkara/Projects/bangkok-ioc/bkk-co/src/notebook.js';
+const db=new DatabaseSync(':memory:');db.exec('PRAGMA foreign_keys=ON');db.exec(await readFile('/Users/nonarkara/Projects/bangkok-ioc/bkk-co/db/notebook.sql','utf8'));
+const binding={prepare(sql){let values=[];const s={bind(...v){values=v;return s},async first(){return db.prepare(sql).get(...values)||null},async all(){return{results:db.prepare(sql).all(...values)}},async run(){const r=db.prepare(sql).run(...values);return{meta:{changes:Number(r.changes)}}}};return s},async batch(statements){db.exec('BEGIN');try{const out=[];for(const s of statements)out.push(await s.run());db.exec('COMMIT');return out}catch(e){db.exec('ROLLBACK');throw e}}};
+const env={DB:binding,IP_SALT:'local-unit-test-salt',MODERATION_KEY:'local-test-moderation-key'},base='https://local.test';
+const ids=new Set(['h0001','h0002','h0003']);
+const request=(path,method='GET',body,headers={})=>notebookApi(new Request(base+'/api/'+path,{method,headers:{origin:base,'content-type':'application/json',...headers},...(body?{body:JSON.stringify(body)}:{})}),env,async()=>ids);
+const call=async(path,method='GET',body,headers={})=>{const r=await request(path,method,body,headers);return{status:r.status,body:await r.json()}};
+const signup=async name=>{const r=await request('account/create','POST',{name}),d=await r.json();return{id:d.account.id,cookie:r.headers.get('set-cookie').split(';')[0]}};
+const auth=who=>({cookie:who.cookie,'x-plub-account':who.id});
+const moderator={'x-plub-moderator':env.MODERATION_KEY};
+const photo='data:image/jpeg;base64,'+(await readFile('/Users/nonarkara/Projects/bangkok-ioc/bkk-co/test/fixtures/photo.jpg')).toString('base64');
+const hop1='hop000000000001',hop2='hop000000000002';
+const author=await signup('Hop author'),neighbour=await signup('Neighbour'),r1=await signup('Reporter one'),r2=await signup('Reporter two'),r3=await signup('Reporter three');
+
+const statuses=[];
+for(let i=0;i<101;i++) {
+ const id='bound'+String(i).padStart(12,'0');
+ const r=await call('hops/'+id,'PUT',{stops:['h0001'],note:'Audit only '+i,words:[],photos:[]},{...auth(author),'cf-connecting-ip':'192.0.2.'+(i+1)});
+ statuses.push(r.status);
+}
+assert.equal(statuses.every(s=>s===200),true);
+const rows=db.prepare('SELECT COUNT(*) n FROM notebook_hops WHERE account_id=?').get(author.id).n;
+const exported=(await call('account/contributions','GET',undefined,auth(author))).body;
+assert.equal(rows,101);assert.equal(exported.hops.length,100);
+console.log(JSON.stringify({finding:'Unbounded owned hop inserts exceed export limit',stored:rows,listed:exported.hops.length,statuses:[...new Set(statuses)]}));
+const ownId=exported.hops[0].id;
+assert.equal((await call('hops/'+ownId+'/report','POST',{reason:'privacy'},auth(neighbour))).status,200);
+const reporterExport=(await call('account/contributions','GET',undefined,auth(neighbour))).body;
+assert.equal(db.prepare('SELECT COUNT(*) n FROM notebook_hop_reports WHERE account_id=?').get(neighbour.id).n,1);
+assert.equal(reporterExport.reports.length,0);
+console.log(JSON.stringify({finding:'Owned hop reports omitted from contribution export',dbReports:1,export:reporterExport}));
+const otherId='otherhop000001';
+assert.equal((await call('hops/'+otherId,'PUT',{stops:['h0002'],note:'Other account survives',words:[],photos:[]},auth(neighbour))).status,200);
+assert.equal((await call('hops/'+otherId+'/report','POST',{reason:'privacy'},auth(author))).status,200);
+const response=await call('hops','GET');
+assert.ok(response.body.hops.every(h=>!('account_id' in h)&&!('at' in h)&&!('place' in h)));
+await call('account','DELETE',undefined,auth(author));
+assert.equal(db.prepare('SELECT COUNT(*) n FROM notebook_hops WHERE account_id=?').get(author.id).n,0);
+assert.equal(db.prepare('SELECT COUNT(*) n FROM notebook_hop_reports WHERE account_id=? OR hop_id=?').get(author.id,ownId).n,0);
+assert.equal(db.prepare('SELECT COUNT(*) n FROM notebook_hops WHERE id=?').get(otherId).n,1);
+console.log('Account deletion removes owned hops and both directions of reports; another account hop survives. Feed contains no account_id/private visit date.');
+const {loadAliases}=await import('/Users/nonarkara/Projects/bangkok-ioc/bkk-co/src/aliases.js');
+await loadAliases({ASSETS:{fetch:async()=>new Response(JSON.stringify({n123:'h0001'}))}},base,ids);
+assert.deepEqual(validateHop({stops:['n123','h0002'],note:'Alias',words:[],photos:[]},ids).stops,['h0001','h0002']);
+assert.throws(()=>validateHop({stops:['n123','h0001'],note:'Alias dup',words:[],photos:[]},ids),/appears once/);
+const aliasHop='aliashop000001';
+assert.equal((await call('hops/'+aliasHop,'PUT',{stops:['n123'],note:'Alias',words:[],photos:[]},auth(neighbour))).status,200);
+assert.deepEqual((await call('hops?place=n123')).body.hops.map(h=>h.id),[aliasHop]);
+console.log('Alias canonicalization, alias duplicate rejection, and aliased feed filtering pass.');
+db.close();

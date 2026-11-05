@@ -5,7 +5,11 @@
 **Home folder:** `~/Projects/bangkok-ioc/bkk-co` (folder name is historical). Sibling checkouts there are other projects with their own deploys — never deploy them from here.
 **Domain history:** co.nonarkara.org is primary (owner's choice). bkkco.nonarkara.org, used briefly on 2026-11-02, 301-redirects to it.
 
-## Current verified integration — 4 November 2026
+## Agent continuation — 5 November 2026
+
+MiniMax/other adopted work in ee26572/ba6be14/4d496db is preserved. Manga lens lifecycle, failure/retry, residential tone and route-number contrast repaired. Backend hop logs completed with compact explicit public UI, exact stop ordering/preview, opt-in photos, complete own export/report data, account quota100 and both moderation queues. Existing notebook/privacy/source/catalogue behavior retained. New tests: manga-motion (CI), manga-browser (local), hop-logs and isolated hop-browser. Evidence, independent review and final source/Worker proof: docs/continuation-2026-11-05/. Previous dated release reports below remain historical.
+
+## Integration — 4 November 2026
 
 57,379 cleaned places; 86 retired-ID aliases remain authoritative. Compact list tools are 83px on phone and 81px on desktop; default sort is distance from map centre. Explore and Filters disclose secondary choices. Five optional source-backed Street sketch areas use actual OSM street nodes and explicit building heights only; unknowns stay flat. PR7 media and PR8 density are adapted against current main, with source uncertainty and exact count tests. See docs/reconciliation-2026-11-04/{PR-LEDGER,WORLD-REVIEW,VALIDATION,DATA,SHIP}.md for provenance, release evidence and limitations. Global and repo AGENTS.md persist MSH, attention hierarchy and interruptible motion. Historical counts and reports below retain their dates.
 
