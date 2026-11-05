@@ -2,9 +2,9 @@
   {
     "width": 390,
     "current": {
-      "pin": 72,
-      "stop": 77,
-      "num": 78,
+      "pin": 92,
+      "stop": 97,
+      "num": 98,
       "numbers": [
         "1",
         "2",
@@ -14,9 +14,9 @@
       ]
     },
     "old": {
-      "pin": 75,
-      "stop": 66,
-      "num": 67,
+      "pin": 95,
+      "stop": 86,
+      "num": 87,
       "numbers": [
         "1",
         "2",
@@ -30,9 +30,9 @@
   {
     "width": 1024,
     "current": {
-      "pin": 72,
-      "stop": 77,
-      "num": 78,
+      "pin": 92,
+      "stop": 97,
+      "num": 98,
       "numbers": [
         "1",
         "2",
@@ -42,9 +42,9 @@
       ]
     },
     "old": {
-      "pin": 75,
-      "stop": 66,
-      "num": 67,
+      "pin": 95,
+      "stop": 86,
+      "num": 87,
       "numbers": [
         "1",
         "2",
@@ -58,9 +58,9 @@
   {
     "width": 1440,
     "current": {
-      "pin": 72,
-      "stop": 77,
-      "num": 78,
+      "pin": 92,
+      "stop": 97,
+      "num": 98,
       "numbers": [
         "1",
         "2",
@@ -70,9 +70,9 @@
       ]
     },
     "old": {
-      "pin": 75,
-      "stop": 66,
-      "num": 67,
+      "pin": 95,
+      "stop": 86,
+      "num": 87,
       "numbers": [
         "1",
         "2",
@@ -86,9 +86,9 @@
   {
     "width": 1280,
     "current": {
-      "pin": 72,
-      "stop": 77,
-      "num": 78,
+      "pin": 92,
+      "stop": 97,
+      "num": 98,
       "numbers": [
         "1",
         "2",
@@ -98,9 +98,9 @@
       ]
     },
     "old": {
-      "pin": 75,
-      "stop": 66,
-      "num": 67,
+      "pin": 95,
+      "stop": 86,
+      "num": 87,
       "numbers": [
         "1",
         "2",

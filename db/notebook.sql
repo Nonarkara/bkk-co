@@ -27,3 +27,15 @@ CREATE TABLE IF NOT EXISTS notebook_limits (
  scope TEXT NOT NULL, bucket INTEGER NOT NULL, n INTEGER NOT NULL,
  PRIMARY KEY(scope,bucket)
 );
+-- Hop logs: a walking route of places, published like a recommendation. No visit date is stored.
+CREATE TABLE IF NOT EXISTS notebook_hops (
+ id TEXT PRIMARY KEY, account_id TEXT NOT NULL REFERENCES notebook_accounts(id) ON DELETE CASCADE,
+ payload TEXT NOT NULL, created_at TEXT NOT NULL, hidden INTEGER NOT NULL DEFAULT 0
+);
+CREATE INDEX IF NOT EXISTS notebook_hop_recent ON notebook_hops(created_at);
+CREATE TABLE IF NOT EXISTS notebook_hop_reports (
+ hop_id TEXT NOT NULL REFERENCES notebook_hops(id) ON DELETE CASCADE,
+ account_id TEXT NOT NULL REFERENCES notebook_accounts(id) ON DELETE CASCADE,
+ reason TEXT NOT NULL, created_at TEXT NOT NULL,
+ PRIMARY KEY(hop_id,account_id)
+);

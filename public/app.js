@@ -76,6 +76,8 @@ const map = new maplibregl.Map({
 MapMotion.bind(map);
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
 if ('geolocation' in navigator) map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true } }), 'top-right');
+// A lens, not a second map: the same source, drawn as line and tone.
+window.MangaLens?.attach(map);
 
 // ---------- data ----------
 async function loadRows(name) {

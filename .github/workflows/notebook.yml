@@ -11,6 +11,8 @@ jobs:
         with:
           node-version: '22'
       - run: node test/street-world.mjs
+      - run: node test/manga-lens.mjs
+      - run: node test/hop-logs.mjs
       - run: node test/street-model.mjs
       - run: node test/map-motion.mjs
       - run: node test/aliases.mjs

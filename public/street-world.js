@@ -1,11 +1,11 @@
 // A reference sketch on the existing map, never a second canvas or an inferred city.
 (() => {
  const M=StreetModel, empty=()=>({type:'FeatureCollection',features:[]});
- let world,index,style,promise,panel,area,position,snapshot,baseLayers=[],installed=false,active=false,suspended=false,playing=false,timer=null,revision=0,view='overview',lastArea=null,lastRoad=null,desiredPadding=null,pendingReflow=false,cameraRevision=0,blocked=false;
+ let world,index,promise,panel,area,position,snapshot,installed=false,active=false,suspended=false,playing=false,timer=null,revision=0,view='overview',lastArea=null,lastRoad=null,desiredPadding=null,pendingReflow=false,cameraRevision=0,blocked=false;
  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
  const get=async path=>{const r=await fetch(path,{signal:AbortSignal.timeout(25000)});if(!r.ok)throw Error('Street sketch data is unavailable. Your map and notebook still work.');return r.json()};
  const current=t=>t===revision&&panel?.isConnected&&!panel.hidden;
- function load(){return promise||(promise=Promise.all([get('data/street-world.json'),get('styles/plub-street.json')]).then(([w,s])=>{world=w;style=s;index=M.index(w);return w}).catch(e=>{promise=null;throw e}))}
+ function load(){return promise||(promise=Promise.all([get('data/street-world.json'),Promise.resolve(window.MangaLens?.ready?.())]).then(([w])=>{world=w;index=M.index(w);return w}).catch(e=>{promise=null;throw e}))}
  function createPanel(){
   if(!panel){panel=document.createElement('section');panel.className='street-panel';panel.setAttribute('aria-label','Street sketch controls');document.body.append(panel);panel.addEventListener('toggle',e=>{if(e.target.open)pause()},true);panel.addEventListener('focusin',e=>{if(playing&&!e.target.matches('[data-street-play]'))pause()});panel.addEventListener('pointerdown',e=>{if(!e.target.closest('[data-street-play]'))pause()});new ResizeObserver(reflow).observe(panel)}
   panel.hidden=false;return panel;
@@ -17,9 +17,7 @@
  function suspend(){++revision;pause();if(panel)panel.hidden=true;if(active&&!suspended){suspended=true;paint(false);map.setMaxPitch(snapshot.maxPitch);map.setMaxZoom(snapshot.maxZoom);map.jumpTo({pitch:snapshot.pitch,padding:{top:0,left:0,right:0,bottom:0}})}}
  function install(){
   if(installed)return;
-  baseLayers=map.getStyle().layers.filter(l=>l.type==='background'||['openmaptiles','ne2_shaded'].includes(l.source)).map(l=>({id:l.id,visibility:l.layout?.visibility||'visible'}));
   const before=map.getLayer('pins-city')?'pins-city':undefined;
-  for(const layer of style.layers)map.addLayer({...layer,layout:{...(layer.layout||{}),visibility:'none'}},before);
   const c=document.createElement('canvas');c.width=c.height=12;const g=c.getContext('2d');g.fillStyle='#ede9e3';g.fillRect(0,0,12,12);g.strokeStyle='#b6b1aa';g.lineWidth=.7;g.beginPath();for(let x=-12;x<24;x+=6){g.moveTo(x,0);g.lineTo(x+12,12)}g.stroke();
   map.addImage('street-ink-tone',g.getImageData(0,0,12,12));
   map.addSource('street-buildings',{type:'geojson',data:empty()});
@@ -34,8 +32,9 @@
   installed=true;
  }
  function paint(on){
-  for(const b of baseLayers)if(map.getLayer(b.id))map.setLayoutProperty(b.id,'visibility',on?'none':b.visibility);
-  for(const id of [...style.layers.map(l=>l.id),'street-building-flat','street-building-edge','street-building-height','street-selected-line','street-eye'])map.setLayoutProperty(id,'visibility',on?'visible':'none');
+  // The street sketch is always drawn in line and tone; the lens holds it open while the sketch runs.
+  window.MangaLens?.hold(on);
+  for(const id of ['street-building-flat','street-building-edge','street-building-height','street-selected-line','street-eye'])map.setLayoutProperty(id,'visibility',on?'visible':'none');
  }
  const point=()=>M.point(index.roads.get(position.streetID),position.distance);
  function draw(){

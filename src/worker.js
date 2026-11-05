@@ -78,7 +78,7 @@ export default {
       url.hostname = 'co.nonarkara.org';
       return Response.redirect(url.toString(), 301);
     }
-    if (/^\/api\/(account|notebook|community|moderation|research)(?:\/|$)/.test(url.pathname)) return notebookApi(request, env, () => knownIds(env, request.url));
+    if (/^\/api\/(account|notebook|community|moderation|research|hops)(?:\/|$)/.test(url.pathname)) return notebookApi(request, env, () => knownIds(env, request.url));
     if (url.pathname === '/api/scores') {
       if (request.method === 'GET') return getScores(env);
       if (request.method === 'POST') return postScore(request, env);
