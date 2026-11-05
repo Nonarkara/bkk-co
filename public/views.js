@@ -51,10 +51,11 @@ window.addHoodLayers = () => {
     openHood(e.features[0].properties.slug);
   });
   map.on('click', 'hood-label', e => openHood(e.features[0].properties.slug));
-  // finder results and café-hop routes: numbered amber stops, dashed straight legs
+  // finder results and café-hop routes: numbered ink stops, dashed straight legs.
+  // Manga café hop: ink line + ink stops (manga line art), not the co-working amber.
   map.addSource('route', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
-  map.addLayer({ id: 'route-line', type: 'line', source: 'route', filter: ['==', '$type', 'LineString'], paint: { 'line-color': '#f59e0b', 'line-width': 3, 'line-dasharray': [2, 1.5] } });
-  map.addLayer({ id: 'route-stop', type: 'circle', source: 'route', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': 11, 'circle-color': '#f59e0b', 'circle-stroke-color': '#20201d', 'circle-stroke-width': 2 } });
+  map.addLayer({ id: 'route-line', type: 'line', source: 'route', filter: ['==', '$type', 'LineString'], paint: { 'line-color': '#7d133a', 'line-width': 3, 'line-dasharray': [2, 1.5] } });
+  map.addLayer({ id: 'route-stop', type: 'circle', source: 'route', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': 11, 'circle-color': '#7d133a', 'circle-stroke-color': '#20201d', 'circle-stroke-width': 2 } });
   map.addLayer({ id: 'route-num', type: 'symbol', source: 'route', filter: ['==', '$type', 'Point'], layout: { 'text-field': ['get', 'n'], 'text-size': 12, 'text-font': ['Noto Sans Bold'], 'text-allow-overlap': true }, paint: { 'text-color': '#20201d' } });
   map.on('click','route-stop',e=>{const p=state.byId.get(e.features[0].properties.id);if(p)select(p,false)});
   map.on('mouseenter','route-stop',()=>{map.getCanvas().style.cursor='pointer'});
