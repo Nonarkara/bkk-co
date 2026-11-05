@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-11-05T04:03:42.375Z",
+  "observedAt": "2026-11-05T06:32:46.070Z",
   "origin": "https://co.nonarkara.org",
   "sourceCommit": null,
   "workerVersion": null,
@@ -1021,8 +1021,8 @@
     },
     {
       "path": "manga-lens.js",
-      "bytes": 10415,
-      "sha256": "20779ad3400128904c2e8c14489c2df943318e453572389857c3c805c6f7e137"
+      "bytes": 10644,
+      "sha256": "c1e17847fe347d43485e95da69c84c1fd0589cea95dddda2bb2a4f57ac98b627"
     },
     {
       "path": "manifest.webmanifest",
