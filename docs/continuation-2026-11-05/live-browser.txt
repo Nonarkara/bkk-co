@@ -1,0 +1,1 @@
+Public read-only: manga targets, white route numbers, exact hop line/stop retention, anonymous key gate, new-task cleanup and enlarged notebook pass at3widths; zero writes/errors.

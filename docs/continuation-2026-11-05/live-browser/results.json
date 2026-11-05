@@ -1,0 +1,50 @@
+[
+  {
+    "width": 390,
+    "routeIDs": [
+      "o5611bfb2c2f1",
+      "o01a850fd562d",
+      "o3f6aea9b13dc",
+      "ofa6438cd067b",
+      "ob91bb785fbe3"
+    ],
+    "fullRoutePreserved": true,
+    "anonymousGate": true,
+    "classCleanup": true,
+    "enlargedBleed": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "width": 1024,
+    "routeIDs": [
+      "o5611bfb2c2f1",
+      "o01a850fd562d",
+      "o3f6aea9b13dc",
+      "ofa6438cd067b",
+      "ob91bb785fbe3"
+    ],
+    "fullRoutePreserved": true,
+    "anonymousGate": true,
+    "classCleanup": true,
+    "enlargedBleed": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "width": 1440,
+    "routeIDs": [
+      "o5611bfb2c2f1",
+      "o01a850fd562d",
+      "o3f6aea9b13dc",
+      "ofa6438cd067b",
+      "ob91bb785fbe3"
+    ],
+    "fullRoutePreserved": true,
+    "anonymousGate": true,
+    "classCleanup": true,
+    "enlargedBleed": false,
+    "errors": [],
+    "writes": []
+  }
+]
