@@ -1,0 +1,4 @@
+PASS hop browser 390
+PASS hop browser 1024
+PASS hop browser 1440
+PASS disposable browser flow; state /var/folders/4h/tw90t1j92mq90w5j_d9fy7rh0000gn/T/plub-hop-browser-ZoXHpb

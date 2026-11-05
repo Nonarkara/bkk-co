@@ -1,0 +1,5 @@
+Manga style: version, namespaced layer ids, ground at the bottom, real OpenMapTiles source-layers, property filters (not literals), no declared height, no vector source of its own, four runtime screentone tiles, and a basemap-only hide list pass.
+Street world:5source areas,9465footprints/215explicitheights/212nativeextrusions,3195originalnode-runs,3808shared-nodejunctions; no invented height/location and<1MBgzip.
+catalogue ok: 57379 places { cafe: 20160, coworking: 57, library: 423, restaurant: 36739 }
+Camera durations bounded; explicit snaps preserved; reduced/hidden pages snap and stop playback.
+Hop publish, feed, mine flags, place filter, account isolation, stale-account 409, stop/note/feeling/photo limits, three-report hiding, moderator restore, owned export including hop reports, atomic 100-hop storage bound, account deletion, and the unchanged notebook and community flows all pass.

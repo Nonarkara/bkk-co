@@ -1,0 +1,83 @@
+[
+  {
+    "width": 390,
+    "sheet": {
+      "x": 0,
+      "y": 255.65625,
+      "width": 390,
+      "height": 588.34375,
+      "top": 255.65625,
+      "right": 390,
+      "bottom": 844,
+      "left": 0
+    },
+    "stops": {
+      "x": 21,
+      "y": 380.4375,
+      "width": 348,
+      "height": 190,
+      "top": 380.4375,
+      "right": 369,
+      "bottom": 570.4375,
+      "left": 21
+    },
+    "publishBottom": 790.40625,
+    "bleed": false,
+    "sourceLayers": 99,
+    "routePoints": 0
+  },
+  {
+    "width": 1024,
+    "sheet": {
+      "x": 0,
+      "y": 90,
+      "width": 359,
+      "height": 810,
+      "top": 90,
+      "right": 359,
+      "bottom": 900,
+      "left": 0
+    },
+    "stops": {
+      "x": 21,
+      "y": 232.375,
+      "width": 317,
+      "height": 197.1875,
+      "top": 232.375,
+      "right": 338,
+      "bottom": 429.5625,
+      "left": 21
+    },
+    "publishBottom": 649.53125,
+    "bleed": false,
+    "sourceLayers": 99,
+    "routePoints": 0
+  },
+  {
+    "width": 1440,
+    "sheet": {
+      "x": 0,
+      "y": 90,
+      "width": 359,
+      "height": 810,
+      "top": 90,
+      "right": 359,
+      "bottom": 900,
+      "left": 0
+    },
+    "stops": {
+      "x": 21,
+      "y": 232.375,
+      "width": 317,
+      "height": 197.1875,
+      "top": 232.375,
+      "right": 338,
+      "bottom": 429.5625,
+      "left": 21
+    },
+    "publishBottom": 649.53125,
+    "bleed": false,
+    "sourceLayers": 99,
+    "routePoints": 0
+  }
+]

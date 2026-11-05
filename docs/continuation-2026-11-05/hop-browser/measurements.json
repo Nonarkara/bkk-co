@@ -1,0 +1,35 @@
+[
+  {
+    "width": 390,
+    "bleed": false,
+    "height": 732,
+    "firstAction": 200,
+    "composer": {
+      "height": 190,
+      "count": 5,
+      "publishBottom": 790.40625
+    }
+  },
+  {
+    "width": 1024,
+    "bleed": false,
+    "height": 810,
+    "firstAction": 176,
+    "composer": {
+      "height": 197.1875,
+      "count": 5,
+      "publishBottom": 649.53125
+    }
+  },
+  {
+    "width": 1440,
+    "bleed": false,
+    "height": 810,
+    "firstAction": 176,
+    "composer": {
+      "height": 197.1875,
+      "count": 5,
+      "publishBottom": 649.53125
+    }
+  }
+]

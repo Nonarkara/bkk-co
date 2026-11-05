@@ -1,0 +1,52 @@
+[
+  {
+    "results": [
+      {
+        "hop_count": 0
+      }
+    ],
+    "success": true,
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "APAC",
+      "served_by_colo": "SIN",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 0.6498
+      },
+      "duration": 0.6498,
+      "changes": 0,
+      "last_row_id": 0,
+      "changed_db": false,
+      "size_after": 118784,
+      "rows_read": 0,
+      "rows_written": 0,
+      "total_attempts": 1
+    }
+  },
+  {
+    "results": [
+      {
+        "accounts_over_hop_limit": 0
+      }
+    ],
+    "success": true,
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "APAC",
+      "served_by_colo": "SIN",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 0.5651
+      },
+      "duration": 0.5651,
+      "changes": 0,
+      "last_row_id": 0,
+      "changed_db": false,
+      "size_after": 118784,
+      "rows_read": 2,
+      "rows_written": 0,
+      "total_attempts": 1
+    }
+  }
+]

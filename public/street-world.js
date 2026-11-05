@@ -5,7 +5,7 @@
  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
  const get=async path=>{const r=await fetch(path,{signal:AbortSignal.timeout(25000)});if(!r.ok)throw Error('Street sketch data is unavailable. Your map and notebook still work.');return r.json()};
  const current=t=>t===revision&&panel?.isConnected&&!panel.hidden;
- function load(){return promise||(promise=Promise.all([get('data/street-world.json'),Promise.resolve(window.MangaLens?.ready?.())]).then(([w])=>{world=w;index=M.index(w);return w}).catch(e=>{promise=null;throw e}))}
+ function load(){return promise||(promise=Promise.all([get('data/street-world.json'),Promise.resolve(window.MangaLens?.ready?.())]).then(([w,lens])=>{if(!lens)throw Error('Manga drawing is unavailable. Your map and notebook still work. Retry the street sketch.');world=w;index=M.index(w);return w}).catch(e=>{promise=null;throw e}))}
  function createPanel(){
   if(!panel){panel=document.createElement('section');panel.className='street-panel';panel.setAttribute('aria-label','Street sketch controls');document.body.append(panel);panel.addEventListener('toggle',e=>{if(e.target.open)pause()},true);panel.addEventListener('focusin',e=>{if(playing&&!e.target.matches('[data-street-play]'))pause()});panel.addEventListener('pointerdown',e=>{if(!e.target.closest('[data-street-play]'))pause()});new ResizeObserver(reflow).observe(panel)}
   panel.hidden=false;return panel;

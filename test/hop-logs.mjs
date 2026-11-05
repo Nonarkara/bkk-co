@@ -64,7 +64,7 @@ const queue=(await call('moderation','GET',undefined,moderator)).body;
 assert.ok(Array.isArray(queue.posts),'the moderation queue still lists posts');
 const queued=queue.hops.find(h=>h.id===hop1);
 assert.equal(queued.reports,3);assert.equal(queued.hidden,1);assert.ok(String(queued.reasons).includes('privacy'));
-assert.equal(queued.payload.stops,undefined,'the moderation payload carries no place');
+assert.deepEqual(queued.payload.stops,['h0002','h0001'],'the authenticated moderator can inspect the public itinerary');
 assert.equal((await call('hops/'+hop1,'PATCH',{visible:true},moderator)).status,200);
 assert.ok((await call('hops')).body.hops.find(h=>h.id===hop1),'a restored hop is visible again');
 assert.equal((await call('moderation','GET',undefined,moderator)).body.hops.find(h=>h.id===hop1).reports,0,'restoring clears the reports');
@@ -78,6 +78,33 @@ assert.equal(mine.hops[0].payload.stops.length,2);
 const snapshot=(await call('account/contributions/hop/'+hop1,'GET',undefined,auth(author))).body;
 assert.equal(snapshot.payload.photos.length,1,'the owned snapshot is complete');assert.equal(snapshot.hidden,0);
 assert.equal((await call('account/contributions/hop/'+hop1,'GET',undefined,auth(neighbour))).status,404,'export isolation');
+// Reporting data belongs in the reporter's export, with account boundaries intact.
+const authorReports=(await call('account/contributions','GET',undefined,auth(author))).body;
+assert.deepEqual(authorReports.hopReports.map(r=>[r.hop_id,r.reason]),[[hop2,'spam']]);
+assert.ok(authorReports.hopReports[0].created_at);
+assert.deepEqual((await call('account/contributions','GET',undefined,auth(neighbour))).body.hopReports,[]);
+// The storage bound matches the complete export bound, including concurrent attempts
+// for the last slot. Existing owned visible logs can still be updated when full.
+const quotaAuthor=await signup('Quota author'),quotaIds=[];
+const quotaBody={stops:['h0001'],note:'A bounded hop.',words:[],photos:[]};
+const quotaAuth=i=>({...auth(quotaAuthor),'cf-connecting-ip':'192.0.2.'+(i+1)});
+for(let i=0;i<99;i++){
+ const id='quota'+String(i).padStart(12,'0');quotaIds.push(id);
+ assert.equal((await call('hops/'+id,'PUT',quotaBody,quotaAuth(i))).status,200);
+}
+const lastIds=['quotalast000001','quotalast000002'];
+const last=await Promise.all(lastIds.map((id,i)=>call('hops/'+id,'PUT',quotaBody,quotaAuth(100+i))));
+assert.deepEqual(last.map(r=>r.status).sort(),[200,409],'one concurrent contender gets the last slot');
+assert.match(last.find(r=>r.status===409).body.error,/100 hop logs/);
+assert.equal(db.prepare('SELECT COUNT(*) n FROM notebook_hops WHERE account_id=?').get(quotaAuthor.id).n,100);
+assert.equal((await call('account/contributions','GET',undefined,auth(quotaAuthor))).body.hops.length,100,'every owned hop remains exportable');
+assert.equal((await call('hops/'+quotaIds[0],'PUT',{...quotaBody,note:'Edited at full capacity.'},quotaAuth(103))).status,200,'full accounts can update');
+assert.equal((await call('hops/'+quotaIds[0],'PUT',quotaBody,auth(neighbour))).status,409,'another account cannot replace a quota hop');
+db.prepare('UPDATE notebook_hops SET hidden=1 WHERE id=?').run(quotaIds[0]);
+assert.equal((await call('hops/'+quotaIds[0],'PUT',quotaBody,quotaAuth(104))).status,409,'hidden hops cannot be updated even when full');
+assert.equal((await call('hops/'+quotaIds[1],'DELETE',undefined,auth(quotaAuthor))).status,200);
+assert.equal((await call('hops/quotareplace0001','PUT',quotaBody,quotaAuth(105))).status,200,'deleting frees one storage slot');
+assert.equal((await call('account','DELETE',undefined,auth(quotaAuthor))).status,200);
 // The pre-existing notebook and community flows still work.
 const entry='entry000000001';
 const saved=await call('notebook/'+entry,'PUT',{place:'h0001',at:'2026-11-03',stars:4,note:'A private visit.',words:[],photos:[],revision:0},auth(author));
@@ -110,4 +137,4 @@ assert.throws(()=>validateHop({stops:['h0001'],note:'x'.repeat(601),words:[],pho
 assert.throws(()=>validateHop({stops:['h0001'],note:'ok',words:['Excited'],photos:[]},ids),/Unknown feeling/);
 assert.throws(()=>validateHop({stops:['h0001'],note:'',words:[],photos:[]},ids),/note or a photo/);
 assert.throws(()=>validateHop({stops:['h0001'],note:'ok',words:[],photos:['data:image/svg+xml;base64,AAA=']},ids),/JPEG/);
-console.log('Hop publish, feed, mine flags, place filter, account isolation, stale-account 409, stop/note/feeling/photo limits, three-report hiding, moderator restore, owned export, account deletion, and the unchanged notebook and community flows all pass.');db.close();
+console.log('Hop publish, feed, mine flags, place filter, account isolation, stale-account 409, stop/note/feeling/photo limits, three-report hiding, moderator restore, owned export including hop reports, atomic 100-hop storage bound, account deletion, and the unchanged notebook and community flows all pass.');db.close();

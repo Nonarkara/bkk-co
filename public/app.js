@@ -331,15 +331,16 @@ document.addEventListener('click', e => {
 
 // ---------- sheets ----------
 let sheetGeneration=0;
-function openSheet(html, { place = false } = {}) {
+function openSheet(html, { place = false, keepRoute = false } = {}) {
   sheetGeneration++;
+  window.MangaLens?.settle();
   window.StreetWorld?.suspend();
-  if (!place) { window.WorkFinder?.clearMap(); window.clearRoute?.(); state.selected = null; map.getSource('sel')?.setData({ type:'FeatureCollection', features:[] }); }
+  if (!place) { if (!keepRoute) { window.WorkFinder?.clearMap(); window.clearRoute?.(); } state.selected = null; map.getSource('sel')?.setData({ type:'FeatureCollection', features:[] }); }
   openFromUrl.framed=true;
   setListOpen(false);
   $('#hits').hidden = true;
   const sheet = $('#sheet');
-  sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet','atlas-sheet','journey-sheet','featured-sheet','recommend-sheet','community-sheet');
+  sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet','atlas-sheet','journey-sheet','featured-sheet','recommend-sheet','community-sheet','shared-hops-sheet');
   sheet.hidden = false;
   sheet.innerHTML = html;
   const heading = sheet.querySelector('h1');

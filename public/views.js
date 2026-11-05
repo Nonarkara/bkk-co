@@ -56,7 +56,7 @@ window.addHoodLayers = () => {
   map.addSource('route', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
   map.addLayer({ id: 'route-line', type: 'line', source: 'route', filter: ['==', '$type', 'LineString'], paint: { 'line-color': '#7d133a', 'line-width': 3, 'line-dasharray': [2, 1.5] } });
   map.addLayer({ id: 'route-stop', type: 'circle', source: 'route', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': 11, 'circle-color': '#7d133a', 'circle-stroke-color': '#20201d', 'circle-stroke-width': 2 } });
-  map.addLayer({ id: 'route-num', type: 'symbol', source: 'route', filter: ['==', '$type', 'Point'], layout: { 'text-field': ['get', 'n'], 'text-size': 12, 'text-font': ['Noto Sans Bold'], 'text-allow-overlap': true }, paint: { 'text-color': '#20201d' } });
+  map.addLayer({ id: 'route-num', type: 'symbol', source: 'route', filter: ['==', '$type', 'Point'], layout: { 'text-field': ['get', 'n'], 'text-size': 12, 'text-font': ['Noto Sans Bold'], 'text-allow-overlap': true }, paint: { 'text-color': '#ffffff' } });
   map.on('click','route-stop',e=>{const p=state.byId.get(e.features[0].properties.id);if(p)select(p,false)});
   map.on('mouseenter','route-stop',()=>{map.getCanvas().style.cursor='pointer'});
   map.on('mouseleave','route-stop',()=>{map.getCanvas().style.cursor=''});
@@ -530,9 +530,11 @@ async function openHop(startKey) {
     <ol class="walk hop">${stops.map((p, i) => `<li data-id="${esc(p.id)}"><span class="stop">${i + 1}</span><span class="nm">${esc(p.n)}</span>${i ? `<span class="micro">${Math.round(legs[i - 1])} m</span>` : ''}<span class="idx">✦${p.idx}</span></li>`).join('')}</ol>
     <nav class="links">${g ? `<a href="${g}" target="_blank" rel="noopener">Walk it in Google Maps ↗</a>` : ''}<button type="button" class="share">Share</button></nav>`
     : '<p class="micro">Not enough independent cafés with a high index close together here. Try another start.</p>'}
+    <button type="button" class="linkish" data-shared-hops>Shared hop notes · optional</button>
     <details class="hop-guide"><summary>Plub’s walking tip</summary><div class="plub-say">${guideArt()}<p><q>Five independent cafés, a short walk apart. Pace yourself: one coffee, one pastry, one water.</q></p></div></details>
     <p class="src">Picked from independent cafés with ✦ ≥ 70, not listed as closed at 11 am, each 250–800 m from the last. Legs never cross the Chao Phraya; they can cross big roads, so use crossings. Distances are straight lines, so the real walk is longer: Google Maps gives the path. Apple Maps takes one stop at a time: open a stop to get its link.</p>`);
   sheet.classList.add('hop-sheet');
+  sheet.querySelector('[data-shared-hops]').onclick=()=>window.Notebook?.showHops(stops);
   sheet.querySelector('.hop-starts').addEventListener('click', e => { const b = e.target.closest('[data-start]'); if (b) openHop(b.dataset.start); });
   sheet.querySelector('.hop')?.addEventListener('click', e => { const li = e.target.closest('li[data-id]'); if (li) select(state.byId.get(li.dataset.id), true); });
   sheet.querySelector('.share')?.addEventListener('click', async ev => {

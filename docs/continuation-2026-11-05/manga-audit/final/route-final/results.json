@@ -1,0 +1,71 @@
+[
+  {
+    "width": 390,
+    "stopsHeight": 190,
+    "publishBottom": 790.40625,
+    "bleed": false,
+    "initialIDs": [
+      "o5611bfb2c2f1",
+      "o01a850fd562d",
+      "o3f6aea9b13dc",
+      "ofa6438cd067b",
+      "ob91bb785fbe3"
+    ],
+    "selectedIDs": [
+      "o01a850fd562d",
+      "o5611bfb2c2f1",
+      "o3f6aea9b13dc",
+      "ofa6438cd067b"
+    ],
+    "originalCoordinatesRetained": true,
+    "feedAndCancelRestore": true,
+    "classCleanup": true,
+    "closeAndNewTaskClear": true
+  },
+  {
+    "width": 1024,
+    "stopsHeight": 197.1875,
+    "publishBottom": 649.53125,
+    "bleed": false,
+    "initialIDs": [
+      "o5611bfb2c2f1",
+      "o01a850fd562d",
+      "o3f6aea9b13dc",
+      "ofa6438cd067b",
+      "ob91bb785fbe3"
+    ],
+    "selectedIDs": [
+      "o01a850fd562d",
+      "o5611bfb2c2f1",
+      "o3f6aea9b13dc",
+      "ofa6438cd067b"
+    ],
+    "originalCoordinatesRetained": true,
+    "feedAndCancelRestore": true,
+    "classCleanup": true,
+    "closeAndNewTaskClear": true
+  },
+  {
+    "width": 1440,
+    "stopsHeight": 197.1875,
+    "publishBottom": 649.53125,
+    "bleed": false,
+    "initialIDs": [
+      "o5611bfb2c2f1",
+      "o01a850fd562d",
+      "o3f6aea9b13dc",
+      "ofa6438cd067b",
+      "ob91bb785fbe3"
+    ],
+    "selectedIDs": [
+      "o01a850fd562d",
+      "o5611bfb2c2f1",
+      "o3f6aea9b13dc",
+      "ofa6438cd067b"
+    ],
+    "originalCoordinatesRetained": true,
+    "feedAndCancelRestore": true,
+    "classCleanup": true,
+    "closeAndNewTaskClear": true
+  }
+]
