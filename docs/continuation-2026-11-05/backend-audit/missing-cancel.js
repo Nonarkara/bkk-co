@@ -233,7 +233,7 @@
     if (!m || map) return;
     map = m;
     document.addEventListener('pointerdown', e => { if (!e.target.closest?.('.manga-toggle')) settle(); }, true);
-    
+
     document.addEventListener('wheel', settle, { passive: true, capture: true });
     document.addEventListener('visibilitychange', () => { if (document.hidden) settle(); });
     reduce.addEventListener('change', settle);
