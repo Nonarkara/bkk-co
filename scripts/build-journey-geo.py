@@ -172,7 +172,7 @@ def main():
             'routes':len(published_routes),'origins':len(origins),'parkingExamined':len(parking),'parkingReferenced':len(park_metadata),'parkingDisplayGeometries':len(park_geometries),
             'venueTags':len(venue_tags),**dict(counts)}}
  geo={'manifest':manifest,'stations':published_stations,'routes':published_routes,'origins':sorted(origins,key=lambda o:o['id']),'parkingGeometry':park_geometries}
- join={'manifest':{'version':1,'geo':'journey-geo.json','asOf':C.OSM_AS_OF,'license':'ODbL-1.0','workplaceTotal':len(rows),'catalogueSHA256':hashes},
+ join={'manifest':{'version':1,'geo':'journey-geo.json','asOf':C.OSM_AS_OF,'license':'ODbL-1.0','workplaceTotal':len(rows),'catalogueSHA256':hashes,'built':manifest['built']},
        'workCols':['placeID','railID','railM','btsID','btsM','parkingID','parkingM','parkingNotRestrictedID','parkingNotRestrictedM','parkingExplicitAccessID','parkingExplicitAccessM'],
        'workRows':joins,'venueTags':venue_tags,'parking':park_metadata}
  # Keep geo bounded: retain all origins/stations; if necessary parking shapes move to join file.
