@@ -1,0 +1,349 @@
+{
+  "before": "078e8a7db4bb35976a3f4c0ef0945b9e24c35d615e18c1afd8b4a4f276b94058",
+  "after": "078e8a7db4bb35976a3f4c0ef0945b9e24c35d615e18c1afd8b4a4f276b94058",
+  "stable": true,
+  "out": [
+    {
+      "width": 390,
+      "size": 14,
+      "errors": [],
+      "script": "neighborhood-photos.js?v=stroll-20261107c",
+      "gallery": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true,
+        "noticeHidden": true
+      },
+      "modal": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true
+      },
+      "placeholder": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true,
+        "geometry": {
+          "sheet": {
+            "x": 0,
+            "y": 354.484375,
+            "width": 390,
+            "height": 489.515625,
+            "top": 354.484375,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "direction": {
+            "x": 197,
+            "y": 459.875,
+            "width": 181,
+            "height": 44,
+            "top": 459.875,
+            "right": 378,
+            "bottom": 503.875,
+            "left": 197
+          },
+          "reference": {
+            "x": 12,
+            "y": 807.859375,
+            "width": 366,
+            "height": 128.984375,
+            "top": 807.859375,
+            "right": 378,
+            "bottom": 936.84375,
+            "left": 12
+          },
+          "client": 390,
+          "scroll": 390,
+          "document": 390,
+          "viewport": 390
+        }
+      },
+      "fullNoticeReachable": true,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "size": 30,
+      "errors": [],
+      "script": "neighborhood-photos.js?v=stroll-20261107c",
+      "gallery": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true,
+        "noticeHidden": true
+      },
+      "modal": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true
+      },
+      "placeholder": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true,
+        "geometry": {
+          "sheet": {
+            "x": 0,
+            "y": 354.484375,
+            "width": 390,
+            "height": 489.515625,
+            "top": 354.484375,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "direction": {
+            "x": 197,
+            "y": 482.28125,
+            "width": 181,
+            "height": 98,
+            "top": 482.28125,
+            "right": 378,
+            "bottom": 580.28125,
+            "left": 197
+          },
+          "reference": {
+            "x": 12,
+            "y": 1032.109375,
+            "width": 366,
+            "height": 128.984375,
+            "top": 1032.109375,
+            "right": 378,
+            "bottom": 1161.09375,
+            "left": 12
+          },
+          "client": 390,
+          "scroll": 390,
+          "document": 390,
+          "viewport": 390
+        }
+      },
+      "fullNoticeReachable": true,
+      "pass": true
+    },
+    {
+      "width": 1024,
+      "size": 14,
+      "errors": [],
+      "script": "neighborhood-photos.js?v=stroll-20261107c",
+      "gallery": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true,
+        "noticeHidden": true
+      },
+      "modal": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true
+      },
+      "placeholder": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true,
+        "geometry": {
+          "sheet": {
+            "x": 0,
+            "y": 90,
+            "width": 359,
+            "height": 631.796875,
+            "top": 90,
+            "right": 359,
+            "bottom": 721.796875,
+            "left": 0
+          },
+          "direction": {
+            "x": 181.5,
+            "y": 193.390625,
+            "width": 165.5,
+            "height": 44,
+            "top": 193.390625,
+            "right": 347,
+            "bottom": 237.390625,
+            "left": 181.5
+          },
+          "reference": {
+            "x": 12,
+            "y": 541.375,
+            "width": 335,
+            "height": 145.78125,
+            "top": 541.375,
+            "right": 347,
+            "bottom": 687.15625,
+            "left": 12
+          },
+          "client": 359,
+          "scroll": 359,
+          "document": 1024,
+          "viewport": 1024
+        }
+      },
+      "fullNoticeReachable": true,
+      "pass": true
+    },
+    {
+      "width": 1024,
+      "size": 30,
+      "errors": [],
+      "script": "neighborhood-photos.js?v=stroll-20261107c",
+      "gallery": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true,
+        "noticeHidden": true
+      },
+      "modal": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true
+      },
+      "placeholder": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true,
+        "geometry": {
+          "sheet": {
+            "x": 0,
+            "y": 183,
+            "width": 359,
+            "height": 559.25,
+            "top": 183,
+            "right": 359,
+            "bottom": 742.25,
+            "left": 0
+          },
+          "direction": {
+            "x": 181.5,
+            "y": 308.796875,
+            "width": 165.5,
+            "height": 98,
+            "top": 308.796875,
+            "right": 347,
+            "bottom": 406.796875,
+            "left": 181.5
+          },
+          "reference": {
+            "x": 12,
+            "y": 983.640625,
+            "width": 335,
+            "height": 145.78125,
+            "top": 983.640625,
+            "right": 347,
+            "bottom": 1129.421875,
+            "left": 12
+          },
+          "client": 359,
+          "scroll": 359,
+          "document": 1024,
+          "viewport": 1024
+        }
+      },
+      "fullNoticeReachable": true,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "size": 14,
+      "errors": [],
+      "script": "neighborhood-photos.js?v=stroll-20261107c",
+      "gallery": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true,
+        "noticeHidden": true
+      },
+      "modal": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true
+      },
+      "placeholder": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true,
+        "geometry": {
+          "sheet": {
+            "x": 0,
+            "y": 90,
+            "width": 359,
+            "height": 631.796875,
+            "top": 90,
+            "right": 359,
+            "bottom": 721.796875,
+            "left": 0
+          },
+          "direction": {
+            "x": 181.5,
+            "y": 193.390625,
+            "width": 165.5,
+            "height": 44,
+            "top": 193.390625,
+            "right": 347,
+            "bottom": 237.390625,
+            "left": 181.5
+          },
+          "reference": {
+            "x": 12,
+            "y": 541.375,
+            "width": 335,
+            "height": 145.78125,
+            "top": 541.375,
+            "right": 347,
+            "bottom": 687.15625,
+            "left": 12
+          },
+          "client": 359,
+          "scroll": 359,
+          "document": 1440,
+          "viewport": 1440
+        }
+      },
+      "fullNoticeReachable": true,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "size": 30,
+      "errors": [],
+      "script": "neighborhood-photos.js?v=stroll-20261107c",
+      "gallery": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true,
+        "noticeHidden": true
+      },
+      "modal": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true
+      },
+      "placeholder": {
+        "credit": "Supanut Arunoprayote · CC BY 4.0 · Source",
+        "collapsed": true,
+        "geometry": {
+          "sheet": {
+            "x": 0,
+            "y": 183,
+            "width": 359,
+            "height": 559.25,
+            "top": 183,
+            "right": 359,
+            "bottom": 742.25,
+            "left": 0
+          },
+          "direction": {
+            "x": 181.5,
+            "y": 308.796875,
+            "width": 165.5,
+            "height": 98,
+            "top": 308.796875,
+            "right": 347,
+            "bottom": 406.796875,
+            "left": 181.5
+          },
+          "reference": {
+            "x": 12,
+            "y": 983.640625,
+            "width": 335,
+            "height": 145.78125,
+            "top": 983.640625,
+            "right": 347,
+            "bottom": 1129.421875,
+            "left": 12
+          },
+          "client": 359,
+          "scroll": 359,
+          "document": 1440,
+          "viewport": 1440
+        }
+      },
+      "fullNoticeReachable": true,
+      "pass": true
+    }
+  ]
+}

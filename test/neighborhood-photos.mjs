@@ -35,3 +35,7 @@ for (const p of manifest.photos) {
 for (const slug of ['ari','samyan','charoenkrung','thonglo','ramkhamhaeng']) assert.ok(counts[slug] >= 12, `${slug}: core area coverage missing`);
 for (const hood of manifest.neighborhoods) assert.equal(counts[hood.slug], hood.count);
 console.log(`PASS ${manifest.photos.length} attributed real photograph derivatives; core neighborhood coverage`, counts);
+// Creator templates are not compact labels: preserve their notice in details.
+const compact=JSON.parse(await readFile(new URL('../public/data/neighborhood-photos.json',import.meta.url),'utf8'));
+assert(compact.photos.every(p=>p.creator.length<=120),'A creator notice must not inflate the compact caption');
+const notices=compact.photos.filter(p=>p.creatorNotice);assert.equal(notices.length,5);for(const p of notices){assert.equal(p.creator,'Supanut Arunoprayote');assert(p.creatorNotice.startsWith('This Photo was taken by '+p.creator));assert(p.creatorNotice.includes('mention me as the author'));assert(p.credit.startsWith(p.creator+' · '))}

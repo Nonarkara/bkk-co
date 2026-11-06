@@ -591,8 +591,14 @@
   // Detail-only loading makes explicit source tags available even without opening
   // the finder first. Late data may update its own evidence slot, never a newer task.
   function warmPlace(p,slot){
-    const generation=sheetGeneration;
-    load().then(()=>{if(generation===sheetGeneration&&state.selected?.id===p.id&&slot?.isConnected&&!document.querySelector('.been-form'))slot.outerHTML=placePanel(p)}).catch(()=>{});
+    const generation=sheetGeneration,owner=slot?.closest('#sheet');
+    load().then(()=>{
+      if(generation!==sheetGeneration||state.selected?.id!==p.id||!owner?.isConnected||owner.hidden||owner.querySelector('.been-form'))return;
+      // First-party evidence may replace the slot while the geography is loading.
+      // Same task/generation owns its current slot; a detached old node must not
+      // prevent the later, richer source facts from reaching the visible sheet.
+      const current=owner.querySelector('.journey-place-facts');if(current)current.outerHTML=placePanel(p);
+    }).catch(()=>{});
   }
   document.addEventListener('click', (e) => {
     if (e.target.closest('[data-work-back]')) open();

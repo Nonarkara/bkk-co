@@ -1,0 +1,14 @@
+{
+  "version": "4.7.1",
+  "base": "http://localhost:43828",
+  "preview": false,
+  "vendor": [
+    "http://localhost:43828/vendor/maplibre-gl-4.7.1/maplibre-gl.css",
+    "http://localhost:43828/vendor/maplibre-gl-4.7.1/maplibre-gl.js"
+  ],
+  "blockedCDNRequests": [],
+  "errors": [],
+  "mapStarted": true,
+  "footprintColorsStarted": true,
+  "negativeControl": "Previous CDN script fails to define maplibregl when unpkg is blocked"
+}
