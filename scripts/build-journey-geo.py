@@ -180,7 +180,7 @@ def main():
   join['parkingGeometry']=park_geometries;geo['parkingGeometry']={}
   manifest['parkingDisplayMeaning']+=' Parking geometry is stored in journey-places.json to bound the station/origin payload.'
  assert len(DUMP(geo).encode())<=500000
- for name,obj in [('journey-geo.json',geo),('journey-places.json',join)]: (data/name).write_text(DUMP(obj))
+ for name,obj in [('journey-geo.json',geo),('journey-places.json',join)]: (data/name).write_text(DUMP(obj)+'\n')
  assert all(C.sha(p)==hashes[p.name] for p in files)
  assert len(joins)==expected and {r[0] for r in joins}==work_ids
  station_ids={s['id'] for s in published_stations}
