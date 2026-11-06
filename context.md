@@ -13,6 +13,10 @@ The instrument found a live defect on first contact with the public site: Chrome
 
 `public/styles/plub-street.json` was the street sketch's own style file. The manga lens replaced it, nothing referenced it any more, and it was still being shipped; it is removed. The dated `live-bytes.json` records keep their own list — they are evidence of what was deployed on their date, not a live manifest.
 
+## Palette manga map — 7 November 2026
+
+Owner made manga primary and requested actual building-category fills. Default close Charoen Krung/Talat Noi frame; explicit location links and GPS remain. Palette320 colors actual Polygon components containing matching selected-place pins; source MVT IDs can aggregate2420unrelated footprints, so never classify by ID alone. Multi-category stripe, holes/boundaries/outside remainneutral. Precision view is secondary and preserves all coordinates/pins. Native3D retains only explicit heights and source lanes. New FootprintModel/FootprintPalette tests and MSH normal/planted gates; evidence docs/palette-buildings-2026-11-07/. Backend/catalogue/aliases untouched.
+
 ## Agent continuation — 5 November 2026
 
 MiniMax/other adopted work in ee26572/ba6be14/4d496db is preserved. Manga lens lifecycle, failure/retry, residential tone and route-number contrast repaired. Backend hop logs completed with compact explicit public UI, exact stop ordering/preview, opt-in photos, complete own export/report data, account quota100 and both moderation queues. Existing notebook/privacy/source/catalogue behavior retained. New tests: manga-motion (CI), manga-browser (local), hop-logs and isolated hop-browser. Evidence, independent review and final source/Worker proof: docs/continuation-2026-11-05/. Previous dated release reports below remain historical.

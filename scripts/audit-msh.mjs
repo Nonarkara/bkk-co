@@ -289,8 +289,6 @@ const PRESERVE = async (page, base, shot) => {
       installed: !!window.MangaLens?.installed,
       layers: window.MangaLens?.layers().length || 0,
     }));
-    await page.locator('.manga-toggle').click({ timeout: 15000 });
-    await page.waitForTimeout(1400);
     checks.lensOn = await page.evaluate(() => ({
       pressed: document.querySelector('.manga-toggle').getAttribute('aria-pressed'),
       ground: map.getLayoutProperty('manga-ground', 'visibility'),
@@ -298,12 +296,14 @@ const PRESERVE = async (page, base, shot) => {
     }));
     if (shot) await page.screenshot({ path: new URL(`manga-lens-${shot}.png`, outDir).pathname });
     await page.locator('.manga-toggle').click({ timeout: 15000 });
-    await page.waitForTimeout(1400);
+    await page.waitForTimeout(400);
     checks.lensOff = await page.evaluate(() => ({
       pressed: document.querySelector('.manga-toggle').getAttribute('aria-pressed'),
       ground: map.getLayoutProperty('manga-ground', 'visibility'),
       base: map.getLayoutProperty('background', 'visibility'),
     }));
+    await page.locator('.manga-toggle').click({ timeout: 15000 });
+    await page.waitForTimeout(400);
   });
 
   await step('notebook', async () => {

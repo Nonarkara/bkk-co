@@ -1,0 +1,1 @@
+Palette real-source components, contained pin masks, pan-before-filter recovery, precision camera/pins, category filters, key, source-height low view and enlarged/grayscale3widths pass; zero writes/errors.

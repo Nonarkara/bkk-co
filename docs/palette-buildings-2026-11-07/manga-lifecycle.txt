@@ -1,0 +1,1 @@
+Manga browser: all opacity targets,12 interruption paths with no late writes and0ms transitions, snapshot basemap/app restore, prerequisite503/retry and keyboard pass.

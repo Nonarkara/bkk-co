@@ -1,0 +1,83 @@
+[
+  {
+    "width": 390,
+    "before": {
+      "x": 10,
+      "y": 790,
+      "width": 150.453125,
+      "height": 44
+    },
+    "legend": "Manga building colors · Palette 320",
+    "visibleInPrecision": false,
+    "after": {
+      "active": true,
+      "pins": true,
+      "footprints": 359,
+      "visibility": "visible",
+      "keyControl": {
+        "x": 10,
+        "y": 790,
+        "width": 150.453125,
+        "height": 44,
+        "top": 790,
+        "right": 160.453125,
+        "bottom": 834,
+        "left": 10
+      }
+    }
+  },
+  {
+    "width": 1024,
+    "before": {
+      "x": 370,
+      "y": 846,
+      "width": 150.453125,
+      "height": 44
+    },
+    "legend": "Manga building colors · Palette 320",
+    "visibleInPrecision": false,
+    "after": {
+      "active": true,
+      "pins": true,
+      "footprints": 359,
+      "visibility": "visible",
+      "keyControl": {
+        "x": 370,
+        "y": 846,
+        "width": 150.453125,
+        "height": 44,
+        "top": 846,
+        "right": 520.453125,
+        "bottom": 890,
+        "left": 370
+      }
+    }
+  },
+  {
+    "width": 1440,
+    "before": {
+      "x": 370,
+      "y": 846,
+      "width": 150.453125,
+      "height": 44
+    },
+    "legend": "Manga building colors · Palette 320",
+    "visibleInPrecision": false,
+    "after": {
+      "active": true,
+      "pins": true,
+      "footprints": 359,
+      "visibility": "visible",
+      "keyControl": {
+        "x": 370,
+        "y": 846,
+        "width": 150.453125,
+        "height": 44,
+        "top": 846,
+        "right": 520.453125,
+        "bottom": 890,
+        "left": 370
+      }
+    }
+  }
+]

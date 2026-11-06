@@ -69,7 +69,7 @@ const canonId = id => ALIAS[id] || id;
 const map = new maplibregl.Map({
   container: 'map',
   style: 'https://tiles.openfreemap.org/styles/positron',
-  center: [100.535, 13.745], zoom: 12.5, minZoom: 9, maxZoom: 19,
+  center: [100.51518, 13.7315], zoom: 16.8, minZoom: 9, maxZoom: 19,
   maxBounds: [[99.9, 13.1], [101.35, 14.45]], renderWorldCopies: false,
   attributionControl: { compact: true, customAttribution: 'Places © <a href="https://overturemaps.org">Overture Maps</a> · © OSM contributors' },
 });
@@ -78,6 +78,7 @@ map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-ri
 if ('geolocation' in navigator) map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true } }), 'top-right');
 // A lens, not a second map: the same source, drawn as line and tone.
 window.MangaLens?.attach(map);
+window.FootprintPalette?.attach(map);
 
 // ---------- data ----------
 async function loadRows(name) {
@@ -155,6 +156,7 @@ function refresh() {
     })),
   });
   Atlas.onRefresh(lastList);
+  window.FootprintPalette?.refresh(lastList);
   const total = state.places.length;
   $('#count').textContent = `${fmt(lastList.length)} matching`;
   $('#list-filter-count').textContent=state.flags.size?' · '+state.flags.size:'';
@@ -488,7 +490,7 @@ function openFromUrl() {
   else if (u.searchParams.get('hood') && $('#sheet').hidden) window.openHood?.(u.searchParams.get('hood'), true);
   else if (u.searchParams.get('hop') && !openFromUrl.framed) { openFromUrl.framed = true; window.openHop?.(u.searchParams.get('hop')); }
   else if (MOODS[u.searchParams.get('mood')] && !state.mood && !openFromUrl.framed) { openFromUrl.framed = true; setMood(u.searchParams.get('mood')); }
-  else if (!id && !u.searchParams.get('hood') && !openFromUrl.framed) { openFromUrl.framed = true; window.fitAllHoods?.(); }
+  else if (!id && !u.searchParams.get('hood') && !openFromUrl.framed) { openFromUrl.framed = true; } // Keep the close manga neighbourhood; zoom controls retain the city overview.
 }
 
 // ---------- moods ----------

@@ -1,0 +1,6 @@
+Planted defect: 4 failure(s) reported; the gate caught it: true.
+  PLANTED FAIL [390] B9 map obstruction: div covers 57% of the map
+  PLANTED FAIL [1024] B9 map obstruction: div covers 48% of the map
+  PLANTED FAIL [1024] B7 hierarchy: top two areas differ by only 1.36x
+  PLANTED FAIL [1440] B9 map obstruction: div covers 48% of the map
+Report: /Users/nonarkara/Projects/bangkok-ioc/bkk-co/docs/msh-audit/2026-11-06/msh-report-planted.json
