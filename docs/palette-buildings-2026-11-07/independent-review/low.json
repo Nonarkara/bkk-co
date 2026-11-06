@@ -1,0 +1,70 @@
+{
+  "initial": {
+    "view": "walk",
+    "area": "charoenkrung",
+    "position": {
+      "streetID": "w1197033854-11107363568-11107363569",
+      "distance": 0,
+      "direction": 1,
+      "metres": 19.632207322198198
+    },
+    "pitch": 72,
+    "palette": 94,
+    "nearby": [
+      {
+        "text": "Directions ↗",
+        "href": "https://www.google.com/maps/dir/?api=1&destination=13.73112%2C100.51523&travelmode=walking"
+      },
+      {
+        "text": "Directions ↗",
+        "href": "https://www.google.com/maps/dir/?api=1&destination=13.73176%2C100.51502&travelmode=walking"
+      },
+      {
+        "text": "Directions ↗",
+        "href": "https://www.google.com/maps/dir/?api=1&destination=13.73176%2C100.51498&travelmode=walking"
+      },
+      {
+        "text": "Directions ↗",
+        "href": "https://www.google.com/maps/dir/?api=1&destination=13.73089%2C100.51559&travelmode=walking"
+      },
+      {
+        "text": "Directions ↗",
+        "href": "https://www.google.com/maps/dir/?api=1&destination=13.73206%2C100.51499&travelmode=walking"
+      },
+      {
+        "text": "Directions ↗",
+        "href": "https://www.google.com/maps/dir/?api=1&destination=13.7321%2C100.51501&travelmode=walking"
+      },
+      {
+        "text": "Directions ↗",
+        "href": "https://www.google.com/maps/dir/?api=1&destination=13.73211%2C100.51493&travelmode=walking"
+      },
+      {
+        "text": "Directions ↗",
+        "href": "https://www.google.com/maps/dir/?api=1&destination=13.73215%2C100.51474&travelmode=walking"
+      }
+    ],
+    "notice": "",
+    "branches": 0,
+    "playing": false,
+    "playDisabled": true
+  },
+  "moved": {
+    "position": {
+      "streetID": "w1197033854-11107363568-11107363569",
+      "distance": 18.242864069626496,
+      "direction": 1,
+      "metres": 19.632207322198198
+    },
+    "bearing": 175.2594540669007,
+    "pitch": 72,
+    "playing": false,
+    "branches": 3,
+    "palette": 94
+  },
+  "exit": {
+    "active": false,
+    "manga": true,
+    "pitch": 0
+  }
+}

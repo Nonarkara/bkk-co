@@ -1,0 +1,88 @@
+{
+  "center": {
+    "lng": 100.5303,
+    "lat": 13.7366
+  },
+  "zoom": 17,
+  "source": {
+    "type": "vector",
+    "url": "https://tiles.openfreemap.org/planet"
+  },
+  "features": [
+    {
+      "id": 4449208160,
+      "properties": {
+        "render_height": 1,
+        "render_min_height": 0
+      },
+      "geometryType": "MultiPolygon",
+      "polygonComponents": 3
+    },
+    {
+      "id": 1580605272,
+      "properties": {
+        "render_height": 2,
+        "render_min_height": 0
+      },
+      "geometryType": "Polygon",
+      "polygonComponents": 1
+    },
+    {
+      "id": 11980566160,
+      "properties": {
+        "render_height": 3,
+        "render_min_height": 0
+      },
+      "geometryType": "MultiPolygon",
+      "polygonComponents": 2
+    },
+    {
+      "id": 1572369560,
+      "properties": {
+        "render_height": 4,
+        "render_min_height": 0
+      },
+      "geometryType": "MultiPolygon",
+      "polygonComponents": 52
+    },
+    {
+      "id": 1575911362,
+      "properties": {
+        "colour": "#f0f0e4",
+        "render_height": 4,
+        "render_min_height": 0
+      },
+      "geometryType": "Polygon",
+      "polygonComponents": 1
+    },
+    {
+      "id": 29398250,
+      "properties": {
+        "render_height": 5,
+        "render_min_height": 0
+      },
+      "geometryType": "MultiPolygon",
+      "polygonComponents": 2420
+    },
+    {
+      "id": 185158320,
+      "properties": {
+        "render_height": 5,
+        "render_min_height": 0,
+        "hide_3d": true
+      },
+      "geometryType": "MultiPolygon",
+      "polygonComponents": 24
+    },
+    {
+      "id": 1580605072,
+      "properties": {
+        "colour": "#e9e7da",
+        "render_height": 5,
+        "render_min_height": 0
+      },
+      "geometryType": "Polygon",
+      "polygonComponents": 1
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+MSH audit 2026-11-06 · http://localhost:43991 · planted=false
+   390px  chrome 49+0px (6%)  map 89%  void 13715px  hierarchy 15.39x  PASS
+  1024px  chrome 49+0px (5%)  map 65%  void 25600px  hierarchy 2.05x  PASS
+  1440px  chrome 49+0px (5%)  map 75%  void 42750px  hierarchy 3.33x  PASS
+  journey: search 9 hits · chip works · hop 5 stops · shared feed "No shared hop notes yet. Choose real sto" · lens visible/none · writes 0
+Verdict: PASS
+Report: /Users/nonarkara/Projects/bangkok-ioc/bkk-co/docs/msh-audit/2026-11-06/msh-report.json

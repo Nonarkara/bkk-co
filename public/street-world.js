@@ -41,6 +41,7 @@
   const ids=new Set(area.buildingIDs),r=index.roads.get(position.streetID),p=point();
   if(lastArea!==area.id){map.getSource('street-buildings').setData({...world.buildings,features:world.buildings.features.filter(f=>ids.has(f.id))});lastArea=area.id}
   if(lastRoad!==r.id){map.getSource('street-selected-line').setData({type:'FeatureCollection',features:[{type:'Feature',id:r.id,geometry:r.geometry,properties:r.properties}]});lastRoad=r.id}
+  window.FootprintPalette?.sync();
   map.getSource('street-eye').setData({type:'FeatureCollection',features:[{type:'Feature',geometry:{type:'Point',coordinates:p.coordinates},properties:{}}]});
  }
  function layoutPadding(){return {top:30,left:35,right:65,bottom:isPhone()?Math.min(panel.offsetHeight+25,innerHeight*.45):35}}
@@ -152,10 +153,10 @@
    if(!current(token))return;
    if(!active)snapshot={center:map.getCenter().toArray(),zoom:map.getZoom(),pitch:map.getPitch(),bearing:map.getBearing(),maxPitch:map.getMaxPitch(),maxZoom:map.getMaxZoom()};
    prepare();install();active=true;suspended=false;map.setMaxPitch(85);map.setMaxZoom(22);paint(true);
-   const origin=p?[p.x,p.y]:null,nearestArea=origin?world.areas.slice().sort((a,b)=>M.dist(origin,[a.anchor.x,a.anchor.y])-M.dist(origin,[b.anchor.x,b.anchor.y]))[0]:world.areas.find(a=>a.id==='samyan');
+   const center=map.getCenter(),origin=p?[p.x,p.y]:[center.lng,center.lat],nearestArea=world.areas.slice().sort((a,b)=>M.dist(origin,[a.anchor.x,a.anchor.y])-M.dist(origin,[b.anchor.x,b.anchor.y]))[0];
    const within=origin&&M.dist(origin,[nearestArea.anchor.x,nearestArea.anchor.y])<=nearestArea.radiusM;
    choose(nearestArea.id,within?origin:undefined);
-   if(origin&&!within){const note=document.createElement('p');note.className='src';note.textContent='That place is outside the five sketch areas. Showing '+nearestArea.name+'; choose an area above.';panel.querySelector('header').after(note)}
+   if(origin&&!within){const note=document.createElement('p');note.className='src';note.textContent=(p?'That place':'This map location')+' is outside the five sketch areas. Showing '+nearestArea.name+'; choose an area above.';panel.querySelector('header').after(note)}
   }catch(e){if(!current(token))return;panel.querySelector('[role=status]')?.remove();const msg=document.createElement('p');msg.setAttribute('role','status');msg.textContent=e.message;panel.append(msg);const b=document.createElement('button');b.textContent='Retry street sketch';b.onclick=()=>open(p);panel.append(b)}
  }
  function resume(){if(!active)return open();closeSheet();createPanel();prepare();map.setMaxPitch(85);map.setMaxZoom(22);suspended=false;paint(true);render();draw();camera()}

@@ -14,7 +14,7 @@
   const MARK = '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><rect x="1.6" y="1.6" width="16.8" height="16.8" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M3.4 14.2 L14.2 3.4" stroke="currentColor" stroke-width="1"/><circle cx="6.4" cy="6.4" r="1.15" fill="currentColor"/><circle cx="12.6" cy="12.6" r="1.15" fill="currentColor"/><circle cx="12.9" cy="6.1" r="0.7" fill="currentColor"/></svg>';
 
   let map = null, style = null, stylePromise = null, installed = false;
-  let preferred = false, held = false, button = null;
+  let preferred = true, held = false, button = null;
   let baseState = new Map(), targets = new Map(), timers = [], failure = '';
 
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
@@ -135,6 +135,7 @@
     if (!installed) return;
     const on = wanted();
     clearTimers();
+    globalThis.FootprintPalette?.sync();
     if (on) {
       baseVisible(false);
       for (const id of style.layers) {
@@ -185,7 +186,7 @@
     button.disabled = held;
     button.title = held ? 'Manga view · the street sketch is always drawn in line and tone'
       : failure ? `Manga view unavailable — ${failure} · tap to retry`
-      : 'Manga view · line and tone';
+      : wanted() ? 'Manga map · switch to precision basemap' : 'Precision basemap · return to manga map';
   }
   function settle() { if (timers.length) apply(true); }
   async function set(next) {

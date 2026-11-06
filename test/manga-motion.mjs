@@ -36,7 +36,7 @@ function harness(failures=0){
  return{lens,map,document,media,timers,writes,advance,visible,targets,snapWrites,get button(){return button},get fetches(){return fetches},
   event:(k,e={target:{closest:()=>false}})=>emit(events,k,e),reduce:()=>{media.matches=true;emit(mediaEvents,'change')},reload:()=>emit(mapEvents,'style.load')};
 }
-const h=harness();assert.equal(await h.lens.ready(),true);
+const h=harness();assert.equal(await h.lens.ready(),true);assert.equal(h.lens.preferred,true,'Manga is the owner-requested primary map');assert.equal(h.button.attrs['aria-pressed'],'true');await h.lens.set(false);h.advance(240);
 assert.equal(h.visible('water'),'none');assert.equal(h.visible('base'),'visible');
 await h.lens.set(true);assert.equal(h.button.attrs['aria-pressed'],'true');assert.equal(h.button.disabled,false);
 assert.ok(h.timers.size>0);assert.ok([...h.timers.values()].every(t=>t.delay<=240),'all work is bounded by240ms');

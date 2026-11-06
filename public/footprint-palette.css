@@ -1,0 +1,10 @@
+/* A compact data key at the map edge; the building geometry carries the color. */
+.footprint-key-control .footprint-key { display:flex; align-items:center; gap:4px; width:auto; height:44px; padding:6px 8px; background:var(--paper); color:var(--ink); font:inherit; font-size:12px; border:1px solid var(--rule); }
+.footprint-swatch { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; flex:none; color:#2b2320; }
+.footprint-swatch .place-symbol { width:18px; height:18px; }
+.building-key { margin-top:10px; }
+.building-key ul { display:flex; flex-wrap:wrap; gap:6px 12px; padding:0; list-style:none; }
+.building-key li { display:flex; align-items:center; gap:6px; }
+@media(max-width:899px) { body:has(#sheet:not([hidden])) .footprint-key-control,body:has(.street-panel:not([hidden])) .footprint-key-control { display:none; } }
+
+.footprint-key-control[hidden] { display:none; }

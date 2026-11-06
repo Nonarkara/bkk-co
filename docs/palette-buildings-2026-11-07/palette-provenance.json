@@ -1,0 +1,30 @@
+{
+  "source": "/Users/nonarkara/Projects/palette/data/colors.json",
+  "sha256": "555f11c32eb8133078fd470dd7d5320533aaa8b636f12fa06a8dd3d0ee2703b4",
+  "combination": 320,
+  "colors": [
+    {
+      "name": "Coral Red",
+      "hex": "#f58e84",
+      "iconContrast": 6.660531758370913
+    },
+    {
+      "name": "Sulpher Yellow",
+      "hex": "#f5ecc2",
+      "iconContrast": 12.947098249547961
+    },
+    {
+      "name": "Oil Green",
+      "hex": "#819238",
+      "iconContrast": 4.4737083514625455
+    },
+    {
+      "name": "Light Glaucous Blue",
+      "hex": "#a5c8d1",
+      "iconContrast": 8.638102541673362
+    }
+  ],
+  "bodyContrast": 10.364016789128755,
+  "iconMinimum": 3,
+  "note": "Palette glyphs are non-text icons; body labels stay plum on white, map text keeps its paper halo. Source digital conversions, not historical exact ink."
+}
