@@ -1,0 +1,88 @@
+{
+  "source": "/Users/nonarkara/Projects/palette/data/colors.json",
+  "sha256": "555f11c32eb8133078fd470dd7d5320533aaa8b636f12fa06a8dd3d0ee2703b4",
+  "combinations": {
+    "176": [
+      {
+        "name": "Hermosa Pink",
+        "hex": "#f9c1ce"
+      },
+      {
+        "name": "Seashell Pink",
+        "hex": "#fdd4bd"
+      },
+      {
+        "name": "Calamine BLue",
+        "hex": "#78cdd0"
+      }
+    ],
+    "227": [
+      {
+        "name": "Hermosa Pink",
+        "hex": "#f9c1ce"
+      },
+      {
+        "name": "Light Glaucous Blue",
+        "hex": "#a5c8d1"
+      },
+      {
+        "name": "Cerulian Blue",
+        "hex": "#0093a5"
+      }
+    ],
+    "241": [
+      {
+        "name": "Red Orange",
+        "hex": "#dd4027"
+      },
+      {
+        "name": "Pale Lemon Yellow",
+        "hex": "#ffefae"
+      },
+      {
+        "name": "Isabella Color",
+        "hex": "#c5a56e"
+      },
+      {
+        "name": "Dark Medici Blue",
+        "hex": "#547076"
+      }
+    ],
+    "273": [
+      {
+        "name": "Hermosa Pink",
+        "hex": "#f9c1ce"
+      },
+      {
+        "name": "Pansy Purple",
+        "hex": "#7d133a"
+      },
+      {
+        "name": "Sudan Brown",
+        "hex": "#a36752"
+      },
+      {
+        "name": "Neutral Gray",
+        "hex": "#b6bfc1"
+      }
+    ],
+    "320": [
+      {
+        "name": "Coral Red",
+        "hex": "#f58e84"
+      },
+      {
+        "name": "Sulpher Yellow",
+        "hex": "#f5ecc2"
+      },
+      {
+        "name": "Oil Green",
+        "hex": "#819238"
+      },
+      {
+        "name": "Light Glaucous Blue",
+        "hex": "#a5c8d1"
+      }
+    ]
+  }
+}

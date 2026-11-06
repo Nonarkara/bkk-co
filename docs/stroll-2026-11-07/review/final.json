@@ -1,0 +1,129 @@
+{
+  "before": {
+    "app.js": "f96d4bbac83520922c1613aa243f651396a22840e7eb7d445e6d55e7e535556f",
+    "journeys.js": "39b788118c3ff572e29cfc0655e6e548960d040a14f010d9a21c575a5ffa3b41",
+    "views.js": "c0902f40cd47dc9167bcb1c2fbd962a7a1638e53bbdbaae307050e5a2cc8f434",
+    "street-world.js": "ea528000b4ef27ce8393c5939949732352a2e89d5f45779ac552a97cc4de582c",
+    "street-world.css": "a499166e7c65f45eb127e90d6061bfac3f6d6a509dcabe3dd16a66866d851051",
+    "neighborhood-photos.js": "df444f8c4ba6ed10a7d21db1c86ac91357bc51235e4a419a235d1d184b035848",
+    "neighborhood-photos.css": "c5f3833b17988efb81333b57a7ceeb325ff49182f1a29c5cccd42f2cc0ead4b4",
+    "place-preferences.js": "8061390484876a1d7c3077d4e3a861f78f23e479898dbf75e0e0d35ec3a38eea",
+    "place-preferences.css": "06c745118affeb1dc0ecc356f1883b9572f30656622afdac80c0866b6a6722e9"
+  },
+  "after": {
+    "app.js": "f96d4bbac83520922c1613aa243f651396a22840e7eb7d445e6d55e7e535556f",
+    "journeys.js": "39b788118c3ff572e29cfc0655e6e548960d040a14f010d9a21c575a5ffa3b41",
+    "views.js": "c0902f40cd47dc9167bcb1c2fbd962a7a1638e53bbdbaae307050e5a2cc8f434",
+    "street-world.js": "ea528000b4ef27ce8393c5939949732352a2e89d5f45779ac552a97cc4de582c",
+    "street-world.css": "a499166e7c65f45eb127e90d6061bfac3f6d6a509dcabe3dd16a66866d851051",
+    "neighborhood-photos.js": "df444f8c4ba6ed10a7d21db1c86ac91357bc51235e4a419a235d1d184b035848",
+    "neighborhood-photos.css": "c5f3833b17988efb81333b57a7ceeb325ff49182f1a29c5cccd42f2cc0ead4b4",
+    "place-preferences.js": "8061390484876a1d7c3077d4e3a861f78f23e479898dbf75e0e0d35ec3a38eea",
+    "place-preferences.css": "06c745118affeb1dc0ecc356f1883b9572f30656622afdac80c0866b6a6722e9"
+  },
+  "stable": true,
+  "out": [
+    {
+      "width": 390,
+      "acDirect": {
+        "id": "n735122008",
+        "text": "✓ Air conditioning · documented"
+      },
+      "nonStrict": {
+        "rows": 5,
+        "summary": [
+          "Current preferences: 0/1 documented matches · 1 unknown",
+          "Current preferences: 0/1 documented matches · 1 unknown",
+          "Current preferences: 0/1 documented matches · 1 unknown",
+          "Current preferences: 0/1 documented matches · 1 unknown",
+          "Current preferences: 0/1 documented matches · 1 unknown"
+        ]
+      },
+      "strict": {
+        "rows": 0,
+        "status": "0 options · 0 with requested facts · Wi-Fi + outlets",
+        "results": "No place meets these settings.\n\nTry a wider radius, a short ride from the station, Reading, or turn off known-only. Missing evidence is not proof that a place lacks facilities.\n\nInclude check-first places"
+      },
+      "enlargedPreferences": {
+        "client": 390,
+        "scroll": 390,
+        "document": 390,
+        "viewport": 390
+      },
+      "enlargedStreet": {
+        "client": 368,
+        "scroll": 368,
+        "document": 390,
+        "viewport": 390
+      }
+    },
+    {
+      "width": 1024,
+      "acDirect": {
+        "id": "n735122008",
+        "text": "✓ Air conditioning · documented"
+      },
+      "nonStrict": {
+        "rows": 5,
+        "summary": [
+          "Current preferences: 0/1 documented matches · 1 unknown",
+          "Current preferences: 0/1 documented matches · 1 unknown",
+          "Current preferences: 0/1 documented matches · 1 unknown",
+          "Current preferences: 0/1 documented matches · 1 unknown",
+          "Current preferences: 0/1 documented matches · 1 unknown"
+        ]
+      },
+      "strict": {
+        "rows": 0,
+        "status": "0 options · 0 with requested facts · Wi-Fi + outlets",
+        "results": "No place meets these settings.\n\nTry a wider radius, a short ride from the station, Reading, or turn off known-only. Missing evidence is not proof that a place lacks facilities.\n\nInclude check-first places"
+      },
+      "enlargedPreferences": {
+        "client": 359,
+        "scroll": 359,
+        "document": 1024,
+        "viewport": 1024
+      },
+      "enlargedStreet": {
+        "client": 348,
+        "scroll": 348,
+        "document": 1024,
+        "viewport": 1024
+      }
+    },
+    {
+      "width": 1440,
+      "acDirect": {
+        "id": "n735122008",
+        "text": "✓ Air conditioning · documented"
+      },
+      "nonStrict": {
+        "rows": 5,
+        "summary": [
+          "Current preferences: 0/1 documented matches · 1 unknown",
+          "Current preferences: 0/1 documented matches · 1 unknown",
+          "Current preferences: 0/1 documented matches · 1 unknown",
+          "Current preferences: 0/1 documented matches · 1 unknown",
+          "Current preferences: 0/1 documented matches · 1 unknown"
+        ]
+      },
+      "strict": {
+        "rows": 0,
+        "status": "0 options · 0 with requested facts · Wi-Fi + outlets",
+        "results": "No place meets these settings.\n\nTry a wider radius, a short ride from the station, Reading, or turn off known-only. Missing evidence is not proof that a place lacks facilities.\n\nInclude check-first places"
+      },
+      "enlargedPreferences": {
+        "client": 359,
+        "scroll": 359,
+        "document": 1440,
+        "viewport": 1440
+      },
+      "enlargedStreet": {
+        "client": 348,
+        "scroll": 348,
+        "document": 1440,
+        "viewport": 1440
+      }
+    }
+  ]
+}

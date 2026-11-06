@@ -1,0 +1,6 @@
+{
+  "injectedInBrowserOnly": true,
+  "fileMutations": false,
+  "expectedFailureDetected": true,
+  "caught": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'n735122008')\n    at http://localhost:43828/journeys.js?v=stroll-20261107b:374:47\n    at Array.map (<anonymous>)\n    at sourceFacts (http://localhost:43828/journeys.js?v=stroll-20261107b:373:8)\n    at Object.placePanel (http://localhost:43828/journeys.js?v=stroll-20261107b:589:352)\n    at renderSheet (http://localhost:43828/app.js?v=stroll-20261107b:459:26)\n    at select (http://localhost:43828/app.js?v=stroll-20261107b:398:3)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:5)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+}

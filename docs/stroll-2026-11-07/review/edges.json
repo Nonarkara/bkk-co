@@ -1,0 +1,68 @@
+[
+  {
+    "test": "photo-error",
+    "text": "Photographs unavailable. The map and notebook still work.\n\nRetry photos"
+  },
+  {
+    "test": "photo-retry-pagination",
+    "count": 15,
+    "status": "15 of 15 real photographs · source dates in photo credits"
+  },
+  {
+    "test": "photo-large",
+    "geometry": {
+      "client": 357,
+      "scroll": 357,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 358.796875,
+        "height": 776.46875,
+        "top": 0,
+        "right": 358.796875,
+        "bottom": 776.46875,
+        "left": 0
+      }
+    }
+  },
+  {
+    "test": "photo-loading",
+    "text": "Loading photographs…"
+  },
+  {
+    "test": "photo-late-response",
+    "before": "Your notebook",
+    "after": "Your notebook",
+    "gallery": 0
+  },
+  {
+    "test": "place-photo",
+    "text": "Neighborhood reference—not this venue\nAri / Ari Samphan\nChainwit. · CC BY 4.0 · Source\nMore neighborhood photos →\nPhoto changes & credits",
+    "unknown": "No current preference filter\n\n? Wi-Fi · unknown\n? Outlets · unknown\n? Air conditioning · unknown\nAmenity evidence & dates"
+  },
+  {
+    "test": "final-world-30px-1024",
+    "geometry": {
+      "client": 348,
+      "scroll": 348,
+      "h2": "0px",
+      "doc": 1024,
+      "viewport": 1024
+    }
+  },
+  {
+    "test": "browser-freeze-thaw",
+    "before": {
+      "playing": true,
+      "hidden": false
+    },
+    "after": {
+      "playing": true,
+      "hidden": false
+    }
+  },
+  {
+    "test": "hidden-event-handler",
+    "playing": false
+  }
+]

@@ -1,0 +1,177 @@
+{
+  "results": [
+    {
+      "width": 390,
+      "zoom": 17,
+      "raw": 116,
+      "colors": 3523,
+      "rendered": 14
+    },
+    {
+      "width": 390,
+      "zoom": 16,
+      "raw": 116,
+      "colors": 3523,
+      "rendered": 38
+    },
+    {
+      "width": 390,
+      "zoom": 15,
+      "raw": 116,
+      "colors": 3523,
+      "rendered": 103
+    },
+    {
+      "width": 390,
+      "zoom": 14,
+      "raw": 116,
+      "colors": 3523,
+      "rendered": 256
+    },
+    {
+      "width": 390,
+      "zoom": 13,
+      "raw": 6,
+      "colors": 3523,
+      "rendered": 692
+    },
+    {
+      "width": 390,
+      "zoom": 12,
+      "raw": 0,
+      "colors": 3523,
+      "rendered": 1493
+    },
+    {
+      "width": 390,
+      "zoom": 9,
+      "raw": 0,
+      "colors": 3523,
+      "rendered": 3505
+    },
+    {
+      "width": 1024,
+      "zoom": 17,
+      "raw": 116,
+      "colors": 3523,
+      "rendered": 25
+    },
+    {
+      "width": 1024,
+      "zoom": 16,
+      "raw": 116,
+      "colors": 3523,
+      "rendered": 50
+    },
+    {
+      "width": 1024,
+      "zoom": 15,
+      "raw": 116,
+      "colors": 3523,
+      "rendered": 164
+    },
+    {
+      "width": 1024,
+      "zoom": 14,
+      "raw": 593,
+      "colors": 3523,
+      "rendered": 451
+    },
+    {
+      "width": 1024,
+      "zoom": 13,
+      "raw": 6,
+      "colors": 3523,
+      "rendered": 1168
+    },
+    {
+      "width": 1024,
+      "zoom": 12,
+      "raw": 0,
+      "colors": 3523,
+      "rendered": 1965
+    },
+    {
+      "width": 1024,
+      "zoom": 9,
+      "raw": 0,
+      "colors": 3523,
+      "rendered": 3539
+    },
+    {
+      "width": 1440,
+      "zoom": 17,
+      "raw": 116,
+      "colors": 3523,
+      "rendered": 31
+    },
+    {
+      "width": 1440,
+      "zoom": 16,
+      "raw": 116,
+      "colors": 3523,
+      "rendered": 56
+    },
+    {
+      "width": 1440,
+      "zoom": 15,
+      "raw": 551,
+      "colors": 3523,
+      "rendered": 237
+    },
+    {
+      "width": 1440,
+      "zoom": 14,
+      "raw": 593,
+      "colors": 3523,
+      "rendered": 670
+    },
+    {
+      "width": 1440,
+      "zoom": 13,
+      "raw": 9,
+      "colors": 3523,
+      "rendered": 1425
+    },
+    {
+      "width": 1440,
+      "zoom": 12,
+      "raw": 0,
+      "colors": 3523,
+      "rendered": 2374
+    },
+    {
+      "width": 1440,
+      "zoom": 9.032615793140307,
+      "raw": 0,
+      "colors": 3523,
+      "rendered": 3539
+    }
+  ],
+  "corpus": {
+    "version": 1,
+    "source": "OpenStreetMap",
+    "sourceURL": "https://download.geofabrik.de/asia/thailand-261024.osm.pbf",
+    "asOf": "2026-10-24T20:20:51Z",
+    "sourceMD5": "215e1ff30fe4d4adef2db3d664dab9da",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "licenseURL": "https://www.openstreetmap.org/copyright",
+    "crs": "EPSG:4326",
+    "catalogueSHA256": {
+      "places-work.json": "8c72533b96de56992097fc08f9b6cee288a63cff982eb4964ca8d97be1141716",
+      "places-food.json": "8c7cc19345b6568c0a116ff3ac91872d5e769485138267aa5fbaa20cc409c4f6"
+    },
+    "join": "strict Polygon contains of original catalogue point, holes/boundaries excluded; unchanged source ring coordinates; each disconnected component joined independently",
+    "height": "No height assigned: flat footprint overlay only",
+    "sourceComponentsChecked": 1758809,
+    "invalidComponentsSkipped": 0,
+    "matchedPlaceCount": 15788,
+    "cataloguePlaceCount": 57379,
+    "unmatchedPlaceCount": 41591,
+    "featureCount": 8155
+  },
+  "bytes": 3117946,
+  "negativeControl": "query-only source loses all colors at z12",
+  "execution": "390/1024 against local Worker43828;1440 repeated against immutable local static snapshot43829 after Worker reload interrupted first1440startup"
+}

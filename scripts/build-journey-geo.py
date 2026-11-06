@@ -127,7 +127,7 @@ def main():
  if not venuefile.exists():venuefile=cache('venues',['nwr/amenity=cafe,restaurant,coworking_space,library','nwr/office=coworking'],geometry='point,polygon',padding=.002)
  for f in features(venuefile):
   if f['id'] not in work_ids:continue
-  tags={k:v for k,v in f['properties'].items() if k in ('socket','power_supply','electricity','parking','capacity:parking','access','fee') or k.startswith(('socket:','power_supply:','electricity:','internet_access','parking:','access:'))}
+  tags={k:v for k,v in f['properties'].items() if k in ('socket','power_supply','electricity','parking','capacity:parking','access','fee','air_conditioning','alcohol','serves:alcohol') or k.startswith(('socket:','power_supply:','electricity:','internet_access','parking:','access:'))}
   if tags:venue_tags[f['id']]={'sourceID':f['id'],'tags':tags}
  joins=[];used_stations=set();used_parking=set();close_parking=set();counts=collections.Counter()
  for r in rows:
@@ -158,7 +158,7 @@ def main():
  park_metadata={p['id']:{'sourceID':p['id'],'tags':p['tags'],'accessClass':p['accessClass']} for p in parking if p['id'] in used_parking}
  # Parking shapes are optional display evidence. Joins always use original geometries.
  park_geometries={p['id']:display(p['geometry']) for p in parking if p['id'] in close_parking}
- manifest={'version':1,'built':'2026-11-03','source':'OpenStreetMap','sourceURL':C.OSM_URL,'asOf':C.OSM_AS_OF,'md5':C.OSM_MD5,
+ manifest={'version':1,'built':'2026-11-07','source':'OpenStreetMap','sourceURL':C.OSM_URL,'asOf':C.OSM_AS_OF,'md5':C.OSM_MD5,
   'license':'ODbL-1.0','attribution':'© OpenStreetMap contributors','licenseURL':'https://www.openstreetmap.org/copyright',
   'crs':'EPSG:4326','distanceCRS':'EPSG:32647','catalogueSHA256':hashes,'bounds':C.BOUNDS,'workplaceTotal':len(rows),
   'stationMeaning':'Named railway=station source nodes, including mainline rail. Nearest joins exclude explicit access no/private/permit/military and inactive proposed/construction/disused/abandoned/demolished stations; retained metadata marks eligible=false. Missing access is unknown, not proof of public access. Coordinates are station points, not entrances. Distances are straight-line, no walking/transfer/step-free inference.',
@@ -172,7 +172,7 @@ def main():
             'routes':len(published_routes),'origins':len(origins),'parkingExamined':len(parking),'parkingReferenced':len(park_metadata),'parkingDisplayGeometries':len(park_geometries),
             'venueTags':len(venue_tags),**dict(counts)}}
  geo={'manifest':manifest,'stations':published_stations,'routes':published_routes,'origins':sorted(origins,key=lambda o:o['id']),'parkingGeometry':park_geometries}
- join={'manifest':{'version':1,'geo':'journey-geo.json','asOf':C.OSM_AS_OF,'license':'ODbL-1.0','workplaceTotal':len(rows),'catalogueSHA256':hashes},
+ join={'manifest':{'version':1,'geo':'journey-geo.json','asOf':C.OSM_AS_OF,'license':'ODbL-1.0','workplaceTotal':len(rows),'catalogueSHA256':hashes,'built':manifest['built']},
        'workCols':['placeID','railID','railM','btsID','btsM','parkingID','parkingM','parkingNotRestrictedID','parkingNotRestrictedM','parkingExplicitAccessID','parkingExplicitAccessM'],
        'workRows':joins,'venueTags':venue_tags,'parking':park_metadata}
  # Keep geo bounded: retain all origins/stations; if necessary parking shapes move to join file.
@@ -180,7 +180,7 @@ def main():
   join['parkingGeometry']=park_geometries;geo['parkingGeometry']={}
   manifest['parkingDisplayMeaning']+=' Parking geometry is stored in journey-places.json to bound the station/origin payload.'
  assert len(DUMP(geo).encode())<=500000
- for name,obj in [('journey-geo.json',geo),('journey-places.json',join)]: (data/name).write_text(DUMP(obj))
+ for name,obj in [('journey-geo.json',geo),('journey-places.json',join)]: (data/name).write_text(DUMP(obj)+'\n')
  assert all(C.sha(p)==hashes[p.name] for p in files)
  assert len(joins)==expected and {r[0] for r in joins}==work_ids
  station_ids={s['id'] for s in published_stations}

@@ -1,0 +1,32 @@
+{
+  "before": {
+    "hidden": false,
+    "playing": true,
+    "position": {
+      "streetID": "w1197033854-11107363568-11107363569",
+      "distance": 8,
+      "direction": 1,
+      "metres": 19.632207322198198
+    }
+  },
+  "hidden": {
+    "hidden": false,
+    "playing": true,
+    "position": {
+      "streetID": "w1197033854-11107363568-11107363569",
+      "distance": 8,
+      "direction": 1,
+      "metres": 19.632207322198198
+    }
+  },
+  "restored": {
+    "hidden": false,
+    "playing": false,
+    "position": {
+      "streetID": "w1197033854-11107363568-11107363569",
+      "distance": 18.242864069626496,
+      "direction": 1,
+      "metres": 19.632207322198198
+    }
+  }
+}

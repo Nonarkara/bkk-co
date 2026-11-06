@@ -10,6 +10,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - run: node test/stroll-graph.mjs
+      - run: node test/footprint-neighborhood.mjs
+      - run: node test/preferences-model.mjs
+      - run: node test/neighborhood-photos.mjs
       - run: node test/street-world.mjs
       - run: node test/manga-lens.mjs
       - run: node test/manga-motion.mjs

@@ -1,0 +1,37 @@
+{
+  "count": 120,
+  "coverage": {
+    "ari": 15,
+    "samyan": 22,
+    "charoenkrung": 29,
+    "thonglo": 21,
+    "ramkhamhaeng": 18,
+    "benjakitti": 3,
+    "lumphini": 3,
+    "chatuchak": 3,
+    "santiphap": 3,
+    "bangkholaem": 3
+  },
+  "licenses": {
+    "CC BY-SA 3.0": 11,
+    "CC BY-SA 4.0": 63,
+    "CC0": 30,
+    "CC BY 4.0": 10,
+    "CC BY 3.0": 5,
+    "CC BY 2.0": 1
+  },
+  "bytes": 6865980,
+  "maximumBytes": 79570,
+  "rejectedAfterVisualOrLicenseReview": {
+    "159755986": "Near-identical Pearl tower angle",
+    "159624805": "Near-identical Sam Yan skyline",
+    "159624810": "Near-identical Sam Yan skyline",
+    "58876652": "Book/door detail rather than neighborhood context",
+    "158294695": "Sign-only restaurant photo rather than street context",
+    "61752288": "Legacy Unsplash file marked license review needed",
+    "195310280": "Near-identical canal wake view",
+    "156941703": "Park wildlife close-up replaced with wider lake context",
+    "159807376": "Tree-detail close-up replaced with wider garden context"
+  },
+  "rawEvidence": "Final selected provider responses retained unparsed; unrelated discovery candidates excluded from delivery."
+}

@@ -1,0 +1,13 @@
+/* Content-sized column instruments beside existing finder/place facts. */
+.place-preferences { margin:6px 0; border-top:1px solid var(--rule); padding-top:4px; }
+.place-preferences summary,.place-preference-facts summary { min-height:32px; cursor:pointer; }
+.place-preferences p,.place-preference-facts p { max-width:65ch; overflow-wrap:anywhere; }
+.place-preference-controls { display:flex; flex-wrap:wrap; gap:4px 12px; align-items:center; }
+.place-preference-controls label { display:flex; gap:5px; align-items:center; min-height:32px; max-width:100%; }
+.place-preference-controls select { font:inherit; min-height:32px; min-width:0; max-width:100%; border:1px solid var(--rule); border-radius:0; background:var(--paper); color:var(--ink); }
+.place-preference-actions { display:flex; flex-wrap:wrap; gap:6px 12px; }
+.place-preference-actions button { min-height:32px; font:inherit; text-decoration:underline; text-underline-offset:3px; }
+.place-preference-gauges { display:flex; flex-wrap:wrap; gap:4px 12px; font-size:var(--micro); line-height:1.5; }
+.place-preference-gauges [data-value=unknown] { color:var(--muted); }
+.place-preference-facts { margin:6px 0; }
+.place-preferences [data-preferences-status]:empty { display:none; }
