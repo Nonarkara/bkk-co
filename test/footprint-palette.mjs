@@ -8,7 +8,7 @@ const square=x=>[[[x,13],[x+.001,13],[x+.001,13.001],[x,13.001],[x,13]]];
 const a=square(100),b=square(101);
 const grouped={type:'Feature',id:2420,properties:{},geometry:{type:'MultiPolygon',coordinates:[a,b]}};
 const places=[{id:'coffee',k:'cafe',x:100.0005,y:13.0005},{id:'food',k:'restaurant',x:100.0006,y:13.0006},{id:'unknown',k:'bar',x:100.0007,y:13.0007}];
-function harness(code){
+function harness(code,fetcher){
  const timers=new Map(),listeners=new Map(),images=new Map(),sources=new Map(),counts={data:0,move:0,layout:0,paint:0};
  let serial=0,raw=[],street=false,controlBox;
  const layers=[{id:'manga-building-tone'}];
@@ -26,7 +26,7 @@ function harness(code){
   addControl(control){controlBox=control.onAdd(map)},setPaintProperty(){counts.paint++},setFeatureState(){},removeFeatureState(){}
  };
  const window={MangaLens:{active:true},StreetWorld:{active:false}};
- vm.runInNewContext(code,{window,FootprintModel:model,PlaceTools:{symbol:()=>'*'},Atlas:{key(){}},document:{createElement:element,querySelector:()=>street?{}:null},setTimeout(fn){const id=++serial;timers.set(id,fn);return id},clearTimeout:id=>timers.delete(id)});
+ vm.runInNewContext(code,{fetch:fetcher,window,FootprintModel:model,PlaceTools:{symbol:()=>'*'},Atlas:{key(){}},document:{createElement:element,querySelector:()=>street?{}:null},setTimeout(fn){const id=++serial;timers.set(id,fn);return id},clearTimeout:id=>timers.delete(id)});
  const flush=()=>{const pending=[...timers.values()];timers.clear();for(const fn of pending)fn();assert.equal(timers.size,0,'An update must not perpetuate its own render loop')};
  const emit=(name,event={})=>{for(const fn of listeners.get(name)||[])fn(event)};
  return {get controlBox(){return controlBox},map,window,counts,images,sources,layers,flush,emit,palette:window.FootprintPalette,setRaw(value){raw=value}};
@@ -65,3 +65,18 @@ const oldGuard=runtime.replace("if(['openmaptiles','street-buildings'].includes(
 assert.notEqual(oldGuard,runtime,'The negative control must actually restore the old content-only guard');
 assert.throws(()=>lateSourceCheck(oldGuard),/late source event without sourceDataType/,'The old guard must fail the late-tile regression');
 console.log('Palette runtime late-tile recovery, idle stability, category filtering, visibility, component geometry and negative control pass.');
+
+// A fresh z12 page has no MVT building geometry; the pinned source must bootstrap it.
+let fetches=0;const retainedHarness=harness(runtime,async()=>{fetches++;return {ok:true,json:async()=>({type:'FeatureCollection',features:[grouped]})}});
+retainedHarness.palette.attach(retainedHarness.map);retainedHarness.palette.refresh(places);
+await new Promise(resolve=>setImmediate(resolve));retainedHarness.flush();
+assert.equal(fetches,1);assert.equal(retainedHarness.palette.features.length,1,'Cold low zoom must use retained true source geometry without MVT');
+const retainedBefore={...retainedHarness.counts};
+for(let i=0;i<6;i++){retainedHarness.emit('moveend');retainedHarness.emit('idle');retainedHarness.flush()}
+assert.deepEqual(retainedHarness.counts,retainedBefore,'Retained zoom/pan/idle may not perpetuate source updates');
+retainedHarness.palette.refresh(places.filter(p=>p.k!=='restaurant'));retainedHarness.flush();assert.equal(retainedHarness.palette.features[0].properties.mask,1,'Retained source respects selected categories');
+retainedHarness.palette.refresh([]);retainedHarness.flush();assert.equal(retainedHarness.palette.features.length,0,'Empty filters clear retained data');
+console.log('Retained cold-zoom bootstrap, one fetch, pan/idle stability and selected-category reclassification pass.');
+let attempts=0;const recovery=harness(runtime,async()=>{if(++attempts===1)throw new Error('offline');return {ok:true,json:async()=>({type:'FeatureCollection',features:[grouped]})}});
+recovery.palette.attach(recovery.map);recovery.palette.refresh(places);assert.equal(recovery.palette.sourceState,'loading');assert.match(recovery.palette.legend(),/source is loading/);await new Promise(resolve=>setImmediate(resolve));recovery.flush();assert.equal(recovery.palette.sourceState,'unavailable');assert.match(recovery.palette.legend(),/city-scale colors may be absent/);assert.match(recovery.palette.legend(),/data-retry-footprints/);
+for(let i=0;i<5;i++){recovery.emit('idle');recovery.flush()}assert.equal(attempts,1,'Unavailable source must never enter an automatic retry loop');await recovery.palette.retry();recovery.flush();assert.equal(attempts,2);assert.equal(recovery.palette.sourceState,'available');assert.equal(recovery.palette.features.length,1);assert.doesNotMatch(recovery.palette.legend(),/data-retry-footprints/);console.log('Source loading/unavailable disclosure, no automatic retry loop and explicit retry recovery pass.');

@@ -1,0 +1,30 @@
+{
+  "url": "https://commons.wikimedia.org/w/api.php?action=query&format=json&pageids=40431760%7C121447410%7C190416548%7C136898756%7C136898759%7C190675616%7C112322656%7C186390613%7C81349630%7C190675311%7C105624755%7C91670853%7C114431365%7C114431369%7C159755984%7C159624816%7C181752353%7C201659575%7C181752354%7C200501339%7C181752348%7C91119044%7C65513729%7C91265349%7C91265374%7C124443229%7C134534345%7C134533359%7C91265429%7C201509514%7C91265453%7C91265502%7C91265511%7C91265606%7C91265574%7C175022236%7C82589919%7C137887970%7C133238424%7C114618953&prop=imageinfo%7Ccoordinates&iiprop=url%7Cextmetadata%7Csha1%7Csize&iiurlwidth=640&colimit=max",
+  "fetchedAt": "20261106T184431Z",
+  "headers": {
+    "date": "Fri, 06 Nov 2026 18:40:26 GMT",
+    "server": "mw-api-ext.codfw.main-7fd78f9fc6-xd4pc",
+    "x-content-type-options": "nosniff",
+    "content-security-policy": "default-src 'self'; script-src 'none'; object-src 'none'",
+    "x-frame-options": "DENY",
+    "content-disposition": "inline; filename=api-result.json",
+    "expires": "Fri, 06 Nov 2026 19:40:26 GMT",
+    "cache-control": "max-age=3600, s-maxage=3600, public",
+    "content-type": "application/json; charset=utf-8",
+    "age": "244",
+    "accept-ranges": "bytes",
+    "x-cache": "cp5018 miss, cp5018 hit/1",
+    "x-cache-status": "hit-front",
+    "strict-transport-security": "max-age=106384710; includeSubDomains; preload",
+    "report-to": "{ \"group\": \"wm_nel\", \"max_age\": 604800, \"endpoints\": [{ \"url\": \"https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0\" }] }",
+    "nel": "{ \"report_to\": \"wm_nel\", \"max_age\": 604800, \"failure_fraction\": 0.05, \"success_fraction\": 0.0}",
+    "set-cookie": "WMF-Last-Access=06-Nov-2026;Path=/;HttpOnly;secure;Expires=Tue, 08 Dec 2026 12:00:00 GMT",
+    "x-client-ip": "2407:b1c0:dd0:4bd3:3c1e:f123:bc66:1f9c",
+    "vary": "Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent",
+    "content-length": "179079",
+    "x-request-id": "6358990d-2ea8-4e43-aa7e-0e7ccc085b95",
+    "x-analytics": "",
+    "server-timing": "cache;desc=\"hit-front\", host;desc=\"cp5018\",co_id;desc=\"3060485933\"",
+    "connection": "close"
+  }
+}

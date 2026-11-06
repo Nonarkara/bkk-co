@@ -8,3 +8,5 @@
 @media(max-width:899px) { body:has(#sheet:not([hidden])) .footprint-key-control,body:has(.street-panel:not([hidden])) .footprint-key-control { display:none; } }
 
 .footprint-key-control[hidden] { display:none; }
+/* Source recovery is an isolated action, outside the dense map key. */
+[data-retry-footprints] {min-height:44px}

@@ -1,0 +1,39 @@
+{
+  "before": {
+    "app.js": "f96d4bbac83520922c1613aa243f651396a22840e7eb7d445e6d55e7e535556f",
+    "journeys.js": "b796c3b9bea3b13ca3276376dff79e71add275a362d4ef787795ae1b0df4b385",
+    "views.js": "c0902f40cd47dc9167bcb1c2fbd962a7a1638e53bbdbaae307050e5a2cc8f434",
+    "street-world.js": "ea528000b4ef27ce8393c5939949732352a2e89d5f45779ac552a97cc4de582c",
+    "street-world.css": "a499166e7c65f45eb127e90d6061bfac3f6d6a509dcabe3dd16a66866d851051",
+    "neighborhood-photos.js": "df444f8c4ba6ed10a7d21db1c86ac91357bc51235e4a419a235d1d184b035848",
+    "neighborhood-photos.css": "c5f3833b17988efb81333b57a7ceeb325ff49182f1a29c5cccd42f2cc0ead4b4",
+    "place-preferences.js": "8061390484876a1d7c3077d4e3a861f78f23e479898dbf75e0e0d35ec3a38eea",
+    "place-preferences.css": "06c745118affeb1dc0ecc356f1883b9572f30656622afdac80c0866b6a6722e9"
+  },
+  "after": {
+    "app.js": "f96d4bbac83520922c1613aa243f651396a22840e7eb7d445e6d55e7e535556f",
+    "journeys.js": "b796c3b9bea3b13ca3276376dff79e71add275a362d4ef787795ae1b0df4b385",
+    "views.js": "c0902f40cd47dc9167bcb1c2fbd962a7a1638e53bbdbaae307050e5a2cc8f434",
+    "street-world.js": "ea528000b4ef27ce8393c5939949732352a2e89d5f45779ac552a97cc4de582c",
+    "street-world.css": "a499166e7c65f45eb127e90d6061bfac3f6d6a509dcabe3dd16a66866d851051",
+    "neighborhood-photos.js": "df444f8c4ba6ed10a7d21db1c86ac91357bc51235e4a419a235d1d184b035848",
+    "neighborhood-photos.css": "c5f3833b17988efb81333b57a7ceeb325ff49182f1a29c5cccd42f2cc0ead4b4",
+    "place-preferences.js": "8061390484876a1d7c3077d4e3a861f78f23e479898dbf75e0e0d35ec3a38eea",
+    "place-preferences.css": "06c745118affeb1dc0ecc356f1883b9572f30656622afdac80c0866b6a6722e9"
+  },
+  "stable": true,
+  "out": [
+    {
+      "width": 390,
+      "failure": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'n735122008')\n    at http://localhost:43828/journeys.js?v=stroll-20261107b:374:47\n    at Array.map (<anonymous>)\n    at sourceFacts (http://localhost:43828/journeys.js?v=stroll-20261107b:373:8)\n    at Object.placePanel (http://localhost:43828/journeys.js?v=stroll-20261107b:589:352)\n    at renderSheet (http://localhost:43828/app.js?v=stroll-20261107b:459:26)\n    at select (http://localhost:43828/app.js?v=stroll-20261107b:398:3)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:5)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    },
+    {
+      "width": 1024,
+      "failure": "page.waitForFunction: Timeout 60000ms exceeded."
+    },
+    {
+      "width": 1440,
+      "failure": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'n735122008')\n    at http://localhost:43828/journeys.js?v=stroll-20261107b:374:47\n    at Array.map (<anonymous>)\n    at sourceFacts (http://localhost:43828/journeys.js?v=stroll-20261107b:373:8)\n    at Object.placePanel (http://localhost:43828/journeys.js?v=stroll-20261107b:589:352)\n    at renderSheet (http://localhost:43828/app.js?v=stroll-20261107b:459:26)\n    at select (http://localhost:43828/app.js?v=stroll-20261107b:398:3)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:5)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    }
+  ]
+}

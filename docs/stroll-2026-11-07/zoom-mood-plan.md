@@ -1,0 +1,11 @@
+# Authored neighbourhood ground · scoped plan
+
+Named grid: existing column map-first surface. The map stays the entry; optional compact explanatory legend stays inside the existing Key, at the map's exit. No new resting chrome, hero, layout, animation or camera movement.
+
+Five existing 800m story/preview circles only: Ari, Sam Yan, Charoen Krung, Thong Lo from `hoods.json`; Ramkhamhaeng from `street-world.json`. Centres, source IDs and radii must equal those files. These are editorial frames, not districts, access claims, land-use evidence or building assignments. No partition of unknown city space and no nearest-building matching.
+
+Ground pattern chords come from the local credited Wada catalogue: 176 Ari (Hermosa/Seashell/Calamine); 227 Thong Lo (Hermosa/Glaucous/Cerulian); 273 Charoen Krung (Hermosa/Neutral/Sudan/Pansy); 320 Sam Yan (Sulpher/Oil/Coral/Glaucous); 241 Ramkhamhaeng (Pale Lemon/Isabella/Dark Medici). They are digital conversions, not original historical ink. Authored quiet balanced pattern fields communicate story atmosphere only. Fixed category320 footprint masks and symbols remain unchanged.
+
+Implementation: one standalone `neighborhood-palette.js`, API `attach(map)`, `sync()`, `legend()`, with a same-origin data Promise and manifest. Data-derived circle geometry is explicitly editorial, generated geodesically at exact existing anchors and radius800m. Five muted pattern images are registered once. A single fill layer is placed immediately above manga ground and below landcover, water, buildings, roads, routes and pins, visible only while MangaLens is active; no animation, idle rendering or changing camera. Collapsible native details legend lists each source chord, narrative qualification and scope.
+
+Verification: source IDs/radii/centres and palette catalogue comparisons; negative control substitutes false anchor/radius and must fail; mocked lifecycle and no-churn tests. Real browser at390/1024/1440 with exact data locations, phone pixels and enlarged text. Screenshot original category masks before/after to prove fixed category320; inspect actual source geometry and layer stack to prove no road/building/pin replaced. Parent independently reviews pixels and integrates index/hook/style files.

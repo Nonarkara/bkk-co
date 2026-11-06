@@ -1,0 +1,10 @@
+{
+  "test": "test/footprint-source-recovery.mjs",
+  "base": "http://localhost:43829",
+  "result": "PASS",
+  "checks": ["503 source response is disclosed in Key", "city-scale unavailability is explained", "five idle events do not retry", "explicit Retry requests source a second time", "available notice updates in the already-open Key", "retry control disappears after success", "no page errors"],
+  "sourceRequests": 2,
+  "productionWrites": 0,
+  "runtime": "Real Chrome, exact cached application MapLibre4.7.1 JS/CSS, immutable local static source snapshot",
+  "scope": "Source request/state/UI recovery; full source geometry zoom/render checks are separately recorded in results.json"
+}

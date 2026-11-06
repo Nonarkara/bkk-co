@@ -1,0 +1,30 @@
+{
+  "url": "https://commons.wikimedia.org/w/api.php?action=query&format=json&pageids=99783701%7C57625187%7C133355985%7C57625164%7C57625210%7C196101773%7C114619801%7C92018104%7C56705540%7C106535627%7C22980108%7C113168162%7C53680114%7C91239925%7C91239945%7C91239962%7C91265166%7C91265219%7C92018225%7C92018157%7C91239722%7C92018244%7C114620983%7C114531601%7C106802867%7C106535624%7C21640279%7C50158678%7C5854774%7C113728909%7C166118138%7C166118136%7C81766904%7C52789005%7C185895352%7C187959152%7C72997745%7C131324078%7C112307845%7C52789084&prop=imageinfo%7Ccoordinates&iiprop=url%7Cextmetadata%7Csha1%7Csize&iiurlwidth=640&colimit=max",
+  "fetchedAt": "20261106T184431Z",
+  "headers": {
+    "date": "Fri, 06 Nov 2026 18:44:32 GMT",
+    "server": "mw-api-ext.codfw.main-7fd78f9fc6-ghvlf",
+    "x-content-type-options": "nosniff",
+    "content-security-policy": "default-src 'self'; script-src 'none'; object-src 'none'",
+    "x-frame-options": "DENY",
+    "content-disposition": "inline; filename=api-result.json",
+    "expires": "Fri, 06 Nov 2026 19:44:32 GMT",
+    "cache-control": "max-age=3600, s-maxage=3600, public",
+    "content-type": "application/json; charset=utf-8",
+    "age": "0",
+    "accept-ranges": "bytes",
+    "x-cache": "cp5018 miss, cp5018 miss",
+    "x-cache-status": "miss",
+    "strict-transport-security": "max-age=106384710; includeSubDomains; preload",
+    "report-to": "{ \"group\": \"wm_nel\", \"max_age\": 604800, \"endpoints\": [{ \"url\": \"https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0\" }] }",
+    "nel": "{ \"report_to\": \"wm_nel\", \"max_age\": 604800, \"failure_fraction\": 0.05, \"success_fraction\": 0.0}",
+    "set-cookie": "WMF-Last-Access=06-Nov-2026;Path=/;HttpOnly;secure;Expires=Tue, 08 Dec 2026 12:00:00 GMT",
+    "x-client-ip": "2407:b1c0:dd0:4bd3:3c1e:f123:bc66:1f9c",
+    "vary": "Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent",
+    "transfer-encoding": "chunked",
+    "x-request-id": "5d61104e-92f3-469d-bb69-752f30516da1",
+    "x-analytics": "",
+    "server-timing": "cache;desc=\"miss\", host;desc=\"cp5018\",co_id;desc=\"2643842658\"",
+    "connection": "close"
+  }
+}

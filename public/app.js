@@ -79,6 +79,7 @@ if ('geolocation' in navigator) map.addControl(new maplibregl.GeolocateControl({
 // A lens, not a second map: the same source, drawn as line and tone.
 window.MangaLens?.attach(map);
 window.FootprintPalette?.attach(map);
+window.NeighborhoodPalette?.attach(map);
 
 // ---------- data ----------
 async function loadRows(name) {
@@ -347,7 +348,7 @@ function openSheet(html, { place = false, keepRoute = false } = {}) {
   setListOpen(false);
   $('#hits').hidden = true;
   const sheet = $('#sheet');
-  sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet','atlas-sheet','journey-sheet','featured-sheet','recommend-sheet','community-sheet','shared-hops-sheet');
+  sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet','atlas-sheet','journey-sheet','featured-sheet','recommend-sheet','community-sheet','shared-hops-sheet','reference-gallery');
   sheet.hidden = false;
   sheet.innerHTML = html;
   const heading = sheet.querySelector('h1');
@@ -456,6 +457,7 @@ function renderSheet(p, d, visits) {
     <section class="been place-actions"><button type="button" class="send been-open">✓ I've been here</button><a href="${esc(window.WorkFinder?.directions(p)||`https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}`)}" target="_blank" rel="noopener">Directions ↗</a></section>
     <nav class="place-social" aria-label="Place contributions"><button type="button" data-place-community>Notes &amp; photos</button><button type="button" data-place-recommend>Add recommendation</button><button type="button" class="share">Share place</button><button type="button" data-place-street>${window.StreetWorld?.active?'Back to street sketch':'Street sketch'}</button></nav>
     ${window.WorkFinder?.placePanel(p)||''}
+    <div class="place-reference-slot"></div>
     ${Atlas.facts(p)}
     ${window.TalkMedia?.section(p.id)||''}
     <section class="ggp">
@@ -477,6 +479,8 @@ function renderSheet(p, d, visits) {
   sheet.querySelector('.been-open').addEventListener('click', e => window.beenForm?.(p, e.target, () => select(p, false)));
   window.bindMoments?.(sheet);
   window.TalkMedia?.attach(sheet,p);
+  window.NeighborhoodPhotos?.attach(sheet.querySelector('.place-reference-slot'),p,hood?.slug);
+  window.WorkFinder?.warmPlace(p,sheet.querySelector('.journey-place-facts'));
   sheet.querySelector('[data-place-street]').onclick=()=>window.StreetWorld?.active?StreetWorld.resume():StreetWorld.open(p);
   sheet.querySelector('[data-place-community]').onclick = () => window.Notebook?.showCommunity(p);
   sheet.querySelector('[data-place-recommend]').onclick = () => window.Notebook?.recommend(p);

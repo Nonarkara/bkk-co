@@ -1,0 +1,31 @@
+{
+  "report": [
+    {
+      "width": 390,
+      "errors": [],
+      "writes": [],
+      "photos": 120,
+      "savedPreferences": "local only",
+      "journeys": 3
+    },
+    {
+      "width": 1024,
+      "errors": [],
+      "writes": [],
+      "photos": 120,
+      "savedPreferences": "local only",
+      "journeys": 3
+    },
+    {
+      "width": 1440,
+      "errors": [],
+      "writes": [],
+      "photos": 120,
+      "savedPreferences": "local only",
+      "journeys": 3
+    }
+  ],
+  "latePhotoTaskGuard": true,
+  "coldAmenityEntry": true,
+  "missingRegistryFalsifier": true
+}

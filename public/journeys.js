@@ -94,12 +94,14 @@
       ${choice.mode === 'rail' ? `<label>From station<select data-last-mile><option value="walk" ${choice.lastMile === 'walk' ? 'selected' : ''}>Walk proximity · ≤800 m</option><option value="ride" ${choice.lastMile === 'ride' ? 'selected' : ''}>Short ride · ≤2.5 km</option></select></label><label><input type="checkbox" data-other-rail ${choice.system === 'all' ? 'checked' : ''}> Include MRT, ARL &amp; other rail</label>` : `<label>Search radius<select data-radius>${(choice.mode === 'drive' ? [2000, 5000, 10000] : [400, 800, 1500]).map((n) => `<option value="${n}" ${n === choice.radius ? 'selected' : ''}>${n >= 1000 ? n / 1000 + ' km' : n + ' m'} straight line</option>`).join('')}</select></label>`}
       <label>Time available<select data-duration>${[60, 120, 240, 480].map((n) => `<option value="${n}" ${choice.duration === n ? 'selected' : ''}>${n / 60} ${n === 60 ? 'hour' : 'hours'}</option>`).join('')}</select></label>
     </div></details></nav>
+    ${window.PlacePreferences?.render()||''}
     <p class="journey-status" role="status">Loading work-spot evidence…</p>
     <ol class="journey-results now-list"></ol>
     <button class="journey-more linkish" hidden>Show 5 more</button>
     <details class="journey-method"><summary>What this search knows</summary><p>Laptop asks for Wi-Fi and outlets; Online asks for Wi-Fi; Reading needs neither. Drive + park also asks for parking. Known matches lead; unknown facilities stay marked “check first”, unless you choose known only. Place kind, independence and index never prove equipment.</p><p>Distances are straight lines to source points, not road/walking distances. Station points are not entrances. A short ride does not establish motorcycle-taxi availability, fare or access. Parking can be operator-stated or a separately mapped car park with an explicit access tag; neither promises a space.</p><p>Hours use Bangkok time, sampled through your selected window starting now. Travel time is extra. Unknown hours and admission conditions need checking. PLUB has no live route-traffic measurement: check the driving route before leaving.</p><p>OSM geography · 24 Oct 2026 · © OSM contributors, ODbL. Branch facility sources checked 3 Nov 2026; dated operator/editorial claims, not live seat availability. Starting-place search is local to this catalogue and mapped station/barber points. GPS runs only when you press the location button.</p></details>`;
   }
   function bind(sheet) {
+    window.PlacePreferences?.bind(sheet,()=>render(sheet));
     sheet.querySelector('.close').onclick = closeSheet;
     sheet.querySelectorAll('[data-journey-mode]').forEach(
       (b) =>
@@ -369,7 +371,7 @@
     );
     const links = [...ids]
       .map((id) => {
-        const s = context.raw.evidence.sources[id];
+        const s = context.raw.evidence?.sources?.[id];
         if (s)
           return `<a href="${esc(s.url)}" target="_blank" rel="noopener nofollow">${esc(s.publisher)}</a> · ${s.tier === 'editorial' ? 'editorial' : 'operator'} · ${esc(s.updated_at || s.published_at || 'publication date unstated')} · checked ${esc(s.checked_at)}`;
         if (/^[nwr]\d+$/.test(id))
@@ -396,7 +398,7 @@
       choice.mode === 'rail'
         ? `${(r.stationDistance / 1000).toFixed(2)} km from ${r.station.systems.join('/') || 'rail'} ${r.station.name} · straight line`
         : `${(r.d / 1000).toFixed(2)} km straight line from ${name(choice.origin)}`;
-    return `<li data-journey-place="${esc(p.id)}"><div class="journey-result-head"><span class="journey-number">${i + 1}</span><button class="journey-name" data-work-place="${esc(p.id)}">${esc(p.n)}${p.branch ? ` <span class="branch">· ${esc(p.branch)}</span>` : ''}</button></div><p class="journey-distance">${esc(KIND_LABEL[p.k])} · ${esc(distance)}</p><div class="journey-facilities">${['wifi', 'power', ...(choice.mode === 'drive' ? ['parking'] : [])].map((k) => badge(k, f[k])).join('')}<span class="journey-match">${r.missing.length ? 'Check ' + r.missing.map((k) => ({ wifi: 'Wi-Fi', power: 'outlets', parking: 'parking' })[k]).join(' + ') : r.required.length ? 'Needs documented' : 'No equipment filter'}</span></div><p class="journey-hours">${hours}${entry ? ' · ' + esc(entry) : ''}</p><div class="journey-go"><a class="journey-primary" data-journey-directions href="${esc(route(p))}" target="_blank" rel="noopener">${choice.mode === 'drive' ? 'Drive & check traffic' : choice.mode === 'rail' ? 'Transit directions' : 'Walk directions'} ↗</a><button data-work-place="${esc(p.id)}">Place &amp; photos</button></div>${choice.mode === 'rail' ? `<a class="journey-lastmile" href="${esc(M.directions(p, r.station, choice.lastMile === 'ride' ? 'two-wheeler' : 'walking'))}" target="_blank" rel="noopener">From ${esc(r.station.name)} · ${choice.lastMile === 'ride' ? 'check motorcycle route' : 'check walking route'} ↗</a>` : ''}${sourceFacts(p, f)}</li>`;
+    return `<li data-journey-place="${esc(p.id)}"><div class="journey-result-head"><span class="journey-number">${i + 1}</span><button class="journey-name" data-work-place="${esc(p.id)}">${esc(p.n)}${p.branch ? ` <span class="branch">· ${esc(p.branch)}</span>` : ''}</button></div><p class="journey-distance">${esc(KIND_LABEL[p.k])} · ${esc(distance)}</p><div class="journey-facilities">${['wifi', 'power', ...(choice.mode === 'drive' ? ['parking'] : [])].map((k) => badge(k, f[k])).join('')}<span class="journey-match">${r.missing.length ? 'Check ' + r.missing.map((k) => ({ wifi: 'Wi-Fi', power: 'outlets', parking: 'parking' })[k]).join(' + ') : r.required.length ? 'Needs documented' : 'No equipment filter'}</span></div><p class="journey-hours">${hours}${entry ? ' · ' + esc(entry) : ''}</p><div class="journey-go"><a class="journey-primary" data-journey-directions href="${esc(route(p))}" target="_blank" rel="noopener">${choice.mode === 'drive' ? 'Drive & check traffic' : choice.mode === 'rail' ? 'Transit directions' : 'Walk directions'} ↗</a><button data-work-place="${esc(p.id)}">Place &amp; photos</button></div>${choice.mode === 'rail' ? `<a class="journey-lastmile" href="${esc(M.directions(p, r.station, choice.lastMile === 'ride' ? 'two-wheeler' : 'walking'))}" target="_blank" rel="noopener">From ${esc(r.station.name)} · ${choice.lastMile === 'ride' ? 'check motorcycle route' : 'check walking route'} ↗</a>` : ''}${r.preference?.requested.length?`<p class="src">${esc(r.preference.summary)}</p>`:''}${sourceFacts(p, f)}</li>`;
   }
   function installMap() {
     if (!map.getLayer('pins-city') || map.getSource('journey-context')) return;
@@ -497,6 +499,7 @@
       window.isOpen,
       barrierChecked ? crossesRiver : undefined
     );
+    if(window.PlacePreferences)rows=PlacePreferences.rank(rows,data,state.scores,{strict:choice.strict});
     contextIDs = new Set(rows.slice(0, limit).map((r) => r.p.id));
     renderRows(sheet);
     draw();
@@ -583,15 +586,23 @@
   function placePanel(p) {
     const context=data || M.makeData({}, {}, evidence || {});
     const f = M.facilities(p, context, state.scores);
-    return `<div class="journey-place-facts">${contextIDs.has(p.id) ? '<button class="linkish" data-work-back>← Back to work spots</button><p>Directions start: ' + esc(choice.mode === 'rail' ? (railOrigin ? name(railOrigin) : 'choose in Maps') : name(choice.origin)) + '</p>' : ''}<div class="journey-facilities">${['wifi', 'power', 'parking'].map((k) => badge(k, f[k])).join('')}</div>${sourceFacts(p, f, context)}</div>`;
+    return `<div class="journey-place-facts">${contextIDs.has(p.id) ? '<button class="linkish" data-work-back>← Back to work spots</button><p>Directions start: ' + esc(choice.mode === 'rail' ? (railOrigin ? name(railOrigin) : 'choose in Maps') : name(choice.origin)) + '</p>' : ''}<div class="journey-facilities">${badge('parking', f.parking)}</div>${sourceFacts(p, f, context)}${window.PlacePreferences?.renderFacts(p,context,state.scores)||''}<button type="button" class="linkish" data-work-preferences>Find places for my needs →</button></div>`;
+  }
+  // Detail-only loading makes explicit source tags available even without opening
+  // the finder first. Late data may update its own evidence slot, never a newer task.
+  function warmPlace(p,slot){
+    const generation=sheetGeneration;
+    load().then(()=>{if(generation===sheetGeneration&&state.selected?.id===p.id&&slot?.isConnected&&!document.querySelector('.been-form'))slot.outerHTML=placePanel(p)}).catch(()=>{});
   }
   document.addEventListener('click', (e) => {
     if (e.target.closest('[data-work-back]')) open();
+    if(e.target.closest('[data-work-preferences]')){open();const detail=document.querySelector('[data-place-preferences]');if(detail)detail.open=true;}
   });
   window.WorkFinder = {
     open,
     load,
     placePanel,
+    warmPlace,
     kindsChanged(){if(active&&current(active)&&data)render(active)},
     directions: route,
     hours: (p) => evidence?.places?.[p.id]?.facts?.hours?.value || p.hours,

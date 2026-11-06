@@ -145,6 +145,11 @@ async function openHood(slug, jump) {
     <nav class="links"><button type="button" class="show-map">◎ Show on map</button><button type="button" class="share">Share</button></nav>
     <p class="src">Sources: ${h.sources.map(([t, url]) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(t)}</a>`).join(' · ')}. Numbers computed from OpenStreetMap and Overture Maps places within ${h.radius} m of OSM ${esc(h.anchor.id)}.</p>`);
   sheet.classList.add('hood-sheet');
+  const context=document.createElement('nav');context.className='hood-context-actions';context.setAttribute('aria-label','Explore neighborhood');
+  context.innerHTML='<button type="button" data-hood-stroll>Stroll source lanes</button><button type="button" data-hood-photos>Neighborhood photos</button>';
+  sheet.querySelector('.hood-intro').after(context);
+  context.querySelector('[data-hood-photos]').onclick=()=>window.NeighborhoodPhotos?.gallery(slug);
+  context.querySelector('[data-hood-stroll]').onclick=()=>{map.jumpTo({center:[h.anchor.x,h.anchor.y],zoom:17});window.StreetWorld?.open()};
   sheet.querySelector('.walk').addEventListener('click', e => { const li = e.target.closest('li[data-id]'); if (li) select(state.byId.get(li.dataset.id), true); });
   const fit = how => {
     const c = ring(h), xs = c.map(p => p[0]), ys = c.map(p => p[1]);
@@ -194,7 +199,7 @@ $('#guide').addEventListener('click', async () => {
   const top = d.leaderboard.slice(0, 10), max = top[0].work, anchors = new Set(d.hoods.map(h => h.anchor.osmName));
   const sheet = openSheet(`
     <header><h1>Bangkok's Great Good Places<span class="th">Placemaking Laboratory Urban Bureau</span></h1><button class="close" aria-label="Close">×</button></header>
-    <p class="discovery-entry"><button class="linkish" data-act="discovery">Explore 50 editorial picks + 50 discussed cafés →</button></p>
+    <p class="discovery-entry"><button class="linkish" data-act="discovery">Explore 50 editorial picks + 50 discussed cafés →</button> · <button class="linkish" data-neighborhood-photos>Real neighborhood photos →</button></p>
     <div class="plub-say">${guideArt()}<p><q>Bangkok has ${fmt(P.length)} places to sit down. A great good place is the one you keep coming back to. Pick a neighbourhood, I'll walk you through it.</q></p></div>
     <section><h2 class="micro">Four neighbourhoods</h2>
       <ol class="line">${d.hoods.map(h => { const been = h.ids.filter(id => state.visited.has(id)).length; return `<li data-hood="${h.slug}">
@@ -548,3 +553,6 @@ window.openHop = openHop;
 
 // A cached map can load before this script arrives. Initialise once in either order.
 queueMicrotask(()=>{if(map.getLayer('pins-city')&&!map.getSource('hoods'))window.addHoodLayers();window.WorkFinder?.onViewsReady()});
+
+// Optional reference gallery; source credits remain with each image.
+document.addEventListener('click',e=>{if(e.target.closest('[data-neighborhood-photos]'))window.NeighborhoodPhotos?.gallery()});

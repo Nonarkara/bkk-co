@@ -136,6 +136,7 @@
     const on = wanted();
     clearTimers();
     globalThis.FootprintPalette?.sync();
+    globalThis.NeighborhoodPalette?.sync();
     if (on) {
       baseVisible(false);
       for (const id of style.layers) {

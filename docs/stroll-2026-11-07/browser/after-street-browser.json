@@ -1,0 +1,246 @@
+[
+  {
+    "width": 390,
+    "height": 844,
+    "initial": {
+      "pitch": 55.00000000000001,
+      "zoom": 17.3,
+      "position": {
+        "streetID": "w1199779123-5950672235-11091656079",
+        "distance": 41.23321369342561,
+        "direction": -1,
+        "metres": 12.050556500782003
+      },
+      "area": "samyan",
+      "count": 57379,
+      "panel": {
+        "x": 10,
+        "y": 456.640625,
+        "width": 370,
+        "height": 371.359375,
+        "top": 456.640625,
+        "right": 380,
+        "bottom": 828,
+        "left": 10
+      },
+      "directions": {
+        "x": 121.734375,
+        "y": 583.546875,
+        "width": 77.5,
+        "height": 32,
+        "top": 583.546875,
+        "right": 199.234375,
+        "bottom": 615.546875,
+        "left": 121.734375
+      }
+    },
+    "low": {
+      "zoom": 18.25,
+      "pitch": 66,
+      "pins": 2
+    },
+    "chosen": "o825832f94e7f",
+    "large": {
+      "x": 121.375,
+      "y": 643.96875,
+      "width": 166.0625,
+      "height": 42
+    },
+    "panel": {
+      "x": 10,
+      "y": 456.640625,
+      "width": 370,
+      "height": 371.359375
+    },
+    "alias": {
+      "places": 1,
+      "stamps": 1,
+      "notes": 2
+    },
+    "errors": [],
+    "writes": []
+  },
+  {
+    "width": 1024,
+    "height": 900,
+    "initial": {
+      "pitch": 55.00000000000001,
+      "zoom": 17.3,
+      "position": {
+        "streetID": "w1199779123-5950672235-11091656079",
+        "distance": 41.23321369342561,
+        "direction": -1,
+        "metres": 12.050556500782003
+      },
+      "area": "samyan",
+      "count": 57379,
+      "panel": {
+        "x": 372,
+        "y": 507.90625,
+        "width": 350,
+        "height": 372.09375,
+        "top": 507.90625,
+        "right": 722,
+        "bottom": 880,
+        "left": 372
+      },
+      "directions": {
+        "x": 483.734375,
+        "y": 634.8125,
+        "width": 77.5,
+        "height": 32,
+        "top": 634.8125,
+        "right": 561.234375,
+        "bottom": 666.8125,
+        "left": 483.734375
+      }
+    },
+    "low": {
+      "zoom": 18.25,
+      "pitch": 66,
+      "pins": 36
+    },
+    "chosen": "o825832f94e7f",
+    "large": {
+      "x": 483.375,
+      "y": 527.328125,
+      "width": 166.0625,
+      "height": 42
+    },
+    "panel": {
+      "x": 372,
+      "y": 340,
+      "width": 350,
+      "height": 540
+    },
+    "alias": {
+      "places": 1,
+      "stamps": 1,
+      "notes": 2
+    },
+    "errors": [],
+    "writes": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "initial": {
+      "pitch": 55.00000000000001,
+      "zoom": 17.3,
+      "position": {
+        "streetID": "w1199779123-5950672235-11091656079",
+        "distance": 41.23321369342561,
+        "direction": -1,
+        "metres": 12.050556500782003
+      },
+      "area": "samyan",
+      "count": 57379,
+      "panel": {
+        "x": 372,
+        "y": 507.90625,
+        "width": 350,
+        "height": 372.09375,
+        "top": 507.90625,
+        "right": 722,
+        "bottom": 880,
+        "left": 372
+      },
+      "directions": {
+        "x": 483.734375,
+        "y": 634.8125,
+        "width": 77.5,
+        "height": 32,
+        "top": 634.8125,
+        "right": 561.234375,
+        "bottom": 666.8125,
+        "left": 483.734375
+      }
+    },
+    "low": {
+      "zoom": 18.25,
+      "pitch": 66,
+      "pins": 79
+    },
+    "chosen": "o825832f94e7f",
+    "large": {
+      "x": 483.375,
+      "y": 527.328125,
+      "width": 166.0625,
+      "height": 42
+    },
+    "panel": {
+      "x": 372,
+      "y": 340,
+      "width": 350,
+      "height": 540
+    },
+    "alias": {
+      "places": 1,
+      "stamps": 1,
+      "notes": 2
+    },
+    "errors": [],
+    "writes": []
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "initial": {
+      "pitch": 55.00000000000001,
+      "zoom": 17.3,
+      "position": {
+        "streetID": "w1199779123-5950672235-11091656079",
+        "distance": 41.23321369342561,
+        "direction": -1,
+        "metres": 12.050556500782003
+      },
+      "area": "samyan",
+      "count": 57379,
+      "panel": {
+        "x": 372,
+        "y": 327.90625,
+        "width": 350,
+        "height": 372.09375,
+        "top": 327.90625,
+        "right": 722,
+        "bottom": 700,
+        "left": 372
+      },
+      "directions": {
+        "x": 483.734375,
+        "y": 454.8125,
+        "width": 77.5,
+        "height": 32,
+        "top": 454.8125,
+        "right": 561.234375,
+        "bottom": 486.8125,
+        "left": 483.734375
+      }
+    },
+    "low": {
+      "zoom": 18.25,
+      "pitch": 66,
+      "pins": 36
+    },
+    "chosen": "o825832f94e7f",
+    "large": {
+      "x": 483.375,
+      "y": 455.328125,
+      "width": 166.0625,
+      "height": 42
+    },
+    "panel": {
+      "x": 372,
+      "y": 268,
+      "width": 350,
+      "height": 432
+    },
+    "alias": {
+      "places": 1,
+      "stamps": 1,
+      "notes": 2
+    },
+    "errors": [],
+    "writes": []
+  }
+]

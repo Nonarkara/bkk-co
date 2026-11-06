@@ -1,0 +1,1030 @@
+[
+  {
+    "width": 390,
+    "errors": [],
+    "failed": [],
+    "writes": [],
+    "checks": [
+      {
+        "name": "baseline",
+        "value": {
+          "map": {
+            "x": 0,
+            "y": 90,
+            "width": 390,
+            "height": 754,
+            "top": 90,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "bodyWidth": 390,
+          "viewport": 390,
+          "tiles": true,
+          "rendered": 225,
+          "canvas": {
+            "x": 0,
+            "y": 90,
+            "width": 390,
+            "height": 754,
+            "top": 90,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          }
+        }
+      },
+      {
+        "name": "worldGeometry",
+        "value": {
+          "panel": {
+            "x": 10,
+            "y": 473.21875,
+            "width": 370,
+            "height": 354.78125,
+            "top": 473.21875,
+            "right": 380,
+            "bottom": 828,
+            "left": 10
+          },
+          "firstDirection": {
+            "x": 121.40625,
+            "y": 582.8125,
+            "width": 77.5,
+            "height": 32,
+            "top": 582.8125,
+            "right": 198.90625,
+            "bottom": 614.8125,
+            "left": 121.40625
+          },
+          "firstFact": " ห้องสมุดประชาชี Prachachee Library",
+          "panelScrollWidth": 368,
+          "panelClientWidth": 368,
+          "mapUsefulShare": 0.49456476333697896,
+          "active": true,
+          "area": "charoenkrung",
+          "pins": 4
+        }
+      },
+      {
+        "name": "source8m",
+        "value": {
+          "before": {
+            "streetID": "w1197033854-11107363568-11107363569",
+            "distance": 0,
+            "direction": 1,
+            "metres": 19.632207322198198
+          },
+          "after": {
+            "streetID": "w1197033854-11107363568-11107363569",
+            "distance": 8,
+            "direction": 1,
+            "metres": 19.632207322198198
+          }
+        }
+      },
+      {
+        "name": "keyboardW",
+        "value": {
+          "before": 8,
+          "after": 16
+        }
+      },
+      {
+        "name": "junction",
+        "value": {
+          "choices": 2,
+          "before": {
+            "streetID": "w1007174593-9291726550-9291726551",
+            "distance": 0,
+            "direction": 1
+          },
+          "after": {
+            "streetID": "w1007174593-9291726550-9291726551",
+            "distance": 0,
+            "direction": 1,
+            "bearing": -19.86897273019818,
+            "nodeID": "n9291726550"
+          }
+        }
+      },
+      {
+        "name": "cafeStroll",
+        "value": "No connected suggestion in this actual position"
+      },
+      {
+        "name": "manualStopsPlayback",
+        "value": {
+          "playing": true,
+          "stop": {
+            "playing": false,
+            "position": {
+              "streetID": "w1007174593-9291726550-9291726551",
+              "distance": 8,
+              "direction": 1,
+              "bearing": -19.86897273019818,
+              "nodeID": "n9291726550"
+            }
+          },
+          "after": {
+            "playing": false,
+            "position": {
+              "streetID": "w1007174593-9291726550-9291726551",
+              "distance": 8,
+              "direction": 1,
+              "bearing": -19.86897273019818,
+              "nodeID": "n9291726550"
+            }
+          }
+        }
+      },
+      {
+        "name": "taskStopsPlayback",
+        "value": {
+          "playing": false,
+          "streetVisible": false
+        }
+      },
+      {
+        "name": "enlarged",
+        "value": {
+          "body": 390,
+          "viewport": 390,
+          "panelWidth": 368,
+          "scrollWidth": 368,
+          "panel": {
+            "x": 10,
+            "y": 456.640625,
+            "width": 370,
+            "height": 371.359375,
+            "top": 456.640625,
+            "right": 380,
+            "bottom": 828,
+            "left": 10
+          },
+          "direction": {
+            "x": 122.09375,
+            "y": 643.96875,
+            "width": 166.0625,
+            "height": 42,
+            "top": 643.96875,
+            "right": 288.15625,
+            "bottom": 685.96875,
+            "left": 122.09375
+          },
+          "movement": [
+            {
+              "text": "↶",
+              "x": 21,
+              "y": 793.96875,
+              "width": 39.953125,
+              "height": 50,
+              "top": 793.96875,
+              "right": 60.953125,
+              "bottom": 843.96875,
+              "left": 21
+            },
+            {
+              "text": "← 8 m",
+              "x": 64.953125,
+              "y": 793.96875,
+              "width": 101.78125,
+              "height": 50,
+              "top": 793.96875,
+              "right": 166.734375,
+              "bottom": 843.96875,
+              "left": 64.953125
+            },
+            {
+              "text": "Play",
+              "x": 170.734375,
+              "y": 793.96875,
+              "width": 120,
+              "height": 50,
+              "top": 793.96875,
+              "right": 290.734375,
+              "bottom": 843.96875,
+              "left": 170.734375
+            },
+            {
+              "text": "8 m →",
+              "x": 21,
+              "y": 847.96875,
+              "width": 101.78125,
+              "height": 50,
+              "top": 847.96875,
+              "right": 122.78125,
+              "bottom": 897.96875,
+              "left": 21
+            },
+            {
+              "text": "↷",
+              "x": 126.78125,
+              "y": 847.96875,
+              "width": 39.953125,
+              "height": 50,
+              "top": 847.96875,
+              "right": 166.734375,
+              "bottom": 897.96875,
+              "left": 126.78125
+            },
+            {
+              "text": "Low view",
+              "x": 170.734375,
+              "y": 847.96875,
+              "width": 129.234375,
+              "height": 50,
+              "top": 847.96875,
+              "right": 299.96875,
+              "bottom": 897.96875,
+              "left": 170.734375
+            }
+          ]
+        }
+      },
+      {
+        "name": "reducedMotion",
+        "value": {
+          "playDisabled": true,
+          "moving": false
+        }
+      },
+      {
+        "name": "escapeExits",
+        "value": true
+      },
+      {
+        "name": "photoFilter",
+        "value": {
+          "count": 12,
+          "status": "12 of 15 real photographs · source dates in photo credits",
+          "ids": [
+            "commons-40431760",
+            "commons-121447410",
+            "commons-190416548",
+            "commons-136898756",
+            "commons-136898759",
+            "commons-190675616",
+            "commons-112322656",
+            "commons-186390613",
+            "commons-81349630",
+            "commons-190675311",
+            "commons-105624755",
+            "commons-91670853"
+          ]
+        }
+      },
+      {
+        "name": "dialogCredits",
+        "value": "×\nNeighborhood reference—not this venue\n\nA Busy Street in Bangkok - panoramio\n\nekeidar · CC BY-SA 3.0 · Source\n\nResized to fit 640 × 640; WebP conversion; orientation applied; metadata removed. No content edits. ekeidar https://web.archive.org/web/20161102060052/http://www.panoramio.com/photo/3569680"
+      },
+      {
+        "name": "dialogFocusReturned",
+        "value": true
+      },
+      {
+        "name": "preferencesCollapsed",
+        "value": true
+      },
+      {
+        "name": "preferencesSaved",
+        "value": {
+          "status": "Saved on this device only.",
+          "value": {
+            "wifi": "fast",
+            "power": false,
+            "ac": true,
+            "alcohol": false,
+            "coffee": false,
+            "space": "cozy",
+            "atmosphere": ""
+          },
+          "stored": "{\"version\":1,\"preferences\":{\"wifi\":\"fast\",\"power\":false,\"ac\":true,\"alcohol\":false,\"coffee\":false,\"space\":\"cozy\",\"atmosphere\":\"\"}}"
+        }
+      },
+      {
+        "name": "preferencesReload",
+        "value": {
+          "wifi": "fast",
+          "power": false,
+          "ac": true,
+          "alcohol": false,
+          "coffee": false,
+          "space": "cozy",
+          "atmosphere": ""
+        }
+      },
+      {
+        "name": "preferencesUnknownUI",
+        "value": "1\nMana Craft\n\nCafé · 0.57 km straight line from Map centre\n\n✓ Wi-Fi\n? Outlets\nCheck outlets\n\nHours unknown · check your stay\n\nWalk directions ↗\nPlace & photos\n\nCurrent preferences: Current preferences: 1/3 documented matches · 2 unknown\n\nEvidence & entry conditions\n2\nEnvies café\n\nCafé · 0.29 km straight line from Map centre\n\n? Wi-Fi\n? Outlets\nCheck Wi-Fi + outlets\n\nHours unknown · check your stay\n\nWalk directions ↗\nPlace & photos\n\nCurrent preferences: Current preferences: 1/3 documented matches · 2 unknown\n\nEvidence & entry conditions\n3\nThe Coffee Store Charoenkrung\n\nCafé · 0.48 km straight line from Map centre\n\n? Wi-Fi\n? Outlets\nCheck Wi-Fi + outlets\n\nHours unknown · check your stay\n\nWalk directions ↗\nPlace & photos\n\nCurrent preferences: Current preferences: 1/3 documented matches · 2 unknown\n\nEvidence & entry conditions\n4\nso..coffee\n\nCafé · 0.73 km straight line from Map centre\n\n? Wi-Fi\n? Outlets\nCheck Wi-Fi + outlets\n\nHours unknown · check your stay\n\nWalk directions ↗\nPlace & photos\n\nCurrent preferences: Current preferences: 1/3 documented matches · 2 unknown\n\nEvidence & entry conditions\n5\nStarbucks · Soi Charoen Krung 24 Rd Talard\n\nCafé · 0.27 km straight line from Map centre\n\n✓ Wi-Fi\n? Outlets\nCheck outlets\n\nHours unknown · check your stay\n\nWalk directions ↗\nPlace & photos\n\nCurrent preferences: Current preferences: 0/3 documented matches · 3 unknown\n\nEvidence & entry conditions"
+      },
+      {
+        "name": "preferencesCleared",
+        "value": {
+          "value": {
+            "wifi": "",
+            "power": false,
+            "ac": false,
+            "alcohol": false,
+            "coffee": false,
+            "space": "",
+            "atmosphere": ""
+          },
+          "stored": null
+        }
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "errors": [],
+    "failed": [
+      {
+        "url": "https://tiles.openfreemap.org/planet/20261101_080013_pt/14/12765/7560.pbf",
+        "reason": "net::ERR_ABORTED"
+      }
+    ],
+    "writes": [],
+    "checks": [
+      {
+        "name": "baseline",
+        "value": {
+          "map": {
+            "x": 360,
+            "y": 0,
+            "width": 664,
+            "height": 900,
+            "top": 0,
+            "right": 1024,
+            "bottom": 900,
+            "left": 360
+          },
+          "bodyWidth": 1024,
+          "viewport": 1024,
+          "tiles": true,
+          "rendered": 327,
+          "canvas": {
+            "x": 360,
+            "y": 0,
+            "width": 664,
+            "height": 900,
+            "top": 0,
+            "right": 1024,
+            "bottom": 900,
+            "left": 360
+          }
+        }
+      },
+      {
+        "name": "worldGeometry",
+        "value": {
+          "panel": {
+            "x": 372,
+            "y": 509.625,
+            "width": 350,
+            "height": 370.375,
+            "top": 509.625,
+            "right": 722,
+            "bottom": 880,
+            "left": 372
+          },
+          "firstDirection": {
+            "x": 483.40625,
+            "y": 634.8125,
+            "width": 77.5,
+            "height": 32,
+            "top": 634.8125,
+            "right": 560.90625,
+            "bottom": 666.8125,
+            "left": 483.40625
+          },
+          "firstFact": " ห้องสมุดประชาชี Prachachee Library",
+          "panelScrollWidth": 348,
+          "panelClientWidth": 348,
+          "mapUsefulShare": 0.7593410915798611,
+          "active": true,
+          "area": "charoenkrung",
+          "pins": 10
+        }
+      },
+      {
+        "name": "source8m",
+        "value": {
+          "before": {
+            "streetID": "w1197033854-11107363568-11107363569",
+            "distance": 0,
+            "direction": 1,
+            "metres": 19.632207322198198
+          },
+          "after": {
+            "streetID": "w1197033854-11107363568-11107363569",
+            "distance": 8,
+            "direction": 1,
+            "metres": 19.632207322198198
+          }
+        }
+      },
+      {
+        "name": "keyboardW",
+        "value": {
+          "before": 8,
+          "after": 16
+        }
+      },
+      {
+        "name": "junction",
+        "value": {
+          "choices": 2,
+          "before": {
+            "streetID": "w1007174593-9291726550-9291726551",
+            "distance": 0,
+            "direction": 1
+          },
+          "after": {
+            "streetID": "w1007174593-9291726550-9291726551",
+            "distance": 0,
+            "direction": 1,
+            "bearing": -19.86897273019818,
+            "nodeID": "n9291726550"
+          }
+        }
+      },
+      {
+        "name": "cafeStroll",
+        "value": "No connected suggestion in this actual position"
+      },
+      {
+        "name": "manualStopsPlayback",
+        "value": {
+          "playing": true,
+          "stop": {
+            "playing": false,
+            "position": {
+              "streetID": "w1007174593-9291726550-9291726551",
+              "distance": 8,
+              "direction": 1,
+              "bearing": -19.86897273019818,
+              "nodeID": "n9291726550"
+            }
+          },
+          "after": {
+            "playing": false,
+            "position": {
+              "streetID": "w1007174593-9291726550-9291726551",
+              "distance": 8,
+              "direction": 1,
+              "bearing": -19.86897273019818,
+              "nodeID": "n9291726550"
+            }
+          }
+        }
+      },
+      {
+        "name": "taskStopsPlayback",
+        "value": {
+          "playing": false,
+          "streetVisible": false
+        }
+      },
+      {
+        "name": "enlarged",
+        "value": {
+          "body": 1024,
+          "viewport": 1024,
+          "panelWidth": 348,
+          "scrollWidth": 364,
+          "panel": {
+            "x": 372,
+            "y": 340,
+            "width": 350,
+            "height": 540,
+            "top": 340,
+            "right": 722,
+            "bottom": 880,
+            "left": 372
+          },
+          "direction": {
+            "x": 484.09375,
+            "y": 542.921875,
+            "width": 166.0625,
+            "height": 42,
+            "top": 542.921875,
+            "right": 650.15625,
+            "bottom": 584.921875,
+            "left": 484.09375
+          },
+          "movement": [
+            {
+              "text": "↶",
+              "x": 383,
+              "y": 692.921875,
+              "width": 39.953125,
+              "height": 50,
+              "top": 692.921875,
+              "right": 422.953125,
+              "bottom": 742.921875,
+              "left": 383
+            },
+            {
+              "text": "← 8 m",
+              "x": 426.953125,
+              "y": 692.921875,
+              "width": 101.78125,
+              "height": 50,
+              "top": 692.921875,
+              "right": 528.734375,
+              "bottom": 742.921875,
+              "left": 426.953125
+            },
+            {
+              "text": "Play",
+              "x": 532.734375,
+              "y": 692.921875,
+              "width": 120,
+              "height": 50,
+              "top": 692.921875,
+              "right": 652.734375,
+              "bottom": 742.921875,
+              "left": 532.734375
+            },
+            {
+              "text": "8 m →",
+              "x": 383,
+              "y": 746.921875,
+              "width": 101.78125,
+              "height": 50,
+              "top": 746.921875,
+              "right": 484.78125,
+              "bottom": 796.921875,
+              "left": 383
+            },
+            {
+              "text": "↷",
+              "x": 488.78125,
+              "y": 746.921875,
+              "width": 39.953125,
+              "height": 50,
+              "top": 746.921875,
+              "right": 528.734375,
+              "bottom": 796.921875,
+              "left": 488.78125
+            },
+            {
+              "text": "Low view",
+              "x": 532.734375,
+              "y": 746.921875,
+              "width": 129.234375,
+              "height": 50,
+              "top": 746.921875,
+              "right": 661.96875,
+              "bottom": 796.921875,
+              "left": 532.734375
+            }
+          ]
+        }
+      },
+      {
+        "name": "reducedMotion",
+        "value": {
+          "playDisabled": true,
+          "moving": false
+        }
+      },
+      {
+        "name": "escapeExits",
+        "value": true
+      },
+      {
+        "name": "photoFilter",
+        "value": {
+          "count": 12,
+          "status": "12 of 15 real photographs · source dates in photo credits",
+          "ids": [
+            "commons-40431760",
+            "commons-121447410",
+            "commons-190416548",
+            "commons-136898756",
+            "commons-136898759",
+            "commons-190675616",
+            "commons-112322656",
+            "commons-186390613",
+            "commons-81349630",
+            "commons-190675311",
+            "commons-105624755",
+            "commons-91670853"
+          ]
+        }
+      },
+      {
+        "name": "dialogCredits",
+        "value": "×\nNeighborhood reference—not this venue\n\nA Busy Street in Bangkok - panoramio\n\nekeidar · CC BY-SA 3.0 · Source\n\nResized to fit 640 × 640; WebP conversion; orientation applied; metadata removed. No content edits. ekeidar https://web.archive.org/web/20161102060052/http://www.panoramio.com/photo/3569680"
+      },
+      {
+        "name": "dialogFocusReturned",
+        "value": true
+      },
+      {
+        "name": "preferencesCollapsed",
+        "value": true
+      },
+      {
+        "name": "preferencesSaved",
+        "value": {
+          "status": "Saved on this device only.",
+          "value": {
+            "wifi": "fast",
+            "power": false,
+            "ac": true,
+            "alcohol": false,
+            "coffee": false,
+            "space": "cozy",
+            "atmosphere": ""
+          },
+          "stored": "{\"version\":1,\"preferences\":{\"wifi\":\"fast\",\"power\":false,\"ac\":true,\"alcohol\":false,\"coffee\":false,\"space\":\"cozy\",\"atmosphere\":\"\"}}"
+        }
+      },
+      {
+        "name": "preferencesReload",
+        "value": {
+          "wifi": "fast",
+          "power": false,
+          "ac": true,
+          "alcohol": false,
+          "coffee": false,
+          "space": "cozy",
+          "atmosphere": ""
+        }
+      },
+      {
+        "name": "preferencesUnknownUI",
+        "value": ""
+      },
+      {
+        "name": "preferencesCleared",
+        "value": {
+          "value": {
+            "wifi": "",
+            "power": false,
+            "ac": false,
+            "alcohol": false,
+            "coffee": false,
+            "space": "",
+            "atmosphere": ""
+          },
+          "stored": null
+        }
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "errors": [],
+    "failed": [
+      {
+        "url": "https://tiles.openfreemap.org/planet/20261101_080013_pt/14/12765/7560.pbf",
+        "reason": "net::ERR_ABORTED"
+      }
+    ],
+    "writes": [],
+    "checks": [
+      {
+        "name": "baseline",
+        "value": {
+          "map": {
+            "x": 360,
+            "y": 0,
+            "width": 1080,
+            "height": 900,
+            "top": 0,
+            "right": 1440,
+            "bottom": 900,
+            "left": 360
+          },
+          "bodyWidth": 1440,
+          "viewport": 1440,
+          "tiles": true,
+          "rendered": 405,
+          "canvas": {
+            "x": 360,
+            "y": 0,
+            "width": 1080,
+            "height": 900,
+            "top": 0,
+            "right": 1440,
+            "bottom": 900,
+            "left": 360
+          }
+        }
+      },
+      {
+        "name": "worldGeometry",
+        "value": {
+          "panel": {
+            "x": 372,
+            "y": 509.625,
+            "width": 350,
+            "height": 370.375,
+            "top": 509.625,
+            "right": 722,
+            "bottom": 880,
+            "left": 372
+          },
+          "firstDirection": {
+            "x": 483.40625,
+            "y": 634.8125,
+            "width": 77.5,
+            "height": 32,
+            "top": 634.8125,
+            "right": 560.90625,
+            "bottom": 666.8125,
+            "left": 483.40625
+          },
+          "firstFact": " ห้องสมุดประชาชี Prachachee Library",
+          "panelScrollWidth": 348,
+          "panelClientWidth": 348,
+          "mapUsefulShare": 0.799975887345679,
+          "active": true,
+          "area": "charoenkrung",
+          "pins": 13
+        }
+      },
+      {
+        "name": "source8m",
+        "value": {
+          "before": {
+            "streetID": "w1197033854-11107363568-11107363569",
+            "distance": 0,
+            "direction": 1,
+            "metres": 19.632207322198198
+          },
+          "after": {
+            "streetID": "w1197033854-11107363568-11107363569",
+            "distance": 8,
+            "direction": 1,
+            "metres": 19.632207322198198
+          }
+        }
+      },
+      {
+        "name": "keyboardW",
+        "value": {
+          "before": 8,
+          "after": 16
+        }
+      },
+      {
+        "name": "junction",
+        "value": {
+          "choices": 2,
+          "before": {
+            "streetID": "w1007174593-9291726550-9291726551",
+            "distance": 0,
+            "direction": 1
+          },
+          "after": {
+            "streetID": "w1007174593-9291726550-9291726551",
+            "distance": 0,
+            "direction": 1,
+            "bearing": -19.86897273019818,
+            "nodeID": "n9291726550"
+          }
+        }
+      },
+      {
+        "name": "cafeStroll",
+        "value": {
+          "before": {
+            "placeID": "o263e61a6f4dd",
+            "length": 128.70256874966873,
+            "progress": 0,
+            "offset": 24.771058429689905
+          },
+          "after": {
+            "placeID": "o263e61a6f4dd",
+            "length": 128.70256874966873,
+            "progress": 8,
+            "offset": 24.771058429689905
+          },
+          "text": "Toward ก๋วยเตี๋ยวเพชรในตำนาน-ตรอกหวานท่าน้ำคลองสาน · 121 m of mapped lanes left · pin 25 m straight line from end. Entrance unverified. Next: Charoen Nakhon Road in 51 m.\n\nFree stroll\nDirections ↗\nPlace & notes"
+        }
+      },
+      {
+        "name": "manualStopsPlayback",
+        "value": {
+          "playing": true,
+          "stop": {
+            "playing": false,
+            "position": {
+              "streetID": "w150283752-293213996-9291726550",
+              "distance": 43.47093680175207,
+              "direction": -1
+            }
+          },
+          "after": {
+            "playing": false,
+            "position": {
+              "streetID": "w150283752-293213996-9291726550",
+              "distance": 43.47093680175207,
+              "direction": -1
+            }
+          }
+        }
+      },
+      {
+        "name": "taskStopsPlayback",
+        "value": {
+          "playing": false,
+          "streetVisible": false
+        }
+      },
+      {
+        "name": "enlarged",
+        "value": {
+          "body": 1440,
+          "viewport": 1440,
+          "panelWidth": 348,
+          "scrollWidth": 348,
+          "panel": {
+            "x": 372,
+            "y": 340,
+            "width": 350,
+            "height": 540,
+            "top": 340,
+            "right": 722,
+            "bottom": 880,
+            "left": 372
+          },
+          "direction": {
+            "x": 477.1875,
+            "y": 542.921875,
+            "width": 166.0625,
+            "height": 42,
+            "top": 542.921875,
+            "right": 643.25,
+            "bottom": 584.921875,
+            "left": 477.1875
+          },
+          "movement": [
+            {
+              "text": "↶",
+              "x": 383,
+              "y": 692.921875,
+              "width": 39.953125,
+              "height": 50,
+              "top": 692.921875,
+              "right": 422.953125,
+              "bottom": 742.921875,
+              "left": 383
+            },
+            {
+              "text": "← 8 m",
+              "x": 426.953125,
+              "y": 692.921875,
+              "width": 101.78125,
+              "height": 50,
+              "top": 692.921875,
+              "right": 528.734375,
+              "bottom": 742.921875,
+              "left": 426.953125
+            },
+            {
+              "text": "Play",
+              "x": 532.734375,
+              "y": 692.921875,
+              "width": 120,
+              "height": 50,
+              "top": 692.921875,
+              "right": 652.734375,
+              "bottom": 742.921875,
+              "left": 532.734375
+            },
+            {
+              "text": "8 m →",
+              "x": 383,
+              "y": 746.921875,
+              "width": 101.78125,
+              "height": 50,
+              "top": 746.921875,
+              "right": 484.78125,
+              "bottom": 796.921875,
+              "left": 383
+            },
+            {
+              "text": "↷",
+              "x": 488.78125,
+              "y": 746.921875,
+              "width": 39.953125,
+              "height": 50,
+              "top": 746.921875,
+              "right": 528.734375,
+              "bottom": 796.921875,
+              "left": 488.78125
+            },
+            {
+              "text": "Low view",
+              "x": 532.734375,
+              "y": 746.921875,
+              "width": 129.234375,
+              "height": 50,
+              "top": 746.921875,
+              "right": 661.96875,
+              "bottom": 796.921875,
+              "left": 532.734375
+            }
+          ]
+        }
+      },
+      {
+        "name": "reducedMotion",
+        "value": {
+          "playDisabled": true,
+          "moving": false
+        }
+      },
+      {
+        "name": "escapeExits",
+        "value": true
+      },
+      {
+        "name": "photoFilter",
+        "value": {
+          "count": 12,
+          "status": "12 of 15 real photographs · source dates in photo credits",
+          "ids": [
+            "commons-40431760",
+            "commons-121447410",
+            "commons-190416548",
+            "commons-136898756",
+            "commons-136898759",
+            "commons-190675616",
+            "commons-112322656",
+            "commons-186390613",
+            "commons-81349630",
+            "commons-190675311",
+            "commons-105624755",
+            "commons-91670853"
+          ]
+        }
+      },
+      {
+        "name": "dialogCredits",
+        "value": "×\nNeighborhood reference—not this venue\n\nA Busy Street in Bangkok - panoramio\n\nekeidar · CC BY-SA 3.0 · Source\n\nResized to fit 640 × 640; WebP conversion; orientation applied; metadata removed. No content edits. ekeidar https://web.archive.org/web/20161102060052/http://www.panoramio.com/photo/3569680"
+      },
+      {
+        "name": "dialogFocusReturned",
+        "value": true
+      },
+      {
+        "name": "preferencesCollapsed",
+        "value": true
+      },
+      {
+        "name": "preferencesSaved",
+        "value": {
+          "status": "Saved on this device only.",
+          "value": {
+            "wifi": "fast",
+            "power": false,
+            "ac": true,
+            "alcohol": false,
+            "coffee": false,
+            "space": "cozy",
+            "atmosphere": ""
+          },
+          "stored": "{\"version\":1,\"preferences\":{\"wifi\":\"fast\",\"power\":false,\"ac\":true,\"alcohol\":false,\"coffee\":false,\"space\":\"cozy\",\"atmosphere\":\"\"}}"
+        }
+      },
+      {
+        "name": "preferencesReload",
+        "value": {
+          "wifi": "fast",
+          "power": false,
+          "ac": true,
+          "alcohol": false,
+          "coffee": false,
+          "space": "cozy",
+          "atmosphere": ""
+        }
+      },
+      {
+        "name": "preferencesUnknownUI",
+        "value": "1\nMana Craft\n\nCafé · 0.57 km straight line from Map centre\n\n✓ Wi-Fi\n? Outlets\nCheck outlets\n\nHours unknown · check your stay\n\nWalk directions ↗\nPlace & photos\n\nCurrent preferences: Current preferences: 1/3 documented matches · 2 unknown\n\nEvidence & entry conditions\n2\nEnvies café\n\nCafé · 0.29 km straight line from Map centre\n\n? Wi-Fi\n? Outlets\nCheck Wi-Fi + outlets\n\nHours unknown · check your stay\n\nWalk directions ↗\nPlace & photos\n\nCurrent preferences: Current preferences: 1/3 documented matches · 2 unknown\n\nEvidence & entry conditions\n3\nThe Coffee Store Charoenkrung\n\nCafé · 0.48 km straight line from Map centre\n\n? Wi-Fi\n? Outlets\nCheck Wi-Fi + outlets\n\nHours unknown · check your stay\n\nWalk directions ↗\nPlace & photos\n\nCurrent preferences: Current preferences: 1/3 documented matches · 2 unknown\n\nEvidence & entry conditions\n4\nso..coffee\n\nCafé · 0.73 km straight line from Map centre\n\n? Wi-Fi\n? Outlets\nCheck Wi-Fi + outlets\n\nHours unknown · check your stay\n\nWalk directions ↗\nPlace & photos\n\nCurrent preferences: Current preferences: 1/3 documented matches · 2 unknown\n\nEvidence & entry conditions\n5\nStarbucks · Soi Charoen Krung 24 Rd Talard\n\nCafé · 0.27 km straight line from Map centre\n\n✓ Wi-Fi\n? Outlets\nCheck outlets\n\nHours unknown · check your stay\n\nWalk directions ↗\nPlace & photos\n\nCurrent preferences: Current preferences: 0/3 documented matches · 3 unknown\n\nEvidence & entry conditions"
+      },
+      {
+        "name": "preferencesCleared",
+        "value": {
+          "value": {
+            "wifi": "",
+            "power": false,
+            "ac": false,
+            "alcohol": false,
+            "coffee": false,
+            "space": "",
+            "atmosphere": ""
+          },
+          "stored": null
+        }
+      }
+    ]
+  }
+]

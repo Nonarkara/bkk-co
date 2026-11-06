@@ -127,7 +127,7 @@ def main():
  if not venuefile.exists():venuefile=cache('venues',['nwr/amenity=cafe,restaurant,coworking_space,library','nwr/office=coworking'],geometry='point,polygon',padding=.002)
  for f in features(venuefile):
   if f['id'] not in work_ids:continue
-  tags={k:v for k,v in f['properties'].items() if k in ('socket','power_supply','electricity','parking','capacity:parking','access','fee') or k.startswith(('socket:','power_supply:','electricity:','internet_access','parking:','access:'))}
+  tags={k:v for k,v in f['properties'].items() if k in ('socket','power_supply','electricity','parking','capacity:parking','access','fee','air_conditioning','alcohol','serves:alcohol') or k.startswith(('socket:','power_supply:','electricity:','internet_access','parking:','access:'))}
   if tags:venue_tags[f['id']]={'sourceID':f['id'],'tags':tags}
  joins=[];used_stations=set();used_parking=set();close_parking=set();counts=collections.Counter()
  for r in rows:
