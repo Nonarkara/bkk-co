@@ -295,15 +295,19 @@ const PRESERVE = async (page, base, shot) => {
       base: map.getLayoutProperty('background', 'visibility'),
     }));
     if (shot) await page.screenshot({ path: new URL(`manga-lens-${shot}.png`, outDir).pathname });
+    const switchedAt = Date.now();
     await page.locator('.manga-toggle').click({ timeout: 15000 });
-    await page.waitForTimeout(400);
+    // Observe the actual completed handoff, not a Node timer racing the browser's
+    // rendering/event queue. A broken handoff still fails within this bound.
+    await page.waitForFunction(() => !MangaLens.active && map.getLayoutProperty('manga-ground','visibility') === 'none' && map.getLayoutProperty('background','visibility') === 'visible', null, { timeout: 3000 });
     checks.lensOff = await page.evaluate(() => ({
       pressed: document.querySelector('.manga-toggle').getAttribute('aria-pressed'),
       ground: map.getLayoutProperty('manga-ground', 'visibility'),
       base: map.getLayoutProperty('background', 'visibility'),
     }));
+    checks.lensOff.observedHandoffMs = Date.now() - switchedAt;
     await page.locator('.manga-toggle').click({ timeout: 15000 });
-    await page.waitForTimeout(400);
+    await page.waitForFunction(() => MangaLens.active && map.getLayoutProperty('manga-ground','visibility') === 'visible' && map.getLayoutProperty('background','visibility') === 'none', null, { timeout: 3000 });
   });
 
   await step('notebook', async () => {

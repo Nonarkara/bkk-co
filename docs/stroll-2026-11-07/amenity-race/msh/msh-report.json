@@ -1,0 +1,185 @@
+{
+  "stamp": "2026-11-06",
+  "base": "http://localhost:43991",
+  "planted": false,
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844,
+      "vw": 390,
+      "vh": 844,
+      "chrome": {
+        "topPx": 49,
+        "bottomPx": 0,
+        "share": 0.058
+      },
+      "mapShare": 0.893,
+      "mapIsFirst": true,
+      "hierarchyRatio": 15.39,
+      "top3": [
+        {
+          "id": "map",
+          "area": 294060
+        },
+        {
+          "id": "bar",
+          "area": 19110
+        },
+        {
+          "id": "chips",
+          "area": 15990
+        }
+      ],
+      "voidPx": 13715,
+      "voidTop": 809,
+      "voidW": 390,
+      "obstruction": {
+        "area": 1099,
+        "cls": "",
+        "tag": "span"
+      },
+      "obstructionShare": 0.004,
+      "inflated": [],
+      "orphans": [],
+      "bleed": false,
+      "task": {
+        "search": true,
+        "count": true,
+        "firstUseful": "text"
+      },
+      "lang": "en",
+      "title": "PLUB · Placemaking Laboratory Urban Bureau",
+      "pinsLayer": true,
+      "verdict": "PASS"
+    },
+    {
+      "width": 1024,
+      "height": 900,
+      "vw": 1024,
+      "vh": 900,
+      "chrome": {
+        "topPx": 49,
+        "bottomPx": 0,
+        "share": 0.054
+      },
+      "mapShare": 0.648,
+      "mapIsFirst": true,
+      "hierarchyRatio": 2.05,
+      "top3": [
+        {
+          "id": "map",
+          "area": 597600
+        },
+        {
+          "id": "side",
+          "area": 291600
+        },
+        {
+          "id": "bar",
+          "area": 17640
+        }
+      ],
+      "voidPx": 25600,
+      "voidTop": 863,
+      "voidW": 683,
+      "obstruction": {
+        "area": 8524,
+        "cls": "atlas-dock",
+        "tag": "div"
+      },
+      "obstructionShare": 0.014,
+      "inflated": [],
+      "orphans": [],
+      "bleed": false,
+      "task": {
+        "search": true,
+        "count": true,
+        "firstUseful": "text"
+      },
+      "lang": "en",
+      "title": "PLUB · Placemaking Laboratory Urban Bureau",
+      "pinsLayer": true,
+      "verdict": "PASS"
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "vw": 1440,
+      "vh": 900,
+      "chrome": {
+        "topPx": 49,
+        "bottomPx": 0,
+        "share": 0.054
+      },
+      "mapShare": 0.75,
+      "mapIsFirst": true,
+      "hierarchyRatio": 3.33,
+      "top3": [
+        {
+          "id": "map",
+          "area": 972000
+        },
+        {
+          "id": "side",
+          "area": 291600
+        },
+        {
+          "id": "bar",
+          "area": 17640
+        }
+      ],
+      "voidPx": 42750,
+      "voidTop": 863,
+      "voidW": 1140,
+      "obstruction": {
+        "area": 8524,
+        "cls": "atlas-dock",
+        "tag": "div"
+      },
+      "obstructionShare": 0.009,
+      "inflated": [],
+      "orphans": [],
+      "bleed": false,
+      "task": {
+        "search": true,
+        "count": true,
+        "firstUseful": "text"
+      },
+      "lang": "en",
+      "title": "PLUB · Placemaking Laboratory Urban Bureau",
+      "pinsLayer": true,
+      "verdict": "PASS"
+    }
+  ],
+  "journey": {
+    "search": 9,
+    "hitsDismissed": true,
+    "chipReachable": true,
+    "chipChanged": true,
+    "hopStops": 5,
+    "hopHasShared": 1,
+    "hopFeed": "No shared hop notes yet. Choose real stops from the planner to write the first.",
+    "hopFeedOk": true,
+    "lens": {
+      "installed": true,
+      "layers": 18
+    },
+    "lensOn": {
+      "pressed": "true",
+      "ground": "visible",
+      "base": "none"
+    },
+    "lensOff": {
+      "pressed": "false",
+      "ground": "none",
+      "base": "visible",
+      "observedHandoffMs": 324
+    },
+    "notebook": 1,
+    "pinsLayer": true,
+    "errors": [],
+    "writes": []
+  },
+  "verdict": "PASS",
+  "fails": []
+}

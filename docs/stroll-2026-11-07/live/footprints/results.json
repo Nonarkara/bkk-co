@@ -1,0 +1,74 @@
+[
+  {
+    "width": 390,
+    "proof": {
+      "count": 3523,
+      "componentsOnly": true,
+      "containedPins": true,
+      "masksCorrect": true,
+      "mixed": 52
+    },
+    "street": {
+      "heightsOnly": true,
+      "knownColored": 3,
+      "position": {
+        "streetID": "w1197033854-11107363568-11107363569",
+        "distance": 0,
+        "direction": 1,
+        "metres": 19.632207322198198
+      }
+    },
+    "precisionCameraUnchanged": true,
+    "defaultManga": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "width": 1024,
+    "proof": {
+      "count": 3523,
+      "componentsOnly": true,
+      "containedPins": true,
+      "masksCorrect": true,
+      "mixed": 52
+    },
+    "street": {
+      "heightsOnly": true,
+      "knownColored": 3,
+      "position": {
+        "streetID": "w1197033854-11107363568-11107363569",
+        "distance": 0,
+        "direction": 1,
+        "metres": 19.632207322198198
+      }
+    },
+    "precisionCameraUnchanged": true,
+    "defaultManga": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "width": 1440,
+    "proof": {
+      "count": 3523,
+      "componentsOnly": true,
+      "containedPins": true,
+      "masksCorrect": true,
+      "mixed": 52
+    },
+    "street": {
+      "heightsOnly": true,
+      "knownColored": 3,
+      "position": {
+        "streetID": "w1197033854-11107363568-11107363569",
+        "distance": 0,
+        "direction": 1,
+        "metres": 19.632207322198198
+      }
+    },
+    "precisionCameraUnchanged": true,
+    "defaultManga": true,
+    "errors": [],
+    "writes": []
+  }
+]

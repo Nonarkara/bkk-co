@@ -1,0 +1,34 @@
+{
+  "report": [
+    {
+      "width": 390,
+      "fixtureTime": "2026-11-06T14:00:00+07:00",
+      "errors": [],
+      "writes": [],
+      "photos": 120,
+      "savedPreferences": "local only",
+      "journeys": 3
+    },
+    {
+      "width": 1024,
+      "fixtureTime": "2026-11-06T14:00:00+07:00",
+      "errors": [],
+      "writes": [],
+      "photos": 120,
+      "savedPreferences": "local only",
+      "journeys": 3
+    },
+    {
+      "width": 1440,
+      "fixtureTime": "2026-11-06T14:00:00+07:00",
+      "errors": [],
+      "writes": [],
+      "photos": 120,
+      "savedPreferences": "local only",
+      "journeys": 3
+    }
+  ],
+  "latePhotoTaskGuard": true,
+  "coldAmenityEntry": true,
+  "missingRegistryFalsifier": true
+}
