@@ -37,3 +37,28 @@ jobs:
       # Fails only on genuine SLOP so a real regression cannot pass silently.
       - name: Design law (non-slop)
         run: npx --yes github:Nonarkara/Non-Slop scan public src --fail-on slop
+
+  # MSH is a measured law, not an assertion. This job measures the shipped interface at
+  # 390 / 1024 / 1440 and then proves the gate can fail, so a silent regression cannot pass.
+  msh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright, Chromium and Wrangler
+        run: |
+          mkdir -p "$RUNNER_TEMP/pw" && cd "$RUNNER_TEMP/pw"
+          npm init -y >/dev/null 2>&1
+          npm i playwright@1.61.0 wrangler@4.81.1 >/dev/null 2>&1
+          npx playwright install --with-deps chromium
+          echo "$RUNNER_TEMP/pw/node_modules/.bin" >> "$GITHUB_PATH"
+      - name: MSH audit (chrome, task, geometry, hierarchy, preservation)
+        env:
+          PLUB_PLAYWRIGHT: ${{ runner.temp }}/pw/node_modules/playwright
+        run: node scripts/audit-msh.mjs
+      - name: MSH gate must fail on a planted defect
+        env:
+          PLUB_PLAYWRIGHT: ${{ runner.temp }}/pw/node_modules/playwright
+        run: node scripts/audit-msh.mjs --planted

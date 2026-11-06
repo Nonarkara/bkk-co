@@ -37,6 +37,7 @@ Wada plate 273 (locally credited catalogue: `~/Projects/palette/data/colors.json
 - **Named grid: `modular`** for the stamp board (a grid of stamp modules). Its `transform: rotate(-6deg)` on a stamped cell is the deliberate ink-stamp mark, not a stray break. **No other rotation, diagonal or overlap is licensed** — this is a map-first civic tool; the governed grids are `column` and `modular`.
 - Chrome is as tall as its contents: bar49px + chips41px =90px at normal type; dense filter controls remain32px. Enlarged text can increase this to preserve complete readable labels.
 - One screen first; scroll only for reading depth or genuinely more detail.
+- **Manga lens** (`public/manga-lens.js`, one control in the map's corner): the *same* OpenMapTiles source, drawn as line and tone — ink line-work, screentone, paper ground. It is a **lens, not a second map**: no second data source, no second style file, and it never declares a building height (unknown stays flat). Civic daylight stays the default; the street sketch is always drawn in line and tone while it is open, and the toggle is disabled there so it cannot lie. The lens washes in over ~240 ms on the reader's own toggle and yields at once on a task change.
 
 ## Voice
 - EN: plain, civic, confident — state the fact, skip the jargon, no hedging.

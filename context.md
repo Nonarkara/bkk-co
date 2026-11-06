@@ -5,6 +5,14 @@
 **Home folder:** `~/Projects/bangkok-ioc/bkk-co` (folder name is historical). Sibling checkouts there are other projects with their own deploys — never deploy them from here.
 **Domain history:** co.nonarkara.org is primary (owner's choice). bkkco.nonarkara.org, used briefly on 2026-11-02, 301-redirects to it.
 
+## MSH instrument and search-dismiss fix — 6 November 2026
+
+`scripts/audit-msh.mjs` measures the shipped interface at 390/1024/1440 and reports chrome cost, task visibility, geometry failures (void, inflated box, orphan column, horizontal bleed, map obstruction), hierarchy and preservation (search, filter chips, café hop, shared hop notes, manga lens, notebook). `--planted` injects a known defect and fails if the gate does not catch it. Both run as CI jobs; the audit writes `docs/msh-audit/<date>/msh-report.json` plus screenshots at each width. It never crashes on a broken step: it reports the step it could not exercise. Measure the live site read-only with `PLUB_URL=https://co.nonarkara.org node scripts/audit-msh.mjs`.
+
+The instrument found a live defect on first contact with the public site: Chrome natively clears a search field on Escape, and that `input` event re-opened the results panel over the filter chips — so Escape did not dismiss the results and the Food chip could not be clicked. `public/app.js` now prevents the native clear and dismisses the panel while keeping the query. Locked by the audit's `hitsDismissed` and `chipReachable` checks.
+
+`public/styles/plub-street.json` was the street sketch's own style file. The manga lens replaced it, nothing referenced it any more, and it was still being shipped; it is removed. The dated `live-bytes.json` records keep their own list — they are evidence of what was deployed on their date, not a live manifest.
+
 ## Agent continuation — 5 November 2026
 
 MiniMax/other adopted work in ee26572/ba6be14/4d496db is preserved. Manga lens lifecycle, failure/retry, residential tone and route-number contrast repaired. Backend hop logs completed with compact explicit public UI, exact stop ordering/preview, opt-in photos, complete own export/report data, account quota100 and both moderation queues. Existing notebook/privacy/source/catalogue behavior retained. New tests: manga-motion (CI), manga-browser (local), hop-logs and isolated hop-browser. Evidence, independent review and final source/Worker proof: docs/continuation-2026-11-05/. Previous dated release reports below remain historical.

@@ -308,7 +308,12 @@ $('#q').addEventListener('keydown', e => {
     items.forEach((li, i) => li.setAttribute('aria-selected', i === hitIdx));
   } else if (e.key === 'Enter' && items.length) {
     items[Math.max(0, hitIdx)].click();
-  } else if (e.key === 'Escape') { $('#hits').hidden = true; }
+  } else if (e.key === 'Escape') {
+    // Chrome natively CLEARS a search field on Escape, and that fires `input`, which
+    // re-opens this panel over the filter chips. Dismiss the panel and keep the query.
+    e.preventDefault();
+    $('#hits').hidden = true;
+  }
 });
 $('#hits').addEventListener('click', e => {
   const li = e.target.closest('li[data-id]');
