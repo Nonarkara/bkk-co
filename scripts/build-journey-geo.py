@@ -158,7 +158,7 @@ def main():
  park_metadata={p['id']:{'sourceID':p['id'],'tags':p['tags'],'accessClass':p['accessClass']} for p in parking if p['id'] in used_parking}
  # Parking shapes are optional display evidence. Joins always use original geometries.
  park_geometries={p['id']:display(p['geometry']) for p in parking if p['id'] in close_parking}
- manifest={'version':1,'built':'2026-11-03','source':'OpenStreetMap','sourceURL':C.OSM_URL,'asOf':C.OSM_AS_OF,'md5':C.OSM_MD5,
+ manifest={'version':1,'built':'2026-11-07','source':'OpenStreetMap','sourceURL':C.OSM_URL,'asOf':C.OSM_AS_OF,'md5':C.OSM_MD5,
   'license':'ODbL-1.0','attribution':'© OpenStreetMap contributors','licenseURL':'https://www.openstreetmap.org/copyright',
   'crs':'EPSG:4326','distanceCRS':'EPSG:32647','catalogueSHA256':hashes,'bounds':C.BOUNDS,'workplaceTotal':len(rows),
   'stationMeaning':'Named railway=station source nodes, including mainline rail. Nearest joins exclude explicit access no/private/permit/military and inactive proposed/construction/disused/abandoned/demolished stations; retained metadata marks eligible=false. Missing access is unknown, not proof of public access. Coordinates are station points, not entrances. Distances are straight-line, no walking/transfer/step-free inference.',
