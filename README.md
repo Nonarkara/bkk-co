@@ -46,3 +46,9 @@ The manga toggle now settles within240ms and stops its drawing transition on man
 Manga is the primary map, starting close in Charoen Krung/Talat Noi. The corner map toggle opens the secondary precision basemap; both use identical coordinates and GPS. Footprint fills use Palette320: coral cafés, pale yellow co-work, green libraries, blue food. Mixed categories stripe; unmatched buildings stay neutral. Colors follow selected kinds/filters and strict contained place pins, not inferred whole-building use. Key explains the matching and palette. Street sketch follows the current close area and retains source heights/lanes.
 
 Tests: `node test/footprint-model.mjs`, `node test/footprint-palette.mjs`, `node test/footprint-browser.mjs` (read-only local43827 or PLUB_URL). CI runs component/runtime guards and measured/planted MSH. Provenance, independent actual pixels and limitations: [Palette validation](docs/palette-buildings-2026-11-07/VALIDATION.md).
+
+## Neighborhood Palette, references and needs
+
+The manga map retains exact matched building colors across zoom and adds five explicitly authored neighborhood mood grounds. In List → Find a work spot → Your place preferences, save equipment/space choices on this device; a place also offers Find places for my needs. Dated evidence separates documented facts from unknowns; visitor Fast is not measured Mbps.
+
+Guide → Real neighborhood photos opens120credited source photographs, labeled as neighborhood references rather than venue images. Neighborhood sheets offer source-lane strolls; unknown building heights stay flat and source lines do not establish entrances/walkability. Final source, tests, live deployment and limits: [7November release](docs/stroll-2026-11-07/SHIP.md).

@@ -1,0 +1,14 @@
+{
+  "version": "4.7.1",
+  "base": "https://co.nonarkara.org",
+  "preview": false,
+  "vendor": [
+    "https://co.nonarkara.org/vendor/maplibre-gl-4.7.1/maplibre-gl.css",
+    "https://co.nonarkara.org/vendor/maplibre-gl-4.7.1/maplibre-gl.js"
+  ],
+  "blockedCDNRequests": [],
+  "errors": [],
+  "mapStarted": true,
+  "footprintColorsStarted": true,
+  "negativeControl": "Previous CDN script fails to define maplibregl when unpkg is blocked"
+}

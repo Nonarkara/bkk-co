@@ -1,0 +1,114 @@
+{
+  "at": "2026-11-06T19:29:16.702Z",
+  "origin": "https://co.nonarkara.org",
+  "checks": [
+    {
+      "streak": 1,
+      "file": "index.html",
+      "sha256": "0faf01d9ede6ac5d268c1cc73a50d143b0240be5ba2ff1129860225ad39a9701",
+      "bytes": 7882
+    },
+    {
+      "streak": 1,
+      "file": "journeys.js",
+      "sha256": "c9ea0fe0890d8f7bbf2cb16ed6e8992118ae4a6727563edb8bc49048e922afc6",
+      "bytes": 30052
+    },
+    {
+      "streak": 1,
+      "file": "neighborhood-photos.js",
+      "sha256": "078e8a7db4bb35976a3f4c0ef0945b9e24c35d615e18c1afd8b4a4f276b94058",
+      "bytes": 6778
+    },
+    {
+      "streak": 1,
+      "file": "data/neighborhood-photos.json",
+      "sha256": "c01639473e1f2e2b7fe95a29ebdef000d6aa84bd604588c76400153bf9954c07",
+      "bytes": 332222
+    },
+    {
+      "streak": 1,
+      "file": "vendor/maplibre-gl-4.7.1/maplibre-gl.js",
+      "sha256": "be9633c4d870e26fb37f1cfe5c5a77181667114003ea16207ac7850d8da8add1",
+      "bytes": 803086
+    },
+    {
+      "streak": 1,
+      "file": "vendor/maplibre-gl-4.7.1/maplibre-gl.css",
+      "sha256": "576b085fdd9487a65a19215328c1e086c07ce5bf6da09b666b3806d3d008dae9",
+      "bytes": 65534
+    },
+    {
+      "streak": 2,
+      "file": "index.html",
+      "sha256": "0faf01d9ede6ac5d268c1cc73a50d143b0240be5ba2ff1129860225ad39a9701",
+      "bytes": 7882
+    },
+    {
+      "streak": 2,
+      "file": "journeys.js",
+      "sha256": "c9ea0fe0890d8f7bbf2cb16ed6e8992118ae4a6727563edb8bc49048e922afc6",
+      "bytes": 30052
+    },
+    {
+      "streak": 2,
+      "file": "neighborhood-photos.js",
+      "sha256": "078e8a7db4bb35976a3f4c0ef0945b9e24c35d615e18c1afd8b4a4f276b94058",
+      "bytes": 6778
+    },
+    {
+      "streak": 2,
+      "file": "data/neighborhood-photos.json",
+      "sha256": "c01639473e1f2e2b7fe95a29ebdef000d6aa84bd604588c76400153bf9954c07",
+      "bytes": 332222
+    },
+    {
+      "streak": 2,
+      "file": "vendor/maplibre-gl-4.7.1/maplibre-gl.js",
+      "sha256": "be9633c4d870e26fb37f1cfe5c5a77181667114003ea16207ac7850d8da8add1",
+      "bytes": 803086
+    },
+    {
+      "streak": 2,
+      "file": "vendor/maplibre-gl-4.7.1/maplibre-gl.css",
+      "sha256": "576b085fdd9487a65a19215328c1e086c07ce5bf6da09b666b3806d3d008dae9",
+      "bytes": 65534
+    },
+    {
+      "streak": 3,
+      "file": "index.html",
+      "sha256": "0faf01d9ede6ac5d268c1cc73a50d143b0240be5ba2ff1129860225ad39a9701",
+      "bytes": 7882
+    },
+    {
+      "streak": 3,
+      "file": "journeys.js",
+      "sha256": "c9ea0fe0890d8f7bbf2cb16ed6e8992118ae4a6727563edb8bc49048e922afc6",
+      "bytes": 30052
+    },
+    {
+      "streak": 3,
+      "file": "neighborhood-photos.js",
+      "sha256": "078e8a7db4bb35976a3f4c0ef0945b9e24c35d615e18c1afd8b4a4f276b94058",
+      "bytes": 6778
+    },
+    {
+      "streak": 3,
+      "file": "data/neighborhood-photos.json",
+      "sha256": "c01639473e1f2e2b7fe95a29ebdef000d6aa84bd604588c76400153bf9954c07",
+      "bytes": 332222
+    },
+    {
+      "streak": 3,
+      "file": "vendor/maplibre-gl-4.7.1/maplibre-gl.js",
+      "sha256": "be9633c4d870e26fb37f1cfe5c5a77181667114003ea16207ac7850d8da8add1",
+      "bytes": 803086
+    },
+    {
+      "streak": 3,
+      "file": "vendor/maplibre-gl-4.7.1/maplibre-gl.css",
+      "sha256": "576b085fdd9487a65a19215328c1e086c07ce5bf6da09b666b3806d3d008dae9",
+      "bytes": 65534
+    }
+  ]
+}

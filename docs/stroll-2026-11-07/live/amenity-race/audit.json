@@ -1,0 +1,152 @@
+{
+  "before": "c9ea0fe0890d8f7bbf2cb16ed6e8992118ae4a6727563edb8bc49048e922afc6",
+  "after": "c9ea0fe0890d8f7bbf2cb16ed6e8992118ae4a6727563edb8bc49048e922afc6",
+  "stable": true,
+  "out": [
+    {
+      "width": 390,
+      "scenario": "hydrate",
+      "mutant": false,
+      "errors": [],
+      "writes": [],
+      "script": "journeys.js?v=stroll-20261107c",
+      "initial": "? Air conditioning · unknown",
+      "forced": {
+        "oldSlotDetached": true,
+        "fullJoinLoaded": false,
+        "selected": "n735122008",
+        "currentAC": "? Air conditioning · unknown"
+      },
+      "after": "✓ Air conditioning · documented",
+      "documented": "documented",
+      "pass": true
+    },
+    {
+      "width": 1024,
+      "scenario": "hydrate",
+      "mutant": false,
+      "errors": [],
+      "writes": [],
+      "script": "journeys.js?v=stroll-20261107c",
+      "initial": "? Air conditioning · unknown",
+      "forced": {
+        "oldSlotDetached": true,
+        "fullJoinLoaded": false,
+        "selected": "n735122008",
+        "currentAC": "? Air conditioning · unknown"
+      },
+      "after": "✓ Air conditioning · documented",
+      "documented": "documented",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "scenario": "hydrate",
+      "mutant": false,
+      "errors": [],
+      "writes": [],
+      "script": "journeys.js?v=stroll-20261107c",
+      "initial": "? Air conditioning · unknown",
+      "forced": {
+        "oldSlotDetached": true,
+        "fullJoinLoaded": false,
+        "selected": "n735122008",
+        "currentAC": "? Air conditioning · unknown"
+      },
+      "after": "✓ Air conditioning · documented",
+      "documented": "documented",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "scenario": "hydrate",
+      "mutant": true,
+      "errors": [],
+      "writes": [],
+      "script": "journeys.js?v=stroll-20261107c",
+      "initial": "? Air conditioning · unknown",
+      "forced": {
+        "oldSlotDetached": true,
+        "fullJoinLoaded": false,
+        "selected": "n735122008",
+        "currentAC": "? Air conditioning · unknown"
+      },
+      "after": "? Air conditioning · unknown",
+      "documented": "unknown",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "scenario": "new-task",
+      "mutant": false,
+      "errors": [],
+      "writes": [],
+      "script": "journeys.js?v=stroll-20261107c",
+      "initial": "? Air conditioning · unknown",
+      "forced": {
+        "oldSlotDetached": true,
+        "fullJoinLoaded": false,
+        "selected": "n735122008",
+        "currentAC": "? Air conditioning · unknown"
+      },
+      "before": "Your notebook",
+      "after": "Your notebook",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "scenario": "new-place",
+      "mutant": false,
+      "errors": [],
+      "writes": [],
+      "script": "journeys.js?v=stroll-20261107c",
+      "initial": "? Air conditioning · unknown",
+      "forced": {
+        "oldSlotDetached": true,
+        "fullJoinLoaded": false,
+        "selected": "n735122008",
+        "currentAC": "? Air conditioning · unknown"
+      },
+      "newID": "n10020446492",
+      "before": "Fred",
+      "after": "Fred",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "scenario": "close",
+      "mutant": false,
+      "errors": [],
+      "writes": [],
+      "script": "journeys.js?v=stroll-20261107c",
+      "initial": "? Air conditioning · unknown",
+      "forced": {
+        "oldSlotDetached": true,
+        "fullJoinLoaded": false,
+        "selected": "n735122008",
+        "currentAC": "? Air conditioning · unknown"
+      },
+      "before": true,
+      "after": true,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "scenario": "edit-form",
+      "mutant": false,
+      "errors": [],
+      "writes": [],
+      "script": "journeys.js?v=stroll-20261107c",
+      "initial": "? Air conditioning · unknown",
+      "forced": {
+        "oldSlotDetached": true,
+        "fullJoinLoaded": false,
+        "selected": "n735122008",
+        "currentAC": "? Air conditioning · unknown"
+      },
+      "before": "★★★★★\nCalm\nFocused\nCozy\nBuzzing\nSocial\nInspiring\nSlow\nMeh\nVisit date\nYour private note\n＋ Photos · up to 4\nFor people who work here (optional, shared)\nSave visit\n\nSTARS, WORDS, NOTE AND PHOTOS SAVE ON THIS DEVICE. BACK UP OR SHARE LATER FROM YOUR NOTEBOOK. THE FOUR WORK ANSWERS, IF ALL GIVEN, ARE SHARED ANONYMOUSLY.",
+      "after": "★★★★★\nCalm\nFocused\nCozy\nBuzzing\nSocial\nInspiring\nSlow\nMeh\nVisit date\nYour private note\n＋ Photos · up to 4\nFor people who work here (optional, shared)\nSave visit\n\nSTARS, WORDS, NOTE AND PHOTOS SAVE ON THIS DEVICE. BACK UP OR SHARE LATER FROM YOUR NOTEBOOK. THE FOUR WORK ANSWERS, IF ALL GIVEN, ARE SHARED ANONYMOUSLY.",
+      "pass": true
+    }
+  ]
+}

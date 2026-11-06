@@ -1,0 +1,9 @@
+{
+  "origin": "https://co.nonarkara.org",
+  "sourceCommit": "896937aff24ac897f78134ce59dff9e56fdedc2d",
+  "observedAt": "2026-11-06T19:34:51.640745+00:00",
+  "command": "PLUB_URL=https://co.nonarkara.org node docs/stroll-2026-11-07/live/browser/probe.mjs",
+  "exitCode": 0,
+  "apiWrites": 0,
+  "note": "Successful public read-only rerun writes directly to this live directory. The probe differs from test/neighborhood-browser.mjs only in output directory. Journey windows use documented14:00Bangkok fixture and explicit SamYan source anchor; timers remain real."
+}
