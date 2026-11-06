@@ -231,7 +231,7 @@ async function ready(page) {
   await page.waitForTimeout(700);
   return page.evaluate(() => !!map.getLayer('place-icons'));
 }
-const PRESERVE = async (page, base) => {
+const PRESERVE = async (page, base, shot) => {
   const checks = {};
   const errors = [], writes = [];
   page.on('pageerror', e => errors.push(e.message));
@@ -296,6 +296,7 @@ const PRESERVE = async (page, base) => {
       ground: map.getLayoutProperty('manga-ground', 'visibility'),
       base: map.getLayoutProperty('background', 'visibility'),
     }));
+    if (shot) await page.screenshot({ path: new URL(`manga-lens-${shot}.png`, outDir).pathname });
     await page.locator('.manga-toggle').click({ timeout: 15000 });
     await page.waitForTimeout(1400);
     checks.lensOff = await page.evaluate(() => ({
@@ -387,7 +388,7 @@ try {
   const page = await context.newPage();
   await page.goto(base, { waitUntil: 'domcontentloaded' });
   await ready(page);
-  report.journey = await PRESERVE(page, base);
+  report.journey = await PRESERVE(page, base, 'live');
   await context.close();
 } finally {
   await browser.close();
