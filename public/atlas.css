@@ -165,10 +165,11 @@
   font-size: 13px;
   line-height: 1.5;
 }
+/* The rail's Find / Explore / Key own these actions at every width (one control per action, MSH).
+   The dock keeps only an active view's status, its way out and "Show matches"; the proxies still press these hidden buttons. */
+.atlas-tools [data-work-start], .atlas-tools [data-atlas-open], .atlas-tools [data-atlas-key] { display: none !important; }
+.atlas-dock:not(:has(.atlas-reset:not([hidden]))) .atlas-state { display: none; }
 @media (max-width: 899px) {
-  /* phone: tools moved into the Explore panel; only an active view's status and its way out stay on the map */
-  .atlas-tools [data-work-start], .atlas-tools [data-atlas-open], .atlas-tools [data-atlas-key] { display: none !important; }
-  .atlas-dock:not(:has(.atlas-reset:not([hidden]))) .atlas-state { display: none; }
   .atlas-dock {
     left: 10px;
     top: 102px;
