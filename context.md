@@ -5,6 +5,10 @@
 **Home folder:** `~/Projects/bangkok-ioc/bkk-co` (folder name is historical). Sibling checkouts there are other projects with their own deploys — never deploy them from here.
 **Domain history:** co.nonarkara.org is primary (owner's choice). bkkco.nonarkara.org, used briefly on 2026-11-02, 301-redirects to it.
 
+## Grand Budapest second pass — 8 November 2026
+
+Owner: make it work and make it special. Live review found the neighbourhood mood pattern repeating as pale horizontal bands (a band inside a 64px tile), every building edge drawn as heavy as the roads, a near-black off-palette neighbourhood frame, a collapsed attribution box twice its icon, and at zoom 14 a storm of equal-weight cluster badges. Fixed: flat mood tiles, line weight by role, plum frame, 28px attribution, count-scaled cluster badges, category-coloured single pins (so list icons match the map and Key; less-documented cafés stay white). Evidence: docs/budapest-special-2026-11-08/. Rules in STYLE.md.
+
 ## Grand Budapest basemap and one-control chrome — 7 November 2026
 
 Owner review: the map still read grey-white, the bar duplicated controls and counts, and the phone chip row clipped Food. The manga style is now the Grand Budapest register in Wada colours: pink ground, mint parks, powder-blue water, lemon main roads, white buildings in plum ink. Colours follow OSM classes only. Desktop map-corner Explore/Key/"N mapped" duplicates are hidden (the rail owns them; the proxies still press them); the phone list toggle is `☰`, so five chips fit at 360px. Cluster badges are hairline. Live cold load measured at 2.0s to a drawn map at 390px; the map container now paints the ground first. Evidence: docs/grand-budapest-2026-11-07/ (before/after at 390/1024/1440, MSH report). Palette in STYLE.md.

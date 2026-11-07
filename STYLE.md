@@ -74,3 +74,9 @@ Wada plate 273 (locally credited catalogue: `~/Projects/palette/data/colors.json
 - Known limit: café Coral Red against the pink ground is1.5:1. Café fills rely on the plum footprint outline, texture and symbol, never on hue alone.
 - `#map` paints the ground colour before the first tile, so a cold load opens on the set, not a void.
 - Chrome: the rail owns Find/Explore/Filters/Key at every width; the map dock shows only an active view's status, its way out and "Show matches". One count per view. The phone list toggle is the symbol`☰` (accessible name "List, explore and filters") so all five chips fit at360px with4px gaps. Cluster badges use a hairline border; the single pin is the stronger mark.
+## Grand Budapest, second pass · 8November2026
+- Single pins wear their category colour (café Coral Red, co-work Sulpher Yellow, library Oil Green, food Light Glaucous Blue, the same chord as footprints and Key), so map pins, list icons and the Key read as one system. "Less documented" cafés stay white with a dashed ring: weaker evidence gets less colour, never the same jewel.
+- Cluster badges stay white and scale with their count (icon 0.74×→1.08×, number 11→15px from 2 to 120 places), so the dense quarters are found first instead of fifty equal labels.
+- Line weight by role: road casings stay full plum; building edges drop to 34% and paths to 50%. Uniform plum on every edge was noise.
+- Neighbourhood mood tiles are flat paper plus sparse dots. The old tile carried a full-width band and a hairline, which repeated as pale horizontal stripes and read as tile seams. The 800m frame, its fill and its label are plum, no longer near-black `#20201d`.
+- Collapsed attribution is its 28px icon, nothing wider.
