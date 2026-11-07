@@ -20,9 +20,9 @@
   const c=document.createElement('canvas');c.width=c.height=64;const g=c.getContext('2d'),colors=area.colors.map(x=>x[1]);
   // Broad quiet paper, one secondary band and sparse tiny printed marks.
   // Their positions are graphic composition, never streets, parcels or densities.
-  g.fillStyle=colors[0];g.fillRect(0,0,64,64);g.fillStyle=colors[1];g.fillRect(0,48,64,16);
-  g.fillStyle=colors[2];for(const [x,y]of[[12,12],[44,28],[28,44],[60,60]]){g.beginPath();g.arc(x,y,1.1,0,Math.PI*2);g.fill()}
-  if(colors[3]){g.fillStyle=colors[3];g.fillRect(0,0,64,.7)}
+  // A full-width band inside a repeating tile reads as a tile seam, not a mood: flat paper and dots only.
+  g.fillStyle=colors[0];g.fillRect(0,0,64,64);
+  g.fillStyle=colors.at(-1);for(const [x,y]of[[12,12],[44,28],[28,44],[60,60]]){g.beginPath();g.arc(x,y,1.1,0,Math.PI*2);g.fill()}
   return g.getImageData(0,0,64,64);
  }
  function sync(){

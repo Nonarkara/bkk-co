@@ -52,7 +52,7 @@
       "paint": { "fill-pattern": "manga-tone-shade", "fill-opacity": 0.12 } },
 
     { "id": "manga-building-line", "type": "line", "source": "openmaptiles", "source-layer": "building", "minzoom": 13,
-      "paint": { "line-color": "#7d133a", "line-width": ["interpolate", ["exponential", 1.2], ["zoom"], 13, 0.35, 18, 1.15], "line-opacity": 0.72 } },
+      "paint": { "line-color": "#7d133a", "line-width": ["interpolate", ["exponential", 1.2], ["zoom"], 13, 0.35, 18, 1.15], "line-opacity": 0.34 } },
 
     { "id": "manga-road-major-casing", "type": "line", "source": "openmaptiles", "source-layer": "transportation", "minzoom": 10,
       "filter": ["all",
@@ -76,7 +76,7 @@
       "filter": ["all",
         ["match", ["geometry-type"], ["LineString", "MultiLineString"], true, false],
         ["match", ["get", "class"], ["path", "track", "pier", "busway", "bus_guideway"], true, false]],
-      "paint": { "line-color": "#7d133a", "line-width": ["interpolate", ["linear"], ["zoom"], 14, 0.5, 20, 1.9], "line-dasharray": [3, 2.2], "line-opacity": 0.66 } },
+      "paint": { "line-color": "#7d133a", "line-width": ["interpolate", ["linear"], ["zoom"], 14, 0.5, 20, 1.9], "line-dasharray": [3, 2.2], "line-opacity": 0.5 } },
 
     { "id": "manga-rail", "type": "line", "source": "openmaptiles", "source-layer": "transportation",
       "filter": ["all",
