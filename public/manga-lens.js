@@ -33,19 +33,19 @@
   }
   const TONES = {
     'manga-tone-dot': () => tile((g) => {
-      g.fillStyle = '#9c9482';
+      g.fillStyle = '#62c6bf';
       for (const [x, y] of [[2, 2], [6, 6]]) { g.beginPath(); g.arc(x, y, 1.15, 0, Math.PI * 2); g.fill(); }
     }),
     'manga-tone-hatch': () => tile((g, s) => {
-      g.strokeStyle = '#b6ad9b'; g.lineWidth = 1;
+      g.strokeStyle = '#e0b3b6'; g.lineWidth = 1;
       for (let x = -s; x < s; x += 4) { g.beginPath(); g.moveTo(x + 0.5, s); g.lineTo(x + s + 0.5, 0); g.stroke(); }
     }),
     'manga-tone-water': () => tile((g) => {
-      g.strokeStyle = '#a4aeb6'; g.lineWidth = 1;
+      g.strokeStyle = '#5a82b3'; g.lineWidth = 1;
       g.beginPath(); g.moveTo(0, 4.5); g.lineTo(8, 4.5); g.stroke();
     }),
     'manga-tone-shade': () => tile((g) => {
-      g.fillStyle = '#cbc4b4';
+      g.fillStyle = '#f9c1ce';
       for (const [x, y] of [[1, 1], [5, 5]]) { g.beginPath(); g.arc(x, y, 0.6, 0, Math.PI * 2); g.fill(); }
     }),
   };

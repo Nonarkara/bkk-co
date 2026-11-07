@@ -17,7 +17,7 @@
   if(!map?.getLayer('manga-building-tone'))return false;
   for(let mask=0;mask<16;mask++){const id=mask?'palette-mask-'+mask:'palette-volume-neutral';if(!map.hasImage(id)){const t=tile(mask);map.addImage(id,t.image);swatches.set(mask,t.url)}}
   if(!map.getSource(source))map.addSource(source,{type:'geojson',tolerance:0,data:empty()});
-  if(!map.getLayer(layer))map.addLayer({id:layer,type:'fill',source,layout:{visibility:'none'},paint:{'fill-pattern':['concat','palette-mask-',['to-string',['get','mask']]],'fill-opacity':.72,'fill-opacity-transition':{duration:0,delay:0}}},'manga-building-tone');
+  if(!map.getLayer(layer))map.addLayer({id:layer,type:'fill',source,layout:{visibility:'none'},paint:{'fill-pattern':['concat','palette-mask-',['to-string',['get','mask']]],'fill-opacity':.92,'fill-opacity-transition':{duration:0,delay:0}}},'manga-building-tone');
   return true;
  }
  function isStreet(){return !!(window.StreetWorld?.active&&document.querySelector('.street-panel:not([hidden])'))}

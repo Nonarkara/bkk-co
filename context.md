@@ -5,6 +5,10 @@
 **Home folder:** `~/Projects/bangkok-ioc/bkk-co` (folder name is historical). Sibling checkouts there are other projects with their own deploys — never deploy them from here.
 **Domain history:** co.nonarkara.org is primary (owner's choice). bkkco.nonarkara.org, used briefly on 2026-11-02, 301-redirects to it.
 
+## Grand Budapest basemap and one-control chrome — 7 November 2026
+
+Owner review: the map still read grey-white, the bar duplicated controls and counts, and the phone chip row clipped Food. The manga style is now the Grand Budapest register in Wada colours: pink ground, mint parks, powder-blue water, lemon main roads, white buildings in plum ink. Colours follow OSM classes only. Desktop map-corner Explore/Key/"N mapped" duplicates are hidden (the rail owns them; the proxies still press them); the phone list toggle is `☰`, so five chips fit at 360px. Cluster badges are hairline. Live cold load measured at 2.0s to a drawn map at 390px; the map container now paints the ground first. Evidence: docs/grand-budapest-2026-11-07/ (before/after at 390/1024/1440, MSH report). Palette in STYLE.md.
+
 ## MSH instrument and search-dismiss fix — 6 November 2026
 
 `scripts/audit-msh.mjs` measures the shipped interface at 390/1024/1440 and reports chrome cost, task visibility, geometry failures (void, inflated box, orphan column, horizontal bleed, map obstruction), hierarchy and preservation (search, filter chips, café hop, shared hop notes, manga lens, notebook). `--planted` injects a known defect and fails if the gate does not catch it. Both run as CI jobs; the audit writes `docs/msh-audit/<date>/msh-report.json` plus screenshots at each width. It never crashes on a broken step: it reports the step it could not exercise. Measure the live site read-only with `PLUB_URL=https://co.nonarkara.org node scripts/audit-msh.mjs`.

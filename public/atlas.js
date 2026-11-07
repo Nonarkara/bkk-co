@@ -145,7 +145,7 @@
     const ink = kind === 'coworking' ? '#986000' : kind === 'restaurant' ? '#666960' : '#7d133a';
     g.strokeStyle = ink;
     g.fillStyle = '#fff';
-    g.lineWidth = 1.6;
+    g.lineWidth = cluster ? 1 : 1.6; // cluster badges are hairline labels; the single pin stays the stronger mark
     g.beginPath();
     if (cluster) {
       g.moveTo(6, 1);
