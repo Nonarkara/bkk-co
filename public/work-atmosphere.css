@@ -1,0 +1,38 @@
+/* Workspace atmosphere: a dimension grid beside the existing place facts. Content-sized rows,
+   hairline rules, no cards. The grid is the instrument; the prose explains it. */
+.work-atmosphere { margin:8px 0; border-top:1px solid var(--rule); padding-top:4px; }
+.work-atmosphere h2 { margin:4px 0 2px; font-size:var(--body); }
+.work-atmosphere p { max-width:65ch; overflow-wrap:anywhere; }
+.work-atmosphere .wa-score { margin:2px 0 6px; }
+.work-atmosphere .wa-score b { font-size:1.25em; }
+.work-atmosphere .wa-of { color:var(--muted); font-size:var(--micro); letter-spacing:.04em; text-transform:uppercase; }
+.work-atmosphere .wa-unscored b { color:var(--muted); }
+.wa-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:0 14px; margin:2px 0 6px; }
+.wa-dimension { display:grid; grid-template-columns:1.2em 1fr auto; gap:0 6px; align-items:baseline;
+  padding:3px 0; border-bottom:1px solid var(--rule); font-size:var(--micro); line-height:1.5; }
+.wa-dimension .wa-mark { color:var(--ink); }
+.wa-dimension .wa-label { color:var(--ink); }
+.wa-dimension .wa-points { color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap; }
+.wa-dimension .wa-tier { grid-column:2 / -1; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+.wa-dimension[data-state=unknown] .wa-mark,
+.wa-dimension[data-state=unknown] .wa-label,
+.wa-dimension[data-state=unknown] .wa-points { color:var(--muted); }
+.wa-dimension .wa-tier[data-tier=visitor] { color:var(--ink); }
+.wa-dimension .wa-tier[data-tier="venue claim"] { color:var(--muted); font-style:italic; }
+.work-atmosphere .wa-gap { margin:4px 0; color:var(--muted); }
+.work-atmosphere .wa-gap b { color:var(--ink); }
+.work-atmosphere .wa-claims,
+.work-atmosphere .wa-detail { margin:4px 0; }
+.work-atmosphere .wa-claims summary,
+.work-atmosphere .wa-detail summary { min-height:32px; cursor:pointer; }
+.work-atmosphere .wa-detail p { font-size:var(--micro); }
+.work-atmosphere .wa-trunc { color:var(--muted); }
+@media (max-width:520px) {
+  .wa-grid { grid-template-columns:1fr; }
+  .wa-dimension { grid-template-columns:1.2em 1fr auto; }
+}
+
+/* A work-spot result carries one line about how much is documented. */
+.wa-chip { font-size:var(--micro); letter-spacing:.04em; color:var(--muted); white-space:nowrap; }
+.wa-chip[data-score] { color:var(--ink); }
+.wa-chip-unknown { color:var(--muted); }

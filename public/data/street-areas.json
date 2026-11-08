@@ -1,0 +1,264 @@
+{
+  "manifest": {
+    "version": 1,
+    "built": "2026-11-07",
+    "rule": "Authored neighbourhoods keep their anchors. The rest are the districts whose busiest 800 m catalogue cafe circle holds the most cafes, anchored on a real mapped cafe, with no overlap between areas.",
+    "radiusM": 800,
+    "minSeparationM": 1500,
+    "source": "OpenStreetMap district polygons; PLUB catalogue",
+    "sourceURL": "https://www.openstreetmap.org/copyright",
+    "licenses": [
+      "ODbL-1.0 (OpenStreetMap)",
+      "CDLA-P-2.0 (Overture Maps)"
+    ],
+    "catalogueSHA256": "8c72533b96de56992097fc08f9b6cee288a63cff982eb4964ca8d97be1141716",
+    "districtPolygons": 78,
+    "areas": 12,
+    "anchorRule": "The anchor is a real cafe inside the area circle with a connected mapped lane route. Where the highest-index cafe offers no stroll, another cafe in the same circle is used and the change is recorded."
+  },
+  "areas": [
+    {
+      "id": "ari",
+      "name": "Ari",
+      "nameTh": "อารีย์",
+      "mood": "Slow mornings",
+      "anchor": {
+        "sourceID": "n5388607091",
+        "x": 100.54462,
+        "y": 13.77971
+      },
+      "radiusM": 800,
+      "basis": "Authored neighbourhood around one real OSM anchor.",
+      "kind": "authored",
+      "mix": {
+        "cafe": 156,
+        "coworking": 1,
+        "library": 3
+      },
+      "cafesWithin800m": 156
+    },
+    {
+      "id": "samyan",
+      "name": "Sam Yan",
+      "nameTh": "สามย่าน",
+      "mood": "Studying past midnight",
+      "anchor": {
+        "sourceID": "n12803915078",
+        "x": 100.53012,
+        "y": 13.73206
+      },
+      "radiusM": 800,
+      "basis": "Authored neighbourhood around one real OSM anchor.",
+      "kind": "authored",
+      "mix": {
+        "cafe": 243,
+        "coworking": 6,
+        "library": 19
+      },
+      "cafesWithin800m": 243
+    },
+    {
+      "id": "charoenkrung",
+      "name": "Charoen Krung",
+      "nameTh": "เจริญกรุง",
+      "mood": "Crossing paths",
+      "anchor": {
+        "sourceID": "n4840964126",
+        "x": 100.51518,
+        "y": 13.72705
+      },
+      "radiusM": 800,
+      "basis": "Authored neighbourhood around one real OSM anchor.",
+      "kind": "authored",
+      "mix": {
+        "cafe": 141,
+        "coworking": 1,
+        "library": 6
+      },
+      "cafesWithin800m": 141
+    },
+    {
+      "id": "thonglo",
+      "name": "Thong Lo",
+      "nameTh": "ทองหล่อ",
+      "mood": "After work",
+      "anchor": {
+        "sourceID": "n5391626092",
+        "x": 100.57851,
+        "y": 13.72423
+      },
+      "radiusM": 800,
+      "basis": "Authored neighbourhood around one real OSM anchor.",
+      "kind": "authored",
+      "mix": {
+        "cafe": 113,
+        "coworking": 4,
+        "library": 3
+      },
+      "cafesWithin800m": 113
+    },
+    {
+      "id": "ramkhamhaeng",
+      "name": "Meet's space · Ramkhamhaeng",
+      "nameTh": "รามคำแหง",
+      "mood": "Meet's space",
+      "anchor": {
+        "sourceID": "o825832f94e7f",
+        "x": 100.61656,
+        "y": 13.76998
+      },
+      "radiusM": 800,
+      "basis": "One operator-reported venue, placed at its published point.",
+      "kind": "venue",
+      "mix": {
+        "cafe": 59,
+        "library": 1
+      },
+      "cafesWithin800m": 59
+    },
+    {
+      "id": "pathumwan",
+      "name": "Pathum Wan",
+      "nameTh": "เขตปทุมวัน",
+      "district": "Pathum Wan District",
+      "cafesWithin800m": 272,
+      "anchor": {
+        "sourceID": "ob778f91662f5",
+        "x": 100.53471,
+        "y": 13.74612
+      },
+      "radiusM": 800,
+      "basis": "Densest 800 m cafe circle in the Pathum Wan District polygon, anchored on a real mapped cafe.",
+      "kind": "cluster",
+      "mix": {
+        "cafe": 311,
+        "coworking": 7,
+        "library": 13
+      },
+      "anchorName": "スターバックス@ Paragon Cineplex"
+    },
+    {
+      "id": "phranakhon",
+      "name": "Phra Nakhon",
+      "nameTh": "เขตพระนคร",
+      "district": "Phra Nakhon District",
+      "cafesWithin800m": 213,
+      "anchor": {
+        "sourceID": "n10705709305",
+        "x": 100.49268,
+        "y": 13.74418
+      },
+      "radiusM": 800,
+      "basis": "Densest 800 m cafe circle in the Phra Nakhon District polygon, anchored on a real mapped cafe.",
+      "kind": "cluster",
+      "mix": {
+        "cafe": 123,
+        "library": 4
+      },
+      "anchorName": "Elefin Coffee"
+    },
+    {
+      "id": "samphanthawong",
+      "name": "Samphanthawong",
+      "nameTh": "เขตสัมพันธวงศ์",
+      "district": "Samphanthawong District",
+      "cafesWithin800m": 143,
+      "anchor": {
+        "sourceID": "n5249863321",
+        "x": 100.50903,
+        "y": 13.74302
+      },
+      "radiusM": 800,
+      "basis": "Densest 800 m cafe circle in the Samphanthawong District polygon, anchored on a real mapped cafe.",
+      "kind": "cluster",
+      "mix": {
+        "cafe": 190,
+        "coworking": 1,
+        "library": 2
+      },
+      "anchorName": "Dimsum & B.B.Q"
+    },
+    {
+      "id": "chatuchak",
+      "name": "Chatuchak",
+      "nameTh": "เขตจตุจักร",
+      "district": "Chatuchak District",
+      "cafesWithin800m": 142,
+      "anchor": {
+        "sourceID": "o571065acf523",
+        "x": 100.55004,
+        "y": 13.80027
+      },
+      "radiusM": 800,
+      "basis": "Densest 800 m cafe circle in the Chatuchak District polygon, anchored on a real mapped cafe.",
+      "kind": "cluster",
+      "mix": {
+        "cafe": 122,
+        "library": 1
+      },
+      "anchorName": "Kaarom Specialty Coffee"
+    },
+    {
+      "id": "dindaeng",
+      "name": "Din Daeng",
+      "nameTh": "เขตดินแดง",
+      "district": "Din Daeng District",
+      "cafesWithin800m": 103,
+      "anchor": {
+        "sourceID": "od6b20aa9ffb9",
+        "x": 100.56546,
+        "y": 13.75739
+      },
+      "radiusM": 800,
+      "basis": "Densest 800 m cafe circle in the Din Daeng District polygon, anchored on a real mapped cafe.",
+      "kind": "cluster",
+      "mix": {
+        "cafe": 121,
+        "coworking": 1,
+        "library": 2
+      },
+      "anchorName": "Chef Erwin Bistro"
+    },
+    {
+      "id": "bangkapi",
+      "name": "Bang Kapi",
+      "nameTh": "เขตบางกะปิ",
+      "district": "Bang Kapi District",
+      "cafesWithin800m": 92,
+      "anchor": {
+        "sourceID": "oc7c911f4b7ea",
+        "x": 100.64228,
+        "y": 13.76848
+      },
+      "radiusM": 800,
+      "basis": "Densest 800 m cafe circle in the Bang Kapi District polygon, anchored on a real mapped cafe.",
+      "kind": "cluster",
+      "mix": {
+        "cafe": 72,
+        "library": 1
+      },
+      "anchorName": "normal and happy"
+    },
+    {
+      "id": "prawet",
+      "name": "Prawet",
+      "nameTh": "เขตประเวศ",
+      "district": "Prawet District",
+      "cafesWithin800m": 91,
+      "anchor": {
+        "sourceID": "o95243cc571e7",
+        "x": 100.64844,
+        "y": 13.69453
+      },
+      "radiusM": 800,
+      "basis": "Densest 800 m cafe circle in the Prawet District polygon, anchored on a real mapped cafe.",
+      "kind": "cluster",
+      "mix": {
+        "cafe": 81,
+        "library": 3
+      },
+      "anchorName": "Geicha สาขา Donki Seacon Srinakarin",
+      "anchorNote": "The anchor moved to another real cafe in this circle because the first choice offered no mapped lane to walk."
+    }
+  ]
+}
