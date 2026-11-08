@@ -39,13 +39,13 @@ function ring(h, steps = 72) {
 window.addHoodLayers = () => {
   if(map.getSource('hoods'))return;
   map.addSource('hoods', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
-  map.addLayer({ id: 'hood-fill', type: 'fill', source: 'hoods', filter: ['==', '$type', 'Polygon'], paint: { 'fill-color': '#20201d', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 11, 0.05, 15, 0.02] } });
-  map.addLayer({ id: 'hood-line', type: 'line', source: 'hoods', filter: ['==', '$type', 'Polygon'], paint: { 'line-color': '#20201d', 'line-width': 1.5, 'line-dasharray': [3, 2] } });
+  map.addLayer({ id: 'hood-fill', type: 'fill', source: 'hoods', filter: ['==', '$type', 'Polygon'], paint: { 'fill-color': '#7d133a', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 11, 0.05, 15, 0.02] } });
+  map.addLayer({ id: 'hood-line', type: 'line', source: 'hoods', filter: ['==', '$type', 'Polygon'], paint: { 'line-color': '#7d133a', 'line-width': 1.5, 'line-dasharray': [3, 2] } });
   // labels go on top of the pins once those exist (see window.raiseHoodLabels)
   map.addLayer({ id: 'hood-label', type: 'symbol', source: 'hoods', filter: ['==', '$type', 'Point'], maxzoom: 16,
     layout: { 'text-field': ['step', ['zoom'], ['get', 'name'], 12.5, ['get', 'label']], 'text-size': 13, 'text-font': ['Noto Sans Bold'],
       'text-anchor': ['match', ['get', 'slug'], [...LABEL_BELOW], 'top', 'bottom'], 'text-allow-overlap': false, 'symbol-sort-key': 0 },
-    paint: { 'text-color': '#20201d', 'text-halo-color': '#ffffff', 'text-halo-width': 2 } });
+    paint: { 'text-color': '#7d133a', 'text-halo-color': '#ffffff', 'text-halo-width': 2 } });
   map.on('click', 'hood-fill', e => {
     if (map.queryRenderedFeatures(e.point, { layers: [...PIN_LAYERS,'route-stop'] }).length) return; // a place or routed stop wins
     openHood(e.features[0].properties.slug);

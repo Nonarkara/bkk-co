@@ -273,6 +273,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .maplibregl-ctrl-attrib { font: 400 var(--micro)/1.4 var(--font) !important; }
 .maplibregl-ctrl-attrib-button { position: relative; }
 .maplibregl-ctrl-attrib-button::after { content: ""; position: absolute; inset: -10px; }
+/* Collapsed attribution is its icon and nothing else (MSH: no box wider than its content). */
+.maplibregl-ctrl-attrib.maplibregl-compact:not(.maplibregl-compact-show) { padding: 2px !important; min-height: 0; }
 
 /* Manga lens: one map control, in the house instrument language. Line and tone, not a poster. */
 .manga-ctrl { margin-top: 4px; }

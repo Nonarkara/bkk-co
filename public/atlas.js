@@ -142,9 +142,10 @@
     c.height = h * 2;
     const g = c.getContext('2d');
     g.scale(2, 2);
-    const ink = kind === 'coworking' ? '#986000' : kind === 'restaurant' ? '#666960' : '#7d133a';
+    const ink = kind === 'coworking' ? '#986000' : kind === 'restaurant' ? '#547076' : '#7d133a';
     g.strokeStyle = ink;
-    g.fillStyle = '#fff';
+    // Single pins wear their category colour (the same chord as the footprints and the Key); cluster badges stay white.
+    g.fillStyle = cluster ? '#fff' : kind.startsWith('cafe') && kind !== 'cafe-hidden' ? '#f58e84' : kind === 'coworking' ? '#f5ecc2' : kind === 'library' ? '#819238' : kind === 'restaurant' ? '#a5c8d1' : '#fff';
     g.lineWidth = cluster ? 1 : 1.6; // cluster badges are hairline labels; the single pin stays the stronger mark
     g.beginPath();
     if (cluster) {
@@ -303,7 +304,9 @@
         'icon-ignore-placement': true,
         'text-field': ['to-string', ['get', 'point_count']],
         'text-font': ['Noto Sans Bold'],
-        'text-size': 14,
+        // Badges scale with their count so the eye finds the dense quarters first, not 50 equal labels.
+        'icon-size': ['interpolate', ['linear'], ['get', 'point_count'], 2, 0.74, 25, 0.9, 120, 1.08],
+        'text-size': ['interpolate', ['linear'], ['get', 'point_count'], 2, 11, 25, 13, 120, 15],
         'text-offset': [0.65, 0],
         'text-allow-overlap': true,
         'text-ignore-placement': true
