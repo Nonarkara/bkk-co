@@ -46,9 +46,8 @@
 
 .model-seg {
   display: inline-flex;
-  border: 1px solid var(--ink, #20201d);
-  background: var(--paper, #ffffff);
-  box-shadow: 2px 2px 0 var(--ink, #20201d);
+  border: 1px solid var(--ink, #7d133a);
+  background: var(--paper, #f9c1ce);
 }
 .model-seg button {
   min-height: 36px;
@@ -56,7 +55,7 @@
   border: 0;
   border-right: 1px solid var(--rule, #d5d7cf);
   background: none;
-  color: var(--ink, #20201d);
+  color: var(--ink, #7d133a);
   font: 500 12px/1 var(--font, sans-serif);
   letter-spacing: .02em;
   cursor: pointer;
@@ -74,11 +73,10 @@
   margin-left: auto;
   min-height: 36px;
   padding: 0 14px;
-  border: 1px solid var(--ink, #20201d);
-  background: var(--paper, #ffffff);
-  color: var(--ink, #20201d);
+  border: 1px solid var(--ink, #7d133a);
+  background: var(--paper, #f9c1ce);
+  color: var(--ink, #7d133a);
   font: 600 13px/1 var(--font, sans-serif);
-  box-shadow: 2px 2px 0 var(--ink, #20201d);
   cursor: pointer;
 }
 .model-close:hover {
@@ -140,9 +138,8 @@
   align-items: center;
   gap: 4px;
   padding: 2px 6px;
-  border: 1px solid var(--ink, #20201d);
-  background: var(--paper, #ffffff);
-  box-shadow: 1px 1px 0 var(--ink, #20201d);
+  border: 1px solid var(--ink, #7d133a);
+  background: var(--paper, #f9c1ce);
   cursor: pointer;
   pointer-events: auto;
   white-space: nowrap;
@@ -171,9 +168,8 @@
   bottom: 24px;
   width: min(320px, calc(100vw - 28px));
   padding: 12px;
-  border: 1px solid var(--ink, #20201d);
-  background: var(--paper, #ffffff);
-  box-shadow: 3px 3px 0 var(--ink, #20201d);
+  border: 1px solid var(--ink, #7d133a);
+  background: var(--paper, #f9c1ce);
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -200,15 +196,15 @@
 .model-card-actions button {
   min-height: 36px;
   padding: 0 12px;
-  border: 1px solid var(--ink, #20201d);
+  border: 1px solid var(--ink, #7d133a);
   background: none;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
 }
 .model-card-actions .model-card-stand {
-  background: var(--ink, #20201d);
-  color: var(--paper, #ffffff);
+  background: var(--ink, #7d133a);
+  color: var(--paper, #f9c1ce);
 }
 .model-card-close {
   position: absolute;

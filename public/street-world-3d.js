@@ -9,9 +9,9 @@ import earcut from './vendor/three/earcut.js';
 THREE.ColorManagement.enabled = false;
 
 const TOD = {
-  day:   { paper: '#ede9e3', ink: '#20201d', sun: [-0.55, 0.62, 0.55], invert: 0, sky: 0.5 },
-  dusk:  { paper: '#f0d9bd', ink: '#2b1814', sun: [0.82, 0.16, -0.35], invert: 0, sky: 0.85 },
-  night: { paper: '#121a2b', ink: '#ece3cc', sun: [0.2, 0.7, -0.3],   invert: 1, sky: 0.9 }
+  day:   { paper: '#f9c1ce', ink: '#7d133a', sun: [-0.55, 0.62, 0.55], invert: 0, sky: 0.5 },
+  dusk:  { paper: '#ffefae', ink: '#7d133a', sun: [0.82, 0.16, -0.35], invert: 0, sky: 0.85 },
+  night: { paper: '#064f6e', ink: '#a7d4e4', sun: [0.2, 0.7, -0.3],    invert: 1, sky: 0.9 }
 };
 
 const EYE = 1.65;
@@ -180,6 +180,7 @@ export async function start(host, options = {}) {
     ro?.disconnect();
     window.removeEventListener('keydown', onKeyDown);
     window.removeEventListener('keyup', onKeyUp);
+    window.removeEventListener('keydown', onEscape, { capture: true });
     if (scene) {
       scene.traverse(o => {
         o.geometry?.dispose();
@@ -251,6 +252,16 @@ export async function start(host, options = {}) {
     dispose();
     opt.onClose();
   });
+
+  const onEscape = e => {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      dispose();
+      opt.onClose();
+    }
+  };
+  window.addEventListener('keydown', onEscape, { capture: true });
 
   const renderer = new THREE.WebGLRenderer({
     canvas,
@@ -842,6 +853,7 @@ export async function start(host, options = {}) {
   setMode('walk');
   loadArea(activeArea);
   resize();
+  requestAnimationFrame(() => canvas.focus({ preventScroll: true }));
   raf = requestAnimationFrame(loop);
 
   return {
