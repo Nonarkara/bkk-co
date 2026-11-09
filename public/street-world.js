@@ -20,13 +20,15 @@
   const before=map.getLayer('pins-city')?'pins-city':undefined;
   const c=document.createElement('canvas');c.width=c.height=12;const g=c.getContext('2d');g.fillStyle='#ede9e3';g.fillRect(0,0,12,12);g.strokeStyle='#b6b1aa';g.lineWidth=.7;g.beginPath();for(let x=-12;x<24;x+=6){g.moveTo(x,0);g.lineTo(x+12,12)}g.stroke();
   map.addImage('street-ink-tone',g.getImageData(0,0,12,12));
+  const t=document.createElement('canvas');t.width=t.height=8;const h=t.getContext('2d');h.fillStyle='#e7e3dd';h.fillRect(0,0,8,8);h.fillStyle='#cbc5bf';for(const [x,y] of [[1,1],[5,5],[2,6],[6,2]]){h.beginPath();h.arc(x,y,.7,0,Math.PI*2);h.fill()};
+  map.addImage('street-screentone-3d',h.getImageData(0,0,8,8));
   map.addSource('street-buildings',{type:'geojson',data:empty()});
   map.addSource('street-selected-line',{type:'geojson',data:empty()});
   map.addSource('street-stroll-line',{type:'geojson',data:empty()});
   map.addSource('street-eye',{type:'geojson',data:empty()});
   map.addLayer({id:'street-building-flat',type:'fill',source:'street-buildings',layout:{visibility:'none'},paint:{'fill-pattern':'street-ink-tone','fill-opacity':.85}},before);
   map.addLayer({id:'street-building-edge',type:'line',source:'street-buildings',layout:{visibility:'none'},paint:{'line-color':'#514a47','line-width':1}},before);
-  map.addLayer({id:'street-building-height',type:'fill-extrusion',source:'street-buildings',filter:['==',['get','render3D'],true],layout:{visibility:'none'},paint:{'fill-extrusion-color':'#e7e3dd','fill-extrusion-height':['get','heightM'],'fill-extrusion-base':['coalesce',['get','minHeightM'],0],'fill-extrusion-opacity':1,'fill-extrusion-vertical-gradient':false}},before);
+  map.addLayer({id:'street-building-height',type:'fill-extrusion',source:'street-buildings',filter:['==',['get','render3D'],true],layout:{visibility:'none'},paint:{'fill-extrusion-color':'#e7e3dd','fill-extrusion-pattern':'street-screentone-3d','fill-extrusion-height':['get','heightM'],'fill-extrusion-base':['coalesce',['get','minHeightM'],0],'fill-extrusion-opacity':1,'fill-extrusion-vertical-gradient':false}},before);
   map.addLayer({id:'street-stroll-line',type:'line',source:'street-stroll-line',layout:{visibility:'none'},paint:{'line-color':'#7d133a','line-width':5,'line-opacity':.4}},before);
   map.addLayer({id:'street-selected-line',type:'line',source:'street-selected-line',layout:{visibility:'none'},paint:{'line-color':'#7d133a','line-width':3,'line-dasharray':[2,1]}},before);
   map.addLayer({id:'street-eye',type:'circle',source:'street-eye',layout:{visibility:'none'},paint:{'circle-radius':5,'circle-color':'#7d133a','circle-stroke-color':'#fff','circle-stroke-width':2}});

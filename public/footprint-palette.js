@@ -10,7 +10,7 @@
   else if(mask){ctx.strokeStyle='rgba(43,35,32,.18)';ctx.fillStyle='rgba(43,35,32,.18)';ctx.lineWidth=.7;ctx.beginPath();
    if(mask===2){for(let y=4;y<32;y+=8)for(let x=4;x<32;x+=8){ctx.moveTo(x+1,y);ctx.arc(x,y,.8,0,Math.PI*2)}ctx.fill()}
    else{for(let n=-32;n<64;n+=8){if(mask===1){ctx.moveTo(n,0);ctx.lineTo(n+32,32)}else if(mask===4){ctx.moveTo(0,n);ctx.lineTo(32,n)}else{ctx.moveTo(n,0);ctx.lineTo(n,32)}}ctx.stroke()}
-  }
+  }else{ctx.fillStyle='rgba(43,35,32,.12)';for(let y=4;y<32;y+=8)for(let x=4;x<32;x+=8){ctx.beginPath();ctx.arc(x,y,1,0,Math.PI*2);ctx.fill()}}
   return {image:ctx.getImageData(0,0,32,32),url:canvas.toDataURL()};
  }
  function install(){
