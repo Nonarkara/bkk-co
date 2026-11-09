@@ -32,23 +32,32 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .micro { font-size: var(--micro); font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 
-/* Bar: wordmark + search, one line, as tall as the input */
-.bar { grid-area: bar; position: relative; display: flex; align-items: center; gap: var(--pad);
-  padding: 6px var(--pad); border-bottom: 1px solid var(--rule); }
+/* Bar: brand anchor + focal search + clear action tools, one unified identity line */
+.bar { grid-area: bar; position: relative; display: flex; align-items: center; gap: 10px;
+  padding: 8px var(--pad); border-bottom: 1px solid var(--rule); background: var(--paper); }
+.bar-brand { display: flex; align-items: center; padding-right: 12px; border-right: 1px solid var(--rule); flex: none; }
 /* The wordmark: PL;UB in his lettering. The semicolon is the seam between the two phrases. */
-.mark { font: 700 17px/1 "Sao Chingcha", var(--font); letter-spacing: .07em; text-decoration: none; white-space: nowrap; }
-.mark .semi { color: #e88ba1; }
-.plub-badge { display:block; width:30px; height:30px; object-fit:cover; object-position:center top; }
+.mark { font: 700 17px/1 "Sao Chingcha", var(--font); letter-spacing: .07em; text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; }
+.mark .semi { color: #e88ba1; display: inline-flex; align-items: center; }
+.plub-badge { display:inline-block; width:22px; height:22px; object-fit:cover; object-position:center top; border-radius:50%; }
 .brand-hero { display: block; width: 104px; height: 104px; }
-.search { flex: 1; }
-.iconbtn { flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 2px; height: 44px; min-width: 44px; margin: -4px 0; }
-.plub-btn { margin-right: -6px; }
-.plub-btn svg { display: block; }
-.pass-btn { padding: 0 8px; border: 1px solid var(--rule); height: 36px; margin: 0 0 0 -4px; }
-.pass-btn b { font-weight: 500; }
-.search input { width: 100%; height: 36px; padding: 0 10px; font: inherit; color: var(--ink);
+.search { flex: 1; position: relative; display: flex; align-items: center; min-width: 0; }
+.search-lens { position: absolute; left: 10px; color: var(--muted); font-size: 14px; pointer-events: none; line-height: 1; }
+.search input { width: 100%; height: 36px; padding: 0 10px 0 28px; font: inherit; font-size: 13px; color: var(--ink);
   border: 1px solid var(--rule); border-radius: 0; background: var(--paper); }
 .search input:focus { outline: none; border-color: var(--ink); background: var(--paper); }
+
+.bar-actions { display: flex; align-items: center; gap: 6px; flex: none; }
+.bar-btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 10px; border: 1px solid var(--rule);
+  color: var(--ink); font: 500 13px/1 var(--font); white-space: nowrap; background: var(--paper); cursor: pointer; }
+.bar-btn:hover { border-color: var(--ink); }
+.bar-btn svg { display: block; }
+.count-badge { display: inline-block; padding: 2px 5px; font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums;
+  background: var(--wash); border: 1px solid var(--rule); line-height: 1; }
+.btn-lbl { font-size: 12px; font-weight: 500; }
+.iconbtn { flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 4px; height: 36px; min-width: 36px; }
+.plub-btn { padding: 0 8px; }
+.pass-btn { padding: 0 8px; }
 .hits { position: absolute; z-index: 30; top: 100%; left: 0; right: 0; list-style: none; padding: 0;
   background: var(--paper); border-bottom: 1px solid var(--ink); max-height: 60dvh; overflow-y: auto; }
 .hits li, .list li { display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 4px var(--pad);

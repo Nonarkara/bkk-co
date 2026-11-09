@@ -224,6 +224,38 @@ map.on('load', async () => {
 // ---------- list: in view, sorted by what people actually search by ----------
 const SORTS = {
   great: (a, b) => b.idx - a.idx,
+  leveler: (a, b) => {
+    // The Leveler (Oldenburg): non-chain character, unpretentious low-profile setting
+    const aChain = a.flags & F.CHAIN ? 1 : 0;
+    const bChain = b.flags & F.CHAIN ? 1 : 0;
+    const aScore = (bChain - aChain) * 45 + (a.d[2] - b.d[2]) * 10 + (a.d[1] >= 3 ? 5 : 0) - (b.d[1] >= 3 ? 5 : 0);
+    return -aScore || b.idx - a.idx;
+  },
+  vitality: (a, b) => {
+    // Conversation is the Main Activity: street vitality, dense 250m third place cluster, outdoor seating
+    const aOut = a.flags & F.OUTDOOR ? 15 : 0;
+    const bOut = b.flags & F.OUTDOOR ? 15 : 0;
+    const aScore = a.d[1] * 14 + aOut + a.d[0] * 4 + a.idx * 0.4;
+    const bScore = b.d[1] * 14 + bOut + b.d[0] * 4 + b.idx * 0.4;
+    return bScore - aScore || b.idx - a.idx;
+  },
+  regulars: (a, b) => {
+    // Home Away from Home: regulars' haven, user visits, personal notes, non-chain warmth
+    const aVis = state.visited.has(a.id) ? 60 : 0;
+    const bVis = state.visited.has(b.id) ? 60 : 0;
+    const aScore = aVis + a.d[2] * 12 + a.idx * 0.6;
+    const bScore = bVis + b.d[2] * 12 + b.idx * 0.6;
+    return bScore - aScore || b.idx - a.idx;
+  },
+  access: (a, b) => {
+    // Open and Easy: walk to rail, generous opening hours, parking
+    const aH = a.flags & F.HOURS ? 20 : 0;
+    const bH = b.flags & F.HOURS ? 20 : 0;
+    const aScore = a.d[0] * 15 + aH + (a.flags & F.PARK ? 10 : 0) + a.idx * 0.5;
+    const bScore = b.d[0] * 15 + bH + (b.flags & F.PARK ? 10 : 0) + b.idx * 0.5;
+    return bScore - aScore || b.idx - a.idx;
+  },
+  sanctuary: (a, b) => workScore(b) - workScore(a) || b.idx - a.idx,
   popular: (a, b) => b.d[3] - a.d[3] || b.d[1] - a.d[1] || b.idx - a.idx,
   notable: (a, b) => b.d[5] - a.d[5] || b.d[3] - a.d[3] || b.idx - a.idx,
   work: (a, b) => workScore(b) - workScore(a) || b.idx - a.idx,
@@ -249,10 +281,15 @@ function sortKey(p, centre) {
   return {
     great: `${p.idx} index`,
     near: `~${Math.round(metres(p, centre) / 10) * 10} m`,
+    leveler: p.flags & F.CHAIN ? 'chain' : `◇${p.d[2]}/9 indie`,
+    vitality: `⁘${p.d[1]}/9 scene`,
+    regulars: state.visited.has(p.id) ? '✓ regular' : `♡ home`,
+    access: `↦${p.d[0]}/9 walk`,
+    sanctuary: `≋${Math.round(workScore(p))} work`,
     popular: `${p.d[3]}/9 footprint`,
     notable: p.d[5] ? 'record' : '—',
     work: `${Math.round(workScore(p))} work`,
-  }[state.sort];
+  }[state.sort] || `${p.idx} index`;
 }
 
 function row(p, key = `${p.idx} index`, list = false) {
@@ -537,13 +574,22 @@ document.addEventListener('click', e => {
   if (b) { setMood(b.dataset.mood === state.mood ? null : b.dataset.mood); return; }
   if (e.target.closest('.mood-off')) setMood(null);
   const act = e.target.closest('[data-act]');
-  if (act) { $('#hits').hidden = true; if(act.dataset.act==='street')window.StreetWorld?.open();else if(act.dataset.act==='media')window.TalkMedia?.open();else if(act.dataset.act==='work')window.WorkFinder?.open();else if(act.dataset.act==='featured')window.openFeatured?.();else if(act.dataset.act==='discovery')window.openDiscovery?.();else act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.(); }
+  if (act) {
+    $('#hits').hidden = true;
+    if (act.dataset.act === 'walkthrough') window.StreetWorld?.openWalkthrough();
+    else if (act.dataset.act === 'street') window.StreetWorld?.open();
+    else if (act.dataset.act === 'media') window.TalkMedia?.open();
+    else if (act.dataset.act === 'work') window.WorkFinder?.open();
+    else if (act.dataset.act === 'featured') window.openFeatured?.();
+    else if (act.dataset.act === 'discovery') window.openDiscovery?.();
+    else act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.();
+  }
   const h = e.target.closest('#mood [data-hood]');
   if (h) window.openHood?.(h.dataset.hood);
 });
 
 // an empty search box offers the moods: most people search by purpose before they know a name
-const moodHits = () => `<li data-act="street" role="option"><span class="nm"><b>Street sketch</b></span><span class="meta">manga · mapped neighbourhoods</span></li><li data-act="media" role="option"><span class="nm"><b>People &amp; café videos</b></span><span class="meta">source leads · check branch</span></li><li data-act="featured" role="option"><span class="nm"><b>Featured places</b></span><span class="meta">verified branches · sources</span></li><li data-act="work" role="option"><span class="nm"><b>Find a work spot</b></span><span class="meta">Drive · BTS · nearby</span></li><li data-act="discovery" role="option"><span class="nm"><b>50 + 50 cafés</b></span><span class="meta">editorial · discussed</span></li><li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
+const moodHits = () => `<li data-act="walkthrough" role="option"><span class="nm"><b>Walk 3D World</b></span><span class="meta">screentoned manga Bangkok · 5 areas</span></li><li data-act="street" role="option"><span class="nm"><b>Street sketch</b></span><span class="meta">manga · mapped neighbourhoods</span></li><li data-act="media" role="option"><span class="nm"><b>People &amp; café videos</b></span><span class="meta">source leads · check branch</span></li><li data-act="featured" role="option"><span class="nm"><b>Featured places</b></span><span class="meta">verified branches · sources</span></li><li data-act="work" role="option"><span class="nm"><b>Find a work spot</b></span><span class="meta">Drive · BTS · nearby</span></li><li data-act="discovery" role="option"><span class="nm"><b>50 + 50 cafés</b></span><span class="meta">editorial · discussed</span></li><li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
   <li data-act="hop" role="option"><span class="nm"><b>Plan a café hop</b></span><span class="meta">5 stops on foot</span></li>` + Object.entries(MOODS).map(([k, m]) =>
   `<li data-mood="${k}" role="option"><span class="mood-dot" aria-hidden="true">◐</span><span class="nm">${esc(m.label)}</span><span class="meta">citywide</span></li>`).join('');
 $('#q').addEventListener('focus', () => {

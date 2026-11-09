@@ -1,5 +1,7 @@
 /* One finder wins. Exploration/filter depth is opened deliberately, before compact comparison rows. */
 .list-tools { display:flex; align-items:flex-start; flex-wrap:wrap; gap:4px 12px; padding:6px var(--pad) 2px; flex:none; }
+.list-tools > .list-walkthrough { min-height:30px; padding:3px 9px; font-weight:600; font-size:12px; border:1px solid var(--ink); background:var(--wash); color:var(--ink); cursor:pointer; }
+.list-tools > .list-walkthrough:hover { background:var(--ink); color:var(--paper); }
 .list-tools > .list-find { min-height:32px; padding:4px 0; font-weight:600; text-decoration:underline; text-underline-offset:3px; }
 .list-tools > details > summary { min-height:32px; display:list-item; cursor:pointer; padding:4px 0; }
 .list-tools > details[open] { flex-basis:100%; }
@@ -13,7 +15,7 @@
 .list-scope { display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:4px 8px; padding:2px var(--pad) 6px; border-bottom:1px solid var(--rule); flex:none; }
 .list-scope .count { margin:0; padding:0; font-size:var(--micro); white-space:normal; }
 .list-order { max-width:100%; }
-.list-order select { font:inherit; font-size:var(--micro); min-height:32px; padding:2px 4px; max-width:155px; color:var(--ink); border:0; border-bottom:1px solid var(--rule); border-radius:0; background:var(--paper); }
+.list-order select { font:inherit; font-size:var(--micro); min-height:32px; padding:2px 4px; max-width:215px; color:var(--ink); border:0; border-bottom:1px solid var(--rule); border-radius:0; background:var(--paper); }
 .list li[data-id] { padding:0; min-height:0; }
 .list-place { display:grid; grid-template-columns:20px minmax(0,1fr) auto; gap:8px; align-items:center; width:100%; min-height:32px; padding:5px var(--pad); text-align:left; }
 .list-place .place-symbol,.list-place .place-badge { width:20px; height:20px; }

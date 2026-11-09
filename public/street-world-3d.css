@@ -1,0 +1,224 @@
+/* 3D Screentoned Manga Bangkok Walkthrough — PLUB house style */
+.street-3d-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--paper, #ede9e3);
+  overflow: hidden;
+  touch-action: none;
+}
+.street-3d-stage[hidden] {
+  display: none;
+}
+
+.model-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  cursor: grab;
+}
+.model-canvas:active {
+  cursor: grabbing;
+}
+.model-canvas:focus-visible {
+  outline: 2px solid var(--ink, #20201d);
+  outline-offset: -2px;
+}
+
+.model-bar {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+}
+.model-bar > * {
+  pointer-events: auto;
+}
+
+.model-seg {
+  display: inline-flex;
+  border: 1px solid var(--ink, #20201d);
+  background: var(--paper, #ffffff);
+  box-shadow: 2px 2px 0 var(--ink, #20201d);
+}
+.model-seg button {
+  min-height: 36px;
+  padding: 0 10px;
+  border: 0;
+  border-right: 1px solid var(--rule, #d5d7cf);
+  background: none;
+  color: var(--ink, #20201d);
+  font: 500 12px/1 var(--font, sans-serif);
+  letter-spacing: .02em;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.model-seg button:last-child {
+  border-right: 0;
+}
+.model-seg button[aria-pressed="true"] {
+  background: var(--ink, #20201d);
+  color: var(--paper, #ffffff);
+}
+
+.model-close {
+  margin-left: auto;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--ink, #20201d);
+  background: var(--paper, #ffffff);
+  color: var(--ink, #20201d);
+  font: 600 13px/1 var(--font, sans-serif);
+  box-shadow: 2px 2px 0 var(--ink, #20201d);
+  cursor: pointer;
+}
+.model-close:hover {
+  background: var(--ink, #20201d);
+  color: var(--paper, #ffffff);
+}
+
+.model-hint {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 6px 12px;
+  border: 1px solid var(--rule, #d5d7cf);
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--muted, #575951);
+  font-size: 11px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.model-joy {
+  position: absolute;
+  left: 20px;
+  bottom: 60px;
+  width: 100px;
+  height: 100px;
+  border: 2px solid var(--ink, #20201d);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.65);
+  touch-action: none;
+  z-index: 15;
+}
+.model-joy span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border-radius: 50%;
+  background: var(--ink, #20201d);
+}
+
+.model-pins {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+.model-pin {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border: 1px solid var(--ink, #20201d);
+  background: var(--paper, #ffffff);
+  box-shadow: 1px 1px 0 var(--ink, #20201d);
+  cursor: pointer;
+  pointer-events: auto;
+  white-space: nowrap;
+}
+.pin-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+.pin-dot.cafe { background: var(--ink, #20201d); }
+.pin-dot.coworking { background: var(--amber, #f59e0b); }
+.pin-dot.library { background: #fff; box-shadow: inset 0 0 0 2px var(--ink, #20201d); }
+.pin-dot.restaurant { background: var(--food, #8f918a); }
+.pin-tag {
+  font-size: 11px;
+  font-weight: 500;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.model-card {
+  position: absolute;
+  right: 14px;
+  bottom: 24px;
+  width: min(320px, calc(100vw - 28px));
+  padding: 12px;
+  border: 1px solid var(--ink, #20201d);
+  background: var(--paper, #ffffff);
+  box-shadow: 3px 3px 0 var(--ink, #20201d);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 20;
+}
+.model-card[hidden] {
+  display: none;
+}
+.model-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-right: 24px;
+}
+.model-card-meta {
+  font-size: 12px;
+  color: var(--muted, #575951);
+}
+.model-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+.model-card-actions button {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--ink, #20201d);
+  background: none;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.model-card-actions .model-card-stand {
+  background: var(--ink, #20201d);
+  color: var(--paper, #ffffff);
+}
+.model-card-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: none;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}

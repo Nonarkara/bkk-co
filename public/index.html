@@ -29,6 +29,7 @@
 <link href="footprint-palette.css?v=stroll-20261107b" rel="stylesheet">
 <link href="list-tools.css?v=street-20261104" rel="stylesheet">
 <link href="street-world.css?v=stroll-20261107b" rel="stylesheet">
+<link href="street-world-3d.css?v=manga-20261109" rel="stylesheet">
 <link href="talk-media.css?v=street-20261104" rel="stylesheet">
 <link href="journeys.css?v=journeys-20261103" rel="stylesheet">
 <link href="neighborhood-photos.css?v=stroll-20261107" rel="stylesheet">
@@ -36,13 +37,18 @@
 </head>
 <body>
 <header class="bar">
-  <a class="mark" href="/" aria-label="PLUB, Placemaking Laboratory Urban Bureau, home" title="PLUB · Placemaking Laboratory ; Urban Bureau">PL<span class="semi"><svg width="9" height="19" viewBox="0 0 32 84" aria-hidden="true" role="img"><circle cx="16" cy="12" r="8.5" fill="currentColor"/><path d="M25 27 C 29 40, 26 58, 13 80 C 15 68, 12 52, 12 42 C 12 34, 16 28, 25 27 Z" fill="currentColor"/><circle cx="19.5" cy="39" r="4" fill="#ffffff"/></svg></span>UB</a>
+  <div class="bar-brand">
+    <a class="mark" href="/" aria-label="PLUB, Placemaking Laboratory Urban Bureau, home" title="PLUB · Placemaking Laboratory ; Urban Bureau">PL<span class="semi"><svg width="9" height="19" viewBox="0 0 32 84" aria-hidden="true" role="img"><circle cx="16" cy="12" r="8.5" fill="currentColor"/><path d="M25 27 C 29 40, 26 58, 13 80 C 15 68, 12 52, 12 42 C 12 34, 16 28, 25 27 Z" fill="currentColor"/><circle cx="19.5" cy="39" r="4" fill="#ffffff"/></svg></span>UB</a>
+  </div>
   <label class="search">
     <span class="sr">Search places · <span lang="th">ค้นหาสถานที่</span></span>
-    <input id="q" type="search" placeholder="Find a place · ค้นหา" autocomplete="off" enterkeyhint="search">
+    <span class="search-lens" aria-hidden="true">⌕</span>
+    <input id="q" type="search" placeholder="Search 57k Bangkok third places · ค้นหา" autocomplete="off" enterkeyhint="search">
   </label>
-  <button id="guide" class="iconbtn plub-btn" aria-label="Nong Plub's guide: neighbourhoods and how places are scored"></button>
-  <button id="passport" class="iconbtn pass-btn" aria-label="Your notebook"><span>Notes</span><b id="pass-n">0</b></button>
+  <div class="bar-actions">
+    <button id="guide" class="bar-btn plub-btn" aria-label="Nong Plub's guide: neighbourhoods and how places are scored"><span class="btn-lbl">Guide</span></button>
+    <button id="passport" class="bar-btn pass-btn" aria-label="Your notebook"><span>Notes</span><b id="pass-n" class="count-badge">0</b></button>
+  </div>
   <ul id="hits" class="hits" role="listbox" hidden></ul>
 </header>
 
@@ -59,8 +65,10 @@
 <aside id="side" class="side">
   <section id="list-wrap" class="list-wrap" aria-label="Places in view">
     <div class="list-tools">
-      <button class="list-find" data-act="work">Find a work spot</button>
+      <button class="list-walkthrough" data-act="walkthrough">Walk 3D World</button>
+      <button class="list-find" data-act="work">Work spots</button>
       <details class="list-explore"><summary>Explore</summary><div class="moods" aria-label="Explore places">
+        <button data-act="walkthrough">3D Screentoned Bangkok</button>
         <button data-act="featured">Featured places</button><button data-act="discovery">50 + 50 source lists</button>
         <button data-act="street">Street sketch</button><button data-act="media">People &amp; café videos</button>
         <button data-proxy="atlas-open">Map views</button><button data-act="now">Near me now</button><button data-act="hop">Café hop</button>
@@ -80,8 +88,16 @@
     <div class="list-scope">
       <output id="count" class="count" aria-live="polite">Loading places…</output>
       <label class="list-order"><span class="sr">Sort places</span><select id="list-order" aria-label="Sort places">
-        <option value="near">Near map centre</option><option value="great">Source index</option><option value="popular">Dataset footprint</option>
-        <option value="notable">Notable records</option><option value="work">Work signals</option>
+        <option value="near">Near map centre</option>
+        <option value="great">✦ Third Place Index</option>
+        <option value="leveler">◇ The Leveler (Indie &amp; Unpretentious)</option>
+        <option value="vitality">⁘ Conversational Vitality (Scene)</option>
+        <option value="regulars">♡ Home Away from Home (Regulars)</option>
+        <option value="access">↦ Open &amp; Easy (Radical Access)</option>
+        <option value="sanctuary">≋ Focus Sanctuary (Work &amp; Read)</option>
+        <option value="popular">Dataset footprint</option>
+        <option value="notable">Notable records</option>
+        <option value="work">Work signals</option>
       </select></label>
     </div>
     <ol id="list" class="list"></ol>

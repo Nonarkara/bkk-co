@@ -11,7 +11,7 @@ const hoodsReady = fetch('data/hoods.json').then(r => r.json()).then(d => {
   drawHoods();
 }).catch(() => {});
 
-$('#guide').innerHTML = '<img class="plub-badge" src="plub/nong-plub.png" alt="" width="30" height="30">';
+$('#guide').innerHTML = '<img class="plub-badge" src="plub/nong-plub.png" alt="" width="22" height="22"><span class="btn-lbl">Guide</span>';
 
 window.hoodOf = p => hoods.ofId.get(p.id);
 // How people actually name these areas, in Thai and English. "near" = an alias that is a neighbouring area, said so.

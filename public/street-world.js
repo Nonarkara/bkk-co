@@ -143,8 +143,9 @@
  function render(){
   const roads=area.streetIDs.map(id=>index.roads.get(id)).filter(Boolean).sort((a,b)=>Number(b.properties.cafeIDs.length>0)-Number(a.properties.cafeIDs.length>0)||roadName(a).localeCompare(roadName(b)));
   const buildingIDs=new Set(area.buildingIDs),known=world.buildings.features.filter(f=>buildingIDs.has(f.id)&&f.properties.render3D).length;
-  panel.innerHTML=`<header><h2 tabindex="-1">Neighbourhood stroll</h2><button class="street-close" aria-label="Return to 2D map">×</button></header><p class="street-view-notice" role="status"></p><p class="street-coverage">${esc(area.name)} · ${known?known+' mapped-height volumes; other footprints flat':'0 mapped heights · flat outlines'}</p><div class="street-nearby"></div><div class="street-controls" aria-label="Source-lane movement"><button data-street-turn="-1" aria-label="Look or choose source direction left">↶</button><button data-street-step="-8" aria-label="Step back 8 metres on source street">← 8 m</button><button data-street-play aria-pressed="false" ${reduce.matches?'disabled':''}>Play</button><button data-street-step="8" aria-label="Step forward 8 metres on source street">8 m →</button><button data-street-turn="1" aria-label="Look or choose source direction right">↷</button><button data-street-view>${view==='walk'?'Overview':'Low view'}</button></div><p class="street-status" role="status"></p><div class="street-junction"></div><div class="street-stroll"></div><details class="street-setup"><summary>Change area / street</summary><label>Area<select data-street-area>${world.areas.map(a=>`<option value="${esc(a.id)}" ${a.id===area.id?'selected':''}>${esc(a.name)}</option>`).join('')}</select></label><label>Street<select data-street-road aria-label="Mapped street">${roads.map(r=>`<option value="${esc(r.id)}" ${r.id===position.streetID?'selected':''}>${esc(roadName(r))}${r.properties.cafeIDs.length?' · '+r.properties.cafeIDs.length+' café pins':''}</option>`).join('')}</select></label></details><details><summary>Reference sketch · access &amp; source</summary><p class="src">Virtual exploration of mapped streets, not verified pedestrian routes or café entrances. Access and roadside conditions need checking. W/A/S/D or arrows on the map; 8 m steps pause at shared source junctions. Left/right looks along a lane or chooses a mapped turn at its junction. A chosen café stroll follows connected source lanes; it ends near the pin, never at an inferred entrance. Unknown heights stay flat.</p><p class="src">${esc(area.name)}: ${known} source-height volumes / ${area.buildingIDs.length} footprints. Schematic flat ground; Low view is an artistic perspective, not a surveyed street photograph. Buildings/streets: OSM ${esc(world.manifest.asOf.slice(0,10))}, <a href="${esc(world.manifest.licenseURL)}" target="_blank" rel="noopener">ODbL</a>. Source tags may be stale. <a data-street-source href="https://www.openstreetmap.org/way/${esc(index.roads.get(position.streetID).properties.sourceID.slice(1))}" target="_blank" rel="noopener">Current street source ↗</a>. Café pins remain the current PL;UB catalogue.</p></details>`;
+  panel.innerHTML=`<header><h2 tabindex="-1">Neighbourhood stroll</h2><button class="street-close" aria-label="Return to 2D map">×</button></header><p class="street-view-notice" role="status"></p><p class="street-coverage">${esc(area.name)} · ${known?known+' mapped-height volumes; other footprints flat':'0 mapped heights · flat outlines'}</p><div class="street-nearby"></div><div class="street-controls" aria-label="Source-lane movement"><button data-street-walkthrough style="border-color:var(--ink);font-weight:600;background:var(--wash)">Walk 3D World ↗</button><button data-street-turn="-1" aria-label="Look or choose source direction left">↶</button><button data-street-step="-8" aria-label="Step back 8 metres on source street">← 8 m</button><button data-street-play aria-pressed="false" ${reduce.matches?'disabled':''}>Play</button><button data-street-step="8" aria-label="Step forward 8 metres on source street">8 m →</button><button data-street-turn="1" aria-label="Look or choose source direction right">↷</button><button data-street-view>${view==='walk'?'Overview':'Low view'}</button></div><p class="street-status" role="status"></p><div class="street-junction"></div><div class="street-stroll"></div><details class="street-setup"><summary>Change area / street</summary><label>Area<select data-street-area>${world.areas.map(a=>`<option value="${esc(a.id)}" ${a.id===area.id?'selected':''}>${esc(a.name)}</option>`).join('')}</select></label><label>Street<select data-street-road aria-label="Mapped street">${roads.map(r=>`<option value="${esc(r.id)}" ${r.id===position.streetID?'selected':''}>${esc(roadName(r))}${r.properties.cafeIDs.length?' · '+r.properties.cafeIDs.length+' café pins':''}</option>`).join('')}</select></label></details><details><summary>Reference sketch · access &amp; source</summary><p class="src">Virtual exploration of mapped streets, not verified pedestrian routes or café entrances. Access and roadside conditions need checking. W/A/S/D or arrows on the map; 8 m steps pause at shared source junctions. Left/right looks along a lane or chooses a mapped turn at its junction. A chosen café stroll follows connected source lanes; it ends near the pin, never at an inferred entrance. Unknown heights stay flat.</p><p class="src">${esc(area.name)}: ${known} source-height volumes / ${area.buildingIDs.length} footprints. Schematic flat ground; Low view is an artistic perspective, not a surveyed street photograph. Buildings/streets: OSM ${esc(world.manifest.asOf.slice(0,10))}, <a href="${esc(world.manifest.licenseURL)}" target="_blank" rel="noopener">ODbL</a>. Source tags may be stale. <a data-street-source href="https://www.openstreetmap.org/way/${esc(index.roads.get(position.streetID).properties.sourceID.slice(1))}" target="_blank" rel="noopener">Current street source ↗</a>. Café pins remain the current PL;UB catalogue.</p></details>`;
   panel.querySelector('.street-close').onclick=exit;
+  panel.querySelector('[data-street-walkthrough]').onclick=()=>{pause();openWalkthrough(area);};
   panel.querySelector('[data-street-area]').onchange=e=>choose(e.target.value);
   panel.querySelector('[data-street-road]').onchange=e=>{pause();stroll=null;look=0;position={streetID:e.target.value,distance:0,direction:1};draw();details();camera()};
   panel.querySelectorAll('[data-street-step]').forEach(b=>b.onclick=()=>{pause();step(+b.dataset.streetStep)});
@@ -202,8 +203,53 @@
   ++revision;pause();if(panel)panel.hidden=true;
   if(active){stroll=null;paint(false);map.getSource('street-stroll-line').setData(empty());map.getSource('street-eye').setData(empty());map.getSource('street-buildings').setData(empty());map.getSource('street-selected-line').setData(empty());active=false;lastArea=null;lastRoad=null;if(snapshot){map.setMaxPitch(snapshot.maxPitch);map.setMaxZoom(snapshot.maxZoom);map.easeTo({...snapshot,padding:{top:0,left:0,right:0,bottom:0},duration:reduce.matches||document.hidden?0:200})}}
  }
+
+ let walkthroughStage = null, walkthroughInst = null;
+ async function openWalkthrough(target){
+  if(!walkthroughStage){
+   walkthroughStage = document.createElement('div');
+   walkthroughStage.id = 'walkthrough-stage';
+   walkthroughStage.className = 'street-3d-stage';
+   document.body.appendChild(walkthroughStage);
+  }
+  walkthroughStage.hidden = false;
+  pause();
+  if(panel)panel.hidden = true;
+  let areaId = 'ari';
+  if(target?.id && ['ari','samyan','charoenkrung','thonglo','ramkhamhaeng'].includes(target.id)){
+   areaId = target.id;
+  } else if(target?.x && target?.y){
+   const p = [target.x, target.y];
+   const hoods = [
+    { id: 'ari', x: 100.54462, y: 13.77971 },
+    { id: 'samyan', x: 100.52933, y: 13.7335 },
+    { id: 'charoenkrung', x: 100.514, y: 13.725 },
+    { id: 'thonglo', x: 100.584, y: 13.734 },
+    { id: 'ramkhamhaeng', x: 100.612, y: 13.753 }
+   ];
+   hoods.sort((a,b)=>Math.hypot(a.x-p[0],a.y-p[1])-Math.hypot(b.x-p[0],b.y-p[1]));
+   areaId = hoods[0].id;
+  }
+  const mod = await import('./street-world-3d.js');
+  walkthroughInst = await mod.start(walkthroughStage, {
+   areaId,
+   onSelectPlace: p => {
+    walkthroughStage.hidden = true;
+    if(walkthroughInst){ walkthroughInst.dispose(); walkthroughInst = null; }
+    select(p, true);
+   },
+   onClose: () => {
+    walkthroughStage.hidden = true;
+    if(walkthroughInst){ walkthroughInst.dispose(); walkthroughInst = null; }
+   }
+  });
+  if(target?.x && target?.y && walkthroughInst?.standAt){
+   walkthroughInst.standAt(target.y, target.x);
+  }
+ }
+
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active&&panel&&!panel.hidden&&document.querySelector('#sheet').hidden){e.preventDefault();exit()}});
  document.addEventListener('visibilitychange',()=>{if(document.hidden)pause()});reduce.addEventListener('change',()=>{pause();if(active&&!panel.hidden){render();camera()}});
  window.addEventListener('resize',()=>{pause();reflow()});
- window.StreetWorld={open,resume,exit,pause,suspend,load,get active(){return active},get playing(){return playing},get position(){return position},get data(){return world},get area(){return area},get view(){return view},get stroll(){return stroll?{placeID:stroll.place.id,length:stroll.length,progress:strollProgress,offset:stroll.offset}:null}};
+ window.StreetWorld={open,openWalkthrough,resume,exit,pause,suspend,load,get active(){return active},get playing(){return playing},get position(){return position},get data(){return world},get area(){return area},get view(){return view},get stroll(){return stroll?{placeID:stroll.place.id,length:stroll.length,progress:strollProgress,offset:stroll.offset}:null}};
 })();
