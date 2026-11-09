@@ -425,8 +425,8 @@ export async function start(host, options = {}) {
       const geom = b.geometry;
       const polys = geom.type === 'Polygon' ? [geom.coordinates] : geom.type === 'MultiPolygon' ? geom.coordinates : [];
       const known = b.properties?.heightM != null;
-      const h = known ? Math.max(3.5, b.properties.heightM) : 12;
-      const wi = Math.floor(h * 2) * 4 + (known ? 2 : 0);
+      const h = known ? Math.max(3.5, b.properties.heightM) : 0;
+      const wi = known ? Math.floor(h * 2) * 4 + 2 : 0;
 
       for (const poly of polys) {
         const ring = poly[0];
@@ -441,6 +441,17 @@ export async function start(host, options = {}) {
           x0 = Math.min(x0, p.x); x1 = Math.max(x1, p.x);
           z0 = Math.min(z0, p.z); z1 = Math.max(z1, p.z);
         }
+
+        // Spatial collision hash for all footprints
+        for (let gx = Math.floor(x0 / GR); gx <= Math.floor(x1 / GR); gx++) {
+          for (let gz = Math.floor(z0 / GR); gz <= Math.floor(z1 / GR); gz++) {
+            const key = gx + ',' + gz;
+            if (!collisionGrid.has(key)) collisionGrid.set(key, []);
+            collisionGrid.get(key).push(flat.slice());
+          }
+        }
+
+        if (!known) continue;
 
         // Walls
         const n = ring.length - 1;
@@ -467,15 +478,6 @@ export async function start(host, options = {}) {
         }
         for (let k = 0; k < tris.length; k++) {
           idx[t++] = base + tris[k];
-        }
-
-        // Spatial collision hash
-        for (let gx = Math.floor(x0 / GR); gx <= Math.floor(x1 / GR); gx++) {
-          for (let gz = Math.floor(z0 / GR); gz <= Math.floor(z1 / GR); gz++) {
-            const key = gx + ',' + gz;
-            if (!collisionGrid.has(key)) collisionGrid.set(key, []);
-            collisionGrid.get(key).push(flat.slice());
-          }
         }
       }
     }
