@@ -142,6 +142,11 @@ function visible(p, now) {
   if (state.flags.has('open') && window.isOpen(venueHours(p), now) !== true) return false;
   if (state.flags.has('indie') && p.flags & F.CHAIN) return false;
   if (state.flags.has('visited') && !state.visited.has(p.id)) return false;
+  if (state.flags.has('work')) {
+    const s = state.scores[p.id];
+    const ws = workScore(p);
+    if (!s || ws < 5) return false;
+  }
   return true;
 }
 
@@ -496,6 +501,7 @@ function renderSheet(p, d, visits) {
     ${window.WorkFinder?.placePanel(p)||''}
     <div class="place-reference-slot"></div>
     ${Atlas.facts(p)}
+    ${window.WorkAtmosphere?.render(p, d, { [p.id]: state.scores[p.id] } ) || ''}
     ${window.TalkMedia?.section(p.id)||''}
     <section class="ggp">
       ${petals(p)}
