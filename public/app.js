@@ -588,6 +588,7 @@ document.addEventListener('click', e => {
     else if (act.dataset.act === 'work') window.WorkFinder?.open();
     else if (act.dataset.act === 'featured') window.openFeatured?.();
     else if (act.dataset.act === 'discovery') window.openDiscovery?.();
+    else if (act.dataset.act === 'compare') { location.href = 'neighbourhoods.html'; return; }
     else act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.();
   }
   const h = e.target.closest('#mood [data-hood]');
