@@ -1,0 +1,230 @@
+{
+  "ari": {
+    "name": "Ari",
+    "anchor": {
+      "sourceID": "n5388607091",
+      "x": 100.54462,
+      "y": 13.77971
+    },
+    "radiusM": 800,
+    "bbox": [
+      100.5372205445815,
+      13.772523510600072,
+      100.55201945541849,
+      13.786896489399927
+    ],
+    "note": "Run Overpass query for explicit building:height tags. Do not invent heights.",
+    "source_plan": "Overpass API https://overpass-api.de/api/interpreter with query for building:height in bbox",
+    "tier": "planned",
+    "age": null
+  },
+  "samyan": {
+    "name": "Sam Yan",
+    "anchor": {
+      "sourceID": "n12803915078",
+      "x": 100.53012,
+      "y": 13.73206
+    },
+    "radiusM": 800,
+    "bbox": [
+      100.52272205091185,
+      13.724873510600073,
+      100.53751794908814,
+      13.739246489399928
+    ],
+    "note": "Run Overpass query for explicit building:height tags. Do not invent heights.",
+    "source_plan": "Overpass API https://overpass-api.de/api/interpreter with query for building:height in bbox",
+    "tier": "planned",
+    "age": null
+  },
+  "charoenkrung": {
+    "name": "Charoen Krung",
+    "anchor": {
+      "sourceID": "n4840964126",
+      "x": 100.51518,
+      "y": 13.72705
+    },
+    "radiusM": 800,
+    "bbox": [
+      100.50778220895707,
+      13.719863510600073,
+      100.52257779104293,
+      13.734236489399928
+    ],
+    "note": "Run Overpass query for explicit building:height tags. Do not invent heights.",
+    "source_plan": "Overpass API https://overpass-api.de/api/interpreter with query for building:height in bbox",
+    "tier": "planned",
+    "age": null
+  },
+  "thonglo": {
+    "name": "Thong Lo",
+    "anchor": {
+      "sourceID": "n5391626092",
+      "x": 100.57851,
+      "y": 13.72423
+    },
+    "radiusM": 800,
+    "bbox": [
+      100.57111229788877,
+      13.717043510600073,
+      100.58590770211121,
+      13.731416489399928
+    ],
+    "note": "Run Overpass query for explicit building:height tags. Do not invent heights.",
+    "source_plan": "Overpass API https://overpass-api.de/api/interpreter with query for building:height in bbox",
+    "tier": "planned",
+    "age": null
+  },
+  "ramkhamhaeng": {
+    "name": "Meet's space \u00b7 Ramkhamhaeng",
+    "anchor": {
+      "sourceID": "o825832f94e7f",
+      "x": 100.61656,
+      "y": 13.76998
+    },
+    "radiusM": 800,
+    "bbox": [
+      100.60916085263572,
+      13.762793510600073,
+      100.62395914736429,
+      13.777166489399928
+    ],
+    "note": "Run Overpass query for explicit building:height tags. Do not invent heights.",
+    "source_plan": "Overpass API https://overpass-api.de/api/interpreter with query for building:height in bbox",
+    "tier": "planned",
+    "age": null
+  },
+  "pathumwan": {
+    "name": "Pathum Wan",
+    "anchor": {
+      "sourceID": "ob778f91662f5",
+      "x": 100.53471,
+      "y": 13.74612
+    },
+    "radiusM": 800,
+    "bbox": [
+      100.52731160703762,
+      13.738933510600072,
+      100.54210839296239,
+      13.753306489399927
+    ],
+    "note": "Run Overpass query for explicit building:height tags. Do not invent heights.",
+    "source_plan": "Overpass API https://overpass-api.de/api/interpreter with query for building:height in bbox",
+    "tier": "planned",
+    "age": null
+  },
+  "phranakhon": {
+    "name": "Phra Nakhon",
+    "anchor": {
+      "sourceID": "n10705709305",
+      "x": 100.49268,
+      "y": 13.74418
+    },
+    "radiusM": 800,
+    "bbox": [
+      100.48528166831308,
+      13.736993510600072,
+      100.50007833168691,
+      13.751366489399928
+    ],
+    "note": "Run Overpass query for explicit building:height tags. Do not invent heights.",
+    "source_plan": "Overpass API https://overpass-api.de/api/interpreter with query for building:height in bbox",
+    "tier": "planned",
+    "age": null
+  },
+  "samphanthawong": {
+    "name": "Samphanthawong",
+    "anchor": {
+      "sourceID": "n5249863321",
+      "x": 100.50903,
+      "y": 13.74302
+    },
+    "radiusM": 800,
+    "bbox": [
+      100.50163170494748,
+      13.735833510600072,
+      100.5164282950525,
+      13.750206489399927
+    ],
+    "note": "Run Overpass query for explicit building:height tags. Do not invent heights.",
+    "source_plan": "Overpass API https://overpass-api.de/api/interpreter with query for building:height in bbox",
+    "tier": "planned",
+    "age": null
+  },
+  "chatuchak": {
+    "name": "Chatuchak",
+    "anchor": {
+      "sourceID": "o571065acf523",
+      "x": 100.55004,
+      "y": 13.80027
+    },
+    "radiusM": 800,
+    "bbox": [
+      100.54263989286048,
+      13.793083510600072,
+      100.55744010713951,
+      13.807456489399927
+    ],
+    "note": "Run Overpass query for explicit building:height tags. Do not invent heights.",
+    "source_plan": "Overpass API https://overpass-api.de/api/interpreter with query for building:height in bbox",
+    "tier": "planned",
+    "age": null
+  },
+  "dindaeng": {
+    "name": "Din Daeng",
+    "anchor": {
+      "sourceID": "od6b20aa9ffb9",
+      "x": 100.56546,
+      "y": 13.75739
+    },
+    "radiusM": 800,
+    "bbox": [
+      100.55806125088351,
+      13.750203510600072,
+      100.57285874911649,
+      13.764576489399927
+    ],
+    "note": "Run Overpass query for explicit building:height tags. Do not invent heights.",
+    "source_plan": "Overpass API https://overpass-api.de/api/interpreter with query for building:height in bbox",
+    "tier": "planned",
+    "age": null
+  },
+  "bangkapi": {
+    "name": "Bang Kapi",
+    "anchor": {
+      "sourceID": "oc7c911f4b7ea",
+      "x": 100.64228,
+      "y": 13.76848
+    },
+    "radiusM": 800,
+    "bbox": [
+      100.63488090010482,
+      13.761293510600073,
+      100.64967909989518,
+      13.775666489399928
+    ],
+    "note": "Run Overpass query for explicit building:height tags. Do not invent heights.",
+    "source_plan": "Overpass API https://overpass-api.de/api/interpreter with query for building:height in bbox",
+    "tier": "planned",
+    "age": null
+  },
+  "prawet": {
+    "name": "Prawet",
+    "anchor": {
+      "sourceID": "o95243cc571e7",
+      "x": 100.64844,
+      "y": 13.69453
+    },
+    "radiusM": 800,
+    "bbox": [
+      100.64104323329228,
+      13.687343510600073,
+      100.65583676670771,
+      13.701716489399928
+    ],
+    "note": "Run Overpass query for explicit building:height tags. Do not invent heights.",
+    "source_plan": "Overpass API https://overpass-api.de/api/interpreter with query for building:height in bbox",
+    "tier": "planned",
+    "age": null
+  }
+}
