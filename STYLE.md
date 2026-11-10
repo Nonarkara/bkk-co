@@ -63,6 +63,7 @@ Wada plate 273 (locally credited catalogue: `~/Projects/palette/data/colors.json
 - The main map retains source linework, routes and symbols. Native3D uses unchanged explicit source heights, with colors only on the corresponding single-component source footprint. Unknown heights stay flat. Both primary manga and secondary precision mode retain the same position and GPS.
 - Street sketch 3D volumes render with manga dot screentone: unclassified extrusions use palette-volume-neutral with a 12% dot tone, palette masks keep colour + texture. No invented height, no second map, tone is runtime.
 - The bottom map key is a compact content-sized instrument; source/category explanations live in Key. Header, logo, notebook and filter surfaces keep their existing white/purple identity.
+- 3D walkthrough `public/street-world-3d.js` · 2026-11-09: WebGL manga city engine with Wada plate 273 palette, explicit-height only extrusion, collision grid for all footprints, no invented heights per GSH. Screentone shaders are runtime, no second map source.
 
 ## Neighborhood atmosphere · owner request7November2026
 - A separate quiet ground beneath streets/buildings carries authored neighborhood atmosphere. Existing800m story circles, exact source anchors only; never implied administrative boundaries or amenity evidence. Unassigned city ground stays neutral. CategoryPalette320 meanings remain fixed above it.
