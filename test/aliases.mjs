@@ -1,10 +1,10 @@
 // Exercise real Worker routes with independent cold module graphs and held asset responses.
-import assert from'node:assert/strict';import{DatabaseSync}from'node:sqlite';import{mkdtemp,cp,readFile,rm}from'node:fs/promises';import{tmpdir}from'node:os';import{join}from'node:path';import{pathToFileURL}from'node:url';
+import assert from'node:assert/strict';import{DatabaseSync}from'node:sqlite';import{mkdtemp,cp,readFile,rm,mkdir}from'node:fs/promises';import{tmpdir}from'node:os';import{join}from'node:path';import{pathToFileURL}from'node:url';
 const root=new URL('../',import.meta.url),base='https://alias.test',score={place:'n1',wifi:3,power:2,quiet:2,laptop:3},payload={name:'Fixture neighbour',note:'A survivor recommendation',stars:4,words:[],photos:[]};
 const work={kinds:['cafe','restaurant'],rows:[['n100','Survivor café',0,13.7,100.5,0,'000000',1]]},food={kinds:['cafe','restaurant'],rows:[['n200','Food venue',1,13.71,100.51,0,'000000',1]]};
 const gate=()=>{let release,reached;return{released:new Promise(r=>release=r),entered:new Promise(r=>reached=r),release:()=>release(),reached:()=>reached()}};
 async function fixture(options={}){
- const dir=await mkdtemp(join(tmpdir(),'plub-alias-test-'));await cp(new URL('src/',root),join(dir,'src'),{recursive:true});const worker=(await import(pathToFileURL(join(dir,'src/worker.js')).href)).default;
+ const dir=await mkdtemp(join(tmpdir(),'plub-alias-test-'));await cp(new URL('src/',root),join(dir,'src'),{recursive:true});await mkdir(join(dir,'public'),{recursive:true});await cp(new URL('public/work-atmosphere.js',root),join(dir,'public','work-atmosphere.js'));const worker=(await import(pathToFileURL(join(dir,'src/worker.js')).href)).default;
  const db=new DatabaseSync(':memory:');db.exec('PRAGMA foreign_keys=ON');db.exec(await readFile(new URL('db/schema.sql',root),'utf8'));db.exec(await readFile(new URL('db/notebook.sql',root),'utf8'));
  db.prepare('INSERT INTO notebook_accounts(id,key_hash,name,created_at) VALUES(?,?,?,?)').run('fixture-account','fixture-key-hash','Fixture neighbour','2026-11-04');
  db.prepare('INSERT INTO notebook_entries VALUES(?,?,?,?,?,?)').run('fixture-entry','fixture-account','n100',JSON.stringify(payload),1,'2026-11-04');

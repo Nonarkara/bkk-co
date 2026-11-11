@@ -256,15 +256,36 @@ export async function agentApi(request, env, url) {
     const lat = Number(q.get('lat')), lng = Number(q.get('lng'));
     const radius = Math.max(50, Math.min(20000, Number(q.get('radius')) || 1500));
     const category = q.get('category'), text = (q.get('q') || '').trim().toLowerCase();
-    const hasGeo = Number.isFinite(lat) && Number.isFinite(lng);
+    const sort = q.get('sort') || (q.get('lat') !== null ? 'distance' : 'index');
+    // A filter on documented facts, not on an inferred score: only venues whose Wi-Fi, power,
+    // seating or access is actually documented survive.
+    const documented = (q.get('documented') || '').split(',').map(s => s.trim()).filter(Boolean)
+      .map(k => WorkAtmosphere.DIMENSIONS.find(d => d.key === k)).filter(Boolean);
+    // Number(null) is 0, not NaN: an absent coordinate must not filter around the Gulf of Guinea.
+    const hasGeo = q.get('lat') !== null && q.get('lng') !== null && Number.isFinite(lat) && Number.isFinite(lng);
     let rows = [...c.byId.values()];
     if (category) {
       const wanted = category.split(',').map(s => s.trim()).filter(Boolean);
       rows = rows.filter(p => wanted.includes(p.kind));
     }
-    if (text) rows = rows.filter(p => p.name.toLowerCase().includes(text));
+    // The text search covers the name and the category, so "cafe" finds the cafés.
+    if (text) rows = rows.filter(p => p.name.toLowerCase().includes(text) || p.kind.includes(text));
     if (hasGeo) {
       rows = rows.map(p => ({ p, d: metres(p, { lat, lng }) })).filter(r => r.d <= radius).sort((a, b) => a.d - b.d).map(r => r.p);
+    }
+    const scores = Object.fromEntries(c.scores);
+    if (documented.length) {
+      const data = modelData(c);
+      rows = rows.filter(p => {
+        const pr = WorkAtmosphere.profile(p, data, scores);
+        return documented.every(d => pr.dimensions[d.key].points !== null);
+      });
+    }
+    if (sort === 'work') {
+      const data = modelData(c);
+      rows = rows.map(p => ({ p, r: WorkAtmosphere.profile(p, data, scores) }))
+        .sort((a, b) => (b.r.publishable - a.r.publishable) || (b.r.score ?? -1) - (a.r.score ?? -1) || (b.r.coverage - a.r.coverage))
+        .map(x => x.p);
     }
     const out = [];
     for (const p of rows.slice(0, limit)) {
@@ -272,7 +293,7 @@ export async function agentApi(request, env, url) {
       if (hasGeo) v.distance_m = Math.round(metres(p, { lat, lng }));
       out.push(v);
     }
-    return json({ count: out.length, total: rows.length, limit, snapshot: { asOf: c.manifest.asOf || null }, venues: out });
+    return json({ count: out.length, total: rows.length, limit, sort, snapshot: { asOf: c.manifest.asOf || null }, venues: out });
   }
 
   return fail('unknown endpoint', 404);
