@@ -127,7 +127,21 @@ def main():
  if not venuefile.exists():venuefile=cache('venues',['nwr/amenity=cafe,restaurant,coworking_space,library','nwr/office=coworking'],geometry='point,polygon',padding=.002)
  for f in features(venuefile):
   if f['id'] not in work_ids:continue
-  tags={k:v for k,v in f['properties'].items() if k in ('socket','power_supply','electricity','parking','capacity:parking','access','fee','air_conditioning','alcohol','serves:alcohol') or k.startswith(('socket:','power_supply:','electricity:','internet_access','parking:','access:'))}
+  # Workspace atmosphere evidence. Three tiers stay separate: a mapped tag (what is on the map),
+  # a venue claim (what the operator wrote about itself) and a visitor report. Nothing here is
+  # an inference about quality. Every key is an explicit OSM tag: no value is derived.
+  AMBIENCE_KEYS=('socket','power_supply','electricity','parking','capacity:parking','access','fee',
+   'air_conditioning','alcohol','serves:alcohol','capacity','wheelchair','wheelchair:description',
+   'outdoor_seating','outdoor_seating:chairs','opening_hours','charge','smoking','smoking:outside',
+   'takeaway','delivery','stars','stars:amenity','office','amenity','operator','operator:en','brand',
+   'website','contact:website','contact:instagram','contact:facebook','contact:line','contact:phone',
+   'email','description')
+  AMBIENCE_PREFIXES=('socket:','power_supply:','electricity:','internet_access','parking:','access:','outdoor_seating:')
+  # Free prose is capped, and the cap is recorded. A truncated claim must never look complete.
+  PROSE_LIMIT=300
+  tags={k:v for k,v in f['properties'].items() if k in AMBIENCE_KEYS or k.startswith(AMBIENCE_PREFIXES)}
+  if 'description' in tags and len(tags['description'])>PROSE_LIMIT:
+   tags['description']=tags['description'][:PROSE_LIMIT];tags['description_truncated']='yes'
   if tags:venue_tags[f['id']]={'sourceID':f['id'],'tags':tags}
  joins=[];used_stations=set();used_parking=set();close_parking=set();counts=collections.Counter()
  for r in rows:

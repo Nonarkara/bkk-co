@@ -1,6 +1,7 @@
 import { validateScore } from './validate.js';
 import { notebookApi, readBody } from './notebook.js';
 import { loadAliases, canon, catalogueUnavailable } from './aliases.js';
+import { agentApi } from './agent-api.js';
 
 const DAILY_LIMIT = 20;
 let ids, cataloguePending; // publish only the complete catalogue and aliases, once per isolate
@@ -79,6 +80,9 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
     if (/^\/api\/(account|notebook|community|moderation|research|hops)(?:\/|$)/.test(url.pathname)) return notebookApi(request, env, () => knownIds(env, request.url));
+    // The agent-facing API: read-only, no account, no write. The catalogue and its evidence
+    // are public; the notebook is not, and never appears here.
+    if (url.pathname === '/v1' || url.pathname.startsWith('/v1/')) return agentApi(request, env, url);
     if (url.pathname === '/api/scores') {
       if (request.method === 'GET') return getScores(env);
       if (request.method === 'POST') return postScore(request, env);
