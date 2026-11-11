@@ -299,11 +299,13 @@ function sortKey(p, centre) {
 
 function row(p, key = `${p.idx} index`, list = false) {
   const s = state.scores[p.id];
+  const ws = workScore(p);
   const tail = [
     state.visited.has(p.id) ? '<b title="You have been here">✓</b>' : '',
     p.flags & F.NOTABLE ? '<span title="Notable">✦</span>' : '',
     p.flags & F.WIFI ? '<span title="Wi-Fi listed">≋</span>' : '',
     s ? `<span title="Visitor ratings">★${s.n}</span>` : '',
+    state.flags.has('work') ? `<span title="Work score" class="ws">${Math.round(ws)}</span>` : '',
   ].join(' ');
   const label=esc(p.n+(p.branch?', '+p.branch:'')+' · '+KIND_LABEL[p.k]);
   const name=`${esc(p.n)}${p.branch?' '+branchTag(p):''}`;
@@ -585,7 +587,7 @@ document.addEventListener('click', e => {
     if (act.dataset.act === 'walkthrough') window.StreetWorld?.openWalkthrough();
     else if (act.dataset.act === 'street') window.StreetWorld?.open();
     else if (act.dataset.act === 'media') window.TalkMedia?.open();
-    else if (act.dataset.act === 'work') window.WorkFinder?.open();
+    else if (act.dataset.act === 'work') { window.WorkFinder?.open(); act.setAttribute('aria-pressed', String(act.getAttribute('aria-pressed') !== 'true')); }
     else if (act.dataset.act === 'featured') window.openFeatured?.();
     else if (act.dataset.act === 'discovery') window.openDiscovery?.();
     else if (act.dataset.act === 'compare') { location.href = 'neighbourhoods.html'; return; }

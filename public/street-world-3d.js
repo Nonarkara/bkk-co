@@ -211,18 +211,19 @@ export async function start(host, options = {}) {
   host.innerHTML = `
     <canvas class="model-canvas" tabindex="0" role="img" aria-label="3D Screentoned Manga Bangkok Walkthrough"></canvas>
     <div class="model-bar">
-      <div class="model-seg" role="group" aria-label="Neighborhood">
+      <div class="model-seg model-seg--area" role="group" aria-label="Neighborhood">
         ${world.areas.map(a => `<button type="button" data-area="${a.id}" ${a.id === opt.areaId ? 'aria-pressed="true"' : ''}>${a.name}</button>`).join('')}
       </div>
-      <div class="model-seg" role="group" aria-label="Camera mode">
+      <div class="model-seg model-seg--mode" role="group" aria-label="Camera mode">
         <button type="button" data-mode="walk" aria-pressed="true">Walk (1.65m)</button>
         <button type="button" data-mode="sky">Sky (Flyover)</button>
       </div>
-      <div class="model-seg" role="group" aria-label="Light">
+      <div class="model-seg model-seg--tod" role="group" aria-label="Light">
         <button type="button" data-tod="day" aria-pressed="true">Day</button>
         <button type="button" data-tod="dusk">Dusk</button>
         <button type="button" data-tod="night">Night</button>
       </div>
+      <span class="model-coverage" aria-live="polite"></span>
       <button type="button" class="model-close" aria-label="Close 3D walkthrough">✕ Map</button>
     </div>
     <div class="model-pins"></div>
@@ -241,6 +242,7 @@ export async function start(host, options = {}) {
 
   const canvas = host.querySelector('.model-canvas');
   const bar = host.querySelector('.model-bar');
+  const coverageEl = host.querySelector('.model-coverage');
   const pinsContainer = host.querySelector('.model-pins');
   const joyEl = host.querySelector('.model-joy');
   const joyKnob = joyEl.querySelector('span');
@@ -431,6 +433,9 @@ export async function start(host, options = {}) {
 
     let v = 0, t = 0;
     const flat = [];
+    // Flat footprint lines for every building (urban fabric, zero invented height)
+    const fpPos = [], fpIdx = [];
+    let fpv = 0, knownCount = 0;
 
     for (const b of bList) {
       const geom = b.geometry;
@@ -462,10 +467,20 @@ export async function start(host, options = {}) {
           }
         }
 
+        // Flat footprint outline for every building — visible city fabric, no invented height
+        const n = ring.length - 1;
+        for (let k = 0; k < n; k++) {
+          const xa = flat[k * 2], za = flat[k * 2 + 1];
+          const xb = flat[(k + 1) % n * 2], zb = flat[(k + 1) % n * 2 + 1];
+          fpPos.push(xa, 0.05, za, xb, 0.05, zb);
+          fpIdx.push(fpv, fpv + 1);
+          fpv += 2;
+        }
+
         if (!known) continue;
+        knownCount++;
 
         // Walls
-        const n = ring.length - 1;
         for (let k = 0; k < n; k++) {
           const xa = flat[k * 2], za = flat[k * 2 + 1];
           const xb = flat[(k + 1) * 2], zb = flat[(k + 1) * 2 + 1];
@@ -503,6 +518,27 @@ export async function start(host, options = {}) {
     const bMesh = new THREE.Mesh(bGeo, matB);
     scene.add(bMesh);
     currentMeshes.push(bMesh);
+
+    // Flat footprint outlines for every building — visible city fabric, no invented height
+    if (fpPos.length) {
+      const fpGeo = new THREE.BufferGeometry();
+      fpGeo.setAttribute('position', new THREE.Float32BufferAttribute(fpPos, 3));
+      const fpMat = new THREE.LineBasicMaterial({ color: 0x20201d });
+      const fpMesh = new THREE.LineSegments(fpGeo, fpMat);
+      scene.add(fpMesh);
+      currentMeshes.push(fpMesh);
+    }
+
+    // Coverage indicator: how many buildings have explicit, sourced heights
+    const total = bList.length;
+    if (coverageEl) {
+      coverageEl.textContent = knownCount + ' / ' + total + ' mapped heights';
+      coverageEl.style.fontSize = '11px';
+      coverageEl.style.color = 'var(--muted, #575951)';
+      coverageEl.style.padding = '0 8px';
+      coverageEl.style.borderLeft = '1px solid var(--rule, #d5d7cf)';
+      coverageEl.style.marginLeft = '8px';
+    }
 
     // Build road ribbons
     const smap = new Map(world.streets.features.map(f => [f.id, f]));

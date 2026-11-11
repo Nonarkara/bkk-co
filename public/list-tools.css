@@ -1,9 +1,22 @@
-/* One finder wins. Exploration/filter depth is opened deliberately, before compact comparison rows. */
+/* One finder wins. Work spots is the primary action; Walk 3D World is secondary.
+   Explore/Filters are deliberate disclosures, not equal peers. */
 .list-tools { display:flex; align-items:flex-start; flex-wrap:wrap; gap:4px 12px; padding:6px var(--pad) 2px; flex:none; }
-.list-tools > .list-walkthrough { min-height:30px; padding:3px 9px; font-weight:600; font-size:12px; border:1px solid var(--ink); background:var(--wash); color:var(--ink); cursor:pointer; }
-.list-tools > .list-walkthrough:hover { background:var(--ink); color:var(--paper); }
-.list-tools > .list-find { min-height:32px; padding:4px 0; font-weight:600; text-decoration:underline; text-underline-offset:3px; }
-.list-tools > details > summary { min-height:32px; display:list-item; cursor:pointer; padding:4px 0; }
+.list-tools > .list-find { /* primary action — Good for work */
+  min-height:36px; padding:0 14px; font-weight:600; font-size:13px;
+  border:1px solid var(--ink); background:var(--ink); color:var(--paper);
+  cursor:pointer; }
+.list-tools > .list-find:hover { background:var(--muted); }
+.list-tools > .list-find[aria-pressed="true"] { background:var(--amber); color:#20201d; }
+.list-tools > .list-walkthrough { /* secondary action */
+  min-height:30px; padding:3px 9px; font-weight:500; font-size:12px;
+  border:1px solid var(--rule); background:var(--paper); color:var(--muted); cursor:pointer; }
+.list-tools > .list-walkthrough:hover { border-color:var(--ink); color:var(--ink); background:var(--wash); }
+.list-tools > .list-walkthrough[aria-pressed="true"] { border-color:var(--ink); color:var(--ink); background:var(--wash); font-weight:600; }
+.list-tools > details > summary { /* tertiary disclosure — hairline, no fill */
+  min-height:32px; display:list-item; cursor:pointer; padding:4px 0;
+  color:var(--muted); font-weight:500; border:0; background:none; }
+.list-tools > details > summary::marker { content: "▸ "; color:var(--muted); }
+.list-tools > details[open] > summary { color:var(--ink); font-weight:600; }
 .list-tools > details[open] { flex-basis:100%; }
 .list-tools .moods { padding:0; gap:2px 12px; flex-wrap:wrap; overflow:visible; }
 .list-tools .moods button { border:0; padding:4px 0; height:auto; min-height:32px; text-align:left; }
@@ -23,6 +36,7 @@
 .list-place .idx { font-size:.857em; color:var(--muted); font-weight:400; white-space:normal; max-width:6.5em; }
 .list-place .meta:empty { display:none; }
 .list-place .row-signals { display:inline; margin-left:5px; font-size:var(--micro); color:var(--muted); font-weight:400; }
+.list-place .row-signals .ws { color:var(--ink); font-weight:600; background:var(--wash); padding:0 4px; border:1px solid var(--rule); margin-left:2px; }
 .list-place:focus-visible { outline-offset:-2px; }
 @media(max-width:899px){ .list-wrap.open .list { min-height:0; } }
 /* The rail owns the one primary finder; the map keeps only its view/key instruments. */
