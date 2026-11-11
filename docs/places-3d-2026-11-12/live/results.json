@@ -1,0 +1,153 @@
+{
+  "base": "https://co.nonarkara.org",
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844,
+      "rail": {
+        "groups": [
+          {
+            "heading": "Cafés\n21",
+            "previews": 3
+          },
+          {
+            "heading": "Libraries\n1",
+            "previews": 1
+          }
+        ],
+        "chrome": 109.578125,
+        "count": "22 places"
+      },
+      "model": {
+        "area": "charoenkrung",
+        "volumes": 30,
+        "streets": 3386,
+        "areas": 12,
+        "pins": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "streetFrameChanged": true,
+      "errors": [],
+      "writes": []
+    },
+    {
+      "width": 1024,
+      "height": 900,
+      "rail": {
+        "groups": [
+          {
+            "heading": "Cafés\n42",
+            "previews": 3
+          },
+          {
+            "heading": "Libraries\n2",
+            "previews": 2
+          }
+        ],
+        "chrome": 107.578125,
+        "count": "44 places"
+      },
+      "model": {
+        "area": "charoenkrung",
+        "volumes": 30,
+        "streets": 3386,
+        "areas": 12,
+        "pins": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "streetFrameChanged": true,
+      "errors": [],
+      "writes": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "rail": {
+        "groups": [
+          {
+            "heading": "Cafés\n47",
+            "previews": 3
+          },
+          {
+            "heading": "Libraries\n2",
+            "previews": 2
+          }
+        ],
+        "chrome": 107.578125,
+        "count": "49 places"
+      },
+      "model": {
+        "area": "charoenkrung",
+        "volumes": 30,
+        "streets": 3386,
+        "areas": 12,
+        "pins": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "streetFrameChanged": true,
+      "errors": [],
+      "writes": []
+    },
+    {
+      "width": 1670,
+      "height": 1000,
+      "rail": {
+        "groups": [
+          {
+            "heading": "Cafés\n51",
+            "previews": 3
+          },
+          {
+            "heading": "Libraries\n2",
+            "previews": 2
+          }
+        ],
+        "chrome": 107.578125,
+        "count": "53 places"
+      },
+      "model": {
+        "area": "charoenkrung",
+        "volumes": 30,
+        "streets": 3386,
+        "areas": 12,
+        "pins": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "streetFrameChanged": true,
+      "errors": [],
+      "writes": []
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "showMore": {
+    "count": 15,
+    "focusedFourth": true
+  },
+  "sortClips": [
+    {
+      "name": "Third Place Index",
+      "need": 244,
+      "actual": 243
+    }
+  ],
+  "empty": "No matches in view. Pan, zoom out or clear a filter.",
+  "index503": {
+    "open": true,
+    "coverage": "Could not open the 3D neighbourhood. Retry or return to the map.",
+    "focus": "<button>Back to map</button>"
+  },
+  "retry": {
+    "open": true,
+    "ready": "true",
+    "area": "charoenkrung",
+    "volumes": "30",
+    "coverage": "30 of 3035 buildings in relief · mapped heights",
+    "focus": "<canvas class=\"model-canvas\" tabindex=\"0\" role=\"img\" aria-label=\"3D Screentoned Manga Bangkok Walkthrough\" data-engine=\"three.js r170\" width=\"390\" height=\"844\"></can"
+  },
+  "walk": {
+    "changed": true,
+    "focus": true
+  },
+  "area503": {
+    "open": true,
+    "ready": "true",
+    "area": "charoenkrung",
+    "volumes": "30",
+    "coverage": "Prawet unavailable. Still showing Charoen Krung.",
+    "focus": "<button type=\"button\" data-mode=\"sky\" aria-pressed=\"true\">Overview</button>"
+  },
+  "pending": {
+    "open": true,
+    "ready": "true",
+    "area": "charoenkrung",
+    "volumes": "30",
+    "coverage": "Loading Prawet…",
+    "focus": "<button type=\"button\" data-mode=\"sky\" aria-pressed=\"true\">Overview</button>"
+  },
+  "latest": {
+    "open": true,
+    "ready": "true",
+    "area": "samyan",
+    "volumes": "174",
+    "coverage": "174 of 2649 buildings in relief · mapped heights",
+    "focus": "<button type=\"button\" data-mode=\"sky\" aria-pressed=\"true\">Overview</button>"
+  },
+  "flat": {
+    "open": true,
+    "ready": "true",
+    "area": "prawet",
+    "volumes": "0",
+    "coverage": "0 of 201 buildings in relief · mapped heights",
+    "focus": "<button type=\"button\" data-mode=\"sky\" aria-pressed=\"true\">Overview</button>"
+  },
+  "back": {
+    "open": false,
+    "focus": "<button class=\"list-walkthrough\" data-act=\"walkthrough\">Walk 3D World</button>"
+  },
+  "cancel": {
+    "open": false,
+    "focus": "<button class=\"list-walkthrough\" data-act=\"walkthrough\">Walk 3D World</button>"
+  }
+}
