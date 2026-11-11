@@ -51,11 +51,14 @@ async function startServer() {
   await waitForServer(url);
   // The local D1 is empty on a fresh checkout: without the notebook schema the community
   // surfaces fail, and the audit would report a broken product instead of a missing step.
-  await new Promise(res => {
-    const seed = spawn('npx', ['wrangler', 'd1', 'execute', 'bkk-co', '--local', '--file=db/notebook.sql'],
-      { cwd: repo.pathname, stdio: 'ignore' });
-    seed.on('exit', res); seed.on('error', res);
-  });
+  for (const file of ['db/schema.sql', 'db/notebook.sql']) {
+    await new Promise((resolve, reject) => {
+      const seed = spawn('npx', ['wrangler', 'd1', 'execute', 'bkk-co', '--local', `--file=${file}`],
+        { cwd: repo.pathname, stdio: 'ignore' });
+      seed.on('exit', code => code === 0 ? resolve() : reject(new Error(`Could not seed ${file}`)));
+      seed.on('error', reject);
+    });
+  }
   await waitForServer(url);
   return url;
 }
@@ -241,6 +244,31 @@ const PRESERVE = async (page, base, shot) => {
     try { await fn(); } catch (e) { checks[name + 'Error'] = String(e.message || e).split('\n')[0].slice(0, 180); }
   };
 
+  await step('places', async () => {
+    const measure = () => {
+      const list = document.querySelector('#list');
+      const rail = document.querySelector('#list-wrap');
+      const groups = [...list.querySelectorAll(':scope > .list-group')];
+      const rows = [...list.querySelectorAll('.list-place')];
+      const action = rail.querySelector('.list-find').getBoundingClientRect();
+      const chrome = Math.round(list.getBoundingClientRect().top - rail.getBoundingClientRect().top);
+      const grouped = rows.length > 0 && rows.every(row => row.closest('.list-group')?.querySelector('h3'));
+      const compact = groups.every(group => group.querySelectorAll('.list-place').length <= 3);
+      return { groups: groups.length, rows: rows.length, chrome, pass: grouped && compact &&
+        chrome <= 128 && action.top >= 0 && action.bottom < innerHeight };
+    };
+    checks.places = await page.evaluate(measure);
+    if (PLANTED) {
+      const original = await page.locator('#list').innerHTML();
+      await page.evaluate(() => {
+        const list = document.querySelector('#list');
+        list.replaceChildren(...list.querySelectorAll('li[data-id]'));
+      });
+      checks.ungroupedRejected = !(await page.evaluate(measure)).pass;
+      await page.locator('#list').evaluate((el, html) => { el.innerHTML = html; }, original);
+    }
+  });
+
   await step('search', async () => {
     await page.locator('#q').fill('coffee');
     await page.waitForFunction(() => document.querySelectorAll('#hits li').length > 0, {}, { timeout: 30000 });
@@ -317,6 +345,25 @@ const PRESERVE = async (page, base, shot) => {
     await page.keyboard.press('Escape');
   });
 
+  await step('walkthrough', async () => {
+    await page.locator('.list-walkthrough').click({ timeout: 15000 });
+    const stage = page.locator('#walkthrough-stage[open][data-ready="true"]');
+    await stage.waitFor({ timeout: 25000 });
+    checks.walkthrough = await stage.evaluate(el => {
+      const back = el.querySelector('.model-close');
+      const r = back.getBoundingClientRect();
+      return {
+        area: el.dataset.area,
+        streets: Number(el.dataset.streets),
+        options: el.querySelector('.model-area select').options.length,
+        reachable: document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)?.closest('.model-close') === back
+      };
+    });
+    if (shot) await page.screenshot({ path: new URL(`walkthrough-${shot}.png`, outDir).pathname });
+    await page.keyboard.press('Escape');
+    checks.walkthrough.closed = !await page.locator('#walkthrough-stage').evaluate(el => el.open);
+  });
+
   checks.pinsLayer = await page.evaluate(() => !!map.getLayer('place-icons'));
   checks.errors = errors;
   checks.writes = writes;
@@ -340,6 +387,10 @@ function verdictFor(view, journey) {
   if (!view.task.search || !view.task.count) F('B1 first-screen task', 'the search or the count is below the fold');
   if (view.lang !== 'en') F('B12 language', `lang is "${view.lang}"`);
   if (journey) {
+    if (!journey.places?.pass) F('B14 grouped places', 'the sidebar needs short category previews and a first-screen work action');
+    if (PLANTED && journey.ungroupedRejected !== true) F('B14 grouped places', 'the grouped-places gate accepted an ungrouped list');
+    const walk = journey.walkthrough;
+    if (!walk?.streets || walk.options !== 12 || !walk.reachable || !walk.closed) F('B14 walkthrough', '3D must render mapped streets, offer all areas and return to the map');
     if (!journey.pinsLayer) F('B14 preservation', 'the map never drew the place pins');
     if (!journey.search) F('B14 preservation', 'search returns nothing');
     if (!journey.hitsDismissed) F('B14 preservation', 'Escape does not dismiss the search results');
@@ -350,9 +401,9 @@ function verdictFor(view, journey) {
     if (!journey.hopFeed) F('B14 preservation', 'the shared hop feed renders nothing');
     if (journey.hopFeedOk === false) F('B14 preservation', `the shared hop feed shows an error: ${journey.hopFeed}`);
     for (const [k, v] of Object.entries(journey)) if (k.endsWith('Error')) F('B14 preservation', `${k.slice(0, -5)} could not be exercised: ${v}`);
-    if (!journey.lens.installed) F('B14 preservation', 'the manga lens never installed');
-    if (journey.lensOn.ground !== 'visible' || journey.lensOn.base !== 'none') F('B14 preservation', 'the manga lens does not replace the basemap');
-    if (journey.lensOff.ground !== 'none' || journey.lensOff.base !== 'visible') F('B14 preservation', 'the manga lens does not hand the basemap back');
+    if (!journey.lens?.installed) F('B14 preservation', 'the manga lens never installed');
+    if (journey.lensOn?.ground !== 'visible' || journey.lensOn?.base !== 'none') F('B14 preservation', 'the manga lens does not replace the basemap');
+    if (journey.lensOff?.ground !== 'none' || journey.lensOff?.base !== 'visible') F('B14 preservation', 'the manga lens does not hand the basemap back');
     if (journey.errors.length) F('B13 runtime', journey.errors.join(' | '));
     if (journey.writes.length) F('read-only', `the audit wrote to the API: ${journey.writes.join(', ')}`);
   }
@@ -363,7 +414,7 @@ function verdictFor(view, journey) {
 const { chromium } = loadPlaywright();
 const base = await startServer();
 await mkdir(outDir, { recursive: true });
-const browser = await chromium.launch({ headless: true, ...(CHROME ? { executablePath: CHROME } : {}) });
+const browser = await chromium.launch({ headless: true, args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'], ...(CHROME ? { executablePath: CHROME } : {}) });
 const report = { stamp, base, planted: PLANTED, viewports: [], journey: null, verdict: 'PASS', fails: [] };
 try {
   for (const { w, h } of WIDTHS) {
@@ -417,7 +468,7 @@ if (PLANTED) {
   const caught = report.fails.some(f => /void|obstruct|map/.test(f.id));
   console.log(`Planted defect: ${report.fails.length} failure(s) reported; the gate caught it: ${caught}.`);
   for (const f of report.fails) console.log(`  PLANTED FAIL [${f.width}] ${f.id}: ${f.detail}`);
-  if (!caught) { console.error('THE GATE DID NOT CATCH THE PLANTED DEFECT.'); process.exit(2); }
+  if (!caught || report.journey.ungroupedRejected !== true || report.fails.some(f => f.width === 'journey')) { console.error('THE PLANTED OR PRESERVATION CHECK FAILED.'); process.exit(2); }
   console.log(`Report: ${new URL('msh-report-planted.json', outDir).pathname}`);
   process.exit(0);
 }
@@ -427,7 +478,7 @@ lines.push(`MSH audit ${stamp} · ${report.base} · planted=${PLANTED}`);
 for (const v of report.viewports) {
   lines.push(`  ${String(v.width).padStart(4)}px  chrome ${v.chrome.topPx}+${v.chrome.bottomPx}px (${(v.chrome.share * 100).toFixed(0)}%)  map ${(v.mapShare * 100).toFixed(0)}%  void ${v.voidPx}px  hierarchy ${v.hierarchyRatio}x  ${v.verdict}`);
 }
-lines.push(`  journey: search ${report.journey.search} hits · chip ${report.journey.chipChanged ? 'works' : 'NO CHANGE'} · hop ${report.journey.hopStops} stops · shared feed "${String(report.journey.hopFeed).slice(0, 40)}" · lens ${report.journey.lensOn.ground}/${report.journey.lensOff.ground} · writes ${report.journey.writes.length}`);
+lines.push(`  journey: search ${report.journey.search} hits · chip ${report.journey.chipChanged ? 'works' : 'NO CHANGE'} · hop ${report.journey.hopStops} stops · shared feed "${String(report.journey.hopFeed).slice(0, 40)}" · lens ${report.journey.lensOn?.ground}/${report.journey.lensOff?.ground} · writes ${report.journey.writes.length}`);
 for (const f of report.fails) lines.push(`  FAIL [${f.width}] ${f.id}: ${f.detail}`);
 lines.push(`Verdict: ${report.verdict}`);
 console.log(lines.join('\n'));

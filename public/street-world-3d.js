@@ -82,12 +82,6 @@ void main() {
     e = 1. - smoothstep(uLine * .55, uLine * 1.35, px);
   }
   vec3 col = mix(uPaper, uInk, clamp(max(ink, e), 0., 1.));
-  if (uInvert > .5 && kind < .5) {
-    vec2 c = vec2(floor(vUw.x / 3.), floor(vW.y / 3.3));
-    float r = hash21(c);
-    float win = step(.78, r) * step(.25, fract(vUw.x / 3.)) * step(fract(vUw.x / 3.), .75) * step(.3, fract(vW.y / 3.3)) * step(fract(vW.y / 3.3), .8);
-    col = mix(col, vec3(1., .82, .45), win * (1. - e) * .9);
-  }
   float f = smoothstep(uFogNear, uFogFar, length(vW - uCam));
   gl_FragColor = vec4(mix(col, uPaper, f), 1.);
 }
@@ -164,13 +158,15 @@ void main() {
 export async function start(host, options = {}) {
   const opt = Object.assign({
     dpr: Math.min(window.devicePixelRatio || 1, 2),
-    areaId: 'ari',
+    onError: () => {},
+    placeById: () => undefined,
     onSelectPlace: () => {},
     onClose: () => {}
   }, options);
 
-  let disposed = false, scene = null, raf = 0, ro = null;
+  let disposed = false, scene = null, renderer = null, raf = 0, ro = null;
   const abort = new AbortController();
+  let onKeyDown, onKeyUp;
 
   function dispose() {
     if (disposed) return;
@@ -180,7 +176,9 @@ export async function start(host, options = {}) {
     ro?.disconnect();
     window.removeEventListener('keydown', onKeyDown);
     window.removeEventListener('keyup', onKeyUp);
-    window.removeEventListener('keydown', onEscape, { capture: true });
+    window.removeEventListener('blur', clearInput);
+    document.removeEventListener('visibilitychange', visibilityChanged);
+    opt.signal?.removeEventListener('abort', dispose);
     if (scene) {
       scene.traverse(o => {
         o.geometry?.dispose();
@@ -191,52 +189,67 @@ export async function start(host, options = {}) {
     }
     renderer?.dispose();
     renderer?.forceContextLoss();
+    delete host.dataset.ready;
+    delete host.dataset.area;
+    delete host.dataset.volumes;
+    delete host.dataset.streets;
     host.innerHTML = '';
   }
 
-  // Load street data
-  let world;
+  let clearInput = () => {};
+  let visibilityChanged = () => {};
+  opt.signal?.addEventListener('abort', dispose, { once: true });
+  if (opt.signal?.aborted) { dispose(); return; }
+  const signal = AbortSignal.any([abort.signal, AbortSignal.timeout(20000)]);
   try {
-    const res = await fetch('data/street-world.json', { signal: abort.signal });
-    if (!res.ok) throw new Error('data/street-world.json not reachable');
-    world = await res.json();
-  } catch (err) {
-    if (disposed) return;
-    host.innerHTML = `<div class="street-3d-error"><p>Could not load 3D street data.</p><button type="button" class="street-3d-close-btn">Return to Map</button></div>`;
-    host.querySelector('.street-3d-close-btn')?.addEventListener('click', opt.onClose);
-    return { dispose };
-  }
+
+  const res = await fetch('data/street-world.json', { signal });
+  if (!res.ok) throw new Error('Street index unavailable');
+  const world = await res.json();
+  if (disposed) return;
+  const areas = world.areas;
+  if (!Array.isArray(areas) || !areas.length) throw new Error('Street index has no neighbourhoods');
+  const origin = opt.origin;
+  const nearest = origin && areas.reduce((best, area) => {
+    const distance = Math.hypot(area.anchor.x - origin.x, area.anchor.y - origin.y);
+    return distance < best.distance ? { area, distance } : best;
+  }, { distance: Infinity }).area;
+  const startArea = areas.find(area => area.id === opt.areaId) || nearest || areas[0];
+  const areaOptions = areas.map(area => {
+    const option = new Option(area.id === 'ramkhamhaeng' ? 'Ramkhamhaeng' : area.name, area.id, area.id === startArea.id, area.id === startArea.id);
+    return option.outerHTML;
+  }).join('');
 
   // Create UI shell
   host.innerHTML = `
     <canvas class="model-canvas" tabindex="0" role="img" aria-label="3D Screentoned Manga Bangkok Walkthrough"></canvas>
     <div class="model-bar">
-      <div class="model-seg model-seg--area" role="group" aria-label="Neighborhood">
-        ${world.areas.map(a => `<button type="button" data-area="${a.id}" ${a.id === opt.areaId ? 'aria-pressed="true"' : ''}>${a.name}</button>`).join('')}
-      </div>
+      <label class="model-area"><span class="sr">Neighbourhood</span><select aria-label="Neighbourhood">${areaOptions}</select></label>
       <div class="model-seg model-seg--mode" role="group" aria-label="Camera mode">
-        <button type="button" data-mode="walk" aria-pressed="true">Walk (1.65m)</button>
-        <button type="button" data-mode="sky">Sky (Flyover)</button>
+        <button type="button" data-mode="sky" aria-pressed="true">Overview</button>
+        <button type="button" data-mode="walk" aria-pressed="false">Street level</button>
       </div>
-      <div class="model-seg model-seg--tod" role="group" aria-label="Light">
-        <button type="button" data-tod="day" aria-pressed="true">Day</button>
-        <button type="button" data-tod="dusk">Dusk</button>
-        <button type="button" data-tod="night">Night</button>
-      </div>
-      <span class="model-coverage" aria-live="polite"></span>
-      <button type="button" class="model-close" aria-label="Close 3D walkthrough">✕ Map</button>
+      <label class="model-light"><span class="sr">Light</span><select aria-label="Light"><option value="day">Day</option><option value="dusk">Dusk</option><option value="night">Night</option></select></label>
+      <button type="button" class="model-close" aria-label="Back to map">Back to map</button>
+      <p class="model-coverage" role="status"></p>
     </div>
     <div class="model-pins"></div>
-    <div class="model-joy" hidden><span></span></div>
-    <div class="model-hint">W A S D to walk · Drag to look · Shift to sprint · Double click to land</div>
+    <div class="model-bottom">
     <div class="model-card" hidden>
       <h3 class="model-card-title"></h3>
       <p class="model-card-meta"></p>
       <div class="model-card-actions">
-        <button type="button" class="model-card-stand">Stand here</button>
+        <button type="button" class="model-card-stand">Street nearby</button>
         <button type="button" class="model-card-open">Open details</button>
       </div>
       <button type="button" class="model-card-close" aria-label="Close card">✕</button>
+    </div>
+    <div class="model-joy" hidden><span></span></div>
+    <div class="model-footer">
+      <div class="model-hint"></div>
+      <a class="model-attribution" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>
+      <a class="model-attribution" href="https://overturemaps.org/" target="_blank" rel="noopener">Places © Overture Maps</a>
+    </div>
     </div>
   `;
 
@@ -247,6 +260,7 @@ export async function start(host, options = {}) {
   const joyEl = host.querySelector('.model-joy');
   const joyKnob = joyEl.querySelector('span');
   const hintEl = host.querySelector('.model-hint');
+  const bottomBar = host.querySelector('.model-bottom');
   const cardEl = host.querySelector('.model-card');
   const closeBtn = host.querySelector('.model-close');
 
@@ -255,20 +269,16 @@ export async function start(host, options = {}) {
     opt.onClose();
   });
 
-  const onEscape = e => {
-    if (e.key === 'Escape') {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      dispose();
-      opt.onClose();
-    }
-  };
-  window.addEventListener('keydown', onEscape, { capture: true });
-
-  const renderer = new THREE.WebGLRenderer({
+  renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: opt.dpr < 2.01,
     powerPreference: 'high-performance'
+  });
+  let shaderFailed = false;
+  renderer.debug.onShaderError = () => { shaderFailed = true; };
+  canvas.addEventListener('webglcontextlost', event => {
+    event.preventDefault();
+    if (!disposed) { dispose(); opt.onError(); }
   });
   renderer.setPixelRatio(opt.dpr);
 
@@ -310,7 +320,7 @@ export async function start(host, options = {}) {
   });
 
   const skyMat = new THREE.ShaderMaterial({
-    uniforms: Object.assign({ uSky: U.uSky }, U),
+    uniforms: U,
     vertexShader: SKY_V,
     fragmentShader: SKY_F,
     side: THREE.BackSide,
@@ -332,21 +342,24 @@ export async function start(host, options = {}) {
     U.uInvert.value = t.invert;
     U.uSky.value = t.sky;
     renderer.setClearColor(t.paper);
-    bar.querySelectorAll('[data-tod]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.tod === k)));
-    dirty = true;
+    lightSelect.value = k;
+    invalidate();
   }
 
   // Camera State
   const S = {
-    mode: 'walk',
+    mode: 'sky',
     px: 0, pz: 0,
     wyaw: 0, wpitch: -0.02,
     x: 0, z: 0,
-    dist: 350, yaw: -0.45, pitch: 0.6,
+    dist: 610, yaw: -0.45, pitch: 0.82,
     speed: 7
   };
 
-  let activeArea = world.areas.find(a => a.id === opt.areaId) || world.areas[0];
+  const areaSelect = bar.querySelector('.model-area select');
+  const lightSelect = bar.querySelector('.model-light select');
+  areaSelect.disabled = true;
+  let activeArea = null, areaRequest, streetSegments = [], activePlaceIDs = [];
   let project = (lat, lng) => ({ x: 0, z: 0 });
   let unproject = (x, z) => ({ lat: 0, lng: 0 });
   let collisionGrid = new Map();
@@ -355,17 +368,18 @@ export async function start(host, options = {}) {
   let placePins = [];
 
   function blocked(x, z) {
+    if (Math.hypot(x, z) > activeArea.radiusM) return true;
     const key = Math.floor(x / GR) + ',' + Math.floor(z / GR);
     const polys = collisionGrid.get(key);
     if (!polys) return false;
-    for (const poly of polys) {
+    for (const rings of polys) {
       let inside = false;
-      const n = poly.length / 2;
-      for (let a = 0, b = n - 1; a < n; b = a++) {
-        const xa = poly[a * 2], za = poly[a * 2 + 1];
-        const xb = poly[b * 2], zb = poly[b * 2 + 1];
-        if ((za > z) !== (zb > z) && x < (xb - xa) * (z - za) / (zb - za) + xa) {
-          inside = !inside;
+      for (const ring of rings) {
+        const n = ring.length / 2;
+        for (let a = 0, b = n - 1; a < n; b = a++) {
+          const xa = ring[a * 2], za = ring[a * 2 + 1];
+          const xb = ring[b * 2], zb = ring[b * 2 + 1];
+          if ((za > z) !== (zb > z) && x < (xb - xa) * (z - za) / (zb - za) + xa) inside = !inside;
         }
       }
       if (inside) return true;
@@ -373,37 +387,64 @@ export async function start(host, options = {}) {
     return false;
   }
 
-  function freeSpot(x, z) {
-    if (!blocked(x, z)) return [x, z];
-    for (let r = 3; r <= 80; r += 3) {
-      for (let a = 0; a < 16; a++) {
-        const xx = x + Math.cos(a / 16 * Math.PI * 2) * r;
-        const zz = z + Math.sin(a / 16 * Math.PI * 2) * r;
-        if (!blocked(xx, zz)) return [xx, zz];
+  function nearestStreet(x, z) {
+    let nearest = null;
+    for (const [a, b] of streetSegments) {
+      const dx = b.x - a.x, dz = b.z - a.z;
+      const lengthSquared = dx * dx + dz * dz;
+      const t = Math.max(0, Math.min(1, ((x - a.x) * dx + (z - a.z) * dz) / lengthSquared));
+      const sx = a.x + t * dx, sz = a.z + t * dz;
+      const distance = Math.hypot(sx - x, sz - z);
+      if ((!nearest || distance < nearest.distance) && !blocked(sx, sz)) {
+        nearest = { x: sx, z: sz, yaw: Math.atan2(-dx, -dz), distance };
       }
     }
-    return [x, z];
+    return nearest;
+  }
+
+  function standNear(x, z) {
+    const street = nearestStreet(x, z);
+    if (!street) return false;
+    S.px = S.x = street.x;
+    S.pz = S.z = street.z;
+    S.wyaw = street.yaw;
+    S.wpitch = -0.10;
+    return true;
   }
 
   async function loadArea(area) {
-    activeArea = area;
-    bar.querySelectorAll('[data-area]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.area === area.id)));
-    // One file per neighbourhood: the index carries the list, the area file carries the geometry.
+    areaRequest?.abort();
+    const request = new AbortController();
+    areaRequest = request;
+    clearInput();
+    coverageEl.textContent = `Loading ${area.name}…`;
+    let file;
     try {
-      const res = await fetch(`data/street-world/${area.id}.json`, { signal: abort.signal });
-      if (!res.ok) throw new Error('area file not reachable');
-      const file = await res.json();
-      world.buildings = file.buildings; world.streets = file.streets;
-      world.placeIDs = file.placeIDs || [];
-    } catch (err) {
-      if (!disposed) console.warn('Area file unavailable', area.id, err);
-      return;
+      const areaSignal = AbortSignal.any([abort.signal, request.signal, AbortSignal.timeout(20000)]);
+      const response = await fetch(`data/street-world/${area.id}.json`, { signal: areaSignal });
+      if (!response.ok) throw new Error('Neighbourhood file unavailable');
+      file = await response.json();
+      if (file.id !== area.id || !Array.isArray(file.streetIDs) || !file.streets?.features?.length ||
+          !Array.isArray(file.buildings?.features) || !Array.isArray(file.placeIDs)) {
+        throw new Error('Neighbourhood geometry is incomplete');
+      }
+    } catch (error) {
+      if (disposed || request.signal.aborted) return false;
+      if (!activeArea) throw error;
+      areaSelect.value = activeArea.id;
+      coverageEl.textContent = `${area.name} unavailable. Still showing ${activeArea.name}.`;
+      return false;
     }
+    if (disposed || request.signal.aborted) return false;
+    activeArea = area;
+    areaSelect.value = area.id;
+    cardEl.hidden = true;
 
     // Clean up old meshes
     for (const m of currentMeshes) {
       scene.remove(m);
       m.geometry.dispose();
+      if (m.material !== matB && m.material !== matRoad && m.material !== matWater) m.material.dispose();
     }
     currentMeshes = [];
     collisionGrid.clear();
@@ -417,142 +458,118 @@ export async function start(host, options = {}) {
 
     // Extrude buildings in area
     // The area file holds exactly this neighbourhood's footprints.
-    const bList = world.buildings.features.slice();
+    const bList = file.buildings.features;
 
-    // Prepare vertex buffers
-    let nv = 0, ni = 0;
-    for (const b of bList) {
-      const geom = b.geometry;
-      const polys = geom.type === 'Polygon' ? [geom.coordinates] : geom.type === 'MultiPolygon' ? geom.coordinates : [];
-      for (const poly of polys) {
-        const ring = poly[0];
-        if (ring.length < 3) continue;
-        const n = ring.length;
-        nv += 4 * n + n;
-        ni += 6 * n + 3 * (n - 2);
-      }
-    }
+    const pos = [], uw = [], info = [], idx = [];
+    const ground = [], groundIndices = [], outlines = [];
+    let knownCount = 0;
 
-    const pos = new Float32Array(nv * 3);
-    const uw = new Float32Array(nv * 2);
-    const info = new Float32Array(nv);
-    const idx = new Uint32Array(ni);
+    for (const building of bList) {
+      const geometry = building.geometry;
+      const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
+      const { render3D, heightM, minHeightM } = building.properties || {};
+      const baseHeight = minHeightM ?? 0;
+      const known = render3D === true && Number.isFinite(heightM) && heightM > baseHeight;
+      if (known) knownCount++;
 
-    let v = 0, t = 0;
-    const flat = [];
-    // Flat footprint lines for every building (urban fabric, zero invented height)
-    const fpPos = [], fpIdx = [];
-    let fpv = 0, knownCount = 0;
+      for (const polygon of polygons) {
+        const rings = polygon.map(ring => ring.slice(0, -1).flatMap(([lng, lat]) => {
+          const point = project(lat, lng);
+          return [point.x, point.z];
+        })).filter(ring => ring.length >= 6);
+        if (!rings.length) continue;
 
-    for (const b of bList) {
-      const geom = b.geometry;
-      const polys = geom.type === 'Polygon' ? [geom.coordinates] : geom.type === 'MultiPolygon' ? geom.coordinates : [];
-      const known = b.properties?.heightM != null;
-      const h = known ? Math.max(3.5, b.properties.heightM) : 0;
-      const wi = known ? Math.floor(h * 2) * 4 + 2 : 0;
-
-      for (const poly of polys) {
-        const ring = poly[0];
-        if (ring.length < 3) continue;
-        flat.length = 0;
-        let x0 = 1e9, x1 = -1e9, z0 = 1e9, z1 = -1e9;
-
-        for (let k = 0; k < ring.length; k++) {
-          const pt = ring[k];
-          const p = project(pt[1], pt[0]);
-          flat.push(p.x, p.z);
-          x0 = Math.min(x0, p.x); x1 = Math.max(x1, p.x);
-          z0 = Math.min(z0, p.z); z1 = Math.max(z1, p.z);
+        const outer = rings[0];
+        let minX = Infinity, maxX = -Infinity, minZ = Infinity, maxZ = -Infinity;
+        for (let i = 0; i < outer.length; i += 2) {
+          minX = Math.min(minX, outer[i]); maxX = Math.max(maxX, outer[i]);
+          minZ = Math.min(minZ, outer[i + 1]); maxZ = Math.max(maxZ, outer[i + 1]);
         }
-
-        // Spatial collision hash for all footprints
-        for (let gx = Math.floor(x0 / GR); gx <= Math.floor(x1 / GR); gx++) {
-          for (let gz = Math.floor(z0 / GR); gz <= Math.floor(z1 / GR); gz++) {
-            const key = gx + ',' + gz;
+        for (let x = Math.floor(minX / GR); x <= Math.floor(maxX / GR); x++) {
+          for (let z = Math.floor(minZ / GR); z <= Math.floor(maxZ / GR); z++) {
+            const key = x + ',' + z;
             if (!collisionGrid.has(key)) collisionGrid.set(key, []);
-            collisionGrid.get(key).push(flat.slice());
+            collisionGrid.get(key).push(rings);
           }
         }
 
-        // Flat footprint outline for every building — visible city fabric, no invented height
-        const n = ring.length - 1;
-        for (let k = 0; k < n; k++) {
-          const xa = flat[k * 2], za = flat[k * 2 + 1];
-          const xb = flat[(k + 1) % n * 2], zb = flat[(k + 1) % n * 2 + 1];
-          fpPos.push(xa, 0.05, za, xb, 0.05, zb);
-          fpIdx.push(fpv, fpv + 1);
-          fpv += 2;
+        const coords = [], holes = [];
+        const wallInfo = known ? Math.floor(heightM * 2) * 4 + 2 : 0;
+        for (const ring of rings) {
+          if (coords.length) holes.push(coords.length / 2);
+          for (let i = 0; i < ring.length; i += 2) {
+            const j = (i + 2) % ring.length;
+            const xa = ring[i], za = ring[i + 1], xb = ring[j], zb = ring[j + 1];
+            coords.push(xa, za);
+            outlines.push(xa, 0.04, za, xb, 0.04, zb);
+            if (!known) continue;
+            const length = Math.hypot(xb - xa, zb - za);
+            const v = pos.length / 3;
+            pos.push(xa, baseHeight, za, xb, baseHeight, zb, xb, heightM, zb, xa, heightM, za);
+            uw.push(0, length, length, length, length, length, 0, length);
+            info.push(wallInfo, wallInfo, wallInfo, wallInfo);
+            idx.push(v, v + 1, v + 2, v, v + 2, v + 3);
+          }
         }
-
-        if (!known) continue;
-        knownCount++;
-
-        // Walls
-        for (let k = 0; k < n; k++) {
-          const xa = flat[k * 2], za = flat[k * 2 + 1];
-          const xb = flat[(k + 1) * 2], zb = flat[(k + 1) * 2 + 1];
-          const L = Math.hypot(xb - xa, zb - za);
-          const p = v * 3;
-          pos.set([xa, 0, za, xb, 0, zb, xb, h, zb, xa, h, za], p);
-          uw.set([0, L, L, L, L, L, 0, L], v * 2);
-          info[v] = info[v + 1] = info[v + 2] = info[v + 3] = wi;
-          idx[t++] = v; idx[t++] = v + 1; idx[t++] = v + 2;
-          idx[t++] = v; idx[t++] = v + 2; idx[t++] = v + 3;
-          v += 4;
+        const triangles = earcut(coords, holes);
+        const groundBase = ground.length / 3;
+        const roofBase = pos.length / 3;
+        for (let i = 0; i < coords.length; i += 2) {
+          ground.push(coords[i], 0.02, coords[i + 1]);
+          if (known) {
+            pos.push(coords[i], heightM, coords[i + 1]);
+            uw.push(0, 0);
+            info.push(wallInfo + 1);
+          }
         }
-
-        // Roof
-        const tris = earcut(flat);
-        const base = v;
-        for (let k = 0; k < ring.length; k++) {
-          pos.set([flat[k * 2], h, flat[k * 2 + 1]], v * 3);
-          info[v] = wi + 1;
-          v++;
-        }
-        for (let k = 0; k < tris.length; k++) {
-          idx[t++] = base + tris[k];
+        for (const i of triangles) {
+          groundIndices.push(groundBase + i);
+          if (known) idx.push(roofBase + i);
         }
       }
     }
 
     const bGeo = new THREE.BufferGeometry();
-    bGeo.setAttribute('position', new THREE.BufferAttribute(pos.subarray(0, v * 3), 3));
-    bGeo.setAttribute('uw', new THREE.BufferAttribute(uw.subarray(0, v * 2), 2));
-    bGeo.setAttribute('info', new THREE.BufferAttribute(info.subarray(0, v), 1));
-    bGeo.setIndex(new THREE.BufferAttribute(idx.subarray(0, t), 1));
+    bGeo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    bGeo.setAttribute('uw', new THREE.Float32BufferAttribute(uw, 2));
+    bGeo.setAttribute('info', new THREE.Float32BufferAttribute(info, 1));
+    bGeo.setIndex(idx);
     bGeo.computeVertexNormals();
 
     const bMesh = new THREE.Mesh(bGeo, matB);
     scene.add(bMesh);
     currentMeshes.push(bMesh);
 
-    // Flat footprint outlines for every building — visible city fabric, no invented height
-    if (fpPos.length) {
+    // Draw source footprints and their holes on the ground plane.
+    if (groundIndices.length) {
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute(ground, 3));
+      geometry.setIndex(groundIndices);
+      const material = new THREE.MeshBasicMaterial({ color: 0xfff7ef, side: THREE.DoubleSide });
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+      currentMeshes.push(mesh);
+    }
+    if (outlines.length) {
       const fpGeo = new THREE.BufferGeometry();
-      fpGeo.setAttribute('position', new THREE.Float32BufferAttribute(fpPos, 3));
-      const fpMat = new THREE.LineBasicMaterial({ color: 0x20201d });
+      fpGeo.setAttribute('position', new THREE.Float32BufferAttribute(outlines, 3));
+      const fpMat = new THREE.LineBasicMaterial({ color: 0x7d133a });
       const fpMesh = new THREE.LineSegments(fpGeo, fpMat);
       scene.add(fpMesh);
       currentMeshes.push(fpMesh);
     }
 
-    // Coverage indicator: how many buildings have explicit, sourced heights
-    const total = bList.length;
-    if (coverageEl) {
-      coverageEl.textContent = knownCount + ' / ' + total + ' mapped heights';
-      coverageEl.style.fontSize = '11px';
-      coverageEl.style.color = 'var(--muted, #575951)';
-      coverageEl.style.padding = '0 8px';
-      coverageEl.style.borderLeft = '1px solid var(--rule, #d5d7cf)';
-      coverageEl.style.marginLeft = '8px';
-    }
+    coverageEl.textContent = `${knownCount} of ${bList.length} buildings in relief · mapped heights`;
+    host.dataset.area = area.id;
+    host.dataset.volumes = String(knownCount);
 
-    // Build road ribbons
-    const smap = new Map(world.streets.features.map(f => [f.id, f]));
+    // The area payload owns these IDs. The index is navigation metadata.
+    const smap = new Map(file.streets.features.map(f => [f.id, f]));
+    streetSegments = [];
     const roadPoints = [], roadAcross = [], roadIdx = [];
     let rv = 0;
 
-    for (const id of area.streetIDs) {
+    for (const id of file.streetIDs) {
       const s = smap.get(id);
       if (!s) continue;
       const coords = s.geometry.coordinates;
@@ -568,6 +585,7 @@ export async function start(host, options = {}) {
         }
       }
       if (pts.length < 2) continue;
+      for (let k = 1; k < pts.length; k++) streetSegments.push([pts[k - 1], pts[k]]);
 
       for (let k = 0; k < pts.length; k++) {
         const a = pts[Math.max(0, k - 1)], b = pts[Math.min(pts.length - 1, k + 1)];
@@ -594,26 +612,30 @@ export async function start(host, options = {}) {
       currentMeshes.push(rMesh);
     }
 
-    // Position player on nearest free spot to area anchor
-    const [startPx, startPz] = freeSpot(0, 0);
-    S.px = startPx;
-    S.pz = startPz;
-    S.x = startPx;
-    S.z = startPz;
-    S.wyaw = 0;
-
-    // Load Places for this area
-    createPins(area);
-    dirty = true;
+    host.dataset.streets = String(streetSegments.length);
+    S.x = S.z = 0;
+    const street = standNear(0, 0);
+    bar.querySelector('[data-mode="walk"]').disabled = !street;
+    if (!street) setMode('sky');
+    activePlaceIDs = file.placeIDs;
+    createPins(activePlaceIDs);
+    invalidate();
+    return true;
   }
 
-  function createPins(area) {
-    if (!window.state?.places) return;
-    const places = window.state.places;
-    const areaPlaces = places.filter(p => {
-      const pt = project(p.y, p.x);
-      return Math.hypot(pt.x, pt.z) <= (area.radiusM || 800);
-    });
+  for (const catalogue of opt.catalogues || []) {
+    void catalogue.then(() => {
+      if (disposed || !activeArea) return;
+      createPins(activePlaceIDs);
+      invalidate();
+    }, () => {});
+  }
+
+  function createPins(ids) {
+    pinsContainer.replaceChildren();
+    const areaPlaces = [...new Set(ids.map(opt.placeById).filter(Boolean))]
+      .sort((a, b) => Math.hypot(a.x - activeArea.anchor.x, a.y - activeArea.anchor.y) -
+                      Math.hypot(b.x - activeArea.anchor.x, b.y - activeArea.anchor.y));
 
     placePins = areaPlaces.slice(0, 45).map(p => {
       const pt = project(p.y, p.x);
@@ -621,7 +643,8 @@ export async function start(host, options = {}) {
       btn.type = 'button';
       btn.className = `model-pin pin-${p.k}`;
       btn.setAttribute('aria-label', p.n);
-      btn.innerHTML = `<span class="pin-dot ${p.k}"></span><span class="pin-tag">${p.n.slice(0, 18)}</span>`;
+      btn.innerHTML = `<span class="pin-dot ${p.k}" aria-hidden="true"></span><span class="pin-tag"></span>`;
+      btn.querySelector('.pin-tag').textContent = p.n;
       btn.addEventListener('click', e => {
         e.stopPropagation();
         openCard(p, pt);
@@ -633,17 +656,13 @@ export async function start(host, options = {}) {
 
   function openCard(p, pt) {
     cardEl.hidden = false;
+    invalidate();
     cardEl.querySelector('.model-card-title').textContent = p.n;
     cardEl.querySelector('.model-card-meta').textContent = `✦${p.idx} Oldenburg index · ${p.k} · ${Math.round(Math.hypot(pt.x - S.px, pt.z - S.pz))} m away`;
 
     cardEl.querySelector('.model-card-stand').onclick = () => {
-      const [fx, fz] = freeSpot(pt.x, pt.z + 12);
-      S.px = fx;
-      S.pz = fz;
-      S.x = fx;
-      S.z = fz;
+      if (standNear(pt.x, pt.z)) setMode('walk');
       cardEl.hidden = true;
-      dirty = true;
     };
 
     cardEl.querySelector('.model-card-open').onclick = () => {
@@ -653,6 +672,7 @@ export async function start(host, options = {}) {
 
     cardEl.querySelector('.model-card-close').onclick = () => {
       cardEl.hidden = true;
+      invalidate();
     };
   }
 
@@ -674,29 +694,33 @@ export async function start(host, options = {}) {
   }
 
   function setMode(m) {
+    clearInput();
     S.mode = m;
     cam.fov = m === 'walk' ? 70 : 55;
     cam.updateProjectionMatrix();
     bar.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
     hintEl.textContent = m === 'walk'
       ? (matchMedia('(pointer: coarse)').matches ? 'Drag to look. Slide circle to walk.' : 'W A S D to walk · Drag to look · Shift to sprint')
-      : (matchMedia('(pointer: coarse)').matches ? 'Drag to turn · Pinch to zoom · Double-tap to stand' : 'Drag to rotate · Scroll to zoom · Double-click to land');
+      : (matchMedia('(pointer: coarse)').matches ? 'Drag to turn · Double-tap for street level' : 'Drag to rotate · Scroll to zoom · Double-click for street level');
     joyEl.hidden = !(matchMedia('(pointer: coarse)').matches && m === 'walk');
-    dirty = true;
+    if (m === 'walk') canvas.focus({ preventScroll: true });
+    invalidate();
   }
 
   // Input handling
   const keys = new Set();
-  function onKeyDown(e) {
-    if (e.target.matches('input, select, textarea')) return;
+  onKeyDown = e => {
+    if (e.target !== canvas) return;
     const k = e.key.toLowerCase();
     if (['w', 'a', 's', 'd', 'q', 'e', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright', 'shift'].includes(k)) {
+      e.preventDefault();
       keys.add(k);
+      invalidate();
     }
-  }
-  function onKeyUp(e) {
+  };
+  onKeyUp = e => {
     keys.delete(e.key.toLowerCase());
-  }
+  };
   window.addEventListener('keydown', onKeyDown);
   window.addEventListener('keyup', onKeyUp);
 
@@ -723,7 +747,7 @@ export async function start(host, options = {}) {
       S.wyaw -= dx * 0.0045;
       S.wpitch = Math.max(-1.15, Math.min(1.15, S.wpitch - dy * 0.004));
     }
-    dirty = true;
+    invalidate();
   });
 
   const up = e => {
@@ -731,7 +755,7 @@ export async function start(host, options = {}) {
     ptr.delete(e.pointerId);
     if (p && dragMoved < 6 && e.type === 'pointerup') {
       const now = performance.now();
-      if (now - lastTap < 350 && S.mode === 'sky') {
+      if (lastTap && now - lastTap < 350 && S.mode === 'sky') {
         // Double-click to land
         const raycaster = new THREE.Raycaster();
         const rect = canvas.getBoundingClientRect();
@@ -740,9 +764,7 @@ export async function start(host, options = {}) {
         const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
         const hit = new THREE.Vector3();
         if (raycaster.ray.intersectPlane(plane, hit)) {
-          const [fx, fz] = freeSpot(hit.x, hit.z);
-          S.px = fx; S.pz = fz; S.x = fx; S.z = fz;
-          setMode('walk');
+          if (standNear(hit.x, hit.z)) setMode('walk');
         }
       }
       lastTap = now;
@@ -755,7 +777,7 @@ export async function start(host, options = {}) {
     e.preventDefault();
     if (S.mode === 'sky') {
       S.dist = Math.max(40, Math.min(1500, S.dist * Math.exp(e.deltaY * 0.0012)));
-      dirty = true;
+      invalidate();
     }
   }, { passive: false });
 
@@ -776,6 +798,7 @@ export async function start(host, options = {}) {
     const l = Math.hypot(dx, dy);
     if (l > 1) { dx /= l; dy /= l; }
     joy = { x: dx, y: dy };
+    invalidate();
     joyKnob.style.transform = `translate(${dx * 32}px, ${dy * 32}px)`;
   }
   joyEl.addEventListener('pointermove', moveJoy);
@@ -789,23 +812,15 @@ export async function start(host, options = {}) {
   joyEl.addEventListener('pointercancel', endJoy);
 
   // Bar interactions
-  bar.addEventListener('click', e => {
-    const areaBtn = e.target.closest('[data-area]');
-    if (areaBtn) {
-      const a = world.areas.find(x => x.id === areaBtn.dataset.area);
-      if (a) void loadArea(a);
-      return;
-    }
-    const modeBtn = e.target.closest('[data-mode]');
-    if (modeBtn) {
-      setMode(modeBtn.dataset.mode);
-      return;
-    }
-    const todBtn = e.target.closest('[data-tod]');
-    if (todBtn) {
-      setTod(todBtn.dataset.tod);
-      return;
-    }
+  areaSelect.addEventListener('change', () => {
+    const area = areas.find(candidate => candidate.id === areaSelect.value);
+    areaSelect.value = activeArea?.id || startArea.id;
+    if (area) void loadArea(area).catch(() => { dispose(); opt.onError(); });
+  });
+  lightSelect.addEventListener('change', () => setTod(lightSelect.value));
+  bar.addEventListener('click', event => {
+    const mode = event.target.closest('[data-mode]');
+    if (mode) setMode(mode.dataset.mode);
   });
 
   function resize() {
@@ -814,7 +829,7 @@ export async function start(host, options = {}) {
     renderer.setSize(w, h, false);
     cam.aspect = w / h;
     cam.updateProjectionMatrix();
-    dirty = true;
+    invalidate();
   }
   ro = new ResizeObserver(resize);
   ro.observe(host);
@@ -822,33 +837,62 @@ export async function start(host, options = {}) {
   function layoutPins() {
     const w = host.clientWidth, h = host.clientHeight;
     const posVec = new THREE.Vector3();
-    const cx = S.mode === 'walk' ? S.px : cam.position.x;
-    const cz = S.mode === 'walk' ? S.pz : cam.position.z;
+    const cx = S.mode === 'walk' ? S.px : S.x;
+    const cz = S.mode === 'walk' ? S.pz : S.z;
+    const occupied = [];
+    const top = bar.getBoundingClientRect().bottom + 6;
+    const bottom = bottomBar.getBoundingClientRect().top - 6;
+    const sizes = placePins.map(({ btn }) => [btn.offsetWidth, btn.offsetHeight]);
 
-    for (const item of placePins) {
-      const dist = Math.hypot(item.x - cx, item.z - cz);
-      if (dist > 450) {
-        item.btn.hidden = true;
-        continue;
-      }
+    for (const [index, item] of placePins.entries()) {
+      const distance = Math.hypot(item.x - cx, item.z - cz);
       posVec.set(item.x, 3.5, item.z);
       posVec.project(cam);
-      if (posVec.z > 1 || posVec.z < -1) {
-        item.btn.hidden = true;
-        continue;
-      }
-      const sx = (posVec.x * 0.5 + 0.5) * w;
-      const sy = (-posVec.y * 0.5 + 0.5) * h;
-      item.btn.hidden = false;
-      item.btn.style.transform = `translate(${sx}px, ${sy}px)`;
+      const [width, height] = sizes[index];
+      const x = (posVec.x * 0.5 + 0.5) * w;
+      const y = (-posVec.y * 0.5 + 0.5) * h - height / 2;
+      const overlaps = occupied.some(other =>
+        x < other.right + 4 && x + width > other.x - 4 && y < other.bottom + 4 && y + height > other.y - 4);
+      item.btn.hidden = distance > 700 || Math.abs(posVec.z) > 1 || occupied.length >= 8 ||
+        x < 8 || x + width > w - 8 || y < top || y + height > bottom || overlaps;
+      if (item.btn.hidden) continue;
+      occupied.push({ x, y, right: x + width, bottom: y + height });
+      item.btn.style.transform = `translate(${x}px, ${y}px)`;
     }
   }
 
   // Animation Loop
   let dirty = true, prev = performance.now();
+  const movementKeys = ['w','a','s','d','q','e','arrowup','arrowdown','arrowleft','arrowright'];
+  function moving() {
+    return S.mode === 'walk' && (movementKeys.some(key => keys.has(key)) || joy.x || joy.y);
+  }
+  function invalidate() {
+    dirty = true;
+    if (!raf && !disposed && !document.hidden) {
+      prev = performance.now();
+      raf = requestAnimationFrame(loop);
+    }
+  }
+  clearInput = () => {
+    keys.clear();
+    ptr.clear();
+    joy = { x: 0, y: 0 };
+    joyId = null;
+    joyKnob.style.transform = '';
+    cancelAnimationFrame(raf);
+    raf = 0;
+  };
+  visibilityChanged = () => {
+    if (document.hidden) clearInput();
+    else invalidate();
+  };
+  canvas.addEventListener('blur', clearInput);
+  window.addEventListener('blur', clearInput);
+  document.addEventListener('visibilitychange', visibilityChanged);
   function loop(now) {
-    if (disposed) return;
-    raf = requestAnimationFrame(loop);
+    raf = 0;
+    if (disposed || document.hidden) return;
     const dt = Math.min(0.1, (now - prev) / 1000);
     prev = now;
 
@@ -888,28 +932,25 @@ export async function start(host, options = {}) {
       sky.position.copy(cam.position);
       renderer.render(scene, cam);
       layoutPins();
+      if (shaderFailed && host.dataset.ready === 'true') { dispose(); opt.onError(); return; }
     }
+    if (moving() && !raf) raf = requestAnimationFrame(loop);
   }
 
-  // Initialize
+  // Publish readiness only after the first geometry frame has rendered.
+  if (!await loadArea(startArea) || disposed) return;
   setTod('day');
-  setMode('walk');
-  await loadArea(activeArea);
+  setMode('sky');
   resize();
-  requestAnimationFrame(() => canvas.focus({ preventScroll: true }));
-  raf = requestAnimationFrame(loop);
-
-  return {
-    dispose,
-    setArea: id => {
-      const a = world.areas.find(x => x.id === id);
-      if (a) void loadArea(a);
-    },
-    standAt: (lat, lng) => {
-      const pt = project(lat, lng);
-      const [fx, fz] = freeSpot(pt.x, pt.z);
-      S.px = fx; S.pz = fz; S.x = fx; S.z = fz;
-      dirty = true;
-    }
-  };
+  cancelAnimationFrame(raf);
+  loop(performance.now());
+  if (shaderFailed) throw new Error('3D shaders failed to compile');
+  host.dataset.ready = 'true';
+  areaSelect.disabled = false;
+  canvas.focus({ preventScroll: true });
+  return { dispose };
+  } catch (error) {
+    dispose();
+    throw error;
+  }
 }

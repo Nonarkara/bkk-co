@@ -1,6 +1,6 @@
 /* One finder wins. Work spots is the primary action; Walk 3D World is secondary.
    Explore/Filters are deliberate disclosures, not equal peers. */
-.list-tools { display:flex; align-items:flex-start; flex-wrap:wrap; gap:4px 12px; padding:6px var(--pad) 2px; flex:none; }
+.list-tools { display:flex; align-items:center; flex-wrap:wrap; gap:4px 10px; padding:6px var(--pad); flex:none; }
 .list-tools > .list-find { /* primary action — Good for work */
   min-height:36px; padding:0 14px; font-weight:600; font-size:13px;
   border:1px solid var(--ink); background:var(--ink); color:var(--paper);
@@ -8,31 +8,32 @@
 .list-tools > .list-find:hover { background:var(--muted); }
 .list-tools > .list-find[aria-pressed="true"] { background:var(--amber); color:#20201d; }
 .list-tools > .list-walkthrough { /* secondary action */
-  min-height:30px; padding:3px 9px; font-weight:500; font-size:12px;
+  min-height:32px; padding:3px 9px; font-weight:500; font-size:12px;
   border:1px solid var(--rule); background:var(--paper); color:var(--muted); cursor:pointer; }
 .list-tools > .list-walkthrough:hover { border-color:var(--ink); color:var(--ink); background:var(--wash); }
 .list-tools > .list-walkthrough[aria-pressed="true"] { border-color:var(--ink); color:var(--ink); background:var(--wash); font-weight:600; }
-.list-tools > details > summary { /* tertiary disclosure — hairline, no fill */
+.list-options > details > summary { /* tertiary disclosure — hairline, no fill */
   min-height:32px; display:list-item; cursor:pointer; padding:4px 0;
   color:var(--muted); font-weight:500; border:0; background:none; }
-.list-tools > details > summary::marker { content: "▸ "; color:var(--muted); }
-.list-tools > details[open] > summary { color:var(--ink); font-weight:600; }
-.list-tools > details[open] { flex-basis:100%; }
-.list-tools .moods { padding:0; gap:2px 12px; flex-wrap:wrap; overflow:visible; }
-.list-tools .moods button { border:0; padding:4px 0; height:auto; min-height:32px; text-align:left; }
-.list-tools .moods button[aria-pressed=true] { background:var(--paper); font-weight:600; text-decoration:underline; }
-.list-tools .flags { padding:2px 0 0; gap:4px; }
-.list-tools .flags button { min-height:32px; height:auto; padding:4px 7px; }
-.list-tools .src { margin:2px 0 4px; }
+.list-options > details > summary::marker { content: "▸ "; color:var(--muted); }
+.list-options > details[open] > summary { color:var(--ink); font-weight:600; }
+.list-options > details[open] { flex-basis:100%; }
+.list-options .moods { padding:0; gap:2px 12px; flex-wrap:wrap; overflow:visible; }
+.list-options .moods button { border:0; padding:4px 0; height:auto; min-height:32px; text-align:left; }
+.list-options .moods button[aria-pressed=true] { background:var(--paper); font-weight:600; text-decoration:underline; }
+.list-options .flags { padding:2px 0 0; gap:4px; }
+.list-options .flags button { min-height:32px; height:auto; padding:4px 7px; }
+.list-options .src { margin:2px 0 4px; }
 .list-tools .list-close { flex:none; margin:0 0 0 auto; min-width:32px; width:32px; height:32px; font-size:18px; }
-.list-scope { display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:4px 8px; padding:2px var(--pad) 6px; border-bottom:1px solid var(--rule); flex:none; }
+.list-options { display:flex; align-items:flex-start; flex-wrap:wrap; gap:0 14px; padding:0 var(--pad); flex:none; border-bottom:1px solid var(--rule); }
+.list-scope { display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:4px 8px; padding:5px var(--pad) 0; flex:none; }
 .list-scope .count { margin:0; padding:0; font-size:var(--micro); white-space:normal; }
 .list-order { max-width:100%; }
 .list-order select { font:inherit; font-size:var(--micro); min-height:32px; padding:2px 4px; max-width:215px; color:var(--ink); border:0; border-bottom:1px solid var(--rule); border-radius:0; background:var(--paper); }
 .list li[data-id] { padding:0; min-height:0; }
 .list-place { display:grid; grid-template-columns:20px minmax(0,1fr) auto; gap:8px; align-items:center; width:100%; min-height:32px; padding:5px var(--pad); text-align:left; }
 .list-place .place-symbol,.list-place .place-badge { width:20px; height:20px; }
-.list-place .nm { font-weight:500; }
+.list-place .nm { font-weight:500; white-space:normal; overflow-wrap:anywhere; }
 .list-place .idx { font-size:.857em; color:var(--muted); font-weight:400; white-space:normal; max-width:6.5em; }
 .list-place .meta:empty { display:none; }
 .list-place .row-signals { display:inline; margin-left:5px; font-size:var(--micro); color:var(--muted); font-weight:400; }
@@ -41,3 +42,17 @@
 @media(max-width:899px){ .list-wrap.open .list { min-height:0; } }
 /* The rail owns the one primary finder; the map keeps only its view/key instruments. */
 .atlas-tools [data-work-start] { display:none; }
+
+#list-wrap .list-scope h2 { padding:0; font-size:1.285em; line-height:1.2; font-weight:600; }
+.list .list-group { display:block; padding:0; cursor:default; }
+.list .list-group:hover { background:transparent; }
+.list-group h3 { display:flex; align-items:baseline; gap:8px; padding:6px var(--pad) 3px; font-size:1em; font-weight:600; }
+.list-group h3 span { color:var(--muted); font-weight:400; }
+.list-group ol { margin:0; padding:0; list-style:none; }
+.list-group .list-more { min-height:32px; margin-left:var(--pad); color:var(--ink); text-decoration:underline; text-underline-offset:2px; }
+.list-options .list-order { display:block; margin-bottom:5px; }
+.list-options .list-order select { max-width:100%; }
+
+.search input { padding-right:4px; }
+
+.list-origin { margin-left:auto; padding:5px 0; color:var(--muted); font-size:var(--micro); }
