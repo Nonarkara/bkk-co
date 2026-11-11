@@ -235,3 +235,50 @@
   line-height: 1;
   cursor: pointer;
 }
+
+/* The scene owns the viewport. Its controls occupy an edge and wrap in reading order. */
+dialog.street-3d-stage {
+  margin:0; border:0; padding:0; width:100%; height:100dvh;
+  max-width:none; max-height:none; color:var(--ink);
+}
+.street-3d-stage:not([open]) { display:none; }
+.model-pin[hidden] { display:inline-flex; visibility:hidden; pointer-events:none; }
+.model-bar { align-items:start; gap:5px 8px; }
+.model-area, .model-light { max-width:100%; min-width:0; }
+.model-bar select, .model-close, .model-start button {
+  max-width:100%; min-height:36px; padding:4px 8px; border:1px solid var(--rule);
+  border-radius:0; background:var(--paper); color:var(--ink); font:inherit;
+}
+.model-seg { max-width:100%; }
+.model-seg button { font-size:inherit; white-space:normal; }
+.model-close { margin-left:0; }
+.model-coverage {
+  flex-basis:max-content; max-width:100%; padding:4px 8px;
+  background:var(--paper); color:var(--ink); line-height:1.3;
+}
+.model-hint { max-width:calc(100% - 24px); text-transform:none; }
+.model-start { padding:14px; max-width:35em; }
+.model-start-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.model-card-actions { flex-wrap:wrap; }
+.model-card-actions button { font-size:inherit; }
+@media(max-width:599px) {
+  .model-coverage { flex-basis:100%; }
+  .model-hint { font-size:var(--micro); }
+}
+
+.model-footer {
+  display:flex; flex-wrap:wrap; justify-content:flex-start; align-items:end;
+  gap:4px 8px; pointer-events:none;
+}
+.model-footer .model-hint { position:static; max-width:100%; margin-right:auto; }
+.model-attribution {
+  padding:4px 6px; background:var(--paper); color:var(--ink);
+  font-size:var(--micro); pointer-events:auto;
+}
+
+.model-bottom {
+  position:absolute; left:12px; right:12px; bottom:12px; z-index:10;
+  display:flex; flex-direction:column; gap:8px; pointer-events:none;
+}
+.model-bottom .model-joy { position:relative; inset:auto; align-self:flex-start; pointer-events:auto; }
+.model-bottom .model-card { position:relative; inset:auto; align-self:flex-end; pointer-events:auto; }

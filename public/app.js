@@ -266,6 +266,13 @@ const SORTS = {
   work: (a, b) => workScore(b) - workScore(a) || b.idx - a.idx,
 };
 
+const listGroups = [
+  ['cafe', 'Cafés'], ['coworking', 'Co-working'], ['library', 'Libraries'], ['restaurant', 'Food'],
+];
+const listPreview = 3;
+const listPageSize = 12;
+const groupLimits = new Map();
+
 function renderList() {
   const wrap = $('#list-wrap');
   if (isPhone() && !wrap.classList.contains('open')) return;
@@ -275,11 +282,32 @@ function renderList() {
     ? inView.map(p => [metres(p, centre), p]).sort((a, z) => a[0] - z[0]).map(a => a[1])
     : inView.sort(SORTS[state.sort]);
   $('#list-order').value=state.sort;
-  $('#count').textContent=`${fmt(inView.length)} in map area${state.kinds.has('restaurant')&&!state.foodLoaded?' · food loading':''}`;
-  $('#count').title=`Showing ${Math.min(60,inView.length)} of ${fmt(inView.length)} matches in map bounds; ${fmt(lastList.length)} matching catalogue places overall. Distance is straight line from the map centre.`;
-  $('#list').innerHTML = inView.length
-    ? inView.slice(0, 60).map(p => row(p, sortKey(p, centre),true)).join('')
-    : '<li class="meta">Nothing here with these filters. Zoom out or clear a filter.</li>';
+  $('#list-origin').hidden = state.sort !== 'near';
+  const loadingFood = state.kinds.has('restaurant') && !state.foodLoaded;
+  const count = $('#count');
+  count.textContent = `${fmt(inView.length)} ${inView.length === 1 ? 'place' : 'places'}${loadingFood ? ' · food loading' : ''}`;
+  count.title = `${fmt(inView.length)} matches in map bounds. Distances are straight lines from the map centre.`;
+  const list = $('#list');
+  const focusedPlace = document.activeElement.closest('.list-place')?.closest('li')?.dataset.id;
+  const focusedGroup = document.activeElement.dataset.listMore;
+  const groups = new Map(listGroups.map(([kind]) => [kind, []]));
+  for (const place of inView) groups.get(place.k)?.push(place);
+  list.innerHTML = inView.length ? listGroups.map(([kind, label]) => {
+    const places = groups.get(kind);
+    if (!places.length) return '';
+    const limit = groupLimits.get(kind) ?? listPreview;
+    const remaining = places.length - limit;
+    const action = remaining > 0 ? `Show ${Math.min(listPageSize, remaining)} more` : 'Show fewer';
+    const more = places.length > listPreview
+      ? `<button type="button" class="list-more" data-list-more="${kind}" aria-label="${action} · ${label}">${action}</button>`
+      : '';
+    const rows = places.slice(0, limit).map(p => row(p, sortKey(p, centre), true)).join('');
+    return `<li class="list-group" data-list-group="${kind}"><h3 id="list-heading-${kind}">${label} <span>${fmt(places.length)}</span></h3>
+      <ol aria-labelledby="list-heading-${kind}">${rows}</ol>${more}</li>`;
+  }).join('') : `<li class="meta">${loadingFood ? 'Loading food places…' : 'No matches in view. Pan, zoom out or clear a filter.'}</li>`;
+  if (focusedPlace) list.querySelector(`[data-id="${CSS.escape(focusedPlace)}"] button`)?.focus({ preventScroll: true });
+  if (focusedGroup) list.querySelector(`[data-list-more="${CSS.escape(focusedGroup)}"]`)?.focus({ preventScroll: true });
+
 }
 
 function sortKey(p, centre) {
@@ -314,6 +342,16 @@ function row(p, key = `${p.idx} index`, list = false) {
 }
 
 $('#list').addEventListener('click', e => {
+  const more = e.target.closest('[data-list-more]');
+  if (more) {
+    const kind = more.dataset.listMore;
+    const before = groupLimits.get(kind) ?? listPreview;
+    const showFewer = more.textContent === 'Show fewer';
+    groupLimits.set(kind, showFewer ? listPreview : before + listPageSize);
+    renderList();
+    if (!showFewer) $('#list').querySelectorAll(`[data-list-group="${kind}"] .list-place`)[before]?.focus();
+    return;
+  }
   const li = e.target.closest('li[data-id]');
   if (li) select(state.byId.get(li.dataset.id), true);
 });
@@ -584,10 +622,10 @@ document.addEventListener('click', e => {
   const act = e.target.closest('[data-act]');
   if (act) {
     $('#hits').hidden = true;
-    if (act.dataset.act === 'walkthrough') window.StreetWorld?.openWalkthrough();
+    if (act.dataset.act === 'walkthrough') window.StreetWorld?.openWalkthrough(undefined, act);
     else if (act.dataset.act === 'street') window.StreetWorld?.open();
     else if (act.dataset.act === 'media') window.TalkMedia?.open();
-    else if (act.dataset.act === 'work') { window.WorkFinder?.open(); act.setAttribute('aria-pressed', String(act.getAttribute('aria-pressed') !== 'true')); }
+    else if (act.dataset.act === 'work') window.WorkFinder?.open();
     else if (act.dataset.act === 'featured') window.openFeatured?.();
     else if (act.dataset.act === 'discovery') window.openDiscovery?.();
     else if (act.dataset.act === 'compare') { location.href = 'neighbourhoods.html'; return; }
@@ -598,7 +636,7 @@ document.addEventListener('click', e => {
 });
 
 // an empty search box offers the moods: most people search by purpose before they know a name
-const moodHits = () => `<li data-act="walkthrough" role="option"><span class="nm"><b>Walk 3D World</b></span><span class="meta">screentoned manga Bangkok · 5 areas</span></li><li data-act="street" role="option"><span class="nm"><b>Street sketch</b></span><span class="meta">manga · mapped neighbourhoods</span></li><li data-act="media" role="option"><span class="nm"><b>People &amp; café videos</b></span><span class="meta">source leads · check branch</span></li><li data-act="featured" role="option"><span class="nm"><b>Featured places</b></span><span class="meta">verified branches · sources</span></li><li data-act="work" role="option"><span class="nm"><b>Find a work spot</b></span><span class="meta">Drive · BTS · nearby</span></li><li data-act="discovery" role="option"><span class="nm"><b>50 + 50 cafés</b></span><span class="meta">editorial · discussed</span></li><li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
+const moodHits = () => `<li data-act="walkthrough" role="option"><span class="nm"><b>Walk 3D World</b></span><span class="meta">screentoned manga Bangkok · 12 areas</span></li><li data-act="street" role="option"><span class="nm"><b>Street sketch</b></span><span class="meta">manga · mapped neighbourhoods</span></li><li data-act="media" role="option"><span class="nm"><b>People &amp; café videos</b></span><span class="meta">source leads · check branch</span></li><li data-act="featured" role="option"><span class="nm"><b>Featured places</b></span><span class="meta">verified branches · sources</span></li><li data-act="work" role="option"><span class="nm"><b>Find a work spot</b></span><span class="meta">Drive · BTS · nearby</span></li><li data-act="discovery" role="option"><span class="nm"><b>50 + 50 cafés</b></span><span class="meta">editorial · discussed</span></li><li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
   <li data-act="hop" role="option"><span class="nm"><b>Plan a café hop</b></span><span class="meta">5 stops on foot</span></li>` + Object.entries(MOODS).map(([k, m]) =>
   `<li data-mood="${k}" role="option"><span class="mood-dot" aria-hidden="true">◐</span><span class="nm">${esc(m.label)}</span><span class="meta">citywide</span></li>`).join('');
 $('#q').addEventListener('focus', () => {
@@ -616,4 +654,4 @@ document.addEventListener('click', e => {
   document.querySelector(`.atlas-dock [data-${b.dataset.proxy}]`)?.click();
 });
 
-document.querySelector('.list-tools').addEventListener('click',e=>{if(e.target.closest('[data-act],[data-mood],[data-proxy]'))for(const d of document.querySelectorAll('.list-tools details'))d.open=false});
+document.querySelector('.list-options').addEventListener('click',e=>{if(e.target.closest('[data-act],[data-mood],[data-proxy]'))for(const d of document.querySelectorAll('.list-options details'))d.open=false});

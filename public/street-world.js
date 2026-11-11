@@ -202,7 +202,7 @@
    const center=map.getCenter(),origin=p?[p.x,p.y]:[center.lng,center.lat],nearestArea=world.areas.slice().sort((a,b)=>M.dist(origin,[a.anchor.x,a.anchor.y])-M.dist(origin,[b.anchor.x,b.anchor.y]))[0];
    const within=origin&&M.dist(origin,[nearestArea.anchor.x,nearestArea.anchor.y])<=nearestArea.radiusM;
    await choose(nearestArea.id,within?origin:undefined);
-   if(origin&&!within){const note=document.createElement('p');note.className='src';note.textContent=(p?'That place':'This map location')+' is outside the five sketch areas. Showing '+nearestArea.name+'; choose an area above.';panel.querySelector('header').after(note)}
+   if(origin&&!within){const note=document.createElement('p');note.className='src';note.textContent=(p?'That place':'This map location')+' is outside the mapped sketch areas. Showing '+nearestArea.name+'; choose an area above.';panel.querySelector('header').after(note)}
   }catch(e){if(!current(token))return;panel.querySelector('[role=status]')?.remove();const msg=document.createElement('p');msg.setAttribute('role','status');msg.textContent=e.message;panel.append(msg);const b=document.createElement('button');b.textContent='Retry street sketch';b.onclick=()=>open(p);panel.append(b)}
  }
  function resume(){if(!active)return open();closeSheet();createPanel();prepare();map.setMaxPitch(85);map.setMaxZoom(22);suspended=false;paint(true);render();draw();camera()}
@@ -211,47 +211,80 @@
   if(active){stroll=null;paint(false);map.getSource('street-stroll-line').setData(empty());map.getSource('street-eye').setData(empty());map.getSource('street-buildings').setData(empty());map.getSource('street-selected-line').setData(empty());active=false;lastArea=null;lastRoad=null;if(snapshot){map.setMaxPitch(snapshot.maxPitch);map.setMaxZoom(snapshot.maxZoom);map.easeTo({...snapshot,padding:{top:0,left:0,right:0,bottom:0},duration:reduce.matches||document.hidden?0:200})}}
  }
 
- let walkthroughStage = null, walkthroughInst = null;
- async function openWalkthrough(target){
-  if(!walkthroughStage){
-   walkthroughStage = document.createElement('div');
+ let walkthroughStage, walkthroughController;
+ async function openWalkthrough(target, trigger = document.activeElement) {
+  if (walkthroughController) return;
+  if (!walkthroughStage) {
+   walkthroughStage = document.createElement('dialog');
    walkthroughStage.id = 'walkthrough-stage';
    walkthroughStage.className = 'street-3d-stage';
-   document.body.appendChild(walkthroughStage);
+   walkthroughStage.setAttribute('aria-label', '3D neighbourhood');
+   document.body.append(walkthroughStage);
   }
-  walkthroughStage.hidden = false;
+  const stage = walkthroughStage;
+  const controller = new AbortController();
+  walkthroughController = controller;
   pause();
-  if(panel)panel.hidden = true;
-  let areaId = 'ari';
-  if(target?.id && ['ari','samyan','charoenkrung','thonglo','ramkhamhaeng'].includes(target.id)){
-   areaId = target.id;
-  } else if(target?.x && target?.y){
-   const p = [target.x, target.y];
-   const hoods = [
-    { id: 'ari', x: 100.54462, y: 13.77971 },
-    { id: 'samyan', x: 100.52933, y: 13.7335 },
-    { id: 'charoenkrung', x: 100.514, y: 13.725 },
-    { id: 'thonglo', x: 100.584, y: 13.734 },
-    { id: 'ramkhamhaeng', x: 100.612, y: 13.753 }
-   ];
-   hoods.sort((a,b)=>Math.hypot(a.x-p[0],a.y-p[1])-Math.hypot(b.x-p[0],b.y-p[1]));
-   areaId = hoods[0].id;
+  map.stop();
+
+  function close(restoreFocus = true) {
+   if (walkthroughController !== controller) return;
+   walkthroughController = null;
+   controller.abort();
+   stage.close();
+   stage.replaceChildren();
+   if (restoreFocus && trigger?.isConnected && trigger.getClientRects().length) trigger.focus({ preventScroll: true });
   }
-  const mod = await import('./street-world-3d.js');
-  walkthroughInst = await mod.start(walkthroughStage, {
-   areaId,
-   onSelectPlace: p => {
-    walkthroughStage.hidden = true;
-    if(walkthroughInst){ walkthroughInst.dispose(); walkthroughInst = null; }
-    select(p, true);
-   },
-   onClose: () => {
-    walkthroughStage.hidden = true;
-    if(walkthroughInst){ walkthroughInst.dispose(); walkthroughInst = null; }
+
+  function showStatus(message, failed = false) {
+   stage.innerHTML = '<div class="model-start"><p role="status"></p><div class="model-start-actions"></div></div>';
+   stage.querySelector('[role=status]').textContent = message;
+   const actions = stage.querySelector('.model-start-actions');
+   const back = document.createElement('button');
+   back.textContent = 'Back to map';
+   back.onclick = () => close();
+   actions.append(back);
+   if (failed) {
+    const retry = document.createElement('button');
+    retry.textContent = 'Retry 3D';
+    retry.onclick = () => { close(false); void openWalkthrough(target, trigger); };
+    actions.prepend(retry);
    }
-  });
-  if(target?.x && target?.y && walkthroughInst?.standAt){
-   walkthroughInst.standAt(target.y, target.x);
+   if (stage.open) back.focus();
+  }
+
+  stage.oncancel = event => { event.preventDefault(); close(); };
+  stage.onkeydown = event => {
+   if (event.key !== 'Escape') return;
+   event.preventDefault();
+   event.stopPropagation();
+   close();
+  };
+  showStatus('Loading 3D neighbourhood…');
+  stage.showModal();
+  const centre = map.getCenter();
+  const origin = Number.isFinite(target?.x) && Number.isFinite(target?.y)
+   ? { x: target.x, y: target.y }
+   : { x: centre.lng, y: centre.lat };
+  try {
+   const mod = await import('./street-world-3d.js?v=places-20261112');
+   if (controller.signal.aborted) return;
+   await mod.start(stage, {
+    areaId: target?.id,
+    origin,
+    placeById: id => state.byId.get(canonId(id)),
+    catalogues: [firstData, foodData],
+    signal: controller.signal,
+    onClose: () => close(),
+    onError: () => {
+     if (!controller.signal.aborted) showStatus('The 3D renderer stopped. Retry or return to the map.', true);
+    },
+    onSelectPlace: place => { close(false); select(place, true); }
+   });
+  } catch (error) {
+   if (controller.signal.aborted) return;
+   console.warn('3D neighbourhood could not start', error);
+   showStatus('Could not open the 3D neighbourhood. Retry or return to the map.', true);
   }
  }
 
