@@ -385,9 +385,20 @@ export async function start(host, options = {}) {
     return [x, z];
   }
 
-  function loadArea(area) {
+  async function loadArea(area) {
     activeArea = area;
     bar.querySelectorAll('[data-area]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.area === area.id)));
+    // One file per neighbourhood: the index carries the list, the area file carries the geometry.
+    try {
+      const res = await fetch(`data/street-world/${area.id}.json`, { signal: abort.signal });
+      if (!res.ok) throw new Error('area file not reachable');
+      const file = await res.json();
+      world.buildings = file.buildings; world.streets = file.streets;
+      world.placeIDs = file.placeIDs || [];
+    } catch (err) {
+      if (!disposed) console.warn('Area file unavailable', area.id, err);
+      return;
+    }
 
     // Clean up old meshes
     for (const m of currentMeshes) {
@@ -405,12 +416,8 @@ export async function start(host, options = {}) {
     unproject = (x, z) => ({ lat: origin[0] - z / MY, lng: origin[1] + x / MX });
 
     // Extrude buildings in area
-    const bmap = new Map(world.buildings.features.map(f => [f.id, f]));
-    const bList = [];
-    for (const id of area.buildingIDs) {
-      const b = bmap.get(id);
-      if (b) bList.push(b);
-    }
+    // The area file holds exactly this neighbourhood's footprints.
+    const bList = world.buildings.features.slice();
 
     // Prepare vertex buffers
     let nv = 0, ni = 0;
@@ -786,7 +793,7 @@ export async function start(host, options = {}) {
     const areaBtn = e.target.closest('[data-area]');
     if (areaBtn) {
       const a = world.areas.find(x => x.id === areaBtn.dataset.area);
-      if (a) loadArea(a);
+      if (a) void loadArea(a);
       return;
     }
     const modeBtn = e.target.closest('[data-mode]');
@@ -887,7 +894,7 @@ export async function start(host, options = {}) {
   // Initialize
   setTod('day');
   setMode('walk');
-  loadArea(activeArea);
+  await loadArea(activeArea);
   resize();
   requestAnimationFrame(() => canvas.focus({ preventScroll: true }));
   raf = requestAnimationFrame(loop);
@@ -896,7 +903,7 @@ export async function start(host, options = {}) {
     dispose,
     setArea: id => {
       const a = world.areas.find(x => x.id === id);
-      if (a) loadArea(a);
+      if (a) void loadArea(a);
     },
     standAt: (lat, lng) => {
       const pt = project(lat, lng);

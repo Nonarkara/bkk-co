@@ -46,11 +46,14 @@ def allowed(tags):
     return not any(tags.get(k) not in (None,'','no','false','0') for k in ('construction','proposed','disused','abandoned','demolished'))
 
 def load_areas(rows):
+    # The area list is built and explained by scripts/build-street-areas.py. This file only
+    # draws the geometry for whatever that script chose.
     areas=[]
-    for h in json.loads((ROOT/'public/data/hoods.json').read_text())['hoods']:
-        a=h['anchor'];areas.append({'id':h['slug'],'name':h['name'],'nameTh':h['th'],'anchor':{'sourceID':a['id'],'x':a['x'],'y':a['y']},'radiusM':RADIUS})
-    r=next(r for r in rows if r[0]=='o825832f94e7f')
-    areas.append({'id':'ramkhamhaeng','name':"Meet's space · Ramkhamhaeng",'nameTh':'รามคำแหง','anchor':{'sourceID':r[0],'x':r[4],'y':r[3]},'radiusM':RADIUS})
+    for a in json.loads((ROOT/'public/data/street-areas.json').read_text())['areas']:
+        areas.append({'id':a['id'],'name':a['name'],'nameTh':a.get('nameTh') or '','mood':a.get('mood') or '',
+                      'basis':a.get('basis') or '','district':a.get('district') or '','kind':a.get('kind') or '',
+                      'anchorName':a.get('anchorName') or '','cafesWithin800m':a.get('cafesWithin800m',0),'mix':a.get('mix',{}),
+                      'anchor':{'sourceID':a['anchor']['sourceID'],'x':a['anchor']['x'],'y':a['anchor']['y']},'radiusM':RADIUS})
     for a in areas:
         p=Point(*F(a['anchor']['x'],a['anchor']['y']));a['_shape']=p.buffer(RADIUS);a['_extract']=p.buffer(RADIUS+100)
         a['bounds']=list(transform(B,a['_extract']).bounds)
@@ -140,18 +143,37 @@ def main():
         if props['render3D']:displayed.add(signature)
     known=sum(f['properties']['heightM'] is not None for f in features)
     rendered=sum(f['properties']['render3D'] for f in features)
-    data={'manifest':{'version':1,'built':'2026-11-04','source':'OpenStreetMap','sourceURL':C.OSM_URL,'asOf':C.OSM_AS_OF,'md5':C.OSM_MD5,
+    # One file per area. The index carries the area list and the manifest only, so opening the
+    # sketch costs one small file plus the one neighbourhood the reader actually walks.
+    outdir=ROOT/'public/data/street-world';outdir.mkdir(exist_ok=True)
+    for area in areas:
+        bset=set(area['buildingIDs']);sset=set(area['streetIDs'])
+        af=[f for f in features if f['id'] in bset];sf=[f for f in road_features if f['id'] in sset]
+        nodes=set()
+        for f in sf:nodes.update(f['properties']['nodeIDs'])
+        aj={n:j for n,j in junctions.items() if n in nodes}
+        payload={'id':area['id'],'name':area['name'],'nameTh':area['nameTh'],'mood':area['mood'],
+                 'basis':area['basis'],'anchor':area['anchor'],'radiusM':area['radiusM'],
+                 'placeIDs':area['placeIDs'],'streetIDs':area['streetIDs'],
+                 'counts':{'footprints':len(af),'heightVolumes':sum(f['properties']['render3D'] for f in af),
+                            'explicitHeights':sum(f['properties']['heightM'] is not None for f in af),
+                            'streets':len(sf),'junctions':len(aj),'cataloguePlaces':len(area['placeIDs'])},
+                 'buildings':{'type':'FeatureCollection','features':af},
+                 'streets':{'type':'FeatureCollection','features':sf},'junctions':aj}
+        (outdir/(area['id']+'.json')).write_bytes(DUMP(payload).encode())
+    data={'manifest':{'version':2,'built':'2026-11-07','source':'OpenStreetMap','sourceURL':C.OSM_URL,'asOf':C.OSM_AS_OF,'md5':C.OSM_MD5,
       'license':'ODbL-1.0','attribution':'© OpenStreetMap contributors','licenseURL':'https://www.openstreetmap.org/copyright','crs':'EPSG:4326','distanceCRS':'EPSG:32647',
       'catalogueSHA256':C.sha(work),'radiusM':RADIUS,'areas':len(areas),'buildingCount':len(features),'explicitHeightCount':known,'unknownHeightCount':len(features)-known,
       'renderedHeightCount':rendered,'cacheKey':cache.name,'streetCount':len(streets),'junctionCount':len(junctions),'suppressed':dict(suppressed),
       'heightMeaning':'Only explicit positive metre height/building:height tags; no floor conversion, area/use estimate, renderer default or generated details. Unknown height remains null/flat. Missing minimum uses display ground zero only when height is known.',
       'streetMeaning':'Original OSM way-node runs inside the area, no synthetic joins or endpoints. Shared node IDs establish source topology only, not safe/legal pedestrian access. Unknown access remains unknown. Streets with explicit foot/access restrictions and fast-road/construction classes excluded.',
       'cafeMeaning':'Existing catalogue cafe points within40m straight-line of this source line; not entrances, frontage or same-side access.'},
-      'areas':areas,'buildings':{'type':'FeatureCollection','features':features},'streets':{'type':'FeatureCollection','features':road_features},'junctions':junctions}
+      'areas':areas}
     assert all(a['buildingIDs'] and a['streetIDs'] and a['placeIDs'] for a in areas),'A known area lost its mapped source geometry'
     assert known>0 and streets and junctions,'Street world source extraction unexpectedly empty'
     raw=DUMP(data).encode();assert len(gzip.compress(raw,mtime=0))<=1_000_000,'Compressed street-world exceeds1MBbudget'
     out=ROOT/'public/data/street-world.json';out.write_bytes(raw)
+    subprocess.run(['python3',str(ROOT/'scripts/write-street-world-index.py')],check=True)
     print(json.dumps({'bytes':len(raw),'gzipBytes':len(gzip.compress(raw,mtime=0)),'buildings':len(features),'explicitHeight':known,'renderedHeight':rendered,'streets':len(streets),'junctions':len(junctions),'cache':str(cache)}))
 
 if __name__=='__main__':main()

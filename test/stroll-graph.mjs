@@ -13,8 +13,8 @@ for(let progress=0;progress<route[0].length;progress+=8){
  const r=data.roads.get(next.position.streetID);assert(next.position.distance>=0&&next.position.distance<=r.length);
 }
 const end=M.advance(route[0],0,1e6);assert(end.done);assert.equal(end.progress,route[0].length);assert.equal(M.advance(route[0],end.progress,-8).progress,route[0].length-8);
-const actual=JSON.parse(await readFile(new URL('../public/data/street-world.json',import.meta.url))),catalogue=JSON.parse(await readFile(new URL('../public/data/places-work.json',import.meta.url))),idx=M.index(actual);
-for(const area of actual.areas){
+const index=JSON.parse(await readFile(new URL('../public/data/street-world.json',import.meta.url))),catalogue=JSON.parse(await readFile(new URL('../public/data/places-work.json',import.meta.url)));
+for(const meta of index.areas){const actual=JSON.parse(await readFile(new URL(`../public/data/street-world/${meta.id}.json`,import.meta.url))),idx=M.index(actual),area={...meta,streetIDs:actual.streetIDs,placeIDs:actual.placeIDs};
  const origin=M.nearest(idx,[area.anchor.x,area.anchor.y],area),ids=new Set(area.placeIDs),places=catalogue.rows.filter(r=>r[2]===0&&ids.has(r[0])).map(r=>({id:r[0],n:r[1],x:r[4],y:r[3]}));
  const start=M.point(idx.roads.get(origin.streetID),origin.distance).coordinates;places.sort((a,b)=>M.dist(start,[a.x,a.y])-M.dist(start,[b.x,b.y]));
  const routes=M.routes(idx,area,origin,places.slice(0,24));assert(routes.length,area.id+' must offer a connected café stroll');

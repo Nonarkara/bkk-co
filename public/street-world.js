@@ -1,11 +1,14 @@
 // A reference sketch on the existing map, never a second canvas or an inferred city.
 (() => {
  const M=StreetModel, empty=()=>({type:'FeatureCollection',features:[]});
- let world,index,promise,panel,area,position,snapshot,installed=false,active=false,suspended=false,playing=false,timer=null,revision=0,view='overview',lastArea=null,lastRoad=null,desiredPadding=null,pendingReflow=false,cameraRevision=0,blocked=false,stroll=null,strollProgress=0,strollChoices=[],look=0;
+ let world,index,areaData,promise,panel,area,position,snapshot,installed=false,active=false,suspended=false,playing=false,timer=null,revision=0,view='overview',lastArea=null,lastRoad=null,desiredPadding=null,pendingReflow=false,cameraRevision=0,blocked=false,stroll=null,strollProgress=0,strollChoices=[],look=0;
  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
  const get=async path=>{const r=await fetch(path,{signal:AbortSignal.timeout(25000)});if(!r.ok)throw Error('Street sketch data is unavailable. Your map and notebook still work.');return r.json()};
  const current=t=>t===revision&&panel?.isConnected&&!panel.hidden;
- function load(){return promise||(promise=Promise.all([get('data/street-world.json'),Promise.resolve(window.MangaLens?.ready?.())]).then(([w,lens])=>{if(!lens)throw Error('Manga drawing is unavailable. Your map and notebook still work. Retry the street sketch.');world=w;index=M.index(w);return w}).catch(e=>{promise=null;throw e}))}
+ function load(){return promise||(promise=Promise.all([get('data/street-world.json'),Promise.resolve(window.MangaLens?.ready?.())]).then(([w,lens])=>{if(!lens)throw Error('Manga drawing is unavailable. Your map and notebook still work. Retry the street sketch.');world=w;return w}).catch(e=>{promise=null;throw e}))}
+ // One file per neighbourhood. The index is small; a reader only pays for the area they walk.
+ const areaFiles=new Map();
+ function areaFile(id){if(!areaFiles.has(id)){const p=get('data/street-world/'+id+'.json');areaFiles.set(id,p);p.catch(()=>areaFiles.delete(id))}return areaFiles.get(id)}
  function createPanel(){
   if(!panel){panel=document.createElement('section');panel.className='street-panel';panel.setAttribute('aria-label','Street sketch controls');document.body.append(panel);panel.addEventListener('toggle',e=>{if(e.target.open)pause()},true);panel.addEventListener('focusin',e=>{if(playing&&!e.target.matches('[data-street-play]'))pause()});panel.addEventListener('pointerdown',e=>{if(!e.target.closest('[data-street-play]'))pause()});new ResizeObserver(reflow).observe(panel)}
   panel.hidden=false;return panel;
@@ -42,8 +45,8 @@
  }
  const point=()=>M.point(index.roads.get(position.streetID),position.distance);
  function draw(){
-  const ids=new Set(area.buildingIDs),r=index.roads.get(position.streetID),p=point();
-  if(lastArea!==area.id){map.getSource('street-buildings').setData({...world.buildings,features:world.buildings.features.filter(f=>ids.has(f.id))});lastArea=area.id}
+  const r=index.roads.get(position.streetID),p=point();
+  if(lastArea!==area.id){map.getSource('street-buildings').setData(areaData.buildings);lastArea=area.id}
   if(lastRoad!==r.id){map.getSource('street-selected-line').setData({type:'FeatureCollection',features:[{type:'Feature',id:r.id,geometry:r.geometry,properties:r.properties}]});lastRoad=r.id}
   const routePoints=stroll?.segments.flatMap((edge,i)=>{const r=index.roads.get(edge.streetID);return i?[M.point(r,edge.to).coordinates]:[M.point(r,edge.from).coordinates,M.point(r,edge.to).coordinates]});
   map.getSource('street-stroll-line').setData(routePoints?.length>1?{type:'FeatureCollection',features:[{type:'Feature',properties:{},geometry:{type:'LineString',coordinates:routePoints}}]}:empty());
@@ -142,11 +145,11 @@
  }
  function render(){
   const roads=area.streetIDs.map(id=>index.roads.get(id)).filter(Boolean).sort((a,b)=>Number(b.properties.cafeIDs.length>0)-Number(a.properties.cafeIDs.length>0)||roadName(a).localeCompare(roadName(b)));
-  const buildingIDs=new Set(area.buildingIDs),known=world.buildings.features.filter(f=>buildingIDs.has(f.id)&&f.properties.render3D).length;
+  const known=area.counts?.heightVolumes||0;
   panel.innerHTML=`<header><h2 tabindex="-1">Neighbourhood stroll</h2><button class="street-close" aria-label="Return to 2D map">×</button></header><p class="street-view-notice" role="status"></p><p class="street-coverage">${esc(area.name)} · ${known?known+' mapped-height volumes; other footprints flat':'0 mapped heights · flat outlines'}</p><div class="street-nearby"></div><div class="street-controls" aria-label="Source-lane movement"><button data-street-walkthrough style="border-color:var(--ink);font-weight:600;background:var(--wash)">Walk 3D World ↗</button><button data-street-turn="-1" aria-label="Look or choose source direction left">↶</button><button data-street-step="-8" aria-label="Step back 8 metres on source street">← 8 m</button><button data-street-play aria-pressed="false" ${reduce.matches?'disabled':''}>Play</button><button data-street-step="8" aria-label="Step forward 8 metres on source street">8 m →</button><button data-street-turn="1" aria-label="Look or choose source direction right">↷</button><button data-street-view>${view==='walk'?'Overview':'Low view'}</button></div><p class="street-status" role="status"></p><div class="street-junction"></div><div class="street-stroll"></div><details class="street-setup"><summary>Change area / street</summary><label>Area<select data-street-area>${world.areas.map(a=>`<option value="${esc(a.id)}" ${a.id===area.id?'selected':''}>${esc(a.name)}</option>`).join('')}</select></label><label>Street<select data-street-road aria-label="Mapped street">${roads.map(r=>`<option value="${esc(r.id)}" ${r.id===position.streetID?'selected':''}>${esc(roadName(r))}${r.properties.cafeIDs.length?' · '+r.properties.cafeIDs.length+' café pins':''}</option>`).join('')}</select></label></details><details><summary>Reference sketch · access &amp; source</summary><p class="src">Virtual exploration of mapped streets, not verified pedestrian routes or café entrances. Access and roadside conditions need checking. W/A/S/D or arrows on the map; 8 m steps pause at shared source junctions. Left/right looks along a lane or chooses a mapped turn at its junction. A chosen café stroll follows connected source lanes; it ends near the pin, never at an inferred entrance. Unknown heights stay flat.</p><p class="src">${esc(area.name)}: ${known} source-height volumes / ${area.buildingIDs.length} footprints. Schematic flat ground; Low view is an artistic perspective, not a surveyed street photograph. Buildings/streets: OSM ${esc(world.manifest.asOf.slice(0,10))}, <a href="${esc(world.manifest.licenseURL)}" target="_blank" rel="noopener">ODbL</a>. Source tags may be stale. <a data-street-source href="https://www.openstreetmap.org/way/${esc(index.roads.get(position.streetID).properties.sourceID.slice(1))}" target="_blank" rel="noopener">Current street source ↗</a>. Café pins remain the current PL;UB catalogue.</p></details>`;
   panel.querySelector('.street-close').onclick=exit;
   panel.querySelector('[data-street-walkthrough]').onclick=()=>{pause();openWalkthrough(area);};
-  panel.querySelector('[data-street-area]').onchange=e=>choose(e.target.value);
+  panel.querySelector('[data-street-area]').onchange=e=>{e.target.disabled=true;choose(e.target.value).catch(err=>{const s=panel.querySelector('[role=status]');if(s)s.textContent=err.message}).finally(()=>{e.target.disabled=false})};
   panel.querySelector('[data-street-road]').onchange=e=>{pause();stroll=null;look=0;position={streetID:e.target.value,distance:0,direction:1};draw();details();camera()};
   panel.querySelectorAll('[data-street-step]').forEach(b=>b.onclick=()=>{pause();step(+b.dataset.streetStep)});
   panel.querySelectorAll('[data-street-turn]').forEach(b=>b.onclick=()=>{pause();turn(+b.dataset.streetTurn)});
@@ -155,8 +158,12 @@
   panel.onkeydown=keyboard;
   details();panel.querySelector('h2').focus({preventScroll:true});
  }
- function choose(id,near){
-  pause();blocked=false;stroll=null;look=0;area=world.areas.find(a=>a.id===id)||world.areas.find(a=>a.id==='samyan');
+ async function choose(id,near){
+  pause();blocked=false;stroll=null;look=0;
+  const meta=world.areas.find(a=>a.id===id)||world.areas.find(a=>a.id==='samyan');
+  const data=await areaFile(meta.id);
+  area={...meta,streetIDs:data.streetIDs,placeIDs:data.placeIDs,buildingIDs:data.buildings.features.map(f=>f.id),counts:data.counts};
+  areaData=data;index=M.index(data);
   position=M.nearest(index,near||[area.anchor.x,area.anchor.y],area);
   if(!position)throw Error('No source street is available in this area.');
   render();draw();camera();
@@ -194,7 +201,7 @@
    prepare();install();active=true;suspended=false;map.setMaxPitch(85);map.setMaxZoom(22);paint(true);
    const center=map.getCenter(),origin=p?[p.x,p.y]:[center.lng,center.lat],nearestArea=world.areas.slice().sort((a,b)=>M.dist(origin,[a.anchor.x,a.anchor.y])-M.dist(origin,[b.anchor.x,b.anchor.y]))[0];
    const within=origin&&M.dist(origin,[nearestArea.anchor.x,nearestArea.anchor.y])<=nearestArea.radiusM;
-   choose(nearestArea.id,within?origin:undefined);
+   await choose(nearestArea.id,within?origin:undefined);
    if(origin&&!within){const note=document.createElement('p');note.className='src';note.textContent=(p?'That place':'This map location')+' is outside the five sketch areas. Showing '+nearestArea.name+'; choose an area above.';panel.querySelector('header').after(note)}
   }catch(e){if(!current(token))return;panel.querySelector('[role=status]')?.remove();const msg=document.createElement('p');msg.setAttribute('role','status');msg.textContent=e.message;panel.append(msg);const b=document.createElement('button');b.textContent='Retry street sketch';b.onclick=()=>open(p);panel.append(b)}
  }
@@ -251,5 +258,5 @@
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active&&panel&&!panel.hidden&&document.querySelector('#sheet').hidden){e.preventDefault();exit()}});
  document.addEventListener('visibilitychange',()=>{if(document.hidden)pause()});reduce.addEventListener('change',()=>{pause();if(active&&!panel.hidden){render();camera()}});
  window.addEventListener('resize',()=>{pause();reflow()});
- window.StreetWorld={open,openWalkthrough,resume,exit,pause,suspend,load,get active(){return active},get playing(){return playing},get position(){return position},get data(){return world},get area(){return area},get view(){return view},get stroll(){return stroll?{placeID:stroll.place.id,length:stroll.length,progress:strollProgress,offset:stroll.offset}:null}};
+ window.StreetWorld={open,openWalkthrough,resume,exit,pause,suspend,load,get active(){return active},get playing(){return playing},get position(){return position},get data(){return areaData||world},get area(){return area},get view(){return view},get stroll(){return stroll?{placeID:stroll.place.id,length:stroll.length,progress:strollProgress,offset:stroll.offset}:null}};
 })();

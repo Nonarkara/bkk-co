@@ -6,12 +6,8 @@ import { readFile } from 'node:fs/promises';
 
 const require = createRequire(import.meta.url);
 const Palette = require('../public/neighborhood-palette.js');
-const catalogue = JSON.parse(await readFile('/Users/nonarkara/Projects/palette/data/colors.json', 'utf8'));
-const byCombination = new Map();
-for (const colour of catalogue) for (const id of colour.combinations) {
-  if (!byCombination.has(id)) byCombination.set(id, []);
-  byCombination.get(id).push(colour);
-}
+const proof = JSON.parse(await readFile(new URL('../docs/stroll-2026-11-07/zoom-mood-provenance.json', import.meta.url), 'utf8'));
+const byCombination = new Map(Object.entries(proof.combinations).map(([id, cols]) => [Number(id), cols]));
 const areas = JSON.parse(await readFile(new URL('../public/data/street-areas.json', import.meta.url), 'utf8'));
 
 assert.ok(Object.keys(Palette.chords).length >= 12, 'twelve neighbourhoods have a ground colour');
@@ -21,7 +17,7 @@ for (const [areaId, entry] of Object.entries(Palette.chords)) {
   for (const [name, hex] of entry.colors) {
     const match = real.find(c => c.name === name);
     assert.ok(match, `${areaId}: "${name}" is in combination ${entry.chord}`);
-    assert.equal(match.hex.toLowerCase(), hex.toLowerCase(), `${areaId}: ${name} hex matches the catalogue`);
+    assert.equal(match.hex.toLowerCase(), hex.toLowerCase(), `${areaId}: ${name} hex matches the proved catalogue`);
   }
   // The colours used must be the catalogue's own for that combination, in order.
   const used = entry.colors.map(c => c[0]);
