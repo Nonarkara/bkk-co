@@ -102,6 +102,32 @@ const call = async (path, method = 'GET') => {
     assert.equal(body.work_readiness.components[d.key].points, local.dimensions[d.key].points, `${d.key} matches the interface`);
   }
 }
+// The on-site report must reach an agent exactly as it reaches a reader.
+{
+  const { body } = await call('/v1/venues/o71358a621d50');
+  const places = JSON.parse(await readFile(new URL('../public/data/places-work.json', import.meta.url)));
+  const joins = JSON.parse(await readFile(new URL('../public/data/journey-places.json', import.meta.url)));
+  const reports = JSON.parse(await readFile(new URL('../public/data/venue-reports.json', import.meta.url)));
+  const row = places.rows.find(r => r[0] === 'o71358a621d50');
+  const data = { raw: { join: { venueTags: joins.venueTags }, geo: { manifest: { asOf: joins.manifest.asOf } } } };
+  const local = WorkAtmosphere.profile(
+    { id: row[0], n: row[1], k: places.kinds[row[2]], x: row[4], y: row[3], flags: row[5] },
+    data, {}, undefined, reports.reports.o71358a621d50);
+  assert.equal(body.work_readiness.score, local.score, 'the API and the interface share the on-site score');
+  assert.equal(body.work_readiness.coverage, +local.coverage.toFixed(3));
+  assert.equal(body.work_readiness.components.wifi.basis, 'onsite', 'the on-site tier reaches the API');
+  for (const d of WorkAtmosphere.DIMENSIONS) {
+    assert.equal(body.work_readiness.components[d.key].points, local.dimensions[d.key].points, `${d.key} matches the interface`);
+  }
+  assert.ok(body.on_site_report, 'the report is published whole');
+  assert.equal(body.on_site_report.reporter, reports.reports.o71358a621d50.reporter, 'the report names its reporter');
+  assert.equal(body.on_site_report.date, reports.reports.o71358a621d50.date, 'the report carries its date');
+  assert.ok(body.on_site_report.sources.length > 0, 'the report publishes its sources with their tiers');
+  assert.ok(body.on_site_report.sources.some(x => x.tier === 'venue claim'), 'the venue claim is published as a venue claim');
+  assert.ok(body.on_site_report.sources.some(x => x.tier === 'on-site report'), 'the on-site evidence is published as on-site');
+  assert.equal(body.work_readiness.components.stay.points, null, 'a dimension the reporter did not record stays unknown');
+  assert.equal(body.work_readiness.components.access.points, null, 'parking is never upgraded into step-free access');
+}
 {
   const { body } = await call('/v1/venues/n2368064673/evidence');
   assert.ok(body.evidence.length > 0);

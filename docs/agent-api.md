@@ -43,8 +43,9 @@ So the tiers are **published with their absence stated**, rather than quietly fi
 | `platform_reported` — a commercial platform field | 0.80 | no | A Google Places or Foursquare API key and a licence-compliant field mask. Not scraped. |
 | `editorial` — a named publisher's fact | 0.80 | **yes** | The published evidence file, with each publisher, URL and check date |
 | `visitor_reported` — what people who went there report | 0.70 | **yes** | The visitor record: Wi-Fi, outlets, quiet, laptop welcome, with its date |
+| `onsite_reported` — a named, dated first-hand account | 0.75 | **yes** | `public/data/venue-reports.json`: a named reporter, the visit date, the facts they recorded in their own words, and their photographs. One visit, one day — never merged into the map. |
 | `mapped` — what the open map records | 0.55 | **yes** | The OSM snapshot, dated |
-| `single_report` — one detailed review | 0.45 | no | A licence that permits storing review text. PLUB keeps aggregates, not individual reviews. |
+| `single_report` — one anonymous detailed review | 0.45 | no | A licence that permits storing review text. PLUB keeps named on-site reports and visitor aggregates, not anonymous individual reviews. |
 | `social_mention` — a social post | 0.30 | no | Public-API access. Private groups are never read. |
 | `category_only` — inferred from the category | 0.15 | no | Never. PLUB does not infer a facility from a category. |
 | `conflicting` — evidence in disagreement | 0.20 | **yes** | Both sides are kept and shown; nothing is averaged away. |
@@ -58,6 +59,13 @@ Two further improvements over the brief:
 2. **One rule set, two surfaces.** The API's components come from the same module the interface
    uses (`public/work-atmosphere.js`), so an agent and a reader see the same numbers. A test
    asserts they agree.
+3. **The on-site report is its own tier, and it is never written back.** A named, dated
+   first-hand account (`public/data/venue-reports.json`) is evidence about one visit, not a
+   standing fact about a venue. The model reads it through the same dimension functions as
+   every other tier; where a report and the open map disagree, both are shown. Curated visit
+   evidence is never written into the signed catalogue — the catalogue hash in
+   `journey-places.json` would stop matching, and the row would claim an OSM tag that does
+   not exist. `test/venue-reports.mjs` locks both rules.
 
 ## 3. The endpoints
 

@@ -217,6 +217,18 @@ $('#guide').addEventListener('click', async () => {
         <tr class="why"><td></td><td colspan="2">${esc(why[k])}</td></tr>`).join('')}</table>
       <p class="data-note">✦ index = average of ↦ ⁘ ◎ (each ranked against all ${fmt(P.length)} places) and ◇ (three steps: chain, small chain, independent), 0–100. ≋ Work and ✦ Notable are shown but kept out: too few places carry them yet to be fair. Walk times are straight-line estimates.</p>
     </section>
+    <section class="guide-tiers"><h2 class="micro">Where the facts come from</h2>
+      <p class="data-note">Every fact PLUB shows carries the kind of evidence behind it. The kinds never mix, and a fact that nobody wrote down stays unknown — it is never given a zero.</p>
+      <dl class="wa-grid guide-tier-grid">
+        <div class="wa-row" data-state="documented"><dt>On the map</dt><dd><span class="wa-mark" aria-hidden="true">✓</span> an OpenStreetMap or Overture tag, with the snapshot date</dd></div>
+        <div class="wa-row" data-state="documented"><dt>The venue says</dt><dd><span class="wa-mark" aria-hidden="true">✓</span> the operator's own page, account or card. PLUB has not checked it</dd></div>
+        <div class="wa-row" data-state="documented"><dt>Visitors report</dt><dd><span class="wa-mark" aria-hidden="true">✓</span> what people who went there said, counted and dated</dd></div>
+        <div class="wa-row" data-state="documented"><dt>Reported on site</dt><dd><span class="wa-mark" aria-hidden="true">✓</span> one named person, one dated visit, in their own words</dd></div>
+        <div class="wa-row" data-state="unknown"><dt>Not documented</dt><dd><span class="wa-mark" aria-hidden="true">○</span> nobody wrote it down. PLUB will not guess it</dd></div>
+      </dl>
+      <p class="data-note">A place's <b>work readiness</b> is the weighted mean of the dimensions that are documented, published only when enough of them are, and it always names the ones it could not score. It measures what is recorded, not how good the place is. <a href="/bridge-1958">The Bridge 1958</a> is a worked example of a named on-site report.</p>
+      <p class="data-note"><a href="/research">Read the research and the data analysis →</a></p>
+    </section>
     <section class="about"><h2 class="micro">Sources</h2>
       <p class="src">Ray Oldenburg, <i>The Great Good Place</i> (1989). Jeffres, Bracken, Jian & Casey, "The Impact of Third Places on Community Quality of Life", <i>Applied Research in Quality of Life</i> 4 (2009). Mehta & Bosson, "Third Places and the Social Life of Streets", <i>Environment and Behavior</i> 42:6 (2010). Adelfio et al., "Social Activity in Gothenburg's Intermediate City: Mapping Third Places through Social Media Data", <i>Applied Spatial Analysis and Policy</i> (2020).</p>
       <p class="src">Places: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (ODbL, 24 Oct 2026) and <a href="https://overturemaps.org" target="_blank" rel="noopener">Overture Maps</a> (CDLA-P-2.0, 2026-10-21). Visitor ratings (Wi-Fi, outlets, quiet, laptop) come from visitors; ≋ Work comes from map tags. Nobody has paid to appear here. A working pilot: if a pin is wrong, fix it on OpenStreetMap. <a href="${osmNote(map.getCenter().lat, map.getCenter().lng)}" target="_blank" rel="noopener">Missing a place? Leave a note on OpenStreetMap</a>, and it appears here after mappers add it and the map is rebuilt. Hand pins (✎) mark places someone has visited that no open dataset has yet.</p>

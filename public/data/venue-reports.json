@@ -24,15 +24,38 @@
         "tel": "+66(0)2 536 0599",
         "email": "THEBRIDGE1958@GMAIL.COM",
         "social": "@THEBRIDGE1958",
-        "socialType": "LINE"
+        "socialType": "LINE",
+        "hoursSource": "The venue's own LINE page — what the operator publishes about itself.",
+        "contactSource": "Business card handed over at the venue."
       },
       "reportedKind": "Bistro and office space — a café that rents meeting rooms",
       "facts": {
         "wifi": {
           "band": "excellent",
-          "detail": "Very fast Wi-Fi measured on the spot. First reading: 243.78 Mbps down, 218.39 Mbps up, 18 ms ping (3BB Nonthaburi). Second reading on the same day: 313.78 Mbps down, 326.51 Mbps up, 9 ms ping.",
-          "measure": { "downMbps": 313.78, "upMbps": 326.51, "pingMs": 9, "measuredOn": "2026-11-12" },
-          "previousMeasure": { "downMbps": 243.78, "upMbps": 218.39, "pingMs": 18, "server": "3BB Nonthaburi", "measuredOn": "2026-11-12" }
+          "detail": "Very fast Wi-Fi, measured on the spot twice. The reporter's own Speedtest read 243.78 Mbps down, 218.39 Mbps up, 18 ms ping against the 3BB Nonthaburi server; a second reading from the same visit returned 313.78 Mbps down, 326.51 Mbps up, 9 ms ping. Both are on-site measurements on one day, and they are kept apart rather than averaged.",
+          "measure": {
+            "downMbps": 243.78,
+            "upMbps": 218.39,
+            "pingMs": 18,
+            "server": "3BB Nonthaburi",
+            "measuredOn": "2026-11-12",
+            "method": "Speedtest, on the reporter's phone",
+            "evidence": "photographed by the reporter"
+          },
+          "previousMeasure": {
+            "downMbps": 243.78,
+            "upMbps": 218.39,
+            "pingMs": 18,
+            "server": "3BB Nonthaburi",
+            "measuredOn": "2026-11-12"
+          },
+          "secondMeasure": {
+            "downMbps": 313.78,
+            "upMbps": 326.51,
+            "pingMs": 9,
+            "measuredOn": "2026-11-12",
+            "method": "Speedtest, on site during the visit"
+          }
         },
         "seating": {
           "band": "very good",
@@ -66,11 +89,27 @@
         },
         "speed": {
           "band": "excellent",
-          "detail": "313.78 Mbps down, 326.51 Mbps up, 9 ms ping, measured on site on 12 November 2026. Earlier reading: 243.78 Mbps down, 218.39 Mbps up, 18 ms ping.",
-          "measure": { "downMbps": 313.78, "upMbps": 326.51, "pingMs": 9 }
+          "detail": "Two Speedtest readings taken on site on 12 November 2026: 243.78 Mbps down, 218.39 Mbps up, 18 ms ping, and 313.78 Mbps down, 326.51 Mbps up, 9 ms ping. Both are kept; neither is averaged away.",
+          "measure": {
+            "downMbps": 243.78,
+            "upMbps": 218.39,
+            "pingMs": 18,
+            "server": "3BB Nonthaburi"
+          },
+          "secondMeasure": {
+            "downMbps": 313.78,
+            "upMbps": 326.51,
+            "pingMs": 9
+          }
         },
-        "booth": { "band": null, "detail": "Not recorded by the reporter." },
-        "table": { "band": null, "detail": "Not recorded by the reporter." }
+        "booth": {
+          "band": null,
+          "detail": "Not recorded by the reporter."
+        },
+        "table": {
+          "band": null,
+          "detail": "Not recorded by the reporter."
+        }
       },
       "scene": "Great decor — the reporter felt it could be England. At the time of the visit it was dressed for Christmas and for Harry Potter, with vintage London in every corner. Dark wood panelling, a chandelier, a long counter, leather armchairs, and bookshelves line the walls. The dressing is seasonal and will change; the report is dated so the reader can weigh it.",
       "observations": [
@@ -81,8 +120,8 @@
         },
         {
           "label": "Internet speed",
-          "value": "313.78 Mbps download, 326.51 Mbps upload, 9 ms ping — measured on site with Speedtest.",
-          "source": "On-site measurement"
+          "value": "Two on-site Speedtest readings on 12 November 2026: 243.78 Mbps down, 218.39 Mbps up, 18 ms ping, and 313.78 Mbps down, 326.51 Mbps up, 9 ms ping.",
+          "source": "On-site measurement — Speedtest, on the venue's Wi-Fi"
         }
       ],
       "photos": [
@@ -90,6 +129,50 @@
           "src": "media/venue-reports/the-bridge-1958/interior.jpg",
           "caption": "The room on 12 November 2026: dark wood panelling, a chandelier, a long counter, and the Christmas and Harry Potter dressing.",
           "credit": "Photograph by Dr Non Arkaraprasertkul"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Venue LINE page",
+          "url": "https://page.line.me/iye2725a",
+          "date": "2026-11-12",
+          "tier": "venue claim",
+          "covers": "Opening hours, address, phone, LINE account"
+        },
+        {
+          "label": "Business card handed over at the venue",
+          "url": null,
+          "date": "2026-11-12",
+          "tier": "venue claim",
+          "covers": "Address, phone, email, LINE account"
+        },
+        {
+          "label": "The reporter's Speedtest screenshot",
+          "url": null,
+          "date": "2026-11-12",
+          "tier": "on-site report",
+          "covers": "Wi-Fi speed: 243.78 Mbps down, 218.39 Mbps up, 18 ms ping"
+        },
+        {
+          "label": "Second on-site Speedtest reading",
+          "url": null,
+          "date": "2026-11-12",
+          "tier": "on-site report",
+          "covers": "Wi-Fi speed: 313.78 Mbps down, 326.51 Mbps up, 9 ms ping"
+        },
+        {
+          "label": "Interior photograph",
+          "url": "media/venue-reports/the-bridge-1958/interior.jpg",
+          "date": "2026-11-12",
+          "tier": "on-site report",
+          "covers": "The room, the dressing, the general look"
+        },
+        {
+          "label": "Overture Maps catalogue record",
+          "url": null,
+          "date": "2026-10-24",
+          "tier": "mapped",
+          "covers": "Name and position: 13.92133, 100.6608"
         }
       ]
     }

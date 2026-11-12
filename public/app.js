@@ -589,7 +589,7 @@ function renderSheet(p, d, visits, report) {
     ${factList(moreFacts, 'Contact and amenities')}
     ${d.about || d.visit ? `<div class="place-description">${d.about ? `<p>${esc(d.about)}</p>` : ''}${d.visit ? `<p class="hand">${esc(d.visit)}</p>` : ''}</div>` : ''}
     <nav class="place-social" aria-label="Place contributions"><button type="button" data-place-community>Notes &amp; photos</button><button type="button" data-place-recommend>Add recommendation</button><button type="button" class="share">Share place</button><button type="button" data-place-street>${window.StreetWorld?.active?'Back to street sketch':'Street sketch'}</button></nav>
-    ${window.WorkAtmosphere?.render(p, d, { [p.id]: state.scores[p.id] } ) || ''}
+    ${window.WorkAtmosphere?.render(p, d, { [p.id]: state.scores[p.id] }, null, report) || ''}
     ${window.WorkFinder?.placePanel(p)||''}
     <div class="place-reference-slot"></div>
     ${Atlas.facts(p)}

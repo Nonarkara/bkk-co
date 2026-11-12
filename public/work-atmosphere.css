@@ -36,6 +36,12 @@
 .wa-chip { font-size:var(--micro); color:var(--muted); white-space:nowrap; }
 .wa-chip[data-score] { color:var(--ink); }
 .wa-chip-unknown { color:var(--muted); }
+
+/* The Guide teaches the tiers once, in the same row language as a place's own panel. */
+.guide-tiers { margin-top:12px; }
+.guide-tiers .data-note { max-width:62ch; }
+.guide-tier-grid { margin-top:4px; }
+.guide-tier-grid .wa-row { grid-template-columns:minmax(96px,auto) 1fr; }
 @media (max-width:520px) {
   .wa-row { grid-template-columns:1fr; gap:0; }
   .wa-row dd { padding-left:14px; }

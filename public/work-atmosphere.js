@@ -224,19 +224,59 @@
     return last >= 22 * 60 ? `${String(Math.floor(last / 60) % 24).padStart(2, '0')}:${String(last % 60).padStart(2, '0')}` : null;
   }
 
+  // --- on-site reports ------------------------------------------------------------
+  // A named, dated, first-hand account from someone who was in the room. It is kept
+  // apart from the open map, from what the venue claims about itself, and from the
+  // anonymous visitor tallies, because it is a different kind of thing: one person's
+  // account of one day. It never becomes a general truth about the venue, and it is
+  // never merged with the map — where the two disagree, both are shown.
+  const REPORT_BANDS = { absent: 0, poor: 25, fair: 50, good: 75, 'very good': 90, excellent: 100 };
+  const reportSources = report => (report ? [{
+    label: `On-site report by ${report.reporter}${report.reporterRole ? ', ' + report.reporterRole : ''}`,
+    url: report.page ? `https://co.nonarkara.org${report.page}` : null,
+    date: report.date || 'report date unstated',
+    tier: 'on-site report',
+  }] : []);
+  const reportNote = (report, fact) =>
+    `${fact.detail} Reported by ${report.reporter} on ${report.date}, from one visit — what that person experienced that day, not a standing fact about the venue.`;
+
+  // Fold one report fact into a dimension. A report never invents a dimension: if the
+  // reporter did not record it, the dimension stays unknown and the report says so.
+  function applyReport(dim, fact, report) {
+    if (!fact || !report) return dim;
+    const sources = reportSources(report);
+    if (fact.band === null || fact.band === undefined) {
+      // Someone looked and did not record it. Still unknown, but no longer a silence.
+      if (dim.points !== null && dim.points !== undefined) return dim;
+      return { ...dim, note: fact.detail, sources: [...dim.sources, ...sources] };
+    }
+    const points = REPORT_BANDS[fact.band];
+    if (typeof points !== 'number') return dim;
+    const value = fact.band === 'absent' ? false : true;
+    // A map tag and an on-site report can disagree. Both are kept; neither is averaged away.
+    const conflict = dim.points !== null && dim.points !== undefined && dim.value !== value;
+    const keep = conflict ? { ...dim, note: `${dim.note} The on-site report says otherwise: ${fact.detail}` } : dim;
+    return {
+      value, basis: 'onsite', points,
+      note: reportNote(report, fact) + (conflict ? ' The open map record differs, and both are shown.' : ''),
+      sources: [...keep.sources, ...sources],
+    };
+  }
+
   // --- profile ------------------------------------------------------------------
-  function profile(p, data, scores = {}, facilities) {
+  function profile(p, data, scores = {}, facilities, report) {
     const tags = data?.raw?.join?.venueTags?.[p.id]?.tags || {};
     const asOf = asDate(data);
     const f = facilities || null;
+    const facts = report?.facts || {};
     const dimensions = {
-      wifi: wifiDimension(p, tags, f, scores, asOf),
-      seating: seatingDimension(p, tags, asOf),
-      power: powerDimension(p, tags, f, scores, asOf),
-      focus: focusDimension(p, scores),
-      stay: stayDimension(p, tags, asOf),
-      value: valueDimension(p, tags, asOf),
-      access: accessDimension(p, tags, asOf),
+      wifi: applyReport(wifiDimension(p, tags, f, scores, asOf), facts.wifi, report),
+      seating: applyReport(seatingDimension(p, tags, asOf), facts.seating, report),
+      power: applyReport(powerDimension(p, tags, f, scores, asOf), facts.power, report),
+      focus: applyReport(focusDimension(p, scores), facts.focus, report),
+      stay: applyReport(stayDimension(p, tags, asOf), facts.stay, report),
+      value: applyReport(valueDimension(p, tags, asOf), facts.value, report),
+      access: applyReport(accessDimension(p, tags, asOf), facts.access, report),
     };
     const scored = DIMENSIONS.filter(d => typeof dimensions[d.key].points === 'number');
     const weight = scored.reduce((a, d) => a + d.weight, 0);
@@ -245,12 +285,22 @@
     const score = weight ? Math.round(scored.reduce((a, d) => a + d.weight * dimensions[d.key].points, 0) / weight) : null;
     const missing = DIMENSIONS.filter(d => typeof dimensions[d.key].points !== 'number').map(d => d.label);
     const claims = venueClaims(p, tags, asOf);
+    // The four dimensions no public map records. An on-site report can cover them;
+    // saying so is better than telling a reader to ask when someone already did.
+    const also = report?.alsoRecorded || {};
+    const notMapped = NOT_MAPPED.map(n => ({
+      label: n.label,
+      reported: !!(also[n.key] && also[n.key].band !== null && also[n.key].band !== undefined),
+      detail: also[n.key]?.detail || null,
+    }));
     return {
       dimensions, score, coverage, missing, claims,
       scored: scored.length, total: DIMENSIONS.length,
       // A score is published only when enough of the weight is documented.
       publishable: coverage >= MIN_COVERAGE,
-      notMapped: NOT_MAPPED.map(n => n.label),
+      notMapped: notMapped.map(n => n.label),
+      notMappedDetail: notMapped,
+      onsite: report ? { reporter: report.reporter, date: report.date, tier: 'on-site report', sources: reportSources(report) } : null,
     };
   }
 
@@ -268,9 +318,9 @@
   // --- rendering ----------------------------------------------------------------
   // Plain words, one voice. A reader must be able to understand the rules without reading
   // the source: what "documented" means, who documented it, and what the score is not.
-  const TIER_WORDS = { mapped: 'on the map', visitor: 'visitors report', venue: 'the venue says', first_party: 'the venue says', publisher: 'a publisher states', editorial: 'a publisher states' };
-  function render(p, data, scores = {}, facilities) {
-    const r = profile(p, data, scores, facilities);
+  const TIER_WORDS = { mapped: 'on the map', visitor: 'visitors report', venue: 'the venue says', first_party: 'the venue says', publisher: 'a publisher states', editorial: 'a publisher states', onsite: 'reported on site' };
+  function render(p, data, scores = {}, facilities, report) {
+    const r = profile(p, data, scores, facilities, report);
     const row = d => {
       const f = r.dimensions[d.key];
       const known = typeof f.points === 'number';
@@ -283,8 +333,14 @@
     const verdict = r.publishable
       ? `<p class="wa-verdict"><b>Work readiness ${r.score} out of 100</b><span>Worked out from the ${r.scored} of ${r.total} things that are documented${r.missing.length ? '. Still not documented: ' + esc(r.missing.join(', ')) : '. Every dimension has a source'}.</span></p>`
       : `<p class="wa-verdict wa-unscored"><b>Not enough is documented to score this place</b><span>${r.scored} of ${r.total} things are documented. PLUB will not guess the rest.</span></p>`;
-    const rule = `<p class="wa-rule"><b>What "documented" means:</b> someone wrote it down \u2014 on the open map, by the venue itself, or by people who went there. Everything else stays unknown. The score measures what is recorded, not how good the place is.</p>`;
-    const notMapped = `<p class="wa-rule wa-rule--quiet">No public map records these at all: ${esc(r.notMapped.join(', '))}. Ask the venue.</p>`;
+    const rule = `<p class="wa-rule"><b>What "documented" means:</b> someone wrote it down \u2014 on the open map, by the venue itself, by people who went there, or in a dated on-site report from a named visitor. Everything else stays unknown. The score measures what is recorded, not how good the place is.</p>`;
+    // No public map records these four. If an on-site report covers one, say so rather
+    // than telling the reader to go and ask for something someone already wrote down.
+    const reported = (r.notMappedDetail || []).filter(n => n.reported);
+    const unreported = (r.notMappedDetail || []).filter(n => !n.reported);
+    const notMapped = reported.length
+      ? `<p class="wa-rule wa-rule--quiet">No public map records these: ${esc(unreported.map(n => n.label).join(', ') || 'none of them')}. The on-site report covers ${esc(reported.map(n => n.label).join(', '))}.${unreported.length ? ' Ask the venue about the rest.' : ''}</p>`
+      : `<p class="wa-rule wa-rule--quiet">No public map records these at all: ${esc(r.notMapped.join(', '))}. Ask the venue.</p>`;
     const claims = r.claims.items.length || r.claims.sources.length
       ? `<details class="wa-claims"><summary>What the venue says about itself</summary>${r.claims.items.map(c => `<p><b>${esc(c.label)}:</b> ${esc(c.value)}${c.truncated ? ' <span class="wa-trunc">(truncated)</span>' : ''}</p>`).join('')}${r.claims.sources.length ? `<p class="wa-claim-sources">${r.claims.sources.map(s => s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener nofollow">${esc(s.label)}</a>` : esc(s.label)).join(' \u00B7 ')}</p>` : ''}<p class="src">A venue claim is what the operator wrote about itself. PLUB has not checked it.</p></details>`
       : '';
@@ -297,19 +353,19 @@
       ${verdict}
       <dl class="wa-grid">${DIMENSIONS.map(row).join('')}</dl>
       ${rule}${notMapped}${claims}
-      <details class="wa-detail"><summary>Every dimension, and where it came from</summary>${detail}<p class="src">Mapped means the open map records it. Venue means the operator wrote it about itself. Visitor means people who went there reported it. Inferred means this page worked it out.</p></details>
+      <details class="wa-detail"><summary>Every dimension, and where it came from</summary>${detail}<p class="src">Mapped means the open map records it. Venue means the operator wrote it about itself. Visitor means people who went there reported it. On-site means one named person wrote it down on one dated visit. Inferred means this page worked it out.</p></details>
     </section>`;
   }
 
   function tierLabel(basis) {
-    return { mapped: 'mapped', venue: 'venue claim', visitor: 'visitor report', publisher: 'publisher', editorial: 'publisher', first_party: 'venue claim', osm: 'mapped', unknown: 'unknown' }[basis] || basis;
+    return { mapped: 'mapped', venue: 'venue claim', visitor: 'visitor report', onsite: 'on-site report', publisher: 'publisher', editorial: 'publisher', first_party: 'venue claim', osm: 'mapped', unknown: 'unknown' }[basis] || basis;
   }
 
   // Catalogue order: scored first, then by score, then by how much is documented.
-  function rank(rows, data, scores = {}, facilitiesFor) {
+  function rank(rows, data, scores = {}, facilitiesFor, reportFor) {
     return rows.map((row, index) => {
       const p = row.p || row;
-      const r = profile(p, data, scores, facilitiesFor ? facilitiesFor(p) : undefined);
+      const r = profile(p, data, scores, facilitiesFor ? facilitiesFor(p) : undefined, reportFor ? reportFor(p) : undefined);
       return { ...row, atmosphere: r, atmosphereOrder: index };
     }).sort((a, b) => {
       if (a.atmosphere.publishable !== b.atmosphere.publishable) return a.atmosphere.publishable ? -1 : 1;
@@ -319,6 +375,6 @@
     });
   }
 
-  root.WorkAtmosphere = { DIMENSIONS, NOT_MAPPED, MIN_COVERAGE, profile, render, rank, lateClose, tierLabel };
+  root.WorkAtmosphere = { DIMENSIONS, NOT_MAPPED, MIN_COVERAGE, REPORT_BANDS, profile, render, rank, lateClose, tierLabel };
   if (typeof module !== 'undefined') module.exports = root.WorkAtmosphere;
 })(typeof window !== 'undefined' ? window : globalThis);

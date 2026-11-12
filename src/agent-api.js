@@ -22,9 +22,10 @@ export const TIERS = [
   { id: 'operator_claim', weight: 0.90, present: true, note: 'What the venue states about itself: operator, brand, website, description.' },
   { id: 'platform_reported', weight: 0.80, present: false, note: 'A commercial platform field. PLUB does not hold these; it does not scrape them.' },
   { id: 'visitor_reported', weight: 0.70, present: true, note: 'What people who went there report: Wi-Fi, outlets, quiet, laptop welcome.' },
+  { id: 'onsite_reported', weight: 0.75, present: true, note: 'A named, dated first-hand account from someone who was in the room and working there. One visit, one day. It is kept apart from the open map and never merged with it.' },
   { id: 'editorial', weight: 0.80, present: true, note: 'A named publisher fact, with its own check date.' },
   { id: 'mapped', weight: 0.55, present: true, note: 'What the open map records, with the snapshot date.' },
-  { id: 'single_report', weight: 0.45, present: false, note: 'One detailed report. PLUB keeps visitor aggregates, not individual reviews.' },
+  { id: 'single_report', weight: 0.45, present: false, note: 'One anonymous detailed review from a passer-by. PLUB keeps named on-site reports and visitor aggregates, not anonymous individual reviews.' },
   { id: 'social_mention', weight: 0.30, present: false, note: 'A social post. PLUB does not read private groups.' },
   { id: 'category_only', weight: 0.15, present: false, note: 'Inferred from the category. PLUB never infers a facility from a category.' },
   { id: 'conflicting', weight: 0.20, present: true, note: 'Until resolved, conflicting evidence is kept and shown, never averaged away.' },
@@ -38,10 +39,11 @@ async function load(env, url) {
     if (!r.ok) throw new Error(`The catalogue is unavailable (${path}).`);
     return r.json();
   };
-  const [places, joins, evidence, areas] = await Promise.all([
+  const [places, joins, evidence, areas, reports] = await Promise.all([
     get('/data/places-work.json'), get('/data/journey-places.json'),
     get('/data/atlas-evidence.json').catch(() => ({ sources: [] })),
     get('/data/street-areas.json').catch(() => ({ areas: [] })),
+    get('/data/venue-reports.json').catch(() => ({ reports: {} })),
   ]);
   const byId = new Map(places.rows.map(r => [r[0], {
     id: r[0], name: r[1], kind: places.kinds[r[2]], lat: r[3], lng: r[4], flags: r[5], index: r[7], hours: r[8] ?? null,
@@ -55,7 +57,7 @@ async function load(env, url) {
   } catch { /* the visitor record is optional; venues stay unknown without it */ }
   // The snapshot's as-of date, licence and catalogue hashes live in the joins manifest.
   const manifest = { ...(places.manifest || {}), ...(joins.manifest || {}) };
-  cache = { byId, kinds: places.kinds, manifest, tags: joins.venueTags || {}, scores, evidence, areas };
+  cache = { byId, kinds: places.kinds, manifest, tags: joins.venueTags || {}, scores, evidence, areas, reports: reports.reports || {} };
   return cache;
 }
 
@@ -73,6 +75,16 @@ function evidenceFor(c, place) {
         retrieved_at: c.manifest.asOf || null, state: 'documented',
       });
     }
+  }
+  const report = c.reports?.[place.id];
+  if (report) {
+    out.push({
+      source: 'plub_onsite_report', tier: 'onsite_reported',
+      claim: `On-site report by ${report.reporter} on ${report.date}`,
+      source_id: place.id, url: report.page ? `https://co.nonarkara.org${report.page}` : null,
+      retrieved_at: report.date || null, state: 'documented',
+      detail: Object.fromEntries(Object.entries(report.facts || {}).map(([k, f]) => [k, f.band ?? null])),
+    });
   }
   const score = c.scores.get(place.id);
   if (score && score.n > 0) {
@@ -95,7 +107,7 @@ function evidenceFor(c, place) {
 }
 
 function components(c, place) {
-  const profile = WorkAtmosphere.profile(place, modelData(c), Object.fromEntries(c.scores));
+  const profile = WorkAtmosphere.profile(place, modelData(c), Object.fromEntries(c.scores), undefined, c.reports?.[place.id]);
   const out = {};
   for (const d of WorkAtmosphere.DIMENSIONS) {
     const f = profile.dimensions[d.key];
@@ -110,18 +122,45 @@ function components(c, place) {
   return {
     score: profile.score, coverage: +profile.coverage.toFixed(3), published: profile.publishable,
     scored: profile.scored, total: profile.total, missing: profile.missing, not_mapped: profile.notMapped,
+    not_mapped_detail: profile.notMappedDetail,
     components: out,
   };
 }
 
-const venue = (c, place) => ({
-  venue_id: place.id, name: place.name, category: place.kind,
-  location: { lat: place.lat, lng: place.lng },
-  index: place.index ?? null, hours: place.hours,
-  work_readiness: components(c, place),
-  last_verified: c.scores.get(place.id)?.last || c.manifest.asOf || null,
-  evidence_count: evidenceFor(c, place).length,
-});
+const venue = (c, place) => {
+  const report = c.reports?.[place.id] || null;
+  return {
+    venue_id: place.id, name: place.name, category: place.kind,
+    location: { lat: place.lat, lng: place.lng },
+    index: place.index ?? null, hours: place.hours,
+    work_readiness: components(c, place),
+    ...(report ? { on_site_report: onSiteReport(report) } : {}),
+    last_verified: c.scores.get(place.id)?.last || report?.date || c.manifest.asOf || null,
+    evidence_count: evidenceFor(c, place).length,
+  };
+};
+
+// The on-site report, published whole: the reporter, the date, what was recorded,
+// and what was not. A report is one person's account of one day.
+function onSiteReport(report) {
+  return {
+    tier: 'onsite_reported',
+    reporter: report.reporter, reporter_role: report.reporterRole || null, date: report.date,
+    reported_kind: report.reportedKind || null,
+    url: report.page ? `https://co.nonarkara.org${report.page}` : null,
+    facts: Object.fromEntries(Object.entries(report.facts || {}).map(([k, f]) => [k, {
+      band: f.band ?? null, detail: f.detail || null,
+      measure: f.measure || null,
+    }])),
+    also_recorded: Object.fromEntries(Object.entries(report.alsoRecorded || {}).map(([k, f]) => [k, {
+      band: f.band ?? null, detail: f.detail || null, measure: f.measure || null,
+    }])),
+    scene: report.scene || null,
+    sources: (report.sources || []).map(x => ({ label: x.label, url: x.url || null, date: x.date || null, tier: x.tier || null, covers: x.covers || null })),
+    observations: report.observations || [],
+    photos: (report.photos || []).map(p => ({ src: p.src, caption: p.caption || null, credit: p.credit || null })),
+  };
+}
 
 const metres = (a, b) => Math.hypot((a.lat - b.lat) * 111320, (a.lng - b.lng) * 111320 * Math.cos((a.lat + b.lat) * Math.PI / 360));
 
@@ -175,8 +214,10 @@ export async function agentApi(request, env, url) {
     return json({
       dimensions: WorkAtmosphere.DIMENSIONS, not_mapped: WorkAtmosphere.NOT_MAPPED,
       min_coverage_to_publish: WorkAtmosphere.MIN_COVERAGE,
+      report_bands: WorkAtmosphere.REPORT_BANDS,
       tiers: TIERS,
       rule: 'A dimension with no evidence stays unknown and is never scored zero. The composite is the weighted mean over the evidenced dimensions only, published only above the coverage floor, and always states the dimensions it could not score.',
+      on_site_rule: 'A named, dated on-site report is its own tier. It never overrides the open map: where the two disagree, both are shown. A dimension the reporter did not record stays unknown.',
     });
   }
 
@@ -277,13 +318,13 @@ export async function agentApi(request, env, url) {
     if (documented.length) {
       const data = modelData(c);
       rows = rows.filter(p => {
-        const pr = WorkAtmosphere.profile(p, data, scores);
+        const pr = WorkAtmosphere.profile(p, data, scores, undefined, c.reports?.[p.id]);
         return documented.every(d => pr.dimensions[d.key].points !== null);
       });
     }
     if (sort === 'work') {
       const data = modelData(c);
-      rows = rows.map(p => ({ p, r: WorkAtmosphere.profile(p, data, scores) }))
+      rows = rows.map(p => ({ p, r: WorkAtmosphere.profile(p, data, scores, undefined, c.reports?.[p.id]) }))
         .sort((a, b) => (b.r.publishable - a.r.publishable) || (b.r.score ?? -1) - (a.r.score ?? -1) || (b.r.coverage - a.r.coverage))
         .map(x => x.p);
     }
