@@ -3,6 +3,11 @@
   const M = JourneyModel,
     labels = { drive: 'Drive + park', rail: 'By BTS / rail', nearby: '2 hours nearby' },
     tasks = { laptop: 'Laptop', online: 'Online', read: 'Reading' };
+  let thai = false;
+  const tr = (en, th) => thai ? th : en;
+  const modeNames = {drive:'ขับรถและจอดรถ',rail:'รถไฟฟ้า BTS หรือสายอื่น',nearby:'ใกล้จุดเริ่มต้น'};
+  const taskNames = {laptop:'แล็ปท็อป',online:'ออนไลน์',read:'อ่านหนังสือ'};
+  const facilityName = key => ({wifi:'Wi-Fi',power:tr('outlets','ปลั๊กไฟ'),parking:tr('parking','ที่จอดรถ')})[key];
   let data,
     promise,
     evidence,
@@ -62,43 +67,43 @@
   }
   function centre() {
     const c = map.getCenter();
-    return { x: c.lng, y: c.lat, label: 'Map centre', kind: 'map' };
+    return { x: c.lng, y: c.lat, label: tr('Map centre','จุดกึ่งกลางแผนที่'), kind: 'map' };
   }
-  const name = (o) => o?.label || o?.name || 'Map centre';
+  const name = (o) => (thai && o?.nameTh) || o?.label || o?.name || tr('Map centre','จุดกึ่งกลางแผนที่');
   function originLabel() {
     return choice.mode === 'rail'
       ? choice.stationID
         ? (railOrigin ? 'Near my location · ' : '') + name(data?.stationById.get(choice.stationID))
         : choice.system === 'BTS'
-          ? 'Any BTS station'
-          : 'Any rail station'
+          ? tr('Any BTS station','สถานี BTS ใดก็ได้')
+          : tr('Any rail station','สถานีรถไฟฟ้าใดก็ได้')
       : name(choice.origin);
   }
   function controls() {
-    return `<header><h1>Find a work spot</h1><button class="close" aria-label="Close">×</button></header>
-    <nav class="journey-modes" aria-label="Your journey">${Object.entries(labels)
+    return `<header><h1>${tr('Find a work spot','หาที่นั่งทำงาน')}</h1><button class="close" aria-label="${tr('Close','ปิด')}">×</button></header>
+    <nav class="journey-modes" aria-label="${tr('Your journey','การเดินทาง')}">${Object.entries(labels)
       .map(
         ([id, label]) =>
-          `<button data-journey-mode="${id}" aria-pressed="${id === choice.mode}">${label}</button>`
+          `<button data-journey-mode="${id}" aria-pressed="${id === choice.mode}">${thai ? modeNames[id] : label}</button>`
       )
       .join('')}</nav>
-    <div class="journey-origin"><label class="sr" for="journey-origin">Starting place, station or barber</label><input id="journey-origin" type="search" autocomplete="off" placeholder="Starting place, station or barber" value="${esc(originLabel())}" aria-controls="journey-origins" aria-expanded="false"><button class="journey-locate" aria-label="Use my location" title="Use my location">⌖</button></div>
+    <div class="journey-origin"><label class="sr" for="journey-origin">${tr('Starting place, station or barber','จุดเริ่มต้น สถานี หรือร้านตัดผม')}</label><input id="journey-origin" type="search" autocomplete="off" placeholder="${tr('Starting place, station or barber','จุดเริ่มต้น สถานี หรือร้านตัดผม')}" value="${esc(originLabel())}" aria-controls="journey-origins" aria-expanded="false"><button class="journey-locate" aria-label="${tr('Use my location','ใช้ตำแหน่งของฉัน')}" title="${tr('Use my location','ใช้ตำแหน่งของฉัน')}">⌖</button></div>
     <div id="journey-origins" class="journey-origins" hidden></div>
-    <nav class="journey-tasks" aria-label="Type of work">${Object.entries(tasks)
+    <nav class="journey-tasks" aria-label="${tr('Type of work','ประเภทงาน')}">${Object.entries(tasks)
       .map(
         ([id, label]) =>
-          `<button data-work-task="${id}" aria-pressed="${id === choice.task}">${label}</button>`
+          `<button data-work-task="${id}" aria-pressed="${id === choice.task}">${thai ? taskNames[id] : label}</button>`
       )
-      .join('')}<details class="journey-options"><summary>Options</summary><div>
-      <label><input type="checkbox" data-known-only ${choice.strict ? 'checked' : ''}> Known facilities only</label>
-      ${choice.mode === 'rail' ? `<label>From station<select data-last-mile><option value="walk" ${choice.lastMile === 'walk' ? 'selected' : ''}>Walk proximity · ≤800 m</option><option value="ride" ${choice.lastMile === 'ride' ? 'selected' : ''}>Short ride · ≤2.5 km</option></select></label><label><input type="checkbox" data-other-rail ${choice.system === 'all' ? 'checked' : ''}> Include MRT, ARL &amp; other rail</label>` : `<label>Search radius<select data-radius>${(choice.mode === 'drive' ? [2000, 5000, 10000] : [400, 800, 1500]).map((n) => `<option value="${n}" ${n === choice.radius ? 'selected' : ''}>${n >= 1000 ? n / 1000 + ' km' : n + ' m'} straight line</option>`).join('')}</select></label>`}
-      <label>Time available<select data-duration>${[60, 120, 240, 480].map((n) => `<option value="${n}" ${choice.duration === n ? 'selected' : ''}>${n / 60} ${n === 60 ? 'hour' : 'hours'}</option>`).join('')}</select></label>
+      .join('')}<details class="journey-options"><summary>${tr('Options','ตัวเลือก')}</summary><div>
+      <label><input type="checkbox" data-known-only ${choice.strict ? 'checked' : ''}>${tr(' Known facilities only',' เฉพาะที่มีข้อมูลยืนยัน')}</label>
+      ${choice.mode === 'rail' ? `<label>${tr('From station','จากสถานี')}<select data-last-mile><option value="walk" ${choice.lastMile === 'walk' ? 'selected' : ''}>${tr('Walk proximity · ≤800 m','ระยะใกล้ · ≤800 ม.')}</option><option value="ride" ${choice.lastMile === 'ride' ? 'selected' : ''}>${tr('Short ride · ≤2.5 km','ต่อรถระยะสั้น · ≤2.5 กม.')}</option></select></label><label><input type="checkbox" data-other-rail ${choice.system === 'all' ? 'checked' : ''}>${tr(' Include MRT, ARL &amp; other rail',' รวม MRT, ARL และสายอื่น')}</label>` : `<label>${tr('Search radius','รัศมีค้นหา')}<select data-radius>${(choice.mode === 'drive' ? [2000, 5000, 10000] : [400, 800, 1500]).map((n) => `<option value="${n}" ${n === choice.radius ? 'selected' : ''}>${n >= 1000 ? n / 1000 + ' km' : n + ' m'} ${tr('straight line','เส้นตรง')}</option>`).join('')}</select></label>`}
+      <label>${tr('Time available','เวลาที่มี')}<select data-duration>${[60, 120, 240, 480].map((n) => `<option value="${n}" ${choice.duration === n ? 'selected' : ''}>${n / 60} ${tr(n === 60 ? 'hour' : 'hours','ชม.')}</option>`).join('')}</select></label>
     </div></details></nav>
     ${window.PlacePreferences?.render()||''}
-    <p class="journey-status" role="status">Loading work-spot evidence…</p>
+    <p class="journey-status" role="status">${tr('Loading work-spot evidence…','กำลังโหลดข้อมูลสถานที่…')}</p>
     <ol class="journey-results now-list"></ol>
-    <button class="journey-more linkish" hidden>Show 5 more</button>
-    <details class="journey-method"><summary>What this search knows</summary><p>Laptop asks for Wi-Fi and outlets; Online asks for Wi-Fi; Reading needs neither. Drive + park also asks for parking. Known matches lead; unknown facilities stay marked “check first”, unless you choose known only. Place kind, independence and index never prove equipment.</p><p>Distances are straight lines to source points, not road/walking distances. Station points are not entrances. A short ride does not establish motorcycle-taxi availability, fare or access. Parking can be operator-stated or a separately mapped car park with an explicit access tag; neither promises a space.</p><p>Hours use Bangkok time, sampled through your selected window starting now. Travel time is extra. Unknown hours and admission conditions need checking. PLUB has no live route-traffic measurement: check the driving route before leaving.</p><p>OSM geography · 24 Oct 2026 · © OSM contributors, ODbL. Branch facility sources checked 3 Nov 2026; dated operator/editorial claims, not live seat availability. Starting-place search is local to this catalogue and mapped station/barber points. GPS runs only when you press the location button.</p></details>`;
+    <button class="journey-more linkish" hidden>${tr('Show 5 more','แสดงเพิ่ม 5 แห่ง')}</button>
+    <details class="journey-method"><summary>What this search knows</summary><p>Laptop asks for Wi-Fi and outlets; Online asks for Wi-Fi; Reading needs neither. Drive + park also asks for parking. Known matches lead; unknown facilities stay marked “check first”, unless you choose known only. Place kind, independence and index never prove equipment.</p><p>Distances are straight lines to source points, not road/walking distances. Station points are not entrances. A short ride does not establish motorcycle-taxi availability, fare or access. Parking can be operator-stated or a separately mapped car park with an explicit access tag; neither promises a space.</p><p>Hours use Bangkok time, sampled through your selected window starting now. Travel time is extra. Unknown hours and admission conditions need checking. PLUB has no live route-traffic measurement: check the driving route before leaving.</p><p>OSM geography · 24 Oct 2026 · © OSM contributors, ODbL. Check the date on each operator or editorial source. Seat availability is not live. Starting-place search is local to this catalogue and mapped station/barber points. GPS runs only when you press the location button.</p></details>`;
   }
   function bind(sheet) {
     window.PlacePreferences?.bind(sheet,()=>render(sheet));
@@ -328,7 +333,7 @@
         button.disabled = false;
         if (current(sheet) && token === revision)
           status.textContent =
-            'Location was not shared. Choose a starting place or use map centre.';
+            tr('Location was not shared. Choose a starting place or use map centre.','ไม่ได้แชร์ตำแหน่ง เลือกจุดเริ่มต้นหรือใช้จุดกึ่งกลางแผนที่');
       },
       { timeout: 8000, maximumAge: 60000, enableHighAccuracy: true }
     );
@@ -348,11 +353,12 @@
     }
     if (f.access?.value === 'registration_required')
       text += (text ? ' · ' : '') + 'Registration + ID required';
-    else if (f.access?.value === 'visitor_pass') text += (text ? ' · ' : '') + 'Admission required';
+    else if (f.access?.value === 'visitor_pass') text += (text ? ' · ' : '') + tr('Admission required','ต้องลงทะเบียนเข้าใช้');
+    else if (f.access?.value === 'wifi_id_required') text += (text ? ' · ' : '') + tr('Wi-Fi: national ID requested','Wi-Fi: ระบุให้แสดงบัตรประชาชน');
     return text;
   }
   const badge = (key, f) =>
-    `<span class="${f.value === true ? 'known' : f.value === false ? 'no' : 'unknown'}" data-facility="${key}" data-value="${f.value === null ? 'unknown' : f.value}">${f.value === true ? '✓' : f.value === false ? '×' : '?'} ${{ wifi: 'Wi-Fi', power: 'Outlets', parking: 'Parking' }[key]}</span>`;
+    `<span class="${f.value === true ? 'known' : f.value === false ? 'no' : 'unknown'}" data-facility="${key}" data-value="${f.value === null ? 'unknown' : f.value}">${f.value === true ? '✓' : f.value === false ? '×' : '?'} ${{ wifi: 'Wi-Fi', power: tr('Outlets','ปลั๊กไฟ'), parking: tr('Parking','ที่จอดรถ') }[key]}</span>`;
   function sourceFacts(p, f, context = data) {
     const record = context.evidence.get(p.id),
       bits = ['wifi', 'power', 'parking', 'work_allowed']
@@ -379,7 +385,7 @@
         return '';
       })
       .filter(Boolean);
-    return `<details class="journey-evidence"><summary>Evidence &amp; entry conditions</summary>${bits.join('')}${links.map((s) => '<p>' + s + '</p>').join('')}<p>Unknown means not documented. Confirm equipment at your seat, admission and parking availability before travelling.</p></details>`;
+    return `<details class="journey-evidence"><summary>${tr('Evidence &amp; entry conditions','แหล่งข้อมูลและเงื่อนไขการเข้าใช้')}</summary>${bits.join('')}${links.map((s) => '<p>' + s + '</p>').join('')}<p>Unknown means not documented. Confirm equipment at your seat, admission and parking availability before travelling.</p></details>`;
   }
   function route(p) {
     const inContext = contextIDs.has(p.id);
@@ -392,13 +398,14 @@
       entry = admission(p),
       hours =
         r.stay === true
-          ? `Listed hours checked for next ${choice.duration / 60}h`
-          : 'Hours unknown · check your stay';
+          ? tr(`Listed hours checked for next ${choice.duration / 60}h`,`ตรวจเวลาตามประกาศสำหรับ ${choice.duration / 60} ชม. ข้างหน้า`)
+          : tr('Hours unknown · check your stay','ไม่ทราบเวลาเปิดปิด · ควรสอบถาม');
     const distance =
       choice.mode === 'rail'
-        ? `${(r.stationDistance / 1000).toFixed(2)} km from ${r.station.systems.join('/') || 'rail'} ${r.station.name} · straight line`
-        : `${(r.d / 1000).toFixed(2)} km straight line from ${name(choice.origin)}`;
-    return `<li data-journey-place="${esc(p.id)}"><div class="journey-result-head"><span class="journey-number">${i + 1}</span><button class="journey-name" data-work-place="${esc(p.id)}">${esc(p.n)}${p.branch ? ` <span class="branch">· ${esc(p.branch)}</span>` : ''}</button></div><p class="journey-distance">${esc(KIND_LABEL[p.k])} · ${esc(distance)}</p><div class="journey-facilities">${['wifi', 'power', ...(choice.mode === 'drive' ? ['parking'] : [])].map((k) => badge(k, f[k])).join('')}<span class="journey-match">${r.missing.length ? 'Check ' + r.missing.map((k) => ({ wifi: 'Wi-Fi', power: 'outlets', parking: 'parking' })[k]).join(' + ') : r.required.length ? 'Needs documented' : 'No equipment filter'}</span></div><p class="journey-hours">${hours}${entry ? ' · ' + esc(entry) : ''}</p><div class="journey-go"><a class="journey-primary" data-journey-directions href="${esc(route(p))}" target="_blank" rel="noopener">${choice.mode === 'drive' ? 'Drive & check traffic' : choice.mode === 'rail' ? 'Transit directions' : 'Walk directions'} ↗</a><button data-work-place="${esc(p.id)}">Place &amp; photos</button></div>${choice.mode === 'rail' ? `<a class="journey-lastmile" href="${esc(M.directions(p, r.station, choice.lastMile === 'ride' ? 'two-wheeler' : 'walking'))}" target="_blank" rel="noopener">From ${esc(r.station.name)} · ${choice.lastMile === 'ride' ? 'check motorcycle route' : 'check walking route'} ↗</a>` : ''}${r.preference?.requested.length?`<p class="src">${esc(r.preference.summary)}</p>`:''}${sourceFacts(p, f)}</li>`;
+        ? `${(r.stationDistance / 1000).toFixed(2)} ${tr('km from','กม. จาก')} ${r.station.systems.join('/') || tr('rail','รถไฟฟ้า')} ${name(r.station)} · ${tr('straight line','เส้นตรง')}`
+        : `${(r.d / 1000).toFixed(2)} ${tr('km straight line from','กม. เส้นตรงจาก')} ${name(choice.origin)}`;
+    const match = r.missing.length ? tr('Check ', 'ควรสอบถาม ') + r.missing.map(facilityName).join(' + ') : r.required.length ? tr('Needs documented','มีข้อมูลตรงเงื่อนไข') : tr('No equipment filter','ไม่กรองตามอุปกรณ์');
+    return `<li data-journey-place="${esc(p.id)}"><div class="journey-result-head"><span class="journey-number">${i + 1}</span><button class="journey-name" data-work-place="${esc(p.id)}">${esc(p.n)}${p.branch ? ` <span class="branch">· ${esc(p.branch)}</span>` : ''}</button></div><p class="journey-distance">${esc(KIND_LABEL[p.k])} · ${esc(distance)}</p><div class="journey-facilities">${['wifi', 'power', ...(choice.mode === 'drive' ? ['parking'] : [])].map((k) => badge(k, f[k])).join('')}<span class="journey-match">${esc(match)}</span></div><p class="journey-hours">${hours}${entry ? ' · ' + esc(entry) : ''}</p><div class="journey-go"><a class="journey-primary" data-journey-directions href="${esc(route(p))}" target="_blank" rel="noopener">${choice.mode === 'drive' ? tr('Drive & check traffic','เส้นทางขับรถและจราจร') : choice.mode === 'rail' ? tr('Transit directions','เส้นทางรถไฟฟ้า') : tr('Walk directions','เส้นทางเดิน')} ↗</a><button data-work-place="${esc(p.id)}">${tr('Place &amp; photos','ข้อมูลและรูปสถานที่')}</button></div>${choice.mode === 'rail' ? `<a class="journey-lastmile" href="${esc(M.directions(p, r.station, choice.lastMile === 'ride' ? 'two-wheeler' : 'walking'))}" target="_blank" rel="noopener">From ${esc(r.station.name)} · ${choice.lastMile === 'ride' ? 'check motorcycle route' : 'check walking route'} ↗</a>` : ''}${r.preference?.requested.length?`<p class="src">${esc(r.preference.summary)}</p>`:''}${sourceFacts(p, f)}</li>`;
   }
   function installMap() {
     if (!map.getLayer('pins-city') || map.getSource('journey-context')) return;
@@ -516,9 +523,10 @@
             : 'Reading';
     sheet.querySelector('.journey-status').textContent =
       `${rows.length} ${rows.length===1?'option':'options'} · ${choice.task === 'read' && choice.mode !== 'drive' ? 'no equipment filter' : known + ' with requested facts'} · ${need}${choice.mode === 'drive' ? ' + parking' : ''}`;
+    if (thai) sheet.querySelector('.journey-status').textContent = `${rows.length} ตัวเลือก · ${known} แห่งมีข้อมูลตรงเงื่อนไข`;
     sheet.querySelector('.journey-results').innerHTML = rows.length
       ? rows.slice(0, limit).map(resultCard).join('')
-      : `<li class="journey-empty"><b>No place meets these settings.</b><p>Try a wider radius, a short ride from the station, Reading, or turn off known-only. Missing evidence is not proof that a place lacks facilities.</p><button class="linkish" data-relax>Include check-first places</button></li>`;
+      : `<li class="journey-empty"><b>${tr('No place meets these settings.','ไม่พบสถานที่ตามเงื่อนไข')}</b><p>${tr('Try a wider radius, a short ride from the station, Reading, or turn off known-only.','ลองเพิ่มรัศมี เลือกต่อรถจากสถานี เลือกอ่านหนังสือ หรือรวมสถานที่ที่ยังต้องสอบถาม')}</p><button class="linkish" data-relax>${tr('Include check-first places','รวมสถานที่ที่ยังต้องสอบถาม')}</button></li>`;
     sheet.querySelector('[data-relax]')?.addEventListener('click', () => {
       choice.strict = false;
       sheet.querySelector('[data-known-only]').checked = false;
@@ -536,9 +544,10 @@
     };
     if (!barrierChecked)
       sheet.querySelector('.journey-status').textContent +=
-        ' · river check unavailable; check crossings';
+        tr(' · river check unavailable; check crossings',' · ยังตรวจการข้ามแม่น้ำไม่ได้ โปรดตรวจเส้นทาง');
   }
-  async function open(mode) {
+  async function open(mode, options = {}) {
+    if (options.lang) thai = options.lang === 'th';
     state.mood = null;
     state.flags.clear();
     const resume=(active&&current(active))||document.querySelector('#sheet:not([hidden]) [data-work-back]');
@@ -556,11 +565,14 @@
       choice.radius = mode === 'drive' ? 5000 : 800;
       if (mode === 'nearby') choice.duration = 120;
     }
+    if (Object.hasOwn(tasks, options.task)) choice.task = options.task;
+    if ([60, 120, 240, 480].includes(options.duration)) choice.duration = options.duration;
     // A start the user can no longer see is a silent lie about "near": follow the map unless the chosen start is still in view.
     const o = choice.origin;
     if (!o || o.kind === 'map' || !map.getBounds().contains([o.x, o.y])) choice.origin = centre();
     const sheet = openSheet(controls());
     sheet.classList.add('journey-sheet');
+    if (thai) sheet.lang = 'th';
     active = sheet;
     bind(sheet);
     const token = ++revision;

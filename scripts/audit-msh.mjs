@@ -304,6 +304,30 @@ async function checkVisitReadingOrder(page, base) {
   return result;
 }
 
+async function checkDayPlanner(page, base) {
+  const result = {};
+  const actions = { live: '.day-comparison tbody a[href*="plan=nearby"]', today: '#day-show-area', work: '#day-find' };
+  for (const [task, selector] of Object.entries(actions)) {
+    await page.goto(new URL(`/day?task=${task}&lang=th`, base).href, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    const action = page.locator(selector).first();
+    await action.waitFor({ timeout: 15000 });
+    await page.evaluate(() => document.fonts.ready);
+    const measure = el => {
+      const box = el.getBoundingClientRect();
+      const width = document.documentElement.scrollWidth;
+      return { actionBottom:box.bottom, width, pass: document.documentElement.lang === 'th' && width <= innerWidth &&
+        box.top >= 0 && box.bottom <= Math.min(720, innerHeight) && box.left >= 0 && box.right <= innerWidth };
+    };
+    result[task] = await action.evaluate(measure);
+    if (PLANTED && task === 'work') {
+      await action.evaluate(el => { el.style.marginTop = '100vh'; });
+      result.plantedRejected = !(await action.evaluate(measure)).pass;
+    }
+  }
+  result.pass = Object.keys(actions).every(task => result[task].pass);
+  return result;
+}
+
 const PRESERVE = async (page, base, shot) => {
   const checks = {};
   const errors = [], writes = [];
@@ -467,6 +491,7 @@ function verdictFor(view, journey) {
   if (view.lang !== 'en') F('B12 language', `lang is "${view.lang}"`);
   if (view.placeSheet && (!view.placeSheet.pass || (PLANTED && view.placeSheet.plantedRejected !== true))) F('B1 place sheet', `Bridge facts or Directions failed the reading budget: ${JSON.stringify(view.placeSheet)}`);
   if (view.visitReading && (!view.visitReading.pass || (PLANTED && view.visitReading.plantedRejected !== true))) F('B1 visit reading order', `Bridge photo, facts and actions failed the reading budget: ${JSON.stringify(view.visitReading)}`);
+  if (view.dayPlanner && (!view.dayPlanner.pass || (PLANTED && view.dayPlanner.plantedRejected !== true))) F('B1 day planner', `A planner action failed the first-screen budget: ${JSON.stringify(view.dayPlanner)}`);
   if (journey) {
     if (!journey.places?.pass) F('B14 grouped places', 'the sidebar needs short category previews and a first-screen work action');
     if (PLANTED && journey.ungroupedRejected !== true) F('B14 grouped places', 'the grouped-places gate accepted an ungrouped list');
@@ -523,6 +548,8 @@ try {
     try { view.visitReading = await checkVisitReadingOrder(page, base); }
     catch (error) { view.visitReading = { pass: false, error: String(error.message).split('\n')[0] }; }
     await page.screenshot({ path: new URL(`${PLANTED ? 'visit-planted' : 'visit'}-${w}.png`, outDir).pathname });
+    try { view.dayPlanner = await checkDayPlanner(page, base); }
+    catch (error) { view.dayPlanner = { pass: false, error: String(error.message).split('\n')[0] }; }
     report.viewports.push({ width: w, height: h, ...view });
     await context.close();
   }
@@ -555,7 +582,7 @@ if (PLANTED) {
   const caught = report.fails.some(f => /void|obstruct|map/.test(f.id));
   console.log(`Planted defect: ${report.fails.length} failure(s) reported; the gate caught it: ${caught}.`);
   for (const f of report.fails) console.log(`  PLANTED FAIL [${f.width}] ${f.id}: ${f.detail}`);
-  if (!caught || report.journey.ungroupedRejected !== true || report.fails.some(f => f.width === 'journey' || f.id === 'B1 place sheet' || f.id === 'B1 visit reading order')) { console.error('THE PLANTED OR PRESERVATION CHECK FAILED.'); process.exit(2); }
+  if (!caught || report.journey.ungroupedRejected !== true || report.fails.some(f => f.width === 'journey' || f.id === 'B1 place sheet' || f.id === 'B1 visit reading order' || f.id === 'B1 day planner')) { console.error('THE PLANTED OR PRESERVATION CHECK FAILED.'); process.exit(2); }
   console.log(`Report: ${new URL('msh-report-planted.json', outDir).pathname}`);
   process.exit(0);
 }

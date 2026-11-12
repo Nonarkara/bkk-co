@@ -1,14 +1,14 @@
 /* One finder wins. Work spots is the primary action; Walk 3D World is secondary.
    Explore/Filters are deliberate disclosures, not equal peers. */
-.list-tools { display:flex; align-items:center; flex-wrap:wrap; gap:4px 10px; padding:6px var(--pad); flex:none; }
+.list-tools { display:flex; align-items:center; flex-wrap:wrap; gap:4px 6px; padding:6px var(--pad); flex:none; }
 .list-tools > .list-find { /* primary action — Good for work */
-  min-height:36px; padding:0 14px; font-weight:600; font-size:var(--body);
+  min-height:36px; padding:0 10px; font-weight:600; font-size:var(--body);
   border:1px solid var(--ink); background:var(--ink); color:var(--paper);
   cursor:pointer; }
 .list-tools > .list-find:hover { background:var(--muted); }
 .list-tools > .list-find[aria-pressed="true"] { background:var(--amber); color:var(--ink); }
 .list-tools > .list-walkthrough { /* secondary action */
-  min-height:32px; padding:3px 9px; font-weight:500; font-size:var(--small);
+  min-height:32px; padding:3px 7px; font-weight:500; font-size:var(--small);
   border:1px solid var(--rule); background:var(--paper); color:var(--muted); cursor:pointer; }
 .list-tools > .list-walkthrough:hover { border-color:var(--ink); color:var(--ink); background:var(--wash); }
 .list-tools > .list-walkthrough[aria-pressed="true"] { border-color:var(--ink); color:var(--ink); background:var(--wash); font-weight:600; }
@@ -26,6 +26,7 @@
 .list-options .src { margin:2px 0 4px; }
 .list-tools .list-close { flex:none; margin:0 0 0 auto; min-width:32px; width:32px; height:32px; font-size:var(--big); }
 .list-options { display:flex; align-items:flex-start; flex-wrap:wrap; gap:0 14px; padding:0 var(--pad); flex:none; border-bottom:1px solid var(--rule); }
+.list-tools .list-day { display:inline-flex; align-items:center; min-height:32px; font-size:var(--small); font-weight:600; text-underline-offset:3px; }
 .list-scope { display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:4px 8px; padding:5px var(--pad) 0; flex:none; }
 .list-scope .count { margin:0; padding:0; font-size:var(--micro); white-space:normal; }
 .list-order { max-width:100%; }

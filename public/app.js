@@ -437,6 +437,7 @@ function openSheet(html, { place = false, keepRoute = false, preserveFocus = fal
   setListOpen(false);
   $('#hits').hidden = true;
   const sheet = $('#sheet');
+  sheet.removeAttribute('lang');
   sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet','atlas-sheet','journey-sheet','featured-sheet','recommend-sheet','community-sheet','shared-hops-sheet','reference-gallery');
   sheet.classList.toggle('place-sheet', place);
   if (!place) delete sheet.dataset.place;
@@ -627,8 +628,18 @@ function renderSheet(p, d, visits, report) {
 
 function openFromUrl() {
   const u = new URL(location.href), raw = u.searchParams.get('p'), id = raw && canonId(raw);
+  const plan = u.searchParams.get('plan');
   if (raw && id !== raw) { u.searchParams.set('p', id); history.replaceState(null, '', u); } // an old shared link lands on the survivor
-  if (id && !state.selected && $('#sheet').hidden && state.byId.has(id)) select(state.byId.get(id), 'jump');
+  if (['nearby', 'drive', 'rail', 'map', 'passport', '3d'].includes(plan) && !openFromUrl.framed && $('#sheet').hidden) {
+    openFromUrl.framed = true;
+    const point = /^(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/.exec(u.searchParams.get('at') || '');
+    if (point && map.getMaxBounds().contains([Number(point[2]), Number(point[1])])) {
+      map.jumpTo({center:[Number(point[2]), Number(point[1])], zoom:16});
+    }
+    if (plan === 'passport') window.openPassport?.();
+    else if (plan === '3d') window.StreetWorld?.openWalkthrough({ id: u.searchParams.get('area') });
+    else if (plan !== 'map') window.WorkFinder?.open(plan, { task: u.searchParams.get('task'), duration: Number(u.searchParams.get('minutes')), lang: u.searchParams.get('lang') });
+  } else if (id && !state.selected && $('#sheet').hidden && state.byId.has(id)) select(state.byId.get(id), 'jump');
   else if (u.searchParams.get('hood') && $('#sheet').hidden) window.openHood?.(u.searchParams.get('hood'), true);
   else if (u.searchParams.get('hop') && !openFromUrl.framed) { openFromUrl.framed = true; window.openHop?.(u.searchParams.get('hop')); }
   else if (MOODS[u.searchParams.get('mood')] && !state.mood && !openFromUrl.framed) { openFromUrl.framed = true; setMood(u.searchParams.get('mood')); }
@@ -683,7 +694,7 @@ document.addEventListener('click', e => {
     else if (act.dataset.act === 'work') window.WorkFinder?.open();
     else if (act.dataset.act === 'featured') window.openFeatured?.();
     else if (act.dataset.act === 'discovery') window.openDiscovery?.();
-    else if (act.dataset.act === 'compare') { location.href = 'neighbourhoods.html'; return; }
+    else if (act.dataset.act === 'compare') { location.href = '/day?task=live'; return; }
     else act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.();
   }
   const h = e.target.closest('#mood [data-hood]');

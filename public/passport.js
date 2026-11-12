@@ -42,6 +42,20 @@
 
   const Passport = {
     async all() { return (await tx('readonly', s => s.getAll())) || []; },
+    async visitedPlaces() {
+      const store = (await db()).transaction(STORE, 'readonly').objectStore(STORE);
+      const request = store.index('place').openKeyCursor(null, 'nextunique');
+      return new Promise((resolve, reject) => {
+        const ids = [];
+        request.onerror = () => reject(request.error);
+        request.onsuccess = () => {
+          const cursor = request.result;
+          if (!cursor) return resolve(ids);
+          ids.push(cursor.key);
+          cursor.continue();
+        };
+      });
+    },
     async forPlace(id, canonicalize) {
       if (typeof canonicalize === 'function') { const target=canonicalize(id); return (await this.all()).filter(v => canonicalize(v.place) === target); }
       return (await tx('readonly', s => s.index('place').getAll(id))) || [];

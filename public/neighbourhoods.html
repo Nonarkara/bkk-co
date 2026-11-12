@@ -6,13 +6,14 @@
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
-<body>
+<body class="day-page">
 <header class="bar">
   <a class="mark" href="/">PL<span class="semi">;</span>UB</a>
-  <a href="/?mood=" class="bar-btn">Map</a>
+  <a href="/" class="bar-btn">Map</a>
 </header>
 <main class="page">
 <h1>Twelve neighbourhood strolls</h1>
+<p><a href="/day?task=live">Compare areas as a base →</a></p>
 <p class="src">Comparison of sourced street sketch areas. Unknown buildings stay flat. Height numbers are explicit OSM heights only.</p>
 <div id="compare"></div>
 </main>
@@ -22,16 +23,18 @@ fetch('data/street-areas.json').then(r=>r.json()).then(d=>{
     <article class="hood-card">
       <h2>${a.name}<span class="th">${a.nameTh||''}</span></h2>
       <p class="meta">${a.mood||''} · ${a.radiusM||0}m radius · ${a.basis||''}</p>
-      <p class="meta">Mix: ${(a.mix||[]).join(' · ')}</p>
+    <p class="meta">Mix: ${Object.entries(a.mix || {}).map(([kind, count]) => `${count} ${kind}`).join(' · ')}</p>
       <p class="meta">Cafés within 800m: ${a.cafesWithin800m||0}</p>
-      <p><a href="/?hood=${encodeURIComponent(a.id)}">Open on map</a> · <a href="/?street=${encodeURIComponent(a.id)}">Street sketch</a></p>
+    <p><a href="/?plan=map&amp;at=${encodeURIComponent(`${a.anchor.y},${a.anchor.x}`)}">Open on map</a> · <a href="/?plan=3d&amp;area=${encodeURIComponent(a.id)}">3D walkthrough</a></p>
     </article>
   `).join('');
   document.getElementById('compare').innerHTML = `<div class="hood-grid">${rows}</div>`;
-});
+}).catch(() => { document.getElementById('compare').textContent = 'Neighbourhood data is unavailable. Try the map or reload.'; });
 </script>
 <style>
-.hood-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:16px}
+.day-page{display:block;height:auto;overflow:visible}
+.page{padding:12px;max-width:1100px;margin:auto}
+.hood-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:12px;margin-top:16px}
 .hood-card{border:1px solid var(--rule);padding:12px}
 .hood-card h2{margin:0 0 4px;font-size:18px}
 .hood-card .th{font-weight:400;margin-left:6px;color:var(--muted)}
