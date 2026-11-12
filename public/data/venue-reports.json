@@ -18,14 +18,19 @@
         "lat": 13.92133,
         "lng": 100.6608,
         "address": "58/10 Siri Avenue, Sai Mai, Bangkok 10220, opposite Soi Sai Mai 56",
-        "addressSource": "https://page.line.me/iye2725a"
+        "addressSource": "https://page.line.me/iye2725a",
+        "tel": "+66(0)2 536 0599",
+        "email": "THEBRIDGE1958@GMAIL.COM",
+        "social": "@THEBRIDGE1958",
+        "socialType": "LINE"
       },
       "reportedKind": "Bistro and office space — a café that rents meeting rooms",
       "facts": {
         "wifi": {
           "band": "excellent",
-          "detail": "The reporter called it very fast and measured it on the spot: 243.78 Mbps down, 218.39 Mbps up, 18 ms ping.",
-          "measure": { "downMbps": 243.78, "upMbps": 218.39, "pingMs": 18, "server": "3BB Nonthaburi", "measuredOn": "2026-11-12" }
+          "detail": "Very fast Wi-Fi measured on the spot. First reading: 243.78 Mbps down, 218.39 Mbps up, 18 ms ping (3BB Nonthaburi). Second reading on the same day: 313.78 Mbps down, 326.51 Mbps up, 9 ms ping.",
+          "measure": { "downMbps": 313.78, "upMbps": 326.51, "pingMs": 9, "measuredOn": "2026-11-12" },
+          "previousMeasure": { "downMbps": 243.78, "upMbps": 218.39, "pingMs": 18, "server": "3BB Nonthaburi", "measuredOn": "2026-11-12" }
         },
         "seating": {
           "band": "very good",
@@ -59,18 +64,23 @@
         },
         "speed": {
           "band": "excellent",
-          "detail": "243.78 Mbps down, 218.39 Mbps up, 18 ms ping, measured on site on 12 November 2026.",
-          "measure": { "downMbps": 243.78, "upMbps": 218.39, "pingMs": 18 }
+          "detail": "313.78 Mbps down, 326.51 Mbps up, 9 ms ping, measured on site on 12 November 2026. Earlier reading: 243.78 Mbps down, 218.39 Mbps up, 18 ms ping.",
+          "measure": { "downMbps": 313.78, "upMbps": 326.51, "pingMs": 9 }
         },
         "booth": { "band": null, "detail": "Not recorded by the reporter." },
         "table": { "band": null, "detail": "Not recorded by the reporter." }
       },
-      "scene": "Great decor — the reporter felt it could be England. At the time of the visit it was dressed for Christmas and for Harry Potter, with vintage London in every corner. The dressing is seasonal and will change; the report is dated so the reader can weigh it.",
+      "scene": "Great decor — the reporter felt it could be England. At the time of the visit it was dressed for Christmas and for Harry Potter, with vintage London in every corner. Dark wood panelling, a chandelier, a long counter, leather armchairs, and bookshelves line the walls. The dressing is seasonal and will change; the report is dated so the reader can weigh it.",
       "observations": [
         {
           "label": "Parking",
           "value": "Lots of parking space, seen on arrival.",
           "source": "On-site report"
+        },
+        {
+          "label": "Internet speed",
+          "value": "313.78 Mbps download, 326.51 Mbps upload, 9 ms ping — measured on site with Speedtest.",
+          "source": "On-site measurement"
         }
       ],
       "photos": [

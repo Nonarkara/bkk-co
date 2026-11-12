@@ -5,7 +5,7 @@
    "url": "https://download.geofabrik.de/asia/thailand-261024.osm.pbf",
    "asOf": "2026-10-24T20:20:51Z",
    "licence": "ODbL-1.0",
-   "attribution": "© OpenStreetMap contributors",
+   "attribution": "\u00a9 OpenStreetMap contributors",
    "sha256": "e8373240cf0be47cc641f2c8627e674064d8c47f4ff2a11f6a33fcbfc9a50949"
   },
   {
@@ -13,7 +13,7 @@
    "url": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=places/type=place/*",
    "release": "2026-10-21.0",
    "licence": "CDLA-Permissive-2.0",
-   "attribution": "© Overture Maps Foundation",
+   "attribution": "\u00a9 Overture Maps Foundation",
    "sha256": "fe6f5b5b9edb5d0ebbe28f9b887d0e63bcd2badd3b1850519e981737279b26bb",
    "confidenceFloor": {
     "cafe": 0.6,

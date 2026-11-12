@@ -1,1 +1,291 @@
-{"manifest":{"version":2,"built":"2026-11-07","source":"OpenStreetMap","sourceURL":"https://download.geofabrik.de/asia/thailand-261024.osm.pbf","asOf":"2026-10-24T20:20:51Z","md5":"215e1ff30fe4d4adef2db3d664dab9da","license":"ODbL-1.0","attribution":"© OpenStreetMap contributors","licenseURL":"https://www.openstreetmap.org/copyright","crs":"EPSG:4326","distanceCRS":"EPSG:32647","catalogueSHA256":"8c72533b96de56992097fc08f9b6cee288a63cff982eb4964ca8d97be1141716","radiusM":800,"areas":12,"buildingCount":20650,"explicitHeightCount":248,"unknownHeightCount":20402,"renderedHeightCount":244,"cacheKey":"street-world-215e1ff3-df50aa5425","streetCount":7533,"junctionCount":9147,"suppressed":{},"heightMeaning":"Only explicit positive metre height/building:height tags; no floor conversion, area/use estimate, renderer default or generated details. Unknown height remains null/flat. Missing minimum uses display ground zero only when height is known.","streetMeaning":"Original OSM way-node runs inside the area, no synthetic joins or endpoints. Shared node IDs establish source topology only, not safe/legal pedestrian access. Unknown access remains unknown. Streets with explicit foot/access restrictions and fast-road/construction classes excluded.","cafeMeaning":"Existing catalogue cafe points within40m straight-line of this source line; not entrances, frontage or same-side access.","split":"One file per area under data/street-world/. The index carries the area list and this manifest only."},"areas":[{"id":"ari","name":"Ari","nameTh":"อารีย์","mood":"Slow mornings","basis":"Authored neighbourhood around one real OSM anchor.","district":"","kind":"authored","anchorName":"","cafesWithin800m":156,"mix":{"cafe":156,"coworking":1,"library":3},"anchor":{"sourceID":"n5388607091","x":100.54462,"y":13.77971},"radiusM":800},{"id":"samyan","name":"Sam Yan","nameTh":"สามย่าน","mood":"Studying past midnight","basis":"Authored neighbourhood around one real OSM anchor.","district":"","kind":"authored","anchorName":"","cafesWithin800m":243,"mix":{"cafe":243,"coworking":6,"library":19},"anchor":{"sourceID":"n12803915078","x":100.53012,"y":13.73206},"radiusM":800},{"id":"charoenkrung","name":"Charoen Krung","nameTh":"เจริญกรุง","mood":"Crossing paths","basis":"Authored neighbourhood around one real OSM anchor.","district":"","kind":"authored","anchorName":"","cafesWithin800m":141,"mix":{"cafe":141,"coworking":1,"library":6},"anchor":{"sourceID":"n4840964126","x":100.51518,"y":13.72705},"radiusM":800},{"id":"thonglo","name":"Thong Lo","nameTh":"ทองหล่อ","mood":"After work","basis":"Authored neighbourhood around one real OSM anchor.","district":"","kind":"authored","anchorName":"","cafesWithin800m":113,"mix":{"cafe":113,"coworking":4,"library":3},"anchor":{"sourceID":"n5391626092","x":100.57851,"y":13.72423},"radiusM":800},{"id":"ramkhamhaeng","name":"Meet's space · Ramkhamhaeng","nameTh":"รามคำแหง","mood":"Meet's space","basis":"One operator-reported venue, placed at its published point.","district":"","kind":"venue","anchorName":"","cafesWithin800m":59,"mix":{"cafe":59,"library":1},"anchor":{"sourceID":"o825832f94e7f","x":100.61656,"y":13.76998},"radiusM":800},{"id":"pathumwan","name":"Pathum Wan","nameTh":"เขตปทุมวัน","mood":"","basis":"Densest 800 m cafe circle in the Pathum Wan District polygon, anchored on a real mapped cafe.","district":"Pathum Wan District","kind":"cluster","anchorName":"スターバックス@ Paragon Cineplex","cafesWithin800m":272,"mix":{"cafe":311,"coworking":7,"library":13},"anchor":{"sourceID":"ob778f91662f5","x":100.53471,"y":13.74612},"radiusM":800},{"id":"phranakhon","name":"Phra Nakhon","nameTh":"เขตพระนคร","mood":"","basis":"Densest 800 m cafe circle in the Phra Nakhon District polygon, anchored on a real mapped cafe.","district":"Phra Nakhon District","kind":"cluster","anchorName":"Elefin Coffee","cafesWithin800m":213,"mix":{"cafe":123,"library":4},"anchor":{"sourceID":"n10705709305","x":100.49268,"y":13.74418},"radiusM":800},{"id":"samphanthawong","name":"Samphanthawong","nameTh":"เขตสัมพันธวงศ์","mood":"","basis":"Densest 800 m cafe circle in the Samphanthawong District polygon, anchored on a real mapped cafe.","district":"Samphanthawong District","kind":"cluster","anchorName":"Dimsum & B.B.Q","cafesWithin800m":143,"mix":{"cafe":190,"coworking":1,"library":2},"anchor":{"sourceID":"n5249863321","x":100.50903,"y":13.74302},"radiusM":800},{"id":"chatuchak","name":"Chatuchak","nameTh":"เขตจตุจักร","mood":"","basis":"Densest 800 m cafe circle in the Chatuchak District polygon, anchored on a real mapped cafe.","district":"Chatuchak District","kind":"cluster","anchorName":"Kaarom Specialty Coffee","cafesWithin800m":142,"mix":{"cafe":122,"library":1},"anchor":{"sourceID":"o571065acf523","x":100.55004,"y":13.80027},"radiusM":800},{"id":"dindaeng","name":"Din Daeng","nameTh":"เขตดินแดง","mood":"","basis":"Densest 800 m cafe circle in the Din Daeng District polygon, anchored on a real mapped cafe.","district":"Din Daeng District","kind":"cluster","anchorName":"Chef Erwin Bistro","cafesWithin800m":103,"mix":{"cafe":121,"coworking":1,"library":2},"anchor":{"sourceID":"od6b20aa9ffb9","x":100.56546,"y":13.75739},"radiusM":800},{"id":"bangkapi","name":"Bang Kapi","nameTh":"เขตบางกะปิ","mood":"","basis":"Densest 800 m cafe circle in the Bang Kapi District polygon, anchored on a real mapped cafe.","district":"Bang Kapi District","kind":"cluster","anchorName":"normal and happy","cafesWithin800m":92,"mix":{"cafe":72,"library":1},"anchor":{"sourceID":"oc7c911f4b7ea","x":100.64228,"y":13.76848},"radiusM":800},{"id":"prawet","name":"Prawet","nameTh":"เขตประเวศ","mood":"","basis":"Densest 800 m cafe circle in the Prawet District polygon, anchored on a real mapped cafe.","district":"Prawet District","kind":"cluster","anchorName":"Geicha สาขา Donki Seacon Srinakarin","cafesWithin800m":91,"mix":{"cafe":81,"library":3},"anchor":{"sourceID":"o95243cc571e7","x":100.64844,"y":13.69453},"radiusM":800}]}
+{
+  "manifest": {
+    "version": 2,
+    "built": "2026-11-07",
+    "source": "OpenStreetMap",
+    "sourceURL": "https://download.geofabrik.de/asia/thailand-261024.osm.pbf",
+    "asOf": "2026-10-24T20:20:51Z",
+    "md5": "215e1ff30fe4d4adef2db3d664dab9da",
+    "license": "ODbL-1.0",
+    "attribution": "\u00a9 OpenStreetMap contributors",
+    "licenseURL": "https://www.openstreetmap.org/copyright",
+    "crs": "EPSG:4326",
+    "distanceCRS": "EPSG:32647",
+    "catalogueSHA256": "600169156c46f468d6213c37ee54f318f2383ef82d78b91cd4b20e7952e62db0",
+    "radiusM": 800,
+    "areas": 12,
+    "buildingCount": 20650,
+    "explicitHeightCount": 248,
+    "unknownHeightCount": 20402,
+    "renderedHeightCount": 244,
+    "cacheKey": "street-world-215e1ff3-df50aa5425",
+    "streetCount": 7533,
+    "junctionCount": 9147,
+    "suppressed": {},
+    "heightMeaning": "Only explicit positive metre height/building:height tags; no floor conversion, area/use estimate, renderer default or generated details. Unknown height remains null/flat. Missing minimum uses display ground zero only when height is known.",
+    "streetMeaning": "Original OSM way-node runs inside the area, no synthetic joins or endpoints. Shared node IDs establish source topology only, not safe/legal pedestrian access. Unknown access remains unknown. Streets with explicit foot/access restrictions and fast-road/construction classes excluded.",
+    "cafeMeaning": "Existing catalogue cafe points within40m straight-line of this source line; not entrances, frontage or same-side access.",
+    "split": "One file per area under data/street-world/. The index carries the area list and this manifest only."
+  },
+  "areas": [
+    {
+      "id": "ari",
+      "name": "Ari",
+      "nameTh": "\u0e2d\u0e32\u0e23\u0e35\u0e22\u0e4c",
+      "mood": "Slow mornings",
+      "basis": "Authored neighbourhood around one real OSM anchor.",
+      "district": "",
+      "kind": "authored",
+      "anchorName": "",
+      "cafesWithin800m": 156,
+      "mix": {
+        "cafe": 156,
+        "coworking": 1,
+        "library": 3
+      },
+      "anchor": {
+        "sourceID": "n5388607091",
+        "x": 100.54462,
+        "y": 13.77971
+      },
+      "radiusM": 800
+    },
+    {
+      "id": "samyan",
+      "name": "Sam Yan",
+      "nameTh": "\u0e2a\u0e32\u0e21\u0e22\u0e48\u0e32\u0e19",
+      "mood": "Studying past midnight",
+      "basis": "Authored neighbourhood around one real OSM anchor.",
+      "district": "",
+      "kind": "authored",
+      "anchorName": "",
+      "cafesWithin800m": 243,
+      "mix": {
+        "cafe": 243,
+        "coworking": 6,
+        "library": 19
+      },
+      "anchor": {
+        "sourceID": "n12803915078",
+        "x": 100.53012,
+        "y": 13.73206
+      },
+      "radiusM": 800
+    },
+    {
+      "id": "charoenkrung",
+      "name": "Charoen Krung",
+      "nameTh": "\u0e40\u0e08\u0e23\u0e34\u0e0d\u0e01\u0e23\u0e38\u0e07",
+      "mood": "Crossing paths",
+      "basis": "Authored neighbourhood around one real OSM anchor.",
+      "district": "",
+      "kind": "authored",
+      "anchorName": "",
+      "cafesWithin800m": 141,
+      "mix": {
+        "cafe": 141,
+        "coworking": 1,
+        "library": 6
+      },
+      "anchor": {
+        "sourceID": "n4840964126",
+        "x": 100.51518,
+        "y": 13.72705
+      },
+      "radiusM": 800
+    },
+    {
+      "id": "thonglo",
+      "name": "Thong Lo",
+      "nameTh": "\u0e17\u0e2d\u0e07\u0e2b\u0e25\u0e48\u0e2d",
+      "mood": "After work",
+      "basis": "Authored neighbourhood around one real OSM anchor.",
+      "district": "",
+      "kind": "authored",
+      "anchorName": "",
+      "cafesWithin800m": 113,
+      "mix": {
+        "cafe": 113,
+        "coworking": 4,
+        "library": 3
+      },
+      "anchor": {
+        "sourceID": "n5391626092",
+        "x": 100.57851,
+        "y": 13.72423
+      },
+      "radiusM": 800
+    },
+    {
+      "id": "ramkhamhaeng",
+      "name": "Meet's space \u00b7 Ramkhamhaeng",
+      "nameTh": "\u0e23\u0e32\u0e21\u0e04\u0e33\u0e41\u0e2b\u0e07",
+      "mood": "Meet's space",
+      "basis": "One operator-reported venue, placed at its published point.",
+      "district": "",
+      "kind": "venue",
+      "anchorName": "",
+      "cafesWithin800m": 59,
+      "mix": {
+        "cafe": 59,
+        "library": 1
+      },
+      "anchor": {
+        "sourceID": "o825832f94e7f",
+        "x": 100.61656,
+        "y": 13.76998
+      },
+      "radiusM": 800
+    },
+    {
+      "id": "pathumwan",
+      "name": "Pathum Wan",
+      "nameTh": "\u0e40\u0e02\u0e15\u0e1b\u0e17\u0e38\u0e21\u0e27\u0e31\u0e19",
+      "mood": "",
+      "basis": "Densest 800 m cafe circle in the Pathum Wan District polygon, anchored on a real mapped cafe.",
+      "district": "Pathum Wan District",
+      "kind": "cluster",
+      "anchorName": "\u30b9\u30bf\u30fc\u30d0\u30c3\u30af\u30b9@ Paragon Cineplex",
+      "cafesWithin800m": 272,
+      "mix": {
+        "cafe": 311,
+        "coworking": 7,
+        "library": 13
+      },
+      "anchor": {
+        "sourceID": "ob778f91662f5",
+        "x": 100.53471,
+        "y": 13.74612
+      },
+      "radiusM": 800
+    },
+    {
+      "id": "phranakhon",
+      "name": "Phra Nakhon",
+      "nameTh": "\u0e40\u0e02\u0e15\u0e1e\u0e23\u0e30\u0e19\u0e04\u0e23",
+      "mood": "",
+      "basis": "Densest 800 m cafe circle in the Phra Nakhon District polygon, anchored on a real mapped cafe.",
+      "district": "Phra Nakhon District",
+      "kind": "cluster",
+      "anchorName": "Elefin Coffee",
+      "cafesWithin800m": 213,
+      "mix": {
+        "cafe": 123,
+        "library": 4
+      },
+      "anchor": {
+        "sourceID": "n10705709305",
+        "x": 100.49268,
+        "y": 13.74418
+      },
+      "radiusM": 800
+    },
+    {
+      "id": "samphanthawong",
+      "name": "Samphanthawong",
+      "nameTh": "\u0e40\u0e02\u0e15\u0e2a\u0e31\u0e21\u0e1e\u0e31\u0e19\u0e18\u0e27\u0e07\u0e28\u0e4c",
+      "mood": "",
+      "basis": "Densest 800 m cafe circle in the Samphanthawong District polygon, anchored on a real mapped cafe.",
+      "district": "Samphanthawong District",
+      "kind": "cluster",
+      "anchorName": "Dimsum & B.B.Q",
+      "cafesWithin800m": 143,
+      "mix": {
+        "cafe": 190,
+        "coworking": 1,
+        "library": 2
+      },
+      "anchor": {
+        "sourceID": "n5249863321",
+        "x": 100.50903,
+        "y": 13.74302
+      },
+      "radiusM": 800
+    },
+    {
+      "id": "chatuchak",
+      "name": "Chatuchak",
+      "nameTh": "\u0e40\u0e02\u0e15\u0e08\u0e15\u0e38\u0e08\u0e31\u0e01\u0e23",
+      "mood": "",
+      "basis": "Densest 800 m cafe circle in the Chatuchak District polygon, anchored on a real mapped cafe.",
+      "district": "Chatuchak District",
+      "kind": "cluster",
+      "anchorName": "Kaarom Specialty Coffee",
+      "cafesWithin800m": 142,
+      "mix": {
+        "cafe": 122,
+        "library": 1
+      },
+      "anchor": {
+        "sourceID": "o571065acf523",
+        "x": 100.55004,
+        "y": 13.80027
+      },
+      "radiusM": 800
+    },
+    {
+      "id": "dindaeng",
+      "name": "Din Daeng",
+      "nameTh": "\u0e40\u0e02\u0e15\u0e14\u0e34\u0e19\u0e41\u0e14\u0e07",
+      "mood": "",
+      "basis": "Densest 800 m cafe circle in the Din Daeng District polygon, anchored on a real mapped cafe.",
+      "district": "Din Daeng District",
+      "kind": "cluster",
+      "anchorName": "Chef Erwin Bistro",
+      "cafesWithin800m": 103,
+      "mix": {
+        "cafe": 121,
+        "coworking": 1,
+        "library": 2
+      },
+      "anchor": {
+        "sourceID": "od6b20aa9ffb9",
+        "x": 100.56546,
+        "y": 13.75739
+      },
+      "radiusM": 800
+    },
+    {
+      "id": "bangkapi",
+      "name": "Bang Kapi",
+      "nameTh": "\u0e40\u0e02\u0e15\u0e1a\u0e32\u0e07\u0e01\u0e30\u0e1b\u0e34",
+      "mood": "",
+      "basis": "Densest 800 m cafe circle in the Bang Kapi District polygon, anchored on a real mapped cafe.",
+      "district": "Bang Kapi District",
+      "kind": "cluster",
+      "anchorName": "normal and happy",
+      "cafesWithin800m": 92,
+      "mix": {
+        "cafe": 72,
+        "library": 1
+      },
+      "anchor": {
+        "sourceID": "oc7c911f4b7ea",
+        "x": 100.64228,
+        "y": 13.76848
+      },
+      "radiusM": 800
+    },
+    {
+      "id": "prawet",
+      "name": "Prawet",
+      "nameTh": "\u0e40\u0e02\u0e15\u0e1b\u0e23\u0e30\u0e40\u0e27\u0e28",
+      "mood": "",
+      "basis": "Densest 800 m cafe circle in the Prawet District polygon, anchored on a real mapped cafe.",
+      "district": "Prawet District",
+      "kind": "cluster",
+      "anchorName": "Geicha \u0e2a\u0e32\u0e02\u0e32 Donki Seacon Srinakarin",
+      "cafesWithin800m": 91,
+      "mix": {
+        "cafe": 81,
+        "library": 3
+      },
+      "anchor": {
+        "sourceID": "o95243cc571e7",
+        "x": 100.64844,
+        "y": 13.69453
+      },
+      "radiusM": 800
+    }
+  ]
+}

@@ -538,17 +538,17 @@ function renderSheet(p, d, visits) {
     <div class="kindline">${PlaceTools.symbol(p.k)}${KIND_LABEL[p.k]}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>
     <section class="been place-actions"><button type="button" class="send been-open">✓ I've been here</button><a href="${esc(window.WorkFinder?.directions(p)||`https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}`)}" target="_blank" rel="noopener">Directions ↗</a></section>
     <nav class="place-social" aria-label="Place contributions"><button type="button" data-place-community>Notes &amp; photos</button><button type="button" data-place-recommend>Add recommendation</button><button type="button" class="share">Share place</button><button type="button" data-place-street>${window.StreetWorld?.active?'Back to street sketch':'Street sketch'}</button></nav>
+    ${facts.length ? `<ul class="facts">${facts.map(([sym, t]) => `<li class="sym" aria-hidden="true">${sym}</li><li>${t}</li>`).join('')}</ul>` : ''}
+    ${window.WorkAtmosphere?.render(p, d, { [p.id]: state.scores[p.id] } ) || ''}
     ${window.WorkFinder?.placePanel(p)||''}
     <div class="place-reference-slot"></div>
     ${Atlas.facts(p)}
-    ${window.WorkAtmosphere?.render(p, d, { [p.id]: state.scores[p.id] } ) || ''}
     ${window.TalkMedia?.section(p.id)||''}
     <section class="ggp">
       ${petals(p)}
       <div class="ggp-num"><span class="big">${p.idx}</span><span class="micro">Great Good Place index · top ${topShare(p)}% of Bangkok</span></div>
       <table class="ggp-table">${GGP.map(([k, sym, label], i) => `<tr><td class="sym">${sym}</td><td>${label}</td><td class="raw">${esc(rawValue(k, p, d))}</td></tr>`).join('')}</table>
     </section>
-    ${facts.length ? `<ul class="facts">${facts.map(([sym, t]) => `<li class="sym" aria-hidden="true">${sym}</li><li>${t}</li>`).join('')}</ul>` : ''}
     ${visits.length ? `<section><ul class="moments">${visits.slice().reverse().map(window.momentHtml).join('')}</ul></section>` : ''}
     <section class="scores">${scoreHtml(p)}</section>
     <nav class="links">

@@ -197,6 +197,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .src { margin-top: 8px; color: var(--muted); font-size: var(--micro); }
 .about p { max-width: 65ch; margin-top: 8px; }
 
+/* Facts: the first thing a reader needs — hours, address, contact. Symbol left, info right. */
+.facts { display: grid; gap: 3px; margin-top: 10px; border-top: 1px solid var(--rule); padding-top: 8px; }
+.facts li { display: grid; grid-template-columns: 1.5em 1fr; gap: 6px; align-items: start; font-size: var(--body); line-height: 1.45; }
+.facts li .sym { font-size: var(--big); grid-row: 1 / -1; }
+.facts li b { color: var(--ink); }
+.facts li a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
 .sheet section { margin-top: 14px; }
 .sheet h2.micro { margin-bottom: 6px; }
 .big { font-size: var(--big); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
