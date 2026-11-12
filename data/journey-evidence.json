@@ -358,6 +358,71 @@
           "checked_at": "2026-11-03"
         }
       }
+    },
+    "o78f6308fa1ba": {
+      "name": "TCDC Resource Center",
+      "area": "Charoen Krung · Bang Rak",
+      "source_ids": [
+        "tcdc-bangkok-hours",
+        "tcdc-bangkok-pass"
+      ],
+      "identity": {
+        "publisher_address": "1160 Charoenkrung Road, Bang Rak",
+        "catalogue_address": "1160 ถนน เจริญกรุง",
+        "catalogue_website": "http://library.tcdc.or.th/",
+        "reason": "Exact street number and library operator domain match the catalogue record."
+      },
+      "facts": {
+        "hours": {
+          "value": "Tu-Su 10:30-19:00; Mo off",
+          "note": "The Bangkok resource centre publishes Tuesday to Sunday, 10:30–19:00. Check holiday closures.",
+          "source_ids": [
+            "tcdc-bangkok-hours"
+          ],
+          "checked_at": "2026-11-12"
+        },
+        "day_pass": {
+          "value": {
+            "currency": "THB",
+            "amount_thb": 100
+          },
+          "note": "The operator lists a ฿100 one-day pass for the Resource Center. Ask about current admission requirements.",
+          "source_ids": [
+            "tcdc-bangkok-pass"
+          ],
+          "checked_at": "2026-11-12"
+        }
+      }
+    },
+    "n5283277354": {
+      "name": "Art Library",
+      "area": "Bangkok Art and Culture Centre · Pathum Wan",
+      "source_ids": [
+        "bacc-art-library"
+      ],
+      "identity": {
+        "publisher_address": "Bangkok Art and Culture Centre, 939 Rama 1 Road",
+        "catalogue_website": "https://library.bacc.or.th/",
+        "reason": "Exact Art Library name and BACC operator domain match the library point at the centre."
+      },
+      "facts": {
+        "access": {
+          "value": "wifi_id_required",
+          "note": "BACC asks for a national ID card to issue a Wi-Fi code. Passport acceptance is unconfirmed. Check closing time with BACC because published library and building hours differ.",
+          "source_ids": [
+            "bacc-art-library"
+          ],
+          "checked_at": "2026-11-12"
+        },
+        "hours": {
+          "value": "unknown",
+          "note": "BACC publishes differing closing times for the library and the building. Check current library hours with staff.",
+          "source_ids": [
+            "bacc-art-library"
+          ],
+          "checked_at": "2026-11-12"
+        }
+      }
     }
   },
   "sources": {
@@ -472,6 +537,36 @@
       "tier": "editorial",
       "raw_archive": "../source-cache/journeys-2026-11-03/0ba28e516715.html",
       "raw_sha256": "6dfb1eb9d1daa532360dc0d7406965b3afe8ce84747fef4eae1b333f470295b6",
+      "fetch_status": 200
+    },
+    "tcdc-bangkok-hours": {
+      "publisher": "TCDC Bangkok",
+      "url": "https://library.tcdc.or.th/page/visit/bkk_contact",
+      "published_at": null,
+      "checked_at": "2026-11-12",
+      "tier": "first_party",
+      "raw_archive": "../source-cache/journeys-2026-11-12/tcdc-bangkok-hours.html",
+      "raw_sha256": "a7242ce944b3e298cd92369ea31502229292cd984a9e0dfcd5dc7e914e6589b4",
+      "fetch_status": 200
+    },
+    "tcdc-bangkok-pass": {
+      "publisher": "TCDC Bangkok",
+      "url": "https://library.tcdc.or.th/page/service",
+      "published_at": null,
+      "checked_at": "2026-11-12",
+      "tier": "first_party",
+      "raw_archive": "../source-cache/journeys-2026-11-12/tcdc-bangkok-service.html",
+      "raw_sha256": "f797dc7870dbc180d834d67545be52f48d3b397f05ef3cf87e5f394339eff9b2",
+      "fetch_status": 200
+    },
+    "bacc-art-library": {
+      "publisher": "Bangkok Art and Culture Centre",
+      "url": "https://www.bacc.or.th/en/plan-your-visit/art-library/",
+      "published_at": null,
+      "checked_at": "2026-11-12",
+      "tier": "first_party",
+      "raw_archive": "../source-cache/journeys-2026-11-12/bacc-art-library.html",
+      "raw_sha256": "6bee777bf6cfbd8657cd3995db6f9d309522591eb84c8c07ae7dc3220d46a6bd",
       "fetch_status": 200
     }
   },

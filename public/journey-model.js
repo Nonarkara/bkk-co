@@ -3,6 +3,12 @@
  'use strict';
  const valid=p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&Math.abs(p.x)<=180&&Math.abs(p.y)<=90;
  const dist=(a,b)=>valid(a)&&valid(b)?Math.hypot((a.y-b.y)*111320,(a.x-b.x)*111320*Math.cos((a.y+b.y)*Math.PI/360)):Infinity;
+ const riverSegments=lines=>lines.flatMap(line=>line.slice(1).map((point,i)=>[line[i],point]));
+ function crossesSegments(a,b,segments){
+  const ccw=(p,q,r)=>(r[1]-p[1])*(q[0]-p[0])>(q[1]-p[1])*(r[0]-p[0]);
+  const A=[a.x,a.y],B=[b.x,b.y];
+  return segments.some(([C,D])=>ccw(A,C,D)!==ccw(B,C,D)&&ccw(A,B,C)!==ccw(A,B,D));
+ }
  function stationEligible(station){
   if(!valid(station)||station.eligible===false)return false;
   const tags=station.tags||{},inactive=['disused','proposed','construction','abandoned','demolished'];
@@ -134,6 +140,6 @@
   if(valid(origin))url.searchParams.set('origin',`${origin.y},${origin.x}`);
   return url.href;
  }
- root.JourneyModel={makeData,facilities,rank,dist,directions,requireRiver,stationEligible};
+ root.JourneyModel={makeData,facilities,rank,dist,directions,requireRiver,stationEligible,riverSegments,crossesSegments};
  if(typeof module!=='undefined')module.exports=root.JourneyModel;
 })(typeof window!=='undefined'?window:globalThis);

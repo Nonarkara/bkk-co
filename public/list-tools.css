@@ -26,6 +26,7 @@
 .list-options .src { margin:2px 0 4px; }
 .list-tools .list-close { flex:none; margin:0 0 0 auto; min-width:32px; width:32px; height:32px; font-size:var(--big); }
 .list-options { display:flex; align-items:flex-start; flex-wrap:wrap; gap:0 14px; padding:0 var(--pad); flex:none; border-bottom:1px solid var(--rule); }
+.list-options .list-day { display:inline-flex; align-items:center; min-height:32px; font-weight:600; text-underline-offset:3px; }
 .list-scope { display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:4px 8px; padding:5px var(--pad) 0; flex:none; }
 .list-scope .count { margin:0; padding:0; font-size:var(--micro); white-space:normal; }
 .list-order { max-width:100%; }
