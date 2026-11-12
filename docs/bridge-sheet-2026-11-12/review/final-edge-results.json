@@ -1,0 +1,113 @@
+{
+  "loading": {
+    "directions": "https://www.google.com/maps/dir/?api=1&destination=13.92133%2C100.6608&travelmode=driving",
+    "reportWanted": true,
+    "factsBefore": "◷\nOpen now · Daily 09:00-21:00",
+    "visitVisibleBefore": false,
+    "focusBefore": true,
+    "focusAfter": "Directions ↗",
+    "rendered": "The Bridge 1958 Bistro & Office Space\n×\nCafé\n◷\nOpen now · Daily 09:00-21:00\n⌖\n58/10 Siri Avenue, Sai Mai, Bangkok 10220, opposite Soi Sai Mai 56\nDirections ↗\n✓ I've been here\nOn-site visit · 2026-11-12\n\nWi-Fi 313.78 Mbps down · 326.51 Mbps up · 9 ms ping\n\nMany plugs to charge at the seats — the reporter's words on the day.\n\nRead visit notes & see photo →\n☎\n+66(0)2 536 0599\n↗\nWebsite\nSocial\nVenue on LINE\nEmail\nNotes & photos\nAdd recommendation\nShare place\nStreet sketch\nWorking here\n\nNot enough is documented to score this place\n1 of 7 things are documented. PLUB will not guess the rest.\n\nWi-Fi\n✓ documented · on the map 100/100\nSeating & comfort\n○ not documented\nPower access\n○ not documented\nNoise & focus\n○ not documented\nLong-stay policy\n○ not documented\nPrice\n○ not documented\nStep-free access\n○ not documented\n\nWhat \"documented\" means: someone wrote it down — on the open map, by the venue itself, or by people who went there. Everything else stays unknown. The score measures what is recorded, not how good the place is.\n\nNo public map records these at all: Meeting rooms, Phone booths, Table type, Download / upload speed. Ask the venue.\n\nEvery dimension, and where it came from\n? Parking\nEvidence & entry conditions\nFind places for my needs →\nBangkok reference—not this venue or neighborhood\nBangkok\nBunBn · CC BY-SA 4.0 · Source\nMore neighborhood photos →\nPhoto changes & credits\n38\nGREAT GOOD PLACE INDEX · TOP 85% OF BANGKOK\n↦\tAccess\t1,972 m to mapped rail point (straight line)\n⁘\tScene\t18 third places within 250 m\n◇\tCharacter\tindependent\n◎\tFootprint\tlisted by 4 sources\n≋\tWork\tWi-Fi listed · hours known\n✦\tNotable\tno record\nVISITOR WORK SCORE · NOT RATED YET · ADD YOURS WITH ✓\nPhotos & reviews ↗ Wongnai\n\nSource: Overture Maps via meta · confidence 0.98\n\nCommunity notes & photos"
+  },
+  "enlarged": {
+    "client": 390,
+    "scroll": 390,
+    "intersections": [
+      {
+        "text": "The Bridge 1958 Bistro & Office Space",
+        "within": true,
+        "width": 324
+      },
+      {
+        "text": "×",
+        "within": true,
+        "width": 44
+      },
+      {
+        "text": "◷\nOpen now · Daily 09:00-21:00",
+        "within": true,
+        "width": 366
+      },
+      {
+        "text": "⌖\n58/10 Siri Avenue, Sai Mai, Bangkok 10220, opposite Soi Sai Mai 56",
+        "within": true,
+        "width": 366
+      },
+      {
+        "text": "Directions ↗",
+        "within": true,
+        "width": 192.0625
+      },
+      {
+        "text": "✓ I've been here",
+        "within": true,
+        "width": 240.265625
+      },
+      {
+        "text": "☎\n+66(0)2 536 0599",
+        "within": true,
+        "width": 366
+      },
+      {
+        "text": "+66(0)2 536 0599",
+        "within": true,
+        "width": 244.75
+      },
+      {
+        "text": "↗\nWebsite\nSocial\nVenue on LINE\nEmail",
+        "within": true,
+        "width": 366
+      },
+      {
+        "text": "Website",
+        "within": true,
+        "width": 102.390625
+      },
+      {
+        "text": "Social",
+        "within": true,
+        "width": 76.296875
+      },
+      {
+        "text": "Venue on LINE",
+        "within": true,
+        "width": 190.53125
+      },
+      {
+        "text": "Email",
+        "within": true,
+        "width": 69.03125
+      }
+    ],
+    "directionsInitiallyVisible": false
+  },
+  "escape": {
+    "hidden": true,
+    "url": "http://127.0.0.1:43876/",
+    "focus": "passport"
+  },
+  "reportFailure": {
+    "visible": true,
+    "facts": "◷\nOpen now · Daily 09:00-21:00\n⌖\nThe Bridge 1958 Company Limited, 58/10 สิริ อเวนิว สายไหม, 58/10-12 Sai Mai Rd"
+  },
+  "error3d": "Could not open the 3D neighbourhood. Retry or return to the map.\n\nRetry 3D\nBack to map",
+  "retry3d": {
+    "area": "charoenkrung",
+    "volumes": "30"
+  },
+  "areaError": {
+    "area": "charoenkrung",
+    "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\nBang Kapi unavailable. Still showing Charoen Krung.\n\nTCDC Resource Center\nCafé Vatel\nSweet Pista\nStarbucks\nHop Chafe\nคาเฟ่ อเมซอน\nREN Cafe & Goods\nConvo\nDrag to turn · Double-tap for street level\n© OpenStree"
+  },
+  "recovered": {
+    "area": "bangkapi",
+    "volumes": "0",
+    "notice": "No mapped building heights"
+  },
+  "reducedMotionStatic": true,
+  "escaped3d": {
+    "open": false,
+    "focus": "list-walkthrough"
+  },
+  "writes": [],
+  "errors": []
+}

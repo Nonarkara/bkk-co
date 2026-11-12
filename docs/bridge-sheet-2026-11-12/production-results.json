@@ -1,0 +1,81 @@
+{
+  "origin": "https://co.nonarkara.org",
+  "result": [
+    {
+      "width": 390,
+      "height": 844,
+      "sheet": {
+        "address": "⌖\n58/10 Siri Avenue, Sai Mai, Bangkok 10220, opposite Soi Sai Mai 56",
+        "hours": "◷\nOpen now · Daily 09:00-21:00",
+        "width": 390,
+        "scrollWidth": 390,
+        "directions": 570.671875,
+        "bottom": 844
+      },
+      "curated": true,
+      "guestGuide": true,
+      "relief": 174,
+      "flat": 0,
+      "street": true,
+      "errors": [],
+      "writes": []
+    },
+    {
+      "width": 1024,
+      "height": 900,
+      "sheet": {
+        "address": "⌖\n58/10 Siri Avenue, Sai Mai, Bangkok 10220, opposite Soi Sai Mai 56",
+        "hours": "◷\nOpen now · Daily 09:00-21:00",
+        "width": 359,
+        "scrollWidth": 359,
+        "directions": 308.1875,
+        "bottom": 900
+      },
+      "curated": true,
+      "guestGuide": true,
+      "relief": 174,
+      "flat": 0,
+      "street": true,
+      "errors": [],
+      "writes": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "sheet": {
+        "address": "⌖\n58/10 Siri Avenue, Sai Mai, Bangkok 10220, opposite Soi Sai Mai 56",
+        "hours": "◷\nOpen now · Daily 09:00-21:00",
+        "width": 359,
+        "scrollWidth": 359,
+        "directions": 308.1875,
+        "bottom": 900
+      },
+      "curated": true,
+      "guestGuide": true,
+      "relief": 174,
+      "flat": 0,
+      "street": true,
+      "errors": [],
+      "writes": []
+    },
+    {
+      "width": 1720,
+      "height": 1080,
+      "sheet": {
+        "address": "⌖\n58/10 Siri Avenue, Sai Mai, Bangkok 10220, opposite Soi Sai Mai 56",
+        "hours": "◷\nOpen now · Daily 09:00-21:00",
+        "width": 359,
+        "scrollWidth": 359,
+        "directions": 308.1875,
+        "bottom": 1080
+      },
+      "curated": true,
+      "guestGuide": true,
+      "relief": 174,
+      "flat": 0,
+      "street": true,
+      "errors": [],
+      "writes": []
+    }
+  ]
+}

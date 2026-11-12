@@ -1,0 +1,471 @@
+[
+  {
+    "width": 390,
+    "height": 844,
+    "big": false,
+    "focus": [
+      "PL\n;\nUB",
+      "← Place on the map",
+      "Directions ↗",
+      "Call 02 536 0599",
+      "LINE ↗",
+      "Join guest Wi-Fi"
+    ],
+    "closed": true,
+    "expanded": {
+      "open": true,
+      "text": "At the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff."
+    },
+    "geometry": {
+      "client": 390,
+      "scroll": 390,
+      "height": 1044,
+      "image": {
+        "top": 250.984375,
+        "left": 20,
+        "width": 350,
+        "height": 262.9375,
+        "bottom": 513.921875
+      },
+      "intro": {
+        "top": 66,
+        "left": 20,
+        "width": 350,
+        "height": 170.984375,
+        "bottom": 236.984375
+      },
+      "facts": {
+        "top": 142.390625,
+        "left": 20,
+        "width": 350,
+        "height": 42.59375,
+        "bottom": 184.984375
+      },
+      "actions": {
+        "top": 192.984375,
+        "left": 20,
+        "width": 350,
+        "height": 44,
+        "bottom": 236.984375
+      },
+      "work": {
+        "top": 566.703125,
+        "left": 20,
+        "width": 350,
+        "height": 257.375,
+        "bottom": 824.078125
+      },
+      "story": {
+        "top": 838.078125,
+        "left": 20,
+        "width": 350,
+        "height": 182.359375,
+        "bottom": 1020.4375
+      },
+      "imageLoaded": 1600
+    },
+    "errors": []
+  },
+  {
+    "width": 768,
+    "height": 900,
+    "big": false,
+    "focus": [
+      "PL\n;\nUB",
+      "← Place on the map",
+      "Directions ↗",
+      "Call 02 536 0599",
+      "LINE ↗",
+      "Join guest Wi-Fi"
+    ],
+    "closed": true,
+    "expanded": {
+      "open": true,
+      "text": "At the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff."
+    },
+    "geometry": {
+      "client": 768,
+      "scroll": 768,
+      "height": 900,
+      "image": {
+        "top": 66,
+        "left": 20,
+        "width": 422.390625,
+        "height": 317.3125,
+        "bottom": 383.3125
+      },
+      "intro": {
+        "top": 66,
+        "left": 466.390625,
+        "width": 281.609375,
+        "height": 235.28125,
+        "bottom": 301.28125
+      },
+      "facts": {
+        "top": 142.390625,
+        "left": 466.390625,
+        "width": 281.609375,
+        "height": 62.890625,
+        "bottom": 205.28125
+      },
+      "actions": {
+        "top": 213.28125,
+        "left": 466.390625,
+        "width": 281.609375,
+        "height": 88,
+        "bottom": 301.28125
+      },
+      "work": {
+        "top": 315.28125,
+        "left": 466.390625,
+        "width": 281.609375,
+        "height": 318.265625,
+        "bottom": 633.546875
+      },
+      "story": {
+        "top": 418.703125,
+        "left": 20,
+        "width": 422.390625,
+        "height": 162.0625,
+        "bottom": 580.765625
+      },
+      "imageLoaded": 1600
+    },
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "height": 900,
+    "big": false,
+    "focus": [
+      "PL\n;\nUB",
+      "← Place on the map",
+      "Directions ↗",
+      "Call 02 536 0599",
+      "LINE ↗",
+      "Join guest Wi-Fi"
+    ],
+    "closed": true,
+    "expanded": {
+      "open": true,
+      "text": "At the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff."
+    },
+    "geometry": {
+      "client": 1024,
+      "scroll": 1024,
+      "height": 900,
+      "image": {
+        "top": 66,
+        "left": 20,
+        "width": 576,
+        "height": 432.71875,
+        "bottom": 498.71875
+      },
+      "intro": {
+        "top": 66,
+        "left": 620,
+        "width": 384,
+        "height": 170.984375,
+        "bottom": 236.984375
+      },
+      "facts": {
+        "top": 142.390625,
+        "left": 620,
+        "width": 384,
+        "height": 42.59375,
+        "bottom": 184.984375
+      },
+      "actions": {
+        "top": 192.984375,
+        "left": 620,
+        "width": 384,
+        "height": 44,
+        "bottom": 236.984375
+      },
+      "work": {
+        "top": 250.984375,
+        "left": 620,
+        "width": 384,
+        "height": 237.078125,
+        "bottom": 488.0625
+      },
+      "story": {
+        "top": 534.109375,
+        "left": 20,
+        "width": 576,
+        "height": 162.0625,
+        "bottom": 696.171875
+      },
+      "imageLoaded": 1600
+    },
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "big": false,
+    "focus": [
+      "PL\n;\nUB",
+      "← Place on the map",
+      "Directions ↗",
+      "Call 02 536 0599",
+      "LINE ↗",
+      "Join guest Wi-Fi"
+    ],
+    "closed": true,
+    "expanded": {
+      "open": true,
+      "text": "At the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff."
+    },
+    "geometry": {
+      "client": 1440,
+      "scroll": 1440,
+      "height": 900,
+      "image": {
+        "top": 66,
+        "left": 180,
+        "width": 633.59375,
+        "height": 475.984375,
+        "bottom": 541.984375
+      },
+      "intro": {
+        "top": 66,
+        "left": 837.59375,
+        "width": 422.390625,
+        "height": 170.984375,
+        "bottom": 236.984375
+      },
+      "facts": {
+        "top": 142.390625,
+        "left": 837.59375,
+        "width": 422.390625,
+        "height": 42.59375,
+        "bottom": 184.984375
+      },
+      "actions": {
+        "top": 192.984375,
+        "left": 837.59375,
+        "width": 422.390625,
+        "height": 44,
+        "bottom": 236.984375
+      },
+      "work": {
+        "top": 250.984375,
+        "left": 837.59375,
+        "width": 422.390625,
+        "height": 237.078125,
+        "bottom": 488.0625
+      },
+      "story": {
+        "top": 577.375,
+        "left": 180,
+        "width": 633.59375,
+        "height": 162.0625,
+        "bottom": 739.4375
+      },
+      "imageLoaded": 1600
+    },
+    "errors": []
+  },
+  {
+    "width": 1720,
+    "height": 1080,
+    "big": false,
+    "focus": [
+      "PL\n;\nUB",
+      "← Place on the map",
+      "Directions ↗",
+      "Call 02 536 0599",
+      "LINE ↗",
+      "Join guest Wi-Fi"
+    ],
+    "closed": true,
+    "expanded": {
+      "open": true,
+      "text": "At the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff."
+    },
+    "geometry": {
+      "client": 1720,
+      "scroll": 1720,
+      "height": 1080,
+      "image": {
+        "top": 66,
+        "left": 320,
+        "width": 633.59375,
+        "height": 475.984375,
+        "bottom": 541.984375
+      },
+      "intro": {
+        "top": 66,
+        "left": 977.59375,
+        "width": 422.390625,
+        "height": 170.984375,
+        "bottom": 236.984375
+      },
+      "facts": {
+        "top": 142.390625,
+        "left": 977.59375,
+        "width": 422.390625,
+        "height": 42.59375,
+        "bottom": 184.984375
+      },
+      "actions": {
+        "top": 192.984375,
+        "left": 977.59375,
+        "width": 422.390625,
+        "height": 44,
+        "bottom": 236.984375
+      },
+      "work": {
+        "top": 250.984375,
+        "left": 977.59375,
+        "width": 422.390625,
+        "height": 237.078125,
+        "bottom": 488.0625
+      },
+      "story": {
+        "top": 577.375,
+        "left": 320,
+        "width": 633.59375,
+        "height": 162.0625,
+        "bottom": 739.4375
+      },
+      "imageLoaded": 1600
+    },
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "big": true,
+    "focus": [
+      "PL\n;\nUB",
+      "← Place on the map",
+      "Directions ↗",
+      "Call 02 536 0599",
+      "LINE ↗",
+      "Join guest Wi-Fi"
+    ],
+    "closed": true,
+    "expanded": {
+      "open": true,
+      "text": "At the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff."
+    },
+    "geometry": {
+      "client": 390,
+      "scroll": 390,
+      "height": 2516,
+      "image": {
+        "top": 556.28125,
+        "left": 20,
+        "width": 350,
+        "height": 262.9375,
+        "bottom": 819.21875
+      },
+      "intro": {
+        "top": 66,
+        "left": 20,
+        "width": 350,
+        "height": 476.28125,
+        "bottom": 542.28125
+      },
+      "facts": {
+        "top": 226.78125,
+        "left": 20,
+        "width": 350,
+        "height": 219.5,
+        "bottom": 446.28125
+      },
+      "actions": {
+        "top": 454.28125,
+        "left": 20,
+        "width": 350,
+        "height": 88,
+        "bottom": 542.28125
+      },
+      "work": {
+        "top": 941.609375,
+        "left": 20,
+        "width": 350,
+        "height": 914.296875,
+        "bottom": 1855.90625
+      },
+      "story": {
+        "top": 1869.90625,
+        "left": 20,
+        "width": 350,
+        "height": 622.578125,
+        "bottom": 2492.484375
+      },
+      "imageLoaded": 1600
+    },
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "big": true,
+    "focus": [
+      "PL\n;\nUB",
+      "← Place on the map",
+      "Directions ↗",
+      "Call 02 536 0599",
+      "LINE ↗",
+      "Join guest Wi-Fi"
+    ],
+    "closed": true,
+    "expanded": {
+      "open": true,
+      "text": "At the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff."
+    },
+    "geometry": {
+      "client": 1440,
+      "scroll": 1440,
+      "height": 1321,
+      "image": {
+        "top": 66,
+        "left": 180,
+        "width": 633.59375,
+        "height": 475.984375,
+        "bottom": 541.984375
+      },
+      "intro": {
+        "top": 66,
+        "left": 837.59375,
+        "width": 422.390625,
+        "height": 432.78125,
+        "bottom": 498.78125
+      },
+      "facts": {
+        "top": 226.78125,
+        "left": 837.59375,
+        "width": 422.390625,
+        "height": 176,
+        "bottom": 402.78125
+      },
+      "actions": {
+        "top": 410.78125,
+        "left": 837.59375,
+        "width": 422.390625,
+        "height": 88,
+        "bottom": 498.78125
+      },
+      "work": {
+        "top": 512.78125,
+        "left": 837.59375,
+        "width": 422.390625,
+        "height": 783.796875,
+        "bottom": 1296.578125
+      },
+      "story": {
+        "top": 629.578125,
+        "left": 180,
+        "width": 633.59375,
+        "height": 344.1875,
+        "bottom": 973.765625
+      },
+      "imageLoaded": 1600
+    },
+    "errors": []
+  }
+]

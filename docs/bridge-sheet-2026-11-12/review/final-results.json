@@ -1,0 +1,886 @@
+[
+  {
+    "type": "sheet",
+    "width": 390,
+    "height": 844,
+    "fact": {
+      "viewport": [
+        390,
+        844
+      ],
+      "sheet": {
+        "x": 0,
+        "y": 354.484375,
+        "width": 390,
+        "height": 489.515625,
+        "bottom": 844,
+        "right": 390
+      },
+      "sheetScroll": [
+        390,
+        390,
+        488,
+        1699
+      ],
+      "map": {
+        "x": 0,
+        "y": 94,
+        "width": 390,
+        "height": 750,
+        "bottom": 844,
+        "right": 390
+      },
+      "facts": {
+        "x": 12,
+        "y": 448.78125,
+        "width": 366,
+        "height": 68.890625,
+        "bottom": 517.671875,
+        "right": 378
+      },
+      "rows": [
+        {
+          "text": "Open now · Daily 09:00-21:00",
+          "row": {
+            "x": 12,
+            "y": 448.78125,
+            "width": 366,
+            "height": 24.296875,
+            "bottom": 473.078125,
+            "right": 378
+          },
+          "info": {
+            "x": 34.09375,
+            "y": 450.78125,
+            "width": 343.90625,
+            "height": 20.296875,
+            "bottom": 471.078125,
+            "right": 378
+          },
+          "lines": 1,
+          "textBounds": [
+            34.09375,
+            223
+          ]
+        },
+        {
+          "text": "58/10 Siri Avenue, Sai Mai, Bangkok 10220, opposite Soi Sai Mai 56",
+          "row": {
+            "x": 12,
+            "y": 473.078125,
+            "width": 366,
+            "height": 44.59375,
+            "bottom": 517.671875,
+            "right": 378
+          },
+          "info": {
+            "x": 34.09375,
+            "y": 475.078125,
+            "width": 343.90625,
+            "height": 40.59375,
+            "bottom": 515.671875,
+            "right": 378
+          },
+          "lines": 2,
+          "textBounds": [
+            34.09375,
+            355.859375
+          ]
+        }
+      ],
+      "directions": {
+        "x": 12,
+        "y": 536.671875,
+        "width": 103.5,
+        "height": 44,
+        "bottom": 580.671875,
+        "right": 115.5
+      },
+      "title": {
+        "x": 12,
+        "y": 368.484375,
+        "width": 324,
+        "height": 48,
+        "bottom": 416.484375,
+        "right": 336
+      },
+      "visit": {
+        "x": 12,
+        "y": 590.671875,
+        "width": 366,
+        "height": 122.1875,
+        "bottom": 712.859375,
+        "right": 378
+      },
+      "work": {
+        "x": 12,
+        "y": 879.453125,
+        "width": 366,
+        "height": 530.484375,
+        "bottom": 1409.9375,
+        "right": 378
+      },
+      "listVisible": false,
+      "search": {
+        "x": 87.4375,
+        "y": 8,
+        "width": 128.296875,
+        "height": 36,
+        "bottom": 44,
+        "right": 215.734375
+      },
+      "active": "<h1 tabindex=\"-1\">The Bridge 1958 Bistro &amp; Office Space</h1>",
+      "source": "",
+      "page": 390
+    },
+    "openedReport": {
+      "width": 350,
+      "naturalWidth": 1600,
+      "scroll": 390,
+      "client": 390,
+      "guestOpen": true,
+      "title": "The Bridge 1958 Bistro & Office Space",
+      "wifi": "Wi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · 18 ms ping",
+      "back": true
+    },
+    "focusOrder": [
+      "×",
+      "Directions ↗",
+      "✓ I've been here",
+      "Read visit notes & see photo →",
+      "+66(0)2 536 0599",
+      "Website"
+    ],
+    "closed": true,
+    "errors": []
+  },
+  {
+    "type": "3d",
+    "width": 390,
+    "initial": {
+      "dataset": {
+        "area": "samyan",
+        "volumes": "174",
+        "streets": "5099",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n174 of 2649 footprints in relief\n\nTrue Coffee\nStarbucks Coffee\nJuzu cafe\nChicken Roast Coffee - Banshi Chula\nตึกเศรษฐศาสตร์จุฬา\nDrag to turn · Double-tap for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "samyan",
+      "mode": "Overview",
+      "pinCount": 5
+    },
+    "bangkapi": {
+      "dataset": {
+        "area": "bangkapi",
+        "volumes": "0",
+        "streets": "1308",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\nNo mapped heights · footprint view\n\nSee 3D in Sam Yan\nnormal and happy\nDeeva Cafe'\nCafé Amazon\nGaga\nซองต์ปัง Sant'-Pang : กาแฟ พิซซ่า นมหมีปั่น น้ำผลไม้สกัดเย็น ข้าวกะเพรา\nStarbucks Coffee\nPanyapiwatbangkapi\nDrag to turn · Double-tap for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "bangkapi",
+      "mode": "Overview",
+      "pinCount": 7
+    },
+    "afterDrag": {
+      "dataset": {
+        "area": "bangkapi",
+        "volumes": "0",
+        "streets": "1308",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\nNo mapped heights · footprint view\n\nSee 3D in Sam Yan\nnormal and happy\nDeeva Cafe'\nCafé Amazon\nGaga\nPanyapiwatbangkapi\nDrag to turn · Double-tap for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "bangkapi",
+      "mode": "Overview",
+      "pinCount": 5
+    },
+    "relief": {
+      "dataset": {
+        "area": "samyan",
+        "volumes": "174",
+        "streets": "5099",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n174 of 2649 footprints in relief\n\nTrue Coffee\nStarbucks Coffee\nJuzu cafe\nChicken Roast Coffee - Banshi Chula\nตึกเศรษฐศาสตร์จุฬา\nDrag to turn · Double-tap for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "samyan",
+      "mode": "Overview",
+      "pinCount": 5
+    },
+    "walk": {
+      "dataset": {
+        "area": "samyan",
+        "volumes": "174",
+        "streets": "5099",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n174 of 2649 footprints in relief\n\nDrag to look. Slide circle to walk.\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "samyan",
+      "mode": "Street level",
+      "pinCount": 0
+    },
+    "exited": true,
+    "restored": true
+  },
+  {
+    "type": "sheet",
+    "width": 1024,
+    "height": 900,
+    "fact": {
+      "viewport": [
+        1024,
+        900
+      ],
+      "sheet": {
+        "x": 0,
+        "y": 94,
+        "width": 359,
+        "height": 806,
+        "bottom": 900,
+        "right": 359
+      },
+      "sheetScroll": [
+        359,
+        359,
+        806,
+        1600
+      ],
+      "map": {
+        "x": 360,
+        "y": 0,
+        "width": 664,
+        "height": 900,
+        "bottom": 900,
+        "right": 1024
+      },
+      "facts": {
+        "x": 12,
+        "y": 186.296875,
+        "width": 335,
+        "height": 68.890625,
+        "bottom": 255.1875,
+        "right": 347
+      },
+      "rows": [
+        {
+          "text": "Open now · Daily 09:00-21:00",
+          "row": {
+            "x": 12,
+            "y": 186.296875,
+            "width": 335,
+            "height": 24.296875,
+            "bottom": 210.59375,
+            "right": 347
+          },
+          "info": {
+            "x": 34.09375,
+            "y": 188.296875,
+            "width": 312.90625,
+            "height": 20.296875,
+            "bottom": 208.59375,
+            "right": 347
+          },
+          "lines": 1,
+          "textBounds": [
+            34.09375,
+            223
+          ]
+        },
+        {
+          "text": "58/10 Siri Avenue, Sai Mai, Bangkok 10220, opposite Soi Sai Mai 56",
+          "row": {
+            "x": 12,
+            "y": 210.59375,
+            "width": 335,
+            "height": 44.59375,
+            "bottom": 255.1875,
+            "right": 347
+          },
+          "info": {
+            "x": 34.09375,
+            "y": 212.59375,
+            "width": 312.90625,
+            "height": 40.59375,
+            "bottom": 253.1875,
+            "right": 347
+          },
+          "lines": 2,
+          "textBounds": [
+            34.09375,
+            300.5625
+          ]
+        }
+      ],
+      "directions": {
+        "x": 12,
+        "y": 274.1875,
+        "width": 103.5,
+        "height": 44,
+        "bottom": 318.1875,
+        "right": 115.5
+      },
+      "title": {
+        "x": 12,
+        "y": 106,
+        "width": 293,
+        "height": 48,
+        "bottom": 154,
+        "right": 305
+      },
+      "visit": {
+        "x": 12,
+        "y": 328.1875,
+        "width": 335,
+        "height": 142.484375,
+        "bottom": 470.671875,
+        "right": 347
+      },
+      "work": {
+        "x": 12,
+        "y": 637.265625,
+        "width": 335,
+        "height": 411.484375,
+        "bottom": 1048.75,
+        "right": 347
+      },
+      "listVisible": false,
+      "search": {
+        "x": 91.4375,
+        "y": 8,
+        "width": 81.296875,
+        "height": 36,
+        "bottom": 44,
+        "right": 172.734375
+      },
+      "active": "<h1 tabindex=\"-1\">The Bridge 1958 Bistro &amp; Office Space</h1>",
+      "source": "",
+      "page": 1024
+    },
+    "openedReport": {
+      "width": 576,
+      "naturalWidth": 1600,
+      "scroll": 1024,
+      "client": 1024,
+      "guestOpen": true,
+      "title": "The Bridge 1958 Bistro & Office Space",
+      "wifi": "Wi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · 18 ms ping",
+      "back": true
+    },
+    "focusOrder": [
+      "×",
+      "Directions ↗",
+      "✓ I've been here",
+      "Read visit notes & see photo →",
+      "+66(0)2 536 0599",
+      "Website"
+    ],
+    "closed": true,
+    "errors": []
+  },
+  {
+    "type": "3d",
+    "width": 1024,
+    "initial": {
+      "dataset": {
+        "area": "samyan",
+        "volumes": "174",
+        "streets": "5099",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n174 of 2649 footprints in relief\n\nTrue Coffee\nStarbucks Coffee\nABBA BANGKOK\nFresco\nMikka\nStarbucks\nJuzu cafe\nChicken Roast Coffee - Banshi Chula\nDrag to rotate · Scroll to zoom · Double-click for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "samyan",
+      "mode": "Overview",
+      "pinCount": 8
+    },
+    "bangkapi": {
+      "dataset": {
+        "area": "bangkapi",
+        "volumes": "0",
+        "streets": "1308",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\nNo mapped building heights\n\nSee 3D in Sam Yan\nnormal and happy\nDeeva Cafe'\nGan computer รับซื้อ-ขายคอมพิวเตอร์ มือ2 เพจหลัก\nCafé Amazon\nห้องสมุดอาเซียน ถนัด คอมันตร์\nGaga\nซองต์ปัง Sant'-Pang : กาแฟ พิซซ่า นมหมีปั่น น้ำผลไม้สกัดเย็น ข้าวกะเพรา\nStarbucks Coffee\nDrag to rotate · Scroll to zoom · Double-click for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "bangkapi",
+      "mode": "Overview",
+      "pinCount": 8
+    },
+    "afterDrag": {
+      "dataset": {
+        "area": "bangkapi",
+        "volumes": "0",
+        "streets": "1308",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\nNo mapped building heights\n\nSee 3D in Sam Yan\nnormal and happy\nMinimal Coffee Happyland\nDeeva Cafe'\nLVFloral Cafe&Bar\nGan computer รับซื้อ-ขายคอมพิวเตอร์ มือ2 เพจหลัก\nCafé Amazon\nเกษียณ Cafe' & Hashery\nห้องสมุดอาเซียน ถนัด คอมันตร์\nDrag to rotate · Scroll to zoom · Double-click for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "bangkapi",
+      "mode": "Overview",
+      "pinCount": 8
+    },
+    "relief": {
+      "dataset": {
+        "area": "samyan",
+        "volumes": "174",
+        "streets": "5099",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n174 of 2649 footprints in relief\n\nTrue Coffee\nStarbucks Coffee\nABBA BANGKOK\nFresco\nMikka\nStarbucks\nJuzu cafe\nChicken Roast Coffee - Banshi Chula\nDrag to rotate · Scroll to zoom · Double-click for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "samyan",
+      "mode": "Overview",
+      "pinCount": 8
+    },
+    "walk": {
+      "dataset": {
+        "area": "samyan",
+        "volumes": "174",
+        "streets": "5099",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n174 of 2649 footprints in relief\n\nABBA BANGKOK\nMikka\nStarbucks Coffee\nW A S D to walk · Drag to look · Shift to sprint\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "samyan",
+      "mode": "Street level",
+      "pinCount": 3
+    },
+    "exited": true,
+    "restored": true
+  },
+  {
+    "type": "sheet",
+    "width": 1440,
+    "height": 900,
+    "fact": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "sheet": {
+        "x": 0,
+        "y": 94,
+        "width": 359,
+        "height": 806,
+        "bottom": 900,
+        "right": 359
+      },
+      "sheetScroll": [
+        359,
+        359,
+        806,
+        1618
+      ],
+      "map": {
+        "x": 360,
+        "y": 0,
+        "width": 1080,
+        "height": 900,
+        "bottom": 900,
+        "right": 1440
+      },
+      "facts": {
+        "x": 12,
+        "y": 186.296875,
+        "width": 335,
+        "height": 68.890625,
+        "bottom": 255.1875,
+        "right": 347
+      },
+      "rows": [
+        {
+          "text": "Open now · Daily 09:00-21:00",
+          "row": {
+            "x": 12,
+            "y": 186.296875,
+            "width": 335,
+            "height": 24.296875,
+            "bottom": 210.59375,
+            "right": 347
+          },
+          "info": {
+            "x": 34.09375,
+            "y": 188.296875,
+            "width": 312.90625,
+            "height": 20.296875,
+            "bottom": 208.59375,
+            "right": 347
+          },
+          "lines": 1,
+          "textBounds": [
+            34.09375,
+            223
+          ]
+        },
+        {
+          "text": "58/10 Siri Avenue, Sai Mai, Bangkok 10220, opposite Soi Sai Mai 56",
+          "row": {
+            "x": 12,
+            "y": 210.59375,
+            "width": 335,
+            "height": 44.59375,
+            "bottom": 255.1875,
+            "right": 347
+          },
+          "info": {
+            "x": 34.09375,
+            "y": 212.59375,
+            "width": 312.90625,
+            "height": 40.59375,
+            "bottom": 253.1875,
+            "right": 347
+          },
+          "lines": 2,
+          "textBounds": [
+            34.09375,
+            300.5625
+          ]
+        }
+      ],
+      "directions": {
+        "x": 12,
+        "y": 274.1875,
+        "width": 103.5,
+        "height": 44,
+        "bottom": 318.1875,
+        "right": 115.5
+      },
+      "title": {
+        "x": 12,
+        "y": 106,
+        "width": 293,
+        "height": 48,
+        "bottom": 154,
+        "right": 305
+      },
+      "visit": {
+        "x": 12,
+        "y": 328.1875,
+        "width": 335,
+        "height": 142.484375,
+        "bottom": 470.671875,
+        "right": 347
+      },
+      "work": {
+        "x": 12,
+        "y": 637.265625,
+        "width": 335,
+        "height": 411.484375,
+        "bottom": 1048.75,
+        "right": 347
+      },
+      "listVisible": false,
+      "search": {
+        "x": 91.4375,
+        "y": 8,
+        "width": 81.296875,
+        "height": 36,
+        "bottom": 44,
+        "right": 172.734375
+      },
+      "active": "<h1 tabindex=\"-1\">The Bridge 1958 Bistro &amp; Office Space</h1>",
+      "source": "",
+      "page": 1440
+    },
+    "openedReport": {
+      "width": 634,
+      "naturalWidth": 1600,
+      "scroll": 1440,
+      "client": 1440,
+      "guestOpen": true,
+      "title": "The Bridge 1958 Bistro & Office Space",
+      "wifi": "Wi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · 18 ms ping",
+      "back": true
+    },
+    "focusOrder": [
+      "×",
+      "Directions ↗",
+      "✓ I've been here",
+      "Read visit notes & see photo →",
+      "+66(0)2 536 0599",
+      "Website"
+    ],
+    "closed": true,
+    "errors": []
+  },
+  {
+    "type": "3d",
+    "width": 1440,
+    "initial": {
+      "dataset": {
+        "area": "samyan",
+        "volumes": "174",
+        "streets": "5099",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n174 of 2649 footprints in relief\n\nTrue Coffee\nStarbucks Coffee\nABBA BANGKOK\nFresco\nMikka\nStarbucks\nJuzu cafe\nChicken Roast Coffee - Banshi Chula\nDrag to rotate · Scroll to zoom · Double-click for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "samyan",
+      "mode": "Overview",
+      "pinCount": 8
+    },
+    "bangkapi": {
+      "dataset": {
+        "area": "bangkapi",
+        "volumes": "0",
+        "streets": "1308",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\nNo mapped building heights\n\nSee 3D in Sam Yan\nnormal and happy\nDeeva Cafe'\nGan computer รับซื้อ-ขายคอมพิวเตอร์ มือ2 เพจหลัก\nCafé Amazon\nห้องสมุดอาเซียน ถนัด คอมันตร์\nGaga\nซองต์ปัง Sant'-Pang : กาแฟ พิซซ่า นมหมีปั่น น้ำผลไม้สกัดเย็น ข้าวกะเพรา\nStarbucks Coffee\nDrag to rotate · Scroll to zoom · Double-click for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "bangkapi",
+      "mode": "Overview",
+      "pinCount": 8
+    },
+    "afterDrag": {
+      "dataset": {
+        "area": "bangkapi",
+        "volumes": "0",
+        "streets": "1308",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\nNo mapped building heights\n\nSee 3D in Sam Yan\nnormal and happy\nMinimal Coffee Happyland\nLVFloral Cafe&Bar\nGan computer รับซื้อ-ขายคอมพิวเตอร์ มือ2 เพจหลัก\nคาเฟ่ อเมซอน\nเกษียณ Cafe' & Hashery\nห้องสมุดอาเซียน ถนัด คอมันตร์\nGaga\nDrag to rotate · Scroll to zoom · Double-click for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "bangkapi",
+      "mode": "Overview",
+      "pinCount": 8
+    },
+    "relief": {
+      "dataset": {
+        "area": "samyan",
+        "volumes": "174",
+        "streets": "5099",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n174 of 2649 footprints in relief\n\nTrue Coffee\nStarbucks Coffee\nABBA BANGKOK\nFresco\nMikka\nStarbucks\nJuzu cafe\nChicken Roast Coffee - Banshi Chula\nDrag to rotate · Scroll to zoom · Double-click for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "samyan",
+      "mode": "Overview",
+      "pinCount": 8
+    },
+    "walk": {
+      "dataset": {
+        "area": "samyan",
+        "volumes": "174",
+        "streets": "5099",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n174 of 2649 footprints in relief\n\nABBA BANGKOK\nMikka\nCafé Amazon\nThe Coffee Club Thailand\nW A S D to walk · Drag to look · Shift to sprint\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "samyan",
+      "mode": "Street level",
+      "pinCount": 4
+    },
+    "exited": true,
+    "restored": true
+  },
+  {
+    "type": "sheet",
+    "width": 1720,
+    "height": 1080,
+    "fact": {
+      "viewport": [
+        1720,
+        1080
+      ],
+      "sheet": {
+        "x": 0,
+        "y": 94,
+        "width": 359,
+        "height": 986,
+        "bottom": 1080,
+        "right": 359
+      },
+      "sheetScroll": [
+        359,
+        359,
+        986,
+        1601
+      ],
+      "map": {
+        "x": 360,
+        "y": 0,
+        "width": 1360,
+        "height": 1080,
+        "bottom": 1080,
+        "right": 1720
+      },
+      "facts": {
+        "x": 12,
+        "y": 183.296875,
+        "width": 335,
+        "height": 64.890625,
+        "bottom": 248.1875,
+        "right": 347
+      },
+      "rows": [
+        {
+          "text": "Open now · Daily 09:00-21:00",
+          "row": {
+            "x": 12,
+            "y": 183.296875,
+            "width": 335,
+            "height": 22.296875,
+            "bottom": 205.59375,
+            "right": 347
+          },
+          "info": {
+            "x": 34.09375,
+            "y": 184.296875,
+            "width": 312.90625,
+            "height": 20.296875,
+            "bottom": 204.59375,
+            "right": 347
+          },
+          "lines": 1,
+          "textBounds": [
+            34.09375,
+            223
+          ]
+        },
+        {
+          "text": "58/10 Siri Avenue, Sai Mai, Bangkok 10220, opposite Soi Sai Mai 56",
+          "row": {
+            "x": 12,
+            "y": 205.59375,
+            "width": 335,
+            "height": 42.59375,
+            "bottom": 248.1875,
+            "right": 347
+          },
+          "info": {
+            "x": 34.09375,
+            "y": 206.59375,
+            "width": 312.90625,
+            "height": 40.59375,
+            "bottom": 247.1875,
+            "right": 347
+          },
+          "lines": 2,
+          "textBounds": [
+            34.09375,
+            300.5625
+          ]
+        }
+      ],
+      "directions": {
+        "x": 12,
+        "y": 264.1875,
+        "width": 103.5,
+        "height": 44,
+        "bottom": 308.1875,
+        "right": 115.5
+      },
+      "title": {
+        "x": 12,
+        "y": 106,
+        "width": 293,
+        "height": 48,
+        "bottom": 154,
+        "right": 305
+      },
+      "visit": {
+        "x": 12,
+        "y": 318.1875,
+        "width": 335,
+        "height": 142.484375,
+        "bottom": 460.671875,
+        "right": 347
+      },
+      "work": {
+        "x": 12,
+        "y": 620.265625,
+        "width": 335,
+        "height": 411.484375,
+        "bottom": 1031.75,
+        "right": 347
+      },
+      "listVisible": false,
+      "search": {
+        "x": 91.4375,
+        "y": 8,
+        "width": 81.296875,
+        "height": 36,
+        "bottom": 44,
+        "right": 172.734375
+      },
+      "active": "<h1 tabindex=\"-1\">The Bridge 1958 Bistro &amp; Office Space</h1>",
+      "source": "",
+      "page": 1720
+    },
+    "openedReport": {
+      "width": 634,
+      "naturalWidth": 1600,
+      "scroll": 1720,
+      "client": 1720,
+      "guestOpen": true,
+      "title": "The Bridge 1958 Bistro & Office Space",
+      "wifi": "Wi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · 18 ms ping",
+      "back": true
+    },
+    "focusOrder": [
+      "×",
+      "Directions ↗",
+      "✓ I've been here",
+      "Read visit notes & see photo →",
+      "+66(0)2 536 0599",
+      "Website"
+    ],
+    "closed": true,
+    "errors": []
+  },
+  {
+    "type": "3d",
+    "width": 1720,
+    "initial": {
+      "dataset": {
+        "area": "samyan",
+        "volumes": "174",
+        "streets": "5099",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n174 of 2649 footprints in relief\n\nTrue Coffee\nStarbucks Coffee\nABBA BANGKOK\nFresco\nMikka\nA KEEN HOUSE - One Bangkok\nStarbucks\nChicken Roast Coffee - Banshi Chula\nDrag to rotate · Scroll to zoom · Double-click for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "samyan",
+      "mode": "Overview",
+      "pinCount": 8
+    },
+    "bangkapi": {
+      "dataset": {
+        "area": "bangkapi",
+        "volumes": "0",
+        "streets": "1308",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\nNo mapped building heights\n\nSee 3D in Sam Yan\nnormal and happy\nDeeva Cafe'\nGan computer รับซื้อ-ขายคอมพิวเตอร์ มือ2 เพจหลัก\nCafé Amazon\nห้องสมุดอาเซียน ถนัด คอมันตร์\nGaga\nBlack Canyon\nซองต์ปัง Sant'-Pang : กาแฟ พิซซ่า นมหมีปั่น น้ำผลไม้สกัดเย็น ข้าวกะเพรา\nDrag to rotate · Scroll to zoom · Double-click for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "bangkapi",
+      "mode": "Overview",
+      "pinCount": 8
+    },
+    "afterDrag": {
+      "dataset": {
+        "area": "bangkapi",
+        "volumes": "0",
+        "streets": "1308",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\nNo mapped building heights\n\nSee 3D in Sam Yan\nnormal and happy\nกาแฟยอดเขา\nLVFloral Cafe&Bar\nGan computer รับซื้อ-ขายคอมพิวเตอร์ มือ2 เพจหลัก\nCafé Amazon\nกาแฟสดชาวดอย\nเกษียณ Cafe' & Hashery\nห้องสมุดอาเซียน ถนัด คอมันตร์\nDrag to rotate · Scroll to zoom · Double-click for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "bangkapi",
+      "mode": "Overview",
+      "pinCount": 8
+    },
+    "relief": {
+      "dataset": {
+        "area": "samyan",
+        "volumes": "174",
+        "streets": "5099",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n174 of 2649 footprints in relief\n\nTrue Coffee\nStarbucks Coffee\nABBA BANGKOK\nFresco\nMikka\nA KEEN HOUSE - One Bangkok\nStarbucks\nChicken Roast Coffee - Banshi Chula\nDrag to rotate · Scroll to zoom · Double-click for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "samyan",
+      "mode": "Overview",
+      "pinCount": 8
+    },
+    "walk": {
+      "dataset": {
+        "area": "samyan",
+        "volumes": "174",
+        "streets": "5099",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n174 of 2649 footprints in relief\n\nABBA BANGKOK\nMikka\nStarbucks\nCafé Amazon\nThe Coffee Club Thailand\nStarbucks Coffee\nW A S D to walk · Drag to look · Shift to sprint\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "samyan",
+      "mode": "Street level",
+      "pinCount": 6
+    },
+    "exited": true,
+    "restored": true
+  }
+]

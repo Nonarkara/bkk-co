@@ -1,0 +1,898 @@
+[
+  {
+    "type": "sheet",
+    "width": 390,
+    "height": 844,
+    "fact": {
+      "viewport": [
+        390,
+        844
+      ],
+      "sheet": {
+        "x": 0,
+        "y": 354.484375,
+        "width": 390,
+        "height": 489.515625,
+        "bottom": 844,
+        "right": 390
+      },
+      "sheetScroll": [
+        390,
+        390,
+        488,
+        2435
+      ],
+      "map": {
+        "x": 0,
+        "y": 94,
+        "width": 390,
+        "height": 750,
+        "bottom": 844,
+        "right": 390
+      },
+      "facts": {
+        "x": 12,
+        "y": 608.78125,
+        "width": 366,
+        "height": 974.953125,
+        "bottom": 1583.734375,
+        "right": 378
+      },
+      "rows": [
+        {
+          "text": "Open now\n· Mo-Su 09:00-21:00",
+          "row": {
+            "x": 35,
+            "y": 617.78125,
+            "width": 343,
+            "height": 40.59375,
+            "bottom": 658.375,
+            "right": 378
+          },
+          "info": {
+            "x": 35,
+            "y": 617.78125,
+            "width": 343,
+            "height": 40.59375,
+            "bottom": 658.375,
+            "right": 378
+          },
+          "lines": 2,
+          "textBounds": [
+            35,
+            187.21875
+          ]
+        },
+        {
+          "text": "The Bridge 1958 Company Limited, 58/10 สิริ อเวนิว สายไหม, 58/10-12 Sai Mai Rd",
+          "row": {
+            "x": 35,
+            "y": 661.375,
+            "width": 343,
+            "height": 324.75,
+            "bottom": 986.125,
+            "right": 378
+          },
+          "info": {
+            "x": 35,
+            "y": 661.375,
+            "width": 343,
+            "height": 324.75,
+            "bottom": 986.125,
+            "right": 378
+          },
+          "lines": 16,
+          "textBounds": [
+            35,
+            91.3125
+          ]
+        },
+        {
+          "text": "linktr.ee/thebridge1958",
+          "row": {
+            "x": 35,
+            "y": 989.125,
+            "width": 343,
+            "height": 182.671875,
+            "bottom": 1171.796875,
+            "right": 378
+          },
+          "info": {
+            "x": 35,
+            "y": 989.125,
+            "width": 343,
+            "height": 182.671875,
+            "bottom": 1171.796875,
+            "right": 378
+          },
+          "lines": 9,
+          "textBounds": [
+            35,
+            55.375
+          ]
+        },
+        {
+          "text": "facebook.com/2221260264781487",
+          "row": {
+            "x": 35,
+            "y": 1174.796875,
+            "width": 343,
+            "height": 284.15625,
+            "bottom": 1458.953125,
+            "right": 378
+          },
+          "info": {
+            "x": 35,
+            "y": 1174.796875,
+            "width": 343,
+            "height": 284.15625,
+            "bottom": 1458.953125,
+            "right": 378
+          },
+          "lines": 14,
+          "textBounds": [
+            35,
+            53.578125
+          ]
+        },
+        {
+          "text": "+6625360599",
+          "row": {
+            "x": 35,
+            "y": 1461.953125,
+            "width": 343,
+            "height": 121.78125,
+            "bottom": 1583.734375,
+            "right": 378
+          },
+          "info": {
+            "x": 35,
+            "y": 1461.953125,
+            "width": 343,
+            "height": 121.78125,
+            "bottom": 1583.734375,
+            "right": 378
+          },
+          "lines": 6,
+          "textBounds": [
+            35,
+            51.6875
+          ]
+        }
+      ],
+      "directions": {
+        "x": 197,
+        "y": 465.78125,
+        "width": 181,
+        "height": 44,
+        "bottom": 509.78125,
+        "right": 378
+      },
+      "title": {
+        "x": 12,
+        "y": 368.484375,
+        "width": 324,
+        "height": 48,
+        "bottom": 416.484375,
+        "right": 336
+      },
+      "work": {
+        "x": 12,
+        "y": 1597.734375,
+        "width": 366,
+        "height": 530.484375,
+        "bottom": 2128.21875,
+        "right": 378
+      },
+      "listVisible": false,
+      "search": {
+        "x": 87.4375,
+        "y": 8,
+        "width": 128.296875,
+        "height": 36,
+        "bottom": 44,
+        "right": 215.734375
+      },
+      "active": "<h1 tabindex=\"-1\">The Bridge 1958 Bistro &amp; Office Space</h1>",
+      "source": "",
+      "page": 390
+    },
+    "focusOrder": [
+      "×",
+      "✓ I've been here",
+      "Directions ↗",
+      "Notes & photos",
+      "Add recommendation",
+      "Share place"
+    ],
+    "closed": true,
+    "errors": []
+  },
+  {
+    "type": "3d",
+    "width": 390,
+    "initial": {
+      "dataset": {
+        "area": "bangkapi",
+        "volumes": "0",
+        "streets": "1308",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n0 of 186 buildings in relief · mapped heights\n\nnormal and happy\nDeeva Cafe'\nCafé Amazon\nGaga\nซองต์ปัง Sant'-Pang : กาแฟ พิซซ่า นมหมีปั่น น้ำผลไม้สกัดเย็น ข้าวกะเพรา\nDrag to turn · Double-tap for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "bangkapi",
+      "mode": "Overview",
+      "pinCount": 5
+    },
+    "bangkapi": {
+      "dataset": {
+        "area": "bangkapi",
+        "volumes": "0",
+        "streets": "1308",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n0 of 186 buildings in relief · mapped heights\n\nnormal and happy\nDeeva Cafe'\nCafé Amazon\nGaga\nซองต์ปัง Sant'-Pang : กาแฟ พิซซ่า นมหมีปั่น น้ำผลไม้สกัดเย็น ข้าวกะเพรา\nDrag to turn · Double-tap for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "bangkapi",
+      "mode": "Overview",
+      "pinCount": 5
+    },
+    "exited": true,
+    "restored": true
+  },
+  {
+    "type": "sheet",
+    "width": 1024,
+    "height": 900,
+    "fact": {
+      "viewport": [
+        1024,
+        900
+      ],
+      "sheet": {
+        "x": 0,
+        "y": 94,
+        "width": 359,
+        "height": 628.671875,
+        "bottom": 722.671875,
+        "right": 359
+      },
+      "sheetScroll": [
+        359,
+        359,
+        627,
+        2316
+      ],
+      "map": {
+        "x": 360,
+        "y": 0,
+        "width": 664,
+        "height": 900,
+        "bottom": 900,
+        "right": 1024
+      },
+      "facts": {
+        "x": 12,
+        "y": 346.296875,
+        "width": 335,
+        "height": 974.953125,
+        "bottom": 1321.25,
+        "right": 347
+      },
+      "rows": [
+        {
+          "text": "Open now\n· Mo-Su 09:00-21:00",
+          "row": {
+            "x": 35,
+            "y": 355.296875,
+            "width": 312,
+            "height": 40.59375,
+            "bottom": 395.890625,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 355.296875,
+            "width": 312,
+            "height": 40.59375,
+            "bottom": 395.890625,
+            "right": 347
+          },
+          "lines": 2,
+          "textBounds": [
+            35,
+            187.21875
+          ]
+        },
+        {
+          "text": "The Bridge 1958 Company Limited, 58/10 สิริ อเวนิว สายไหม, 58/10-12 Sai Mai Rd",
+          "row": {
+            "x": 35,
+            "y": 398.890625,
+            "width": 312,
+            "height": 324.75,
+            "bottom": 723.640625,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 398.890625,
+            "width": 312,
+            "height": 324.75,
+            "bottom": 723.640625,
+            "right": 347
+          },
+          "lines": 16,
+          "textBounds": [
+            35,
+            91.3125
+          ]
+        },
+        {
+          "text": "linktr.ee/thebridge1958",
+          "row": {
+            "x": 35,
+            "y": 726.640625,
+            "width": 312,
+            "height": 182.671875,
+            "bottom": 909.3125,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 726.640625,
+            "width": 312,
+            "height": 182.671875,
+            "bottom": 909.3125,
+            "right": 347
+          },
+          "lines": 9,
+          "textBounds": [
+            35,
+            55.375
+          ]
+        },
+        {
+          "text": "facebook.com/2221260264781487",
+          "row": {
+            "x": 35,
+            "y": 912.3125,
+            "width": 312,
+            "height": 284.15625,
+            "bottom": 1196.46875,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 912.3125,
+            "width": 312,
+            "height": 284.15625,
+            "bottom": 1196.46875,
+            "right": 347
+          },
+          "lines": 14,
+          "textBounds": [
+            35,
+            53.578125
+          ]
+        },
+        {
+          "text": "+6625360599",
+          "row": {
+            "x": 35,
+            "y": 1199.46875,
+            "width": 312,
+            "height": 121.78125,
+            "bottom": 1321.25,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 1199.46875,
+            "width": 312,
+            "height": 121.78125,
+            "bottom": 1321.25,
+            "right": 347
+          },
+          "lines": 6,
+          "textBounds": [
+            35,
+            51.6875
+          ]
+        }
+      ],
+      "directions": {
+        "x": 181.5,
+        "y": 203.296875,
+        "width": 165.5,
+        "height": 44,
+        "bottom": 247.296875,
+        "right": 347
+      },
+      "title": {
+        "x": 12,
+        "y": 106,
+        "width": 293,
+        "height": 48,
+        "bottom": 154,
+        "right": 305
+      },
+      "work": {
+        "x": 12,
+        "y": 1335.25,
+        "width": 335,
+        "height": 411.484375,
+        "bottom": 1746.734375,
+        "right": 347
+      },
+      "listVisible": true,
+      "search": {
+        "x": 91.4375,
+        "y": 8,
+        "width": 81.296875,
+        "height": 36,
+        "bottom": 44,
+        "right": 172.734375
+      },
+      "active": "<h1 tabindex=\"-1\">The Bridge 1958 Bistro &amp; Office Space</h1>",
+      "source": "",
+      "page": 1024
+    },
+    "focusOrder": [
+      "×",
+      "✓ I've been here",
+      "Directions ↗",
+      "Notes & photos",
+      "Add recommendation",
+      "Share place"
+    ],
+    "closed": true,
+    "errors": []
+  },
+  {
+    "type": "sheet",
+    "width": 1440,
+    "height": 900,
+    "fact": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "sheet": {
+        "x": 0,
+        "y": 94,
+        "width": 359,
+        "height": 628.671875,
+        "bottom": 722.671875,
+        "right": 359
+      },
+      "sheetScroll": [
+        359,
+        359,
+        627,
+        2316
+      ],
+      "map": {
+        "x": 360,
+        "y": 0,
+        "width": 1080,
+        "height": 900,
+        "bottom": 900,
+        "right": 1440
+      },
+      "facts": {
+        "x": 12,
+        "y": 346.296875,
+        "width": 335,
+        "height": 974.953125,
+        "bottom": 1321.25,
+        "right": 347
+      },
+      "rows": [
+        {
+          "text": "Open now\n· Mo-Su 09:00-21:00",
+          "row": {
+            "x": 35,
+            "y": 355.296875,
+            "width": 312,
+            "height": 40.59375,
+            "bottom": 395.890625,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 355.296875,
+            "width": 312,
+            "height": 40.59375,
+            "bottom": 395.890625,
+            "right": 347
+          },
+          "lines": 2,
+          "textBounds": [
+            35,
+            187.21875
+          ]
+        },
+        {
+          "text": "The Bridge 1958 Company Limited, 58/10 สิริ อเวนิว สายไหม, 58/10-12 Sai Mai Rd",
+          "row": {
+            "x": 35,
+            "y": 398.890625,
+            "width": 312,
+            "height": 324.75,
+            "bottom": 723.640625,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 398.890625,
+            "width": 312,
+            "height": 324.75,
+            "bottom": 723.640625,
+            "right": 347
+          },
+          "lines": 16,
+          "textBounds": [
+            35,
+            91.3125
+          ]
+        },
+        {
+          "text": "linktr.ee/thebridge1958",
+          "row": {
+            "x": 35,
+            "y": 726.640625,
+            "width": 312,
+            "height": 182.671875,
+            "bottom": 909.3125,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 726.640625,
+            "width": 312,
+            "height": 182.671875,
+            "bottom": 909.3125,
+            "right": 347
+          },
+          "lines": 9,
+          "textBounds": [
+            35,
+            55.375
+          ]
+        },
+        {
+          "text": "facebook.com/2221260264781487",
+          "row": {
+            "x": 35,
+            "y": 912.3125,
+            "width": 312,
+            "height": 284.15625,
+            "bottom": 1196.46875,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 912.3125,
+            "width": 312,
+            "height": 284.15625,
+            "bottom": 1196.46875,
+            "right": 347
+          },
+          "lines": 14,
+          "textBounds": [
+            35,
+            53.578125
+          ]
+        },
+        {
+          "text": "+6625360599",
+          "row": {
+            "x": 35,
+            "y": 1199.46875,
+            "width": 312,
+            "height": 121.78125,
+            "bottom": 1321.25,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 1199.46875,
+            "width": 312,
+            "height": 121.78125,
+            "bottom": 1321.25,
+            "right": 347
+          },
+          "lines": 6,
+          "textBounds": [
+            35,
+            51.6875
+          ]
+        }
+      ],
+      "directions": {
+        "x": 181.5,
+        "y": 203.296875,
+        "width": 165.5,
+        "height": 44,
+        "bottom": 247.296875,
+        "right": 347
+      },
+      "title": {
+        "x": 12,
+        "y": 106,
+        "width": 293,
+        "height": 48,
+        "bottom": 154,
+        "right": 305
+      },
+      "work": {
+        "x": 12,
+        "y": 1335.25,
+        "width": 335,
+        "height": 411.484375,
+        "bottom": 1746.734375,
+        "right": 347
+      },
+      "listVisible": true,
+      "search": {
+        "x": 91.4375,
+        "y": 8,
+        "width": 81.296875,
+        "height": 36,
+        "bottom": 44,
+        "right": 172.734375
+      },
+      "active": "<h1 tabindex=\"-1\">The Bridge 1958 Bistro &amp; Office Space</h1>",
+      "source": "",
+      "page": 1440
+    },
+    "focusOrder": [
+      "×",
+      "✓ I've been here",
+      "Directions ↗",
+      "Notes & photos",
+      "Add recommendation",
+      "Share place"
+    ],
+    "closed": true,
+    "errors": []
+  },
+  {
+    "type": "sheet",
+    "width": 1720,
+    "height": 1080,
+    "fact": {
+      "viewport": [
+        1720,
+        1080
+      ],
+      "sheet": {
+        "x": 0,
+        "y": 94,
+        "width": 359,
+        "height": 769.078125,
+        "bottom": 863.078125,
+        "right": 359
+      },
+      "sheetScroll": [
+        359,
+        359,
+        767,
+        2316
+      ],
+      "map": {
+        "x": 360,
+        "y": 0,
+        "width": 1360,
+        "height": 1080,
+        "bottom": 1080,
+        "right": 1720
+      },
+      "facts": {
+        "x": 12,
+        "y": 346.296875,
+        "width": 335,
+        "height": 974.953125,
+        "bottom": 1321.25,
+        "right": 347
+      },
+      "rows": [
+        {
+          "text": "Open now\n· Mo-Su 09:00-21:00",
+          "row": {
+            "x": 35,
+            "y": 355.296875,
+            "width": 312,
+            "height": 40.59375,
+            "bottom": 395.890625,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 355.296875,
+            "width": 312,
+            "height": 40.59375,
+            "bottom": 395.890625,
+            "right": 347
+          },
+          "lines": 2,
+          "textBounds": [
+            35,
+            187.21875
+          ]
+        },
+        {
+          "text": "The Bridge 1958 Company Limited, 58/10 สิริ อเวนิว สายไหม, 58/10-12 Sai Mai Rd",
+          "row": {
+            "x": 35,
+            "y": 398.890625,
+            "width": 312,
+            "height": 324.75,
+            "bottom": 723.640625,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 398.890625,
+            "width": 312,
+            "height": 324.75,
+            "bottom": 723.640625,
+            "right": 347
+          },
+          "lines": 16,
+          "textBounds": [
+            35,
+            91.3125
+          ]
+        },
+        {
+          "text": "linktr.ee/thebridge1958",
+          "row": {
+            "x": 35,
+            "y": 726.640625,
+            "width": 312,
+            "height": 182.671875,
+            "bottom": 909.3125,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 726.640625,
+            "width": 312,
+            "height": 182.671875,
+            "bottom": 909.3125,
+            "right": 347
+          },
+          "lines": 9,
+          "textBounds": [
+            35,
+            55.375
+          ]
+        },
+        {
+          "text": "facebook.com/2221260264781487",
+          "row": {
+            "x": 35,
+            "y": 912.3125,
+            "width": 312,
+            "height": 284.15625,
+            "bottom": 1196.46875,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 912.3125,
+            "width": 312,
+            "height": 284.15625,
+            "bottom": 1196.46875,
+            "right": 347
+          },
+          "lines": 14,
+          "textBounds": [
+            35,
+            53.578125
+          ]
+        },
+        {
+          "text": "+6625360599",
+          "row": {
+            "x": 35,
+            "y": 1199.46875,
+            "width": 312,
+            "height": 121.78125,
+            "bottom": 1321.25,
+            "right": 347
+          },
+          "info": {
+            "x": 35,
+            "y": 1199.46875,
+            "width": 312,
+            "height": 121.78125,
+            "bottom": 1321.25,
+            "right": 347
+          },
+          "lines": 6,
+          "textBounds": [
+            35,
+            51.6875
+          ]
+        }
+      ],
+      "directions": {
+        "x": 181.5,
+        "y": 203.296875,
+        "width": 165.5,
+        "height": 44,
+        "bottom": 247.296875,
+        "right": 347
+      },
+      "title": {
+        "x": 12,
+        "y": 106,
+        "width": 293,
+        "height": 48,
+        "bottom": 154,
+        "right": 305
+      },
+      "work": {
+        "x": 12,
+        "y": 1335.25,
+        "width": 335,
+        "height": 411.484375,
+        "bottom": 1746.734375,
+        "right": 347
+      },
+      "listVisible": true,
+      "search": {
+        "x": 91.4375,
+        "y": 8,
+        "width": 81.296875,
+        "height": 36,
+        "bottom": 44,
+        "right": 172.734375
+      },
+      "active": "<h1 tabindex=\"-1\">The Bridge 1958 Bistro &amp; Office Space</h1>",
+      "source": "",
+      "page": 1720
+    },
+    "focusOrder": [
+      "×",
+      "✓ I've been here",
+      "Directions ↗",
+      "Notes & photos",
+      "Add recommendation",
+      "Share place"
+    ],
+    "closed": true,
+    "errors": []
+  },
+  {
+    "type": "3d",
+    "width": 1720,
+    "initial": {
+      "dataset": {
+        "area": "bangkapi",
+        "volumes": "0",
+        "streets": "1308",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n0 of 186 buildings in relief · mapped heights\n\nnormal and happy\nDeeva Cafe'\nLVFloral Cafe&Bar\nGan computer รับซื้อ-ขายคอมพิวเตอร์ มือ2 เพจหลัก\nCafé Amazon\nกาแฟสดชาวดอย\nห้องสมุดอาเซียน ถนัด คอมันตร์\nGaga\nDrag to rotate · Scroll to zoom · Double-click for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "bangkapi",
+      "mode": "Overview",
+      "pinCount": 8
+    },
+    "bangkapi": {
+      "dataset": {
+        "area": "bangkapi",
+        "volumes": "0",
+        "streets": "1308",
+        "ready": "true"
+      },
+      "text": "Neighbourhood\nAri\nSam Yan\nCharoen Krung\nThong Lo\nRamkhamhaeng\nPathum Wan\nPhra Nakhon\nSamphanthawong\nChatuchak\nDin Daeng\nBang Kapi\nPrawet\nOverview\nStreet level\nLight\nDay\nDusk\nNight\nBack to map\n\n0 of 186 buildings in relief · mapped heights\n\nnormal and happy\nDeeva Cafe'\nLVFloral Cafe&Bar\nGan computer รับซื้อ-ขายคอมพิวเตอร์ มือ2 เพจหลัก\nCafé Amazon\nกาแฟสดชาวดอย\nห้องสมุดอาเซียน ถนัด คอมันตร์\nGaga\nDrag to rotate · Scroll to zoom · Double-click for street level\n© OpenStreetMap\nPlaces © Overture Maps",
+      "select": "bangkapi",
+      "mode": "Overview",
+      "pinCount": 8
+    },
+    "exited": true,
+    "restored": true
+  }
+]
