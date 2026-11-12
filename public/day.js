@@ -100,8 +100,8 @@
       <div class="day-actions">${action('day-find','/?plan=nearby',tr('Find work spots →','ค้นหาที่นั่งทำงาน →'),true)}</div>
       <p id="day-work-help" class="day-source"></p>
       <section class="day-examples"><h2>${tr('Check admission before you go','เช็กเงื่อนไขก่อนออกเดินทาง')}</h2><ul>
-        <li>${link('/?p=o78f6308fa1ba','TCDC Bangkok')} ${tr('· ฿100 day pass listed by the venue.','· ศูนย์ฯ ระบุค่าบัตรรายวัน 100 บาท')} ${link('https://library.tcdc.or.th/page/service',tr('Source ↗','แหล่งข้อมูล ↗'))}</li>
-        <li>${link('/?p=n5283277354',tr('BACC Art Library','ห้องสมุดศิลปะ หอศิลปกรุงเทพฯ'))} ${tr('· Wi-Fi instructions ask for a national ID card. Ask staff if you use a passport.','· การขอรหัส Wi-Fi ระบุให้แสดงบัตรประชาชน หากใช้หนังสือเดินทางให้สอบถามเจ้าหน้าที่')} ${link('https://www.bacc.or.th/en/plan-your-visit/art-library/',tr('Source ↗','แหล่งข้อมูล ↗'))}</li>
+        <li><div>${link('/?p=o78f6308fa1ba','TCDC Bangkok')}${link('https://library.tcdc.or.th/page/service',tr('Source ↗','แหล่งข้อมูล ↗'))}</div><p>${tr('฿100 day pass listed by the venue.','ศูนย์ฯ ระบุค่าบัตรรายวัน 100 บาท')}</p></li>
+        <li><div>${link('/?p=n5283277354',tr('BACC Art Library','ห้องสมุดศิลปะ หอศิลปกรุงเทพฯ'))}${link('https://www.bacc.or.th/en/plan-your-visit/art-library/',tr('Source ↗','แหล่งข้อมูล ↗'))}</div><p>${tr('Wi-Fi instructions ask for a national ID card. Ask staff if you use a passport.','การขอรหัส Wi-Fi ระบุให้แสดงบัตรประชาชน หากใช้หนังสือเดินทางให้สอบถามเจ้าหน้าที่')}</p></li>
       </ul></section>`;
     byId('day-minutes').value = '120';
     const render = () => {

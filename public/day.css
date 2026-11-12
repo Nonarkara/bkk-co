@@ -28,4 +28,5 @@
 .day-stamps p { margin-top:3px; }
 .day-examples li { margin-block:5px; }
 .day-examples ul { padding-inline-start:18px; }
+.day-examples li > div { display:flex; flex-wrap:wrap; gap:0 12px; }
 .day-examples a { display:inline-flex; min-height:44px; align-items:center; }
