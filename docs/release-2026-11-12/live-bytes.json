@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-11-12T08:30:43.015Z",
+  "observedAt": "2026-11-12T09:18:06.141Z",
   "origin": "https://co.nonarkara.org",
-  "sourceCommit": "a0eac01622531c653a34c6e6945421e4d68033d0",
+  "sourceCommit": "53b33631b6a872767935066b8d83e2772c4651e1",
   "matched": [
     {
       "path": "app.js",
@@ -1015,8 +1015,8 @@
     },
     {
       "path": "data/venue-reports.json",
-      "bytes": 4773,
-      "sha256": "dc680fe6ffaeb55a4a22f7cfbfc3087ac599f371d21846fca46505406cd3900b"
+      "bytes": 3793,
+      "sha256": "f2e5d33a08c2f12b2abdb9aae8fa8b7df704a483f48158b09b55659d3e14618e"
     },
     {
       "path": "discovery.css",
@@ -1037,6 +1037,16 @@
       "path": "fonts/NonArchitecture-Regular.woff2",
       "bytes": 12728,
       "sha256": "11d2f76b2b4b1179a42ca445cb4fa14dd42cb78c5990e54785253484307f8a86"
+    },
+    {
+      "path": "fonts/OFL-Jost.txt",
+      "bytes": 4383,
+      "sha256": "82b806b20fb9d8f2c64669c12a44efb87d27971e743f38a78365e83641626dd2"
+    },
+    {
+      "path": "fonts/OFL-Prompt.txt",
+      "bytes": 4358,
+      "sha256": "ebb21f3ee30a34bc2305d1d86720a416fb13f9e73624398a78f7a55c61a091c4"
     },
     {
       "path": "fonts/SaoChingcha-Bold.woff2",
@@ -1172,16 +1182,6 @@
       "path": "media/venue-reports/the-bridge-1958/interior.jpg",
       "bytes": 591186,
       "sha256": "8dcfa500e2e18534f61eb97dd695c1d4834d89fe084f469eb2c7067e565fd5fe"
-    },
-    {
-      "path": "media/venue-reports/the-bridge-1958/map-listing.png",
-      "bytes": 200159,
-      "sha256": "bfbf1519fb5a2620fe345115eb2139d100e33325a88b06b6023d8c4a5813e7f8"
-    },
-    {
-      "path": "media/venue-reports/the-bridge-1958/speedtest.png",
-      "bytes": 95876,
-      "sha256": "c1598803f5aa33534c2c85c08f2fed63f6f7913f0a53d463c4c22a85cf020eab"
     },
     {
       "path": "neighborhood-palette.js",
