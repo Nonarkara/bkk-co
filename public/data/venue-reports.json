@@ -17,8 +17,8 @@
       "place": {
         "lat": 13.92133,
         "lng": 100.6608,
-        "address": "Sai Mai Rd, beside PTT Station Sai Mai 56, Nong Chok, Bangkok",
-        "nearestRail": "BTS Sai Mai 56"
+        "address": "58/10 Siri Avenue, Sai Mai, Bangkok 10220, opposite Soi Sai Mai 56",
+        "addressSource": "https://page.line.me/iye2725a"
       },
       "reportedKind": "Bistro and office space — a café that rents meeting rooms",
       "facts": {
@@ -71,12 +71,6 @@
           "label": "Parking",
           "value": "Lots of parking space, seen on arrival.",
           "source": "On-site report"
-        },
-        {
-          "label": "Public listing rating",
-          "value": "4.7 from 448 reviews, price band ฿200–400, listed as open and closing at 9 PM.",
-          "source": "A public listing the reporter photographed on 12 November 2026. PLUB does not hold this field, has not checked it, and does not score with it. The reporter called the place cheap; the listing shows a ฿200–400 band. Both are kept.",
-          "date": "2026-11-12"
         }
       ],
       "photos": [
@@ -84,16 +78,6 @@
           "src": "media/venue-reports/the-bridge-1958/interior.jpg",
           "caption": "The room on 12 November 2026: dark wood panelling, a chandelier, a long counter, and the Christmas and Harry Potter dressing.",
           "credit": "Photograph by Dr Non Arkaraprasertkul"
-        },
-        {
-          "src": "media/venue-reports/the-bridge-1958/speedtest.png",
-          "caption": "The speed measurement the reporter took in the room: 243.78 Mbps down, 218.39 Mbps up, 18 ms ping.",
-          "credit": "Screenshot by Dr Non Arkaraprasertkul"
-        },
-        {
-          "src": "media/venue-reports/the-bridge-1958/map-listing.png",
-          "caption": "The public listing the reporter photographed, with the platform's own rating and price band.",
-          "credit": "Screenshot by Dr Non Arkaraprasertkul"
         }
       ]
     }
