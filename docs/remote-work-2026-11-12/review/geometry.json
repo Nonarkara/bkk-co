@@ -1,0 +1,2126 @@
+[
+  {
+    "task": "today",
+    "lang": "en",
+    "width": 390,
+    "height": 844,
+    "geometry": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "bar": {
+        "x": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 45,
+        "height": 45,
+        "width": 390
+      },
+      "title": {
+        "x": 16,
+        "top": 57,
+        "right": 374,
+        "bottom": 89,
+        "height": 32,
+        "width": 359
+      },
+      "tabs": {
+        "x": 16,
+        "top": 95,
+        "right": 374,
+        "bottom": 140,
+        "height": 45,
+        "width": 359
+      },
+      "action": {
+        "x": 16,
+        "top": 329,
+        "right": 153,
+        "bottom": 373,
+        "height": 44,
+        "width": 138
+      },
+      "stamps": {
+        "x": 16,
+        "top": 471,
+        "right": 374,
+        "bottom": 617,
+        "height": 146,
+        "width": 359
+      },
+      "factBottom": 325,
+      "overflow": [],
+      "lang": "en",
+      "heading": "Where to go today",
+      "selected": "Where to go today",
+      "links": [
+        [
+          "Explore on map →",
+          "/?plan=map&lang=en&at=13.72705%2C100.51518"
+        ],
+        [
+          "Plan a café hop",
+          "/?hop=%4013.72705%2C100.51518"
+        ],
+        [
+          "Find a stop with parking",
+          "/?plan=drive&lang=en&at=13.72705%2C100.51518&task=laptop&minutes=120"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "live",
+    "lang": "en",
+    "width": 390,
+    "height": 844,
+    "geometry": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 920,
+      "bar": {
+        "x": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 45,
+        "height": 45,
+        "width": 390
+      },
+      "title": {
+        "x": 16,
+        "top": 57,
+        "right": 374,
+        "bottom": 89,
+        "height": 32,
+        "width": 359
+      },
+      "tabs": {
+        "x": 16,
+        "top": 95,
+        "right": 374,
+        "bottom": 140,
+        "height": 45,
+        "width": 359
+      },
+      "action": {
+        "x": 130,
+        "top": 605,
+        "right": 246,
+        "bottom": 649,
+        "height": 44,
+        "width": 116
+      },
+      "stamps": {
+        "x": 16,
+        "top": 750,
+        "right": 374,
+        "bottom": 896,
+        "height": 146,
+        "width": 359
+      },
+      "factBottom": 600,
+      "overflow": [],
+      "lang": "en",
+      "heading": "Where to live",
+      "selected": "Where to live",
+      "links": [
+        [
+          "Ari",
+          "https://www.openstreetmap.org/node/5388607091"
+        ],
+        [
+          "Sam Yan",
+          "https://www.openstreetmap.org/node/12803915078"
+        ],
+        [
+          "Find a work spot →",
+          "/?plan=nearby&lang=en&at=13.77971%2C100.54462&task=laptop&minutes=120"
+        ],
+        [
+          "Find a work spot →",
+          "/?plan=nearby&lang=en&at=13.73206%2C100.53012&task=laptop&minutes=120"
+        ],
+        [
+          "© OpenStreetMap",
+          "https://www.openstreetmap.org/copyright"
+        ],
+        [
+          "Overture Maps",
+          "https://overturemaps.org/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "work",
+    "lang": "en",
+    "width": 390,
+    "height": 844,
+    "geometry": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 957,
+      "bar": {
+        "x": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 45,
+        "height": 45,
+        "width": 390
+      },
+      "title": {
+        "x": 16,
+        "top": 57,
+        "right": 374,
+        "bottom": 89,
+        "height": 32,
+        "width": 359
+      },
+      "tabs": {
+        "x": 16,
+        "top": 95,
+        "right": 374,
+        "bottom": 140,
+        "height": 45,
+        "width": 359
+      },
+      "action": {
+        "x": 16,
+        "top": 453,
+        "right": 154,
+        "bottom": 497,
+        "height": 44,
+        "width": 138
+      },
+      "stamps": {
+        "x": 16,
+        "top": 787,
+        "right": 374,
+        "bottom": 933,
+        "height": 146,
+        "width": 359
+      },
+      "factBottom": 445,
+      "overflow": [],
+      "lang": "en",
+      "heading": "Where to work",
+      "selected": "Where to work",
+      "links": [
+        [
+          "Find work spots →",
+          "/?plan=nearby&lang=en&task=laptop&minutes=120"
+        ],
+        [
+          "TCDC Bangkok",
+          "/?p=o78f6308fa1ba"
+        ],
+        [
+          "Source ↗",
+          "https://library.tcdc.or.th/page/service"
+        ],
+        [
+          "BACC Art Library",
+          "/?p=n5283277354"
+        ],
+        [
+          "Source ↗",
+          "https://www.bacc.or.th/en/plan-your-visit/art-library/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "today",
+    "lang": "th",
+    "width": 390,
+    "height": 844,
+    "geometry": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "bar": {
+        "x": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 45,
+        "height": 45,
+        "width": 390
+      },
+      "title": {
+        "x": 16,
+        "top": 57,
+        "right": 374,
+        "bottom": 122,
+        "height": 65,
+        "width": 359
+      },
+      "tabs": {
+        "x": 16,
+        "top": 128,
+        "right": 374,
+        "bottom": 173,
+        "height": 45,
+        "width": 359
+      },
+      "action": {
+        "x": 16,
+        "top": 395,
+        "right": 141,
+        "bottom": 439,
+        "height": 44,
+        "width": 125
+      },
+      "stamps": {
+        "x": 16,
+        "top": 543,
+        "right": 374,
+        "bottom": 720,
+        "height": 177,
+        "width": 359
+      },
+      "factBottom": 391,
+      "overflow": [],
+      "lang": "th",
+      "heading": "วันนี้ไปไหนดี",
+      "selected": "วันนี้ไปไหนดี",
+      "links": [
+        [
+          "ดูย่านบนแผนที่ →",
+          "/?plan=map&lang=th&at=13.72705%2C100.51518"
+        ],
+        [
+          "วางแผนแวะคาเฟ่",
+          "/?hop=%4013.72705%2C100.51518"
+        ],
+        [
+          "หาที่แวะพร้อมที่จอดรถ",
+          "/?plan=drive&lang=th&at=13.72705%2C100.51518&task=laptop&minutes=120"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "live",
+    "lang": "th",
+    "width": 390,
+    "height": 844,
+    "geometry": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 918,
+      "bar": {
+        "x": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 45,
+        "height": 45,
+        "width": 390
+      },
+      "title": {
+        "x": 16,
+        "top": 57,
+        "right": 374,
+        "bottom": 122,
+        "height": 65,
+        "width": 359
+      },
+      "tabs": {
+        "x": 16,
+        "top": 128,
+        "right": 374,
+        "bottom": 173,
+        "height": 45,
+        "width": 359
+      },
+      "action": {
+        "x": 130,
+        "top": 543,
+        "right": 228,
+        "bottom": 587,
+        "height": 44,
+        "width": 98
+      },
+      "stamps": {
+        "x": 16,
+        "top": 717,
+        "right": 374,
+        "bottom": 894,
+        "height": 177,
+        "width": 359
+      },
+      "factBottom": 537,
+      "overflow": [],
+      "lang": "th",
+      "heading": "เลือกย่านที่จะอยู่",
+      "selected": "เลือกย่านที่จะอยู่",
+      "links": [
+        [
+          "อารีย์",
+          "https://www.openstreetmap.org/node/5388607091"
+        ],
+        [
+          "สามย่าน",
+          "https://www.openstreetmap.org/node/12803915078"
+        ],
+        [
+          "หาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&at=13.77971%2C100.54462&task=laptop&minutes=120"
+        ],
+        [
+          "หาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&at=13.73206%2C100.53012&task=laptop&minutes=120"
+        ],
+        [
+          "© OpenStreetMap",
+          "https://www.openstreetmap.org/copyright"
+        ],
+        [
+          "Overture Maps",
+          "https://overturemaps.org/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "work",
+    "lang": "th",
+    "width": 390,
+    "height": 844,
+    "geometry": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 1039,
+      "bar": {
+        "x": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 45,
+        "height": 45,
+        "width": 390
+      },
+      "title": {
+        "x": 16,
+        "top": 57,
+        "right": 374,
+        "bottom": 122,
+        "height": 65,
+        "width": 359
+      },
+      "tabs": {
+        "x": 16,
+        "top": 128,
+        "right": 374,
+        "bottom": 173,
+        "height": 45,
+        "width": 359
+      },
+      "action": {
+        "x": 16,
+        "top": 476,
+        "right": 152,
+        "bottom": 520,
+        "height": 44,
+        "width": 137
+      },
+      "stamps": {
+        "x": 16,
+        "top": 838,
+        "right": 374,
+        "bottom": 1015,
+        "height": 177,
+        "width": 359
+      },
+      "factBottom": 468,
+      "overflow": [],
+      "lang": "th",
+      "heading": "หาที่นั่งทำงาน",
+      "selected": "หาที่นั่งทำงาน",
+      "links": [
+        [
+          "ค้นหาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&task=laptop&minutes=120"
+        ],
+        [
+          "TCDC Bangkok",
+          "/?p=o78f6308fa1ba"
+        ],
+        [
+          "แหล่งข้อมูล ↗",
+          "https://library.tcdc.or.th/page/service"
+        ],
+        [
+          "ห้องสมุดศิลปะ หอศิลปกรุงเทพฯ",
+          "/?p=n5283277354"
+        ],
+        [
+          "แหล่งข้อมูล ↗",
+          "https://www.bacc.or.th/en/plan-your-visit/art-library/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "today",
+    "lang": "en",
+    "width": 1024,
+    "height": 900,
+    "geometry": {
+      "width": 1024,
+      "height": 900,
+      "documentWidth": 1024,
+      "documentHeight": 900,
+      "bar": {
+        "x": 132,
+        "top": 0,
+        "right": 892,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 156,
+        "top": 57,
+        "right": 868,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 156,
+        "top": 95,
+        "right": 868,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 156,
+        "top": 308,
+        "right": 294,
+        "bottom": 352,
+        "height": 44,
+        "width": 138
+      },
+      "stamps": {
+        "x": 156,
+        "top": 390,
+        "right": 868,
+        "bottom": 536,
+        "height": 146,
+        "width": 712
+      },
+      "factBottom": 304,
+      "overflow": [],
+      "lang": "en",
+      "heading": "Where to go today",
+      "selected": "Where to go today",
+      "links": [
+        [
+          "Explore on map →",
+          "/?plan=map&lang=en&at=13.72705%2C100.51518"
+        ],
+        [
+          "Plan a café hop",
+          "/?hop=%4013.72705%2C100.51518"
+        ],
+        [
+          "Find a stop with parking",
+          "/?plan=drive&lang=en&at=13.72705%2C100.51518&task=laptop&minutes=120"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "live",
+    "lang": "en",
+    "width": 1024,
+    "height": 900,
+    "geometry": {
+      "width": 1024,
+      "height": 900,
+      "documentWidth": 1024,
+      "documentHeight": 900,
+      "bar": {
+        "x": 132,
+        "top": 0,
+        "right": 892,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 156,
+        "top": 57,
+        "right": 868,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 156,
+        "top": 95,
+        "right": 868,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 384,
+        "top": 491,
+        "right": 500,
+        "bottom": 535,
+        "height": 44,
+        "width": 116
+      },
+      "stamps": {
+        "x": 156,
+        "top": 635,
+        "right": 868,
+        "bottom": 781,
+        "height": 146,
+        "width": 712
+      },
+      "factBottom": 485,
+      "overflow": [],
+      "lang": "en",
+      "heading": "Where to live",
+      "selected": "Where to live",
+      "links": [
+        [
+          "Ari",
+          "https://www.openstreetmap.org/node/5388607091"
+        ],
+        [
+          "Sam Yan",
+          "https://www.openstreetmap.org/node/12803915078"
+        ],
+        [
+          "Find a work spot →",
+          "/?plan=nearby&lang=en&at=13.77971%2C100.54462&task=laptop&minutes=120"
+        ],
+        [
+          "Find a work spot →",
+          "/?plan=nearby&lang=en&at=13.73206%2C100.53012&task=laptop&minutes=120"
+        ],
+        [
+          "© OpenStreetMap",
+          "https://www.openstreetmap.org/copyright"
+        ],
+        [
+          "Overture Maps",
+          "https://overturemaps.org/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "work",
+    "lang": "en",
+    "width": 1024,
+    "height": 900,
+    "geometry": {
+      "width": 1024,
+      "height": 900,
+      "documentWidth": 1024,
+      "documentHeight": 900,
+      "bar": {
+        "x": 132,
+        "top": 0,
+        "right": 892,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 156,
+        "top": 57,
+        "right": 868,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 156,
+        "top": 95,
+        "right": 868,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 156,
+        "top": 284,
+        "right": 294,
+        "bottom": 328,
+        "height": 44,
+        "width": 138
+      },
+      "stamps": {
+        "x": 156,
+        "top": 512,
+        "right": 868,
+        "bottom": 658,
+        "height": 146,
+        "width": 712
+      },
+      "factBottom": 276,
+      "overflow": [],
+      "lang": "en",
+      "heading": "Where to work",
+      "selected": "Where to work",
+      "links": [
+        [
+          "Find work spots →",
+          "/?plan=nearby&lang=en&task=laptop&minutes=120"
+        ],
+        [
+          "TCDC Bangkok",
+          "/?p=o78f6308fa1ba"
+        ],
+        [
+          "Source ↗",
+          "https://library.tcdc.or.th/page/service"
+        ],
+        [
+          "BACC Art Library",
+          "/?p=n5283277354"
+        ],
+        [
+          "Source ↗",
+          "https://www.bacc.or.th/en/plan-your-visit/art-library/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "today",
+    "lang": "th",
+    "width": 1024,
+    "height": 900,
+    "geometry": {
+      "width": 1024,
+      "height": 900,
+      "documentWidth": 1024,
+      "documentHeight": 900,
+      "bar": {
+        "x": 132,
+        "top": 0,
+        "right": 892,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 156,
+        "top": 57,
+        "right": 868,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 156,
+        "top": 95,
+        "right": 868,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 156,
+        "top": 317,
+        "right": 281,
+        "bottom": 361,
+        "height": 44,
+        "width": 125
+      },
+      "stamps": {
+        "x": 156,
+        "top": 401,
+        "right": 868,
+        "bottom": 555,
+        "height": 154,
+        "width": 712
+      },
+      "factBottom": 313,
+      "overflow": [],
+      "lang": "th",
+      "heading": "วันนี้ไปไหนดี",
+      "selected": "วันนี้ไปไหนดี",
+      "links": [
+        [
+          "ดูย่านบนแผนที่ →",
+          "/?plan=map&lang=th&at=13.72705%2C100.51518"
+        ],
+        [
+          "วางแผนแวะคาเฟ่",
+          "/?hop=%4013.72705%2C100.51518"
+        ],
+        [
+          "หาที่แวะพร้อมที่จอดรถ",
+          "/?plan=drive&lang=th&at=13.72705%2C100.51518&task=laptop&minutes=120"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "live",
+    "lang": "th",
+    "width": 1024,
+    "height": 900,
+    "geometry": {
+      "width": 1024,
+      "height": 900,
+      "documentWidth": 1024,
+      "documentHeight": 900,
+      "bar": {
+        "x": 132,
+        "top": 0,
+        "right": 892,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 156,
+        "top": 57,
+        "right": 868,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 156,
+        "top": 95,
+        "right": 868,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 384,
+        "top": 510,
+        "right": 482,
+        "bottom": 554,
+        "height": 44,
+        "width": 98
+      },
+      "stamps": {
+        "x": 156,
+        "top": 664,
+        "right": 868,
+        "bottom": 819,
+        "height": 154,
+        "width": 712
+      },
+      "factBottom": 505,
+      "overflow": [],
+      "lang": "th",
+      "heading": "เลือกย่านที่จะอยู่",
+      "selected": "เลือกย่านที่จะอยู่",
+      "links": [
+        [
+          "อารีย์",
+          "https://www.openstreetmap.org/node/5388607091"
+        ],
+        [
+          "สามย่าน",
+          "https://www.openstreetmap.org/node/12803915078"
+        ],
+        [
+          "หาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&at=13.77971%2C100.54462&task=laptop&minutes=120"
+        ],
+        [
+          "หาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&at=13.73206%2C100.53012&task=laptop&minutes=120"
+        ],
+        [
+          "© OpenStreetMap",
+          "https://www.openstreetmap.org/copyright"
+        ],
+        [
+          "Overture Maps",
+          "https://overturemaps.org/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "work",
+    "lang": "th",
+    "width": 1024,
+    "height": 900,
+    "geometry": {
+      "width": 1024,
+      "height": 900,
+      "documentWidth": 1024,
+      "documentHeight": 900,
+      "bar": {
+        "x": 132,
+        "top": 0,
+        "right": 892,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 156,
+        "top": 57,
+        "right": 868,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 156,
+        "top": 95,
+        "right": 868,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 156,
+        "top": 290,
+        "right": 293,
+        "bottom": 334,
+        "height": 44,
+        "width": 137
+      },
+      "stamps": {
+        "x": 156,
+        "top": 564,
+        "right": 868,
+        "bottom": 719,
+        "height": 154,
+        "width": 712
+      },
+      "factBottom": 282,
+      "overflow": [],
+      "lang": "th",
+      "heading": "หาที่นั่งทำงาน",
+      "selected": "หาที่นั่งทำงาน",
+      "links": [
+        [
+          "ค้นหาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&task=laptop&minutes=120"
+        ],
+        [
+          "TCDC Bangkok",
+          "/?p=o78f6308fa1ba"
+        ],
+        [
+          "แหล่งข้อมูล ↗",
+          "https://library.tcdc.or.th/page/service"
+        ],
+        [
+          "ห้องสมุดศิลปะ หอศิลปกรุงเทพฯ",
+          "/?p=n5283277354"
+        ],
+        [
+          "แหล่งข้อมูล ↗",
+          "https://www.bacc.or.th/en/plan-your-visit/art-library/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "today",
+    "lang": "en",
+    "width": 1440,
+    "height": 900,
+    "geometry": {
+      "width": 1440,
+      "height": 900,
+      "documentWidth": 1440,
+      "documentHeight": 900,
+      "bar": {
+        "x": 340,
+        "top": 0,
+        "right": 1100,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 364,
+        "top": 57,
+        "right": 1076,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 364,
+        "top": 95,
+        "right": 1076,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 364,
+        "top": 308,
+        "right": 502,
+        "bottom": 352,
+        "height": 44,
+        "width": 138
+      },
+      "stamps": {
+        "x": 364,
+        "top": 390,
+        "right": 1076,
+        "bottom": 536,
+        "height": 146,
+        "width": 712
+      },
+      "factBottom": 304,
+      "overflow": [],
+      "lang": "en",
+      "heading": "Where to go today",
+      "selected": "Where to go today",
+      "links": [
+        [
+          "Explore on map →",
+          "/?plan=map&lang=en&at=13.72705%2C100.51518"
+        ],
+        [
+          "Plan a café hop",
+          "/?hop=%4013.72705%2C100.51518"
+        ],
+        [
+          "Find a stop with parking",
+          "/?plan=drive&lang=en&at=13.72705%2C100.51518&task=laptop&minutes=120"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "live",
+    "lang": "en",
+    "width": 1440,
+    "height": 900,
+    "geometry": {
+      "width": 1440,
+      "height": 900,
+      "documentWidth": 1440,
+      "documentHeight": 900,
+      "bar": {
+        "x": 340,
+        "top": 0,
+        "right": 1100,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 364,
+        "top": 57,
+        "right": 1076,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 364,
+        "top": 95,
+        "right": 1076,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 592,
+        "top": 491,
+        "right": 708,
+        "bottom": 535,
+        "height": 44,
+        "width": 116
+      },
+      "stamps": {
+        "x": 364,
+        "top": 635,
+        "right": 1076,
+        "bottom": 781,
+        "height": 146,
+        "width": 712
+      },
+      "factBottom": 485,
+      "overflow": [],
+      "lang": "en",
+      "heading": "Where to live",
+      "selected": "Where to live",
+      "links": [
+        [
+          "Ari",
+          "https://www.openstreetmap.org/node/5388607091"
+        ],
+        [
+          "Sam Yan",
+          "https://www.openstreetmap.org/node/12803915078"
+        ],
+        [
+          "Find a work spot →",
+          "/?plan=nearby&lang=en&at=13.77971%2C100.54462&task=laptop&minutes=120"
+        ],
+        [
+          "Find a work spot →",
+          "/?plan=nearby&lang=en&at=13.73206%2C100.53012&task=laptop&minutes=120"
+        ],
+        [
+          "© OpenStreetMap",
+          "https://www.openstreetmap.org/copyright"
+        ],
+        [
+          "Overture Maps",
+          "https://overturemaps.org/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "work",
+    "lang": "en",
+    "width": 1440,
+    "height": 900,
+    "geometry": {
+      "width": 1440,
+      "height": 900,
+      "documentWidth": 1440,
+      "documentHeight": 900,
+      "bar": {
+        "x": 340,
+        "top": 0,
+        "right": 1100,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 364,
+        "top": 57,
+        "right": 1076,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 364,
+        "top": 95,
+        "right": 1076,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 364,
+        "top": 284,
+        "right": 502,
+        "bottom": 328,
+        "height": 44,
+        "width": 138
+      },
+      "stamps": {
+        "x": 364,
+        "top": 512,
+        "right": 1076,
+        "bottom": 658,
+        "height": 146,
+        "width": 712
+      },
+      "factBottom": 276,
+      "overflow": [],
+      "lang": "en",
+      "heading": "Where to work",
+      "selected": "Where to work",
+      "links": [
+        [
+          "Find work spots →",
+          "/?plan=nearby&lang=en&task=laptop&minutes=120"
+        ],
+        [
+          "TCDC Bangkok",
+          "/?p=o78f6308fa1ba"
+        ],
+        [
+          "Source ↗",
+          "https://library.tcdc.or.th/page/service"
+        ],
+        [
+          "BACC Art Library",
+          "/?p=n5283277354"
+        ],
+        [
+          "Source ↗",
+          "https://www.bacc.or.th/en/plan-your-visit/art-library/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "today",
+    "lang": "th",
+    "width": 1440,
+    "height": 900,
+    "geometry": {
+      "width": 1440,
+      "height": 900,
+      "documentWidth": 1440,
+      "documentHeight": 900,
+      "bar": {
+        "x": 340,
+        "top": 0,
+        "right": 1100,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 364,
+        "top": 57,
+        "right": 1076,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 364,
+        "top": 95,
+        "right": 1076,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 364,
+        "top": 317,
+        "right": 489,
+        "bottom": 361,
+        "height": 44,
+        "width": 125
+      },
+      "stamps": {
+        "x": 364,
+        "top": 401,
+        "right": 1076,
+        "bottom": 555,
+        "height": 154,
+        "width": 712
+      },
+      "factBottom": 313,
+      "overflow": [],
+      "lang": "th",
+      "heading": "วันนี้ไปไหนดี",
+      "selected": "วันนี้ไปไหนดี",
+      "links": [
+        [
+          "ดูย่านบนแผนที่ →",
+          "/?plan=map&lang=th&at=13.72705%2C100.51518"
+        ],
+        [
+          "วางแผนแวะคาเฟ่",
+          "/?hop=%4013.72705%2C100.51518"
+        ],
+        [
+          "หาที่แวะพร้อมที่จอดรถ",
+          "/?plan=drive&lang=th&at=13.72705%2C100.51518&task=laptop&minutes=120"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "live",
+    "lang": "th",
+    "width": 1440,
+    "height": 900,
+    "geometry": {
+      "width": 1440,
+      "height": 900,
+      "documentWidth": 1440,
+      "documentHeight": 900,
+      "bar": {
+        "x": 340,
+        "top": 0,
+        "right": 1100,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 364,
+        "top": 57,
+        "right": 1076,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 364,
+        "top": 95,
+        "right": 1076,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 592,
+        "top": 510,
+        "right": 690,
+        "bottom": 554,
+        "height": 44,
+        "width": 98
+      },
+      "stamps": {
+        "x": 364,
+        "top": 664,
+        "right": 1076,
+        "bottom": 819,
+        "height": 154,
+        "width": 712
+      },
+      "factBottom": 505,
+      "overflow": [],
+      "lang": "th",
+      "heading": "เลือกย่านที่จะอยู่",
+      "selected": "เลือกย่านที่จะอยู่",
+      "links": [
+        [
+          "อารีย์",
+          "https://www.openstreetmap.org/node/5388607091"
+        ],
+        [
+          "สามย่าน",
+          "https://www.openstreetmap.org/node/12803915078"
+        ],
+        [
+          "หาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&at=13.77971%2C100.54462&task=laptop&minutes=120"
+        ],
+        [
+          "หาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&at=13.73206%2C100.53012&task=laptop&minutes=120"
+        ],
+        [
+          "© OpenStreetMap",
+          "https://www.openstreetmap.org/copyright"
+        ],
+        [
+          "Overture Maps",
+          "https://overturemaps.org/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "work",
+    "lang": "th",
+    "width": 1440,
+    "height": 900,
+    "geometry": {
+      "width": 1440,
+      "height": 900,
+      "documentWidth": 1440,
+      "documentHeight": 900,
+      "bar": {
+        "x": 340,
+        "top": 0,
+        "right": 1100,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 364,
+        "top": 57,
+        "right": 1076,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 364,
+        "top": 95,
+        "right": 1076,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 364,
+        "top": 290,
+        "right": 501,
+        "bottom": 334,
+        "height": 44,
+        "width": 137
+      },
+      "stamps": {
+        "x": 364,
+        "top": 564,
+        "right": 1076,
+        "bottom": 719,
+        "height": 154,
+        "width": 712
+      },
+      "factBottom": 282,
+      "overflow": [],
+      "lang": "th",
+      "heading": "หาที่นั่งทำงาน",
+      "selected": "หาที่นั่งทำงาน",
+      "links": [
+        [
+          "ค้นหาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&task=laptop&minutes=120"
+        ],
+        [
+          "TCDC Bangkok",
+          "/?p=o78f6308fa1ba"
+        ],
+        [
+          "แหล่งข้อมูล ↗",
+          "https://library.tcdc.or.th/page/service"
+        ],
+        [
+          "ห้องสมุดศิลปะ หอศิลปกรุงเทพฯ",
+          "/?p=n5283277354"
+        ],
+        [
+          "แหล่งข้อมูล ↗",
+          "https://www.bacc.or.th/en/plan-your-visit/art-library/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "today",
+    "lang": "en",
+    "width": 1720,
+    "height": 1080,
+    "geometry": {
+      "width": 1720,
+      "height": 1080,
+      "documentWidth": 1720,
+      "documentHeight": 1080,
+      "bar": {
+        "x": 480,
+        "top": 0,
+        "right": 1240,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 504,
+        "top": 57,
+        "right": 1216,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 504,
+        "top": 95,
+        "right": 1216,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 504,
+        "top": 308,
+        "right": 642,
+        "bottom": 352,
+        "height": 44,
+        "width": 138
+      },
+      "stamps": {
+        "x": 504,
+        "top": 390,
+        "right": 1216,
+        "bottom": 536,
+        "height": 146,
+        "width": 712
+      },
+      "factBottom": 304,
+      "overflow": [],
+      "lang": "en",
+      "heading": "Where to go today",
+      "selected": "Where to go today",
+      "links": [
+        [
+          "Explore on map →",
+          "/?plan=map&lang=en&at=13.72705%2C100.51518"
+        ],
+        [
+          "Plan a café hop",
+          "/?hop=%4013.72705%2C100.51518"
+        ],
+        [
+          "Find a stop with parking",
+          "/?plan=drive&lang=en&at=13.72705%2C100.51518&task=laptop&minutes=120"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "live",
+    "lang": "en",
+    "width": 1720,
+    "height": 1080,
+    "geometry": {
+      "width": 1720,
+      "height": 1080,
+      "documentWidth": 1720,
+      "documentHeight": 1080,
+      "bar": {
+        "x": 480,
+        "top": 0,
+        "right": 1240,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 504,
+        "top": 57,
+        "right": 1216,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 504,
+        "top": 95,
+        "right": 1216,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 732,
+        "top": 491,
+        "right": 848,
+        "bottom": 535,
+        "height": 44,
+        "width": 116
+      },
+      "stamps": {
+        "x": 504,
+        "top": 635,
+        "right": 1216,
+        "bottom": 781,
+        "height": 146,
+        "width": 712
+      },
+      "factBottom": 485,
+      "overflow": [],
+      "lang": "en",
+      "heading": "Where to live",
+      "selected": "Where to live",
+      "links": [
+        [
+          "Ari",
+          "https://www.openstreetmap.org/node/5388607091"
+        ],
+        [
+          "Sam Yan",
+          "https://www.openstreetmap.org/node/12803915078"
+        ],
+        [
+          "Find a work spot →",
+          "/?plan=nearby&lang=en&at=13.77971%2C100.54462&task=laptop&minutes=120"
+        ],
+        [
+          "Find a work spot →",
+          "/?plan=nearby&lang=en&at=13.73206%2C100.53012&task=laptop&minutes=120"
+        ],
+        [
+          "© OpenStreetMap",
+          "https://www.openstreetmap.org/copyright"
+        ],
+        [
+          "Overture Maps",
+          "https://overturemaps.org/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "work",
+    "lang": "en",
+    "width": 1720,
+    "height": 1080,
+    "geometry": {
+      "width": 1720,
+      "height": 1080,
+      "documentWidth": 1720,
+      "documentHeight": 1080,
+      "bar": {
+        "x": 480,
+        "top": 0,
+        "right": 1240,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 504,
+        "top": 57,
+        "right": 1216,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 504,
+        "top": 95,
+        "right": 1216,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 504,
+        "top": 284,
+        "right": 642,
+        "bottom": 328,
+        "height": 44,
+        "width": 138
+      },
+      "stamps": {
+        "x": 504,
+        "top": 512,
+        "right": 1216,
+        "bottom": 658,
+        "height": 146,
+        "width": 712
+      },
+      "factBottom": 276,
+      "overflow": [],
+      "lang": "en",
+      "heading": "Where to work",
+      "selected": "Where to work",
+      "links": [
+        [
+          "Find work spots →",
+          "/?plan=nearby&lang=en&task=laptop&minutes=120"
+        ],
+        [
+          "TCDC Bangkok",
+          "/?p=o78f6308fa1ba"
+        ],
+        [
+          "Source ↗",
+          "https://library.tcdc.or.th/page/service"
+        ],
+        [
+          "BACC Art Library",
+          "/?p=n5283277354"
+        ],
+        [
+          "Source ↗",
+          "https://www.bacc.or.th/en/plan-your-visit/art-library/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "today",
+    "lang": "th",
+    "width": 1720,
+    "height": 1080,
+    "geometry": {
+      "width": 1720,
+      "height": 1080,
+      "documentWidth": 1720,
+      "documentHeight": 1080,
+      "bar": {
+        "x": 480,
+        "top": 0,
+        "right": 1240,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 504,
+        "top": 57,
+        "right": 1216,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 504,
+        "top": 95,
+        "right": 1216,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 504,
+        "top": 317,
+        "right": 629,
+        "bottom": 361,
+        "height": 44,
+        "width": 125
+      },
+      "stamps": {
+        "x": 504,
+        "top": 401,
+        "right": 1216,
+        "bottom": 555,
+        "height": 154,
+        "width": 712
+      },
+      "factBottom": 313,
+      "overflow": [],
+      "lang": "th",
+      "heading": "วันนี้ไปไหนดี",
+      "selected": "วันนี้ไปไหนดี",
+      "links": [
+        [
+          "ดูย่านบนแผนที่ →",
+          "/?plan=map&lang=th&at=13.72705%2C100.51518"
+        ],
+        [
+          "วางแผนแวะคาเฟ่",
+          "/?hop=%4013.72705%2C100.51518"
+        ],
+        [
+          "หาที่แวะพร้อมที่จอดรถ",
+          "/?plan=drive&lang=th&at=13.72705%2C100.51518&task=laptop&minutes=120"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "live",
+    "lang": "th",
+    "width": 1720,
+    "height": 1080,
+    "geometry": {
+      "width": 1720,
+      "height": 1080,
+      "documentWidth": 1720,
+      "documentHeight": 1080,
+      "bar": {
+        "x": 480,
+        "top": 0,
+        "right": 1240,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 504,
+        "top": 57,
+        "right": 1216,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 504,
+        "top": 95,
+        "right": 1216,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 732,
+        "top": 510,
+        "right": 830,
+        "bottom": 554,
+        "height": 44,
+        "width": 98
+      },
+      "stamps": {
+        "x": 504,
+        "top": 664,
+        "right": 1216,
+        "bottom": 819,
+        "height": 154,
+        "width": 712
+      },
+      "factBottom": 505,
+      "overflow": [],
+      "lang": "th",
+      "heading": "เลือกย่านที่จะอยู่",
+      "selected": "เลือกย่านที่จะอยู่",
+      "links": [
+        [
+          "อารีย์",
+          "https://www.openstreetmap.org/node/5388607091"
+        ],
+        [
+          "สามย่าน",
+          "https://www.openstreetmap.org/node/12803915078"
+        ],
+        [
+          "หาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&at=13.77971%2C100.54462&task=laptop&minutes=120"
+        ],
+        [
+          "หาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&at=13.73206%2C100.53012&task=laptop&minutes=120"
+        ],
+        [
+          "© OpenStreetMap",
+          "https://www.openstreetmap.org/copyright"
+        ],
+        [
+          "Overture Maps",
+          "https://overturemaps.org/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "work",
+    "lang": "th",
+    "width": 1720,
+    "height": 1080,
+    "geometry": {
+      "width": 1720,
+      "height": 1080,
+      "documentWidth": 1720,
+      "documentHeight": 1080,
+      "bar": {
+        "x": 480,
+        "top": 0,
+        "right": 1240,
+        "bottom": 45,
+        "height": 45,
+        "width": 760
+      },
+      "title": {
+        "x": 504,
+        "top": 57,
+        "right": 1216,
+        "bottom": 89,
+        "height": 32,
+        "width": 712
+      },
+      "tabs": {
+        "x": 504,
+        "top": 95,
+        "right": 1216,
+        "bottom": 140,
+        "height": 45,
+        "width": 712
+      },
+      "action": {
+        "x": 504,
+        "top": 290,
+        "right": 641,
+        "bottom": 334,
+        "height": 44,
+        "width": 137
+      },
+      "stamps": {
+        "x": 504,
+        "top": 564,
+        "right": 1216,
+        "bottom": 719,
+        "height": 154,
+        "width": 712
+      },
+      "factBottom": 282,
+      "overflow": [],
+      "lang": "th",
+      "heading": "หาที่นั่งทำงาน",
+      "selected": "หาที่นั่งทำงาน",
+      "links": [
+        [
+          "ค้นหาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&task=laptop&minutes=120"
+        ],
+        [
+          "TCDC Bangkok",
+          "/?p=o78f6308fa1ba"
+        ],
+        [
+          "แหล่งข้อมูล ↗",
+          "https://library.tcdc.or.th/page/service"
+        ],
+        [
+          "ห้องสมุดศิลปะ หอศิลปกรุงเทพฯ",
+          "/?p=n5283277354"
+        ],
+        [
+          "แหล่งข้อมูล ↗",
+          "https://www.bacc.or.th/en/plan-your-visit/art-library/"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "task": "today",
+    "lang": "th",
+    "width": 390,
+    "height": 844,
+    "enlarged": true,
+    "geometry": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 1533,
+      "bar": {
+        "x": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 51,
+        "height": 51,
+        "width": 390
+      },
+      "title": {
+        "x": 16,
+        "top": 63,
+        "right": 374,
+        "bottom": 170,
+        "height": 108,
+        "width": 359
+      },
+      "tabs": {
+        "x": 16,
+        "top": 176,
+        "right": 374,
+        "bottom": 280,
+        "height": 104,
+        "width": 359
+      },
+      "action": {
+        "x": 16,
+        "top": 766,
+        "right": 261,
+        "bottom": 816,
+        "height": 50,
+        "width": 246
+      },
+      "stamps": {
+        "x": 16,
+        "top": 1053,
+        "right": 374,
+        "bottom": 1509,
+        "height": 455,
+        "width": 359
+      },
+      "factBottom": 762,
+      "overflow": [],
+      "lang": "th",
+      "heading": "วันนี้ไปไหนดี",
+      "selected": "วันนี้ไปไหนดี",
+      "links": [
+        [
+          "ดูย่านบนแผนที่ →",
+          "/?plan=map&lang=th&at=13.72705%2C100.51518"
+        ],
+        [
+          "วางแผนแวะคาเฟ่",
+          "/?hop=%4013.72705%2C100.51518"
+        ],
+        [
+          "หาที่แวะพร้อมที่จอดรถ",
+          "/?plan=drive&lang=th&at=13.72705%2C100.51518&task=laptop&minutes=120"
+        ]
+      ]
+    }
+  },
+  {
+    "task": "live",
+    "lang": "th",
+    "width": 390,
+    "height": 844,
+    "enlarged": true,
+    "geometry": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 2401,
+      "bar": {
+        "x": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 51,
+        "height": 51,
+        "width": 390
+      },
+      "title": {
+        "x": 16,
+        "top": 63,
+        "right": 374,
+        "bottom": 170,
+        "height": 108,
+        "width": 359
+      },
+      "tabs": {
+        "x": 16,
+        "top": 176,
+        "right": 374,
+        "bottom": 280,
+        "height": 104,
+        "width": 359
+      },
+      "action": {
+        "x": 130,
+        "top": 1386,
+        "right": 247,
+        "bottom": 1535,
+        "height": 149,
+        "width": 117
+      },
+      "stamps": {
+        "x": 16,
+        "top": 1922,
+        "right": 374,
+        "bottom": 2377,
+        "height": 455,
+        "width": 359
+      },
+      "factBottom": 1381,
+      "overflow": [],
+      "lang": "th",
+      "heading": "เลือกย่านที่จะอยู่",
+      "selected": "เลือกย่านที่จะอยู่",
+      "links": [
+        [
+          "อารีย์",
+          "https://www.openstreetmap.org/node/5388607091"
+        ],
+        [
+          "สามย่าน",
+          "https://www.openstreetmap.org/node/12803915078"
+        ],
+        [
+          "หาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&at=13.77971%2C100.54462&task=laptop&minutes=120"
+        ],
+        [
+          "หาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&at=13.73206%2C100.53012&task=laptop&minutes=120"
+        ],
+        [
+          "© OpenStreetMap",
+          "https://www.openstreetmap.org/copyright"
+        ],
+        [
+          "Overture Maps",
+          "https://overturemaps.org/"
+        ]
+      ]
+    }
+  },
+  {
+    "task": "work",
+    "lang": "th",
+    "width": 390,
+    "height": 844,
+    "enlarged": true,
+    "geometry": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 2200,
+      "bar": {
+        "x": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 51,
+        "height": 51,
+        "width": 390
+      },
+      "title": {
+        "x": 16,
+        "top": 63,
+        "right": 374,
+        "bottom": 170,
+        "height": 108,
+        "width": 359
+      },
+      "tabs": {
+        "x": 16,
+        "top": 176,
+        "right": 374,
+        "bottom": 280,
+        "height": 104,
+        "width": 359
+      },
+      "action": {
+        "x": 16,
+        "top": 917,
+        "right": 285,
+        "bottom": 966,
+        "height": 50,
+        "width": 270
+      },
+      "stamps": {
+        "x": 16,
+        "top": 1672,
+        "right": 374,
+        "bottom": 2176,
+        "height": 505,
+        "width": 359
+      },
+      "factBottom": 909,
+      "overflow": [],
+      "lang": "th",
+      "heading": "หาที่นั่งทำงาน",
+      "selected": "หาที่นั่งทำงาน",
+      "links": [
+        [
+          "ค้นหาที่นั่งทำงาน →",
+          "/?plan=nearby&lang=th&task=laptop&minutes=120"
+        ],
+        [
+          "TCDC Bangkok",
+          "/?p=o78f6308fa1ba"
+        ],
+        [
+          "แหล่งข้อมูล ↗",
+          "https://library.tcdc.or.th/page/service"
+        ],
+        [
+          "ห้องสมุดศิลปะ หอศิลปกรุงเทพฯ",
+          "/?p=n5283277354"
+        ],
+        [
+          "แหล่งข้อมูล ↗",
+          "https://www.bacc.or.th/en/plan-your-visit/art-library/"
+        ]
+      ]
+    }
+  }
+]

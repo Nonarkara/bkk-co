@@ -1,0 +1,112 @@
+[
+  {
+    "name": "local stamps",
+    "ok": true,
+    "detail": {
+      "count": "2 of 4 stamps on this device.",
+      "notebook": "/?plan=passport"
+    }
+  },
+  {
+    "name": "loading, failure, retry",
+    "ok": true,
+    "detail": {
+      "attempts": 2,
+      "available": 12
+    }
+  },
+  {
+    "name": "keyboard and comparison",
+    "ok": true,
+    "detail": {
+      "keyboard": [
+        {
+          "name": "PLUB map",
+          "id": "",
+          "visible": true
+        },
+        {
+          "name": "แผนที่ ↗",
+          "id": "day-map",
+          "visible": true
+        },
+        {
+          "name": "English",
+          "id": "day-language",
+          "visible": true
+        },
+        {
+          "name": "เลือกย่านที่จะอยู่",
+          "id": "",
+          "visible": true
+        },
+        {
+          "name": "วันนี้ไปไหนดี",
+          "id": "",
+          "visible": true
+        },
+        {
+          "name": "หาที่นั่งทำงาน",
+          "id": "",
+          "visible": true
+        },
+        {
+          "name": "อารีย์\nสามย่าน\nเจริญกรุง\nทองหล่อ\nรามคำแหง\nเขตปทุมวัน\nเขตพระน",
+          "id": "day-left",
+          "visible": true
+        },
+        {
+          "name": "อารีย์\nสามย่าน\nเจริญกรุง\nทองหล่อ\nรามคำแหง\nเขตปทุมวัน\nเขตพระน",
+          "id": "day-right",
+          "visible": true
+        },
+        {
+          "name": "อารีย์",
+          "id": "",
+          "visible": true
+        },
+        {
+          "name": "สามย่าน",
+          "id": "",
+          "visible": true
+        }
+      ],
+      "selected": "ใกล้จุดอ้างอิง\tเขตประเวศ\tสามย่าน\n",
+      "hrefs": [
+        "/?plan=nearby&lang=th&at=13.69453%2C100.64844&task=laptop&minutes=120",
+        "/?plan=nearby&lang=th&at=13.73206%2C100.53012&task=laptop&minutes=120"
+      ]
+    }
+  },
+  {
+    "name": "Thai work finder handoff",
+    "ok": true,
+    "detail": {
+      "url": "http://localhost:43879/?plan=nearby&lang=th&task=read&minutes=240&at=13.73206%2C100.53012",
+      "title": "หาที่นั่งทำงาน",
+      "task": "read",
+      "duration": 240,
+      "mode": "nearby",
+      "origin": {
+        "x": 100.53012,
+        "y": 13.73206,
+        "label": "จุดกึ่งกลางแผนที่",
+        "kind": "map"
+      },
+      "rows": 305,
+      "firstCTA": 786.4375,
+      "bodyWidth": 390
+    }
+  },
+  {
+    "name": "today map and hop handoffs",
+    "ok": true,
+    "detail": {
+      "at": [
+        13.72705,
+        100.51518
+      ],
+      "stops": 5
+    }
+  }
+]

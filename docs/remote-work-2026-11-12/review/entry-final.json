@@ -1,0 +1,58 @@
+[
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "mapShare": 0.889,
+    "barHeight": 48,
+    "linkTop": 517,
+    "linkBottom": 549,
+    "groupedChrome": 112,
+    "listWidth": 390,
+    "listScrollWidth": 390,
+    "documentWidth": 390
+  },
+  {
+    "viewport": [
+      1024,
+      900
+    ],
+    "mapShare": 0.648,
+    "barHeight": 48,
+    "linkTop": 102,
+    "linkBottom": 134,
+    "groupedChrome": 110,
+    "listWidth": 359,
+    "listScrollWidth": 359,
+    "documentWidth": 1024
+  },
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "mapShare": 0.75,
+    "barHeight": 48,
+    "linkTop": 102,
+    "linkBottom": 134,
+    "groupedChrome": 110,
+    "listWidth": 359,
+    "listScrollWidth": 359,
+    "documentWidth": 1440
+  },
+  {
+    "viewport": [
+      1720,
+      1080
+    ],
+    "mapShare": 0.791,
+    "barHeight": 48,
+    "linkTop": 102,
+    "linkBottom": 134,
+    "groupedChrome": 110,
+    "listWidth": 359,
+    "listScrollWidth": 359,
+    "documentWidth": 1720
+  }
+]
