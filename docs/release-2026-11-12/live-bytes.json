@@ -1,12 +1,12 @@
 {
-  "observedAt": "2026-11-12T09:18:06.141Z",
+  "observedAt": "2026-11-12T09:39:20.430Z",
   "origin": "https://co.nonarkara.org",
-  "sourceCommit": "53b33631b6a872767935066b8d83e2772c4651e1",
+  "sourceCommit": "1c2a01b7cbb1b90686df12082762c0e734eec68d",
   "matched": [
     {
       "path": "app.js",
       "bytes": 41975,
-      "sha256": "eab9ba9101242b6b9227b497a393493b215f4ab8e5fd5b4e89ad5d4b0397c833"
+      "sha256": "d003d6bcb7a577b6b2be173ef10b1abaa6281274683f9d8a9035d1d3e91d5374"
     },
     {
       "path": "atlas-model.js",
@@ -920,8 +920,8 @@
     },
     {
       "path": "data/manifest.json",
-      "bytes": 2070,
-      "sha256": "771733122323baccc8479afb58c416f9830228607a8ffd1186604f15ad719f0b"
+      "bytes": 2077,
+      "sha256": "398a2d7a0ce511483eaeb560e9e37d292d70db87021c3c49d09afcc19c5120b9"
     },
     {
       "path": "data/neighborhood-photos.json",
@@ -935,8 +935,8 @@
     },
     {
       "path": "data/places-work.json",
-      "bytes": 1782382,
-      "sha256": "8c72533b96de56992097fc08f9b6cee288a63cff982eb4964ca8d97be1141716"
+      "bytes": 2133170,
+      "sha256": "600169156c46f468d6213c37ee54f318f2383ef82d78b91cd4b20e7952e62db0"
     },
     {
       "path": "data/street-areas.json",
@@ -1005,8 +1005,8 @@
     },
     {
       "path": "data/street-world.json",
-      "bytes": 6211,
-      "sha256": "50e8c5a081f28e131fcff6642dba9672878d3d377faaa3d99e6363cf7ed6c61a"
+      "bytes": 8857,
+      "sha256": "73ab46979137559716075defebfe19358c91f389e09c0eea854289ad91bda872"
     },
     {
       "path": "data/talk-media.json",
@@ -1015,8 +1015,8 @@
     },
     {
       "path": "data/venue-reports.json",
-      "bytes": 3793,
-      "sha256": "f2e5d33a08c2f12b2abdb9aae8fa8b7df704a483f48158b09b55659d3e14618e"
+      "bytes": 4509,
+      "sha256": "615291cfbd20744f3e6b2a01080b837e5de144c0bb290175c2c37e6f7a803818"
     },
     {
       "path": "discovery.css",
@@ -1910,8 +1910,8 @@
     },
     {
       "path": "style.css",
-      "bytes": 26641,
-      "sha256": "ca4e9d249468172c6205d3c574228a9c7341fbfe84fb0d62d7be914d7b65dead"
+      "bytes": 27166,
+      "sha256": "3afa1b3ac937195fd95f12ad22f106eaa9e7d6428ec80a88edcdc5cdf6fed360"
     },
     {
       "path": "styles/plub-manga.json",
