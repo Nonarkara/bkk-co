@@ -273,6 +273,37 @@ async function checkPlaceSheet(page, base) {
   return result;
 }
 
+async function checkVisitReadingOrder(page, base) {
+  await page.goto(new URL('/bridge-1958', base).href, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await page.locator('.visit-photo img').evaluate(img => img.decode());
+  await page.evaluate(() => document.fonts.ready);
+  const measure = () => {
+    const rect = selector => document.querySelector(selector).getBoundingClientRect();
+    const photo = rect('.visit-photo');
+    const title = rect('#visit-title');
+    const verdict = rect('.visit-verdict');
+    const directions = rect('.visit-primary');
+    const wifi = rect('.visit-wifi summary');
+    const photoLeads = innerWidth < 760 ? photo.bottom <= title.top : photo.right <= title.left;
+    const inlineOrder = document.querySelector('.visit-photo').compareDocumentPosition(document.querySelector('#visit-title')) & Node.DOCUMENT_POSITION_FOLLOWING;
+    const width = document.documentElement.scrollWidth;
+    return { photoLeads, titleTop: title.top, verdictBottom: verdict.bottom, directionsBottom: directions.bottom, wifiBottom: wifi.bottom, width,
+      pass: photoLeads && Boolean(inlineOrder) && photo.top <= 90 && verdict.top >= title.bottom &&
+        directions.top >= verdict.bottom && directions.bottom <= Math.min(560, innerHeight) &&
+        wifi.bottom <= innerHeight && width <= innerWidth };
+  };
+  const result = await page.evaluate(measure);
+  if (PLANTED) {
+    await page.evaluate(() => {
+      const photo = document.querySelector('.visit-photo');
+      document.querySelector('.visit-intro').after(photo);
+      photo.querySelector('img').style.aspectRatio = 'auto';
+    });
+    result.plantedRejected = !(await page.evaluate(measure)).pass;
+  }
+  return result;
+}
+
 const PRESERVE = async (page, base, shot) => {
   const checks = {};
   const errors = [], writes = [];
@@ -435,6 +466,7 @@ function verdictFor(view, journey) {
   if (!view.task.search || !view.task.count) F('B1 first-screen task', 'the search or the count is below the fold');
   if (view.lang !== 'en') F('B12 language', `lang is "${view.lang}"`);
   if (view.placeSheet && (!view.placeSheet.pass || (PLANTED && view.placeSheet.plantedRejected !== true))) F('B1 place sheet', `Bridge facts or Directions failed the reading budget: ${JSON.stringify(view.placeSheet)}`);
+  if (view.visitReading && (!view.visitReading.pass || (PLANTED && view.visitReading.plantedRejected !== true))) F('B1 visit reading order', `Bridge photo, facts and actions failed the reading budget: ${JSON.stringify(view.visitReading)}`);
   if (journey) {
     if (!journey.places?.pass) F('B14 grouped places', 'the sidebar needs short category previews and a first-screen work action');
     if (PLANTED && journey.ungroupedRejected !== true) F('B14 grouped places', 'the grouped-places gate accepted an ungrouped list');
@@ -488,6 +520,9 @@ try {
     try { view.placeSheet = await checkPlaceSheet(page, base); }
     catch (error) { view.placeSheet = { pass: false, error: String(error.message).split('\n')[0] }; }
     await page.screenshot({ path: new URL(`${PLANTED ? 'place-planted' : 'place'}-${w}.png`, outDir).pathname });
+    try { view.visitReading = await checkVisitReadingOrder(page, base); }
+    catch (error) { view.visitReading = { pass: false, error: String(error.message).split('\n')[0] }; }
+    await page.screenshot({ path: new URL(`${PLANTED ? 'visit-planted' : 'visit'}-${w}.png`, outDir).pathname });
     report.viewports.push({ width: w, height: h, ...view });
     await context.close();
   }
@@ -520,7 +555,7 @@ if (PLANTED) {
   const caught = report.fails.some(f => /void|obstruct|map/.test(f.id));
   console.log(`Planted defect: ${report.fails.length} failure(s) reported; the gate caught it: ${caught}.`);
   for (const f of report.fails) console.log(`  PLANTED FAIL [${f.width}] ${f.id}: ${f.detail}`);
-  if (!caught || report.journey.ungroupedRejected !== true || report.fails.some(f => f.width === 'journey' || f.id === 'B1 place sheet')) { console.error('THE PLANTED OR PRESERVATION CHECK FAILED.'); process.exit(2); }
+  if (!caught || report.journey.ungroupedRejected !== true || report.fails.some(f => f.width === 'journey' || f.id === 'B1 place sheet' || f.id === 'B1 visit reading order')) { console.error('THE PLANTED OR PRESERVATION CHECK FAILED.'); process.exit(2); }
   console.log(`Report: ${new URL('msh-report-planted.json', outDir).pathname}`);
   process.exit(0);
 }
