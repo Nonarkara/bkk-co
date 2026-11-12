@@ -234,6 +234,45 @@ async function ready(page) {
   await page.waitForTimeout(700);
   return page.evaluate(() => !!map.getLayer('place-icons'));
 }
+
+async function checkPlaceSheet(page, base) {
+  await page.goto(new URL('/?p=o71358a621d50', base).href, { waitUntil: 'domcontentloaded', timeout: 120000 });
+  await page.locator('.place-visit-report a').waitFor({ timeout: 30000 });
+  await page.evaluate(() => document.fonts.ready);
+  const measure = () => {
+    const sheet = document.querySelector('#sheet');
+    const facts = sheet.querySelector('.facts');
+    const address = facts.querySelector('[data-fact=address]');
+    const value = address.querySelector('.fact-value') || address;
+    const range = document.createRange();
+    range.selectNodeContents(value);
+    const lines = [...range.getClientRects()];
+    const textWidth = Math.max(...lines.map(r => r.right)) - Math.min(...lines.map(r => r.left));
+    const action = sheet.querySelector('.place-actions > a').getBoundingClientRect();
+    const bounds = sheet.getBoundingClientRect();
+    const factsHeight = facts.getBoundingClientRect().height;
+    return { lines: lines.length, textWidth, factsHeight, directionsBottom: action.bottom - bounds.top,
+      pass: lines.length <= 4 && textWidth >= facts.clientWidth * .55 && factsHeight <= 120 &&
+        action.top >= bounds.top && action.bottom <= bounds.bottom && sheet.scrollWidth <= sheet.clientWidth + 1 };
+  };
+  const result = await page.evaluate(measure);
+  if (PLANTED) {
+    await page.evaluate(() => {
+      const facts = document.querySelector('.facts');
+      facts.style.cssText = 'display:grid; grid-template-columns:20px 1fr';
+      for (const row of [...facts.children]) {
+        const icon = document.createElement('li');
+        icon.textContent = row.querySelector('.sym').textContent;
+        row.before(icon);
+        row.textContent = row.querySelector('.fact-value').textContent;
+        row.style.gridTemplateColumns = '1.5em 1fr';
+      }
+    });
+    result.plantedRejected = !(await page.evaluate(measure)).pass;
+  }
+  return result;
+}
+
 const PRESERVE = async (page, base, shot) => {
   const checks = {};
   const errors = [], writes = [];
@@ -346,6 +385,7 @@ const PRESERVE = async (page, base, shot) => {
   });
 
   await step('walkthrough', async () => {
+    await page.evaluate(() => map.jumpTo({ center: [100.64228, 13.76848], zoom: 16 }));
     await page.locator('.list-walkthrough').click({ timeout: 15000 });
     const stage = page.locator('#walkthrough-stage[open][data-ready="true"]');
     await stage.waitFor({ timeout: 25000 });
@@ -355,11 +395,19 @@ const PRESERVE = async (page, base, shot) => {
       return {
         area: el.dataset.area,
         streets: Number(el.dataset.streets),
+        volumes: Number(el.dataset.volumes),
         options: el.querySelector('.model-area select').options.length,
         reachable: document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)?.closest('.model-close') === back
       };
     });
     if (shot) await page.screenshot({ path: new URL(`walkthrough-${shot}.png`, outDir).pathname });
+    await stage.getByRole('combobox', { name: 'Neighbourhood' }).selectOption('bangkapi');
+    await page.locator('#walkthrough-stage[data-area=bangkapi][data-volumes="0"]').waitFor({ timeout: 25000 });
+    const relief = stage.getByRole('button', { name: 'See 3D in Sam Yan' });
+    checks.walkthrough.flat = /No mapped building heights/.test(await stage.getByRole('status').innerText()) && await relief.isVisible();
+    await relief.click();
+    await page.locator('#walkthrough-stage[data-area=samyan]').waitFor({ timeout: 25000 });
+    checks.walkthrough.relief = Number(await stage.getAttribute('data-volumes')) > 0;
     await page.keyboard.press('Escape');
     checks.walkthrough.closed = !await page.locator('#walkthrough-stage').evaluate(el => el.open);
   });
@@ -386,11 +434,12 @@ function verdictFor(view, journey) {
   if (view.hierarchyRatio < 1.5) F('B7 hierarchy', `top two areas differ by only ${view.hierarchyRatio}x`);
   if (!view.task.search || !view.task.count) F('B1 first-screen task', 'the search or the count is below the fold');
   if (view.lang !== 'en') F('B12 language', `lang is "${view.lang}"`);
+  if (view.placeSheet && (!view.placeSheet.pass || (PLANTED && view.placeSheet.plantedRejected !== true))) F('B1 place sheet', `Bridge facts or Directions failed the reading budget: ${JSON.stringify(view.placeSheet)}`);
   if (journey) {
     if (!journey.places?.pass) F('B14 grouped places', 'the sidebar needs short category previews and a first-screen work action');
     if (PLANTED && journey.ungroupedRejected !== true) F('B14 grouped places', 'the grouped-places gate accepted an ungrouped list');
     const walk = journey.walkthrough;
-    if (!walk?.streets || walk.options !== 12 || !walk.reachable || !walk.closed) F('B14 walkthrough', '3D must render mapped streets, offer all areas and return to the map');
+    if (!walk?.streets || walk.volumes < 10 || !walk.flat || !walk.relief || walk.options !== 12 || !walk.reachable || !walk.closed) F('B14 walkthrough', '3D must open with mapped relief, preserve the flat area and return to the map');
     if (!journey.pinsLayer) F('B14 preservation', 'the map never drew the place pins');
     if (!journey.search) F('B14 preservation', 'search returns nothing');
     if (!journey.hitsDismissed) F('B14 preservation', 'Escape does not dismiss the search results');
@@ -436,6 +485,9 @@ try {
     const view = await page.evaluate(MEASURE);
     view.pinsLayer = pins;
     await page.screenshot({ path: new URL(`${PLANTED ? 'planted' : 'view'}-${w}.png`, outDir).pathname });
+    try { view.placeSheet = await checkPlaceSheet(page, base); }
+    catch (error) { view.placeSheet = { pass: false, error: String(error.message).split('\n')[0] }; }
+    await page.screenshot({ path: new URL(`${PLANTED ? 'place-planted' : 'place'}-${w}.png`, outDir).pathname });
     report.viewports.push({ width: w, height: h, ...view });
     await context.close();
   }
@@ -468,7 +520,7 @@ if (PLANTED) {
   const caught = report.fails.some(f => /void|obstruct|map/.test(f.id));
   console.log(`Planted defect: ${report.fails.length} failure(s) reported; the gate caught it: ${caught}.`);
   for (const f of report.fails) console.log(`  PLANTED FAIL [${f.width}] ${f.id}: ${f.detail}`);
-  if (!caught || report.journey.ungroupedRejected !== true || report.fails.some(f => f.width === 'journey')) { console.error('THE PLANTED OR PRESERVATION CHECK FAILED.'); process.exit(2); }
+  if (!caught || report.journey.ungroupedRejected !== true || report.fails.some(f => f.width === 'journey' || f.id === 'B1 place sheet')) { console.error('THE PLANTED OR PRESERVATION CHECK FAILED.'); process.exit(2); }
   console.log(`Report: ${new URL('msh-report-planted.json', outDir).pathname}`);
   process.exit(0);
 }

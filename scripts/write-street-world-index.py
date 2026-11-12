@@ -39,6 +39,7 @@ def main():
             'anchorName': area.get('anchorName') or '', 'cafesWithin800m': area.get('cafesWithin800m', 0),
             'mix': area.get('mix', {}),
             'anchor': area['anchor'], 'radiusM': area.get('radiusM', RADIUS_M),
+            'heightVolumes': file['counts']['heightVolumes'],
         })
     known = sum(f['properties']['heightM'] is not None for f in buildings.values())
     rendered = sum(bool(f['properties']['render3D']) for f in buildings.values())
@@ -48,9 +49,10 @@ def main():
         'areas': len(index_areas), 'buildingCount': len(buildings),
         'explicitHeightCount': known, 'unknownHeightCount': len(buildings) - known,
         'renderedHeightCount': rendered, 'streetCount': len(streets), 'junctionCount': len(junctions),
+        'catalogueSHA256': hashlib.sha256((DATA / 'places-work.json').read_bytes()).hexdigest(),
     })
     payload = {'manifest': manifest, 'areas': index_areas}
-    raw = json.dumps(payload, ensure_ascii=False, separators=(',', ':')).encode()
+    raw = (json.dumps(payload, indent=2) + '\n').encode()
     (DATA / 'street-world.json').write_bytes(raw)
     print(json.dumps({'areas': len(index_areas), 'bytes': len(raw),
                       'buildings': len(buildings), 'explicitHeight': known, 'renderedHeight': rendered,

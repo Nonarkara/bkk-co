@@ -1,0 +1,29 @@
+.visit-page { display:block; height:auto; min-height:100%; overflow:visible; }
+.visit-nav { max-width:1120px; margin:auto; padding:0 20px; min-height:48px; display:flex; flex-wrap:wrap; align-items:center; gap:4px 18px; border-bottom:1px solid var(--rule); }
+.visit-nav > a { display:inline-flex; align-items:center; min-height:44px; }
+.visit-layout { max-width:1120px; margin:auto; padding:18px 20px 24px; display:grid; gap:14px 24px; }
+.visit-layout > * { min-width:0; overflow-wrap:anywhere; }
+.visit-kind, .visit-credit, .visit-photo figcaption { color:var(--muted); font-size:var(--small); }
+.visit-intro h1 { margin:3px 0 10px; max-width:21ch; font-size:var(--big); line-height:1.15; font-weight:600; }
+.visit-facts { display:grid; gap:2px; }
+.visit-facts > div { display:grid; grid-template-columns:4em minmax(0,1fr); gap:8px; }
+.visit-facts dt { color:var(--muted); }
+.visit-actions { display:flex; flex-wrap:wrap; gap:0 12px; align-items:center; margin-top:8px; }
+.visit-actions a { display:inline-flex; align-items:center; min-height:44px; }
+.visit-actions .visit-primary { background:var(--ink); color:var(--paper); padding:0 12px; text-decoration:none; font-weight:500; }
+.visit-photo img { width:100%; height:auto; display:block; }
+.visit-photo figcaption { margin-top:4px; }
+.visit-work, .visit-story { border-top:1px solid var(--rule); padding-top:8px; align-self:start; }
+.visit-work h2, .visit-story h2 { font-size:var(--big); font-weight:600; line-height:1.2; margin-bottom:4px; }
+.visit-work > p, .visit-story > p { max-width:64ch; }
+.visit-speed { margin-top:8px; }
+.visit-wifi summary { cursor:pointer; min-height:44px; padding-block:10px; font-weight:600; }
+.visit-wifi p { max-width:50ch; padding-bottom:4px; }
+.visit-credit { margin-top:6px; }
+@media (min-width:760px) {
+  .visit-layout { grid-template-columns:minmax(0,3fr) minmax(0,2fr); grid-template-areas:"photo intro" "photo work" "story work"; align-items:start; grid-template-rows:auto auto 1fr; }
+  .visit-intro { grid-area:intro; }
+  .visit-photo { grid-area:photo; }
+  .visit-work { grid-area:work; }
+  .visit-story { grid-area:story; }
+}

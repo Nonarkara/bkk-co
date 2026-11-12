@@ -253,9 +253,11 @@ dialog.street-3d-stage {
 .model-seg button { font-size:inherit; white-space:normal; }
 .model-close { margin-left:0; }
 .model-coverage {
+  display:flex; flex-wrap:wrap; align-items:center; gap:0 8px;
   flex-basis:max-content; max-width:100%; padding:4px 8px;
   background:var(--paper); color:var(--ink); line-height:1.3;
 }
+.model-relief { min-height:32px; padding:0; text-decoration:underline; text-underline-offset:3px; }
 .model-hint { max-width:calc(100% - 24px); text-transform:none; }
 .model-start { padding:14px; max-width:35em; }
 .model-start-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }

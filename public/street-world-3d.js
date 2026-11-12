@@ -214,7 +214,11 @@ export async function start(host, options = {}) {
     const distance = Math.hypot(area.anchor.x - origin.x, area.anchor.y - origin.y);
     return distance < best.distance ? { area, distance } : best;
   }, { distance: Infinity }).area;
-  const startArea = areas.find(area => area.id === opt.areaId) || nearest || areas[0];
+  const mostRelief = areas.reduce((best, area) => (area.heightVolumes || 0) > (best.heightVolumes || 0) ? area : best);
+  // Keep an explicitly requested neighbourhood. For a general launch, use a nearby
+  // scene with enough mapped relief to read at overview scale, or the strongest scene.
+  const startArea = areas.find(area => area.id === opt.areaId) ||
+    ((nearest?.heightVolumes ?? 0) >= 10 ? nearest : mostRelief);
   const areaOptions = areas.map(area => {
     const option = new Option(area.id === 'ramkhamhaeng' ? 'Ramkhamhaeng' : area.name, area.id, area.id === startArea.id, area.id === startArea.id);
     return option.outerHTML;
@@ -231,7 +235,7 @@ export async function start(host, options = {}) {
       </div>
       <label class="model-light"><span class="sr">Light</span><select aria-label="Light"><option value="day">Day</option><option value="dusk">Dusk</option><option value="night">Night</option></select></label>
       <button type="button" class="model-close" aria-label="Back to map">Back to map</button>
-      <p class="model-coverage" role="status"></p>
+      <div class="model-coverage"><p role="status"></p><button type="button" class="model-relief" hidden></button></div>
     </div>
     <div class="model-pins"></div>
     <div class="model-bottom">
@@ -255,7 +259,8 @@ export async function start(host, options = {}) {
 
   const canvas = host.querySelector('.model-canvas');
   const bar = host.querySelector('.model-bar');
-  const coverageEl = host.querySelector('.model-coverage');
+  const coverageEl = host.querySelector('.model-coverage [role=status]');
+  const reliefBtn = host.querySelector('.model-relief');
   const pinsContainer = host.querySelector('.model-pins');
   const joyEl = host.querySelector('.model-joy');
   const joyKnob = joyEl.querySelector('span');
@@ -355,6 +360,7 @@ export async function start(host, options = {}) {
     dist: 610, yaw: -0.45, pitch: 0.82,
     speed: 7
   };
+  let hasRelief = false;
 
   const areaSelect = bar.querySelector('.model-area select');
   const lightSelect = bar.querySelector('.model-light select');
@@ -559,7 +565,9 @@ export async function start(host, options = {}) {
       currentMeshes.push(fpMesh);
     }
 
-    coverageEl.textContent = `${knownCount} of ${bList.length} buildings in relief · mapped heights`;
+    hasRelief = knownCount > 0;
+    coverageEl.textContent = hasRelief ? `${knownCount} of ${bList.length} footprints in relief` : 'No mapped building heights';
+    reliefBtn.hidden = hasRelief || !mostRelief.heightVolumes;
     host.dataset.area = area.id;
     host.dataset.volumes = String(knownCount);
 
@@ -616,7 +624,10 @@ export async function start(host, options = {}) {
     S.x = S.z = 0;
     const street = standNear(0, 0);
     bar.querySelector('[data-mode="walk"]').disabled = !street;
-    if (!street) setMode('sky');
+    S.yaw = -0.45;
+    S.pitch = hasRelief ? 0.94 : 1.37;
+    S.dist = hasRelief ? 560 : 735;
+    setMode('sky');
     activePlaceIDs = file.placeIDs;
     createPins(activePlaceIDs);
     invalidate();
@@ -742,7 +753,7 @@ export async function start(host, options = {}) {
 
     if (S.mode === 'sky') {
       S.yaw -= dx * 0.005;
-      S.pitch = Math.max(0.12, Math.min(1.4, S.pitch + dy * 0.004));
+      S.pitch = Math.max(hasRelief ? 0.32 : 1.16, Math.min(1.4, S.pitch + dy * 0.004));
     } else {
       S.wyaw -= dx * 0.0045;
       S.wpitch = Math.max(-1.15, Math.min(1.15, S.wpitch - dy * 0.004));
@@ -812,6 +823,11 @@ export async function start(host, options = {}) {
   joyEl.addEventListener('pointercancel', endJoy);
 
   // Bar interactions
+  reliefBtn.textContent = `See 3D in ${mostRelief.name}`;
+  reliefBtn.addEventListener('click', () => {
+    areaSelect.focus();
+    void loadArea(mostRelief).catch(() => { dispose(); opt.onError(); });
+  });
   areaSelect.addEventListener('change', () => {
     const area = areas.find(candidate => candidate.id === areaSelect.value);
     areaSelect.value = activeArea?.id || startArea.id;
