@@ -122,6 +122,13 @@ async function cellDetail(p) {
   return { ...((await state.cells.get(key))[p.id] || {}), loaded: true };
 }
 
+let venueReports;
+function loadVenueReports() {
+  return venueReports ??= fetch('data/venue-reports.json', { signal: AbortSignal.timeout(2500) })
+    .then(r => { if (!r.ok) throw Error('Visit reports unavailable'); return r.json(); })
+    .catch(() => { venueReports = undefined; return {}; });
+}
+
 // share of Bangkok places this one beats, from the sorted index list
 function topShare(p) {
   const a = state.sortedIdx; let lo = 0, hi = a.length;
@@ -421,7 +428,7 @@ document.addEventListener('click', e => {
 
 // ---------- sheets ----------
 let sheetGeneration=0;
-function openSheet(html, { place = false, keepRoute = false } = {}) {
+function openSheet(html, { place = false, keepRoute = false, preserveFocus = false } = {}) {
   sheetGeneration++;
   window.MangaLens?.settle();
   window.StreetWorld?.suspend();
@@ -431,10 +438,12 @@ function openSheet(html, { place = false, keepRoute = false } = {}) {
   $('#hits').hidden = true;
   const sheet = $('#sheet');
   sheet.classList.remove('notebook-sheet','hood-sheet','hop-sheet','discovery-sheet','atlas-sheet','journey-sheet','featured-sheet','recommend-sheet','community-sheet','shared-hops-sheet','reference-gallery');
+  sheet.classList.toggle('place-sheet', place);
+  if (!place) delete sheet.dataset.place;
   sheet.hidden = false;
   sheet.innerHTML = html;
   const heading = sheet.querySelector('h1');
-  if (heading) { heading.tabIndex = -1; heading.focus({ preventScroll: true }); }
+  if (heading) { heading.tabIndex = -1; if (!preserveFocus) heading.focus({ preventScroll: true }); }
   sheet.scrollTop = 0;
   sheet.querySelector('.close')?.addEventListener('click', closeSheet);
   return sheet;
@@ -482,8 +491,15 @@ async function select(p, fly) {
   const view = { center: [p.x, p.y], zoom: fly ? Math.max(map.getZoom(), 16.5) : map.getZoom(), padding };
   fly === 'jump' ? map.jumpTo(view) : map.flyTo({ ...view, speed: 1.6 }); // shared links land, no flight
   const generation=sheetGeneration;
+  let report;
+  const reportReady = loadVenueReports().then(data => { report = data.reports?.[p.id]; });
   const [d, visits] = await Promise.all([cellDetail(p), Passport.forPlace(p.id,canonId).catch(() => [])]);
-  if(generation===sheetGeneration)renderSheet(p, d, visits);
+  if (generation !== sheetGeneration) return;
+  renderSheet(p, d, visits, report);
+  if (report) return;
+  const detailGeneration = sheetGeneration;
+  await reportReady;
+  if (report && detailGeneration === sheetGeneration) renderSheet(p, d, visits, report);
 }
 
 function rawValue(key, p, d) {
@@ -506,39 +522,72 @@ function scoreHtml(p){
 `;
 }
 
-function renderSheet(p, d, visits) {
+function visitReportHtml(report) {
+  if (!report) return '';
+  const wifi = report.facts?.wifi?.measure;
+  const speed = wifi && [wifi.downMbps, wifi.upMbps, wifi.pingMs].every(Number.isFinite)
+    ? `<p><b>Wi-Fi</b> ${wifi.downMbps} Mbps down · ${wifi.upMbps} Mbps up · ${wifi.pingMs} ms ping</p>` : '';
+  const page = /^\/[a-z0-9-]+$/.test(report.page) ? report.page : null;
+  return `<section class="place-visit-report" aria-label="On-site visit report">
+    <h2>On-site visit <span>· ${esc(report.date)}</span></h2>
+    ${speed}
+    ${report.facts?.power?.band ? `<p>${esc(report.facts.power.detail)}</p>` : ''}
+    ${page ? `<a href="${esc(page)}">Read visit notes &amp; see photo →</a>` : ''}
+  </section>`;
+}
+
+function renderSheet(p, d, visits, report) {
   if (state.selected !== p) return;
   // Late catalogue details must not replace a visit form someone is already writing.
   if (!$('#sheet').hidden && $('#sheet .been-form')?.dataset.place === p.id) return;
-  const s = state.scores[p.id];
-  const open = window.isOpen(venueHours(p), new Date());
+  const hours = venueHours(p);
+  const open = window.isOpen(hours, new Date());
   const hood = window.hoodOf?.(p);
+  const addr = report?.place?.address || d.addr;
+  const tel = report?.place?.tel || d.tel;
+  const email = report?.place?.email;
+  const addressSource = safeLink(report?.place?.addressSource);
   const facts = [
-    d.about && ['✎', esc(d.about)],
-    d.visit && ['✓', `<span class="hand">${esc(d.visit)}</span>`], // Non's own note, in his own hand
-    venueHours(p) && ['◷', `${open === true ? '<b>Open now</b> · ' : open === false ? 'Closed now · ' : ''}${esc(venueHours(p))}`],
-    p.flags & F.OUTDOOR && ['☀', 'Outdoor seating'],
-    d.c && ['·', esc(d.c.replace(/[_;]/g, ' '))],
-    d.addr && ['⌖', esc(d.addr)],
-    safeLink(d.web) && ['↗', `<a href="${esc(safeLink(d.web))}" target="_blank" rel="noopener nofollow">${esc(d.web.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</a>`],
-    safeLink(d.social) && ['↗', `<a href="${esc(safeLink(d.social))}" target="_blank" rel="noopener nofollow">${esc(d.social.replace(/^https?:\/\/(www\.)?/, ''))}</a>`],
-    d.tel && ['☎', `<a href="tel:${esc(d.tel.replace(/\s/g, ''))}">${esc(d.tel)}</a>`],
+    hours && ['◷', 'hours', `${open === true ? '<b>Open now</b> · ' : open === false ? '<b>Closed now</b> · ' : ''}${esc(hours.replace(/^Mo-Su (?=\d\d:\d\d-\d\d:\d\d$)/, 'Daily '))}`],
+    addr && ['⌖', 'address', esc(addr)],
   ].filter(Boolean);
-  const src = p.flags & F.HAND
+  const moreFacts = [
+    tel && ['☎', 'phone', `<a href="tel:${esc(tel.replace(/\(0\)/g, '').replace(/[^+\d]/g, ''))}">${esc(tel)}</a>`],
+    (safeLink(d.web) || safeLink(d.social) || addressSource || email) && ['↗', 'links', `<span class="place-contact">
+      ${safeLink(d.web) ? `<a href="${esc(safeLink(d.web))}" target="_blank" rel="noopener nofollow">Website</a>` : ''}
+      ${safeLink(d.social) ? `<a href="${esc(safeLink(d.social))}" target="_blank" rel="noopener nofollow">Social</a>` : ''}
+      ${addressSource ? `<a href="${esc(addressSource)}" target="_blank" rel="noopener nofollow">Venue on LINE</a>` : ''}
+      ${email && /^[\w.+-]+@[\w.-]+\.[a-z]+$/i.test(email) ? `<a href="mailto:${esc(email)}">Email</a>` : ''}</span>`],
+    p.flags & F.OUTDOOR && ['☀', 'outdoor', 'Outdoor seating'],
+    d.c && ['·', 'cuisine', esc(d.c.replace(/[_;]/g, ' '))],
+  ].filter(Boolean);
+  const factList = (rows, label) => rows.length ? `<ul class="facts" aria-label="${label}">${rows.map(([sym, key, content]) => `<li data-fact="${key}"><span class="sym" aria-hidden="true">${sym}</span><span class="fact-value">${content}</span></li>`).join('')}</ul>` : '';
+  const src = p.flags & F.HAND && !(p.flags & F.OVERTURE)
     ? `Hand pin · ${esc(d.pinned || 'a visit')} · not on OpenStreetMap yet · <a href="${osmNote(p.y, p.x)}" target="_blank" rel="noopener">add it</a>`
     : p.flags & F.OVERTURE
     ? `Overture Maps${d.ds?.length ? ' via ' + esc(d.ds.join(', ')) : ''}${d.conf ? ` · confidence ${d.conf}` : ''}`
     : `OpenStreetMap${d.ds?.length ? ' + ' + esc(d.ds.join(', ')) : ''} · <a href="https://www.openstreetmap.org/${{ n: 'node', w: 'way', r: 'relation' }[p.id[0]]}/${p.id.slice(1)}" target="_blank" rel="noopener">fix on OSM</a>`;
 
+  const currentSheet = $('#sheet');
+  const updating = !currentSheet.hidden && currentSheet.dataset.place === p.id;
+  const focusables = 'a[href], button';
+  const active = document.activeElement;
+  const wasInside = updating && currentSheet.contains(active);
+  const sameControl = wasInside && active.matches(focusables)
+    ? [...active.attributes].find(attr => attr.name === 'href' || attr.name.startsWith('data-')) : null;
+  const scroll = updating ? currentSheet.scrollTop : 0;
   const sheet = openSheet(`
     <header>
       <h1>${esc(p.n)}${p.branch ? `<span class="th">${esc(p.branch)}</span>` : ''}${d.th ? `<span class="th" lang="th">${esc(d.th)}</span>` : ''}</h1>
       <button class="close" aria-label="Close">×</button>
     </header>
     <div class="kindline">${PlaceTools.symbol(p.k)}${KIND_LABEL[p.k]}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>
-    <section class="been place-actions"><button type="button" class="send been-open">✓ I've been here</button><a href="${esc(window.WorkFinder?.directions(p)||`https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}`)}" target="_blank" rel="noopener">Directions ↗</a></section>
+    ${factList(facts, 'Hours and address')}
+    <section class="been place-actions"><a href="${esc(window.WorkFinder?.directions(p)||`https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}`)}" target="_blank" rel="noopener">Directions ↗</a><button type="button" class="send been-open" data-place-visit>✓ I've been here</button></section>
+    ${visitReportHtml(report)}
+    ${factList(moreFacts, 'Contact and amenities')}
+    ${d.about || d.visit ? `<div class="place-description">${d.about ? `<p>${esc(d.about)}</p>` : ''}${d.visit ? `<p class="hand">${esc(d.visit)}</p>` : ''}</div>` : ''}
     <nav class="place-social" aria-label="Place contributions"><button type="button" data-place-community>Notes &amp; photos</button><button type="button" data-place-recommend>Add recommendation</button><button type="button" class="share">Share place</button><button type="button" data-place-street>${window.StreetWorld?.active?'Back to street sketch':'Street sketch'}</button></nav>
-    ${facts.length ? `<ul class="facts">${facts.map(([sym, t]) => `<li class="sym" aria-hidden="true">${sym}</li><li>${t}</li>`).join('')}</ul>` : ''}
     ${window.WorkAtmosphere?.render(p, d, { [p.id]: state.scores[p.id] } ) || ''}
     ${window.WorkFinder?.placePanel(p)||''}
     <div class="place-reference-slot"></div>
@@ -556,8 +605,14 @@ function renderSheet(p, d, visits) {
     </nav>
     <p class="src">Source: ${src}</p>
     ${d.provenance ? `<details class="src reviewed-source"><summary>Reviewed café classification · original open-data location</summary><p>Overture Maps ${esc(d.provenance.release)} · ${esc(d.provenance.licence)} · source ID ${esc(d.provenance.sourceID)}. The source called this a ${esc(d.provenance.sourceTaxonomy)}; the café identity was checked ${esc(d.provenance.checkedAt)}. Original source coordinates retained. Wi-Fi, outlets and parking remain unconfirmed.</p>${(d.provenance.sources||[]).map(v=>`<p><a href="${esc(safeLink(v.url))}" target="_blank" rel="noopener nofollow">${esc(v.publisher)}</a> · ${esc(v.published_at||v.updated_at||'date unstated')}</p>`).join('')}</details>` : ''}
-    ${d.enrichment ? `<details class="src enrichment-source"><summary>Added ${Object.keys(d.enrichment).map(k=>k==='addr'?'address':'phone').join(' &amp; ')} · AllThePlaces · snapshot ${esc(Object.values(d.enrichment)[0].asOf)}</summary><p>CC0 Café Amazon export, published at the end of the 24–31 October run; venue details may have changed. <a href="https://alltheplaces-data.openaddresses.io/runs/2026-10-24-13-32-37/output/cafe_amazon.geojson" target="_blank" rel="noopener">Download source</a>. ${Object.values(d.enrichment).map(v=>`Branch ${esc(v.ref)} · ${esc(v.branch)} · record ${esc(v.id)} · matched within ${esc(v.distanceM)} m`).filter((v,i,a)=>a.indexOf(v)===i).join('; ')}</p></details>` : ''}`, { place:true });
+    ${d.enrichment ? `<details class="src enrichment-source"><summary>Added ${Object.keys(d.enrichment).map(k=>k==='addr'?'address':'phone').join(' &amp; ')} · AllThePlaces · snapshot ${esc(Object.values(d.enrichment)[0].asOf)}</summary><p>CC0 Café Amazon export, published at the end of the 24–31 October run; venue details may have changed. <a href="https://alltheplaces-data.openaddresses.io/runs/2026-10-24-13-32-37/output/cafe_amazon.geojson" target="_blank" rel="noopener">Download source</a>. ${Object.values(d.enrichment).map(v=>`Branch ${esc(v.ref)} · ${esc(v.branch)} · record ${esc(v.id)} · matched within ${esc(v.distanceM)} m`).filter((v,i,a)=>a.indexOf(v)===i).join('; ')}</p></details>` : ''}`, { place:true, preserveFocus:updating });
 
+  sheet.dataset.place = p.id;
+  if (wasInside) {
+    const replacement = sameControl && [...sheet.querySelectorAll(focusables)].find(el => el.getAttribute(sameControl.name) === sameControl.value);
+    (replacement || sheet.querySelector(active.matches('.close') ? '.close' : 'h1'))?.focus({ preventScroll: true });
+  }
+  if (updating) sheet.scrollTop = scroll;
   sheet.querySelector('[data-hood]')?.addEventListener('click', e => window.openHood?.(e.target.dataset.hood));
   sheet.querySelector('.been-open').addEventListener('click', e => window.beenForm?.(p, e.target, () => select(p, false)));
   window.bindMoments?.(sheet);

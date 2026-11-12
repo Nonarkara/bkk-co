@@ -167,9 +167,25 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .sheet .th { display: block; font-size: var(--body); color: var(--muted); font-weight: 400; margin-top: 2px; }
 .close { width: 44px; height: 44px; margin: -10px -10px 0 0; font-size: var(--big); line-height: 1; }
 .kindline { display: flex; align-items: center; gap: 6px; margin-top: 4px; color: var(--muted); }
-.facts { list-style: none; padding: 0; margin-top: 10px; display: grid; grid-template-columns: 20px 1fr; gap: 4px 8px; }
+.place-sheet h1 { font-weight: 600; overflow-wrap: anywhere; }
+.place-sheet h1:focus { outline: none; }
+.facts { list-style: none; padding: 0; margin-top: 5px; }
+.facts > li { display: grid; grid-template-columns: 1.15em minmax(0, 1fr); gap: 6px; align-items: baseline; padding-block: 1px; }
 .facts .sym { color: var(--muted); text-align: center; }
-.facts a { overflow-wrap: anywhere; }
+.fact-value { overflow-wrap: anywhere; }
+.place-contact { display: flex; flex-wrap: wrap; gap: 0 12px; }
+.place-contact a { padding-block: 4px; }
+.place-sheet .place-actions { display: flex; flex-wrap: wrap; align-items: start; gap: 6px; margin-top: 5px; }
+.place-sheet .place-actions > a { background: var(--ink); color: var(--paper); padding-inline: 12px; }
+.place-sheet .place-actions .been-open { background: var(--paper); color: var(--ink); border: 1px solid var(--rule); padding-inline: 12px; }
+.place-sheet .place-actions .been-form { flex: 0 0 100%; }
+.place-sheet .place-social { gap: 0 12px; border-bottom: 0; }
+.place-sheet .place-social button { padding-inline: 0; }
+.place-sheet .place-visit-report { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--rule); }
+.place-visit-report h2 { font-size: var(--body); font-weight: 600; }
+.place-visit-report h2 span { color: var(--muted); font-weight: 400; }
+.place-visit-report > a { display: inline-flex; min-height: 32px; align-items: center; }
+.place-description { margin-top: 8px; }
 
 .scores { margin-top: 12px; border-top: 1px solid var(--rule); padding-top: 10px; }
 .scores table { border-collapse: collapse; margin-top: 6px; }
@@ -196,13 +212,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   text-underline-offset: 3px; cursor: pointer; }
 .src { margin-top: 8px; color: var(--muted); font-size: var(--micro); }
 .about p { max-width: 65ch; margin-top: 8px; }
-
-/* Facts: the first thing a reader needs — hours, address, contact. Symbol left, info right. */
-.facts { display: grid; gap: 3px; margin-top: 10px; border-top: 1px solid var(--rule); padding-top: 8px; }
-.facts li { display: grid; grid-template-columns: 1.5em 1fr; gap: 6px; align-items: start; font-size: var(--body); line-height: 1.45; }
-.facts li .sym { font-size: var(--big); grid-row: 1 / -1; }
-.facts li b { color: var(--ink); }
-.facts li a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 
 .sheet section { margin-top: 14px; }
 .sheet h2.micro { margin-bottom: 6px; }
@@ -343,6 +352,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .hits { max-height: 70dvh; }
   .phone-only { display: none !important; }
   .sheet { max-height: 78%; }
+  .side:has(.place-sheet:not([hidden])) .list-wrap { display: none; }
+  .side .place-sheet { max-height: 100%; border-bottom: 0; }
+  .search-lens { left: 6px; }
+  .search input { padding-inline: 19px 4px; }
 }
 
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }

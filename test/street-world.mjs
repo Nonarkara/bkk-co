@@ -36,6 +36,7 @@ for(const area of d.areas){
  for(const id of f.streetIDs)assert(ss.has(id));for(const id of f.placeIDs)assert(places.has(id));
  assert.equal(f.counts.footprints,bs.size);assert.equal(f.counts.streets,ss.size);assert.equal(f.counts.junctions,Object.keys(f.junctions).length);
  assert.equal(f.counts.heightVolumes,f.buildings.features.filter(x=>x.properties.render3D).length);
+ assert.equal(area.heightVolumes,f.counts.heightVolumes,'Launcher coverage matches source geometry');
  assert.equal(f.counts.explicitHeights,f.buildings.features.filter(x=>x.properties.heightM!==null).length);
 }
 assert.equal(d.manifest.areas,12);

@@ -15,8 +15,13 @@ for(const kind of ['cafe','coworking','library','restaurant'])assert(symbol(kind
 const load=async n=>JSON.parse(await readFile(new URL('../public/data/'+n,import.meta.url)));
 const work=await load('places-work.json'),food=await load('places-food.json'),manifest=await load('manifest.json');
 const id='o825832f94e7f',p=work.rows.find(r=>r[0]===id);assert(p);assert.equal(p[1],"Meet's space Cafe");assert.equal(work.kinds[p[2]],'cafe');assert.deepEqual(p.slice(3,5),[13.76998,100.61656]);assert.equal(p[5],16,'No inferred Wi-Fi/parking/hours/stars');
-// The reviewed 4 November cleaned catalogue excluding this one inclusion must retain its signed values.
-const old={...work,rows:work.rows.filter(r=>r[0]!==id)};
+// Bridge received dated visit evidence and venue-published hours. The source pin and
+// the existing calculated index are the same as in the signed catalogue.
+const bridge='o71358a621d50';
+assert.deepEqual(work.rows.find(r=>r[0]===bridge),[bridge,'The Bridge 1958 Bistro & Office Space',0,13.92133,100.6608,149,'359800',70,'Mo-Su 09:00-21:00']);
+const oldBridge=[bridge,'The Bridge 1958 Bistro and Office Space',0,13.92133,100.6608,16,'359800',70];
+// Account for the two reviewed changes and retain the original signature for every other record.
+const old={...work,rows:work.rows.filter(r=>r[0]!==id).map(r=>r[0]===bridge?oldBridge:r)};
 assert.equal(createHash('sha256').update(JSON.stringify(old)).digest('hex'),'b3ae88a7f500f07f45d3d59dcdf98216dabb29c20d3a58cca50e9ce85a8ed849');
 assert.equal(old.rows.length+food.rows.length,57378);assert.equal(manifest.total,57379);
 const details=(await load('cells/275-2012.json'))[id];assert.equal(details.provenance.sourceID,'825832f9-4e7f-441a-af0e-eb4b86f65e6d');assert.deepEqual(details.provenance.originalPoint,[100.61656422,13.7699849]);assert.equal(details.provenance.sourceTaxonomy,'halal_restaurant');assert(!details.web);

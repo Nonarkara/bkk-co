@@ -11,7 +11,7 @@
     "licenseURL": "https://www.openstreetmap.org/copyright",
     "crs": "EPSG:4326",
     "distanceCRS": "EPSG:32647",
-    "catalogueSHA256": "600169156c46f468d6213c37ee54f318f2383ef82d78b91cd4b20e7952e62db0",
+    "catalogueSHA256": "62b5c39ae4f1c075307ab368747af0631e418b72114dd3e6a236ca2bf64852a2",
     "radiusM": 800,
     "areas": 12,
     "buildingCount": 20650,
@@ -48,7 +48,8 @@
         "x": 100.54462,
         "y": 13.77971
       },
-      "radiusM": 800
+      "radiusM": 800,
+      "heightVolumes": 2
     },
     {
       "id": "samyan",
@@ -70,7 +71,8 @@
         "x": 100.53012,
         "y": 13.73206
       },
-      "radiusM": 800
+      "radiusM": 800,
+      "heightVolumes": 174
     },
     {
       "id": "charoenkrung",
@@ -92,7 +94,8 @@
         "x": 100.51518,
         "y": 13.72705
       },
-      "radiusM": 800
+      "radiusM": 800,
+      "heightVolumes": 30
     },
     {
       "id": "thonglo",
@@ -114,7 +117,8 @@
         "x": 100.57851,
         "y": 13.72423
       },
-      "radiusM": 800
+      "radiusM": 800,
+      "heightVolumes": 6
     },
     {
       "id": "ramkhamhaeng",
@@ -135,7 +139,8 @@
         "x": 100.61656,
         "y": 13.76998
       },
-      "radiusM": 800
+      "radiusM": 800,
+      "heightVolumes": 0
     },
     {
       "id": "pathumwan",
@@ -157,7 +162,8 @@
         "x": 100.53471,
         "y": 13.74612
       },
-      "radiusM": 800
+      "radiusM": 800,
+      "heightVolumes": 29
     },
     {
       "id": "phranakhon",
@@ -178,7 +184,8 @@
         "x": 100.49268,
         "y": 13.74418
       },
-      "radiusM": 800
+      "radiusM": 800,
+      "heightVolumes": 0
     },
     {
       "id": "samphanthawong",
@@ -200,7 +207,8 @@
         "x": 100.50903,
         "y": 13.74302
       },
-      "radiusM": 800
+      "radiusM": 800,
+      "heightVolumes": 0
     },
     {
       "id": "chatuchak",
@@ -221,7 +229,8 @@
         "x": 100.55004,
         "y": 13.80027
       },
-      "radiusM": 800
+      "radiusM": 800,
+      "heightVolumes": 1
     },
     {
       "id": "dindaeng",
@@ -243,7 +252,8 @@
         "x": 100.56546,
         "y": 13.75739
       },
-      "radiusM": 800
+      "radiusM": 800,
+      "heightVolumes": 2
     },
     {
       "id": "bangkapi",
@@ -264,7 +274,8 @@
         "x": 100.64228,
         "y": 13.76848
       },
-      "radiusM": 800
+      "radiusM": 800,
+      "heightVolumes": 0
     },
     {
       "id": "prawet",
@@ -285,7 +296,8 @@
         "x": 100.64844,
         "y": 13.69453
       },
-      "radiusM": 800
+      "radiusM": 800,
+      "heightVolumes": 0
     }
   ]
 }
