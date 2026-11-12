@@ -112,7 +112,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .chips .sep { display: none; }
 .count { margin-left: auto; padding-left: 8px; color: var(--muted); font-size: var(--micro); white-space: nowrap; }
 .moods { flex: none; display: flex; gap: 4px; padding: 6px var(--pad) 0; overflow-x: auto; scrollbar-width: none; }
-.moods button { flex: none; height: 32px; padding: 0 8px; white-space: nowrap; border: 1px solid var(--ink); }
+.moods button, .moods a { flex: none; height: 32px; padding: 0 8px; white-space: nowrap; border: 1px solid var(--ink); }
+.moods a { display:inline-flex; align-items:center; text-decoration:none; color:var(--ink); }
 .moods button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 .mood-bar { flex: none; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; margin: 6px var(--pad) 0; padding: 6px 0 6px 10px; border-left: 3px solid var(--ink); }
 .mood-bar[hidden] { display: none; }

@@ -19,7 +19,8 @@
 .list-options > details[open] > summary { color:var(--ink); font-weight:600; }
 .list-options > details[open] { flex-basis:100%; }
 .list-options .moods { padding:0; gap:2px 12px; flex-wrap:wrap; overflow:visible; }
-.list-options .moods button { border:0; padding:4px 0; height:auto; min-height:32px; text-align:left; }
+.list-options .moods button, .list-options .moods a { border:0; padding:4px 0; height:auto; min-height:32px; text-align:left; }
+.list-options .moods a { color:var(--ink); text-decoration:underline; text-underline-offset:2px; }
 .list-options .moods button[aria-pressed=true] { background:var(--paper); font-weight:600; text-decoration:underline; }
 .list-options .flags { padding:2px 0 0; gap:4px; }
 .list-options .flags button { min-height:32px; height:auto; padding:4px 7px; }
