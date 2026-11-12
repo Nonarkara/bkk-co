@@ -266,38 +266,38 @@
   }
 
   // --- rendering ----------------------------------------------------------------
+  // Plain words, one voice. A reader must be able to understand the rules without reading
+  // the source: what "documented" means, who documented it, and what the score is not.
+  const TIER_WORDS = { mapped: 'on the map', visitor: 'visitors report', venue: 'the venue says', first_party: 'the venue says', publisher: 'a publisher states', editorial: 'a publisher states' };
   function render(p, data, scores = {}, facilities) {
     const r = profile(p, data, scores, facilities);
-    const tierOf = f => f.basis;
     const row = d => {
       const f = r.dimensions[d.key];
       const known = typeof f.points === 'number';
-      const mark = !known ? '?' : f.value === true ? '✓' : f.value === false ? '×' : '~';
+      const mark = !known ? '\u25CB' : f.value === true ? '\u2713' : f.value === false ? '\u00D7' : '~';
       const state = !known ? 'unknown' : f.value === true ? 'documented' : f.value === false ? 'absent' : 'partial';
-      return `<div class="wa-dimension" data-wa="${d.key}" data-state="${state}"><span class="wa-mark" aria-hidden="true">${mark}</span><span class="wa-label">${esc(d.label)}</span>` +
-        (known ? `<span class="wa-points">${f.points}/100</span>` : `<span class="wa-points wa-none">not documented</span>`) +
-        `<span class="wa-tier" data-tier="${known ? esc(tierOf(f)) : 'unknown'}">${known ? esc(tierLabel(f.basis)) : 'not documented'}</span></div>`;
+      const word = !known ? 'not documented' : f.value === true ? 'documented' : f.value === false ? 'recorded as absent' : 'partly recorded';
+      const who = known ? (TIER_WORDS[f.basis] || 'recorded') : '';
+      return `<div class="wa-row" data-wa="${d.key}" data-state="${state}"><dt>${esc(d.label)}</dt><dd><span class="wa-mark" aria-hidden="true">${mark}</span> ${esc(word)}${who ? ` <span class="wa-who">\u00B7 ${esc(who)}</span>` : ''}${known ? ` <span class="wa-points">${f.points}/100</span>` : ''}</dd></div>`;
     };
-    const headline = r.publishable
-      ? `<p class="wa-score"><b>${r.score}</b>/100 <span class="wa-of">work readiness, inferred from ${r.scored} of ${r.total} documented dimensions (${Math.round(r.coverage * 100)}% of the weight)</span></p>`
-      : `<p class="wa-score wa-unscored"><b>Not scored</b> <span class="wa-of">only ${Math.round(r.coverage * 100)}% of the weight is documented. Missing: ${esc(r.missing.join(', ') || 'nothing')}.</span></p>`;
-    const gap = r.missing.length
-      ? `<p class="wa-gap"><b>Not documented:</b> ${esc(r.missing.join(', '))}. This page will not guess them.</p>`
-      : `<p class="wa-gap">Every scored dimension has a source.</p>`;
-    const notMapped = `<p class="wa-gap"><b>No public map tag records these:</b> ${esc(r.notMapped.join(', '))}. Ask the venue.</p>`;
+    const verdict = r.publishable
+      ? `<p class="wa-verdict"><b>Work readiness ${r.score} out of 100</b><span>Worked out from the ${r.scored} of ${r.total} things that are documented${r.missing.length ? '. Still not documented: ' + esc(r.missing.join(', ')) : '. Every dimension has a source'}.</span></p>`
+      : `<p class="wa-verdict wa-unscored"><b>Not enough is documented to score this place</b><span>${r.scored} of ${r.total} things are documented. PLUB will not guess the rest.</span></p>`;
+    const rule = `<p class="wa-rule"><b>What "documented" means:</b> someone wrote it down \u2014 on the open map, by the venue itself, or by people who went there. Everything else stays unknown. The score measures what is recorded, not how good the place is.</p>`;
+    const notMapped = `<p class="wa-rule wa-rule--quiet">No public map records these at all: ${esc(r.notMapped.join(', '))}. Ask the venue.</p>`;
     const claims = r.claims.items.length || r.claims.sources.length
-      ? `<details class="wa-claims"><summary>What the venue says</summary>${r.claims.items.map(c => `<p><b>${esc(c.label)}:</b> ${esc(c.value)}${c.truncated ? ' <span class="wa-trunc">(truncated)</span>' : ''}</p>`).join('')}${r.claims.sources.length ? `<p class="wa-claim-sources">${r.claims.sources.map(s => s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener nofollow">${esc(s.label)}</a>` : esc(s.label)).join(' · ')}</p>` : ''}<p class="src">A venue claim is what the operator wrote about itself. It is not checked here.</p></details>`
+      ? `<details class="wa-claims"><summary>What the venue says about itself</summary>${r.claims.items.map(c => `<p><b>${esc(c.label)}:</b> ${esc(c.value)}${c.truncated ? ' <span class="wa-trunc">(truncated)</span>' : ''}</p>`).join('')}${r.claims.sources.length ? `<p class="wa-claim-sources">${r.claims.sources.map(s => s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener nofollow">${esc(s.label)}</a>` : esc(s.label)).join(' \u00B7 ')}</p>` : ''}<p class="src">A venue claim is what the operator wrote about itself. PLUB has not checked it.</p></details>`
       : '';
     const detail = DIMENSIONS.map(d => {
       const f = r.dimensions[d.key];
-      return `<p><b>${esc(d.label)}</b> · ${esc(f.note)}${f.sources.length ? `<br>${f.sources.map(s => s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener nofollow">${esc(s.label)}</a>` : esc(s.label)).join(' · ')}` : ''}</p>`;
+      return `<p><b>${esc(d.label)}</b> \u00B7 ${esc(f.note)}${f.sources.length ? `<br>${f.sources.map(s => s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener nofollow">${esc(s.label)}</a>` : esc(s.label)).join(' \u00B7 ')}` : ''}</p>`;
     }).join('');
     return `<section class="work-atmosphere" aria-label="Workspace atmosphere">
       <h2>Working here</h2>
-      ${headline}
-      <div class="wa-grid">${DIMENSIONS.map(row).join('')}</div>
-      ${gap}${notMapped}${claims}
-      <details class="wa-detail"><summary>Evidence for every dimension</summary>${detail}<p class="src">Tiers: mapped = what the map records; venue = what the operator says; visitor = what people who went there report; inferred = computed on this page. Scores describe documentation, not quality of the place.</p></details>
+      ${verdict}
+      <dl class="wa-grid">${DIMENSIONS.map(row).join('')}</dl>
+      ${rule}${notMapped}${claims}
+      <details class="wa-detail"><summary>Every dimension, and where it came from</summary>${detail}<p class="src">Mapped means the open map records it. Venue means the operator wrote it about itself. Visitor means people who went there reported it. Inferred means this page worked it out.</p></details>
     </section>`;
   }
 

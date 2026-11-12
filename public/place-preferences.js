@@ -68,7 +68,11 @@
   host.querySelector('[data-preferences-clear]').onclick=()=>{const cleared=clear();inputs.forEach(el=>{if(el.type==='checkbox')el.checked=false;else el.value=''});status(cleared?'Preferences cleared from this device.':'Choices cleared for this visit. Browser storage could not be cleared; stored choices may return.');onChange(get())};
  }
  function renderFacts(p,data,scores={},prefs=get()){
-  const result=match(p,data,scores,prefs),allKeys=['wifi','fast','power','ac','alcohol','coffee','cozy','large','intimate','stylish','public_view'],keys=[...new Set(['wifi','power','ac',...requested(prefs)])];
+  const result=match(p,data,scores,prefs);
+  // With no preference set there is nothing to match: printing the same facts again in a
+  // second language only duplicates the Working here panel and confuses the reader.
+  if(!result.requested.length)return '';
+  const allKeys=['wifi','fast','power','ac','alcohol','coffee','cozy','large','intimate','stylish','public_view'],keys=[...new Set(['wifi','power','ac',...requested(prefs)])];
   const label=key=>key==='fast'?'Visitor-rated Fast':labels[key];
   return `<section class="place-preference-facts" aria-label="Amenity evidence"><p class="src">${esc(result.summary)}</p><div class="place-preference-gauges">${keys.map(key=>{const f=result.facts[key],value=f.value===null?'unknown':f.value?'documented':'absent';return `<span data-preference-fact="${key}" data-value="${value}">${f.value===null?'?':f.value?'✓':'×'} ${esc(label(key))} · ${value}</span>`}).join('')}</div><details><summary>Amenity evidence &amp; dates</summary>${allKeys.map(key=>{const f=result.facts[key];return `<p><b>${esc(label(key))}</b> · ${esc(f.note)}${f.sources.map(s=>`<br>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener nofollow">${esc(s.label)}</a>`:esc(s.label)} · ${esc(s.tier)} · ${esc(s.date)}${s.checked?' · checked '+esc(s.checked):''}`).join('')}</p>`}).join('')}<p>Discrete source claims, not live equipment checks. Unknown means no supporting evidence. No continuous speed or atmosphere gauge is inferred.</p></details></section>`;
  }

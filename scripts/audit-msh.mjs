@@ -420,7 +420,7 @@ try {
   for (const { w, h } of WIDTHS) {
     const context = await browser.newContext({ viewport: { width: w, height: h }, timezoneId: 'Asia/Bangkok' });
     const page = await context.newPage();
-    await page.goto(base, { waitUntil: 'domcontentloaded' });
+    await page.goto(base, { waitUntil: 'domcontentloaded', timeout: 120000 });
     const pins = await ready(page);
     if (PLANTED) {
       // A known defect: a big empty panel over the map. The gate must catch it.
@@ -441,7 +441,7 @@ try {
   }
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, timezoneId: 'Asia/Bangkok' });
   const page = await context.newPage();
-  await page.goto(base, { waitUntil: 'domcontentloaded' });
+  await page.goto(base, { waitUntil: 'domcontentloaded', timeout: 120000 });
   await ready(page);
   report.journey = await PRESERVE(page, base, 'live');
   await context.close();

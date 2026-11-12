@@ -141,9 +141,15 @@ assert.equal(WorkAtmosphere.lateClose('10:00-14:00,16:00-23:30'), '23:30');
   assert.match(html, /Workspace atmosphere/);
   assert.match(html, /Not scored|100/);
   assert.match(html, /not documented/i, 'an unknown dimension is visible in the surface');
-  assert.match(html, /Nothing here is a rating|documentation, not quality/i);
+  assert.match(html, /not a rating|not how good the place is|documentation, not quality/i);
   assert.match(html, /openstreetmap\.org\/node\/8/, 'the mapped source is linked');
   assert.ok(!/NaN|undefined|Infinity/.test(html), 'no broken numbers reach the surface');
+  // A reader must understand the rules: plain words, no shouting, and the rule stated once.
+  assert.ok(!/text-transform/.test(html), 'the surface carries no shouted styling');
+  assert.match(html, /What "documented" means/, 'the rule is stated in plain words');
+  assert.match(html, /on the map|visitors report|the venue says/, 'each row says who documented it');
+  assert.doesNotMatch(html, /MISSING|Not scored/i, 'no all-caps verdict');
+  assert.match(html, /<dl class="wa-grid">/, 'the dimensions are a list, not a wall of text');
 }
 
 // --- ranking puts documented places first, and never reorders silently --------------------

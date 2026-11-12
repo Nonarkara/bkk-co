@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "plub", "runtimeExecutable": "npx", "runtimeArgs": ["wrangler", "dev", "--port", "43827", "--local"], "port": 43827 }
+  ]
+}
