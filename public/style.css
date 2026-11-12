@@ -1,31 +1,64 @@
 /* PLUB · Placemaking Laboratory Urban Bureau — civic daylight register.
-   Radius 0, no shadows, no gradients, one amber (co-working only). Sizes: 20 / 14 / 11. */
+   Radius 0, no shadows, no gradients. One ink (Pansy Purple, Wada plate 273),
+   one accent (amber) with one job, four type sizes: 20 / 14 / 12 / 11.
+   Everything is self-hosted: no third-party font request, no visitor leaves the site. */
+
+/* Jost — the Latin UI face (house face). Variable: one file covers 100–900.
+   SIL Open Font License 1.1, see fonts/OFL-Jost.txt. */
+@font-face { font-family: "Jost"; src: url("fonts/jost-latin.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Jost"; src: url("fonts/jost-latin-ext.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* Prompt — the Thai face, non-looped (a looped Thai head reads as "not made by Thais").
+   SIL Open Font License 1.1, see fonts/OFL-Prompt.txt. */
+@font-face { font-family: "Prompt"; src: url("fonts/prompt-thai-400.woff2") format("woff2"); font-weight: 400; font-display: swap; unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
+@font-face { font-family: "Prompt"; src: url("fonts/prompt-thai-500.woff2") format("woff2"); font-weight: 500; font-display: swap; unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
+@font-face { font-family: "Prompt"; src: url("fonts/prompt-latin-400.woff2") format("woff2"); font-weight: 400; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Prompt"; src: url("fonts/prompt-latin-500.woff2") format("woff2"); font-weight: 500; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Prompt"; src: url("fonts/prompt-latin-ext-400.woff2") format("woff2"); font-weight: 400; font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Prompt"; src: url("fonts/prompt-latin-ext-500.woff2") format("woff2"); font-weight: 500; font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
 /* Sao Chingcha: Dr Non's own lettering. PL;UB is read as Placemaking Laboratory ; Urban Bureau. */
+@font-face { font-family: "Sao Chingcha"; src: url("fonts/SaoChingcha-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
 /* Non's own handwriting (Non Architecture, 2026): Latin, digits, basic punctuation only.
    Used for voice, never for data: Plub's lines, each neighbourhood's purpose, Non's own visit notes. */
 @font-face { font-family: "Non Architecture"; src: url("fonts/NonArchitecture-Regular.woff2") format("woff2"); font-display: swap; }
 .hand, .plub-say q, .hood-mood .for { font-family: "Non Architecture", "Jost", sans-serif; font-weight: 400; letter-spacing: .01em; }
 .plub-say q { font-size: var(--big); line-height: 1.3; }
 /* one small hand-drawn mark: a squiggle under the neighbourhood's purpose */
-.hood-mood .for { padding-bottom: 6px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='8' viewBox='0 0 60 8'%3E%3Cpath d='M1 5 q6 -5 12 0 t12 0 t12 0 t12 0' fill='none' stroke='%23f59e0b' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") left bottom / 60px 8px no-repeat; }
-@font-face { font-family: "Sao Chingcha"; src: url("fonts/SaoChingcha-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
-@font-face { font-family: "Sao Chingcha"; src: url("fonts/SaoChingcha-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Sao Chingcha"; src: url("fonts/SaoChingcha-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
+.hood-mood .for { padding-bottom: 6px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='8' viewBox='0 0 60 8'%3E%3Cpath d='M1 5 q6 -5 12 0 t12 0 t12 0 t12 0' fill='none' stroke='%237d133a' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") left bottom / 60px 8px no-repeat; }
+
 :root {
-  --ink: #20201d; --muted: #575951; --rule: #d5d7cf; --paper: #ffffff; --wash: #f4f4f0;
-  --amber: #f59e0b; --food: #8f918a;
-  --big: 20px; --body: 14px; --micro: 11px;
+  /* Paper and ground */
+  --paper: #ffffff;
+  --wash: #f4f4f0;
+  --guide: #f9c1ce;          /* Hermosa Pink, plate 273 — Nong Plub's bounded surfaces */
+  --seam: #e88ba1;           /* the semicolon in the wordmark, nowhere else */
+  /* One ink. Pansy Purple, Wada plate 273. Every reading mark and every hairline. */
+  --ink: #7d133a;
+  --ink-80: #974261;         /* 6.43:1 on white — secondary text */
+  --ink-45: #c08da2;         /* a quiet tint of the same ink, for fills only */
+  --muted: var(--ink-80);
+  --rule: #b6bfc1;           /* Neutral Gray, plate 273 — hairlines and arcs */
+  /* The one accent. One job: the co-working category, and working here. */
+  --amber: #f59e0b;
+  /* Catalogue data chord, Wada plate 320 — the map's category fills and pins. */
+  --cat-cafe: #f58e84; --cat-cowork: #f5ecc2; --cat-library: #819238; --cat-food: #a5c8d1;
+  /* Four type sizes. The wordmark is a logotype, not a type size. */
+  --big: 20px; --body: 14px; --small: 12px; --micro: 11px;
   --font: "Jost", "Prompt", sans-serif;
+  --thai: "Prompt", "Jost", sans-serif;
   --pad: 12px;
 }
 * { box-sizing: border-box; margin: 0; }
 html, body { height: 100%; }
 body {
-  font: 400 var(--body)/1.4 var(--font); color: var(--ink); background: var(--paper);
+  font: 400 var(--body)/1.45 var(--font); color: var(--ink); background: var(--paper);
   display: grid; grid-template: "bar" auto "chips" auto "map" 1fr / 100%;
   height: 100dvh; overflow: hidden;
 }
-:lang(th), .th { font-family: "Prompt", "Jost", sans-serif; }
+/* Thai carries stacked vowel and tone marks: it needs more leading than Latin and
+   must never be tracked, or the marks break apart. */
+:lang(th), .th { font-family: var(--thai); line-height: 1.65; letter-spacing: 0; }
 a { color: inherit; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
@@ -43,18 +76,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .brand-hero { display: block; width: 104px; height: 104px; }
 .search { flex: 1; position: relative; display: flex; align-items: center; min-width: 0; }
 .search-lens { position: absolute; left: 10px; color: var(--muted); font-size: 14px; pointer-events: none; line-height: 1; }
-.search input { width: 100%; height: 36px; padding: 0 10px 0 28px; font: inherit; font-size: 13px; color: var(--ink);
+.search input { width: 100%; height: 36px; padding: 0 10px 0 28px; font: inherit; font-size: var(--body); color: var(--ink);
   border: 1px solid var(--rule); border-radius: 0; background: var(--paper); }
 .search input:focus { outline: none; border-color: var(--ink); background: var(--paper); }
 
 .bar-actions { display: flex; align-items: center; gap: 6px; flex: none; }
 .bar-btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 10px; border: 1px solid var(--rule);
-  color: var(--ink); font: 500 13px/1 var(--font); white-space: nowrap; background: var(--paper); cursor: pointer; }
+  color: var(--ink); font: 500 var(--body)/1 var(--font); white-space: nowrap; background: var(--paper); cursor: pointer; }
 .bar-btn:hover { border-color: var(--ink); }
 .bar-btn svg { display: block; }
-.count-badge { display: inline-block; padding: 2px 5px; font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums;
+.count-badge { display: inline-block; padding: 2px 5px; font-size: var(--micro); font-weight: 600; font-variant-numeric: tabular-nums;
   background: var(--wash); border: 1px solid var(--rule); line-height: 1; }
-.btn-lbl { font-size: 12px; font-weight: 500; }
+.btn-lbl { font-size: var(--small); font-weight: 500; }
 .iconbtn { flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 4px; height: 36px; min-width: 36px; }
 .plub-btn { padding: 0 8px; }
 .pass-btn { padding: 0 8px; }
@@ -80,12 +113,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .count { margin-left: auto; padding-left: 8px; color: var(--muted); font-size: var(--micro); white-space: nowrap; }
 .moods { flex: none; display: flex; gap: 4px; padding: 6px var(--pad) 0; overflow-x: auto; scrollbar-width: none; }
 .moods button { flex: none; height: 32px; padding: 0 8px; white-space: nowrap; border: 1px solid var(--ink); }
-.moods button[aria-pressed="true"] { background: var(--amber); }
-.mood-bar { flex: none; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; margin: 6px var(--pad) 0; padding: 6px 0 6px 10px; border-left: 3px solid var(--amber); }
+.moods button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.mood-bar { flex: none; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; margin: 6px var(--pad) 0; padding: 6px 0 6px 10px; border-left: 3px solid var(--ink); }
 .mood-bar[hidden] { display: none; }
 .mood-bar .how { flex-basis: 100%; color: var(--muted); font-size: var(--micro); max-width: 65ch; }
 .mood-bar .close { margin: -6px 0 -6px auto; width: 32px; height: 32px; }
-.mood-dot { color: var(--amber); }
+.mood-dot { color: var(--ink); }
 .moods [data-act] { background: var(--ink); color: var(--paper); }
 .now-ctl { display: grid; gap: 6px; margin-top: 8px; }
 .mini-plub { flex: none; margin: -6px 4px -6px -4px; }
@@ -111,9 +144,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .dot.cafe { background: var(--ink); }
 .dot.coworking { background: var(--amber); }
 .dot.library { background: var(--paper); box-shadow: inset 0 0 0 2px var(--ink); }
-.dot.restaurant { background: var(--food); }
+.dot.restaurant { background: var(--ink-45); }
 
-#map { grid-area: map; min-height: 0; background: #f9c1ce; } /* Grand Budapest ground before the first tile arrives */
+#map { grid-area: map; min-height: 0; background: var(--guide); } /* Grand Budapest ground before the first tile arrives */
 .phone-only { }
 .idx { min-width: 2.2em; text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; }
 .hits .missing { min-height: 36px; font-size: var(--micro); }
@@ -198,7 +231,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .been { border-top: 1px solid var(--rule); padding-top: 10px; }
 .been-form { display: grid; gap: 8px; }
 .stars-pick button { width: 36px; height: 36px; font-size: var(--big); color: var(--rule); }
-.stars-pick button[aria-pressed="true"] { color: var(--amber); }
+.stars-pick button[aria-pressed="true"] { color: var(--ink); }
 .feel { display: flex; flex-wrap: wrap; gap: 4px; }
 .feel button { height: 32px; padding: 0 10px; border: 1px solid var(--rule); }
 .feel button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
@@ -207,10 +240,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .been-form textarea { font: inherit; padding: 8px; border: 1px solid var(--rule); border-radius: 0; resize: vertical; }
 .photo-pick { display: inline-flex; align-items: center; height: 36px; padding: 0 12px; border: 1px dashed var(--ink); cursor: pointer; justify-self: start; }
 .moments { list-style: none; padding: 0; margin-top: 8px; }
-.moment { border-left: 2px solid var(--amber); padding: 4px 0 8px 10px; margin-bottom: 8px; }
+.moment { border-left: 2px solid var(--ink); padding: 4px 0 8px 10px; margin-bottom: 8px; }
 .moment-head { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: var(--micro); }
 .moment-head .del { margin-left: auto; width: 32px; height: 32px; }
-.stars { color: var(--amber); letter-spacing: 1px; }
+.stars { color: var(--ink); letter-spacing: 1px; }
 .stars s { text-decoration: none; color: var(--rule); }
 .words { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
 .words span { padding: 1px 6px; border: 1px solid var(--rule); font-size: var(--micro); }
@@ -228,7 +261,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .comp { display: flex; height: 10px; }
 .comp i { display: block; min-width: 2px; }
 .seg-cafe { background: var(--ink); } .seg-coworking { background: var(--amber); }
-.seg-library { background: var(--paper); box-shadow: inset 0 0 0 1.5px var(--ink); } .seg-restaurant { background: var(--food); }
+.seg-library { background: var(--paper); box-shadow: inset 0 0 0 1.5px var(--ink); } .seg-restaurant { background: var(--ink-45); }
 .comp-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: var(--micro); color: var(--muted); }
 .comp-legend span { display: inline-flex; align-items: center; gap: 4px; }
 .traits { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 4px; }
@@ -242,7 +275,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .walk li:last-child::before, .line li:last-child::before { bottom: 50%; }
 .stop { position: relative; z-index: 1; flex: none; width: 24px; height: 24px; border: 2px solid var(--ink); border-radius: 50%;
   background: var(--paper); display: inline-flex; align-items: center; justify-content: center; font-size: var(--micro); font-weight: 600; }
-.stop.stamped { background: var(--amber); }
+.stop.stamped { background: var(--ink); color: var(--paper); }
 .walk .nm, .line .nm { flex: 1; min-width: 0; }
 .line .nm .micro { display: block; }
 .line .th { display: inline; }
@@ -251,8 +284,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .board li { display: grid; grid-template-columns: 9.5em 1fr 2.5em; gap: 8px; align-items: center; min-height: 24px; }
 .board .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .barwrap { height: 8px; background: var(--wash); }
-.barwrap i { display: block; height: 100%; background: var(--food); }
-.board li.hl .barwrap i { background: var(--amber); }
+.barwrap i { display: block; height: 100%; background: var(--ink-45); }
+.board li.hl .barwrap i { background: var(--ink); }
 .board li.hl .nm { font-weight: 600; }
 .board .meta { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
 .stamps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
@@ -262,7 +295,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .stamp b { font-weight: 600; }
 .stamp .th { display: block; margin: 0; font-size: var(--micro); }
 /* Stamp board is a named `modular` grid; this tilt is the deliberate ink-stamp mark, not a stray break. No other rotation is licensed (see STYLE.md). */
-.stamps li.on .stamp { border: 2px solid var(--ink); color: var(--ink); background: #fff4dc; transform: rotate(-6deg); }
+.stamps li.on .stamp { border: 2px solid var(--ink); color: var(--ink); background: var(--wash); transform: rotate(-6deg); }
 .sorts { flex: none; display: flex; gap: 0; padding: 6px var(--pad); border-bottom: 1px solid var(--rule); overflow-x: auto; scrollbar-width: none; }
 .sorts button { height: 32px; padding: 0 5px; white-space: nowrap; color: var(--muted); border-bottom: 2px solid transparent; }
 .sorts button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); font-weight: 500; }

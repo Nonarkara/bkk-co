@@ -200,13 +200,13 @@ map.on('load', async () => {
   map.addLayer({ id: 'pin-city-names', type: 'symbol', source: 'places', minzoom: 12.5, maxzoom: 15, filter: ['all',['!',['has','point_count']],['>=', ['get', 'i'], 96]],
     layout: { 'text-field': ['get', 'n'], 'text-size': 11, 'text-offset': [0, 1], 'text-anchor': 'top', 'text-optional': true,
       'text-font': ['Noto Sans Regular'], 'symbol-sort-key': ['-', 100, ['get', 'i']] },
-    paint: { 'text-color': '#575951', 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } });
+    paint: { 'text-color': '#7d133a', 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } });
   map.addLayer({ id: 'pin-names', type: 'symbol', source: 'places', minzoom: 16, filter:['!',['has','point_count']],
     layout: { 'text-field': ['get', 'n'], 'text-size': 11, 'text-offset': [0, 1.2], 'text-anchor': 'top', 'text-optional': true,
       'text-font': ['Noto Sans Regular'], 'symbol-sort-key': ['-', 100, ['get', 'i']] },
-    paint: { 'text-color': '#575951', 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } });
+    paint: { 'text-color': '#7d133a', 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } });
   map.addLayer({ id: 'sel', type: 'circle', source: 'sel', paint: {
-    'circle-radius': 20, 'circle-color': 'rgba(0,0,0,0)', 'circle-stroke-color': '#20201d', 'circle-stroke-width': 2.5 } });
+    'circle-radius': 20, 'circle-color': 'rgba(0,0,0,0)', 'circle-stroke-color': '#7d133a', 'circle-stroke-width': 2.5 } });
 
   Atlas.install(map);
   window.WorkFinder?.onViewsReady();
@@ -461,11 +461,11 @@ function petals(p, size = 76) {
     const tx = cx + Math.cos(a) * len, ty = cy + Math.sin(a) * len;
     const nx = Math.cos(a + Math.PI / 2) * w, ny = Math.sin(a + Math.PI / 2) * w;
     const mx = cx + Math.cos(a) * len * 0.55, my = cy + Math.sin(a) * len * 0.55;
-    return `<path d="M${cx} ${cy} Q${mx + nx} ${my + ny} ${tx} ${ty} Q${mx - nx} ${my - ny} ${cx} ${cy}Z" fill="${i < 4 ? '#20201d' : '#a7a99f'}"/>` +
+    return `<path d="M${cx} ${cy} Q${mx + nx} ${my + ny} ${tx} ${ty} Q${mx - nx} ${my - ny} ${cx} ${cy}Z" fill="${i < 4 ? '#7d133a' : '#b6bfc1'}"/>` +
 ''; // labels live in the table beside it
   }).join('');
   return `<svg class="petals" viewBox="0 0 100 100" width="${size}" height="${size}" role="img" aria-label="Great Good Place profile">
-    <circle cx="50" cy="50" r="43" fill="none" stroke="#d5d7cf" stroke-dasharray="2 3"/>${leaves}
+    <circle cx="50" cy="50" r="43" fill="none" stroke="#b6bfc1" stroke-dasharray="2 3"/>${leaves}
     <circle cx="50" cy="50" r="3" fill="#f59e0b"/></svg>`;
 }
 

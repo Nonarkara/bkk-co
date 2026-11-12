@@ -55,7 +55,7 @@ window.addHoodLayers = () => {
   // Manga café hop: ink line + ink stops (manga line art), not the co-working amber.
   map.addSource('route', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
   map.addLayer({ id: 'route-line', type: 'line', source: 'route', filter: ['==', '$type', 'LineString'], paint: { 'line-color': '#7d133a', 'line-width': 3, 'line-dasharray': [2, 1.5] } });
-  map.addLayer({ id: 'route-stop', type: 'circle', source: 'route', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': 11, 'circle-color': '#7d133a', 'circle-stroke-color': '#20201d', 'circle-stroke-width': 2 } });
+  map.addLayer({ id: 'route-stop', type: 'circle', source: 'route', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': 11, 'circle-color': '#7d133a', 'circle-stroke-color': '#7d133a', 'circle-stroke-width': 2 } });
   map.addLayer({ id: 'route-num', type: 'symbol', source: 'route', filter: ['==', '$type', 'Point'], layout: { 'text-field': ['get', 'n'], 'text-size': 12, 'text-font': ['Noto Sans Bold'], 'text-allow-overlap': true }, paint: { 'text-color': '#ffffff' } });
   map.on('click','route-stop',e=>{const p=state.byId.get(e.features[0].properties.id);if(p)select(p,false)});
   map.on('mouseenter','route-stop',()=>{map.getCanvas().style.cursor='pointer'});
@@ -98,9 +98,9 @@ function strip(h) {
   const x = v => 6 + v / max * (W - 12);
   const med = hoods.data.stationMedian;
   return `<svg class="strip" viewBox="0 0 ${W} 40" role="img" aria-label="${h.stats.work} work spots; rank ${h.stats.stationRank} of ${h.stats.stations} stations; median ${med}">
-    <line x1="6" y1="22" x2="${W - 6}" y2="22" stroke="#d5d7cf"/>
-    ${all.map(v => `<line x1="${x(v)}" y1="17" x2="${x(v)}" y2="27" stroke="#a7a99f" stroke-width=".8"/>`).join('')}
-    <line x1="${x(med)}" y1="12" x2="${x(med)}" y2="32" stroke="#575951" stroke-dasharray="2 2"/>
+    <line x1="6" y1="22" x2="${W - 6}" y2="22" stroke="#b6bfc1"/>
+    ${all.map(v => `<line x1="${x(v)}" y1="17" x2="${x(v)}" y2="27" stroke="#b6bfc1" stroke-width=".8"/>`).join('')}
+    <line x1="${x(med)}" y1="12" x2="${x(med)}" y2="32" stroke="#974261" stroke-dasharray="2 2"/>
     <text x="${x(med)}" y="9" text-anchor="middle">median ${med}</text>
     <line x1="${x(h.stats.work)}" y1="6" x2="${x(h.stats.work)}" y2="36" stroke="#f59e0b" stroke-width="3"/>
     <text x="${Math.min(W - 20, x(h.stats.work))}" y="40" text-anchor="end">${h.stats.work}</text></svg>`;
@@ -172,8 +172,8 @@ function histogram(P) {
   const max = Math.max(...bins), W = 300, H = 56, bw = W / 20;
   const marks = hoods.list.map(h => `<line x1="${h.stats.ggp / 100 * W}" y1="0" x2="${h.stats.ggp / 100 * W}" y2="${H}" stroke="#f59e0b" stroke-width="1.5"/>`).join('');
   return `<svg class="hist" viewBox="0 0 ${W} ${H + 12}" role="img" aria-label="Distribution of the Great Good Place index across ${P.length} places">
-    ${bins.map((b, i) => `<rect x="${i * bw + 1}" y="${H - b / max * H}" width="${bw - 2}" height="${b / max * H}" fill="#a7a99f"/>`).join('')}
-    ${marks}<line x1="0" y1="${H}" x2="${W}" y2="${H}" stroke="#20201d"/>
+    ${bins.map((b, i) => `<rect x="${i * bw + 1}" y="${H - b / max * H}" width="${bw - 2}" height="${b / max * H}" fill="#c08da2"/>`).join('')}
+    ${marks}<line x1="0" y1="${H}" x2="${W}" y2="${H}" stroke="#7d133a"/>
     <text x="0" y="${H + 11}">0</text><text x="${W / 2}" y="${H + 11}" text-anchor="middle">✦ index · amber = the four neighbourhoods</text><text x="${W}" y="${H + 11}" text-anchor="end">100</text></svg>`;
 }
 
@@ -365,31 +365,31 @@ async function stampCard(places) {
   g.fillStyle = '#e88ba1'; g.fillText(';', wm, 148);
   wm += g.measureText(';').width;
   g.fillStyle = '#7d133a'; g.fillText('UB', wm + 4, 148);
-  g.fillStyle = '#575951'; g.font = '300 30px "Sao Chingcha", Jost, Prompt, sans-serif';
+  g.fillStyle = '#974261'; g.font = '300 30px "Sao Chingcha", Jost, Prompt, sans-serif';
   g.fillText('placemaking laboratory ; urban bureau · bangkok', 80, 198);
   const img = new Image();
   img.src = 'plub/nong-plub.png';
   await img.decode().catch(() => {});
   if (img.naturalWidth) { const mh = 330, mw = img.naturalWidth * mh / img.naturalHeight; g.drawImage(img, W - 80 - mw, 40, mw, mh); }
-  g.strokeStyle = '#20201d'; g.lineWidth = 2; g.beginPath(); g.moveTo(80, 390); g.lineTo(W - 80, 390); g.stroke();
+  g.strokeStyle = '#7d133a'; g.lineWidth = 2; g.beginPath(); g.moveTo(80, 390); g.lineTo(W - 80, 390); g.stroke();
   hoods.list.forEach((h, i) => {
     const n = h.ids.filter(id => places.has(id)).length;
     const cx = 80 + 230 + (i % 2) * 460, cy = 560 + Math.floor(i / 2) * 360, r = 150;
     g.save(); g.translate(cx, cy); if (n) g.rotate(-0.1);
     g.beginPath(); g.arc(0, 0, r, 0, 2 * Math.PI);
-    if (n) { g.fillStyle = '#fff4dc'; g.fill(); g.setLineDash([]); g.strokeStyle = '#20201d'; g.lineWidth = 6; }
-    else { g.setLineDash([14, 12]); g.strokeStyle = '#d5d7cf'; g.lineWidth = 4; }
+    if (n) { g.fillStyle = '#f4f4f0'; g.fill(); g.setLineDash([]); g.strokeStyle = '#7d133a'; g.lineWidth = 6; }
+    else { g.setLineDash([14, 12]); g.strokeStyle = '#b6bfc1'; g.lineWidth = 4; }
     g.stroke(); g.setLineDash([]);
-    g.textAlign = 'center'; g.fillStyle = n ? '#20201d' : '#a7a99f';
+    g.textAlign = 'center'; g.fillStyle = n ? '#7d133a' : '#974261';
     let fs = 44; do { g.font = `600 ${fs}px Jost, Prompt, sans-serif`; } while (g.measureText(h.name).width > 2 * r - 40 && --fs > 20);
     g.fillText(h.name, 0, n ? 10 : 0);
     g.font = '400 30px Prompt, Jost, sans-serif'; g.fillText(h.th, 0, n ? 52 : 44);
-    if (n) { g.font = '600 52px Jost, sans-serif'; g.fillStyle = '#f59e0b'; g.fillText('✓', 0, -50); g.fillStyle = '#20201d'; g.font = '400 28px Jost, sans-serif'; g.fillText(`${n} been`, 0, 98); }
+    if (n) { g.font = '600 52px Jost, sans-serif'; g.fillStyle = '#7d133a'; g.fillText('✓', 0, -50); g.fillStyle = '#7d133a'; g.font = '400 28px Jost, sans-serif'; g.fillText(`${n} been`, 0, 98); }
     g.restore();
   });
-  g.textAlign = 'left'; g.fillStyle = '#20201d'; g.font = '500 40px Jost, Prompt, sans-serif';
+  g.textAlign = 'left'; g.fillStyle = '#7d133a'; g.font = '500 40px Jost, Prompt, sans-serif';
   g.fillText(`${places.size} great good ${places.size === 1 ? 'place' : 'places'} · ${hoods.list.filter(h => h.ids.some(id => places.has(id))).length} of ${hoods.list.length} neighbourhoods`, 80, H - 120);
-  g.fillStyle = '#575951'; g.font = '400 30px Jost, sans-serif'; g.fillText('co.nonarkara.org', 80, H - 70);
+  g.fillStyle = '#974261'; g.font = '400 30px Jost, sans-serif'; g.fillText('co.nonarkara.org', 80, H - 70);
   return new Promise(ok => c.toBlob(ok, 'image/png'));
 }
 

@@ -6,7 +6,7 @@
   left: 372px;
   max-width: min(390px, calc(100vw - 452px));
   pointer-events: none;
-  color: #7d133a;
+  color: var(--ink);
 }
 .atlas-tools {
   display: flex;
@@ -17,13 +17,12 @@
 .atlas-tools button,
 .atlas-reset {
   background: #fff;
-  border: 1px solid #7d133a;
-  color: #7d133a;
+  border: 1px solid var(--ink);
+  color: var(--ink);
   min-height: 36px;
   padding: 4px 10px;
   font:
-    500 15px Jost,
-    sans-serif;
+    500 var(--body) var(--font);
   cursor: pointer;
 }
 .atlas-state {
@@ -32,14 +31,13 @@
   background: #fff;
   padding: 2px 6px;
   font:
-    500 13px/1.4 Jost,
-    sans-serif;
+    500 var(--small)/1.45 var(--font);
   max-width: 100%;
   overflow-wrap: anywhere;
 }
 .atlas-reset {
   pointer-events: auto;
-  font-size: 13px;
+  font-size: var(--small);
   min-height: 32px;
   margin-top: 4px;
 }
@@ -52,31 +50,31 @@
   display: block;
   text-align: left;
   border: 0;
-  border-bottom: 1px solid #b6bfc1;
+  border-bottom: 1px solid var(--rule);
   background: #fff;
-  color: #7d133a;
+  color: var(--ink);
   padding: 8px 4px;
   cursor: pointer;
   font: inherit;
   min-height: 44px;
 }
 .atlas-modes button[aria-pressed='true'] {
-  border-left: 3px solid #7d133a;
+  border-left: 3px solid var(--ink);
   padding-left: 8px;
-  background: #fff4f7;
+  background: var(--wash);
 }
 .atlas-modes b,
 .atlas-modes small {
   display: block;
 }
 .atlas-modes small {
-  font-size: 13px;
-  line-height: 1.4;
+  font-size: var(--small);
+  line-height: 1.45;
   margin-top: 2px;
-  color: #595959;
+  color: var(--ink-80);
 }
 .atlas-area {
-  border-top: 1px solid #b6bfc1;
+  border-top: 1px solid var(--rule);
   padding-top: 10px;
 }
 .atlas-area summary {
@@ -99,7 +97,7 @@
 }
 .atlas-places li,
 .atlas-triangles li {
-  border-top: 1px solid #b6bfc1;
+  border-top: 1px solid var(--rule);
 }
 .atlas-places button {
   display: flex;
@@ -111,7 +109,7 @@
   padding: 8px 0;
   border: 0;
   background: #fff;
-  color: #7d133a;
+  color: var(--ink);
   font: inherit;
   cursor: pointer;
 }
@@ -124,9 +122,9 @@
 .atlas-places small,
 .atlas-triangles small {
   display: block;
-  color: #595959;
-  font-size: 13px;
-  line-height: 1.4;
+  color: var(--ink-80);
+  font-size: var(--small);
+  line-height: 1.45;
 }
 .atlas-key li {
   display: flex;
@@ -143,7 +141,7 @@
   text-align: left;
   min-height: 44px;
   padding: 10px 0;
-  color: #7d133a;
+  color: var(--ink);
   background: #fff;
   border: 0;
   font: inherit;
@@ -153,16 +151,16 @@
   line-height: 1.5;
 }
 .atlas-facts {
-  border-top: 1px solid #b6bfc1;
+  border-top: 1px solid var(--rule);
   padding: 8px 0;
-  font-size: 14px;
+  font-size: var(--body);
 }
 .atlas-facts summary {
   min-height: 32px;
   cursor: pointer;
 }
 .atlas-facts p {
-  font-size: 13px;
+  font-size: var(--small);
   line-height: 1.5;
 }
 /* The rail's Find / Explore / Key own these actions at every width (one control per action, MSH).
@@ -176,11 +174,11 @@
     max-width: calc(100vw - 76px);
   }
   .atlas-tools button {
-    font-size: 14px;
+    font-size: var(--body);
     padding: 4px 8px;
   }
   .atlas-state {
-    font-size: 12px;
+    font-size: var(--small);
     max-width: 230px;
   }
   .atlas-sheet {

@@ -3,7 +3,7 @@
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: var(--paper, #ede9e3);
+  background: var(--paper, #ffffff);
   overflow: hidden;
   touch-action: none;
 }
@@ -24,7 +24,7 @@
   cursor: grabbing;
 }
 .model-canvas:focus-visible {
-  outline: 2px solid var(--ink, #20201d);
+  outline: 2px solid var(--ink);
   outline-offset: -2px;
 }
 
@@ -47,21 +47,21 @@
 /* Segment roles: neighbourhood (secondary nav), mode (primary action), TOD (tertiary visual) */
 .model-seg {
   display: inline-flex;
-  border: 1px solid var(--rule, #d5d7cf);
+  border: 1px solid var(--rule, #b6bfc1);
   background: var(--paper, #ffffff);
 }
-.model-seg--area { border-color: var(--rule, #d5d7cf); }
-.model-seg--mode { border-color: var(--ink, #20201d); }
-.model-seg--tod { border-color: var(--muted, #575951); }
+.model-seg--area { border-color: var(--rule, #b6bfc1); }
+.model-seg--mode { border-color: var(--ink, #7d133a); }
+.model-seg--tod { border-color: var(--muted); }
 
 .model-seg button {
   min-height: 36px;
   padding: 0 10px;
   border: 0;
-  border-right: 1px solid var(--rule, #d5d7cf);
+  border-right: 1px solid var(--rule, #b6bfc1);
   background: none;
-  color: var(--muted, #575951);
-  font: 500 12px/1 var(--font, sans-serif);
+  color: var(--muted);
+  font: 500 var(--small)/1 var(--font);
   letter-spacing: .02em;
   cursor: pointer;
   white-space: nowrap;
@@ -69,35 +69,35 @@
 .model-seg button:last-child { border-right: 0; }
 
 /* Neighbourhood segment — subtle */
-.model-seg--area button { color: var(--muted, #575951); font-size: 11px; }
+.model-seg--area button { color: var(--muted); font-size: var(--micro); }
 .model-seg--area button[aria-pressed="true"] {
-  background: var(--ink, #20201d); color: var(--paper, #ffffff); font-weight: 600;
+  background: var(--ink, #7d133a); color: var(--paper, #ffffff); font-weight: 600;
 }
 
 /* Mode segment — primary action, emphasized */
-.model-seg--mode button { color: var(--ink, #20201d); font-weight: 600; font-size: 13px; }
+.model-seg--mode button { color: var(--ink); font-weight: 600; font-size: var(--small); }
 .model-seg--mode button[aria-pressed="true"] {
-  background: var(--ink, #20201d); color: var(--paper, #ffffff);
+  background: var(--ink, #7d133a); color: var(--paper, #ffffff);
 }
 
 /* TOD segment — tertiary visual setting, subtle */
-.model-seg--tod button { color: var(--muted, #575951); font-size: 11px; font-weight: 400; }
+.model-seg--tod button { color: var(--muted); font-size: var(--micro); font-weight: 400; }
 .model-seg--tod button[aria-pressed="true"] {
-  background: var(--wash, #f4f4f0); color: var(--ink, #20201d); font-weight: 600;
+  background: var(--wash, #f4f4f0); color: var(--ink, #7d133a); font-weight: 600;
 }
 
 .model-close {
   margin-left: auto;
   min-height: 36px;
   padding: 0 14px;
-  border: 1px solid var(--ink, #20201d);
+  border: 1px solid var(--ink, #7d133a);
   background: var(--paper, #ffffff);
-  color: var(--ink, #20201d);
-  font: 600 13px/1 var(--font, sans-serif);
+  color: var(--ink, #7d133a);
+  font: 600 var(--small)/1 var(--font);
   cursor: pointer;
 }
 .model-close:hover {
-  background: var(--ink, #20201d);
+  background: var(--ink, #7d133a);
   color: var(--paper, #ffffff);
 }
 
@@ -106,10 +106,10 @@
   left: 12px;
   bottom: 12px;
   padding: 6px 12px;
-  border: 1px solid var(--rule, #d5d7cf);
+  border: 1px solid var(--rule, #b6bfc1);
   background: rgba(255, 255, 255, 0.94);
-  color: var(--muted, #575951);
-  font-size: 11px;
+  color: var(--muted);
+  font-size: var(--micro);
   letter-spacing: .04em;
   text-transform: uppercase;
   pointer-events: none;
@@ -122,7 +122,7 @@
   bottom: 60px;
   width: 100px;
   height: 100px;
-  border: 2px solid var(--ink, #20201d);
+  border: 2px solid var(--ink, #7d133a);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.65);
   touch-action: none;
@@ -136,7 +136,7 @@
   height: 36px;
   margin: -18px 0 0 -18px;
   border-radius: 50%;
-  background: var(--ink, #20201d);
+  background: var(--ink, #7d133a);
 }
 
 .model-pins {
@@ -167,12 +167,12 @@
   border-radius: 50%;
   flex: none;
 }
-.pin-dot.cafe { background: var(--ink, #20201d); }
+.pin-dot.cafe { background: var(--ink, #7d133a); }
 .pin-dot.coworking { background: var(--amber, #f59e0b); }
-.pin-dot.library { background: #fff; box-shadow: inset 0 0 0 2px var(--ink, #20201d); }
-.pin-dot.restaurant { background: var(--food, #8f918a); }
+.pin-dot.library { background: #fff; box-shadow: inset 0 0 0 2px var(--ink, #7d133a); }
+.pin-dot.restaurant { background: var(--ink-45, #c08da2); }
 .pin-tag {
-  font-size: 11px;
+  font-size: var(--micro);
   font-weight: 500;
   max-width: 120px;
   overflow: hidden;
@@ -196,14 +196,14 @@
   display: none;
 }
 .model-card-title {
-  font-size: 16px;
+  font-size: var(--small);
   font-weight: 600;
   line-height: 1.25;
   margin-right: 24px;
 }
 .model-card-meta {
-  font-size: 12px;
-  color: var(--muted, #575951);
+  font-size: var(--small);
+  color: var(--muted);
 }
 .model-card-actions {
   display: flex;
@@ -215,7 +215,7 @@
   padding: 0 12px;
   border: 1px solid var(--ink, #7d133a);
   background: none;
-  font-size: 13px;
+  font-size: var(--small);
   font-weight: 500;
   cursor: pointer;
 }
@@ -231,7 +231,7 @@
   height: 32px;
   border: 0;
   background: none;
-  font-size: 18px;
+  font-size: var(--big);
   line-height: 1;
   cursor: pointer;
 }
