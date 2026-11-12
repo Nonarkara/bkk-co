@@ -24,8 +24,33 @@ async function knownIds(env, url) {
   return cataloguePending;
 }
 
+const SEC = {
+  'x-content-type-options': 'nosniff',
+  'x-frame-options': 'DENY',
+  'referrer-policy': 'strict-origin-when-cross-origin',
+  'permissions-policy': 'geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()',
+  // CSP: self-only scripts/styles, inline styles allowed for dynamic UI, images from self + data:, connect to self + OSM tiles + Overture + Google Maps directions.
+  'content-security-policy': [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' https://www.google.com https://maps.googleapis.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "img-src 'self' data: blob: https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://maps.googleapis.com https://maps.gstatic.com",
+    "font-src 'self' https://fonts.gstatic.com",
+    "connect-src 'self' https://*.openstreetmap.org https://overturemaps.org https://maps.googleapis.com https://www.google.com",
+    "frame-ancestors 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+  ].join('; '),
+};
+
 const json = (data, status = 200, headers = {}) =>
-  new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json', ...headers } });
+  new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json', ...SEC, ...headers } });
+
+const secHeaders = (res) => {
+  const h = new Headers(res.headers);
+  for (const [k, v] of Object.entries(SEC)) h.set(k, v);
+  return new Response(res.body, { status: res.status, statusText: res.statusText, headers: h });
+};
 
 async function hashIp(ip, salt) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(salt + '|' + ip));
@@ -77,19 +102,19 @@ export default {
     const url = new URL(request.url);
     if (url.hostname === 'bkkco.nonarkara.org') { // links shared on 2 Nov 2026 keep working
       url.hostname = 'co.nonarkara.org';
-      return Response.redirect(url.toString(), 301);
+      return secHeaders(Response.redirect(url.toString(), 301));
     }
-    if (/^\/api\/(account|notebook|community|moderation|research|hops)(?:\/|$)/.test(url.pathname)) return notebookApi(request, env, () => knownIds(env, request.url));
+    if (/^\/api\/(account|notebook|community|moderation|research|hops)(?:\/|$)/.test(url.pathname)) return secHeaders(notebookApi(request, env, () => knownIds(env, request.url)));
     // The agent-facing API: read-only, no account, no write. The catalogue and its evidence
     // are public; the notebook is not, and never appears here.
-    if (url.pathname === '/v1' || url.pathname.startsWith('/v1/')) return agentApi(request, env, url);
+    if (url.pathname === '/v1' || url.pathname.startsWith('/v1/')) return secHeaders(agentApi(request, env, url));
     if (url.pathname === '/api/scores') {
       if (request.method === 'GET') return getScores(env);
       if (request.method === 'POST') return postScore(request, env);
       return json({ error: 'method not allowed' }, 405, { allow: 'GET, POST' });
     }
-    if (url.pathname === '/' && ['hood', 'p', 'mood'].some(k => url.searchParams.has(k))) return withPreview(request, env, url);
-    return env.ASSETS.fetch(request);
+    if (url.pathname === '/' && ['hood', 'p', 'mood'].some(k => url.searchParams.has(k))) return secHeaders(withPreview(request, env, url));
+    return secHeaders(env.ASSETS.fetch(request));
   },
 };
 
