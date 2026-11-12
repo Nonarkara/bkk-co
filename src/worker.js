@@ -46,10 +46,11 @@ const SEC = {
 const json = (data, status = 200, headers = {}) =>
   new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json', ...SEC, ...headers } });
 
-const secHeaders = (res) => {
+const secHeaders = async (res) => {
   const h = new Headers(res.headers);
   for (const [k, v] of Object.entries(SEC)) h.set(k, v);
-  return new Response(res.body, { status: res.status, statusText: res.statusText, headers: h });
+  const body = await res.arrayBuffer();
+  return new Response(body, { status: res.status, statusText: res.statusText, headers: h });
 };
 
 async function hashIp(ip, salt) {
@@ -102,19 +103,23 @@ export default {
     const url = new URL(request.url);
     if (url.hostname === 'bkkco.nonarkara.org') { // links shared on 2 Nov 2026 keep working
       url.hostname = 'co.nonarkara.org';
-      return secHeaders(Response.redirect(url.toString(), 301));
+      return await secHeaders(Response.redirect(url.toString(), 301));
     }
-    if (/^\/api\/(account|notebook|community|moderation|research|hops)(?:\/|$)/.test(url.pathname)) return secHeaders(notebookApi(request, env, () => knownIds(env, request.url)));
+    if (/^\/api\/(account|notebook|community|moderation|research|hops)(?:\/|$)/.test(url.pathname)) return await secHeaders(await notebookApi(request, env, () => knownIds(env, request.url)));
     // The agent-facing API: read-only, no account, no write. The catalogue and its evidence
     // are public; the notebook is not, and never appears here.
-    if (url.pathname === '/v1' || url.pathname.startsWith('/v1/')) return secHeaders(agentApi(request, env, url));
+    if (url.pathname === '/v1' || url.pathname.startsWith('/v1/')) return await secHeaders(await agentApi(request, env, url));
     if (url.pathname === '/api/scores') {
       if (request.method === 'GET') return getScores(env);
       if (request.method === 'POST') return postScore(request, env);
       return json({ error: 'method not allowed' }, 405, { allow: 'GET, POST' });
     }
-    if (url.pathname === '/' && ['hood', 'p', 'mood'].some(k => url.searchParams.has(k))) return secHeaders(withPreview(request, env, url));
-    return secHeaders(env.ASSETS.fetch(request));
+    if (url.pathname === '/' && ['hood', 'p', 'mood'].some(k => url.searchParams.has(k))) return await secHeaders(await withPreview(request, env, url));
+    const res = await env.ASSETS.fetch(request);
+    const h = new Headers(res.headers);
+    for (const [k, v] of Object.entries(SEC)) h.set(k, v);
+    const body = await res.arrayBuffer();
+    return new Response(body, { status: res.status, statusText: res.statusText, headers: h });
   },
 };
 
@@ -138,7 +143,12 @@ async function withPreview(request, env, url) {
       if (n) { title = `${n[0]} · PLUB`; desc = `${KIND[n[1]] || 'Place'} in Bangkok · Great Good Place index ${n[2]} of 100. Scored from open data, with Nong Plub as your guide.`; }
     }
   } catch { /* fall back to the generic preview */ }
-  if (!title) return page;
+  if (!title) {
+    const h = new Headers(page.headers);
+    for (const [k, v] of Object.entries(SEC)) h.set(k, v);
+    const body = await page.arrayBuffer();
+    return new Response(body, { status: page.status, statusText: page.statusText, headers: h });
+  }
   const set = (attr) => ({ element(e) { e.setAttribute('content', attr); } });
   return new HTMLRewriter()
     .on('title', { element(e) { e.setInnerContent(title); } })
