@@ -11,7 +11,7 @@
     "licenseURL": "https://www.openstreetmap.org/copyright",
     "crs": "EPSG:4326",
     "distanceCRS": "EPSG:32647",
-    "catalogueSHA256": "62b5c39ae4f1c075307ab368747af0631e418b72114dd3e6a236ca2bf64852a2",
+    "catalogueSHA256": "8c72533b96de56992097fc08f9b6cee288a63cff982eb4964ca8d97be1141716",
     "radiusM": 800,
     "areas": 12,
     "buildingCount": 20650,

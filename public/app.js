@@ -540,7 +540,7 @@ function renderSheet(p, d, visits, report) {
   if (state.selected !== p) return;
   // Late catalogue details must not replace a visit form someone is already writing.
   if (!$('#sheet').hidden && $('#sheet .been-form')?.dataset.place === p.id) return;
-  const hours = venueHours(p);
+  const hours = report?.place?.hours || venueHours(p);
   const open = window.isOpen(hours, new Date());
   const hood = window.hoodOf?.(p);
   const addr = report?.place?.address || d.addr;
@@ -578,7 +578,7 @@ function renderSheet(p, d, visits, report) {
   const scroll = updating ? currentSheet.scrollTop : 0;
   const sheet = openSheet(`
     <header>
-      <h1>${esc(p.n)}${p.branch ? `<span class="th">${esc(p.branch)}</span>` : ''}${d.th ? `<span class="th" lang="th">${esc(d.th)}</span>` : ''}</h1>
+      <h1>${esc(report?.venue || p.n)}${p.branch ? `<span class="th">${esc(p.branch)}</span>` : ''}${d.th ? `<span class="th" lang="th">${esc(d.th)}</span>` : ''}</h1>
       <button class="close" aria-label="Close">×</button>
     </header>
     <div class="kindline">${PlaceTools.symbol(p.k)}${KIND_LABEL[p.k]}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>
