@@ -5,7 +5,14 @@
   'use strict';
   const F = { WIFI: 1, NOWIFI: 2, HOURS: 4, OUTDOOR: 8, OVERTURE: 16, CHAIN: 32, NOTABLE: 64, HAND: 128, PARK: 256, COFFEE: 512 };
   const fmt = n => Number(n).toLocaleString('en-GB');
-  const pct = (a, b) => b ? (a / b * 100).toFixed(b < 100 ? 1 : 0) + '%' : '—';
+  // A share that rounds to zero must never read as "0%": that would say "none",
+  // which is not what the catalogue says.
+  const pct = (a, b) => {
+    if (!b) return '—';
+    const v = a / b * 100;
+    if (v < 0.1) return '<0.1%';
+    return v.toFixed(v < 10 ? 1 : 0) + '%';
+  };
   const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
   const row = (label, value, note) => `<div class="rd-row"><dt>${esc(label)}</dt><dd>${value}</dd>${note ? `<p class="rd-note">${note}</p>` : ''}</div>`;
@@ -72,7 +79,7 @@
     const kindRows = Object.entries(byKind).filter(([, n]) => n > 0)
       .sort((a, b) => b[1] - a[1])
       .map(([k, n]) => row(k === 'coworking' ? 'Co-working spaces' : k === 'cafe' ? 'Cafés' : k === 'library' ? 'Libraries' : k,
-        `${fmt(n)} <span class="rd-share">${pct(n, total)}</span>`)).join('');
+        `${fmt(n)} <span class="rd-share">· ${pct(n, total)}</span>`)).join('');
 
     const areaCount = (areas.areas || []).length;
 
@@ -86,15 +93,15 @@
       <h3 class="rd-head">The catalogue</h3>
       <dl class="rd-figures">${kindRows}
         ${row('Places in total', fmt(total))}
-        ${row('From OpenStreetMap + Overture Maps', `${fmt(overture)} <span class="rd-share">${pct(overture, total)}</span>`, 'The rest are catalogue records without a mapped counterpart.')}
-        ${row('Carrying a chain signal', `${fmt(chain)} <span class="rd-share">${pct(chain, total)}</span>`)}
+        ${row('From OpenStreetMap + Overture Maps', `${fmt(overture)} <span class="rd-share">· ${pct(overture, total)}</span>`, 'The rest are catalogue records without a mapped counterpart.')}
+        ${row('Carrying a chain signal', `${fmt(chain)} <span class="rd-share">· ${pct(chain, total)}</span>`)}
         ${row('Neighbourhoods with a walked street sketch', fmt(areaCount))}
       </dl>
       <h3 class="rd-head">What is actually documented</h3>
       <dl class="rd-figures">
-        ${row('Wi-Fi recorded', `${fmt(wifi)} <span class="rd-share">${pct(wifi, total)}</span>`, 'A map tag or a visitor report. A missing tag is not a claim that there is no Wi-Fi.')}
+        ${row('Wi-Fi recorded', `${fmt(wifi)} <span class="rd-share">· ${pct(wifi, total)}</span>`, 'A map tag or a visitor report. A missing tag is not a claim that there is no Wi-Fi.')}
         ${row('Wi-Fi explicitly recorded as absent', fmt(nowifi))}
-        ${row('Opening hours recorded', `${fmt(hours)} <span class="rd-share">${pct(hours, total)}</span>`)}
+        ${row('Opening hours recorded', `${fmt(hours)} <span class="rd-share">· ${pct(hours, total)}</span>`)}
         ${row('Notable records', fmt(notable))}
         ${row('Hand pins — visited, not yet on the open map', fmt(hand))}
       </dl>

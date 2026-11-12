@@ -50,6 +50,40 @@
       "lang": "en",
       "title": "PLUB · Placemaking Laboratory Urban Bureau",
       "pinsLayer": true,
+      "placeSheet": {
+        "lines": 2,
+        "textWidth": 321.765625,
+        "factsHeight": 64.890625,
+        "directionsBottom": 216.1875,
+        "pass": true
+      },
+      "visitReading": {
+        "photoLeads": true,
+        "titleTop": 261.25,
+        "verdictBottom": 427.078125,
+        "directionsBottom": 529.671875,
+        "wifiBottom": 711.859375,
+        "width": 390,
+        "pass": true
+      },
+      "dayPlanner": {
+        "live": {
+          "actionBottom": 586.59375,
+          "width": 390,
+          "pass": true
+        },
+        "today": {
+          "actionBottom": 439.40625,
+          "width": 390,
+          "pass": true
+        },
+        "work": {
+          "actionBottom": 520.3125,
+          "width": 390,
+          "pass": true
+        },
+        "pass": true
+      },
       "verdict": "PASS"
     },
     {
@@ -99,6 +133,40 @@
       "lang": "en",
       "title": "PLUB · Placemaking Laboratory Urban Bureau",
       "pinsLayer": true,
+      "placeSheet": {
+        "lines": 2,
+        "textWidth": 266.46875,
+        "factsHeight": 64.890625,
+        "directionsBottom": 214.1875,
+        "pass": true
+      },
+      "visitReading": {
+        "photoLeads": true,
+        "titleTop": 63,
+        "verdictBottom": 228.828125,
+        "directionsBottom": 331.421875,
+        "wifiBottom": 493.3125,
+        "width": 1024,
+        "pass": true
+      },
+      "dayPlanner": {
+        "live": {
+          "actionBottom": 554.125,
+          "width": 1024,
+          "pass": true
+        },
+        "today": {
+          "actionBottom": 360.75,
+          "width": 1024,
+          "pass": true
+        },
+        "work": {
+          "actionBottom": 333.65625,
+          "width": 1024,
+          "pass": true
+        },
+        "pass": true
+      },
       "verdict": "PASS"
     },
     {
@@ -148,6 +216,40 @@
       "lang": "en",
       "title": "PLUB · Placemaking Laboratory Urban Bureau",
       "pinsLayer": true,
+      "placeSheet": {
+        "lines": 2,
+        "textWidth": 266.46875,
+        "factsHeight": 64.890625,
+        "directionsBottom": 214.1875,
+        "pass": true
+      },
+      "visitReading": {
+        "photoLeads": true,
+        "titleTop": 63,
+        "verdictBottom": 228.828125,
+        "directionsBottom": 331.421875,
+        "wifiBottom": 493.3125,
+        "width": 1440,
+        "pass": true
+      },
+      "dayPlanner": {
+        "live": {
+          "actionBottom": 554.125,
+          "width": 1440,
+          "pass": true
+        },
+        "today": {
+          "actionBottom": 360.75,
+          "width": 1440,
+          "pass": true
+        },
+        "work": {
+          "actionBottom": 333.65625,
+          "width": 1440,
+          "pass": true
+        },
+        "pass": true
+      },
       "verdict": "PASS"
     }
   ],
@@ -179,14 +281,17 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 352
+      "observedHandoffMs": 479
     },
     "notebook": 1,
     "walkthrough": {
-      "area": "charoenkrung",
-      "streets": 3386,
+      "area": "samyan",
+      "streets": 5099,
+      "volumes": 174,
       "options": 12,
       "reachable": true,
+      "flat": true,
+      "relief": true,
       "closed": true
     },
     "pinsLayer": true,

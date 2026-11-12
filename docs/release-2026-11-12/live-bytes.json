@@ -1,12 +1,12 @@
 {
-  "observedAt": "2026-11-12T09:39:20.430Z",
+  "observedAt": "2026-11-12T14:06:58.949Z",
   "origin": "https://co.nonarkara.org",
-  "sourceCommit": "1c2a01b7cbb1b90686df12082762c0e734eec68d",
+  "sourceCommit": "95adba2f36164f5b28e20288c7b037ba9d7a1fec",
   "matched": [
     {
       "path": "app.js",
-      "bytes": 41975,
-      "sha256": "d003d6bcb7a577b6b2be173ef10b1abaa6281274683f9d8a9035d1d3e91d5374"
+      "bytes": 46104,
+      "sha256": "1ca18bf9f684598f7bfd1367609030d1041caef100967387d9397c85a6854c2a"
     },
     {
       "path": "atlas-model.js",
@@ -22,6 +22,11 @@
       "path": "atlas.js",
       "bytes": 41416,
       "sha256": "f6b5cb27627b280c1885adb2ca71c642764c062dd339d80c76c15df1f13a0296"
+    },
+    {
+      "path": "bridge-1958.html",
+      "bytes": 4250,
+      "sha256": "373c8df2745cbe5fce932b66601802bbbb126d407cba91366ba1f911d3cbe34a"
     },
     {
       "path": "data/aliases.json",
@@ -884,6 +889,11 @@
       "sha256": "1114d804d3b5b2dfc6c07e85dbd7001e97394ff9ff361ef83fb207600c6154ab"
     },
     {
+      "path": "data/day-areas.json",
+      "bytes": 3933,
+      "sha256": "577e7d336de0873562fcf5e3d6a938b81f6508ea00e1a1c362505c9a720bfa58"
+    },
+    {
       "path": "data/discovery.json",
       "bytes": 48519,
       "sha256": "ea7c4e60f6d4a0685779991a76d101b344b5e878630e32cffb7fa20146048bca"
@@ -905,8 +915,8 @@
     },
     {
       "path": "data/journey-evidence.json",
-      "bytes": 8427,
-      "sha256": "f4be287408a9fee483cee8d707f79a7f9c8ac211142bb8c7e21e44cc94e14974"
+      "bytes": 10240,
+      "sha256": "4cab0a6a03368f53af7d5a9aa7e81ee3d1fd1529e4c5374e715846cc0b0849d1"
     },
     {
       "path": "data/journey-geo.json",
@@ -935,8 +945,8 @@
     },
     {
       "path": "data/places-work.json",
-      "bytes": 2133170,
-      "sha256": "600169156c46f468d6213c37ee54f318f2383ef82d78b91cd4b20e7952e62db0"
+      "bytes": 1782382,
+      "sha256": "8c72533b96de56992097fc08f9b6cee288a63cff982eb4964ca8d97be1141716"
     },
     {
       "path": "data/street-areas.json",
@@ -1005,8 +1015,8 @@
     },
     {
       "path": "data/street-world.json",
-      "bytes": 8857,
-      "sha256": "73ab46979137559716075defebfe19358c91f389e09c0eea854289ad91bda872"
+      "bytes": 9174,
+      "sha256": "663018b834a42c6549ea2f675b4348a57631e705694a0b59ac7dc1ab45dbc6bf"
     },
     {
       "path": "data/talk-media.json",
@@ -1015,8 +1025,23 @@
     },
     {
       "path": "data/venue-reports.json",
-      "bytes": 4509,
-      "sha256": "615291cfbd20744f3e6b2a01080b837e5de144c0bb290175c2c37e6f7a803818"
+      "bytes": 7286,
+      "sha256": "d7254b17b0dba969f5e4a41567e2b1d527f12b9b150f07f5ee305b042b48dfc6"
+    },
+    {
+      "path": "day.css",
+      "bytes": 2601,
+      "sha256": "2cae9aa361952d33350fd4ae315fedd61c1c9e9a3e65a41d5f4024ca8198570c"
+    },
+    {
+      "path": "day.html",
+      "bytes": 1440,
+      "sha256": "2f12d3256b4a5882d984073692708110cc21c30023e23d3819a512a03926721c"
+    },
+    {
+      "path": "day.js",
+      "bytes": 15140,
+      "sha256": "091573f184adec9f537ec768f9950a0f2ede49f2b551e5e5a25a84f5856572af"
     },
     {
       "path": "discovery.css",
@@ -1140,13 +1165,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 9363,
-      "sha256": "f6ea23c04677d755ae0de682d6f7ef5eba2bcad0c2dd106d76583c427348e343"
+      "bytes": 9458,
+      "sha256": "bf9cc2c7e582617ef2f27748968d89d9baeafa9cdef8af003343fe57d90aad8c"
     },
     {
       "path": "journey-model.js",
-      "bytes": 9625,
-      "sha256": "a5110b7b8d5e018249005bb4abd75b243233da352c88f761dc1eccb4301b2f81"
+      "bytes": 9981,
+      "sha256": "eefd06412c6452bf67db41ea9ce39549cbe7b48c15ab2e0ccebf77e9efc17745"
     },
     {
       "path": "journeys.css",
@@ -1155,13 +1180,13 @@
     },
     {
       "path": "journeys.js",
-      "bytes": 30052,
-      "sha256": "c9ea0fe0890d8f7bbf2cb16ed6e8992118ae4a6727563edb8bc49048e922afc6"
+      "bytes": 34210,
+      "sha256": "c3945de40b0ec55eb7dd831f28f280945577b9b8ea29134b21b4270f2b5a56f9"
     },
     {
       "path": "list-tools.css",
-      "bytes": 4729,
-      "sha256": "eb2f1d05c59f26a0cf7386c68c1b86e28325f9795890d26b3ec3f43b35c54a24"
+      "bytes": 5003,
+      "sha256": "c7c4078efa3743401122df0a757027bf8e112b0fc37d99134aee79328b474740"
     },
     {
       "path": "manga-lens.js",
@@ -1180,8 +1205,8 @@
     },
     {
       "path": "media/venue-reports/the-bridge-1958/interior.jpg",
-      "bytes": 591186,
-      "sha256": "8dcfa500e2e18534f61eb97dd695c1d4834d89fe084f469eb2c7067e565fd5fe"
+      "bytes": 540378,
+      "sha256": "b03e2d9764e2bd89eb521fbfd9516456b9057955eb7dfe195d95edf558d2d32f"
     },
     {
       "path": "neighborhood-palette.js",
@@ -1800,8 +1825,8 @@
     },
     {
       "path": "neighbourhoods.html",
-      "bytes": 1659,
-      "sha256": "b26fa93981fa5d21602f4ea64528080d99e08a939eb213993b1c6141de02b24d"
+      "bytes": 2076,
+      "sha256": "9172bb8273ad3b9f1c2f77281b623a979a54dccf3fc59d9d4cf2bbffe50c5244"
     },
     {
       "path": "notebook.css",
@@ -1840,8 +1865,8 @@
     },
     {
       "path": "passport.js",
-      "bytes": 6833,
-      "sha256": "f9d3eb00480fb01b6aea22308d4d8925d9bdaf52e96c4bb071296facc3ace801"
+      "bytes": 7360,
+      "sha256": "6956f8534e46906a39efc38d2339fe085ab30183379de863b36ceda868c28116"
     },
     {
       "path": "photos.js",
@@ -1884,19 +1909,34 @@
       "sha256": "e2c816f92f7b8f7a647b91cc90c3b57824cf519b6b3f461521620f2afdcc4636"
     },
     {
+      "path": "research.css",
+      "bytes": 2841,
+      "sha256": "47ead8ea9a1155ec3688cfdd2204244980e34558f76b2bb26f3bfe57bdbd2355"
+    },
+    {
+      "path": "research.html",
+      "bytes": 5460,
+      "sha256": "71431e13a8ca56ed467849a47bc2a6e634025b4d473458366dad12078833507b"
+    },
+    {
+      "path": "research.js",
+      "bytes": 6254,
+      "sha256": "50dc292bd4e22b10716ae7bc3fe9358ee8d4c920df36c145c7d6499e12c40d62"
+    },
+    {
       "path": "street-model.js",
       "bytes": 5842,
       "sha256": "d4ff56fabcf6a5ed9d28643f1342442d708facd86d677f46ce4c853a20be1fbd"
     },
     {
       "path": "street-world-3d.css",
-      "bytes": 7321,
-      "sha256": "e10ee4aed4952acce1cc2db1cfe658882bd347bd6965df9f24f52dd5e4301420"
+      "bytes": 7484,
+      "sha256": "8b63d29ed3935246c9cedbd873f5ecb8c9815bb97b0b7a321e0b6f20dd287f40"
     },
     {
       "path": "street-world-3d.js",
-      "bytes": 33854,
-      "sha256": "b2a14d6506b89dff480584743a436d8d0f40bac2c66723073b3f82df494936ba"
+      "bytes": 34786,
+      "sha256": "a33754e9ab19300cf10d1d5cc0311c65a1f278acc0d287a2812b2734727519fe"
     },
     {
       "path": "street-world.css",
@@ -1906,12 +1946,12 @@
     {
       "path": "street-world.js",
       "bytes": 27256,
-      "sha256": "749c6973a3374f1835b51526690d360e9076967698e1d3cfbe4795a442b03eb4"
+      "sha256": "0cab4af0123c60aebfe25144d39ca13501525ddcbd74b0981226b96801760958"
     },
     {
       "path": "style.css",
-      "bytes": 27166,
-      "sha256": "3afa1b3ac937195fd95f12ad22f106eaa9e7d6428ec80a88edcdc5cdf6fed360"
+      "bytes": 29265,
+      "sha256": "c8247f65270151b8d720dd24b14686fb33e215e9c234f3fffca41e193363f915"
     },
     {
       "path": "styles/plub-manga.json",
@@ -1955,25 +1995,30 @@
     },
     {
       "path": "views.js",
-      "bytes": 47210,
-      "sha256": "e569dac7cad202d63b7f3637693488e93151a7e7f6f250e99f1939e279221c78"
+      "bytes": 48792,
+      "sha256": "57f44c61974e7e65a177059be6413d9d8751cf5ecd909314c17f6af9ba0ac884"
+    },
+    {
+      "path": "visit.css",
+      "bytes": 2539,
+      "sha256": "625e9d35b6fbb2fc4fcc897405a29c264c3688885d29caab2c0bf0faffb4a8af"
     },
     {
       "path": "work-atmosphere.css",
-      "bytes": 2398,
-      "sha256": "18bdb27e0c87e9796e259a29059c0b35663dfbc9c5e9b0a010c08a0992a56d8a"
+      "bytes": 2677,
+      "sha256": "03e4870a2e7db0fab872f047d3f7bb3480ed764616b53fc6c3a0967119317460"
     },
     {
       "path": "work-atmosphere.js",
-      "bytes": 21373,
-      "sha256": "17b8a641b0451042a73015f1f4cbd298318456e8c0db86508b2b3c4ce53e5c7c"
+      "bytes": 25520,
+      "sha256": "d082a598ae1cfbd8a1a85ee31797f490c9b1d07278dfdbd34e14a3b23d32ad25"
     }
   ],
   "mismatched": [],
   "missing": [],
   "orphansStillServed": [],
   "summary": {
-    "matched": 393,
+    "matched": 402,
     "mismatched": 0,
     "missing": 0,
     "orphansStillServed": 0

@@ -1,7 +1,7 @@
 /* Research & data: a document, not a dashboard.
    The numbers are computed from the catalogue that ships, so they cannot drift from it. */
 .research-page { display:block; height:auto; min-height:100%; overflow:visible; background:var(--paper); }
-.research-bar, .research-main { max-width:74ch; margin-inline:auto; padding-inline:clamp(12px,4vw,24px); }
+.research-bar, .research-main { max-width:84ch; margin-inline:auto; padding-inline:clamp(12px,4vw,24px); }
 .research-bar { display:flex; flex-wrap:wrap; align-items:center; gap:0 18px; border-bottom:1px solid var(--rule); }
 .research-bar a:not(.mark) { display:inline-flex; align-items:center; min-height:44px; }
 .research-bar .mark { margin-inline-end:auto; }
@@ -18,7 +18,7 @@
 .rd-row dt { font-weight:500; }
 .rd-row dd { margin:0; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
 .rd-row .rd-note { grid-column:1 / -1; color:var(--muted); font-size:var(--micro); line-height:1.5; }
-.rd-share { color:var(--muted); font-size:var(--micro); }
+.rd-share { color:var(--muted); font-size:var(--micro); margin-left:2px; }
 .rd-head { color:var(--muted); font-size:var(--micro); letter-spacing:.06em; text-transform:uppercase; }
 
 /* The distribution: one flat bar per band, sized to its own content. */

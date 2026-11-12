@@ -45,6 +45,8 @@
   --cat-cafe: #f58e84; --cat-cowork: #f5ecc2; --cat-library: #819238; --cat-food: #a5c8d1;
   /* Four type sizes. The wordmark is a logotype, not a type size. */
   --big: 20px; --body: 14px; --small: 12px; --micro: 11px;
+  /* Motion: one duration, one curve. A state change is noticed once, then it is still. */
+  --motion: 160ms; --ease: cubic-bezier(.2,.6,.2,1);
   --font: "Jost", "Prompt", sans-serif;
   --thai: "Prompt", "Jost", sans-serif;
   --pad: 12px;
@@ -359,7 +361,26 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .search input { padding-inline: 19px 4px; }
 }
 
-@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+/* Motion, kept to one short curve. Colour and border changes ease; nothing bounces,
+   nothing loops, and a panel that opens settles rather than springs. */
+button, a, summary, .list li, .hits li, .chips button, .flags button, .wa-row,
+.mood-bar, .hits, .atlas-state, .atlas-reset {
+  transition: background-color var(--motion) var(--ease), color var(--motion) var(--ease),
+              border-color var(--motion) var(--ease), opacity var(--motion) var(--ease);
+}
+@media (max-width:899px) {
+  /* The phone sheet is an overlay: it rises a little as it arrives, and stops. */
+  .sheet:not([hidden]), .list-wrap.open { animation: plub-rise var(--motion) var(--ease) both; }
+}
+@keyframes plub-rise { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+/* Reduced motion removes motion, not function. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:.01ms !important; animation-iteration-count:1 !important;
+    transition-duration:.01ms !important; scroll-behavior:auto !important;
+  }
+}
 
 /* neighbourhood sheet: the places first; numbers and story one tap away */
 .hood-more { margin-top: 12px; border-top: 1px solid var(--rule); }
