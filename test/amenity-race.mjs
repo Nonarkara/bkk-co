@@ -8,7 +8,10 @@ async function run(source,guard){let release,editing=false;const p={id:'n7351220
  if(guard==='task')context.sheetGeneration++;if(guard==='selection')context.state.selected={id:'other'};if(guard==='form')editing=true;
  release();await new Promise(r=>setTimeout(r,0));assert(window.WorkFinder.data);return visible.outerHTML;
 }
-assert.match(await run(code),/data-preference-fact="ac" data-value="documented"/,'Same intent must receive richer facts after an earlier evidence refresh replaces its DOM node');
+// No preference is set, so renderFacts stays empty (it would only repeat Working here).
+// The held join still has to reach this slot: mapped Wi-Fi from the venue tags, the
+// geography snapshot date, and this place's OSM id. Parking stays unknown.
+assert.match(await run(code),/class="journey-place-facts"[\s\S]*data-facility="parking" data-value="unknown"[\s\S]*<b>Wi-Fi<\/b> · Venue internet_access=wlan\. OpenStreetMap 2026-10-24[\s\S]*openstreetmap\.org\/node\/735122008/,'Same intent must receive richer facts after an earlier evidence refresh replaces its DOM node');
 for(const guard of['task','selection','form'])assert.equal(await run(code,guard),'unknown',guard+' must reject a late refresh');
 assert.equal(await run(transplant(code)),'unknown','Replanted captured-slot implementation must reproduce stale unknown');
 console.log('Held join + replaced evidence node updates current same-task slot; task/selection/form guards pass; original captured-slot falsifier reproduces stale unknown.');
