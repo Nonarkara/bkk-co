@@ -1,0 +1,2138 @@
+[
+  {
+    "name": "after-320",
+    "status": 200,
+    "layout": {
+      "viewport": [
+        320,
+        740
+      ],
+      "document": [
+        320,
+        320,
+        1014
+      ],
+      "nav": {
+        "top": 0,
+        "bottom": 45,
+        "left": 0,
+        "right": 320,
+        "width": 320,
+        "height": 45,
+        "font": "14px",
+        "text": "PL\n;\nUB\n← Place on the map"
+      },
+      "title": {
+        "top": 247,
+        "bottom": 304,
+        "left": 14,
+        "right": 306,
+        "width": 292,
+        "height": 57,
+        "font": "32px",
+        "text": "The Bridge 1958\nBistro & Office Space"
+      },
+      "photo": {
+        "top": 57,
+        "bottom": 196,
+        "left": 14,
+        "right": 306,
+        "width": 292,
+        "height": 139,
+        "font": "14px",
+        "text": ""
+      },
+      "credit": {
+        "top": 200,
+        "bottom": 235,
+        "left": 14,
+        "right": 306,
+        "width": 292,
+        "height": 35,
+        "font": "12px",
+        "text": "Christmas decorations · Photograph by Non Arkaraprasertkul"
+      },
+      "intro": {
+        "top": 247,
+        "bottom": 573,
+        "left": 14,
+        "right": 306,
+        "width": 292,
+        "height": 326,
+        "font": "14px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "actions": {
+        "top": 529,
+        "bottom": 573,
+        "left": 14,
+        "right": 306,
+        "width": 292,
+        "height": 44,
+        "font": "14px",
+        "text": "Directions ↗\nCall 02 536 0599\nLINE ↗"
+      },
+      "primary": {
+        "top": 529,
+        "bottom": 573,
+        "left": 14,
+        "right": 118,
+        "width": 104,
+        "height": 44,
+        "font": "14px",
+        "text": "Directions ↗"
+      },
+      "facts": {
+        "top": 460,
+        "bottom": 523,
+        "left": 14,
+        "right": 306,
+        "width": 292,
+        "height": 63,
+        "font": "14px",
+        "text": "Hours\nDaily 09:00–21:00\nAddress\n58/10 Siri Avenue, opposite Soi Sai Mai 56"
+      },
+      "wifi": {
+        "top": 752,
+        "bottom": 796,
+        "left": 14,
+        "right": 306,
+        "width": 292,
+        "height": 44,
+        "font": "14px",
+        "text": "Join guest Wi-Fi"
+      },
+      "work": {
+        "top": 585,
+        "bottom": 796,
+        "left": 14,
+        "right": 306,
+        "width": 292,
+        "height": 211,
+        "font": "14px",
+        "text": "Working here\n\nMeeting rooms were offered from ฿200 an hour on the visit.\n\nWi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · "
+      },
+      "speed": {
+        "top": 669,
+        "bottom": 752,
+        "left": 14,
+        "right": 306,
+        "width": 292,
+        "height": 83,
+        "font": "14px",
+        "text": "Wi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · 18 ms ping"
+      },
+      "story": {
+        "top": 808,
+        "bottom": 994,
+        "left": 14,
+        "right": 306,
+        "width": 292,
+        "height": 186,
+        "font": "14px",
+        "text": "Inside the room\n\nDark wood, a chandelier and shelves of books give the room the feel of an old London reading room. On my visit, Christmas garlands and Harry Po"
+      },
+      "firstReading": {
+        "top": 247,
+        "bottom": 994,
+        "left": 14,
+        "right": 306,
+        "width": 292,
+        "height": 747,
+        "font": "14px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "headings": [
+        {
+          "top": 247,
+          "bottom": 304,
+          "left": 14,
+          "right": 306,
+          "width": 292,
+          "height": 57,
+          "font": "32px",
+          "text": "The Bridge 1958\nBistro & Office Space"
+        },
+        {
+          "top": 594,
+          "bottom": 618,
+          "left": 14,
+          "right": 306,
+          "width": 292,
+          "height": 24,
+          "font": "20px",
+          "text": "Working here"
+        },
+        {
+          "top": 817,
+          "bottom": 841,
+          "left": 14,
+          "right": 306,
+          "width": 292,
+          "height": 24,
+          "font": "20px",
+          "text": "Inside the room"
+        }
+      ],
+      "sources": [
+        {
+          "text": "PL\n;\nUB",
+          "href": "/"
+        },
+        {
+          "text": "← Place on the map",
+          "href": "/?p=o71358a621d50"
+        },
+        {
+          "text": "",
+          "href": "/media/venue-reports/the-bridge-1958/interior.jpg"
+        },
+        {
+          "text": "Directions ↗",
+          "href": "https://maps.app.goo.gl/pspEegY6Nx5U4DELA"
+        },
+        {
+          "text": "Call 02 536 0599",
+          "href": "tel:+6625360599"
+        },
+        {
+          "text": "LINE ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Venue hours & address ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Email the venue",
+          "href": "mailto:thebridge1958@gmail.com"
+        }
+      ],
+      "bleed": [],
+      "image": 1600
+    },
+    "tabOrder": [
+      {
+        "name": "PL\n;\nUB",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "← Place on the map",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Directions ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Call 02 536 0599",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "LINE ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Join guest Wi-Fi",
+        "tag": "SUMMARY",
+        "visible": true
+      },
+      {
+        "name": "Venue hours & address ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Email the venue",
+        "tag": "A",
+        "visible": true
+      }
+    ],
+    "disclosure": {
+      "open": true,
+      "text": "Join guest Wi-Fi\n\nAt the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff.",
+      "closedWithSpace": true
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "after-375",
+    "status": 200,
+    "layout": {
+      "viewport": [
+        375,
+        807
+      ],
+      "document": [
+        375,
+        375,
+        923
+      ],
+      "nav": {
+        "top": 0,
+        "bottom": 45,
+        "left": 0,
+        "right": 375,
+        "width": 375,
+        "height": 45,
+        "font": "14px",
+        "text": "PL\n;\nUB\n← Place on the map"
+      },
+      "title": {
+        "top": 255,
+        "bottom": 312,
+        "left": 15,
+        "right": 360,
+        "width": 345,
+        "height": 57,
+        "font": "32px",
+        "text": "The Bridge 1958\nBistro & Office Space"
+      },
+      "photo": {
+        "top": 57,
+        "bottom": 221,
+        "left": 15,
+        "right": 360,
+        "width": 345,
+        "height": 164,
+        "font": "14px",
+        "text": ""
+      },
+      "credit": {
+        "top": 225,
+        "bottom": 243,
+        "left": 15,
+        "right": 360,
+        "width": 345,
+        "height": 17,
+        "font": "12px",
+        "text": "Christmas decorations · Photograph by Non Arkaraprasertkul"
+      },
+      "intro": {
+        "top": 255,
+        "bottom": 523,
+        "left": 15,
+        "right": 360,
+        "width": 345,
+        "height": 268,
+        "font": "14px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "actions": {
+        "top": 479,
+        "bottom": 523,
+        "left": 15,
+        "right": 360,
+        "width": 345,
+        "height": 44,
+        "font": "14px",
+        "text": "Directions ↗\nCall 02 536 0599\nLINE ↗"
+      },
+      "primary": {
+        "top": 479,
+        "bottom": 523,
+        "left": 15,
+        "right": 119,
+        "width": 104,
+        "height": 44,
+        "font": "14px",
+        "text": "Directions ↗"
+      },
+      "facts": {
+        "top": 431,
+        "bottom": 473,
+        "left": 15,
+        "right": 360,
+        "width": 345,
+        "height": 43,
+        "font": "14px",
+        "text": "Hours\nDaily 09:00–21:00\nAddress\n58/10 Siri Avenue, opposite Soi Sai Mai 56"
+      },
+      "wifi": {
+        "top": 661,
+        "bottom": 705,
+        "left": 15,
+        "right": 360,
+        "width": 345,
+        "height": 44,
+        "font": "14px",
+        "text": "Join guest Wi-Fi"
+      },
+      "work": {
+        "top": 535,
+        "bottom": 705,
+        "left": 15,
+        "right": 360,
+        "width": 345,
+        "height": 170,
+        "font": "14px",
+        "text": "Working here\n\nMeeting rooms were offered from ฿200 an hour on the visit.\n\nWi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · "
+      },
+      "speed": {
+        "top": 619,
+        "bottom": 661,
+        "left": 15,
+        "right": 360,
+        "width": 345,
+        "height": 43,
+        "font": "14px",
+        "text": "Wi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · 18 ms ping"
+      },
+      "story": {
+        "top": 717,
+        "bottom": 903,
+        "left": 15,
+        "right": 360,
+        "width": 345,
+        "height": 186,
+        "font": "14px",
+        "text": "Inside the room\n\nDark wood, a chandelier and shelves of books give the room the feel of an old London reading room. On my visit, Christmas garlands and Harry Po"
+      },
+      "firstReading": {
+        "top": 255,
+        "bottom": 903,
+        "left": 15,
+        "right": 360,
+        "width": 345,
+        "height": 648,
+        "font": "14px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "headings": [
+        {
+          "top": 255,
+          "bottom": 312,
+          "left": 15,
+          "right": 360,
+          "width": 345,
+          "height": 57,
+          "font": "32px",
+          "text": "The Bridge 1958\nBistro & Office Space"
+        },
+        {
+          "top": 544,
+          "bottom": 568,
+          "left": 15,
+          "right": 360,
+          "width": 345,
+          "height": 24,
+          "font": "20px",
+          "text": "Working here"
+        },
+        {
+          "top": 726,
+          "bottom": 750,
+          "left": 15,
+          "right": 360,
+          "width": 345,
+          "height": 24,
+          "font": "20px",
+          "text": "Inside the room"
+        }
+      ],
+      "sources": [
+        {
+          "text": "PL\n;\nUB",
+          "href": "/"
+        },
+        {
+          "text": "← Place on the map",
+          "href": "/?p=o71358a621d50"
+        },
+        {
+          "text": "",
+          "href": "/media/venue-reports/the-bridge-1958/interior.jpg"
+        },
+        {
+          "text": "Directions ↗",
+          "href": "https://maps.app.goo.gl/pspEegY6Nx5U4DELA"
+        },
+        {
+          "text": "Call 02 536 0599",
+          "href": "tel:+6625360599"
+        },
+        {
+          "text": "LINE ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Venue hours & address ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Email the venue",
+          "href": "mailto:thebridge1958@gmail.com"
+        }
+      ],
+      "bleed": [],
+      "image": 1600
+    },
+    "tabOrder": [
+      {
+        "name": "PL\n;\nUB",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "← Place on the map",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Directions ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Call 02 536 0599",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "LINE ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Join guest Wi-Fi",
+        "tag": "SUMMARY",
+        "visible": true
+      },
+      {
+        "name": "Venue hours & address ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Email the venue",
+        "tag": "A",
+        "visible": true
+      }
+    ],
+    "disclosure": {
+      "open": true,
+      "text": "Join guest Wi-Fi\n\nAt the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff.",
+      "closedWithSpace": true
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "after-390",
+    "status": 200,
+    "layout": {
+      "viewport": [
+        390,
+        844
+      ],
+      "document": [
+        390,
+        390,
+        929
+      ],
+      "nav": {
+        "top": 0,
+        "bottom": 45,
+        "left": 0,
+        "right": 390,
+        "width": 390,
+        "height": 45,
+        "font": "14px",
+        "text": "PL\n;\nUB\n← Place on the map"
+      },
+      "title": {
+        "top": 261,
+        "bottom": 319,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 57,
+        "font": "32px",
+        "text": "The Bridge 1958\nBistro & Office Space"
+      },
+      "photo": {
+        "top": 57,
+        "bottom": 228,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 171,
+        "font": "14px",
+        "text": ""
+      },
+      "credit": {
+        "top": 232,
+        "bottom": 249,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 17,
+        "font": "12px",
+        "text": "Christmas decorations · Photograph by Non Arkaraprasertkul"
+      },
+      "intro": {
+        "top": 261,
+        "bottom": 530,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 268,
+        "font": "14px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "actions": {
+        "top": 486,
+        "bottom": 530,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 44,
+        "font": "14px",
+        "text": "Directions ↗\nCall 02 536 0599\nLINE ↗"
+      },
+      "primary": {
+        "top": 486,
+        "bottom": 530,
+        "left": 16,
+        "right": 120,
+        "width": 104,
+        "height": 44,
+        "font": "14px",
+        "text": "Directions ↗"
+      },
+      "facts": {
+        "top": 437,
+        "bottom": 480,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 43,
+        "font": "14px",
+        "text": "Hours\nDaily 09:00–21:00\nAddress\n58/10 Siri Avenue, opposite Soi Sai Mai 56"
+      },
+      "wifi": {
+        "top": 668,
+        "bottom": 712,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 44,
+        "font": "14px",
+        "text": "Join guest Wi-Fi"
+      },
+      "work": {
+        "top": 542,
+        "bottom": 712,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 170,
+        "font": "14px",
+        "text": "Working here\n\nMeeting rooms were offered from ฿200 an hour on the visit.\n\nWi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · "
+      },
+      "speed": {
+        "top": 625,
+        "bottom": 668,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 43,
+        "font": "14px",
+        "text": "Wi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · 18 ms ping"
+      },
+      "story": {
+        "top": 724,
+        "bottom": 909,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 186,
+        "font": "14px",
+        "text": "Inside the room\n\nDark wood, a chandelier and shelves of books give the room the feel of an old London reading room. On my visit, Christmas garlands and Harry Po"
+      },
+      "firstReading": {
+        "top": 261,
+        "bottom": 909,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 648,
+        "font": "14px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "headings": [
+        {
+          "top": 261,
+          "bottom": 319,
+          "left": 16,
+          "right": 374,
+          "width": 359,
+          "height": 57,
+          "font": "32px",
+          "text": "The Bridge 1958\nBistro & Office Space"
+        },
+        {
+          "top": 551,
+          "bottom": 575,
+          "left": 16,
+          "right": 374,
+          "width": 359,
+          "height": 24,
+          "font": "20px",
+          "text": "Working here"
+        },
+        {
+          "top": 733,
+          "bottom": 757,
+          "left": 16,
+          "right": 374,
+          "width": 359,
+          "height": 24,
+          "font": "20px",
+          "text": "Inside the room"
+        }
+      ],
+      "sources": [
+        {
+          "text": "PL\n;\nUB",
+          "href": "/"
+        },
+        {
+          "text": "← Place on the map",
+          "href": "/?p=o71358a621d50"
+        },
+        {
+          "text": "",
+          "href": "/media/venue-reports/the-bridge-1958/interior.jpg"
+        },
+        {
+          "text": "Directions ↗",
+          "href": "https://maps.app.goo.gl/pspEegY6Nx5U4DELA"
+        },
+        {
+          "text": "Call 02 536 0599",
+          "href": "tel:+6625360599"
+        },
+        {
+          "text": "LINE ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Venue hours & address ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Email the venue",
+          "href": "mailto:thebridge1958@gmail.com"
+        }
+      ],
+      "bleed": [],
+      "image": 1600
+    },
+    "tabOrder": [
+      {
+        "name": "PL\n;\nUB",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "← Place on the map",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Directions ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Call 02 536 0599",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "LINE ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Join guest Wi-Fi",
+        "tag": "SUMMARY",
+        "visible": true
+      },
+      {
+        "name": "Venue hours & address ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Email the venue",
+        "tag": "A",
+        "visible": true
+      }
+    ],
+    "disclosure": {
+      "open": true,
+      "text": "Join guest Wi-Fi\n\nAt the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff.",
+      "closedWithSpace": true
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "after-1024",
+    "status": 200,
+    "layout": {
+      "viewport": [
+        1024,
+        900
+      ],
+      "document": [
+        1024,
+        1024,
+        900
+      ],
+      "nav": {
+        "top": 0,
+        "bottom": 45,
+        "left": 0,
+        "right": 1024,
+        "width": 1024,
+        "height": 45,
+        "font": "14px",
+        "text": "PL\n;\nUB\n← Place on the map"
+      },
+      "title": {
+        "top": 63,
+        "bottom": 120,
+        "left": 567,
+        "right": 1000,
+        "width": 433,
+        "height": 57,
+        "font": "32px",
+        "text": "The Bridge 1958\nBistro & Office Space"
+      },
+      "photo": {
+        "top": 63,
+        "bottom": 453,
+        "left": 24,
+        "right": 543,
+        "width": 519,
+        "height": 390,
+        "font": "14px",
+        "text": ""
+      },
+      "credit": {
+        "top": 457,
+        "bottom": 474,
+        "left": 24,
+        "right": 543,
+        "width": 519,
+        "height": 17,
+        "font": "12px",
+        "text": "Christmas decorations · Photograph by Non Arkaraprasertkul"
+      },
+      "intro": {
+        "top": 63,
+        "bottom": 331,
+        "left": 567,
+        "right": 1000,
+        "width": 433,
+        "height": 268,
+        "font": "14px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "actions": {
+        "top": 287,
+        "bottom": 331,
+        "left": 567,
+        "right": 1000,
+        "width": 433,
+        "height": 44,
+        "font": "14px",
+        "text": "Directions ↗\nCall 02 536 0599\nLINE ↗"
+      },
+      "primary": {
+        "top": 287,
+        "bottom": 331,
+        "left": 567,
+        "right": 671,
+        "width": 104,
+        "height": 44,
+        "font": "14px",
+        "text": "Directions ↗"
+      },
+      "facts": {
+        "top": 239,
+        "bottom": 281,
+        "left": 567,
+        "right": 1000,
+        "width": 433,
+        "height": 43,
+        "font": "14px",
+        "text": "Hours\nDaily 09:00–21:00\nAddress\n58/10 Siri Avenue, opposite Soi Sai Mai 56"
+      },
+      "wifi": {
+        "top": 449,
+        "bottom": 493,
+        "left": 567,
+        "right": 1000,
+        "width": 433,
+        "height": 44,
+        "font": "14px",
+        "text": "Join guest Wi-Fi"
+      },
+      "work": {
+        "top": 343,
+        "bottom": 493,
+        "left": 567,
+        "right": 1000,
+        "width": 433,
+        "height": 150,
+        "font": "14px",
+        "text": "Working here\n\nMeeting rooms were offered from ฿200 an hour on the visit.\n\nWi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · "
+      },
+      "speed": {
+        "top": 407,
+        "bottom": 449,
+        "left": 567,
+        "right": 1000,
+        "width": 433,
+        "height": 43,
+        "font": "14px",
+        "text": "Wi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · 18 ms ping"
+      },
+      "story": {
+        "top": 505,
+        "bottom": 671,
+        "left": 567,
+        "right": 1000,
+        "width": 433,
+        "height": 165,
+        "font": "14px",
+        "text": "Inside the room\n\nDark wood, a chandelier and shelves of books give the room the feel of an old London reading room. On my visit, Christmas garlands and Harry Po"
+      },
+      "firstReading": {
+        "top": 63,
+        "bottom": 671,
+        "left": 567,
+        "right": 1000,
+        "width": 433,
+        "height": 608,
+        "font": "14px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "headings": [
+        {
+          "top": 63,
+          "bottom": 120,
+          "left": 567,
+          "right": 1000,
+          "width": 433,
+          "height": 57,
+          "font": "32px",
+          "text": "The Bridge 1958\nBistro & Office Space"
+        },
+        {
+          "top": 352,
+          "bottom": 376,
+          "left": 567,
+          "right": 1000,
+          "width": 433,
+          "height": 24,
+          "font": "20px",
+          "text": "Working here"
+        },
+        {
+          "top": 514,
+          "bottom": 538,
+          "left": 567,
+          "right": 1000,
+          "width": 433,
+          "height": 24,
+          "font": "20px",
+          "text": "Inside the room"
+        }
+      ],
+      "sources": [
+        {
+          "text": "PL\n;\nUB",
+          "href": "/"
+        },
+        {
+          "text": "← Place on the map",
+          "href": "/?p=o71358a621d50"
+        },
+        {
+          "text": "",
+          "href": "/media/venue-reports/the-bridge-1958/interior.jpg"
+        },
+        {
+          "text": "Directions ↗",
+          "href": "https://maps.app.goo.gl/pspEegY6Nx5U4DELA"
+        },
+        {
+          "text": "Call 02 536 0599",
+          "href": "tel:+6625360599"
+        },
+        {
+          "text": "LINE ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Venue hours & address ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Email the venue",
+          "href": "mailto:thebridge1958@gmail.com"
+        }
+      ],
+      "bleed": [],
+      "image": 1600
+    },
+    "tabOrder": [
+      {
+        "name": "PL\n;\nUB",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "← Place on the map",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Directions ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Call 02 536 0599",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "LINE ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Join guest Wi-Fi",
+        "tag": "SUMMARY",
+        "visible": true
+      },
+      {
+        "name": "Venue hours & address ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Email the venue",
+        "tag": "A",
+        "visible": true
+      }
+    ],
+    "disclosure": {
+      "open": true,
+      "text": "Join guest Wi-Fi\n\nAt the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff.",
+      "closedWithSpace": true
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "after-1440",
+    "status": 200,
+    "layout": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "document": [
+        1440,
+        1440,
+        900
+      ],
+      "nav": {
+        "top": 0,
+        "bottom": 45,
+        "left": 170,
+        "right": 1270,
+        "width": 1100,
+        "height": 45,
+        "font": "14px",
+        "text": "PL\n;\nUB\n← Place on the map"
+      },
+      "title": {
+        "top": 63,
+        "bottom": 120,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 57,
+        "font": "32px",
+        "text": "The Bridge 1958\nBistro & Office Space"
+      },
+      "photo": {
+        "top": 63,
+        "bottom": 484,
+        "left": 194,
+        "right": 755,
+        "width": 561,
+        "height": 421,
+        "font": "14px",
+        "text": ""
+      },
+      "credit": {
+        "top": 488,
+        "bottom": 506,
+        "left": 194,
+        "right": 755,
+        "width": 561,
+        "height": 17,
+        "font": "12px",
+        "text": "Christmas decorations · Photograph by Non Arkaraprasertkul"
+      },
+      "intro": {
+        "top": 63,
+        "bottom": 331,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 268,
+        "font": "14px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "actions": {
+        "top": 287,
+        "bottom": 331,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 44,
+        "font": "14px",
+        "text": "Directions ↗\nCall 02 536 0599\nLINE ↗"
+      },
+      "primary": {
+        "top": 287,
+        "bottom": 331,
+        "left": 779,
+        "right": 883,
+        "width": 104,
+        "height": 44,
+        "font": "14px",
+        "text": "Directions ↗"
+      },
+      "facts": {
+        "top": 239,
+        "bottom": 281,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 43,
+        "font": "14px",
+        "text": "Hours\nDaily 09:00–21:00\nAddress\n58/10 Siri Avenue, opposite Soi Sai Mai 56"
+      },
+      "wifi": {
+        "top": 449,
+        "bottom": 493,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 44,
+        "font": "14px",
+        "text": "Join guest Wi-Fi"
+      },
+      "work": {
+        "top": 343,
+        "bottom": 493,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 150,
+        "font": "14px",
+        "text": "Working here\n\nMeeting rooms were offered from ฿200 an hour on the visit.\n\nWi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · "
+      },
+      "speed": {
+        "top": 407,
+        "bottom": 449,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 43,
+        "font": "14px",
+        "text": "Wi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · 18 ms ping"
+      },
+      "story": {
+        "top": 505,
+        "bottom": 671,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 165,
+        "font": "14px",
+        "text": "Inside the room\n\nDark wood, a chandelier and shelves of books give the room the feel of an old London reading room. On my visit, Christmas garlands and Harry Po"
+      },
+      "firstReading": {
+        "top": 63,
+        "bottom": 671,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 608,
+        "font": "14px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "headings": [
+        {
+          "top": 63,
+          "bottom": 120,
+          "left": 779,
+          "right": 1246,
+          "width": 467,
+          "height": 57,
+          "font": "32px",
+          "text": "The Bridge 1958\nBistro & Office Space"
+        },
+        {
+          "top": 352,
+          "bottom": 376,
+          "left": 779,
+          "right": 1246,
+          "width": 467,
+          "height": 24,
+          "font": "20px",
+          "text": "Working here"
+        },
+        {
+          "top": 514,
+          "bottom": 538,
+          "left": 779,
+          "right": 1246,
+          "width": 467,
+          "height": 24,
+          "font": "20px",
+          "text": "Inside the room"
+        }
+      ],
+      "sources": [
+        {
+          "text": "PL\n;\nUB",
+          "href": "/"
+        },
+        {
+          "text": "← Place on the map",
+          "href": "/?p=o71358a621d50"
+        },
+        {
+          "text": "",
+          "href": "/media/venue-reports/the-bridge-1958/interior.jpg"
+        },
+        {
+          "text": "Directions ↗",
+          "href": "https://maps.app.goo.gl/pspEegY6Nx5U4DELA"
+        },
+        {
+          "text": "Call 02 536 0599",
+          "href": "tel:+6625360599"
+        },
+        {
+          "text": "LINE ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Venue hours & address ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Email the venue",
+          "href": "mailto:thebridge1958@gmail.com"
+        }
+      ],
+      "bleed": [],
+      "image": 1600
+    },
+    "tabOrder": [
+      {
+        "name": "PL\n;\nUB",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "← Place on the map",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Directions ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Call 02 536 0599",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "LINE ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Join guest Wi-Fi",
+        "tag": "SUMMARY",
+        "visible": true
+      },
+      {
+        "name": "Venue hours & address ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Email the venue",
+        "tag": "A",
+        "visible": true
+      }
+    ],
+    "disclosure": {
+      "open": true,
+      "text": "Join guest Wi-Fi\n\nAt the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff.",
+      "closedWithSpace": true
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "after-1720",
+    "status": 200,
+    "layout": {
+      "viewport": [
+        1720,
+        1080
+      ],
+      "document": [
+        1720,
+        1720,
+        1080
+      ],
+      "nav": {
+        "top": 0,
+        "bottom": 45,
+        "left": 310,
+        "right": 1410,
+        "width": 1100,
+        "height": 45,
+        "font": "14px",
+        "text": "PL\n;\nUB\n← Place on the map"
+      },
+      "title": {
+        "top": 63,
+        "bottom": 120,
+        "left": 919,
+        "right": 1386,
+        "width": 467,
+        "height": 57,
+        "font": "32px",
+        "text": "The Bridge 1958\nBistro & Office Space"
+      },
+      "photo": {
+        "top": 63,
+        "bottom": 484,
+        "left": 334,
+        "right": 895,
+        "width": 561,
+        "height": 421,
+        "font": "14px",
+        "text": ""
+      },
+      "credit": {
+        "top": 488,
+        "bottom": 506,
+        "left": 334,
+        "right": 895,
+        "width": 561,
+        "height": 17,
+        "font": "12px",
+        "text": "Christmas decorations · Photograph by Non Arkaraprasertkul"
+      },
+      "intro": {
+        "top": 63,
+        "bottom": 331,
+        "left": 919,
+        "right": 1386,
+        "width": 467,
+        "height": 268,
+        "font": "14px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "actions": {
+        "top": 287,
+        "bottom": 331,
+        "left": 919,
+        "right": 1386,
+        "width": 467,
+        "height": 44,
+        "font": "14px",
+        "text": "Directions ↗\nCall 02 536 0599\nLINE ↗"
+      },
+      "primary": {
+        "top": 287,
+        "bottom": 331,
+        "left": 919,
+        "right": 1023,
+        "width": 104,
+        "height": 44,
+        "font": "14px",
+        "text": "Directions ↗"
+      },
+      "facts": {
+        "top": 239,
+        "bottom": 281,
+        "left": 919,
+        "right": 1386,
+        "width": 467,
+        "height": 43,
+        "font": "14px",
+        "text": "Hours\nDaily 09:00–21:00\nAddress\n58/10 Siri Avenue, opposite Soi Sai Mai 56"
+      },
+      "wifi": {
+        "top": 449,
+        "bottom": 493,
+        "left": 919,
+        "right": 1386,
+        "width": 467,
+        "height": 44,
+        "font": "14px",
+        "text": "Join guest Wi-Fi"
+      },
+      "work": {
+        "top": 343,
+        "bottom": 493,
+        "left": 919,
+        "right": 1386,
+        "width": 467,
+        "height": 150,
+        "font": "14px",
+        "text": "Working here\n\nMeeting rooms were offered from ฿200 an hour on the visit.\n\nWi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · "
+      },
+      "speed": {
+        "top": 407,
+        "bottom": 449,
+        "left": 919,
+        "right": 1386,
+        "width": 467,
+        "height": 43,
+        "font": "14px",
+        "text": "Wi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · 18 ms ping"
+      },
+      "story": {
+        "top": 505,
+        "bottom": 671,
+        "left": 919,
+        "right": 1386,
+        "width": 467,
+        "height": 165,
+        "font": "14px",
+        "text": "Inside the room\n\nDark wood, a chandelier and shelves of books give the room the feel of an old London reading room. On my visit, Christmas garlands and Harry Po"
+      },
+      "firstReading": {
+        "top": 63,
+        "bottom": 671,
+        "left": 919,
+        "right": 1386,
+        "width": 467,
+        "height": 608,
+        "font": "14px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "headings": [
+        {
+          "top": 63,
+          "bottom": 120,
+          "left": 919,
+          "right": 1386,
+          "width": 467,
+          "height": 57,
+          "font": "32px",
+          "text": "The Bridge 1958\nBistro & Office Space"
+        },
+        {
+          "top": 352,
+          "bottom": 376,
+          "left": 919,
+          "right": 1386,
+          "width": 467,
+          "height": 24,
+          "font": "20px",
+          "text": "Working here"
+        },
+        {
+          "top": 514,
+          "bottom": 538,
+          "left": 919,
+          "right": 1386,
+          "width": 467,
+          "height": 24,
+          "font": "20px",
+          "text": "Inside the room"
+        }
+      ],
+      "sources": [
+        {
+          "text": "PL\n;\nUB",
+          "href": "/"
+        },
+        {
+          "text": "← Place on the map",
+          "href": "/?p=o71358a621d50"
+        },
+        {
+          "text": "",
+          "href": "/media/venue-reports/the-bridge-1958/interior.jpg"
+        },
+        {
+          "text": "Directions ↗",
+          "href": "https://maps.app.goo.gl/pspEegY6Nx5U4DELA"
+        },
+        {
+          "text": "Call 02 536 0599",
+          "href": "tel:+6625360599"
+        },
+        {
+          "text": "LINE ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Venue hours & address ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Email the venue",
+          "href": "mailto:thebridge1958@gmail.com"
+        }
+      ],
+      "bleed": [],
+      "image": 1600
+    },
+    "tabOrder": [
+      {
+        "name": "PL\n;\nUB",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "← Place on the map",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Directions ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Call 02 536 0599",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "LINE ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Join guest Wi-Fi",
+        "tag": "SUMMARY",
+        "visible": true
+      },
+      {
+        "name": "Venue hours & address ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Email the venue",
+        "tag": "A",
+        "visible": true
+      }
+    ],
+    "disclosure": {
+      "open": true,
+      "text": "Join guest Wi-Fi\n\nAt the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff.",
+      "closedWithSpace": true
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "after-390-enlarged",
+    "status": 200,
+    "layout": {
+      "viewport": [
+        390,
+        844
+      ],
+      "document": [
+        390,
+        390,
+        2233
+      ],
+      "nav": {
+        "top": 0,
+        "bottom": 45,
+        "left": 0,
+        "right": 390,
+        "width": 390,
+        "height": 45,
+        "font": "30px",
+        "text": "PL\n;\nUB\n← Place on the map"
+      },
+      "title": {
+        "top": 348,
+        "bottom": 432,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 84,
+        "font": "46.5px",
+        "text": "The Bridge 1958\nBistro & Office Space"
+      },
+      "photo": {
+        "top": 57,
+        "bottom": 228,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 171,
+        "font": "30px",
+        "text": ""
+      },
+      "credit": {
+        "top": 232,
+        "bottom": 336,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 104,
+        "font": "24px",
+        "text": "Christmas decorations · Photograph by Non Arkaraprasertkul"
+      },
+      "intro": {
+        "top": 348,
+        "bottom": 1103,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 755,
+        "font": "30px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "actions": {
+        "top": 1013,
+        "bottom": 1103,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 90,
+        "font": "30px",
+        "text": "Directions ↗\nCall 02 536 0599\nLINE ↗"
+      },
+      "primary": {
+        "top": 1013,
+        "bottom": 1057,
+        "left": 16,
+        "right": 211,
+        "width": 196,
+        "height": 44,
+        "font": "30px",
+        "text": "Directions ↗"
+      },
+      "facts": {
+        "top": 788,
+        "bottom": 1007,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 220,
+        "font": "30px",
+        "text": "Hours\nDaily 09:00–21:00\nAddress\n58/10 Siri Avenue, opposite Soi Sai Mai 56"
+      },
+      "wifi": {
+        "top": 1569,
+        "bottom": 1633,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 64,
+        "font": "30px",
+        "text": "Join guest Wi-Fi"
+      },
+      "work": {
+        "top": 1115,
+        "bottom": 1633,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 517,
+        "font": "30px",
+        "text": "Working here\n\nMeeting rooms were offered from ฿200 an hour on the visit.\n\nWi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · "
+      },
+      "speed": {
+        "top": 1306,
+        "bottom": 1569,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 263,
+        "font": "30px",
+        "text": "Wi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · 18 ms ping"
+      },
+      "story": {
+        "top": 1645,
+        "bottom": 2213,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 568,
+        "font": "30px",
+        "text": "Inside the room\n\nDark wood, a chandelier and shelves of books give the room the feel of an old London reading room. On my visit, Christmas garlands and Harry Po"
+      },
+      "firstReading": {
+        "top": 348,
+        "bottom": 2213,
+        "left": 16,
+        "right": 374,
+        "width": 359,
+        "height": 1865,
+        "font": "30px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "headings": [
+        {
+          "top": 348,
+          "bottom": 432,
+          "left": 16,
+          "right": 374,
+          "width": 359,
+          "height": 84,
+          "font": "46.5px",
+          "text": "The Bridge 1958\nBistro & Office Space"
+        },
+        {
+          "top": 1124,
+          "bottom": 1166,
+          "left": 16,
+          "right": 374,
+          "width": 359,
+          "height": 41,
+          "font": "34.5px",
+          "text": "Working here"
+        },
+        {
+          "top": 1654,
+          "bottom": 1695,
+          "left": 16,
+          "right": 374,
+          "width": 359,
+          "height": 41,
+          "font": "34.5px",
+          "text": "Inside the room"
+        }
+      ],
+      "sources": [
+        {
+          "text": "PL\n;\nUB",
+          "href": "/"
+        },
+        {
+          "text": "← Place on the map",
+          "href": "/?p=o71358a621d50"
+        },
+        {
+          "text": "",
+          "href": "/media/venue-reports/the-bridge-1958/interior.jpg"
+        },
+        {
+          "text": "Directions ↗",
+          "href": "https://maps.app.goo.gl/pspEegY6Nx5U4DELA"
+        },
+        {
+          "text": "Call 02 536 0599",
+          "href": "tel:+6625360599"
+        },
+        {
+          "text": "LINE ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Venue hours & address ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Email the venue",
+          "href": "mailto:thebridge1958@gmail.com"
+        }
+      ],
+      "bleed": [],
+      "image": 1600
+    },
+    "tabOrder": [
+      {
+        "name": "PL\n;\nUB",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "← Place on the map",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Directions ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Call 02 536 0599",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "LINE ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Join guest Wi-Fi",
+        "tag": "SUMMARY",
+        "visible": true
+      },
+      {
+        "name": "Venue hours & address ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Email the venue",
+        "tag": "A",
+        "visible": true
+      }
+    ],
+    "disclosure": {
+      "open": true,
+      "text": "Join guest Wi-Fi\n\nAt the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff.",
+      "closedWithSpace": true
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "after-1440-enlarged",
+    "status": 200,
+    "layout": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "document": [
+        1440,
+        1440,
+        1565
+      ],
+      "nav": {
+        "top": 0,
+        "bottom": 45,
+        "left": 170,
+        "right": 1270,
+        "width": 1100,
+        "height": 45,
+        "font": "30px",
+        "text": "PL\n;\nUB\n← Place on the map"
+      },
+      "title": {
+        "top": 63,
+        "bottom": 147,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 84,
+        "font": "46.5px",
+        "text": "The Bridge 1958\nBistro & Office Space"
+      },
+      "photo": {
+        "top": 63,
+        "bottom": 484,
+        "left": 194,
+        "right": 755,
+        "width": 561,
+        "height": 421,
+        "font": "30px",
+        "text": ""
+      },
+      "credit": {
+        "top": 488,
+        "bottom": 558,
+        "left": 194,
+        "right": 755,
+        "width": 561,
+        "height": 70,
+        "font": "24px",
+        "text": "Christmas decorations · Photograph by Non Arkaraprasertkul"
+      },
+      "intro": {
+        "top": 63,
+        "bottom": 653,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 590,
+        "font": "30px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "actions": {
+        "top": 563,
+        "bottom": 653,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 90,
+        "font": "30px",
+        "text": "Directions ↗\nCall 02 536 0599\nLINE ↗"
+      },
+      "primary": {
+        "top": 563,
+        "bottom": 607,
+        "left": 779,
+        "right": 974,
+        "width": 196,
+        "height": 44,
+        "font": "30px",
+        "text": "Directions ↗"
+      },
+      "facts": {
+        "top": 424,
+        "bottom": 557,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 133,
+        "font": "30px",
+        "text": "Hours\nDaily 09:00–21:00\nAddress\n58/10 Siri Avenue, opposite Soi Sai Mai 56"
+      },
+      "wifi": {
+        "top": 988,
+        "bottom": 1052,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 64,
+        "font": "30px",
+        "text": "Join guest Wi-Fi"
+      },
+      "work": {
+        "top": 665,
+        "bottom": 1052,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 387,
+        "font": "30px",
+        "text": "Working here\n\nMeeting rooms were offered from ฿200 an hour on the visit.\n\nWi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · "
+      },
+      "speed": {
+        "top": 812,
+        "bottom": 988,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 176,
+        "font": "30px",
+        "text": "Wi-Fi\n313.78 Mbps down · 326.51 up · 9 ms ping\nEarlier\n243.78 Mbps down · 218.39 up · 18 ms ping"
+      },
+      "story": {
+        "top": 1064,
+        "bottom": 1545,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 481,
+        "font": "30px",
+        "text": "Inside the room\n\nDark wood, a chandelier and shelves of books give the room the feel of an old London reading room. On my visit, Christmas garlands and Harry Po"
+      },
+      "firstReading": {
+        "top": 63,
+        "bottom": 1545,
+        "left": 779,
+        "right": 1246,
+        "width": 467,
+        "height": 1482,
+        "font": "30px",
+        "text": "The Bridge 1958\nBistro & Office Space\n\nSai Mai, Bangkok · Café & meeting rooms\n\nQuiet and cool, with outlets by the seats. Good coffee and plenty of parking on "
+      },
+      "headings": [
+        {
+          "top": 63,
+          "bottom": 147,
+          "left": 779,
+          "right": 1246,
+          "width": 467,
+          "height": 84,
+          "font": "46.5px",
+          "text": "The Bridge 1958\nBistro & Office Space"
+        },
+        {
+          "top": 674,
+          "bottom": 715,
+          "left": 779,
+          "right": 1246,
+          "width": 467,
+          "height": 41,
+          "font": "34.5px",
+          "text": "Working here"
+        },
+        {
+          "top": 1073,
+          "bottom": 1114,
+          "left": 779,
+          "right": 1246,
+          "width": 467,
+          "height": 41,
+          "font": "34.5px",
+          "text": "Inside the room"
+        }
+      ],
+      "sources": [
+        {
+          "text": "PL\n;\nUB",
+          "href": "/"
+        },
+        {
+          "text": "← Place on the map",
+          "href": "/?p=o71358a621d50"
+        },
+        {
+          "text": "",
+          "href": "/media/venue-reports/the-bridge-1958/interior.jpg"
+        },
+        {
+          "text": "Directions ↗",
+          "href": "https://maps.app.goo.gl/pspEegY6Nx5U4DELA"
+        },
+        {
+          "text": "Call 02 536 0599",
+          "href": "tel:+6625360599"
+        },
+        {
+          "text": "LINE ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Venue hours & address ↗",
+          "href": "https://page.line.me/iye2725a"
+        },
+        {
+          "text": "Email the venue",
+          "href": "mailto:thebridge1958@gmail.com"
+        }
+      ],
+      "bleed": [],
+      "image": 1600
+    },
+    "tabOrder": [
+      {
+        "name": "PL\n;\nUB",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "← Place on the map",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Directions ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Call 02 536 0599",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "LINE ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Join guest Wi-Fi",
+        "tag": "SUMMARY",
+        "visible": true
+      },
+      {
+        "name": "Venue hours & address ↗",
+        "tag": "A",
+        "visible": true
+      },
+      {
+        "name": "Email the venue",
+        "tag": "A",
+        "visible": true
+      }
+    ],
+    "disclosure": {
+      "open": true,
+      "text": "Join guest Wi-Fi\n\nAt the café, open Wi-Fi settings and choose TheBridge1958. Use the password on the guest Wi-Fi card or ask staff.",
+      "closedWithSpace": true
+    },
+    "errors": [],
+    "failed": []
+  }
+]
