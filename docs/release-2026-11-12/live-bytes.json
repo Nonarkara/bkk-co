@@ -1,12 +1,12 @@
 {
-  "observedAt": "2026-11-12T03:39:53.719Z",
+  "observedAt": "2026-11-12T08:30:43.015Z",
   "origin": "https://co.nonarkara.org",
-  "sourceCommit": "5fa7d890225816d688fb5224e49add913f3e0832",
+  "sourceCommit": "a0eac01622531c653a34c6e6945421e4d68033d0",
   "matched": [
     {
       "path": "app.js",
       "bytes": 41975,
-      "sha256": "7c8e7c48d7acfd7b87b7b15d7bb392e0092fe0675e3f5a650a74ef519a947e4d"
+      "sha256": "eab9ba9101242b6b9227b497a393493b215f4ab8e5fd5b4e89ad5d4b0397c833"
     },
     {
       "path": "atlas-model.js",
@@ -15,8 +15,8 @@
     },
     {
       "path": "atlas.css",
-      "bytes": 3566,
-      "sha256": "47077d0f0735b2270fe31dd0d51bd6c4493e1706465918376acf71a59bd7c62a"
+      "bytes": 3673,
+      "sha256": "83bf2ccdb80b4d7f09a204137a205b7d84f55b1a49b27aa796c39b4ccf3c6665"
     },
     {
       "path": "atlas.js",
@@ -1014,6 +1014,11 @@
       "sha256": "2d9de66df8b9705c4335ca4edb6648ed1c7142d8fbc73bd74ff158b19505928f"
     },
     {
+      "path": "data/venue-reports.json",
+      "bytes": 4773,
+      "sha256": "dc680fe6ffaeb55a4a22f7cfbfc3087ac599f371d21846fca46505406cd3900b"
+    },
+    {
       "path": "discovery.css",
       "bytes": 5784,
       "sha256": "29eba8576c22deee361a8e265850544e141c8266b90d5da43cb35e88864e7b51"
@@ -1049,14 +1054,54 @@
       "sha256": "fa9e9a55296db1e38e27688ea919b26a708d0d310ac56ec39041c50e2e38990f"
     },
     {
+      "path": "fonts/jost-latin-ext.woff2",
+      "bytes": 17204,
+      "sha256": "b2a539cd1f2bbf123e66bafa988bbd32249a7ba3335aec377a9fc1b37734b1ed"
+    },
+    {
+      "path": "fonts/jost-latin.woff2",
+      "bytes": 26588,
+      "sha256": "235d8f8964bfdf105fc0c3e4c77b5e70f31bee1dad611d59318b5f2a5cb64d90"
+    },
+    {
+      "path": "fonts/prompt-latin-400.woff2",
+      "bytes": 10948,
+      "sha256": "6d0bc99f47244cb7058adca34f02d673ea5532f8ae31d22601d8b379899ac0b2"
+    },
+    {
+      "path": "fonts/prompt-latin-500.woff2",
+      "bytes": 10552,
+      "sha256": "7f38cd2182894621467a8569438d2d0ccf2f2aed4c33d678ab77aefbd8dbe4a0"
+    },
+    {
+      "path": "fonts/prompt-latin-ext-400.woff2",
+      "bytes": 9848,
+      "sha256": "5733a28dda73314d91922293256c27c22f1443049891616b55b788349ecc9753"
+    },
+    {
+      "path": "fonts/prompt-latin-ext-500.woff2",
+      "bytes": 9624,
+      "sha256": "2165962a241d26a970f847d0845b3d8b378d3ef33f31921e7181f72ebc274099"
+    },
+    {
+      "path": "fonts/prompt-thai-400.woff2",
+      "bytes": 6692,
+      "sha256": "80fa1143d208ec946c42b103c0e766041661d1128ca95795869ebd2c3ef161f3"
+    },
+    {
+      "path": "fonts/prompt-thai-500.woff2",
+      "bytes": 6392,
+      "sha256": "cd02670a0ff635206a0719f5d5820e893a8bc42b51be4ac529cc45dbd6cabc7b"
+    },
+    {
       "path": "footprint-model.js",
       "bytes": 3104,
       "sha256": "15939d121e6d2a72137d623fc82ce38277f661f4a51d94e994be748857035e34"
     },
     {
       "path": "footprint-palette.css",
-      "bytes": 1029,
-      "sha256": "82cd0f3ebdd22cca94588a437329d7158279844dea5729c25948c854b0d4aca7"
+      "bytes": 1040,
+      "sha256": "fae59c62386bdb52449ac1618fdaa513425e98a3370f43df22144bfdfb1a88c4"
     },
     {
       "path": "footprint-palette.js",
@@ -1085,8 +1130,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 9342,
-      "sha256": "d1a2ddf5b878c48c31685b7188ef7d7ce55281774fe6c9187c8735f4bd2e0991"
+      "bytes": 9363,
+      "sha256": "f6ea23c04677d755ae0de682d6f7ef5eba2bcad0c2dd106d76583c427348e343"
     },
     {
       "path": "journey-model.js",
@@ -1095,8 +1140,8 @@
     },
     {
       "path": "journeys.css",
-      "bytes": 5328,
-      "sha256": "b2a1dc674d1174132b171bf3e02a19042323f166397a0752086270e11f0701cc"
+      "bytes": 5411,
+      "sha256": "6102e9def19160029f143971a8cd46e767addd901e2cb1e048f11693217045d3"
     },
     {
       "path": "journeys.js",
@@ -1105,8 +1150,8 @@
     },
     {
       "path": "list-tools.css",
-      "bytes": 4696,
-      "sha256": "4045c76669cf0fad2a37a9a9d0ba451d78daee0c3cbd7fb718fcdfd4f08a8ee6"
+      "bytes": 4729,
+      "sha256": "eb2f1d05c59f26a0cf7386c68c1b86e28325f9795890d26b3ec3f43b35c54a24"
     },
     {
       "path": "manga-lens.js",
@@ -1122,6 +1167,21 @@
       "path": "map-motion.js",
       "bytes": 968,
       "sha256": "904b9ddae607f2dd7170ed5e74951e8797d8c199ba3c4b691ab8b18a76161769"
+    },
+    {
+      "path": "media/venue-reports/the-bridge-1958/interior.jpg",
+      "bytes": 591186,
+      "sha256": "8dcfa500e2e18534f61eb97dd695c1d4834d89fe084f469eb2c7067e565fd5fe"
+    },
+    {
+      "path": "media/venue-reports/the-bridge-1958/map-listing.png",
+      "bytes": 200159,
+      "sha256": "bfbf1519fb5a2620fe345115eb2139d100e33325a88b06b6023d8c4a5813e7f8"
+    },
+    {
+      "path": "media/venue-reports/the-bridge-1958/speedtest.png",
+      "bytes": 95876,
+      "sha256": "c1598803f5aa33534c2c85c08f2fed63f6f7913f0a53d463c4c22a85cf020eab"
     },
     {
       "path": "neighborhood-palette.js",
@@ -1730,8 +1790,8 @@
     },
     {
       "path": "neighborhood-photos.css",
-      "bytes": 2027,
-      "sha256": "c5f3833b17988efb81333b57a7ceeb325ff49182f1a29c5cccd42f2cc0ead4b4"
+      "bytes": 2067,
+      "sha256": "78675acddb6524f633c82caaad0910b5704bf45c9bed9197ff501ba90848922d"
     },
     {
       "path": "neighborhood-photos.js",
@@ -1820,8 +1880,8 @@
     },
     {
       "path": "privacy.html",
-      "bytes": 5628,
-      "sha256": "c808029a20333ac3b5830b1ffb1aa3b97f8d7bf791923350b6db57a3a2ca8c4b"
+      "bytes": 5495,
+      "sha256": "e2c816f92f7b8f7a647b91cc90c3b57824cf519b6b3f461521620f2afdcc4636"
     },
     {
       "path": "street-model.js",
@@ -1830,8 +1890,8 @@
     },
     {
       "path": "street-world-3d.css",
-      "bytes": 7329,
-      "sha256": "d9d3605890217d6a72ae0d389efd2c757b41491a1fe0555e6220772111c08731"
+      "bytes": 7321,
+      "sha256": "e10ee4aed4952acce1cc2db1cfe658882bd347bd6965df9f24f52dd5e4301420"
     },
     {
       "path": "street-world-3d.js",
@@ -1840,8 +1900,8 @@
     },
     {
       "path": "street-world.css",
-      "bytes": 3001,
-      "sha256": "a499166e7c65f45eb127e90d6061bfac3f6d6a509dcabe3dd16a66866d851051"
+      "bytes": 3015,
+      "sha256": "563589910db29610620d4e42434d66e43b84353b775fdf3be940fcf0d0e935cf"
     },
     {
       "path": "street-world.js",
@@ -1850,8 +1910,8 @@
     },
     {
       "path": "style.css",
-      "bytes": 22931,
-      "sha256": "1fa979ac5768c521ad886dede18dedb578d49026c22b6d7efe9f20942a014f25"
+      "bytes": 26641,
+      "sha256": "ca4e9d249468172c6205d3c574228a9c7341fbfe84fb0d62d7be914d7b65dead"
     },
     {
       "path": "styles/plub-manga.json",
@@ -1896,12 +1956,12 @@
     {
       "path": "views.js",
       "bytes": 47210,
-      "sha256": "0a0a919e7b61c74f6ad33eff8c91f320447ccdb75e8d2e17a7852652c839e1ff"
+      "sha256": "e569dac7cad202d63b7f3637693488e93151a7e7f6f250e99f1939e279221c78"
     },
     {
       "path": "work-atmosphere.css",
-      "bytes": 2393,
-      "sha256": "f0298445cde51fa7fed44e030b2b809463938a3223d47c2bd124ce6ca0654fe3"
+      "bytes": 2398,
+      "sha256": "18bdb27e0c87e9796e259a29059c0b35663dfbc9c5e9b0a010c08a0992a56d8a"
     },
     {
       "path": "work-atmosphere.js",
@@ -1913,7 +1973,7 @@
   "missing": [],
   "orphansStillServed": [],
   "summary": {
-    "matched": 381,
+    "matched": 393,
     "mismatched": 0,
     "missing": 0,
     "orphansStillServed": 0
