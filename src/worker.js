@@ -145,18 +145,19 @@ async function withPreview(request, env, url) {
       if (n) { title = `${n[0]} · PLUB`; desc = `${KIND[n[1]] || 'Place'} in Bangkok · Great Good Place index ${n[2]} of 100. Scored from open data, with Nong Plub as your guide.`; }
     }
   } catch { /* fall back to the generic preview */ }
-  if (!title) {
-    const h = new Headers(page.headers);
-    for (const [k, v] of Object.entries(SEC)) h.set(k, v);
-    const body = await page.arrayBuffer();
-    return new Response(body, { status: page.status, statusText: page.statusText, headers: h });
-  }
   const set = (attr) => ({ element(e) { e.setAttribute('content', attr); } });
-  return new HTMLRewriter()
+  const rewritten = new HTMLRewriter()
     .on('title', { element(e) { e.setInnerContent(title); } })
     .on('meta[property="og:title"]', set(title))
     .on('meta[property="og:description"]', set(desc))
     .on('meta[name="description"]', set(desc))
     .on('meta[property="og:image"]', image ? set(image) : {})
     .transform(page);
+  if (!title) {
+    const h = new Headers(rewritten.headers);
+    for (const [k, v] of Object.entries(SEC)) h.set(k, v);
+    const body = await rewritten.arrayBuffer();
+    return new Response(body, { status: rewritten.status, statusText: rewritten.statusText, headers: h });
+  }
+  return await secHeaders(rewritten);
 }
