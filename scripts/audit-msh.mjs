@@ -111,6 +111,26 @@ const MEASURE = () => {
   }
   const mapShare = (vw * vh) ? visibleMap / (vw * vh) : 0;
 
+  // 1b. What stands on the map's own surface. PLUB's own overlays — the key bar,
+  // the atlas action row, the status line — are interface, not map. They are
+  // taken off the map's share, and they are reported as chrome so a growing
+  // overlay cannot hide behind the map's own furniture.
+  const overlaySel = '.footprint-key-control, .atlas-tools, .atlas-state, .atlas-reset, .map-key';
+  const mapOverlays = [];
+  let overlayArea = 0;
+  for (const el of document.querySelectorAll(overlaySel)) {
+    if (!shown(el)) continue;
+    const r = el.getBoundingClientRect();
+    if (r.width < 2 || r.height < 2 || !mapRect) continue;
+    const ox = Math.max(0, Math.min(mapRect.right, r.right) - Math.max(mapRect.left, r.left));
+    const oy = Math.max(0, Math.min(mapRect.bottom, r.bottom) - Math.max(mapRect.top, r.top));
+    if (ox * oy <= 0) continue;
+    overlayArea += ox * oy;
+    mapOverlays.push({ cls: el.className || el.tagName.toLowerCase(), w: Math.round(r.width), h: Math.round(r.height), area: Math.round(ox * oy) });
+  }
+  const mapShareNet = (vw * vh) ? Math.max(0, visibleMap - overlayArea) / (vw * vh) : 0;
+  const mapOverlayShare = (vw * vh) ? overlayArea / (vw * vh) : 0;
+
   // 3. geometry failures
   // 3a. void: the largest empty area in the first screen that is not the map (a map is a named job).
   // Measured on a grid, because a void is a region, not a band.
@@ -213,6 +233,9 @@ const MEASURE = () => {
     vw, vh,
     chrome: { topPx: Math.round(topPx), bottomPx: Math.round(bottomPx), share: +((topPx + bottomPx) / vh).toFixed(3) },
     mapShare: +mapShare.toFixed(3),
+    mapShareNet: +mapShareNet.toFixed(3),
+    mapOverlayShare: +mapOverlayShare.toFixed(4),
+    mapOverlays: mapOverlays.slice(0, 6),
     mapIsFirst, hierarchyRatio: +ratio.toFixed(2), top3,
     voidPx: Math.round(voidPx), voidTop: Math.round(voidTop), voidW: Math.round(voidW),
     obstruction, obstructionShare: +obstructionShare.toFixed(3),
@@ -479,6 +502,9 @@ function verdictFor(view, journey) {
   const F = (id, detail) => fails.push({ id, detail });
   if (view.chrome.share > 0.34) F('B2 chrome cost', `top+bottom bands take ${(view.chrome.share * 100).toFixed(0)}% of the viewport`);
   if (view.mapShare < 0.6) F('B9 map share', `the map holds ${(view.mapShare * 100).toFixed(0)}% of the first screen`);
+  // The map's own share, once PLUB's own overlays are taken off it.
+  if (view.mapShareNet < 0.6) F('B9 map share', `the map holds ${(view.mapShareNet * 100).toFixed(0)}% of the first screen once PLUB's own overlays are taken off it`);
+  if (view.mapOverlayShare > 0.06) F('B9 map overlay chrome', `PLUB's own overlays stand on ${(view.mapOverlayShare * 100).toFixed(1)}% of the first screen: ${(view.mapOverlays || []).map(o => `${o.cls} ${o.w}x${o.h}`).join('; ')}`);
   const voidShare = (view.vw * view.vh) ? view.voidPx / (view.vw * view.vh) : 0;
   if (voidShare > 0.18) F('B4 void', `${(voidShare * 100).toFixed(0)}% of the first screen carries nothing`);
   if (view.obstructionShare > 0.12) F('B9 map obstruction', `${view.obstruction.cls || view.obstruction.tag} covers ${(view.obstructionShare * 100).toFixed(0)}% of the map`);
@@ -536,6 +562,12 @@ try {
         d.id = 'planted-defect';
         d.style.cssText = 'position:fixed;left:0;top:120px;width:100%;height:430px;background:#ffffff;z-index:5';
         document.body.append(d);
+        // A second known defect, in PLUB's own name: an overlay panel standing on the
+        // map. The map's own furniture must not be a hiding place for chrome.
+        const o = document.createElement('div');
+        o.className = 'atlas-tools';
+        o.style.cssText = 'position:absolute;left:0;top:200px;width:72%;height:520px;background:#ffffff;z-index:6';
+        (document.querySelector('#map') || document.body).append(o);
       });
       await page.waitForTimeout(400);
     }
@@ -570,7 +602,7 @@ for (const v of report.viewports) {
   v.verdict = r.verdict;
 }
 {
-  const r = verdictFor({ vw: 1440, vh: 900, chrome: { share: 0 }, mapShare: 1, voidPx: 0, obstructionShare: 0, inflated: [], orphans: [], bleed: false, mapIsFirst: true, hierarchyRatio: 9, task: { search: true, count: true }, lang: 'en' }, report.journey);
+  const r = verdictFor({ vw: 1440, vh: 900, chrome: { share: 0 }, mapShare: 1, mapShareNet: 1, mapOverlayShare: 0, mapOverlays: [], voidPx: 0, obstructionShare: 0, inflated: [], orphans: [], bleed: false, mapIsFirst: true, hierarchyRatio: 9, task: { search: true, count: true }, lang: 'en' }, report.journey);
   report.fails.push(...r.fails.map(f => ({ ...f, width: 'journey' })));
 }
 report.verdict = report.fails.length ? (report.fails.some(f => /map share|void|bleed|runtime/.test(f.id)) ? 'BLOCK' : 'REVISE') : 'PASS';
@@ -590,7 +622,7 @@ if (PLANTED) {
 const lines = [];
 lines.push(`MSH audit ${stamp} · ${report.base} · planted=${PLANTED}`);
 for (const v of report.viewports) {
-  lines.push(`  ${String(v.width).padStart(4)}px  chrome ${v.chrome.topPx}+${v.chrome.bottomPx}px (${(v.chrome.share * 100).toFixed(0)}%)  map ${(v.mapShare * 100).toFixed(0)}%  void ${v.voidPx}px  hierarchy ${v.hierarchyRatio}x  ${v.verdict}`);
+  lines.push(`  ${String(v.width).padStart(4)}px  chrome ${v.chrome.topPx}+${v.chrome.bottomPx}px (${(v.chrome.share * 100).toFixed(0)}%)  map ${(v.mapShare * 100).toFixed(0)}% (net ${(v.mapShareNet * 100).toFixed(0)}%, overlays ${(v.mapOverlayShare * 100).toFixed(1)}%)  void ${v.voidPx}px  hierarchy ${v.hierarchyRatio}x  ${v.verdict}`);
 }
 lines.push(`  journey: search ${report.journey.search} hits · chip ${report.journey.chipChanged ? 'works' : 'NO CHANGE'} · hop ${report.journey.hopStops} stops · shared feed "${String(report.journey.hopFeed).slice(0, 40)}" · lens ${report.journey.lensOn?.ground}/${report.journey.lensOff?.ground} · writes ${report.journey.writes.length}`);
 for (const f of report.fails) lines.push(`  FAIL [${f.width}] ${f.id}: ${f.detail}`);

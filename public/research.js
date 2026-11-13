@@ -27,10 +27,11 @@
     const host = document.getElementById('rd-figures');
     const lede = document.getElementById('rd-lede');
     if (!host) return;
-    let places, joins, areas;
+    let places, joins, areas, fabric;
     try {
-      [places, joins, areas] = await Promise.all([
+      [places, joins, areas, fabric] = await Promise.all([
         get('/data/places-work.json'), get('/data/journey-places.json'), get('/data/street-areas.json'),
+        get('/data/height-coverage.json'),
       ]);
     } catch (e) {
       lede.textContent = `The catalogue could not be read (${e.message}). The figures below would be a claim without evidence, so they are not shown.`;
@@ -57,14 +58,23 @@
       bands[Math.min(10, Math.floor((r[7] || 0) / 10))]++;
     }
 
-    // How much of the catalogue can PLUB actually score? Same rule set the place sheet uses.
+    // How much of the catalogue can PLUB actually score? Same rule set the place sheet uses:
+    // map tags, visitor ratings and named on-site reports. Leaving the visitor and on-site
+    // tiers out would understate what is documented, and the headline would be wrong.
+    const [scores, reportFile] = await Promise.all([
+      get('/api/scores').catch(() => null),
+      get('/data/venue-reports.json').catch(() => null),
+    ]);
+    const visitorScores = scores || {};
+    const reports = reportFile?.reports || {};
+    const liveVisitors = scores !== null;
     const WorkAtmosphere = window.WorkAtmosphere;
     let anyDocumented = 0, publishable = 0, coverageSum = 0;
     if (WorkAtmosphere) {
       const data = { raw: { join: { venueTags: joins.venueTags || {} }, geo: { manifest: { asOf: joins.manifest?.asOf } } } };
       for (const r of rows) {
         const pr = WorkAtmosphere.profile(
-          { id: r[0], n: r[1], k: places.kinds[r[2]], x: r[4], y: r[3], flags: r[5], idx: r[7] }, data, {});
+          { id: r[0], n: r[1], k: places.kinds[r[2]], x: r[4], y: r[3], flags: r[5], idx: r[7] }, data, visitorScores, undefined, reports[r[0]]);
         if (pr.scored > 0) { anyDocumented++; coverageSum += pr.coverage; }
         if (pr.publishable) publishable++;
       }
@@ -83,12 +93,30 @@
 
     const areaCount = (areas.areas || []).length;
 
+    // The city fabric: how much of it can honestly be given a height.
+    const hood = fabric?.populations?.neighbourhoods || {};
+    const boxes = fabric?.populations?.extractionBoxes || {};
+    const fp = hood.footprints || 0;
+    const fabricRows = fp ? `
+      <h3 class="rd-head">The city fabric</h3>
+      <dl class="rd-figures">
+        ${row('Building footprints in the twelve neighbourhoods', fmt(fp))}
+        ${row('With an explicit height in metres', `${fmt(hood.explicitHeight)} <span class="rd-share">· ${pct(hood.explicitHeight, fp)}</span>`, 'The only heights PLUB draws. Each one is a height the source states in metres; none is estimated.')}
+        ${row('With a floor count but no height', `${fmt(hood.levelsOnly)} <span class="rd-share">· ${pct(hood.levelsOnly, fp)}</span>`, 'A floor count is not a height. PLUB never turns floors into metres, so these footprints stay flat.')}
+        ${row('With no height information at all', `${fmt(hood.noHeightInfo)} <span class="rd-share">· ${pct(hood.noHeightInfo, fp)}</span>`)}
+      </dl>
+      <p class="rd-note">Counted against the pinned OpenStreetMap snapshot${fabric.snapshotAsOf ? ` of ${String(fabric.snapshotAsOf).slice(0, 10)}` : ''} on ${fabric.measuredOn}. ${fmt(boxes.explicitHeight || 0)} buildings carry an explicit height in the wider boxes the pipeline reads; ${fmt(hood.explicitHeight || 0)} of them fall inside a neighbourhood and are drawn. Nothing else in the snapshot states a height, so the flat outlines are the honest picture, not a missing download.</p>
+    ` : '';
+
     host.innerHTML = `
       <div class="rd-callout">
         <b>Most of Bangkok cannot be honestly scored, and PLUB says so.</b>
         <p>${WorkAtmosphere
           ? `Of ${fmt(total)} places, ${fmt(anyDocumented)} carry at least one documented fact about working there, and ${fmt(publishable)} clear the coverage floor where a work-readiness score may be published at all. The mean documented coverage across the whole catalogue is ${(coverageSum / total * 100).toFixed(1)}%.`
           : `Of ${fmt(total)} places, the count of documented working facts is shown below.`}</p>
+        <p class="rd-note">${liveVisitors
+          ? 'Counted with the same rule as the place sheet: map tags, visitor ratings and named on-site reports.'
+          : 'Counted with the same rule as the place sheet: map tags and named on-site reports. The visitor rating record was unreachable when this page was rendered, so visitor ratings are not counted in these figures.'}</p>
       </div>
       <h3 class="rd-head">The catalogue</h3>
       <dl class="rd-figures">${kindRows}
@@ -108,6 +136,7 @@
       <h3 class="rd-head">The Great Good Place index, by band</h3>
       <ul class="rd-dist">${dist}</ul>
       <p class="rd-note">The index is the average of access, scene and character, each ranked against every other place. Work and notable are shown in the interface but held out of the index: too few places carry them yet to rank fairly.</p>
+      ${fabricRows}
     `;
   }
 
