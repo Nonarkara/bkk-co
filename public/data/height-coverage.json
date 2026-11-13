@@ -1,0 +1,133 @@
+{
+  "source": "OpenStreetMap",
+  "sourceURL": "https://www.openstreetmap.org",
+  "license": "ODbL-1.0",
+  "licenseURL": "https://www.openstreetmap.org/copyright",
+  "snapshotMD5": "215e1ff30fe4d4adef2db3d664dab9da",
+  "snapshotAsOf": "2026-10-24T20:20:51Z",
+  "measuredOn": "2026-11-13",
+  "method": "Every building polygon in the pinned extraction was joined by OSM id to the shipped street-world geometry. A height counts only when the source tag gives metres; a floor count is reported separately and never converted.",
+  "rule": "Only explicit height / building:height tags in metres are drawn. building:levels is recorded as knowable but not a height, so those footprints stay flat. No floor conversion, no default height, no generated detail.",
+  "populations": {
+    "extractionBoxes": {
+      "radiusM": 900,
+      "meaning": "The source geometry the pipeline read: a 900 m box around each neighbourhood anchor.",
+      "footprints": 33590,
+      "explicitHeight": 320,
+      "levelsOnly": 10098,
+      "noHeightInfo": 23172
+    },
+    "neighbourhoods": {
+      "radiusM": 800,
+      "meaning": "The 800 m radius that actually ships and is drawn.",
+      "footprints": 20650,
+      "explicitHeight": 248,
+      "levelsOnly": 6163,
+      "noHeightInfo": 14239
+    }
+  },
+  "shipped": {
+    "footprints": 20650,
+    "explicitHeight": 248,
+    "heightsFoundInSource": 248,
+    "heightsShippedButNotInSource": 0
+  },
+  "areas": [
+    {
+      "id": "ari",
+      "name": "Ari",
+      "footprints": 1792,
+      "explicitHeight": 2,
+      "levelsOnly": 412,
+      "noHeightInfo": 1378
+    },
+    {
+      "id": "samyan",
+      "name": "Sam Yan",
+      "footprints": 2649,
+      "explicitHeight": 176,
+      "levelsOnly": 1258,
+      "noHeightInfo": 1215
+    },
+    {
+      "id": "charoenkrung",
+      "name": "Charoen Krung",
+      "footprints": 3035,
+      "explicitHeight": 31,
+      "levelsOnly": 1213,
+      "noHeightInfo": 1791
+    },
+    {
+      "id": "thonglo",
+      "name": "Thong Lo",
+      "footprints": 1839,
+      "explicitHeight": 6,
+      "levelsOnly": 110,
+      "noHeightInfo": 1723
+    },
+    {
+      "id": "ramkhamhaeng",
+      "name": "Meet's space · Ramkhamhaeng",
+      "footprints": 150,
+      "explicitHeight": 0,
+      "levelsOnly": 0,
+      "noHeightInfo": 150
+    },
+    {
+      "id": "pathumwan",
+      "name": "Pathum Wan",
+      "footprints": 875,
+      "explicitHeight": 30,
+      "levelsOnly": 131,
+      "noHeightInfo": 714
+    },
+    {
+      "id": "phranakhon",
+      "name": "Phra Nakhon",
+      "footprints": 2440,
+      "explicitHeight": 0,
+      "levelsOnly": 188,
+      "noHeightInfo": 2252
+    },
+    {
+      "id": "samphanthawong",
+      "name": "Samphanthawong",
+      "footprints": 3049,
+      "explicitHeight": 0,
+      "levelsOnly": 913,
+      "noHeightInfo": 2136
+    },
+    {
+      "id": "chatuchak",
+      "name": "Chatuchak",
+      "footprints": 1333,
+      "explicitHeight": 1,
+      "levelsOnly": 2,
+      "noHeightInfo": 1330
+    },
+    {
+      "id": "dindaeng",
+      "name": "Din Daeng",
+      "footprints": 3101,
+      "explicitHeight": 2,
+      "levelsOnly": 1906,
+      "noHeightInfo": 1193
+    },
+    {
+      "id": "bangkapi",
+      "name": "Bang Kapi",
+      "footprints": 186,
+      "explicitHeight": 0,
+      "levelsOnly": 23,
+      "noHeightInfo": 163
+    },
+    {
+      "id": "prawet",
+      "name": "Prawet",
+      "footprints": 201,
+      "explicitHeight": 0,
+      "levelsOnly": 7,
+      "noHeightInfo": 194
+    }
+  ]
+}

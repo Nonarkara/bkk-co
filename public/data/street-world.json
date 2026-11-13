@@ -18,14 +18,18 @@
     "explicitHeightCount": 248,
     "unknownHeightCount": 20402,
     "renderedHeightCount": 244,
-    "cacheKey": "street-world-215e1ff3-df50aa5425",
+    "cacheKey": "street-world-215e1ff3-75bc636dae",
     "streetCount": 7533,
     "junctionCount": 9147,
     "suppressed": {},
     "heightMeaning": "Only explicit positive metre height/building:height tags; no floor conversion, area/use estimate, renderer default or generated details. Unknown height remains null/flat. Missing minimum uses display ground zero only when height is known.",
     "streetMeaning": "Original OSM way-node runs inside the area, no synthetic joins or endpoints. Shared node IDs establish source topology only, not safe/legal pedestrian access. Unknown access remains unknown. Streets with explicit foot/access restrictions and fast-road/construction classes excluded.",
     "cafeMeaning": "Existing catalogue cafe points within40m straight-line of this source line; not entrances, frontage or same-side access.",
-    "split": "One file per area under data/street-world/. The index carries the area list and this manifest only."
+    "split": "One file per area under data/street-world/. The index carries the area list and this manifest only.",
+    "cacheKeyMeaning": "Recomputed from the current area list and bounds; it names the OpenStreetMap extraction cache that holds this geometry.",
+    "levelsOnlyCount": 6163,
+    "noHeightInfoCount": 14239,
+    "heightCoverageMeaning": "Footprints that record how many floors they have but no height in metres. A floor count is not a height, so these stay flat and are never converted."
   },
   "areas": [
     {
