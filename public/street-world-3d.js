@@ -1,25 +1,63 @@
-// The 3D Screentoned Manga City Walkthrough for Bangkok (PLUB).
-// Built with Three.js and custom GLSL halftone screentone & ink edge shaders,
-// inspired by the Shanghai model at miaoshen.nonarkara.org.
-// Uses real OpenStreetMap footprints, heights, and streets from data/street-world.json.
+// The 3D Screentoned Manga & Rokehan-Inspired Architectural City Walkthrough for Bangkok (PLUB).
+// Built with Three.js and custom GLSL halftone screentone, cel-shading, window-grid,
+// storefront-glow, wet-asphalt reflection, and architectural ink-edge shaders.
+// Uses real OpenStreetMap footprints, heights, floor counts, and streets from data/street-world/*.json.
 
 import * as THREE from './vendor/three/three.module.min.js';
 import earcut from './vendor/three/earcut.js';
 
 THREE.ColorManagement.enabled = false;
 
+// 5 Time-of-Day presets inspired by Rokehan (Day, Dusk, Misty dusk, Night, Late night)
 const TOD = {
-  day:   { paper: '#f9c1ce', ink: '#7d133a', sun: [-0.55, 0.62, 0.55], invert: 0, sky: 0.5 },
-  dusk:  { paper: '#ffefae', ink: '#7d133a', sun: [0.82, 0.16, -0.35], invert: 0, sky: 0.85 },
-  night: { paper: '#064f6e', ink: '#a7d4e4', sun: [0.2, 0.7, -0.3],    invert: 1, sky: 0.9 }
+  day:   {
+    paper: '#f7f3eb', ink: '#231924', skyTop: '#cfe2f3', skyHor: '#f7efe6',
+    wallLit: '#fcf9f2', wallShade: '#d8cfc4', roof: '#ede6dc', road: '#464b56',
+    emissive: '#ffe29a', sun: [-0.55, 0.68, 0.48], invert: 0, sky: 0.45, night: 0.0, wet: 0.0, fogMul: 1.0
+  },
+  dusk:  {
+    paper: '#f9c1ce', ink: '#7d133a', skyTop: '#b86b8e', skyHor: '#ffdfae',
+    wallLit: '#ffe9d6', wallShade: '#c98ca3', roof: '#f4c6d2', road: '#4a2538',
+    emissive: '#ffd478', sun: [0.82, 0.22, -0.35], invert: 0, sky: 0.80, night: 0.45, wet: 0.15, fogMul: 0.85
+  },
+  misty: {
+    paper: '#e8dfe5', ink: '#4a233b', skyTop: '#9ea8b8', skyHor: '#f0d8d5',
+    wallLit: '#f2e8e6', wallShade: '#b7a6b2', roof: '#dfd4da', road: '#514957',
+    emissive: '#ffd88a', sun: [0.65, 0.28, 0.45], invert: 0, sky: 0.75, night: 0.35, wet: 0.1, fogMul: 0.42
+  },
+  night: {
+    paper: '#0b2b40', ink: '#a7d4e4', skyTop: '#061524', skyHor: '#133b54',
+    wallLit: '#1c3b52', wallShade: '#0d2030', roof: '#163146', road: '#0a1622',
+    emissive: '#ffdf8e', sun: [0.2, 0.7, -0.3], invert: 1, sky: 0.90, night: 0.88, wet: 0.35, fogMul: 0.8
+  },
+  late:  {
+    paper: '#08101c', ink: '#9cc4dc', skyTop: '#040811', skyHor: '#112236',
+    wallLit: '#182738', wallShade: '#0b131e', roof: '#132030', road: '#070c14',
+    emissive: '#ffcf6e', sun: [-0.25, 0.65, 0.35], invert: 1, sky: 0.95, night: 1.0, wet: 0.85, fogMul: 0.72
+  }
 };
 
+// Look modes:
+// 0 = Color (Rokehan architectural anime palette)
+// 1 = Paper (Wada Plate 273 Hermosa Pink #f9c1ce + Pansy Purple #7d133a)
+// 2 = Gray (Monochrome manga sumi ink)
+// 3 = Clay (Architectural white/warm clay model)
+const LOOK_CODES = { color: 0, paper: 1, gray: 2, clay: 3 };
+
+// Finish modes:
+// 0 = Lines + tone (Halftone screentone + ink outlines)
+// 1 = Plain + lines (Smooth cel-shaded surfaces + ink outlines)
+// 2 = Line art (Pure technical/manga ink line drawing)
+const FINISH_CODES = { tone: 0, plain: 1, lineart: 2 };
+
+const LENS_FOV = { '18': 84, '24': 70, '35': 54, '50': 40 };
+
 const EYE = 1.65;
-const CELL = 400;
 
 const GLSL = `
-uniform vec3 uPaper, uInk, uSun, uCam;
-uniform float uCell, uLine, uInvert, uFogNear, uFogFar;
+uniform vec3 uPaper, uInk, uSkyTop, uSkyHor, uWallLit, uWallShade, uRoof, uRoad, uEmissive, uSun, uCam;
+uniform float uCell, uLine, uInvert, uFogNear, uFogFar, uNight, uWet;
+uniform int uLook, uFinish;
 
 float ht(vec2 fc, float t, float cell) {
   vec2 p = mat2(.7071,.7071,-.7071,.7071) * fc / cell;
@@ -38,20 +76,55 @@ float hatch(vec2 fc, float cell) {
 float hash21(vec2 p) {
   return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
 }
+
+vec3 applyLook(vec3 col, float inkMask, float shadeTone) {
+  if (uFinish == 2) {
+    // Pure line art
+    vec3 bg = uLook == 1 ? vec3(0.976, 0.757, 0.808) : (uInvert > 0.5 ? uPaper : vec3(0.97, 0.96, 0.94));
+    vec3 fg = uLook == 1 ? vec3(0.490, 0.075, 0.227) : (uInvert > 0.5 ? uInk : vec3(0.12, 0.10, 0.14));
+    return mix(bg, fg, clamp(inkMask, 0., 1.));
+  }
+  if (uLook == 1) {
+    // Wada Plate 273 Paper + Pansy Purple ink
+    vec3 wp = uInvert > 0.5 ? uPaper : vec3(0.976, 0.757, 0.808);
+    vec3 wi = uInvert > 0.5 ? uInk : vec3(0.490, 0.075, 0.227);
+    return mix(wp, wi, clamp(max(shadeTone, inkMask), 0., 1.));
+  }
+  if (uLook == 2) {
+    // Monochrome Gray manga
+    float luma = dot(col, vec3(0.299, 0.587, 0.114));
+    vec3 gp = uInvert > 0.5 ? vec3(0.06, 0.07, 0.09) : vec3(0.95, 0.94, 0.92);
+    vec3 gi = uInvert > 0.5 ? vec3(0.84, 0.87, 0.90) : vec3(0.11, 0.11, 0.13);
+    float m = uFinish == 0 ? max(shadeTone, inkMask) : clamp(1.0 - luma, 0.0, 1.0);
+    return mix(gp, gi, clamp(max(m * 0.85, inkMask), 0., 1.));
+  }
+  if (uLook == 3) {
+    // Clay architectural model
+    vec3 cp = uInvert > 0.5 ? vec3(0.12, 0.14, 0.18) : vec3(0.94, 0.91, 0.87);
+    vec3 cs = uInvert > 0.5 ? vec3(0.05, 0.06, 0.08) : vec3(0.72, 0.67, 0.61);
+    vec3 ci = uInvert > 0.5 ? vec3(0.75, 0.78, 0.82) : vec3(0.22, 0.19, 0.17);
+    vec3 base = mix(cs, cp, clamp(1.0 - shadeTone * 0.75, 0.0, 1.0));
+    return mix(base, ci, clamp(inkMask, 0., 1.));
+  }
+  return col;
+}
 `;
 
 const BUILD_V = `
 varying vec3 vW;
 varying vec2 vUw;
 flat varying float vInfo;
+flat varying float vSeed;
 attribute vec2 uw;
 attribute float info;
+attribute float seed;
 
 void main() {
   vec4 w = modelMatrix * vec4(position, 1.);
   vW = w.xyz;
   vUw = uw;
   vInfo = info;
+  vSeed = seed;
   gl_Position = projectionMatrix * viewMatrix * w;
 }
 `;
@@ -60,68 +133,226 @@ const BUILD_F = GLSL + `
 varying vec3 vW;
 varying vec2 vUw;
 flat varying float vInfo;
+flat varying float vSeed;
 
 void main() {
-  float kind = mod(vInfo, 2.);
-  float known = mod(floor(vInfo / 2.), 2.);
-  float h = floor(vInfo / 4.) * .5;
+  float isRoof = mod(vInfo, 2.);
+  float tier = mod(floor(vInfo / 2.), 4.); // 0 = indicative shophouse, 1 = OSM levels, 2 = explicit heightM, 3 = tree/prop
+  float h = floor(vInfo / 8.) * .5;
+
   vec3 n = normalize(cross(dFdx(vW), dFdy(vW)));
   if (dot(n, vW - uCam) > 0.) n = -n;
   float lit = clamp(dot(n, uSun) * .5 + .5, 0., 1.);
-  float t = kind > .5 ? mix(.8, .96, lit) : mix(.15, .8, smoothstep(.2, .95, lit));
-  float tt = mix(t, 1. - t * .9, uInvert);
   vec2 fc = gl_FragCoord.xy;
-  float cell = uCell * (known > .5 ? 1. : 1.3);
+
+  // Tree canopy / foliage prop (tier == 3)
+  if (tier > 2.5) {
+    vec3 leafLit = uInvert > 0.5 ? vec3(0.14, 0.34, 0.28) : vec3(0.46, 0.72, 0.54);
+    vec3 leafShade = uInvert > 0.5 ? vec3(0.06, 0.18, 0.15) : vec3(0.26, 0.48, 0.36);
+    float tone = ht(fc, mix(0.25, 0.85, lit), uCell * 1.05);
+    vec3 col = mix(leafLit, leafShade, uFinish == 0 ? tone * 0.65 : (1.0 - lit) * 0.65);
+    float rim = 1.0 - abs(dot(n, normalize(uCam - vW)));
+    float e = smoothstep(0.62, 0.82, rim);
+    col = mix(col, uInk, e * 0.85);
+    col = applyLook(col, e, tone * 0.6);
+    float f = smoothstep(uFogNear, uFogFar, length(vW - uCam));
+    gl_FragColor = vec4(mix(col, uSkyHor, f), 1.);
+    return;
+  }
+
+  float t = isRoof > .5 ? mix(.78, .96, lit) : mix(.18, .84, smoothstep(.18, .92, lit));
+  float tt = mix(t, 1. - t * .88, uInvert);
+  float cell = uCell * (tier > 0.5 ? 1.0 : 1.22);
   float ink = ht(fc, tt, cell);
-  if (kind < .5 && uInvert < .5 && t < .36) ink = max(ink, hatch(fc, uCell) * .85);
+  if (isRoof < .5 && uInvert < .5 && t < .36) ink = max(ink, hatch(fc, uCell) * .75);
+  if (uFinish == 1) ink *= 0.18; // Plain + lines keeps surfaces clean
+
+  // Architectural edges, floor bands, storefront awnings, and multi-story window grid
   float e = 0.;
-  if (kind < .5) {
+  float winGlow = 0.;
+  float winFrame = 0.;
+  float storefrontBand = 0.;
+
+  if (isRoof < .5) {
     float L = vUw.y, du = min(vUw.x, L - vUw.x);
     float fu = max(fwidth(vUw.x), 1e-4), fv = max(fwidth(vW.y), 1e-4);
-    float px = min(min(du / fu, (h - vW.y) / fv), vW.y / fv);
-    e = 1. - smoothstep(uLine * .55, uLine * 1.35, px);
+    float pxEdge = min(min(du / fu, (h - vW.y) / fv), vW.y / fv);
+    e = 1. - smoothstep(uLine * .55, uLine * 1.4, pxEdge);
+
+    // Roof parapet line (0.7m below top of wall)
+    if (h > 6.0) {
+      float parapetPx = abs((h - 0.7) - vW.y) / fv;
+      e = max(e, (1. - smoothstep(uLine * .45, uLine * 1.15, parapetPx)) * 0.75);
+    }
+
+    // Ground-floor storefront lintel at y = 3.6m
+    if (h > 5.0 && L > 3.5) {
+      float lintelPx = abs(vW.y - 3.6) / fv;
+      e = max(e, (1. - smoothstep(uLine * .45, uLine * 1.2, lintelPx)) * 0.85);
+      if (vW.y > 0.25 && vW.y < 3.35 && du > 0.6) {
+        storefrontBand = 1.0;
+        float bay = fract(vUw.x / 2.8);
+        if (bay > 0.08 && bay < 0.92) {
+          float sHash = hash21(vec2(floor(vUw.x / 2.8) + vSeed * 17.0, floor(vSeed * 31.0)));
+          if (uNight > 0.1 && sHash > 0.28) {
+            winGlow = uNight * mix(0.55, 1.0, sHash);
+          } else {
+            winFrame = 0.22;
+          }
+        }
+      }
+    }
+
+    // Upper-story window grid (y from 4.0m to h - 1.0m)
+    if (vW.y >= 4.0 && vW.y <= h - 1.0 && L > 3.2 && du > 0.7) {
+      float floorIdx = floor((vW.y - 3.6) / 3.3);
+      float fy = fract((vW.y - 3.6) / 3.3);
+      float bayIdx = floor(vUw.x / 2.6);
+      float bx = fract(vUw.x / 2.6);
+      if (fy > 0.22 && fy < 0.78 && bx > 0.18 && bx < 0.82) {
+        float wHash = hash21(vec2(bayIdx + vSeed * 23.0, floorIdx * 7.0 + vSeed * 13.0));
+        if (uNight > 0.1 && wHash > (1.0 - 0.46 * uNight)) {
+          winGlow = uNight * mix(0.45, 0.95, wHash);
+        } else {
+          winFrame = 0.28;
+        }
+        // Subtle window sill/frame line
+        float wBorder = min(min(bx - 0.18, 0.82 - bx), min(fy - 0.22, 0.78 - fy));
+        if (wBorder < 0.05) e = max(e, 0.42);
+      }
+    }
+  } else {
+    // Roof surface: subtle perimeter inset line
+    float roofGrid = abs(fract(vW.x * 0.12) - 0.5) + abs(fract(vW.z * 0.12) - 0.5);
+    if (roofGrid > 0.92) e = max(e, 0.18);
   }
-  vec3 col = mix(uPaper, uInk, clamp(max(ink, e), 0., 1.));
+
+  // Subtle tint variation per building from vSeed
+  vec3 tint = vec3(
+    sin(vSeed * 12.3) * 0.035,
+    cos(vSeed * 19.7) * 0.025,
+    sin(vSeed * 31.1) * 0.03
+  );
+  vec3 baseWall = mix(uWallShade, uWallLit, lit) + tint;
+  if (tier < 0.5 && uInvert < 0.5) {
+    // Indicative shophouse massing has a warm architectural paper wash
+    baseWall = mix(baseWall, uPaper, 0.18);
+  }
+  vec3 baseCol = isRoof > .5 ? (uRoof + tint * 0.6) : baseWall;
+
+  if (winFrame > 0.0 && winGlow <= 0.02) {
+    vec3 glassCol = uInvert > 0.5 ? vec3(0.08, 0.16, 0.24) : vec3(0.68, 0.76, 0.84);
+    baseCol = mix(baseCol, glassCol, winFrame);
+  }
+
+  // Apply screentone shadow & ink outlines
+  vec3 tonedCol = mix(baseCol, uInk, clamp(ink * (uInvert > 0.5 ? 0.38 : 0.46), 0., 1.));
+  vec3 col = mix(tonedCol, uInk, clamp(e, 0., 1.));
+
+  col = applyLook(col, max(e, winFrame * 0.7), ink);
+
+  // Night / Dusk emissive windows & ground-floor storefronts (glows even in Paper/Color/Gray modes)
+  if (winGlow > 0.01 && uFinish != 2) {
+    vec3 glowColor = mix(uEmissive, vec3(1.0, 0.95, 0.82), storefrontBand * 0.35);
+    col = mix(col, glowColor, clamp(winGlow * 0.92, 0., 1.));
+  }
+
   float f = smoothstep(uFogNear, uFogFar, length(vW - uCam));
-  gl_FragColor = vec4(mix(col, uPaper, f), 1.);
+  vec3 fogCol = uLook == 1 ? uPaper : uSkyHor;
+  gl_FragColor = vec4(mix(col, fogCol, f), 1.);
 }
 `;
 
 const FLAT_V = `
 varying vec3 vW;
-varying float vA;
-attribute float across;
+varying vec2 vAcrossAlong;
+attribute vec2 across;
 
 void main() {
   vec4 w = modelMatrix * vec4(position, 1.);
   vW = w.xyz;
-  vA = across;
+  vAcrossAlong = across;
   gl_Position = projectionMatrix * viewMatrix * w;
 }
 `;
 
 const FLAT_F = GLSL + `
 varying vec3 vW;
-varying float vA;
+varying vec2 vAcrossAlong;
 uniform int uMode;
 
 void main() {
   vec2 fc = gl_FragCoord.xy;
+  float vA = fract(vAcrossAlong.x);
+  float isMainRoad = step(1.5, vAcrossAlong.x);
+  float vAlong = vAcrossAlong.y;
   float ink = 0.;
-  if (uMode == 0) { // road
+  vec3 col = uRoad;
+
+  if (uMode == 0) { // road + sidewalk curbs + crosswalks + wet late-night reflections
     float fa = max(fwidth(vA), 1e-4);
     float px = min(vA, 1. - vA) / fa;
-    ink = 1. - smoothstep(uLine * .5, uLine * 1.2, px);
-    ink = max(ink, ht(fc, .9, uCell * 1.1) * .65);
+    float edgeLine = 1. - smoothstep(uLine * .5, uLine * 1.25, px);
+
+    // Sidewalk curb lines at 13% and 87% across
+    float curbPx = min(abs(vA - 0.13), abs(vA - 0.87)) / fa;
+    float curbLine = (1. - smoothstep(uLine * .35, uLine * 1.0, curbPx)) * 0.55;
+    bool onSidewalk = (vA < 0.13 || vA > 0.87);
+
+    float tone = ht(fc, onSidewalk ? 0.84 : 0.62, uCell * 1.1);
+    ink = max(edgeLine, curbLine);
+    if (uFinish == 0) ink = max(ink, tone * 0.45);
+
+    vec3 sidewalkCol = uInvert > 0.5 ? vec3(0.16, 0.22, 0.30) : vec3(0.86, 0.83, 0.78);
+    col = onSidewalk ? sidewalkCol : uRoad;
+
+    // Center dashed lane line on primary/secondary streets
+    if (!onSidewalk && isMainRoad > 0.5) {
+      float centerPx = abs(vA - 0.5) / fa;
+      float dash = step(0.45, fract(vAlong / 9.0));
+      if (centerPx < 1.3 && dash > 0.5 && vAlong > 6.0) {
+        vec3 laneCol = uInvert > 0.5 ? vec3(0.55, 0.68, 0.78) : vec3(0.95, 0.93, 0.88);
+        col = mix(col, laneCol, 0.75);
+      }
+    }
+
+    // Zebra crosswalk + yellow tactile strip near junctions (1.2m to 4.4m along segment)
+    if (vAlong > 1.2 && vAlong < 4.4) {
+      if (!onSidewalk && vA > 0.16 && vA < 0.84) {
+        float stripe = step(0.42, fract(vA * 7.5));
+        vec3 zebraCol = uInvert > 0.5 ? vec3(0.78, 0.86, 0.92) : vec3(0.98, 0.97, 0.95);
+        col = mix(col, zebraCol, stripe * 0.88);
+      } else if (onSidewalk && vAlong > 2.2 && vAlong < 3.4) {
+        // Yellow tactile paving strip on the sidewalk ramp
+        col = mix(col, vec3(0.95, 0.76, 0.18), 0.9);
+      }
+    }
+
+    // Wet asphalt vertical specular reflections in Dusk / Night / Late night
+    if (!onSidewalk && uWet > 0.05 && uFinish != 2) {
+      float streakX = floor(fc.x / 3.0);
+      float shimmer = hash21(vec2(streakX, floor(vW.x * 0.25 + vW.z * 0.25)));
+      float wave = 0.5 + 0.5 * sin(fc.y * 0.18 + streakX * 1.7);
+      if (shimmer > 0.58) {
+        vec3 reflCol = shimmer > 0.78 ? uEmissive : vec3(0.45, 0.78, 0.95);
+        col = mix(col, reflCol, uWet * (shimmer - 0.5) * wave * 0.85);
+      }
+    }
+
+    col = mix(col, uInk, clamp(ink, 0., 1.));
+    col = applyLook(col, max(edgeLine, curbLine), tone);
   } else if (uMode == 1) { // water / canal
     float y = fc.y / (uCell * .8) + sin(fc.x * .045) * .12;
     float f = abs(fract(y) - .5);
-    ink = 1. - smoothstep(.07, .17, f);
-    ink *= .85;
+    ink = (1. - smoothstep(.07, .17, f)) * .85;
+    vec3 waterCol = uInvert > 0.5 ? vec3(0.07, 0.24, 0.36) : vec3(0.68, 0.85, 0.92);
+    col = mix(waterCol, uInk, clamp(ink * 0.55, 0., 1.));
+    col = applyLook(col, ink * 0.5, ink);
   }
-  vec3 col = mix(uPaper, uInk, clamp(ink, 0., 1.));
+
   float f = smoothstep(uFogNear, uFogFar, length(vW - uCam));
-  gl_FragColor = vec4(mix(col, uPaper, f), 1.);
+  vec3 fogCol = uLook == 1 ? uPaper : uSkyHor;
+  gl_FragColor = vec4(mix(col, fogCol, f), 1.);
 }
 `;
 
@@ -139,21 +370,35 @@ varying vec3 vD;
 uniform float uSky;
 void main() {
   vec3 d = normalize(vD);
-  float e = d.y;
-  vec3 col = uPaper;
-  if (e > 0.) {
-    vec2 fc = gl_FragCoord.xy;
-    float t = 1. - uSky * smoothstep(.0, .85, e) * .62;
-    float ink = ht(fc, t, uCell * 1.5);
-    if (uInvert > .5) {
-      vec2 c = floor(fc / (uCell * .9));
-      ink = ink * .35 + step(.992, hash21(floor(fc / (uCell * .8)))) * .9;
-    }
+  float e = clamp(d.y, 0.0, 1.0);
+  vec2 fc = gl_FragCoord.xy;
+  vec3 grad = mix(uSkyHor, uSkyTop, smoothstep(0.0, 0.65, e));
+  float t = 1. - uSky * smoothstep(.0, .85, e) * .62;
+  float ink = ht(fc, t, uCell * 1.5);
+  if (uInvert > .5) {
+    ink = ink * .28 + step(.994, hash21(floor(fc / (uCell * .85)))) * .85;
+  }
+  vec3 col = grad;
+  if (uFinish == 0) {
+    col = mix(grad, uInk, clamp(ink * (uLook == 1 ? 0.85 : 0.22), 0., 1.));
+  }
+  if (uLook == 1) {
     col = mix(uPaper, uInk, clamp(ink, 0., 1.));
+  } else if (uLook == 2 || uLook == 3) {
+    col = applyLook(grad, 0.0, ink * 0.35);
   }
   gl_FragColor = vec4(col, 1.);
 }
 `;
+
+function hashStr(str, seed = 0) {
+  let h = 2166136261 ^ seed;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return (h >>> 0) / 4294967295;
+}
 
 export async function start(host, options = {}) {
   const opt = Object.assign({
@@ -192,6 +437,7 @@ export async function start(host, options = {}) {
     delete host.dataset.ready;
     delete host.dataset.area;
     delete host.dataset.volumes;
+    delete host.dataset.massingVolumes;
     delete host.dataset.streets;
     host.innerHTML = '';
   }
@@ -215,8 +461,6 @@ export async function start(host, options = {}) {
     return distance < best.distance ? { area, distance } : best;
   }, { distance: Infinity }).area;
   const mostRelief = areas.reduce((best, area) => (area.heightVolumes || 0) > (best.heightVolumes || 0) ? area : best);
-  // Keep an explicitly requested neighbourhood. For a general launch, use a nearby
-  // scene with enough mapped relief to read at overview scale, or the strongest scene.
   const startArea = areas.find(area => area.id === opt.areaId) ||
     ((nearest?.heightVolumes ?? 0) >= 10 ? nearest : mostRelief);
   const areaOptions = areas.map(area => {
@@ -224,7 +468,7 @@ export async function start(host, options = {}) {
     return option.outerHTML;
   }).join('');
 
-  // Create UI shell
+  // Create UI shell with Rokehan-inspired Look, Finish, Time of Day, Lens, 2-Point Perspective, Re-roll & Minimap
   host.innerHTML = `
     <canvas class="model-canvas" tabindex="0" role="img" aria-label="3D Screentoned Manga Bangkok Walkthrough"></canvas>
     <div class="model-bar">
@@ -233,11 +477,37 @@ export async function start(host, options = {}) {
         <button type="button" data-mode="sky" aria-pressed="true">Overview</button>
         <button type="button" data-mode="walk" aria-pressed="false">Street level</button>
       </div>
-      <label class="model-light"><span class="sr">Light</span><select aria-label="Light"><option value="day">Day</option><option value="dusk">Dusk</option><option value="night">Night</option></select></label>
+      <label class="model-light"><span class="sr">Light</span><select aria-label="Light">
+        <option value="day">Day</option>
+        <option value="dusk">Dusk</option>
+        <option value="misty">Misty dusk</option>
+        <option value="night">Night</option>
+        <option value="late">Late night</option>
+      </select></label>
+      <label class="model-look"><span class="sr">Look</span><select aria-label="Look" title="Surface palette (Rokehan Color, Wada Paper, Gray manga, Clay model)">
+        <option value="color">Look: Color</option>
+        <option value="paper">Look: Wada Paper</option>
+        <option value="gray">Look: Gray</option>
+        <option value="clay">Look: Clay</option>
+      </select></label>
+      <label class="model-finish"><span class="sr">Finish</span><select aria-label="Finish" title="Shader finish (Screentone + lines, Plain + lines, Line art)">
+        <option value="tone">Lines + tone</option>
+        <option value="plain">Plain + lines</option>
+        <option value="lineart">Line art</option>
+      </select></label>
+      <label class="model-lens"><span class="sr">Camera lens</span><select aria-label="Camera lens" title="Focal length">
+        <option value="18">18mm</option>
+        <option value="24" selected>24mm</option>
+        <option value="35">35mm</option>
+        <option value="50">50mm</option>
+      </select></label>
+      <button type="button" class="model-tool-btn" data-act-2pt aria-pressed="false" title="Keep vertical building lines parallel (2-point architectural perspective)">2-pt</button>
+      <button type="button" class="model-tool-btn" data-act-reroll title="Re-roll indicative shophouse heights for untagged footprints">Re-roll</button>
       <button type="button" class="model-close" aria-label="Back to map">Back to map</button>
       <div class="model-coverage"><p role="status"></p><button type="button" class="model-relief" hidden></button></div>
     </div>
     <div class="model-pins"></div>
+    <canvas class="model-minimap" width="136" height="136" title="Click radar to jump camera to street"></canvas>
     <div class="model-bottom">
     <div class="model-card" hidden>
       <h3 class="model-card-title"></h3>
@@ -262,6 +532,8 @@ export async function start(host, options = {}) {
   const coverageEl = host.querySelector('.model-coverage [role=status]');
   const reliefBtn = host.querySelector('.model-relief');
   const pinsContainer = host.querySelector('.model-pins');
+  const minimapCanvas = host.querySelector('.model-minimap');
+  const minimapCtx = minimapCanvas.getContext('2d');
   const joyEl = host.querySelector('.model-joy');
   const joyKnob = joyEl.querySelector('span');
   const hintEl = host.querySelector('.model-hint');
@@ -291,16 +563,27 @@ export async function start(host, options = {}) {
   const cam = new THREE.PerspectiveCamera(70, 1, 0.5, 4000);
 
   const U = {
-    uPaper:   { value: new THREE.Color() },
-    uInk:     { value: new THREE.Color() },
-    uSun:     { value: new THREE.Vector3() },
-    uCam:     { value: cam.position },
-    uCell:    { value: 4.5 * opt.dpr },
-    uLine:    { value: 1.15 * opt.dpr },
-    uInvert:  { value: 0 },
-    uFogNear: { value: 700 },
-    uFogFar:  { value: 2400 },
-    uSky:     { value: 0.5 }
+    uPaper:     { value: new THREE.Color() },
+    uInk:       { value: new THREE.Color() },
+    uSkyTop:    { value: new THREE.Color() },
+    uSkyHor:    { value: new THREE.Color() },
+    uWallLit:   { value: new THREE.Color() },
+    uWallShade: { value: new THREE.Color() },
+    uRoof:      { value: new THREE.Color() },
+    uRoad:      { value: new THREE.Color() },
+    uEmissive:  { value: new THREE.Color() },
+    uSun:       { value: new THREE.Vector3() },
+    uCam:       { value: cam.position },
+    uCell:      { value: 4.4 * opt.dpr },
+    uLine:      { value: 1.18 * opt.dpr },
+    uInvert:    { value: 0 },
+    uFogNear:   { value: 700 },
+    uFogFar:    { value: 2400 },
+    uSky:       { value: 0.5 },
+    uNight:     { value: 0.0 },
+    uWet:       { value: 0.0 },
+    uLook:      { value: 0 },
+    uFinish:    { value: 0 }
   };
 
   const matB = new THREE.ShaderMaterial({
@@ -336,36 +619,78 @@ export async function start(host, options = {}) {
   sky.frustumCulled = false;
   scene.add(sky);
 
-  // Time of Day
-  let tod = 'day';
-  function setTod(k) {
-    tod = k;
-    const t = TOD[k];
-    U.uPaper.value.set(t.paper);
-    U.uInk.value.set(t.ink);
-    U.uSun.value.set(...t.sun).normalize();
-    U.uInvert.value = t.invert;
-    U.uSky.value = t.sky;
-    renderer.setClearColor(t.paper);
-    lightSelect.value = k;
-    invalidate();
-  }
-
-  // Camera State
+  // Camera & Style State
   const S = {
     mode: 'sky',
     px: 0, pz: 0,
     wyaw: 0, wpitch: -0.02,
     x: 0, z: 0,
-    dist: 610, yaw: -0.45, pitch: 0.82,
-    speed: 7
+    dist: 460, yaw: -0.45, pitch: 0.72,
+    speed: 7,
+    lens: '24',
+    twoPoint: false,
+    rerollSeed: 0
   };
   let hasRelief = false;
+  let tod = 'day';
+  let lookMode = 'color';
+  let finishMode = 'tone';
 
   const areaSelect = bar.querySelector('.model-area select');
   const lightSelect = bar.querySelector('.model-light select');
+  const lookSelect = bar.querySelector('.model-look select');
+  const finishSelect = bar.querySelector('.model-finish select');
+  const lensSelect = bar.querySelector('.model-lens select');
+  const twoPtBtn = bar.querySelector('[data-act-2pt]');
+  const rerollBtn = bar.querySelector('[data-act-reroll]');
   areaSelect.disabled = true;
-  let activeArea = null, areaRequest, streetSegments = [], activePlaceIDs = [];
+
+  let groundMat = null;
+  let outlineMat = null;
+
+  function setTod(k) {
+    tod = TOD[k] ? k : 'day';
+    const t = TOD[tod];
+    U.uPaper.value.set(t.paper);
+    U.uInk.value.set(t.ink);
+    U.uSkyTop.value.set(t.skyTop);
+    U.uSkyHor.value.set(t.skyHor);
+    U.uWallLit.value.set(t.wallLit);
+    U.uWallShade.value.set(t.wallShade);
+    U.uRoof.value.set(t.roof);
+    U.uRoad.value.set(t.road);
+    U.uEmissive.value.set(t.emissive);
+    U.uSun.value.set(...t.sun).normalize();
+    U.uInvert.value = t.invert;
+    U.uSky.value = t.sky;
+    U.uNight.value = t.night;
+    U.uWet.value = t.wet;
+    if (groundMat) {
+      groundMat.color.set(t.invert > 0.5 ? '#0e1926' : (lookMode === 'paper' ? '#fde3ea' : '#f3eee4'));
+    }
+    if (outlineMat) {
+      outlineMat.color.set(t.invert > 0.5 ? '#527994' : (lookMode === 'paper' ? '#7d133a' : '#3a2d38'));
+    }
+    renderer.setClearColor(t.skyHor);
+    lightSelect.value = tod;
+    invalidate();
+  }
+
+  function setLook(k) {
+    lookMode = LOOK_CODES[k] !== undefined ? k : 'color';
+    U.uLook.value = LOOK_CODES[lookMode];
+    lookSelect.value = lookMode;
+    setTod(tod);
+  }
+
+  function setFinish(k) {
+    finishMode = FINISH_CODES[k] !== undefined ? k : 'tone';
+    U.uFinish.value = FINISH_CODES[finishMode];
+    finishSelect.value = finishMode;
+    invalidate();
+  }
+
+  let activeArea = null, lastLoadedFile = null, areaRequest, streetSegments = [], activePlaceIDs = [];
   let project = (lat, lng) => ({ x: 0, z: 0 });
   let unproject = (x, z) => ({ lat: 0, lng: 0 });
   let collisionGrid = new Map();
@@ -414,8 +739,261 @@ export async function start(host, options = {}) {
     S.px = S.x = street.x;
     S.pz = S.z = street.z;
     S.wyaw = street.yaw;
-    S.wpitch = -0.10;
+    S.wpitch = -0.06;
     return true;
+  }
+
+  function buildGeometryFromFile(file, area) {
+    // Clean up old meshes
+    for (const m of currentMeshes) {
+      scene.remove(m);
+      m.geometry.dispose();
+      if (m.material !== matB && m.material !== matRoad && m.material !== matWater) m.material.dispose();
+    }
+    currentMeshes = [];
+    collisionGrid.clear();
+
+    const origin = [area.anchor.y, area.anchor.x];
+    const MX = 111320 * Math.cos(origin[0] * Math.PI / 180), MY = 110574;
+    project = (lat, lng) => ({ x: (lng - origin[1]) * MX, z: -(lat - origin[0]) * MY });
+    unproject = (x, z) => ({ lat: origin[0] - z / MY, lng: origin[1] + x / MX });
+
+    const bList = file.buildings.features;
+    const pos = [], uw = [], info = [], seedAttr = [], idx = [];
+    const ground = [], groundIndices = [], outlines = [];
+    let knownCount = 0, levelsCount = 0;
+
+    for (const building of bList) {
+      const geometry = building.geometry;
+      const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
+      const props = building.properties || {};
+      const { render3D, heightM, minHeightM, tags } = props;
+      const baseHeight = minHeightM ?? 0;
+      const known = render3D === true && Number.isFinite(heightM) && heightM > baseHeight;
+      if (known) knownCount++;
+
+      const bSeed = hashStr(String(building.id || props.sourceID || ''), S.rerollSeed);
+      const rawLevels = parseFloat(tags?.['building:levels'] || '');
+      const hasLevels = !known && Number.isFinite(rawLevels) && rawLevels > 0 && rawLevels <= 80;
+      if (hasLevels) levelsCount++;
+
+      for (const polygon of polygons) {
+        const rings = polygon.map(ring => ring.slice(0, -1).flatMap(([lng, lat]) => {
+          const point = project(lat, lng);
+          return [point.x, point.z];
+        })).filter(ring => ring.length >= 6);
+        if (!rings.length) continue;
+
+        const outer = rings[0];
+        let minX = Infinity, maxX = -Infinity, minZ = Infinity, maxZ = -Infinity;
+        for (let i = 0; i < outer.length; i += 2) {
+          minX = Math.min(minX, outer[i]); maxX = Math.max(maxX, outer[i]);
+          minZ = Math.min(minZ, outer[i + 1]); maxZ = Math.max(maxZ, outer[i + 1]);
+        }
+        for (let x = Math.floor(minX / GR); x <= Math.floor(maxX / GR); x++) {
+          for (let z = Math.floor(minZ / GR); z <= Math.floor(maxZ / GR); z++) {
+            const key = x + ',' + z;
+            if (!collisionGrid.has(key)) collisionGrid.set(key, []);
+            collisionGrid.get(key).push(rings);
+          }
+        }
+
+        const boxArea = Math.max(16, (maxX - minX) * (maxZ - minZ));
+        let effHeight = heightM;
+        let tier = 2; // 2 = explicit heightM, 1 = OSM levels, 0 = indicative Bangkok shophouse massing
+        if (!known) {
+          if (hasLevels) {
+            effHeight = Math.max(4.5, Math.min(180, rawLevels * 3.6));
+            tier = 1;
+          } else {
+            // Indicative Bangkok shophouse/urban block massing (2 to 5 stories)
+            const baseFloors = boxArea < 90 ? 2 : boxArea < 380 ? 3 : 4;
+            const extraFloors = Math.floor(bSeed * 2.6);
+            effHeight = (baseFloors + extraFloors) * 3.5 + (bSeed * 1.4);
+            tier = 0;
+          }
+        }
+
+        const coords = [], holes = [];
+        // Pack info: bit 0 = isRoof, bits 1..2 = tier (0..3), bits 3+ = floor(effHeight * 2)
+        const wallInfo = Math.floor(effHeight * 2) * 8 + tier * 2;
+        const roofInfo = wallInfo + 1;
+
+        for (const ring of rings) {
+          if (coords.length) holes.push(coords.length / 2);
+          for (let i = 0; i < ring.length; i += 2) {
+            const j = (i + 2) % ring.length;
+            const xa = ring[i], za = ring[i + 1], xb = ring[j], zb = ring[j + 1];
+            coords.push(xa, za);
+            outlines.push(xa, 0.04, za, xb, 0.04, zb);
+            // Roof outline ink segments for crisp architectural silhouette
+            outlines.push(xa, effHeight + 0.02, za, xb, effHeight + 0.02, zb);
+            const length = Math.hypot(xb - xa, zb - za);
+            const v = pos.length / 3;
+            pos.push(xa, baseHeight, za, xb, baseHeight, zb, xb, effHeight, zb, xa, effHeight, za);
+            uw.push(0, length, length, length, length, length, 0, length);
+            info.push(wallInfo, wallInfo, wallInfo, wallInfo);
+            seedAttr.push(bSeed, bSeed, bSeed, bSeed);
+            idx.push(v, v + 1, v + 2, v, v + 2, v + 3);
+          }
+        }
+        const triangles = earcut(coords, holes);
+        const groundBase = ground.length / 3;
+        const roofBase = pos.length / 3;
+        for (let i = 0; i < coords.length; i += 2) {
+          ground.push(coords[i], 0.02, coords[i + 1]);
+          pos.push(coords[i], effHeight, coords[i + 1]);
+          uw.push(0, 0);
+          info.push(roofInfo);
+          seedAttr.push(bSeed);
+        }
+        for (const i of triangles) {
+          groundIndices.push(groundBase + i);
+          idx.push(roofBase + i);
+        }
+      }
+    }
+
+    // Street segments, crosswalks, and urban trees/poles
+    const smap = new Map(file.streets.features.map(f => [f.id, f]));
+    streetSegments = [];
+    const roadPoints = [], roadAcross = [], roadIdx = [];
+    let rv = 0;
+
+    for (const id of file.streetIDs) {
+      const s = smap.get(id);
+      if (!s) continue;
+      const coords = s.geometry.coordinates;
+      if (coords.length < 2) continue;
+      const hw = s.properties?.highway || '';
+      const isMain = ['primary', 'secondary', 'tertiary', 'trunk'].includes(hw);
+      const w = isMain ? 4.8 : ['footway', 'pedestrian', 'path'].includes(hw) ? 2.0 : 3.4;
+
+      const pts = [];
+      for (const pt of coords) {
+        const p = project(pt[1], pt[0]);
+        if (!pts.length || Math.hypot(p.x - pts[pts.length - 1].x, p.z - pts[pts.length - 1].z) > 0.5) {
+          pts.push(p);
+        }
+      }
+      if (pts.length < 2) continue;
+      for (let k = 1; k < pts.length; k++) streetSegments.push([pts[k - 1], pts[k]]);
+
+      let cumLen = 0;
+      for (let k = 0; k < pts.length; k++) {
+        if (k > 0) cumLen += Math.hypot(pts[k].x - pts[k - 1].x, pts[k].z - pts[k - 1].z);
+        const a = pts[Math.max(0, k - 1)], b = pts[Math.min(pts.length - 1, k + 1)];
+        let dx = b.x - a.x, dz = b.z - a.z;
+        const l = Math.hypot(dx, dz) || 1;
+        dx /= l; dz /= l;
+        roadPoints.push(pts[k].x - dz * w, 0.05, pts[k].z + dx * w, pts[k].x + dz * w, 0.05, pts[k].z - dx * w);
+        // Pack isMain flag (+2.0) into across.x
+        const flagOffset = isMain ? 2.0 : 0.0;
+        roadAcross.push(flagOffset + 0.0, cumLen, flagOffset + 0.999, cumLen);
+        if (k > 0) {
+          const b0 = rv + (k - 1) * 2;
+          roadIdx.push(b0, b0 + 1, b0 + 2, b0 + 1, b0 + 3, b0 + 2);
+        }
+      }
+      rv += pts.length * 2;
+    }
+
+    // Add stylized street trees & utility poles along streets (Rokehan streetscape detail)
+    const treeInfo = Math.floor(6 * 2) * 8 + 3 * 2 + 1; // tier = 3 (foliage)
+    let treeCount = 0;
+    for (let sIdx = 0; sIdx < streetSegments.length; sIdx += 3) {
+      if (treeCount >= 180) break;
+      const [a, b] = streetSegments[sIdx];
+      const segLen = Math.hypot(b.x - a.x, b.z - a.z);
+      if (segLen < 18) continue;
+      const dx = (b.x - a.x) / segLen, dz = (b.z - a.z) / segLen;
+      const nx = -dz, nz = dx;
+      const side = (sIdx % 2 === 0) ? 1 : -1;
+      const tx = (a.x + b.x) * 0.5 + nx * side * 4.6;
+      const tz = (a.z + b.z) * 0.5 + nz * side * 4.6;
+      if (blocked(tx, tz)) continue;
+      treeCount++;
+      const tSeed = hashStr(`tree-${sIdx}`, S.rerollSeed);
+      const r = 1.45 + (tSeed * 0.75);
+      const hBase = 2.1, hTop = 5.0 + tSeed * 1.8;
+      // Trunk ink line + utility pole line on alternating segments
+      outlines.push(tx, 0.05, tz, tx, hBase + 0.5, tz);
+      if (sIdx % 6 === 0) {
+        const px = a.x + nx * (-side) * 3.9, pz = a.z + nz * (-side) * 3.9;
+        if (!blocked(px, pz)) {
+          outlines.push(px, 0.05, pz, px, 7.2, pz);
+          outlines.push(px - nx * 0.6, 6.6, pz - nz * 0.6, px + nx * 0.6, 6.6, pz + nz * 0.6);
+        }
+      }
+      // Octagonal 2-tier foliage canopy
+      const v0 = pos.length / 3;
+      const sides = 6;
+      pos.push(tx, hTop, tz);
+      uw.push(0, 0); info.push(treeInfo); seedAttr.push(tSeed);
+      pos.push(tx, hBase, tz);
+      uw.push(0, 0); info.push(treeInfo); seedAttr.push(tSeed);
+      for (let k = 0; k < sides; k++) {
+        const ang = (k / sides) * Math.PI * 2;
+        pos.push(tx + Math.cos(ang) * r, (hBase + hTop) * 0.48, tz + Math.sin(ang) * r);
+        uw.push(0, 0); info.push(treeInfo); seedAttr.push(tSeed);
+      }
+      for (let k = 0; k < sides; k++) {
+        const c1 = v0 + 2 + k;
+        const c2 = v0 + 2 + ((k + 1) % sides);
+        idx.push(v0, c1, c2);
+        idx.push(v0 + 1, c2, c1);
+      }
+    }
+
+    const bGeo = new THREE.BufferGeometry();
+    bGeo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    bGeo.setAttribute('uw', new THREE.Float32BufferAttribute(uw, 2));
+    bGeo.setAttribute('info', new THREE.Float32BufferAttribute(info, 1));
+    bGeo.setAttribute('seed', new THREE.Float32BufferAttribute(seedAttr, 1));
+    bGeo.setIndex(idx);
+    bGeo.computeVertexNormals();
+
+    const bMesh = new THREE.Mesh(bGeo, matB);
+    scene.add(bMesh);
+    currentMeshes.push(bMesh);
+
+    if (groundIndices.length) {
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute(ground, 3));
+      geometry.setIndex(groundIndices);
+      groundMat = new THREE.MeshBasicMaterial({ color: 0xf3eee4, side: THREE.DoubleSide });
+      const mesh = new THREE.Mesh(geometry, groundMat);
+      scene.add(mesh);
+      currentMeshes.push(mesh);
+    }
+    if (outlines.length) {
+      const fpGeo = new THREE.BufferGeometry();
+      fpGeo.setAttribute('position', new THREE.Float32BufferAttribute(outlines, 3));
+      outlineMat = new THREE.LineBasicMaterial({ color: 0x3a2d38 });
+      const fpMesh = new THREE.LineSegments(fpGeo, outlineMat);
+      scene.add(fpMesh);
+      currentMeshes.push(fpMesh);
+    }
+    if (roadPoints.length) {
+      const rGeo = new THREE.BufferGeometry();
+      rGeo.setAttribute('position', new THREE.Float32BufferAttribute(roadPoints, 3));
+      rGeo.setAttribute('across', new THREE.Float32BufferAttribute(roadAcross, 2));
+      rGeo.setIndex(roadIdx);
+      const rMesh = new THREE.Mesh(rGeo, matRoad);
+      scene.add(rMesh);
+      currentMeshes.push(rMesh);
+    }
+
+    hasRelief = knownCount > 0;
+    coverageEl.textContent = hasRelief
+      ? `${knownCount} mapped heights · ${levelsCount} floor-tagged · ${bList.length} 3D volumes in relief`
+      : `No mapped building heights · ${bList.length} architectural 3D massing volumes`;
+    reliefBtn.hidden = hasRelief || !mostRelief.heightVolumes;
+    host.dataset.area = area.id;
+    host.dataset.volumes = String(knownCount);
+    host.dataset.massingVolumes = String(bList.length);
+    host.dataset.streets = String(streetSegments.length);
+    setTod(tod);
   }
 
   async function loadArea(area) {
@@ -443,190 +1021,20 @@ export async function start(host, options = {}) {
     }
     if (disposed || request.signal.aborted) return false;
     activeArea = area;
+    lastLoadedFile = file;
     areaSelect.value = area.id;
     cardEl.hidden = true;
-
-    // Clean up old meshes
-    for (const m of currentMeshes) {
-      scene.remove(m);
-      m.geometry.dispose();
-      if (m.material !== matB && m.material !== matRoad && m.material !== matWater) m.material.dispose();
-    }
-    currentMeshes = [];
-    collisionGrid.clear();
     pinsContainer.innerHTML = '';
     placePins = [];
 
-    const origin = [area.anchor.y, area.anchor.x];
-    const MX = 111320 * Math.cos(origin[0] * Math.PI / 180), MY = 110574;
-    project = (lat, lng) => ({ x: (lng - origin[1]) * MX, z: -(lat - origin[0]) * MY });
-    unproject = (x, z) => ({ lat: origin[0] - z / MY, lng: origin[1] + x / MX });
+    buildGeometryFromFile(file, area);
 
-    // Extrude buildings in area
-    // The area file holds exactly this neighbourhood's footprints.
-    const bList = file.buildings.features;
-
-    const pos = [], uw = [], info = [], idx = [];
-    const ground = [], groundIndices = [], outlines = [];
-    let knownCount = 0;
-
-    for (const building of bList) {
-      const geometry = building.geometry;
-      const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
-      const { render3D, heightM, minHeightM } = building.properties || {};
-      const baseHeight = minHeightM ?? 0;
-      const known = render3D === true && Number.isFinite(heightM) && heightM > baseHeight;
-      if (known) knownCount++;
-
-      for (const polygon of polygons) {
-        const rings = polygon.map(ring => ring.slice(0, -1).flatMap(([lng, lat]) => {
-          const point = project(lat, lng);
-          return [point.x, point.z];
-        })).filter(ring => ring.length >= 6);
-        if (!rings.length) continue;
-
-        const outer = rings[0];
-        let minX = Infinity, maxX = -Infinity, minZ = Infinity, maxZ = -Infinity;
-        for (let i = 0; i < outer.length; i += 2) {
-          minX = Math.min(minX, outer[i]); maxX = Math.max(maxX, outer[i]);
-          minZ = Math.min(minZ, outer[i + 1]); maxZ = Math.max(maxZ, outer[i + 1]);
-        }
-        for (let x = Math.floor(minX / GR); x <= Math.floor(maxX / GR); x++) {
-          for (let z = Math.floor(minZ / GR); z <= Math.floor(maxZ / GR); z++) {
-            const key = x + ',' + z;
-            if (!collisionGrid.has(key)) collisionGrid.set(key, []);
-            collisionGrid.get(key).push(rings);
-          }
-        }
-
-        const coords = [], holes = [];
-        const wallInfo = known ? Math.floor(heightM * 2) * 4 + 2 : 0;
-        for (const ring of rings) {
-          if (coords.length) holes.push(coords.length / 2);
-          for (let i = 0; i < ring.length; i += 2) {
-            const j = (i + 2) % ring.length;
-            const xa = ring[i], za = ring[i + 1], xb = ring[j], zb = ring[j + 1];
-            coords.push(xa, za);
-            outlines.push(xa, 0.04, za, xb, 0.04, zb);
-            if (!known) continue;
-            const length = Math.hypot(xb - xa, zb - za);
-            const v = pos.length / 3;
-            pos.push(xa, baseHeight, za, xb, baseHeight, zb, xb, heightM, zb, xa, heightM, za);
-            uw.push(0, length, length, length, length, length, 0, length);
-            info.push(wallInfo, wallInfo, wallInfo, wallInfo);
-            idx.push(v, v + 1, v + 2, v, v + 2, v + 3);
-          }
-        }
-        const triangles = earcut(coords, holes);
-        const groundBase = ground.length / 3;
-        const roofBase = pos.length / 3;
-        for (let i = 0; i < coords.length; i += 2) {
-          ground.push(coords[i], 0.02, coords[i + 1]);
-          if (known) {
-            pos.push(coords[i], heightM, coords[i + 1]);
-            uw.push(0, 0);
-            info.push(wallInfo + 1);
-          }
-        }
-        for (const i of triangles) {
-          groundIndices.push(groundBase + i);
-          if (known) idx.push(roofBase + i);
-        }
-      }
-    }
-
-    const bGeo = new THREE.BufferGeometry();
-    bGeo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-    bGeo.setAttribute('uw', new THREE.Float32BufferAttribute(uw, 2));
-    bGeo.setAttribute('info', new THREE.Float32BufferAttribute(info, 1));
-    bGeo.setIndex(idx);
-    bGeo.computeVertexNormals();
-
-    const bMesh = new THREE.Mesh(bGeo, matB);
-    scene.add(bMesh);
-    currentMeshes.push(bMesh);
-
-    // Draw source footprints and their holes on the ground plane.
-    if (groundIndices.length) {
-      const geometry = new THREE.BufferGeometry();
-      geometry.setAttribute('position', new THREE.Float32BufferAttribute(ground, 3));
-      geometry.setIndex(groundIndices);
-      const material = new THREE.MeshBasicMaterial({ color: 0xfff7ef, side: THREE.DoubleSide });
-      const mesh = new THREE.Mesh(geometry, material);
-      scene.add(mesh);
-      currentMeshes.push(mesh);
-    }
-    if (outlines.length) {
-      const fpGeo = new THREE.BufferGeometry();
-      fpGeo.setAttribute('position', new THREE.Float32BufferAttribute(outlines, 3));
-      const fpMat = new THREE.LineBasicMaterial({ color: 0x7d133a });
-      const fpMesh = new THREE.LineSegments(fpGeo, fpMat);
-      scene.add(fpMesh);
-      currentMeshes.push(fpMesh);
-    }
-
-    hasRelief = knownCount > 0;
-    coverageEl.textContent = hasRelief ? `${knownCount} of ${bList.length} footprints in relief` : 'No mapped building heights';
-    reliefBtn.hidden = hasRelief || !mostRelief.heightVolumes;
-    host.dataset.area = area.id;
-    host.dataset.volumes = String(knownCount);
-
-    // The area payload owns these IDs. The index is navigation metadata.
-    const smap = new Map(file.streets.features.map(f => [f.id, f]));
-    streetSegments = [];
-    const roadPoints = [], roadAcross = [], roadIdx = [];
-    let rv = 0;
-
-    for (const id of file.streetIDs) {
-      const s = smap.get(id);
-      if (!s) continue;
-      const coords = s.geometry.coordinates;
-      if (coords.length < 2) continue;
-      const hw = s.properties?.highway || '';
-      const w = ['primary', 'secondary', 'trunk'].includes(hw) ? 4.5 : ['footway', 'pedestrian', 'path'].includes(hw) ? 1.8 : 3.0;
-
-      const pts = [];
-      for (const pt of coords) {
-        const p = project(pt[1], pt[0]);
-        if (!pts.length || Math.hypot(p.x - pts[pts.length - 1].x, p.z - pts[pts.length - 1].z) > 0.5) {
-          pts.push(p);
-        }
-      }
-      if (pts.length < 2) continue;
-      for (let k = 1; k < pts.length; k++) streetSegments.push([pts[k - 1], pts[k]]);
-
-      for (let k = 0; k < pts.length; k++) {
-        const a = pts[Math.max(0, k - 1)], b = pts[Math.min(pts.length - 1, k + 1)];
-        let dx = b.x - a.x, dz = b.z - a.z;
-        const l = Math.hypot(dx, dz) || 1;
-        dx /= l; dz /= l;
-        roadPoints.push(pts[k].x - dz * w, 0.05, pts[k].z + dx * w, pts[k].x + dz * w, 0.05, pts[k].z - dx * w);
-        roadAcross.push(0, 1);
-        if (k > 0) {
-          const b0 = rv + (k - 1) * 2;
-          roadIdx.push(b0, b0 + 1, b0 + 2, b0 + 1, b0 + 3, b0 + 2);
-        }
-      }
-      rv += pts.length * 2;
-    }
-
-    if (roadPoints.length) {
-      const rGeo = new THREE.BufferGeometry();
-      rGeo.setAttribute('position', new THREE.Float32BufferAttribute(roadPoints, 3));
-      rGeo.setAttribute('across', new THREE.Float32BufferAttribute(roadAcross, 1));
-      rGeo.setIndex(roadIdx);
-      const rMesh = new THREE.Mesh(rGeo, matRoad);
-      scene.add(rMesh);
-      currentMeshes.push(rMesh);
-    }
-
-    host.dataset.streets = String(streetSegments.length);
     S.x = S.z = 0;
     const street = standNear(0, 0);
     bar.querySelector('[data-mode="walk"]').disabled = !street;
     S.yaw = -0.45;
-    S.pitch = hasRelief ? 0.94 : 1.37;
-    S.dist = hasRelief ? 560 : 735;
+    S.pitch = 0.68;
+    S.dist = 440;
     setMode('sky');
     activePlaceIDs = file.placeIDs;
     createPins(activePlaceIDs);
@@ -645,17 +1053,24 @@ export async function start(host, options = {}) {
   function createPins(ids) {
     pinsContainer.replaceChildren();
     const areaPlaces = [...new Set(ids.map(opt.placeById).filter(Boolean))]
-      .sort((a, b) => Math.hypot(a.x - activeArea.anchor.x, a.y - activeArea.anchor.y) -
-                      Math.hypot(b.x - activeArea.anchor.x, b.y - activeArea.anchor.y));
+      .sort((a, b) => {
+        // Prioritize endorsed places, then proximity to anchor
+        const aEnd = a.endorsed ? 1 : 0;
+        const bEnd = b.endorsed ? 1 : 0;
+        if (aEnd !== bEnd) return bEnd - aEnd;
+        return Math.hypot(a.x - activeArea.anchor.x, a.y - activeArea.anchor.y) -
+               Math.hypot(b.x - activeArea.anchor.x, b.y - activeArea.anchor.y);
+      });
 
-    placePins = areaPlaces.slice(0, 45).map(p => {
+    placePins = areaPlaces.slice(0, 48).map(p => {
       const pt = project(p.y, p.x);
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = `model-pin pin-${p.k}`;
+      btn.className = `model-pin pin-${p.k}${p.endorsed ? ' pin-endorsed' : ''}`;
       btn.setAttribute('aria-label', p.n);
+      const star = p.endorsed ? `★${p.endorsed.googleRating || ''} ` : '';
       btn.innerHTML = `<span class="pin-dot ${p.k}" aria-hidden="true"></span><span class="pin-tag"></span>`;
-      btn.querySelector('.pin-tag').textContent = p.n;
+      btn.querySelector('.pin-tag').textContent = `${star}${p.n}`;
       btn.addEventListener('click', e => {
         e.stopPropagation();
         openCard(p, pt);
@@ -668,8 +1083,12 @@ export async function start(host, options = {}) {
   function openCard(p, pt) {
     cardEl.hidden = false;
     invalidate();
-    cardEl.querySelector('.model-card-title').textContent = p.n;
-    cardEl.querySelector('.model-card-meta').textContent = `✦${p.idx} Oldenburg index · ${p.k} · ${Math.round(Math.hypot(pt.x - S.px, pt.z - S.pz))} m away`;
+    cardEl.querySelector('.model-card-title').textContent = p.endorsed ? `★ ${p.n}` : p.n;
+    const distM = Math.round(Math.hypot(pt.x - S.px, pt.z - S.pz));
+    const endText = p.endorsed
+      ? `PLUB Endorsed · Google ★${p.endorsed.googleRating} (${p.endorsed.googleReviews}) · GGP ✦${p.endorsed.ggpScore} · ${p.endorsed.nomad?.bestFor || p.k} · ${distM} m`
+      : `✦${p.idx} Oldenburg index · ${p.k} · ${distM} m away`;
+    cardEl.querySelector('.model-card-meta').textContent = endText;
 
     cardEl.querySelector('.model-card-stand').onclick = () => {
       if (standNear(pt.x, pt.z)) setMode('walk');
@@ -687,28 +1106,96 @@ export async function start(host, options = {}) {
     };
   }
 
+  function drawMinimap() {
+    if (!minimapCtx || !activeArea) return;
+    const w = minimapCanvas.width, h = minimapCanvas.height;
+    const rM = activeArea.radiusM || 800;
+    const scale = (w * 0.45) / rM;
+    const cx = w / 2, cy = h / 2;
+
+    minimapCtx.clearRect(0, 0, w, h);
+    minimapCtx.fillStyle = U.uInvert.value > 0.5 ? 'rgba(8, 16, 28, 0.9)' : 'rgba(249, 244, 236, 0.92)';
+    minimapCtx.fillRect(0, 0, w, h);
+
+    // Draw streets
+    minimapCtx.strokeStyle = U.uInvert.value > 0.5 ? 'rgba(156, 196, 220, 0.42)' : 'rgba(70, 50, 65, 0.35)';
+    minimapCtx.lineWidth = 1;
+    minimapCtx.beginPath();
+    for (let i = 0; i < streetSegments.length; i += 2) {
+      const [a, b] = streetSegments[i];
+      minimapCtx.moveTo(cx + a.x * scale, cy + a.z * scale);
+      minimapCtx.lineTo(cx + b.x * scale, cy + b.z * scale);
+    }
+    minimapCtx.stroke();
+
+    // Draw Rokehan-style cyan near-area square
+    const nearHalf = 220 * scale;
+    const tx = cx + S.x * scale, tz = cy + S.z * scale;
+    minimapCtx.strokeStyle = '#18b6d4';
+    minimapCtx.lineWidth = 1.5;
+    minimapCtx.strokeRect(tx - nearHalf, tz - nearHalf, nearHalf * 2, nearHalf * 2);
+
+    // Draw pins
+    for (const item of placePins) {
+      minimapCtx.fillStyle = item.p.endorsed ? '#f59e0b' : '#7d133a';
+      minimapCtx.fillRect(cx + item.x * scale - 1.5, cy + item.z * scale - 1.5, 3, 3);
+    }
+
+    // Draw camera / walker position & view cone
+    const px = cx + (S.mode === 'walk' ? S.px : S.x) * scale;
+    const pz = cy + (S.mode === 'walk' ? S.pz : S.z) * scale;
+    const yaw = S.mode === 'walk' ? S.wyaw : S.yaw;
+    minimapCtx.fillStyle = 'rgba(24, 182, 212, 0.25)';
+    minimapCtx.beginPath();
+    minimapCtx.moveTo(px, pz);
+    minimapCtx.arc(px, pz, 20, -yaw - Math.PI / 2 - 0.45, -yaw - Math.PI / 2 + 0.45);
+    minimapCtx.closePath();
+    minimapCtx.fill();
+
+    minimapCtx.fillStyle = '#e11d48';
+    minimapCtx.beginPath();
+    minimapCtx.arc(px, pz, 3.5, 0, Math.PI * 2);
+    minimapCtx.fill();
+  }
+
+  minimapCanvas.addEventListener('click', e => {
+    if (!activeArea) return;
+    const rect = minimapCanvas.getBoundingClientRect();
+    const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    const nz = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+    const wx = nx * (activeArea.radiusM / 0.9);
+    const wz = nz * (activeArea.radiusM / 0.9);
+    if (standNear(wx, wz)) {
+      invalidate();
+    }
+  });
+
   // Camera positioning
   function placeCamera() {
+    const baseFov = LENS_FOV[S.lens] || 70;
+    cam.fov = S.mode === 'walk' ? baseFov : Math.max(32, baseFov - 14);
+    cam.updateProjectionMatrix();
+
+    const fogScale = TOD[tod]?.fogMul || 1.0;
     if (S.mode === 'sky') {
-      const cp = Math.cos(S.pitch), sp = Math.sin(S.pitch);
-      cam.position.set(S.x + Math.sin(S.yaw) * cp * S.dist, Math.max(10, sp * S.dist), S.z + Math.cos(S.yaw) * cp * S.dist);
-      cam.lookAt(S.x, 0, S.z);
-      U.uFogNear.value = 1200;
-      U.uFogFar.value = 4000;
+      const pitch = S.twoPoint ? 0.22 : S.pitch;
+      const cp = Math.cos(pitch), sp = Math.sin(pitch);
+      cam.position.set(S.x + Math.sin(S.yaw) * cp * S.dist, Math.max(12, sp * S.dist), S.z + Math.cos(S.yaw) * cp * S.dist);
+      cam.lookAt(S.x, S.twoPoint ? Math.max(12, sp * S.dist) * 0.65 : 0, S.z);
+      U.uFogNear.value = 950 * fogScale;
+      U.uFogFar.value = 3400 * fogScale;
     } else {
       cam.position.set(S.px, EYE, S.pz);
       cam.rotation.order = 'YXZ';
-      cam.rotation.set(S.wpitch, S.wyaw, 0);
-      U.uFogNear.value = 500;
-      U.uFogFar.value = 2400;
+      cam.rotation.set(S.twoPoint ? 0 : S.wpitch, S.wyaw, 0);
+      U.uFogNear.value = 420 * fogScale;
+      U.uFogFar.value = 2100 * fogScale;
     }
   }
 
   function setMode(m) {
     clearInput();
     S.mode = m;
-    cam.fov = m === 'walk' ? 70 : 55;
-    cam.updateProjectionMatrix();
     bar.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
     hintEl.textContent = m === 'walk'
       ? (matchMedia('(pointer: coarse)').matches ? 'Drag to look. Slide circle to walk.' : 'W A S D to walk · Drag to look · Shift to sprint')
@@ -753,7 +1240,7 @@ export async function start(host, options = {}) {
 
     if (S.mode === 'sky') {
       S.yaw -= dx * 0.005;
-      S.pitch = Math.max(hasRelief ? 0.32 : 1.16, Math.min(1.4, S.pitch + dy * 0.004));
+      S.pitch = Math.max(0.24, Math.min(1.4, S.pitch + dy * 0.004));
     } else {
       S.wyaw -= dx * 0.0045;
       S.wpitch = Math.max(-1.15, Math.min(1.15, S.wpitch - dy * 0.004));
@@ -767,7 +1254,6 @@ export async function start(host, options = {}) {
     if (p && dragMoved < 6 && e.type === 'pointerup') {
       const now = performance.now();
       if (lastTap && now - lastTap < 350 && S.mode === 'sky') {
-        // Double-click to land
         const raycaster = new THREE.Raycaster();
         const rect = canvas.getBoundingClientRect();
         const mouse = new THREE.Vector2(((e.clientX - rect.left) / rect.width) * 2 - 1, -((e.clientY - rect.top) / rect.height) * 2 + 1);
@@ -834,6 +1320,24 @@ export async function start(host, options = {}) {
     if (area) void loadArea(area).catch(() => { dispose(); opt.onError(); });
   });
   lightSelect.addEventListener('change', () => setTod(lightSelect.value));
+  lookSelect.addEventListener('change', () => setLook(lookSelect.value));
+  finishSelect.addEventListener('change', () => setFinish(finishSelect.value));
+  lensSelect.addEventListener('change', () => {
+    S.lens = lensSelect.value;
+    invalidate();
+  });
+  twoPtBtn.addEventListener('click', () => {
+    S.twoPoint = !S.twoPoint;
+    twoPtBtn.setAttribute('aria-pressed', String(S.twoPoint));
+    invalidate();
+  });
+  rerollBtn.addEventListener('click', () => {
+    S.rerollSeed = (S.rerollSeed + 1) % 1000;
+    if (lastLoadedFile && activeArea) {
+      buildGeometryFromFile(lastLoadedFile, activeArea);
+      invalidate();
+    }
+  });
   bar.addEventListener('click', event => {
     const mode = event.target.closest('[data-mode]');
     if (mode) setMode(mode.dataset.mode);
@@ -862,14 +1366,14 @@ export async function start(host, options = {}) {
 
     for (const [index, item] of placePins.entries()) {
       const distance = Math.hypot(item.x - cx, item.z - cz);
-      posVec.set(item.x, 3.5, item.z);
+      posVec.set(item.x, 4.2, item.z);
       posVec.project(cam);
       const [width, height] = sizes[index];
       const x = (posVec.x * 0.5 + 0.5) * w;
       const y = (-posVec.y * 0.5 + 0.5) * h - height / 2;
       const overlaps = occupied.some(other =>
         x < other.right + 4 && x + width > other.x - 4 && y < other.bottom + 4 && y + height > other.y - 4);
-      item.btn.hidden = distance > 700 || Math.abs(posVec.z) > 1 || occupied.length >= 8 ||
+      item.btn.hidden = distance > 750 || Math.abs(posVec.z) > 1 || occupied.length >= 10 ||
         x < 8 || x + width > w - 8 || y < top || y + height > bottom || overlaps;
       if (item.btn.hidden) continue;
       occupied.push({ x, y, right: x + width, bottom: y + height });
@@ -948,14 +1452,22 @@ export async function start(host, options = {}) {
       sky.position.copy(cam.position);
       renderer.render(scene, cam);
       layoutPins();
+      drawMinimap();
       if (shaderFailed && host.dataset.ready === 'true') { dispose(); opt.onError(); return; }
     }
     if (moving() && !raf) raf = requestAnimationFrame(loop);
   }
 
+  // Check URL for initial tod or look override
+  const urlParams = new URLSearchParams(location.search);
+  const hashParams = new URLSearchParams(location.hash.replace(/^#/, ''));
+  const initTod = urlParams.get('tod') || hashParams.get('tod') || 'day';
+
   // Publish readiness only after the first geometry frame has rendered.
   if (!await loadArea(startArea) || disposed) return;
-  setTod('day');
+  setLook('color');
+  setFinish('tone');
+  setTod(TOD[initTod] ? initTod : 'day');
   setMode('sky');
   resize();
   cancelAnimationFrame(raf);

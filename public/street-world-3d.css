@@ -243,19 +243,35 @@ dialog.street-3d-stage {
 }
 .street-3d-stage:not([open]) { display:none; }
 .model-pin[hidden] { display:inline-flex; visibility:hidden; pointer-events:none; }
-.model-bar { align-items:start; gap:5px 8px; }
-.model-area, .model-light { max-width:100%; min-width:0; }
-.model-bar select, .model-close, .model-start button {
+.model-pin.pin-endorsed {
+  border-width: 1.5px;
+  font-weight: 700;
+}
+.model-bar { align-items:start; gap:5px 6px; }
+.model-area, .model-light, .model-look, .model-finish, .model-lens { max-width:100%; min-width:0; }
+.model-bar select, .model-close, .model-tool-btn, .model-start button {
   max-width:100%; min-height:36px; padding:4px 8px; border:1px solid var(--rule);
   border-radius:0; background:var(--paper); color:var(--ink); font:inherit;
 }
+.model-tool-btn {
+  font-size: var(--micro);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.model-tool-btn[aria-pressed="true"] {
+  background: var(--ink, #7d133a);
+  color: var(--paper, #f9c1ce);
+  border-color: var(--ink, #7d133a);
+}
 .model-seg { max-width:100%; }
 .model-seg button { font-size:inherit; white-space:normal; }
-.model-close { margin-left:0; }
+.model-close { margin-left:0; border-color:var(--ink, #7d133a); font-weight:600; }
 .model-coverage {
   display:flex; flex-wrap:wrap; align-items:center; gap:0 8px;
   flex-basis:max-content; max-width:100%; padding:4px 8px;
   background:var(--paper); color:var(--ink); line-height:1.3;
+  font-size:var(--micro);
 }
 .model-relief { min-height:32px; padding:0; text-decoration:underline; text-underline-offset:3px; }
 .model-hint { max-width:calc(100% - 24px); text-transform:none; }
@@ -263,9 +279,31 @@ dialog.street-3d-stage {
 .model-start-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
 .model-card-actions { flex-wrap:wrap; }
 .model-card-actions button { font-size:inherit; }
+
+/* Rokehan 2D Minimap radar */
+.model-minimap {
+  position: absolute;
+  right: 12px;
+  bottom: 48px;
+  width: 120px;
+  height: 120px;
+  border: 1.5px solid var(--ink, #7d133a);
+  background: #141824;
+  z-index: 12;
+  cursor: crosshair;
+  pointer-events: auto;
+}
+.model-minimap[hidden],
+.street-3d-stage:has(.model-card:not([hidden])) .model-minimap { display: none; }
+
 @media(max-width:599px) {
   .model-coverage { flex-basis:100%; }
   .model-hint { font-size:var(--micro); }
+  .model-minimap {
+    width: 88px;
+    height: 88px;
+    bottom: 52px;
+  }
 }
 
 .model-footer {

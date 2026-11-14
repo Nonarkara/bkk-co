@@ -14,6 +14,16 @@
         "share": 0.063
       },
       "mapShare": 0.889,
+      "mapShareNet": 0.869,
+      "mapOverlayShare": 0.0201,
+      "mapOverlays": [
+        {
+          "cls": "maplibregl-ctrl footprint-key-control",
+          "w": 150,
+          "h": 44,
+          "area": 6620
+        }
+      ],
       "mapIsFirst": true,
       "hierarchyRatio": 14.15,
       "top3": [
@@ -97,6 +107,16 @@
         "share": 0.059
       },
       "mapShare": 0.648,
+      "mapShareNet": 0.641,
+      "mapOverlayShare": 0.0072,
+      "mapOverlays": [
+        {
+          "cls": "maplibregl-ctrl footprint-key-control",
+          "w": 150,
+          "h": 44,
+          "area": 6620
+        }
+      ],
       "mapIsFirst": true,
       "hierarchyRatio": 2.06,
       "top3": [
@@ -180,6 +200,16 @@
         "share": 0.059
       },
       "mapShare": 0.75,
+      "mapShareNet": 0.745,
+      "mapOverlayShare": 0.0051,
+      "mapOverlays": [
+        {
+          "cls": "maplibregl-ctrl footprint-key-control",
+          "w": 150,
+          "h": 44,
+          "area": 6620
+        }
+      ],
       "mapIsFirst": true,
       "hierarchyRatio": 3.35,
       "top3": [
@@ -281,7 +311,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 429
+      "observedHandoffMs": 519
     },
     "notebook": 1,
     "walkthrough": {
