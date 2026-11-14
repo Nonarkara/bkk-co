@@ -591,7 +591,7 @@
     }
   }
   function placeRow(p) {
-    return `<li><button data-atlas-place="${esc(p.id)}"><img src="${images[props(p).icon]}" alt="" width="28" height="28"><span><b>${esc(p.n)}</b><small>${p.k !== 'cafe' ? KIND_LABEL[p.k] : M.indie(p) ? 'No chain signal' : 'Chain signal'} · footprint ${p.d[3]}/9</small></span></button></li>`;
+    return `<li><button data-atlas-place="${esc(p.id)}"><img src="${images[props(p).icon]}" alt="" width="28" height="28"><span><b>${PlaceTools.name(p.n)}</b><small>${p.k !== 'cafe' ? KIND_LABEL[p.k] : M.indie(p) ? 'No chain signal' : 'Chain signal'} · footprint ${p.d[3]}/9</small></span></button></li>`;
   }
   function bindPlaces(sheet) {
     sheet

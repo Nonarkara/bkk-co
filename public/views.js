@@ -127,7 +127,7 @@ async function openHood(slug, jump) {
     <header><h1>${esc(h.name)}<span class="th" lang="th">${esc(h.th)}</span></h1><button class="close" aria-label="Close">×</button></header>
     <div class="hood-intro"><div class="hood-mood"><span class="micro">For</span><b class="for">${esc(h.for)}</b><span lang="th">${esc(h.forTh)}</span></div><div class="plub-say">${guideArt()}<p><q>${esc(h.plub)}</q>${moodOf(slug) ? `<button class="linkish" data-mood="${moodOf(slug)}">◐ Find ${esc(h.for.toLowerCase())} citywide</button>` : ''}</p></div></div>
     <section><h2 class="micro">Plub's walk · co-working &amp; libraries first, then Wi-Fi, then ✦</h2>
-      <ol class="walk">${h.walk.map((id, i) => { const p = state.byId.get(id); return p ? `<li data-id="${esc(id)}"><span class="stop">${i + 1}</span><span class="nm">${esc(p.n)}</span>${state.visited.has(id) ? '<b>✓</b>' : ''}<span class="idx">✦${p.idx}</span></li>` : ''; }).join('')}</ol>
+      <ol class="walk">${h.walk.map((id, i) => { const p = state.byId.get(id); return p ? `<li data-id="${esc(id)}"><span class="stop">${i + 1}</span><span class="nm">${nm(p.n)}</span>${state.visited.has(id) ? '<b>✓</b>' : ''}<span class="idx">✦${p.idx}</span></li>` : ''; }).join('')}</ol>
     </section>
     <details class="hood-more"><summary>Numbers and story</summary>
     <section class="hood-stats">
@@ -486,7 +486,7 @@ async function renderNow() {
     const park = details[i].m?.park;
     const dist = nowState.range === 'walk' ? `~${Math.max(1, Math.round(d / 80))} min walk` : `${(d / 1000).toFixed(1)} km straight line`;
     return `<li data-id="${esc(p.id)}"><span class="stop">${i + 1}</span><div class="now-body">
-      <button class="linkish nm" data-open="${esc(p.id)}">${esc(p.n)}</button>
+      <button class="linkish nm" data-open="${esc(p.id)}">${nm(p.n)}</button>
       <span class="micro">${KIND_LABEL[p.k]} · ${dist} · ✦${p.idx}</span>
       <span class="needs-met">${met.map(([k, l, ok]) => k === 'park'
         ? (ok ? `<span class="ok">✓ P ${Math.round(park / 10) * 10} m</span>` : `<span class="unk" title="${park != null ? `nearest mapped car park ${Math.round(park / 10) * 10} m` : 'no car park mapped nearby'}">? P</span>`)
@@ -542,7 +542,7 @@ async function openHop(startKey) {
 
     <div class="feel hop-starts" role="group" aria-label="Start in">${starts.map(([k, l]) => `<button data-start="${k}" aria-pressed="${k === hopState.start}">${esc(l)}</button>`).join('')}</div>
     ${stops.length ? `<p class="micro">${esc(label)} · ${stops.length} stops · at least ${km.toFixed(1)} km on foot · ${Math.round(km * 1000 / 80)}+ min walking</p>
-    <ol class="walk hop">${stops.map((p, i) => `<li data-id="${esc(p.id)}"><span class="stop">${i + 1}</span><span class="nm">${esc(p.n)}</span>${i ? `<span class="micro">${Math.round(legs[i - 1])} m</span>` : ''}<span class="idx">✦${p.idx}</span></li>`).join('')}</ol>
+    <ol class="walk hop">${stops.map((p, i) => `<li data-id="${esc(p.id)}"><span class="stop">${i + 1}</span><span class="nm">${nm(p.n)}</span>${i ? `<span class="micro">${Math.round(legs[i - 1])} m</span>` : ''}<span class="idx">✦${p.idx}</span></li>`).join('')}</ol>
     <nav class="links">${g ? `<a href="${g}" target="_blank" rel="noopener">Walk it in Google Maps ↗</a>` : ''}<button type="button" class="share">Share</button></nav>`
     : '<p class="micro">Not enough independent cafés with a high index close together here. Try another start.</p>'}
     <button type="button" class="linkish" data-shared-hops>Shared hop notes · optional</button>

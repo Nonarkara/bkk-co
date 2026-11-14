@@ -14,6 +14,16 @@
     return url ? `<img class="place-symbol place-badge" src="${url}" alt="">` : symbol(p.k);
   }
   const normalize = s => String(s || '').normalize('NFKD').replace(/([\p{Script=Latin}])\p{M}+/gu, '$1').toLowerCase().replace(/[’'`]/g, '').replace(/[^\p{L}\p{N}\p{M}]+/gu, ' ').trim();
+  // A catalogue name may be Thai. Thai needs its own face, its own leading and
+  // no tracking — and the browser only applies those when the text is marked as
+  // Thai. Unmarked, a Thai name falls back to a Latin stack and its stacked
+  // vowel and tone marks lose the room they need.
+  const THAI = /[฀-๿]/;
+  const escape = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  function name(s) {
+    const text = String(s ?? '');
+    return THAI.test(text) ? `<span lang="th">${escape(text)}</span>` : escape(text);
+  }
   function query(value) {
     try {
       const u=new URL(value),match=/^\/maps\/place\/([^/]+)/.exec(u.pathname);
@@ -43,5 +53,5 @@
     if(!out)return;
     input.readOnly=true; input.value=url; input.setAttribute('aria-label','Place link to copy'); out.append(input); input.focus(); input.select();
   }
-  globalThis.PlaceTools = {symbol, icon, normalize, query, matches, share};
+  globalThis.PlaceTools = {symbol, icon, normalize, query, matches, share, name};
 })();
