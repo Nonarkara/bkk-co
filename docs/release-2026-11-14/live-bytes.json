@@ -1,12 +1,12 @@
 {
-  "observedAt": "2026-11-14T14:44:24.698Z",
+  "observedAt": "2026-11-14T16:23:02.739Z",
   "origin": "https://co.nonarkara.org",
-  "sourceCommit": "930c4d3882d1b4cf100373e36bbe0b22b4b310b8",
+  "sourceCommit": "b60d78f3f101271e2bfb12ce99530d620414b7cf",
   "matched": [
     {
       "path": "app.js",
-      "bytes": 46104,
-      "sha256": "1ca18bf9f684598f7bfd1367609030d1041caef100967387d9397c85a6854c2a"
+      "bytes": 46182,
+      "sha256": "f48cbf5e8d19bf569cfb60d63f80169c835344eb5416553c060c63de1a735f88"
     },
     {
       "path": "atlas-model.js",
@@ -1050,8 +1050,8 @@
     },
     {
       "path": "discovery.css",
-      "bytes": 5784,
-      "sha256": "29eba8576c22deee361a8e265850544e141c8266b90d5da43cb35e88864e7b51"
+      "bytes": 5803,
+      "sha256": "7ad5c0e9a37e9e362b4fac6ca3c083184b909060b0179338907a4e56abe714c9"
     },
     {
       "path": "discovery.js",
@@ -1145,8 +1145,8 @@
     },
     {
       "path": "footprint-palette.js",
-      "bytes": 8388,
-      "sha256": "01d9fa9a547466ecbfda02b29dc326463eb5ba1e4d0b298435f1e66baf5d4723"
+      "bytes": 8631,
+      "sha256": "d17a8796854ae74f65539c33e939bad0a1d809ee774746e517ade711cb7a94cd"
     },
     {
       "path": "hat-density.js",
@@ -1190,8 +1190,8 @@
     },
     {
       "path": "list-tools.css",
-      "bytes": 5003,
-      "sha256": "c7c4078efa3743401122df0a757027bf8e112b0fc37d99134aee79328b474740"
+      "bytes": 5028,
+      "sha256": "4539e18819ad93b4042b77e6c864fcf7d90b9a6b954ad26c30707aaf7355656d"
     },
     {
       "path": "manga-lens.js",
@@ -1935,13 +1935,13 @@
     },
     {
       "path": "street-world-3d.css",
-      "bytes": 8390,
-      "sha256": "b2e89a88dbfe5e2dfd4785d7ab27a6c49d52d54cc5e7946c7657bb2245d85aba"
+      "bytes": 8311,
+      "sha256": "8567bd394a470fe1da29c88da379e829b8e91b18ed36e5e0d902ad6d20d1d313"
     },
     {
       "path": "street-world-3d.js",
-      "bytes": 56918,
-      "sha256": "92b6355dea1ee5f82412950fc79e201924fc5214740114757d8f5daa6993edd1"
+      "bytes": 56380,
+      "sha256": "6e67fefb197adc0ef7d566cd9d2e3d03c6f4d6fb6c6e82e9b5b053f8ff2c818f"
     },
     {
       "path": "street-world.css",
@@ -1955,8 +1955,8 @@
     },
     {
       "path": "style.css",
-      "bytes": 29265,
-      "sha256": "c8247f65270151b8d720dd24b14686fb33e215e9c234f3fffca41e193363f915"
+      "bytes": 29374,
+      "sha256": "95597452be01d59564249b2d543599047b7b25d29fd59c777da8263aa41718de"
     },
     {
       "path": "styles/plub-manga.json",
@@ -2000,8 +2000,8 @@
     },
     {
       "path": "views.js",
-      "bytes": 48792,
-      "sha256": "57f44c61974e7e65a177059be6413d9d8751cf5ecd909314c17f6af9ba0ac884"
+      "bytes": 48789,
+      "sha256": "53f35287a3362de9cef809146dff89e90f3c81e050cd254d979144cc5877efd2"
     },
     {
       "path": "visit.css",

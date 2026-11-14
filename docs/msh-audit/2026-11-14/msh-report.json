@@ -14,14 +14,14 @@
         "share": 0.063
       },
       "mapShare": 0.889,
-      "mapShareNet": 0.865,
-      "mapOverlayShare": 0.0239,
+      "mapShareNet": 0.869,
+      "mapOverlayShare": 0.0201,
       "mapOverlays": [
         {
           "cls": "maplibregl-ctrl footprint-key-control",
-          "w": 178,
+          "w": 150,
           "h": 44,
-          "area": 7852
+          "area": 6620
         }
       ],
       "mapIsFirst": true,
@@ -107,14 +107,14 @@
         "share": 0.059
       },
       "mapShare": 0.648,
-      "mapShareNet": 0.64,
-      "mapOverlayShare": 0.0085,
+      "mapShareNet": 0.641,
+      "mapOverlayShare": 0.0072,
       "mapOverlays": [
         {
           "cls": "maplibregl-ctrl footprint-key-control",
-          "w": 178,
+          "w": 150,
           "h": 44,
-          "area": 7852
+          "area": 6620
         }
       ],
       "mapIsFirst": true,
@@ -154,11 +154,8 @@
       "title": "PLUB · Placemaking Laboratory Urban Bureau",
       "pinsLayer": true,
       "placeSheet": {
-        "lines": 2,
-        "textWidth": 266.46875,
-        "factsHeight": 64.890625,
-        "directionsBottom": 214.1875,
-        "pass": true
+        "pass": false,
+        "error": "locator.waitFor: Timeout 30000ms exceeded."
       },
       "visitReading": {
         "photoLeads": true,
@@ -187,7 +184,7 @@
         },
         "pass": true
       },
-      "verdict": "PASS"
+      "verdict": "REVISE"
     },
     {
       "width": 1440,
@@ -200,14 +197,14 @@
         "share": 0.059
       },
       "mapShare": 0.75,
-      "mapShareNet": 0.744,
-      "mapOverlayShare": 0.0061,
+      "mapShareNet": 0.745,
+      "mapOverlayShare": 0.0051,
       "mapOverlays": [
         {
           "cls": "maplibregl-ctrl footprint-key-control",
-          "w": 178,
+          "w": 150,
           "h": 44,
-          "area": 7852
+          "area": 6620
         }
       ],
       "mapIsFirst": true,
@@ -311,7 +308,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 574
+      "observedHandoffMs": 2048
     },
     "notebook": 1,
     "walkthrough": {
@@ -328,6 +325,12 @@
     "errors": [],
     "writes": []
   },
-  "verdict": "PASS",
-  "fails": []
+  "verdict": "REVISE",
+  "fails": [
+    {
+      "id": "B1 place sheet",
+      "detail": "Bridge facts or Directions failed the reading budget: {\"pass\":false,\"error\":\"locator.waitFor: Timeout 30000ms exceeded.\"}",
+      "width": 1024
+    }
+  ]
 }

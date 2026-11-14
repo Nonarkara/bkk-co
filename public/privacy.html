@@ -1,7 +1,88 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Privacy & kindness · PLUB</title><link href="style.css" rel="stylesheet"><link href="notebook.css" rel="stylesheet"><style>body{display:block;height:auto;overflow:auto;padding:16px;margin:auto;max-width:65ch}h1,h2{font-size:20px;margin:16px 0 8px}p,li{margin:8px 0}a{display:inline-block;min-height:32px}ul{padding-left:20px}</style>
-<a href="/">← Back to PLUB</a><h1>Your notebook, your choices</h1><p>PLUB — Placemaking Laboratory Urban Bureau, operated by Non Arkaraprasertkul. Notice updated 5 November 2026. This is a free pilot, supported by its community.</p>
-<h2>Three separate places for your data</h2><ul><li><b>Device:</b> visits, stars, feelings, notes and photos stay in this browser until you delete them. Clearing browser data can lose them. Export a backup.</li><li><b>Cloud notebook:</b> create an account and explicitly back up visits you want PLUB to store. A private notebook key opens your account on another device. Keep it secret; lost keys cannot be recovered. Cloud copies are private to your account through the app. PLUB's operator and hosting provider process them to run the service; this is not end-to-end encrypted storage.</li><li><b>Community:</b> Share publishes the selected note, stars and feelings with your public name. Photos need a separate checkbox. The visit date is not published. Other people can copy public content.</li></ul>
-<h2>Optional shared hop notes</h2><p>From Café hop you can explicitly publish a note with one to eight actual catalogue stops in your chosen order and your public name. Hop notes have no visit dates and are personal experiences, not verified walking routes. No private notebook entry is copied. Selecting photos does not upload them: a separate unchecked photo choice and the Publish button are required. Up to four resized, metadata-stripped photos can be public; others can copy them. Accounts support up to 100 shared hop notes, including hidden notes. Manage or unpublish them in Notes → Cloud notebook → My shared hop notes. Cloud export includes your hops, photos and reports, including hidden notes. Account deletion removes them.</p><h2>Research is optional</h2><p>You can choose to contribute your saved cloud visits to research about which places people visit. This is off when you create an account. The research query uses saved place IDs and counts; it excludes notes, photos and visit dates. Public totals require at least five consenting accounts per place. Small groups are suppressed, though aggregation cannot guarantee anonymity in every circumstance.</p><p>Refusing does not limit the notebook. Turn it off in Notes → Cloud notebook → Research & account to exclude your visits from future results. Previously copied public aggregates cannot be recalled. There is no continuous travel log or background GPS collection. The map's location control uses your browser's permission; using it does not save a visit. You decide what you log.</p>
-<h2>Storage, access and deletion</h2><p>Cloud notebooks support up to 100 visits and four resized JPEGs per visit. Photo metadata is stripped before cloud storage. Your original device photo may be larger. Never publish another person's image or private details without permission.</p><p>Sign-in sessions expire after 30 days; their expired server records are removed by daily cleanup or the next login. Security rate-limit records contain salted IP hashes and are removed after 24 hours on API writes, with daily cleanup limiting idle retention to about 48 hours. Notebook keys and session tokens are stored as hashes on the server; neither belongs in a public link. Cloudflare hosts the Worker and D1 database and may process data outside Thailand. Provider recovery backups may remain for up to 30 days after live deletion.</p><p>In Notes you can edit device entries, export your device backup, export all cloud entries, restore individual cloud copies, delete cloud copies and their posts, delete your cloud account, or clear this device. Signing out leaves device copies on the device. Clearing a device leaves cloud copies intact. Deleting an account removes its live cloud entries, recommendations, photos and sessions. Export first if you need to keep them.</p><p>PLUB's original anonymous work ratings are separate: four answers about Wi-Fi/outlets/quiet/laptops, with salted IP hashes for daily limits. Their aggregate is public. They are not connected to a notebook account. Basemap, font and script providers receive ordinary connection information when the page loads; we do not send them your notebook contents. Map/directions links open external providers only when you choose them.</p>
-<h2>Be a good neighbour</h2><p>Describe your own visit. Recommendations are personal experiences, not verified facts. No harassment, threats, spam, impersonation or other people's private information. Report a post if needed. Three distinct account reports temporarily hide a recommendation or hop note; the owner can restore it after review or remove posts without running an active discussion forum. The operator can also remove reposts of removed material.</p><p>To ask about your data or appeal moderation, contact <a href="mailto:nonsmartcity@gmail.com">nonsmartcity@gmail.com</a>, the operator's public contact. Do not send notebook keys. Self-service export and deletion are available in your notebook.</p>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy &amp; kindness · PLUB</title>
+<link href="style.css" rel="stylesheet">
+<link href="notebook.css" rel="stylesheet">
+<style>
+body.privacy-shell{display:grid;grid-template:"bar" auto "main" 1fr / 100%;height:100dvh;overflow:hidden;background:var(--paper)}
+.privacy-main{grid-area:main;overflow-y:auto;padding:16px var(--pad) 32px;max-width:1100px;width:100%;margin:0 auto}
+.privacy-grid{display:grid;gap:20px;align-items:start}
+.privacy-summary{border-bottom:2px solid var(--ink);padding-bottom:14px}
+.privacy-summary h1{font-size:var(--big);font-weight:600;line-height:1.2;margin:2px 0 8px}
+.privacy-summary p{font-size:var(--body);margin:0 0 12px}
+.privacy-tiers{border:1px solid var(--ink);padding:10px 12px;background:var(--wash)}
+.privacy-tiers h2{font-size:var(--micro);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.privacy-tiers ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.privacy-tiers li{font-size:var(--body);padding-top:8px;border-top:1px solid var(--rule)}
+.privacy-tiers li:first-child{padding-top:0;border-top:0}
+.privacy-sections{display:grid;gap:14px}
+.privacy-sec{border-top:1px solid var(--rule);padding-top:10px}
+.privacy-sec:first-child{border-top:0;padding-top:0}
+.privacy-sec h2{font-size:var(--body);font-weight:600;margin:2px 0 6px;color:var(--ink)}
+.privacy-sec p{margin:6px 0;font-size:var(--body);max-width:68ch}
+.privacy-sec a{display:inline-flex;align-items:center;min-height:32px;text-decoration:underline;text-underline-offset:3px}
+@media (min-width:900px){
+  .privacy-grid{grid-template-columns:minmax(280px,360px) 1fr;gap:28px}
+  .privacy-summary{border-bottom:0;border-right:1px solid var(--rule);padding-right:20px;padding-bottom:0;position:sticky;top:0}
+}
+</style>
+</head>
+<body class="privacy-shell">
+<header class="bar">
+  <div class="bar-brand">
+    <a class="mark" href="/" aria-label="PLUB, Placemaking Laboratory Urban Bureau, home">PL<span class="semi">;</span>UB</a>
+  </div>
+  <span class="micro">Privacy &amp; community rules</span>
+  <div class="bar-actions" style="margin-left:auto">
+    <a href="/" class="bar-btn">← Back to PLUB</a>
+  </div>
+</header>
+<main class="privacy-main">
+  <div class="privacy-grid">
+    <aside class="privacy-summary">
+      <p class="micro">1ST READ · SUMMARY &amp; DATA TIERS</p>
+      <h1>Your notebook, your choices</h1>
+      <p>PLUB — Placemaking Laboratory Urban Bureau, operated by Non Arkaraprasertkul. Notice updated 5 November 2026. This is a free pilot, supported by its community.</p>
+      <section class="privacy-tiers">
+        <h2>Three separate places for your data</h2>
+        <ul>
+          <li><b>Device:</b> visits, stars, feelings, notes and photos stay in this browser until you delete them. Clearing browser data can lose them. Export a backup.</li>
+          <li><b>Cloud notebook:</b> create an account and explicitly back up visits you want PLUB to store. A private notebook key opens your account on another device. Keep it secret; lost keys cannot be recovered. Cloud copies are private to your account through the app. PLUB's operator and hosting provider process them to run the service; this is not end-to-end encrypted storage.</li>
+          <li><b>Community:</b> Share publishes the selected note, stars and feelings with your public name. Photos need a separate checkbox. The visit date is not published. Other people can copy public content.</li>
+        </ul>
+      </section>
+    </aside>
+    <div class="privacy-sections">
+      <section class="privacy-sec">
+        <p class="micro">01 · SHARED ROUTES</p>
+        <h2>Optional shared hop notes</h2>
+        <p>From Café hop you can explicitly publish a note with one to eight actual catalogue stops in your chosen order and your public name. Hop notes have no visit dates and are personal experiences, not verified walking routes. No private notebook entry is copied. Selecting photos does not upload them: a separate unchecked photo choice and the Publish button are required. Up to four resized, metadata-stripped photos can be public; others can copy them. Accounts support up to 100 shared hop notes, including hidden notes. Manage or unpublish them in Notes → Cloud notebook → My shared hop notes. Cloud export includes your hops, photos and reports, including hidden notes. Account deletion removes them.</p>
+      </section>
+      <section class="privacy-sec">
+        <p class="micro">02 · AGGREGATE STUDY</p>
+        <h2>Research is optional</h2>
+        <p>You can choose to contribute your saved cloud visits to research about which places people visit. This is off when you create an account. The research query uses saved place IDs and counts; it excludes notes, photos and visit dates. Public totals require at least five consenting accounts per place. Small groups are suppressed, though aggregation cannot guarantee anonymity in every circumstance.</p>
+        <p>Refusing does not limit the notebook. Turn it off in Notes → Cloud notebook → Research &amp; account to exclude your visits from future results. Previously copied public aggregates cannot be recalled. There is no continuous travel log or background GPS collection. The map's location control uses your browser's permission; using it does not save a visit. You decide what you log.</p>
+      </section>
+      <section class="privacy-sec">
+        <p class="micro">03 · RETENTION &amp; PROVIDERS</p>
+        <h2>Storage, access and deletion</h2>
+        <p>Cloud notebooks support up to 100 visits and four resized JPEGs per visit. Photo metadata is stripped before cloud storage. Your original device photo may be larger. Never publish another person's image or private details without permission.</p>
+        <p>Sign-in sessions expire after 30 days; their expired server records are removed by daily cleanup or the next login. Security rate-limit records contain salted IP hashes and are removed after 24 hours on API writes, with daily cleanup limiting idle retention to about 48 hours. Notebook keys and session tokens are stored as hashes on the server; neither belongs in a public link. Cloudflare hosts the Worker and D1 database and may process data outside Thailand. Provider recovery backups may remain for up to 30 days after live deletion.</p>
+        <p>In Notes you can edit device entries, export your device backup, export all cloud entries, restore individual cloud copies, delete cloud copies and their posts, delete your cloud account, or clear this device. Signing out leaves device entries on the device. Clearing a device leaves cloud copies intact. Deleting an account removes its live cloud entries, recommendations, photos and sessions. Export first if you need to keep them.</p>
+        <p>PLUB's original anonymous work ratings are separate: four answers about Wi-Fi/outlets/quiet/laptops, with salted IP hashes for daily limits. Their aggregate is public. They are not connected to a notebook account. Basemap, font and script providers receive ordinary connection information when the page loads; we do not send them your notebook contents. Map/directions links open external providers only when you choose them.</p>
+      </section>
+      <section class="privacy-sec">
+        <p class="micro">04 · CONDUCT &amp; CONTACT</p>
+        <h2>Be a good neighbour</h2>
+        <p>Describe your own visit. Recommendations are personal experiences, not verified facts. No harassment, threats, spam, impersonation or other people's private information. Report a post if needed. Three distinct account reports temporarily hide a recommendation or hop note; the owner can restore it after review or remove posts without running an active discussion forum. The operator can also remove reposts of removed material.</p>
+        <p>To ask about your data or appeal moderation, contact <a href="mailto:nonsmartcity@gmail.com">nonsmartcity@gmail.com</a>, the operator's public contact. Do not send notebook keys. Self-service export and deletion are available in your notebook.</p>
+      </section>
+    </div>
+  </div>
+</main>
+</body>
 </html>

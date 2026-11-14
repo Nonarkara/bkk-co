@@ -27,7 +27,7 @@ OV_RULES = {'cafe': ("basic_category IN ('coffee_shop','cafe')", 0.6),
             'restaurant': ("basic_category IN ('restaurant','fast_food_restaurant')", 0.8),
             'coworking': ("taxonomy.primary = 'coworking_space'", 0.5),
             'library': ("basic_category = 'library'", 0.6),
-            'cannabis': ("basic_category IN ('cannabis_store','dispensary','pharmacy') OR taxonomy.primary IN ('cannabis_store','dispensary') OR basic_category = 'pharmacy' AND brands.primary ILIKE '%cannabis%'", 0.5)}
+            'cannabis': ("taxonomy.primary IN ('cannabis_clinic','cannabis_dispensary') OR basic_category IN ('cannabis_clinic','cannabis_dispensary') OR (basic_category = 'pharmacy' AND brand.names.primary ILIKE '%cannabis%')", 0.5)}
 MERGE_M = 60  # same normalised name within 60 m = same venue
 WIFI = {'wlan': 'yes', 'yes': 'yes', 'wifi': 'yes', 'no': 'no', 'terminal': 'no'}
 F_WIFI, F_NOWIFI, F_HOURS, F_OUTDOOR, F_OVERTURE, F_CHAIN, F_NOTABLE, F_HAND, F_PARK, F_COFFEE = 1, 2, 4, 8, 16, 32, 64, 128, 256, 512

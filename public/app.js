@@ -191,6 +191,8 @@ const scoresReady=loadScores().then(()=>{
 });
 const firstData = aliasesReady.then(() => Promise.all([loadRows('work'), loadVisits()])).then(() => refresh());
 const foodData = firstData.then(() => loadRows('food')).then(() => { state.foodLoaded = true; refresh(); });
+// CL;UB: cannabis dispensaries load from their own open-data file, never touching the signed 57,379 catalogue.
+const cannabisData = foodData.then(() => loadRows('cannabis')).then(() => { state.cannabisLoaded = true; refresh(); });
 // Branch labels for repeated names ("Starbucks Coffee · Sathupradit Rd"): the listing's own address, or its district.
 // Fetched after the map is up; scripts/build-branches.py. A place without a published address or district gets none.
 foodData.then(() => fetch('data/branches.json')).then(r => (r.ok ? r.json() : {})).then(b => {
