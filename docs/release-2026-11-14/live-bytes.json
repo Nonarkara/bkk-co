@@ -1,12 +1,12 @@
 {
-  "observedAt": "2026-11-14T16:23:02.739Z",
+  "observedAt": "2026-11-14T17:36:00.021Z",
   "origin": "https://co.nonarkara.org",
-  "sourceCommit": "b60d78f3f101271e2bfb12ce99530d620414b7cf",
+  "sourceCommit": "316e0f17f5e8b8c5aedcd91849f5febae96da16a",
   "matched": [
     {
       "path": "app.js",
-      "bytes": 46182,
-      "sha256": "f48cbf5e8d19bf569cfb60d63f80169c835344eb5416553c060c63de1a735f88"
+      "bytes": 46823,
+      "sha256": "d623b0e72a73bda0fe8675f495057e5541a878da7074080e2e32c319539b1001"
     },
     {
       "path": "atlas-model.js",
@@ -20,8 +20,8 @@
     },
     {
       "path": "atlas.js",
-      "bytes": 41416,
-      "sha256": "f6b5cb27627b280c1885adb2ca71c642764c062dd339d80c76c15df1f13a0296"
+      "bytes": 41811,
+      "sha256": "f1eef46a6ff8c5f5030c88de149c045443f52cf3eedbc57a1044e580bde2e857"
     },
     {
       "path": "bridge-1958.html",
@@ -944,6 +944,11 @@
       "sha256": "c01639473e1f2e2b7fe95a29ebdef000d6aa84bd604588c76400153bf9954c07"
     },
     {
+      "path": "data/places-cannabis.json",
+      "bytes": 83806,
+      "sha256": "a5a69fc267af2e509f101c5b2743fc76b1a4b2288dae671da8a0a2e1d717ff96"
+    },
+    {
       "path": "data/places-food.json",
       "bytes": 3771369,
       "sha256": "8c7cc19345b6568c0a116ff3ac91872d5e769485138267aa5fbaa20cc409c4f6"
@@ -1055,8 +1060,8 @@
     },
     {
       "path": "discovery.js",
-      "bytes": 7495,
-      "sha256": "3b1a72de926eee2ffe98ef285979c1122f0e653373da81daf9969cb78ebc5f2d"
+      "bytes": 7507,
+      "sha256": "f77eb05f4fe3809aea41ff59f1d19636325ba6f808dff136490204a9d8fb5988"
     },
     {
       "path": "einstein-hat.js",
@@ -1170,8 +1175,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 9458,
-      "sha256": "bf9cc2c7e582617ef2f27748968d89d9baeafa9cdef8af003343fe57d90aad8c"
+      "bytes": 9558,
+      "sha256": "38f042076a01a269aeb77de639edc5edf991ae227bc9f48b08e3bdbe25a31881"
     },
     {
       "path": "journey-model.js",
@@ -1185,8 +1190,8 @@
     },
     {
       "path": "journeys.js",
-      "bytes": 34210,
-      "sha256": "c3945de40b0ec55eb7dd831f28f280945577b9b8ea29134b21b4270f2b5a56f9"
+      "bytes": 34222,
+      "sha256": "18642070669e269be626994bf784030bc61eef1af7248814d09062cf97d19d7d"
     },
     {
       "path": "list-tools.css",
@@ -1830,8 +1835,8 @@
     },
     {
       "path": "neighbourhoods.html",
-      "bytes": 2076,
-      "sha256": "9172bb8273ad3b9f1c2f77281b623a979a54dccf3fc59d9d4cf2bbffe50c5244"
+      "bytes": 3827,
+      "sha256": "669bf84112b224763dce9ed887b7013409e534bda9dee195aead4d38aac0dc7f"
     },
     {
       "path": "notebook.css",
@@ -1840,8 +1845,8 @@
     },
     {
       "path": "notebook.js",
-      "bytes": 39245,
-      "sha256": "c31402e0cba47c1c1d201fbf72ff04f2d6c8101a716d8c59e3d2cbd8a609bd26"
+      "bytes": 39293,
+      "sha256": "fcacd5cd06b65d2c8145cc9ea86663d1ffae9cb10ff497afef83920ed124cc4e"
     },
     {
       "path": "og/ari.png",
@@ -1890,8 +1895,8 @@
     },
     {
       "path": "place-tools.js",
-      "bytes": 2706,
-      "sha256": "56dab45a28cfcf482258185cec20e6a0408fd6655048c96dbb0b01b0d17b1bc8"
+      "bytes": 3318,
+      "sha256": "6f27b8dd811c4e36f1d421459b79281eae8842ce4d667d46573366a6812eaa95"
     },
     {
       "path": "plub/nong-plub-head.png",
@@ -1910,8 +1915,8 @@
     },
     {
       "path": "privacy.html",
-      "bytes": 5495,
-      "sha256": "e2c816f92f7b8f7a647b91cc90c3b57824cf519b6b3f461521620f2afdcc4636"
+      "bytes": 8235,
+      "sha256": "84abfcc7325c0ca01f79c75a4a8148b3163497114dccd90f2f302519b5ee9cc3"
     },
     {
       "path": "research.css",
@@ -1950,13 +1955,13 @@
     },
     {
       "path": "street-world.js",
-      "bytes": 27257,
-      "sha256": "83e6bb368b5a3416038fd2c0702f37c770fef766d2d7cd07bfb39ae5e39a8e5a"
+      "bytes": 27269,
+      "sha256": "0012d8d1be3d7643fbc5aa6b8b06c40ff456ee68bd5cf90f41601ac82e3accb4"
     },
     {
       "path": "style.css",
-      "bytes": 29374,
-      "sha256": "95597452be01d59564249b2d543599047b7b25d29fd59c777da8263aa41718de"
+      "bytes": 29501,
+      "sha256": "89c016c99e557c16dfc6ec5114dc61adef3b2819da71fb427a517ddd3c87498c"
     },
     {
       "path": "styles/plub-manga.json",
@@ -2000,8 +2005,8 @@
     },
     {
       "path": "views.js",
-      "bytes": 48789,
-      "sha256": "53f35287a3362de9cef809146dff89e90f3c81e050cd254d979144cc5877efd2"
+      "bytes": 48814,
+      "sha256": "fbc582e0f7eccfadc305c76757586de35fa23c4de907d1d3d8071124a610a7da"
     },
     {
       "path": "visit.css",
@@ -2023,7 +2028,7 @@
   "missing": [],
   "orphansStillServed": [],
   "summary": {
-    "matched": 403,
+    "matched": 404,
     "mismatched": 0,
     "missing": 0,
     "orphansStillServed": 0
