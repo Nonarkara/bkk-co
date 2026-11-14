@@ -20,13 +20,14 @@ OV_RELEASE = '2026-10-21.0'
 OV_FILE = SOURCE_DIR / 'overture' / f'places-{OV_RELEASE}-bkk.parquet'
 OV_URL = f's3://overturemaps-us-west-2/release/{OV_RELEASE}/theme=places/type=place/*'
 BOUNDS = [100.30, 13.45, 100.95, 14.10]
-KINDS = ['cafe', 'restaurant', 'coworking', 'library']
+KINDS = ['cafe', 'restaurant', 'coworking', 'library', 'cannabis']
 CELL = 20  # 0.05° detail cells, loaded on tap
 # Overture confidence floor per kind: restaurants are numerous and noisy, so the bar is higher.
 OV_RULES = {'cafe': ("basic_category IN ('coffee_shop','cafe')", 0.6),
             'restaurant': ("basic_category IN ('restaurant','fast_food_restaurant')", 0.8),
             'coworking': ("taxonomy.primary = 'coworking_space'", 0.5),
-            'library': ("basic_category = 'library'", 0.6)}
+            'library': ("basic_category = 'library'", 0.6),
+            'cannabis': ("basic_category IN ('cannabis_store','dispensary','pharmacy') OR taxonomy.primary IN ('cannabis_store','dispensary') OR basic_category = 'pharmacy' AND brands.primary ILIKE '%cannabis%'", 0.5)}
 MERGE_M = 60  # same normalised name within 60 m = same venue
 WIFI = {'wlan': 'yes', 'yes': 'yes', 'wifi': 'yes', 'no': 'no', 'terminal': 'no'}
 F_WIFI, F_NOWIFI, F_HOURS, F_OUTDOOR, F_OVERTURE, F_CHAIN, F_NOTABLE, F_HAND, F_PARK, F_COFFEE = 1, 2, 4, 8, 16, 32, 64, 128, 256, 512
@@ -44,7 +45,8 @@ def sha(path, algo='sha256'):
 
 # Names that only say what the place is are no name at all: treat like unnamed, never show them.
 GENERIC = {'entrance', 'exit', 'toilet', 'restroom', 'parking', 'lobby', 'cafe', 'café', 'coffee', 'coffeeshop', 'restaurant',
-           'thaifood', 'food', 'canteen', 'ร้านอาหาร', 'ร้านกาแฟ', 'กาแฟสด', 'กาแฟ', 'ร้านข้าว', 'โรงอาหาร', 'ห้องสมุด', 'library'}
+           'thaifood', 'food', 'canteen', 'ร้านอาหาร', 'ร้านกาแฟ', 'กาแฟสด', 'กาแฟ', 'ร้านข้าว', 'โรงอาหาร', 'ห้องสมุด', 'library',
+           'cannabis', 'ดispensary', 'ร้านกัญชา', 'กัญชา'}
 
 def latin(name):
     return re.sub(r'[^a-z0-9]+', '', unicodedata.normalize('NFKD', name).casefold())
@@ -76,6 +78,9 @@ def osm_kind(t):
         return None
     if t.get('amenity') == 'coworking_space' or t.get('office') == 'coworking': return 'coworking'
     if t.get('amenity') == 'library' and t.get('access') != 'private': return 'library'
+    if t.get('shop') in ('beverages', 'cannabis') or t.get('amenity') in ('dispensary', 'pharmacy'):
+        if t.get('beverages') == 'cannabis' or t.get('shop') == 'cannabis' or 'cannabis' in (t.get('name') or '').lower() or 'ganja' in (t.get('name') or '').lower() or 'กัญชา' in (t.get('name') or ''):
+            return 'cannabis'
     return {'cafe': 'cafe', 'restaurant': 'restaurant'}.get(t.get('amenity'))
 
 def load_osm(skipped):
@@ -84,8 +89,8 @@ def load_osm(skipped):
     out = []
     with tempfile.TemporaryDirectory() as tmp:
         f, c, seq = [str(pathlib.Path(tmp) / n) for n in ('f.pbf', 'c.pbf', 'p.geojsonseq')]
-        subprocess.run(['osmium', 'tags-filter', str(OSM_PBF), 'nwr/amenity=cafe,restaurant,coworking_space,library',
-                        'nwr/office=coworking', '-o', f, '--no-progress'], check=True)
+        subprocess.run(['osmium', 'tags-filter', str(OSM_PBF), 'nwr/amenity=cafe,restaurant,coworking_space,library,dispensary,pharmacy',
+                        'nwr/office=coworking', 'nwr/shop=beverages,cannabis', '-o', f, '--no-progress'], check=True)
         subprocess.run(['osmium', 'extract', f, '--bbox', ','.join(map(str, BOUNDS)), '-s', 'complete_ways',
                         '-o', c, '--no-progress'], check=True)
         subprocess.run(['osmium', 'export', c, '-f', 'geojsonseq', '-a', 'type,id',

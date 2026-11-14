@@ -1052,25 +1052,20 @@ export async function start(host, options = {}) {
 
   function createPins(ids) {
     pinsContainer.replaceChildren();
+    // No endorsements, no platform stars: the pin's only claim is the place itself.
     const areaPlaces = [...new Set(ids.map(opt.placeById).filter(Boolean))]
-      .sort((a, b) => {
-        // Prioritize endorsed places, then proximity to anchor
-        const aEnd = a.endorsed ? 1 : 0;
-        const bEnd = b.endorsed ? 1 : 0;
-        if (aEnd !== bEnd) return bEnd - aEnd;
-        return Math.hypot(a.x - activeArea.anchor.x, a.y - activeArea.anchor.y) -
-               Math.hypot(b.x - activeArea.anchor.x, b.y - activeArea.anchor.y);
-      });
+      .sort((a, b) =>
+        Math.hypot(a.x - activeArea.anchor.x, a.y - activeArea.anchor.y) -
+        Math.hypot(b.x - activeArea.anchor.x, b.y - activeArea.anchor.y));
 
     placePins = areaPlaces.slice(0, 48).map(p => {
       const pt = project(p.y, p.x);
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = `model-pin pin-${p.k}${p.endorsed ? ' pin-endorsed' : ''}`;
+      btn.className = `model-pin pin-${p.k}`;
       btn.setAttribute('aria-label', p.n);
-      const star = p.endorsed ? `★${p.endorsed.googleRating || ''} ` : '';
       btn.innerHTML = `<span class="pin-dot ${p.k}" aria-hidden="true"></span><span class="pin-tag"></span>`;
-      btn.querySelector('.pin-tag').textContent = `${star}${p.n}`;
+      btn.querySelector('.pin-tag').textContent = p.n;
       btn.addEventListener('click', e => {
         e.stopPropagation();
         openCard(p, pt);

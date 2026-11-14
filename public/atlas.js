@@ -145,7 +145,7 @@
     const ink = kind === 'coworking' ? '#986000' : kind === 'restaurant' ? '#547076' : '#7d133a';
     g.strokeStyle = ink;
     // Single pins wear their category colour (the same chord as the footprints and the Key); cluster badges stay white.
-    g.fillStyle = cluster ? '#fff' : kind.startsWith('cafe') && kind !== 'cafe-hidden' ? '#f58e84' : kind === 'coworking' ? '#f5ecc2' : kind === 'library' ? '#819238' : kind === 'restaurant' ? '#a5c8d1' : '#fff';
+    g.fillStyle = cluster ? '#fff' : kind.startsWith('cafe') && kind !== 'cafe-hidden' ? '#f58e84' : kind === 'coworking' ? '#f5ecc2' : kind === 'library' ? '#819238' : kind === 'restaurant' ? '#a5c8d1' : kind === 'cannabis' ? '#b39ddb' : '#fff';
     g.lineWidth = cluster ? 1 : 1.6; // cluster badges are hairline labels; the single pin stays the stronger mark
     g.beginPath();
     if (cluster) {

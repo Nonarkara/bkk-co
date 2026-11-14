@@ -57,7 +57,7 @@ Wada plate 273 (locally credited catalogue: `~/Projects/palette/data/colors.json
 - colour #9a6240: crayon character hair highlight (illustration only).
 
 ## Building-place colors · owner request7November2026
-- Manga footprint fills use Palette combination320: Café=Coral Red`#f58e84`, Co-work=Sulpher Yellow`#f5ecc2`, Library=Oil Green`#819238`, Food=Light Glaucous Blue`#a5c8d1`. These are credited digital catalogue conversions, not exact historical ink. Four data roles, not new interface accents.
+- Manga footprint fills use Palette combination320: Café=Coral Red`#f58e84`, Co-work=Sulpher Yellow`#f5ecc2`, Library=Oil Green`#819238`, Food=Light Glaucous Blue`#a5c8d1`, Dispensary=Wisteria`#b39ddb`. These are credited digital catalogue conversions, not exact historical ink. Five data roles, not new interface accents.
 - White paper/dark outlines carry the scene. Category textures render at72% opacity beneath the existing screentone; icons and textures carry meaning without hue. Mixed categories have striped fills.
 - A fill says a matching selected category pin lies strictly inside this actual source Polygon. It does not classify the entire building's use or every floor. Unmatched footprints, holes, ambiguous boundaries and outside points remain neutral. Never assign a nearest building. Never tint an entire merged vector-feature ID: one ID may group thousands of unrelated footprints.
 - The main map retains source linework, routes and symbols. Native3D uses unchanged explicit source heights, with colors only on the corresponding single-component source footprint. Unknown heights stay flat. Both primary manga and secondary precision mode retain the same position and GPS.

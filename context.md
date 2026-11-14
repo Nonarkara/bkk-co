@@ -48,20 +48,20 @@ MiniMax/other adopted work in ee26572/ba6be14/4d496db is preserved. Manga lens l
 57,379 cleaned places; 86 retired-ID aliases remain authoritative. Compact list tools are 83px on phone and 81px on desktop; default sort is distance from map centre. Explore and Filters disclose secondary choices. Five optional source-backed Street sketch areas use actual OSM street nodes and explicit building heights only; unknowns stay flat. PR7 media and PR8 density are adapted against current main, with source uncertainty and exact count tests. See docs/reconciliation-2026-11-04/{PR-LEDGER,WORLD-REVIEW,VALIDATION,DATA,SHIP}.md for provenance, release evidence and limitations. Global and repo AGENTS.md persist MSH, attention hierarchy and interruptible motion. Historical counts and reports below retain their dates.
 
 ## What it is
-One map of Bangkok places you can work from: cafés, co-working, libraries, restaurants.
+One map of Bangkok places you can work from: cafés, co-working, libraries, restaurants. CL;UB (Cannabis Laboratory) is the same codebase as PL;UB, retasked to scout cannabis stores and dispensaries around Thailand from open data only. Same MSH rules, same glance path, same kinetic grids — different catalogue kind.
 Places come from open data; work scores (Wi-Fi, outlets, quiet, laptop-friendly) come from visitors.
 
 ## Data (rebuild: `python3 scripts/build-places.py`)
 | Source | Licence | Pin | Notes |
 |---|---|---|---|
 | OpenStreetMap, Geofabrik `thailand-261024.osm.pbf` | ODbL-1.0 | node, or mean of the venue's own footprint | MD5-pinned; unnamed venues dropped, never named |
-| Overture Maps Places `2026-10-21.0` | CDLA-Permissive-2.0 | source point | confidence floor cafe 0.6, restaurant 0.8, coworking 0.5, library 0.6; open only |
+| Overture Maps Places `2026-10-21.0` | CDLA-Permissive-2.0 | source point | confidence floor cafe 0.6, restaurant 0.8, coworking 0.5, library 0.6, cannabis 0.5; open only |
 
 Merge rule: same normalised name within 60 m = one venue, OSM wins and borrows Overture's website/phone.
 Raw sources live in `../source-cache/` (outside the repo). Refresh Overture: `--fetch-overture`, then bump `OV_RELEASE`.
 Not used on purpose: Google Maps scraping or API (ToS, takedown risk, cost). Add the paid Places API later if cash flow allows.
 
-Counts (build of 2026-11-02, v2): 57,538 places = 20,235 café + 36,818 restaurant + 57 co-working + 428 library.
+Counts (build of 2026-11-02, v2): 57,538 places = 20,235 café + 36,818 restaurant + 57 co-working + 428 library. CL;UB cannabis kind: 0 until rebuilt with cannabis tags; OSM shop=cannabis/beverages=cannabis and Overture cannabis_store/dispensary picked up on next build.
 Names that only describe a category ("Entrance", "ร้านอาหาร" = "restaurant") are dropped like unnamed ones; Latin-letter matching merges OSM/Overture twins.
 Only 535 carry a Wi-Fi tag and ~1,500 carry opening hours; the crowd scores are what fills the gap.
 
@@ -99,6 +99,9 @@ or a name starting with a brand key of 6+ letters seen ≥3×, or a `KNOWN_CHAIN
 - **Near me now** (views.js `openNow`): your location (or map centre, said so), walk ≈ 800 m or drive ≈ 2 km straight line, same bank of the Chao Phraya only. Needs Wi-Fi / Parking (mapped car park ≤ 150 m) / Calm (visitor quiet ≥ 2.5) / Coffee (independent café or a visit noting good coffee, flag 512) are ranked, not required, each ✓ known or ? unknown, with Google and Apple Maps directions. Never a place listed as closed now.
 - **Café hop** (`openHop`, `?hop=<slug|here>`): 5 independent cafés ✦ ≥ 70, 250–800 m apart, never crossing the Chao Phraya (`data/barriers.json`, OSM river line), one Google Maps walking link with waypoints; distances are straight lines, so 'at least'. `?hop=@lat,lng` shares a 'here' hop.
 - **Parking**: distance to the nearest OSM `amenity=parking` (not private) or Overture `parking`; `F_PARK` when ≤ 150 m (16,625 places). Car parks inside private lots are often unmapped, so "?" stays common.
+
+## Thai cannabis law — CL;UB operates within it
+Cannabis was removed from Thailand's narcotics list in June 2022, then recreational use was re-criminalized under the Cannabis and Hemp Act (2024). Medical cannabis is legal with Thai FDA licensing; dispensaries require a licence. CL;UB does not sell, deliver, or facilitate cannabis transactions. It maps licensed dispensaries from open data (OSM/Overture) and hand pins from real visits — no Google scraping, no directory crawling, no private groups. A dimension with no evidence stays unknown; it never becomes zero. Unknown buildings stay flat; no guessed heights or locations.
 
 ## Hand pins — `data/additions.json`
 Places no open dataset has yet, added after a real visit: name, kind, location confirmed by the visitor, date, description. Built in like OSM (`src: hand`, flag 128) and labelled "Hand pin · who, when · not on OpenStreetMap yet". First: Maison space, Ram Inthra (owner's visit, 2026-11-02). The lasting fix is an OpenStreetMap note (the "Missing a place?" links).

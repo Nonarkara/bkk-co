@@ -1,6 +1,6 @@
 // PLUB · Placemaking Laboratory Urban Bureau. Map, filters, sorting, search, place sheet. No bundler, no framework.
 // views.js adds the guide, neighbourhood and passport sheets on top of the helpers defined here.
-const KIND_LABEL = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library' };
+const KIND_LABEL = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library', cannabis: 'Dispensary' };
 const safeLink = value => { try { const u=new URL(value); return ['https:','http:'].includes(u.protocol) && !u.username && !u.password ? u.href : null; } catch { return null; } };
 const F = { WIFI: 1, NOWIFI: 2, HOURS: 4, OUTDOOR: 8, OVERTURE: 16, CHAIN: 32, NOTABLE: 64, HAND: 128, PARK: 256, COFFEE: 512 }; // same bits as build-places.py
 // a place nobody has mapped yet goes to OpenStreetMap as a note; the next rebuild picks it up once mapped
@@ -198,7 +198,7 @@ const PIN_LAYERS = ['pins-city', 'pins-street', 'pins', 'place-icons'];
 
 // ---------- map layers ----------
 map.on('load', async () => {
-  map.addSource('places', { type: 'geojson', cluster:true, clusterRadius:72, clusterMaxZoom:19, maxzoom:20, clusterProperties:Object.fromEntries([['cafes','cafe'],['food','restaurant'],['work','coworking'],['books','library']].map(([key,kind])=>[key,['+',['case',['==',['get','k'],kind],1,0]]])), data: { type: 'FeatureCollection', features: [] } });
+  map.addSource('places', { type: 'geojson', cluster:true, clusterRadius:72, clusterMaxZoom:19, maxzoom:20, clusterProperties:Object.fromEntries([['cafes','cafe'],['food','restaurant'],['work','coworking'],['books','library'],['cannabis','cannabis']].map(([key,kind])=>[key,['+',['case',['==',['get','k'],kind],1,0]]])), data: { type: 'FeatureCollection', features: [] } });
   map.addSource('sel', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
   window.addHoodLayers?.(); // views.js: neighbourhood rings sit under the pins
   // Every matching record participates in clustering. These transparent backing layers
@@ -274,7 +274,7 @@ const SORTS = {
 };
 
 const listGroups = [
-  ['cafe', 'Cafés'], ['coworking', 'Co-working'], ['library', 'Libraries'], ['restaurant', 'Food'],
+  ['cafe', 'Cafés'], ['coworking', 'Co-working'], ['library', 'Libraries'], ['cannabis', 'Dispensaries'], ['restaurant', 'Food'],
 ];
 const listPreview = 3;
 const listPageSize = 12;
