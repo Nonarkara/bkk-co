@@ -45,7 +45,12 @@ const MOODS = {
 const CELL = 20;
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const fmt = n => n.toLocaleString('en-US');
+// A catalogue name may be Thai. Thai needs its own face, its own leading and no
+// tracking — and the browser only applies those when the text is marked as Thai.
+// Without the mark, Thai names fall back to a Latin stack and their stacked
+// vowel/tone marks lose the room they need.
+// One implementation, shared: PlaceTools loads before every surface that names a place.
+const nm = s => PlaceTools.name(s);const fmt = n => n.toLocaleString('en-US');
 const isPhone = () => !window.matchMedia('(min-width: 900px)').matches;
 const metres = (a, b) => Math.hypot((a.y - b.y) * 111320, (a.x - b.x) * 111320 * Math.cos(a.y * Math.PI / 180));
 const digits = p => [...p.g].map(Number);
@@ -343,7 +348,7 @@ function row(p, key = `${p.idx} index`, list = false) {
     state.flags.has('work') ? `<span title="Work score" class="ws">${Math.round(ws)}</span>` : '',
   ].join(' ');
   const label=esc(p.n+(p.branch?', '+p.branch:'')+' · '+KIND_LABEL[p.k]);
-  const name=`${esc(p.n)}${p.branch?' '+branchTag(p):''}`;
+  const name=`${nm(p.n)}${p.branch?' '+branchTag(p):''}`;
   if(list)return `<li data-id="${esc(p.id)}"><button type="button" class="list-place" aria-label="${label}, ${esc(key)}">${PlaceTools.icon(p)}<span class="nm">${name}<span class="row-signals">${tail}</span></span><span class="idx" title="${state.sort==='near'?'Straight line from the map centre':'Computed catalogue signal, not a visitor star rating'}">${esc(key)}</span></button></li>`;
   return `<li data-id="${esc(p.id)}" role="option" aria-label="${label}">${PlaceTools.icon(p)}<span class="nm">${name}</span><span class="meta">${tail}</span><span class="idx">${esc(key)}</span></li>`;
 }
@@ -579,7 +584,7 @@ function renderSheet(p, d, visits, report) {
   const scroll = updating ? currentSheet.scrollTop : 0;
   const sheet = openSheet(`
     <header>
-      <h1>${esc(report?.venue || p.n)}${p.branch ? `<span class="th">${esc(p.branch)}</span>` : ''}${d.th ? `<span class="th" lang="th">${esc(d.th)}</span>` : ''}</h1>
+      <h1>${nm(report?.venue || p.n)}${p.branch ? `<span class="th">${esc(p.branch)}</span>` : ''}${d.th ? `<span class="th" lang="th">${esc(d.th)}</span>` : ''}</h1>
       <button class="close" aria-label="Close">×</button>
     </header>
     <div class="kindline">${PlaceTools.symbol(p.k)}${KIND_LABEL[p.k]}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>

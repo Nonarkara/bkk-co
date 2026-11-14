@@ -106,7 +106,7 @@
   panel.querySelector('[data-street-source]').href='https://www.openstreetmap.org/way/'+road.properties.sourceID.slice(1);
   panel.querySelector('.street-status').textContent=`${roadName(road)} · facing ${directionName(point().bearing+(position.direction<0?180:0)+look)} · ${Math.round(position.distance)} m along source line.`;
   panel.querySelector('[data-street-view]').textContent=view==='walk'?'Overview':'Low view';
-  const row=({p,metres})=>`<button class="street-place-name" data-street-place="${esc(p.id)}">${PlaceTools.symbol(p.k)} ${esc(p.n)}${p.branch?' · '+esc(p.branch):''}</button><div class="street-cafe-actions"><span class="src">${Math.round(metres)} m straight line</span><a href="${esc(JourneyModel.directions(p,null))}" target="_blank" rel="noopener">Directions ↗</a><button data-street-place="${esc(p.id)}">Notes &amp; place</button></div>`;
+  const row=({p,metres})=>`<button class="street-place-name" data-street-place="${esc(p.id)}">${PlaceTools.symbol(p.k)} ${PlaceTools.name(p.n)}${p.branch?' · '+esc(p.branch):''}</button><div class="street-cafe-actions"><span class="src">${Math.round(metres)} m straight line</span><a href="${esc(JourneyModel.directions(p,null))}" target="_blank" rel="noopener">Directions ↗</a><button data-street-place="${esc(p.id)}">Notes &amp; place</button></div>`;
   host.innerHTML=first?row(first)+(near.length>1?`<details><summary>${near.length-1} more nearby</summary>${near.slice(1,8).map(row).join('')}</details>`:''):'<p class="src">No selected work spots within 300 m. Step along the mapped street or choose another street.</p>';
   host.querySelectorAll('[data-street-place]').forEach(b=>b.onclick=()=>{pause();panel.hidden=true;select(state.byId.get(b.dataset.streetPlace),true)});
   strollDetails();
