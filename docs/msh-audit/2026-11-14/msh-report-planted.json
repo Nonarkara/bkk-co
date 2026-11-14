@@ -1,6 +1,6 @@
 {
   "stamp": "2026-11-14",
-  "base": "http://localhost:43991",
+  "base": "http://127.0.0.1:43827",
   "planted": true,
   "viewports": [
     {
@@ -14,6 +14,22 @@
         "share": 0.063
       },
       "mapShare": 0.889,
+      "mapShareNet": 0.421,
+      "mapOverlayShare": 0.4675,
+      "mapOverlays": [
+        {
+          "cls": "maplibregl-ctrl footprint-key-control",
+          "w": 178,
+          "h": 44,
+          "area": 7852
+        },
+        {
+          "cls": "atlas-tools",
+          "w": 281,
+          "h": 520,
+          "area": 146014
+        }
+      ],
       "mapIsFirst": true,
       "hierarchyRatio": 1.74,
       "top3": [
@@ -87,7 +103,7 @@
         "plantedRejected": true,
         "pass": true
       },
-      "verdict": "REVISE"
+      "verdict": "BLOCK"
     },
     {
       "width": 1024,
@@ -100,6 +116,22 @@
         "share": 0.059
       },
       "mapShare": 0.648,
+      "mapShareNet": 0.37,
+      "mapOverlayShare": 0.2783,
+      "mapOverlays": [
+        {
+          "cls": "maplibregl-ctrl footprint-key-control",
+          "w": 178,
+          "h": 44,
+          "area": 7852
+        },
+        {
+          "cls": "atlas-tools",
+          "w": 478,
+          "h": 520,
+          "area": 248601
+        }
+      ],
       "mapIsFirst": true,
       "hierarchyRatio": 1.36,
       "top3": [
@@ -137,12 +169,8 @@
       "title": "PLUB · Placemaking Laboratory Urban Bureau",
       "pinsLayer": true,
       "placeSheet": {
-        "lines": 2,
-        "textWidth": 266.46875,
-        "factsHeight": 64.890625,
-        "directionsBottom": 214.1875,
-        "pass": true,
-        "plantedRejected": true
+        "pass": false,
+        "error": "locator.waitFor: Timeout 30000ms exceeded."
       },
       "visitReading": {
         "photoLeads": true,
@@ -173,7 +201,7 @@
         "plantedRejected": true,
         "pass": true
       },
-      "verdict": "REVISE"
+      "verdict": "BLOCK"
     },
     {
       "width": 1440,
@@ -186,6 +214,22 @@
         "share": 0.059
       },
       "mapShare": 0.75,
+      "mapShareNet": 0.432,
+      "mapOverlayShare": 0.3181,
+      "mapOverlays": [
+        {
+          "cls": "maplibregl-ctrl footprint-key-control",
+          "w": 178,
+          "h": 44,
+          "area": 7852
+        },
+        {
+          "cls": "atlas-tools",
+          "w": 778,
+          "h": 520,
+          "area": 404349
+        }
+      ],
       "mapIsFirst": true,
       "hierarchyRatio": 1.57,
       "top3": [
@@ -259,7 +303,7 @@
         "plantedRejected": true,
         "pass": true
       },
-      "verdict": "REVISE"
+      "verdict": "BLOCK"
     }
   ],
   "journey": {
@@ -291,7 +335,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 585
+      "observedHandoffMs": 1102
     },
     "notebook": 1,
     "walkthrough": {
@@ -308,12 +352,32 @@
     "errors": [],
     "writes": []
   },
-  "verdict": "REVISE",
+  "verdict": "BLOCK",
   "fails": [
+    {
+      "id": "B9 map share",
+      "detail": "the map holds 42% of the first screen once PLUB's own overlays are taken off it",
+      "width": 390
+    },
+    {
+      "id": "B9 map overlay chrome",
+      "detail": "PLUB's own overlays stand on 46.8% of the first screen: maplibregl-ctrl footprint-key-control 178x44; atlas-tools 281x520",
+      "width": 390
+    },
     {
       "id": "B9 map obstruction",
       "detail": "div covers 57% of the map",
       "width": 390
+    },
+    {
+      "id": "B9 map share",
+      "detail": "the map holds 37% of the first screen once PLUB's own overlays are taken off it",
+      "width": 1024
+    },
+    {
+      "id": "B9 map overlay chrome",
+      "detail": "PLUB's own overlays stand on 27.8% of the first screen: maplibregl-ctrl footprint-key-control 178x44; atlas-tools 478x520",
+      "width": 1024
     },
     {
       "id": "B9 map obstruction",
@@ -324,6 +388,21 @@
       "id": "B7 hierarchy",
       "detail": "top two areas differ by only 1.36x",
       "width": 1024
+    },
+    {
+      "id": "B1 place sheet",
+      "detail": "Bridge facts or Directions failed the reading budget: {\"pass\":false,\"error\":\"locator.waitFor: Timeout 30000ms exceeded.\"}",
+      "width": 1024
+    },
+    {
+      "id": "B9 map share",
+      "detail": "the map holds 43% of the first screen once PLUB's own overlays are taken off it",
+      "width": 1440
+    },
+    {
+      "id": "B9 map overlay chrome",
+      "detail": "PLUB's own overlays stand on 31.8% of the first screen: maplibregl-ctrl footprint-key-control 178x44; atlas-tools 778x520",
+      "width": 1440
     },
     {
       "id": "B9 map obstruction",

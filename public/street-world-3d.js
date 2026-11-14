@@ -1078,12 +1078,10 @@ export async function start(host, options = {}) {
   function openCard(p, pt) {
     cardEl.hidden = false;
     invalidate();
-    cardEl.querySelector('.model-card-title').textContent = p.endorsed ? `★ ${p.n}` : p.n;
+    cardEl.querySelector('.model-card-title').textContent = p.n;
     const distM = Math.round(Math.hypot(pt.x - S.px, pt.z - S.pz));
-    const endText = p.endorsed
-      ? `PLUB Endorsed · Google ★${p.endorsed.googleRating} (${p.endorsed.googleReviews}) · GGP ✦${p.endorsed.ggpScore} · ${p.endorsed.nomad?.bestFor || p.k} · ${distM} m`
-      : `✦${p.idx} Oldenburg index · ${p.k} · ${distM} m away`;
-    cardEl.querySelector('.model-card-meta').textContent = endText;
+    cardEl.querySelector('.model-card-meta').textContent =
+      `✦${p.idx} Oldenburg index · ${p.k} · ${distM} m away`;
 
     cardEl.querySelector('.model-card-stand').onclick = () => {
       if (standNear(pt.x, pt.z)) setMode('walk');
@@ -1132,7 +1130,7 @@ export async function start(host, options = {}) {
 
     // Draw pins
     for (const item of placePins) {
-      minimapCtx.fillStyle = item.p.endorsed ? '#f59e0b' : '#7d133a';
+      minimapCtx.fillStyle = '#7d133a';
       minimapCtx.fillRect(cx + item.x * scale - 1.5, cy + item.z * scale - 1.5, 3, 3);
     }
 

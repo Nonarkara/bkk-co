@@ -78,7 +78,13 @@ async function main() {
     await (step(cmd, async () => {
       const parts = cmd.split(/\s+/);
       const env = { ...process.env };
-      for (const p of parts) if (p.includes('=')) { const [k, v] = p.split('='); env[k] = v; }
+      // A CI line may carry environment assignments before the command; without
+      // this the orchestrator runs "PLUB_VENDOR_INDEX=1" as the executable and
+      // two healthy tests look broken.
+      while (parts.length && /^[A-Za-z_][A-Za-z0-9_]*=/.test(parts[0])) {
+        const [k, ...v] = parts.shift().split('=');
+        env[k] = v.join('=');
+      }
       const r = await run(parts[0], parts.slice(1), { cwd: ROOT, env, maxBuffer: 64 * 1024 * 1024 });
       const last = String(r.stdout).trim().split('\n').filter(Boolean).pop() || '';
       return last.slice(0, 140);
@@ -94,14 +100,13 @@ async function main() {
   }))();
 
   await (step('MSH gate must fail on a planted defect', async () => {
-    let caught = false;
-    try {
-      await run('node', ['scripts/audit-msh.mjs', '--planted'], { cwd: ROOT, env: { ...process.env, PLUB_URL: BASE }, maxBuffer: 32 * 1024 * 1024 });
-    } catch (error) {
-      caught = /the gate caught it: true/.test((error.stdout || '') + (error.stderr || ''));
-    }
-    if (!caught) throw new Error('the planted defect passed the gate');
-    return 'the gate caught it';
+    // The planted run exits 0 on purpose: it reports the failures it caught.
+    // What matters is that it caught them.
+    const r = await run('node', ['scripts/audit-msh.mjs', '--planted'], { cwd: ROOT, env: { ...process.env, PLUB_URL: BASE }, maxBuffer: 32 * 1024 * 1024 });
+    const out = String(r.stdout) + String(r.stderr || '');
+    if (!/the gate caught it: true/.test(out)) throw new Error(out.slice(-800));
+    const n = out.match(/Planted defect: (\d+) failure/);
+    return `the gate caught ${n ? n[1] : '?'} planted failure(s)`;
   }))();
 
   // 4. the raw-source equality check, when the pinned snapshot is on this machine
