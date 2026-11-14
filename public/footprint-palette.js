@@ -1,6 +1,9 @@
 // Palette320 marks contained matching place records, never a whole source-feature ID.
+// Four data roles, because plate 320 holds four colours and the catalogue holds four
+// kinds of place. A fifth role joins when a rebuild brings the kind — and then it
+// takes a colour the catalogue actually owns, and the legend names it.
 (() => {
- const chord=[{kind:'cafe',name:'Café',color:'#f58e84'},{kind:'coworking',name:'Co-work',color:'#f5ecc2'},{kind:'library',name:'Library',color:'#819238'},{kind:'restaurant',name:'Food',color:'#a5c8d1'},{kind:'cannabis',name:'Dispensary',color:'#b39ddb'}];
+ const chord=[{kind:'cafe',name:'Café',color:'#f58e84'},{kind:'coworking',name:'Co-work',color:'#f5ecc2'},{kind:'library',name:'Library',color:'#819238'},{kind:'restaurant',name:'Food',color:'#a5c8d1'}];
  const source='palette-footprints',layer='manga-place-footprints',empty=()=>({type:'FeatureCollection',features:[]});
  let map,keyBox,grid=FootprintModel.index([]),timer,last='',current=empty(),streetStates=new Set(),retained=null,retainedGrid=null,retainedData=null,sourceState='loading',sourcePromise=null;const swatches=new Map();
  function tile(mask){

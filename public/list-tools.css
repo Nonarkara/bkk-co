@@ -6,7 +6,7 @@
   border:1px solid var(--ink); background:var(--ink); color:var(--paper);
   cursor:pointer; }
 .list-tools > .list-find:hover { background:var(--muted); }
-.list-tools > .list-find[aria-pressed="true"] { background:var(--amber); color:var(--ink); }
+.list-tools > .list-find[aria-pressed="true"] { background:var(--ink); color:var(--paper); border-color:var(--ink); }
 .list-tools > .list-walkthrough { /* secondary action */
   min-height:32px; padding:3px 7px; font-weight:500; font-size:var(--small);
   border:1px solid var(--rule); background:var(--paper); color:var(--muted); cursor:pointer; }

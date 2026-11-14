@@ -102,7 +102,7 @@ function strip(h) {
     ${all.map(v => `<line x1="${x(v)}" y1="17" x2="${x(v)}" y2="27" stroke="#b6bfc1" stroke-width=".8"/>`).join('')}
     <line x1="${x(med)}" y1="12" x2="${x(med)}" y2="32" stroke="#974261" stroke-dasharray="2 2"/>
     <text x="${x(med)}" y="9" text-anchor="middle">median ${med}</text>
-    <line x1="${x(h.stats.work)}" y1="6" x2="${x(h.stats.work)}" y2="36" stroke="#f59e0b" stroke-width="3"/>
+    <line x1="${x(h.stats.work)}" y1="6" x2="${x(h.stats.work)}" y2="36" stroke="#7d133a" stroke-width="3"/>
     <text x="${Math.min(W - 20, x(h.stats.work))}" y="40" text-anchor="end">${h.stats.work}</text></svg>`;
 }
 
@@ -170,11 +170,11 @@ function histogram(P) {
   const bins = new Array(20).fill(0);
   for (const p of P) bins[Math.min(19, Math.floor(p.idx / 5))]++;
   const max = Math.max(...bins), W = 300, H = 56, bw = W / 20;
-  const marks = hoods.list.map(h => `<line x1="${h.stats.ggp / 100 * W}" y1="0" x2="${h.stats.ggp / 100 * W}" y2="${H}" stroke="#f59e0b" stroke-width="1.5"/>`).join('');
+  const marks = hoods.list.map(h => `<line x1="${h.stats.ggp / 100 * W}" y1="0" x2="${h.stats.ggp / 100 * W}" y2="${H}" stroke="#7d133a" stroke-width="1.5"/>`).join('');
   return `<svg class="hist" viewBox="0 0 ${W} ${H + 12}" role="img" aria-label="Distribution of the Great Good Place index across ${P.length} places">
     ${bins.map((b, i) => `<rect x="${i * bw + 1}" y="${H - b / max * H}" width="${bw - 2}" height="${b / max * H}" fill="#c08da2"/>`).join('')}
     ${marks}<line x1="0" y1="${H}" x2="${W}" y2="${H}" stroke="#7d133a"/>
-    <text x="0" y="${H + 11}">0</text><text x="${W / 2}" y="${H + 11}" text-anchor="middle">✦ index · amber = the four neighbourhoods</text><text x="${W}" y="${H + 11}" text-anchor="end">100</text></svg>`;
+    <text x="0" y="${H + 11}">0</text><text x="${W / 2}" y="${H + 11}" text-anchor="middle">✦ index · each line is a neighbourhood</text><text x="${W}" y="${H + 11}" text-anchor="end">100</text></svg>`;
 }
 
 // ---------- the guide ----------

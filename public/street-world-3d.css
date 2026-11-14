@@ -168,7 +168,7 @@
   flex: none;
 }
 .pin-dot.cafe { background: var(--ink, #7d133a); }
-.pin-dot.coworking { background: var(--amber, #f59e0b); }
+.pin-dot.coworking { background: var(--accent); }
 .pin-dot.library { background: #fff; box-shadow: inset 0 0 0 2px var(--ink, #7d133a); }
 .pin-dot.restaurant { background: var(--ink-45, #c08da2); }
 .pin-tag {

@@ -476,7 +476,7 @@ function petals(p, size = 76) {
   }).join('');
   return `<svg class="petals" viewBox="0 0 100 100" width="${size}" height="${size}" role="img" aria-label="Great Good Place profile">
     <circle cx="50" cy="50" r="43" fill="none" stroke="#b6bfc1" stroke-dasharray="2 3"/>${leaves}
-    <circle cx="50" cy="50" r="3" fill="#f59e0b"/></svg>`;
+    <circle cx="50" cy="50" r="3" fill="#7d133a"/></svg>`;
 }
 
 const dots = (v, max = 9) => `<span class="bars" aria-label="${v} of ${max}"><b>${'●'.repeat(Math.round(v * 5 / max))}</b><s>${'●'.repeat(5 - Math.round(v * 5 / max))}</s></span>`;
