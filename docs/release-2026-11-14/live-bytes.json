@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-11-14T09:22:29.355Z",
+  "observedAt": "2026-11-14T14:44:24.698Z",
   "origin": "https://co.nonarkara.org",
-  "sourceCommit": "d33db64bc47514fd553b3e16913007b3baa64af3",
+  "sourceCommit": "930c4d3882d1b4cf100373e36bbe0b22b4b310b8",
   "matched": [
     {
       "path": "app.js",
@@ -909,6 +909,11 @@
       "sha256": "f976d537bd89062c25c112ca7791dd55acfc70f4a819f696aae09ef435250d17"
     },
     {
+      "path": "data/height-coverage.json",
+      "bytes": 3486,
+      "sha256": "638d5eeea1e2671a0baf81f488b8283ff8922135f34c6257bd92a112a104d6a9"
+    },
+    {
       "path": "data/hoods.json",
       "bytes": 46812,
       "sha256": "434ff016584d8ce27ede22a3bcfe32a13ab31b163a1244007fd9cf715168796c"
@@ -1015,8 +1020,8 @@
     },
     {
       "path": "data/street-world.json",
-      "bytes": 9174,
-      "sha256": "663018b834a42c6549ea2f675b4348a57631e705694a0b59ac7dc1ab45dbc6bf"
+      "bytes": 9562,
+      "sha256": "731b016935f13948d61115944f1d29975aa5ea6fb6cb68a67e3c555ebf2cfce6"
     },
     {
       "path": "data/talk-media.json",
@@ -1920,8 +1925,8 @@
     },
     {
       "path": "research.js",
-      "bytes": 6254,
-      "sha256": "50dc292bd4e22b10716ae7bc3fe9358ee8d4c920df36c145c7d6499e12c40d62"
+      "bytes": 8784,
+      "sha256": "4088b6cb8e7cfa706b95f4b91704341e1aab39748ede9e88a885f48efd05ad28"
     },
     {
       "path": "street-model.js",
@@ -2018,7 +2023,7 @@
   "missing": [],
   "orphansStillServed": [],
   "summary": {
-    "matched": 402,
+    "matched": 403,
     "mismatched": 0,
     "missing": 0,
     "orphansStillServed": 0
