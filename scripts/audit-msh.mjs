@@ -258,6 +258,32 @@ async function ready(page) {
   return page.evaluate(() => !!map.getLayer('place-icons'));
 }
 
+// A Thai name must wear the Thai face. The browser only applies the Thai font
+// stack and its leading when the text is marked as Thai, so a catalogue name
+// that is Thai has to carry that mark or it falls back to a Latin stack.
+async function checkThaiName(page, base) {
+  await page.goto(new URL('/?p=n1199631258', base).href, { waitUntil: 'domcontentloaded', timeout: 120000 });
+  await page.waitForFunction(() => {
+    const h1 = document.querySelector('#sheet h1');
+    return h1 && /[\u0E00-\u0E7F]/.test(h1.textContent || '');
+  }, {}, { timeout: 45000 }).catch(() => { });
+  await page.evaluate(() => document.fonts.ready);
+  return page.evaluate(() => {
+    const h1 = document.querySelector('#sheet h1');
+    if (!h1) return { pass: false, why: 'the place sheet did not open' };
+    const span = h1.querySelector('[lang=th]') || h1;
+    const cs = getComputedStyle(span);
+    const thai = /Prompt/.test(cs.fontFamily);
+    const leading = parseFloat(cs.lineHeight) / parseFloat(cs.fontSize);
+    return {
+      text: (span.textContent || '').trim().slice(0, 40),
+      font: cs.fontFamily.split(',')[0], size: cs.fontSize, leading: +leading.toFixed(2),
+      marked: !!h1.querySelector('[lang=th]'),
+      pass: thai && leading > 1.5 && leading < 1.9,
+    };
+  });
+}
+
 async function checkPlaceSheet(page, base) {
   await page.goto(new URL('/?p=o71358a621d50', base).href, { waitUntil: 'domcontentloaded', timeout: 120000 });
   await page.locator('.place-visit-report a').waitFor({ timeout: 30000 });
@@ -516,6 +542,7 @@ function verdictFor(view, journey) {
   if (!view.task.search || !view.task.count) F('B1 first-screen task', 'the search or the count is below the fold');
   if (view.lang !== 'en') F('B12 language', `lang is "${view.lang}"`);
   if (view.placeSheet && (!view.placeSheet.pass || (PLANTED && view.placeSheet.plantedRejected !== true))) F('B1 place sheet', `Bridge facts or Directions failed the reading budget: ${JSON.stringify(view.placeSheet)}`);
+  if (view.thaiName && !view.thaiName.pass) F('B12 Thai typography', `a Thai place name does not wear the Thai face: ${JSON.stringify(view.thaiName)}`);
   if (view.visitReading && (!view.visitReading.pass || (PLANTED && view.visitReading.plantedRejected !== true))) F('B1 visit reading order', `Bridge photo, facts and actions failed the reading budget: ${JSON.stringify(view.visitReading)}`);
   if (view.dayPlanner && (!view.dayPlanner.pass || (PLANTED && view.dayPlanner.plantedRejected !== true))) F('B1 day planner', `A planner action failed the first-screen budget: ${JSON.stringify(view.dayPlanner)}`);
   if (journey) {
@@ -582,6 +609,10 @@ try {
     await page.screenshot({ path: new URL(`${PLANTED ? 'visit-planted' : 'visit'}-${w}.png`, outDir).pathname });
     try { view.dayPlanner = await checkDayPlanner(page, base); }
     catch (error) { view.dayPlanner = { pass: false, error: String(error.message).split('\n')[0] }; }
+    // Last, because it opens a different place: the shots above must keep the page
+    // they were taken on.
+    try { view.thaiName = await checkThaiName(page, base); }
+    catch (error) { view.thaiName = { pass: false, error: String(error.message).split('\n')[0] }; }
     report.viewports.push({ width: w, height: h, ...view });
     await context.close();
   }
