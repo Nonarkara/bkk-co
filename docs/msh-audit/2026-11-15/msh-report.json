@@ -1,6 +1,6 @@
 {
   "stamp": "2026-11-15",
-  "base": "http://127.0.0.1:43827",
+  "base": "http://localhost:43991",
   "planted": false,
   "viewports": [
     {
@@ -335,7 +335,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 492
+      "observedHandoffMs": 417
     },
     "notebook": 1,
     "walkthrough": {
@@ -353,5 +353,13 @@
     "writes": []
   },
   "verdict": "PASS",
-  "fails": []
+  "fails": [],
+  "enlargedText": {
+    "viewport": 260,
+    "searchWidth": 161,
+    "barOverflow": 0,
+    "bleed": false,
+    "inputPresent": true,
+    "pass": true
+  }
 }

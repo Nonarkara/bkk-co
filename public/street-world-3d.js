@@ -473,10 +473,12 @@ export async function start(host, options = {}) {
     <canvas class="model-canvas" tabindex="0" role="img" aria-label="3D Screentoned Manga Bangkok Walkthrough"></canvas>
     <div class="model-bar">
       <label class="model-area"><span class="sr">Neighbourhood</span><select aria-label="Neighbourhood">${areaOptions}</select></label>
-      <div class="model-seg model-seg--mode" role="group" aria-label="Camera mode">
-        <button type="button" data-mode="sky" aria-pressed="true">Overview</button>
-        <button type="button" data-mode="walk" aria-pressed="false">Street level</button>
+      <div class="model-seg model-seg--mode" role="group" aria-label="Camera perspective">
+        <button type="button" data-mode="sky" data-preset="aerial" aria-pressed="true">Aerial</button>
+        <button type="button" data-mode="sky" data-preset="rooftop" aria-pressed="false">Rooftop</button>
+        <button type="button" data-mode="walk" aria-pressed="false">Street</button>
       </div>
+      <button type="button" class="model-hunt-hud" data-act-hunt title="District Scavenger Hunt: visit or tap 5 spots in 3D (click to jump to next)"><span class="hunt-dot" aria-hidden="true"></span><span class="hunt-label">Hunt 0/5</span></button>
       <label class="model-light"><span class="sr">Light</span><select aria-label="Light">
         <option value="day">Day</option>
         <option value="dusk">Dusk</option>
@@ -618,6 +620,44 @@ export async function start(host, options = {}) {
   sky.renderOrder = -1;
   sky.frustumCulled = false;
   scene.add(sky);
+  const huntGroup = new THREE.Group();
+  scene.add(huntGroup);
+  let huntTargets = [];
+  const huntBtn = bar.querySelector('[data-act-hunt]');
+  const huntStorageKey = () => `plub_hunt_${activeArea?.id || 'bkk'}`;
+  function getFoundHunt() {
+    try { return new Set(JSON.parse(localStorage.getItem(huntStorageKey()) || '[]')); } catch { return new Set(); }
+  }
+  function saveFoundHunt(found) {
+    try { localStorage.setItem(huntStorageKey(), JSON.stringify([...found])); } catch {}
+  }
+  function updateHuntHud(msg) {
+    const found = getFoundHunt();
+    const done = huntTargets.filter(t => found.has(t.p.id)).length;
+    const total = huntTargets.length;
+    if (huntBtn) {
+      huntBtn.hidden = !total;
+      huntBtn.querySelector('.hunt-label').textContent = total && done === total ? `Hunt ${done}/${total} ✓` : `Hunt ${done}/${total}`;
+      huntBtn.classList.toggle('is-complete', total > 0 && done === total);
+    }
+    if (msg) coverageEl.textContent = msg;
+  }
+  function markHuntFound(p) {
+    if (!huntTargets.some(t => t.p.id === p.id)) return false;
+    const found = getFoundHunt();
+    if (found.has(p.id)) return false;
+    found.add(p.id);
+    saveFoundHunt(found);
+    const t = huntTargets.find(x => x.p.id === p.id);
+    if (t?.beacon) t.beacon.visible = false;
+    if (t?.btn) t.btn.classList.add('is-found');
+    const done = huntTargets.filter(x => found.has(x.p.id)).length;
+    updateHuntHud(done === huntTargets.length
+      ? `District Hunt complete! ${done}/${huntTargets.length} spots found — ${p.n}`
+      : `Hunt ${done}/${huntTargets.length}: found ${p.n}`);
+    invalidate();
+    return true;
+  }
 
   // Camera & Style State
   const S = {
@@ -1052,6 +1092,12 @@ export async function start(host, options = {}) {
 
   function createPins(ids) {
     pinsContainer.replaceChildren();
+    while (huntGroup.children.length) {
+      const c = huntGroup.children.pop();
+      c.geometry?.dispose?.();
+      c.material?.dispose?.();
+    }
+    huntTargets = [];
     const extra = (window.state?.clubMode && window.state?.kinds?.has('cannabis') && activeArea)
       ? window.state.places.filter(p => p.k === 'cannabis' && Math.hypot((p.y - activeArea.anchor.y) * 111320, (p.x - activeArea.anchor.x) * 111320 * Math.cos(activeArea.anchor.y * Math.PI / 180)) <= (activeArea.radiusM || 800))
       : [];
@@ -1059,21 +1105,48 @@ export async function start(host, options = {}) {
       .sort((a, b) => Math.hypot(a.x - activeArea.anchor.x, a.y - activeArea.anchor.y) -
                      Math.hypot(b.x - activeArea.anchor.x, b.y - activeArea.anchor.y));
 
+    const foundSet = getFoundHunt();
+    const huntPool = areaPlaces.filter(p => p.k === 'cafe' || p.k === 'coworking' || p.k === 'cannabis').slice(0, 5);
+    const huntIds = new Set(huntPool.map(p => p.id));
+
     placePins = areaPlaces.slice(0, 48).map(p => {
       const pt = project(p.y, p.x);
+      const isHunt = huntIds.has(p.id);
+      const isFound = isHunt && foundSet.has(p.id);
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = `model-pin pin-${p.k}`;
+      btn.className = `model-pin pin-${p.k}${isHunt ? ' model-pin-hunt' : ''}${isFound ? ' is-found' : ''}`;
       btn.setAttribute('aria-label', p.n);
       btn.innerHTML = `<span class="pin-dot ${p.k}" aria-hidden="true"></span><span class="pin-tag"></span>`;
-      btn.querySelector('.pin-tag').textContent = p.n;
+      btn.querySelector('.pin-tag').textContent = isHunt ? `${isFound ? '✓ ' : '★ '}${p.n}` : p.n;
       btn.addEventListener('click', e => {
         e.stopPropagation();
+        markHuntFound(p);
         openCard(p, pt);
       });
       pinsContainer.appendChild(btn);
+      if (isHunt) {
+        const beacon = new THREE.Group();
+        beacon.position.set(pt.x, 0, pt.z);
+        const pillar = new THREE.Mesh(
+          new THREE.CylinderGeometry(1.1, 1.1, 46, 10),
+          new THREE.MeshBasicMaterial({ color: 0xdd4027, transparent: true, opacity: 0.52 })
+        );
+        pillar.position.y = 23;
+        const ring = new THREE.Mesh(
+          new THREE.RingGeometry(4.5, 6.2, 24),
+          new THREE.MeshBasicMaterial({ color: 0xdd4027, side: THREE.DoubleSide, transparent: true, opacity: 0.78 })
+        );
+        ring.rotation.x = -Math.PI / 2;
+        ring.position.y = 0.25;
+        beacon.add(pillar, ring);
+        beacon.visible = !isFound;
+        huntGroup.add(beacon);
+        huntTargets.push({ p, x: pt.x, z: pt.z, btn, beacon });
+      }
       return { p, x: pt.x, z: pt.z, btn };
     });
+    updateHuntHud();
   }
 
   function openCard(p, pt) {
@@ -1187,10 +1260,19 @@ export async function start(host, options = {}) {
     }
   }
 
-  function setMode(m) {
+  function setMode(m, preset) {
     clearInput();
     S.mode = m;
-    bar.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+    if (m === 'sky') {
+      if (preset === 'rooftop') { S.pitch = 0.28; S.dist = 140; }
+      else if (preset === 'aerial') { S.pitch = 0.82; S.dist = 330; }
+    }
+    bar.querySelectorAll('[data-mode]').forEach(b => {
+      const active = m === 'walk'
+        ? b.dataset.mode === 'walk'
+        : b.dataset.mode === 'sky' && (preset ? b.dataset.preset === preset : b.dataset.preset === 'aerial');
+      b.setAttribute('aria-pressed', String(active));
+    });
     hintEl.textContent = m === 'walk'
       ? (matchMedia('(pointer: coarse)').matches ? 'Drag to look. Slide circle to walk.' : 'W A S D to walk · Drag to look · Shift to sprint')
       : (matchMedia('(pointer: coarse)').matches ? 'Drag to turn · Double-tap for street level' : 'Drag to rotate · Scroll to zoom · Double-click for street level');
@@ -1334,7 +1416,18 @@ export async function start(host, options = {}) {
   });
   bar.addEventListener('click', event => {
     const mode = event.target.closest('[data-mode]');
-    if (mode) setMode(mode.dataset.mode);
+    if (mode) { setMode(mode.dataset.mode, mode.dataset.preset); return; }
+    if (event.target.closest('[data-act-hunt]')) {
+      const found = getFoundHunt();
+      const next = huntTargets.find(t => !found.has(t.p.id)) || huntTargets[0];
+      if (next) {
+        S.x = next.x; S.z = next.z;
+        if (S.mode === 'walk') standNear(next.x, next.z);
+        else setMode('sky', 'rooftop');
+        updateHuntHud(`Next Hunt target: ${next.p.n}`);
+        invalidate();
+      }
+    }
   });
 
   function resize() {
@@ -1436,6 +1529,9 @@ export async function start(host, options = {}) {
           }
         }
         S.x = S.px; S.z = S.pz;
+        for (const t of huntTargets) {
+          if (Math.hypot(t.x - S.px, t.z - S.pz) <= 22) markHuntFound(t.p);
+        }
         dirty = true;
       }
     }

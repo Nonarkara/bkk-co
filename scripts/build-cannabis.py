@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Offline, reproducible open-data catalogue of Bangkok cannabis dispensaries and clinics for CL;UB.
-  OpenStreetMap  (ODbL-1.0)              -- Geofabrik extract, MD5-pinned
+"""Offline, reproducible open-data catalogue of Thailand cannabis dispensaries and clinics for CL;UB.
+  OpenStreetMap  (ODbL-1.0)              -- Geofabrik Thailand extract, MD5-pinned
   Overture Places (CDLA-Permissive-2.0)  -- release 2026-10-21.0, Bangkok bbox, sha-pinned
 Leaves the signed 57,379 work/food catalogue files (places-work.json, places-food.json) untouched.
 """
@@ -12,6 +12,9 @@ import importlib.util
 spec = importlib.util.spec_from_file_location('build_places', ROOT / 'scripts' / 'build-places.py')
 bp = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(bp)
+
+TH_BOUNDS = [97.2, 5.5, 105.8, 20.6]
+def inside_th(lng, lat): return TH_BOUNDS[0] <= lng <= TH_BOUNDS[2] and TH_BOUNDS[1] <= lat <= TH_BOUNDS[3]
 
 def classify_sub(name, th, cat, tax, tags=None):
     blob = f"{name or ''} {th or ''}".lower()
@@ -28,10 +31,11 @@ def load_osm_cannabis(skipped):
     with tempfile.TemporaryDirectory() as tmp:
         f, c, seq = [str(pathlib.Path(tmp) / n) for n in ('f.pbf', 'c.pbf', 'p.geojsonseq')]
         subprocess.run(['osmium', 'tags-filter', str(bp.OSM_PBF),
-                        'nwr/shop=cannabis,beverages,herbalist',
+                        'nwr/shop=cannabis,beverages,herbalist,tobacco',
                         'nwr/amenity=dispensary,pharmacy,cafe,clinic',
+                        'nwr/healthcare=clinic,pharmacy',
                         '-o', f, '--no-progress'], check=True)
-        subprocess.run(['osmium', 'extract', f, '--bbox', ','.join(map(str, bp.BOUNDS)), '-s', 'complete_ways',
+        subprocess.run(['osmium', 'extract', f, '--bbox', ','.join(map(str, TH_BOUNDS)), '-s', 'complete_ways',
                         '-o', c, '--no-progress'], check=True)
         subprocess.run(['osmium', 'export', c, '-f', 'geojsonseq', '-a', 'type,id',
                         '--geometry-types', 'point,polygon', '-o', seq, '--no-progress'], check=True)
@@ -59,7 +63,7 @@ def load_osm_cannabis(skipped):
                 skipped['osm_unnamed'] += 1
                 continue
             lng, lat = bp.centre(feat['geometry'])
-            if not bp.inside(lng, lat):
+            if not inside_th(lng, lat):
                 skipped['osm_outside'] += 1
                 continue
             th = (t.get('name:th') or '').strip()[:120]
@@ -133,12 +137,69 @@ def build():
                 existing_ids.add(r[0])
     places = [p for p in places if p['id'] not in existing_ids]
     bp.score_places(places, bp.load_stations(), bp.load_parking())
-    # Re-bonus W (work/amenities) for cannabis cafes/clinics with hours/wifi/web
-    for p in places:
+
+    # Spatial concentration across Thailand (250 m micro-cluster & 1 km corridor hub)
+    def dist_m(lat1, lng1, lat2, lng2):
+        dx = (lng2 - lng1) * 111320 * math.cos(math.radians((lat1 + lat2) * 0.5))
+        dy = (lat2 - lat1) * 110540
+        return math.hypot(dx, dy)
+
+    grid = collections.defaultdict(list)
+    for idx_p, p in enumerate(places):
+        grid[(int(p['y'] * 100), int(p['x'] * 100))].append(idx_p)
+
+    for idx_p, p in enumerate(places):
+        gy, gx = int(p['y'] * 100), int(p['x'] * 100)
+        n250, n1000 = 0, 0
+        for dy in (-1, 0, 1):
+            for dx in (-1, 0, 1):
+                for j in grid.get((gy + dy, gx + dx), ()):
+                    if j == idx_p:
+                        continue
+                    q = places[j]
+                    d = dist_m(p['y'], p['x'], q['y'], q['x'])
+                    if d <= 250:
+                        n250 += 1
+                    if d <= 1000:
+                        n1000 += 1
+        p['hub250m'] = n250
+        p['hub1km'] = n1000
+
         g = list(p['g'])
         w_score = (3 if p.get('sub') == 'cafe' else 2 if p.get('sub') == 'clinic' else 1) + (3 if p.get('w') == 'yes' else 0) + (2 if p.get('h') else 0) + (1 if p.get('web') or p.get('tel') else 0)
         g[4] = str(min(9, w_score))
         p['g'] = ''.join(g)
+
+        # CL;UB Operations & Concentration Rank (0-99)
+        tier_pts = 24 if p.get('sub') == 'clinic' else 20 if p.get('sub') == 'cafe' else 14
+        ops_pts = (18 if p.get('h') else 0) + (12 if p.get('web') or p.get('social') else 0) + (10 if p.get('tel') else 0) + (8 if p.get('addr') else 0)
+        conf_pts = 10 if (p.get('conf') or 0) >= 0.8 or p.get('src') == 'osm' else 5
+        hub_pts = min(18, n1000 * 2)
+        p['i'] = min(99, tier_pts + ops_pts + conf_pts + hub_pts)
+
+    # Precompute top concentrated dispensary hotspots across Thailand (1.5 km greedy clusters)
+    hotspots = []
+    taken = set()
+    for p in sorted(places, key=lambda r: (r['hub1km'], r['i']), reverse=True):
+        if p['id'] in taken or p['hub1km'] < 1:
+            continue
+        members = [q for q in places if dist_m(p['y'], p['x'], q['y'], q['x']) <= 1500]
+        if len(members) < 2:
+            continue
+        for q in members:
+            taken.add(q['id'])
+        hotspots.append({
+            'name': p['n'],
+            'lat': round(sum(q['y'] for q in members) / len(members), 5),
+            'lng': round(sum(q['x'] for q in members) / len(members), 5),
+            'count': len(members),
+            'clinics': sum(1 for q in members if q.get('sub') == 'clinic'),
+            'dispensaries': sum(1 for q in members if q.get('sub') == 'dispensary'),
+            'cafes': sum(1 for q in members if q.get('sub') == 'cafe'),
+            'topIndex': max(q['i'] for q in members),
+        })
+        if len(hotspots) >= 24:
+            break
 
     rows = []
     details = {}
@@ -149,7 +210,7 @@ def build():
                 (bp.F_CHAIN if p['chain'] else 0) | (bp.F_NOTABLE if p.get('notable') else 0) | \
                 (bp.F_PARK if p['park'] is not None and p['park'] <= bp.PARK_M else 0)
         rows.append([p['id'], p['n'], 0, p['y'], p['x'], flags, p['g'], p['i']] + ([p['h']] if p.get('h') else []))
-        det = {k: p[k] for k in ('th', 'h', 'c', 'web', 'social', 'tel', 'addr', 'conf', 'ds', 'm', 'sub') if p.get(k)}
+        det = {k: p[k] for k in ('th', 'h', 'c', 'web', 'social', 'tel', 'addr', 'conf', 'ds', 'm', 'sub', 'hub250m', 'hub1km') if p.get(k) is not None and p.get(k) != ''}
         if det:
             details[p['id']] = det
 
@@ -158,12 +219,13 @@ def build():
         'cols': ['id', 'name', 'kind', 'lat', 'lng', 'flags', 'metrics', 'index', 'hours?'],
         'metrics': bp.METRICS,
         'builtFrom': [
-            {'name': 'OpenStreetMap', 'asOf': bp.OSM_AS_OF, 'licence': 'ODbL-1.0'},
-            {'name': 'Overture Maps Places', 'release': bp.OV_RELEASE, 'licence': 'CDLA-Permissive-2.0', 'confidenceFloor': 0.5},
+            {'name': 'OpenStreetMap (Thailand)', 'asOf': bp.OSM_AS_OF, 'licence': 'ODbL-1.0'},
+            {'name': 'Overture Maps Places (Bangkok)', 'release': bp.OV_RELEASE, 'licence': 'CDLA-Permissive-2.0', 'confidenceFloor': 0.5},
         ],
         'total': len(rows),
         'bySource': dict(collections.Counter(p['src'] for p in places)),
         'bySub': dict(collections.Counter(p.get('sub', 'dispensary') for p in places)),
+        'hotspots': hotspots,
         'rows': rows,
         'details': details,
     }

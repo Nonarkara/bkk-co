@@ -78,7 +78,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .bar-brand { display: flex; align-items: center; padding-right: 12px; border-right: 1px solid var(--rule); flex: none; }
 /* The wordmark: PL;UB in his lettering. The semicolon is the seam between the two phrases. */
 .mark { font: 700 17px/1 "Sao Chingcha", var(--font); letter-spacing: .07em; text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; }
-.mark .semi { color: #e88ba1; display: inline-flex; align-items: center; }
+.mark .semi { color: var(--seam); display: inline-flex; align-items: center; }
 .plub-badge { display:inline-block; width:22px; height:22px; object-fit:cover; object-position:center top; border-radius:50%; }
 .brand-hero { display: block; width: 104px; height: 104px; }
 .search { flex: 1; position: relative; display: flex; align-items: center; min-width: 0; }
@@ -89,8 +89,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .bar-actions { display: flex; align-items: center; gap: 6px; flex: none; }
 .bar-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 10px; border: 1px solid var(--rule);
-  color: var(--ink); font: 500 var(--body)/1 var(--font); white-space: nowrap; background: var(--paper); cursor: pointer; }
-.bar-btn:hover { border-color: var(--ink); }
+  color: var(--muted); font: 500 var(--body)/1 var(--font); white-space: nowrap; background: var(--paper); cursor: pointer; }
+.bar-btn:hover { border-color: var(--ink); color: var(--ink); }
+.bar-btn-primary { border-color: var(--ink); color: var(--ink); background: var(--wash); font-weight: 600; }
+.bar-btn-primary:hover { background: var(--ink); color: var(--paper); }
 .bar-btn svg { display: block; }
 .count-badge { display: inline-block; padding: 2px 5px; font-size: var(--micro); font-weight: 600; font-variant-numeric: tabular-nums;
   background: var(--wash); border: 1px solid var(--rule); line-height: 1; }
@@ -154,6 +156,46 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .dot.library { background: var(--paper); box-shadow: inset 0 0 0 2px var(--ink); }
 .dot.restaurant { background: var(--ink-45); }
 .dot.cannabis { background: var(--cat-cannabis); }
+
+body.club-mode {
+  /* Sanzo Wada Botanical Green palette (plates 317 & 326, zoom-mood-provenance.json) */
+  --club-ink: #253122;
+  --club-muted: #547076;
+  --club-rule: #a1a39a;
+  --club-guide: #b5decc;
+  --club-seam: #87c540;
+  --club-oil: #819238;
+  --club-leaf: #afd472;
+  --club-teal: #099197;
+  color: var(--club-ink);
+}
+body.club-mode .mark .semi { color: var(--club-seam); }
+body.club-mode .bar,
+body.club-mode .chips,
+body.club-mode .list-options { border-color: var(--club-rule); }
+body.club-mode #map { background: var(--club-guide); }
+body.club-mode .bar-btn-primary,
+body.club-mode .list-tools > .list-walkthrough,
+body.club-mode .chips button[aria-pressed="true"] { border-color: var(--club-ink); color: var(--club-ink); }
+body.club-mode .bar-btn-primary:hover,
+body.club-mode .list-tools > .list-walkthrough:hover { background: var(--club-ink); color: var(--paper); }
+body.club-mode .club-hotspots { background: var(--wash); border-color: var(--club-rule); }
+body.club-mode .hotspots-head strong { color: var(--club-ink); }
+body.club-mode .hotspots-head { color: var(--club-muted); }
+body.club-mode .hotspot-pill { border-color: var(--club-rule); color: var(--club-ink); }
+body.club-mode .hotspot-pill:hover { border-color: var(--club-ink); background: var(--club-guide); }
+body.club-mode .hotspot-pill b { background: var(--club-leaf); color: var(--club-ink); }
+body.club-mode .list-tools > .list-find,
+body.club-mode .list-tools > .list-day { display: none; }
+.club-hotspots { padding: 8px var(--pad); border-bottom: 1px solid var(--rule); background: var(--wash); flex: none; }
+.club-hotspots[hidden] { display: none; }
+.hotspots-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px; font-size: var(--micro); color: var(--muted); }
+.hotspots-head strong { color: var(--ink); font-size: var(--small); font-weight: 600; }
+.hotspots-row { display: flex; flex-wrap: wrap; gap: 4px; }
+.hotspot-pill { display: inline-flex; align-items: center; gap: 5px; min-height: 28px; padding: 2px 8px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); font-size: var(--micro); cursor: pointer; max-width: 100%; }
+.hotspot-pill:hover { border-color: var(--ink); background: var(--guide); }
+.hotspot-pill b { font-weight: 700; color: var(--ink); background: var(--guide); padding: 0 4px; font-variant-numeric: tabular-nums; }
+.hotspot-pill span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 130px; }
 
 #map { grid-area: map; min-height: 0; background: var(--guide); } /* Grand Budapest ground before the first tile arrives */
 .phone-only { }

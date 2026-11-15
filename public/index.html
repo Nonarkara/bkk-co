@@ -47,7 +47,7 @@
     <input id="q" type="search" placeholder="Search" autocomplete="off" enterkeyhint="search">
   </label>
   <div class="bar-actions">
-    <button id="open-3d" class="bar-btn" data-act="walkthrough" aria-label="Walk 3D World: explore Bangkok streets in 3D"><span class="btn-lbl">3D</span></button>
+    <button id="open-3d" class="bar-btn bar-btn-primary" data-act="walkthrough" aria-label="3D District Scavenger Hunt: explore Bangkok streets in 3D"><span class="btn-lbl">3D Hunt</span></button>
     <button id="guide" class="bar-btn plub-btn" aria-label="Nong Plub's guide: neighbourhoods and how places are scored"><span class="btn-lbl">Guide</span></button>
     <button id="passport" class="bar-btn pass-btn" aria-label="Your notebook"><span>Notes</span><b id="pass-n" class="count-badge">0</b></button>
   </div>
@@ -67,10 +67,11 @@
 
 <aside id="side" class="side">
   <section id="list-wrap" class="list-wrap" aria-label="Places in view">
+    <div id="club-hotspots" class="club-hotspots" hidden></div>
     <div class="list-tools">
       <button class="list-find" data-act="work">Find a work spot</button>
+      <button class="list-walkthrough" data-act="walkthrough">3D Hunt</button>
       <a class="list-day" href="/day">Plan your day</a>
-      <button class="list-walkthrough" data-act="walkthrough">Walk 3D World</button>
       <button class="close list-close phone-only" aria-label="Close list">×</button>
     </div>
     <p id="mood" class="mood-bar" hidden aria-live="polite"></p>
@@ -107,6 +108,7 @@
         <option value="popular">Dataset footprint</option>
         <option value="notable">Notable records</option>
         <option value="work">Work signals</option>
+        <option value="hubs">Concentrated hubs (CL;UB)</option>
       </select></label></details>
       <span class="list-origin" id="list-origin">From map centre</span>
     </div>

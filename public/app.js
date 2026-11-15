@@ -59,7 +59,7 @@ const venueHours = p => window.WorkFinder?.hours(p) || p.hours;
 const state = {
   places: [], byId: new Map(), scores: {}, cells: new Map(), visited: new Map(), personalRatings: new Map(),
   kinds: new Set(['cafe', 'coworking', 'library']), flags: new Set(), // Food is one tap away, off by default
-  sort: 'near', mood: null, selected: null, foodLoaded: false, cannabisLoaded: false, clubMode: false, sortedIdx: [], sortedCannabisIdx: [],
+  sort: 'near', mood: null, selected: null, foodLoaded: false, cannabisLoaded: false, clubMode: false, sortedIdx: [], sortedCannabisIdx: [], cannabisHotspots: [],
 };
 window.state = state;
 const cannabisDetails = new Map();
@@ -146,7 +146,12 @@ async function loadCannabis() {
           state.places.push(p);
           state.byId.set(id, p);
         }
-        for (const [id, det] of Object.entries(d.details || {})) cannabisDetails.set(id, det);
+        for (const [id, det] of Object.entries(d.details || {})) {
+          cannabisDetails.set(id, det);
+          const place = state.byId.get(id);
+          if (place && det.hub1km) place.hub = det.hub1km;
+        }
+        state.cannabisHotspots = Array.isArray(d.hotspots) ? d.hotspots : [];
         state.sortedIdx = state.places.filter(p => p.k !== 'cannabis').map(p => p.idx).sort((a, b) => a - b);
         state.sortedCannabisIdx = state.places.filter(p => p.k === 'cannabis').map(p => p.idx).sort((a, b) => a - b);
         state.cannabisLoaded = true;
@@ -156,8 +161,23 @@ async function loadCannabis() {
   await cannabisPromise;
 }
 
+const BKK_BOUNDS = [[99.9, 13.1], [101.35, 14.45]];
+const TH_BOUNDS = [[97.0, 5.3], [106.0, 20.8]];
+
+function renderClubHotspots() {
+  const box = $('#club-hotspots');
+  if (!box) return;
+  if (!state.clubMode || !state.cannabisHotspots.length) { box.hidden = true; box.innerHTML = ''; return; }
+  box.hidden = false;
+  box.innerHTML = `<div class="hotspots-head"><strong>Thailand Dispensary Hotspots</strong><span>${state.sortedCannabisIdx.length} venues · click to jump</span></div>
+    <div class="hotspots-row">${state.cannabisHotspots.slice(0, 8).map((h, i) =>
+      `<button type="button" class="hotspot-pill" data-hotspot="${i}" title="${esc(h.name)} · ${h.count} venues within 1.5 km"><b>${h.count}</b><span>${esc(h.name)}</span></button>`
+    ).join('')}</div>`;
+}
+
 async function setClubMode(on) {
   state.clubMode = !!on;
+  document.body.classList.toggle('club-mode', on);
   const mark = $('.mark');
   if (mark) {
     const semi = mark.querySelector('.semi')?.outerHTML || '<span class="semi">;</span>';
@@ -167,16 +187,28 @@ async function setClubMode(on) {
   }
   const chip = document.querySelector('.chips [data-kind="cannabis"]');
   if (chip) chip.hidden = !on;
+  for (const b of document.querySelectorAll('.chips [data-kind]')) {
+    if (b.dataset.kind !== 'cannabis') b.hidden = on;
+  }
   const toggle = $('#club-toggle');
   if (toggle) toggle.setAttribute('aria-pressed', String(on));
   if (on) {
     await loadCannabis();
-    state.kinds.add('cannabis');
+    state.kinds = new Set(['cannabis']);
     if (chip) chip.setAttribute('aria-pressed', 'true');
+    map.setMaxBounds(TH_BOUNDS);
+    map.setMinZoom(5);
+    if (state.sort === 'work' || state.sort === 'sanctuary') state.sort = 'hubs';
   } else {
-    state.kinds.delete('cannabis');
+    state.kinds = new Set(['cafe', 'coworking', 'library']);
+    for (const b of document.querySelectorAll('.chips [data-kind]')) {
+      if (b.dataset.kind !== 'cannabis') b.setAttribute('aria-pressed', String(state.kinds.has(b.dataset.kind)));
+    }
     if (chip) chip.setAttribute('aria-pressed', 'false');
+    map.setMaxBounds(BKK_BOUNDS);
+    map.setMinZoom(9);
   }
+  renderClubHotspots();
   const u = new URL(location.href);
   if (on && location.hostname !== 'club.nonarkara.org') u.searchParams.set('mode', 'club');
   else u.searchParams.delete('mode');
@@ -341,10 +373,11 @@ const SORTS = {
   popular: (a, b) => b.d[3] - a.d[3] || b.d[1] - a.d[1] || b.idx - a.idx,
   notable: (a, b) => b.d[5] - a.d[5] || b.d[3] - a.d[3] || b.idx - a.idx,
   work: (a, b) => workScore(b) - workScore(a) || b.idx - a.idx,
+  hubs: (a, b) => (b.hub || 0) - (a.hub || 0) || b.idx - a.idx,
 };
 
 const listGroups = [
-  ['cafe', 'Cafés'], ['coworking', 'Co-working'], ['library', 'Libraries'], ['restaurant', 'Food'],
+  ['cafe', 'Cafés'], ['coworking', 'Co-working'], ['library', 'Libraries'], ['restaurant', 'Food'], ['cannabis', 'Dispensaries'],
 ];
 const listPreview = 3;
 const listPageSize = 12;
@@ -399,6 +432,7 @@ function sortKey(p, centre) {
     popular: `${p.d[3]}/9 footprint`,
     notable: p.d[5] ? 'record' : '—',
     work: `${Math.round(workScore(p))} work`,
+    hubs: p.hub ? `${p.hub + 1} in 1km` : 'solo',
   }[state.sort] || `${p.idx} index`;
 }
 
@@ -774,6 +808,14 @@ document.addEventListener('click', e => {
   }
   const h = e.target.closest('#mood [data-hood]');
   if (h) window.openHood?.(h.dataset.hood);
+  const hs = e.target.closest('[data-hotspot]');
+  if (hs) {
+    const spot = state.cannabisHotspots[Number(hs.dataset.hotspot)];
+    if (spot) {
+      map.flyTo({ center: [spot.lng, spot.lat], zoom: 15.2, duration: 500 });
+      if (isPhone()) setListOpen(false);
+    }
+  }
 });
 
 // an empty search box offers the moods: most people search by purpose before they know a name

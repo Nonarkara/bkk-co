@@ -100,6 +100,18 @@
   background: var(--ink, #7d133a);
   color: var(--paper, #ffffff);
 }
+.model-hunt-hud {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 10px;
+  border: 1px solid var(--ink, #7d133a); background: var(--paper, #ffffff); color: var(--ink, #7d133a);
+  font: 600 var(--small)/1 var(--font); cursor: pointer; white-space: nowrap;
+}
+.model-hunt-hud[hidden] { display: none; }
+.model-hunt-hud:hover { background: var(--wash, #f4f4f0); }
+.model-hunt-hud.is-complete { background: var(--ink, #7d133a); color: var(--paper, #ffffff); }
+.hunt-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent, #dd4027); flex: none; }
+.model-hunt-hud.is-complete .hunt-dot { background: var(--guide, #f9c1ce); }
+.model-pin-hunt { border-color: var(--accent, #dd4027); font-weight: 700; }
+.model-pin-hunt.is-found { opacity: 0.65; border-color: var(--rule, #b6bfc1); font-weight: 500; }
 
 .model-hint {
   position: absolute;
