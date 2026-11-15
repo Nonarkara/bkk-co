@@ -24,7 +24,7 @@
  function sync(){
   clearTimeout(timer);
   const on=!!window.MangaLens?.active,visibility=on?'visible':'none';
-  if(keyBox)keyBox.hidden=!(on||window.state?.clubMode||document.body.classList.contains('club-mode'));
+  if(keyBox)keyBox.hidden=!(on||window.state?.clubMode||document.body?.classList.contains('club-mode'));
   if(!install())return;
   if(map.getLayoutProperty(layer,'visibility')!==visibility)map.setLayoutProperty(layer,'visibility',visibility);
   if(on)timer=setTimeout(update,80);
