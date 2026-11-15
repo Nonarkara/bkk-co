@@ -1,6 +1,6 @@
 {
   "stamp": "2026-11-15",
-  "base": "http://localhost:43991",
+  "base": "http://127.0.0.1:43827",
   "planted": true,
   "viewports": [
     {
@@ -363,7 +363,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 454
+      "observedHandoffMs": 348
     },
     "notebook": 1,
     "walkthrough": {

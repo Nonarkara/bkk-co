@@ -5,7 +5,7 @@
   "licenseURL": "https://www.openstreetmap.org/copyright",
   "snapshotMD5": "215e1ff30fe4d4adef2db3d664dab9da",
   "snapshotAsOf": "2026-10-24T20:20:51Z",
-  "measuredOn": "2026-11-13",
+  "measuredOn": "2026-11-15",
   "method": "Every building polygon in the pinned extraction was joined by OSM id to the shipped street-world geometry. A height counts only when the source tag gives metres; a floor count is reported separately and never converted.",
   "rule": "Only explicit height / building:height tags in metres are drawn. building:levels is recorded as knowable but not a height, so those footprints stay flat. No floor conversion, no default height, no generated detail.",
   "populations": {
@@ -29,6 +29,11 @@
   "shipped": {
     "footprints": 20650,
     "explicitHeight": 248,
+    "renderedHeight": 244,
+    "notRendered": {
+      "parent outline has mapped height-bearing building parts": 4
+    },
+    "notRenderedMeaning": "A parent outline whose own height is carried by a mapped height-bearing building part inside it. The volume is drawn once, on the part; the parent stays flat so the same building is not extruded twice.",
     "heightsFoundInSource": 248,
     "heightsShippedButNotInSource": 0
   },

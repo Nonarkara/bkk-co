@@ -63,8 +63,8 @@
       "placeSheet": {
         "lines": 2,
         "textWidth": 321.765625,
-        "factsHeight": 64.89059448242188,
-        "directionsBottom": 216.18746948242188,
+        "factsHeight": 64.890625,
+        "directionsBottom": 216.1875,
         "pass": true
       },
       "visitReading": {
@@ -335,7 +335,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 1236
+      "observedHandoffMs": 492
     },
     "notebook": 1,
     "walkthrough": {

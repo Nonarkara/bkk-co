@@ -23,6 +23,7 @@ jobs:
       - run: node test/footprint-palette.mjs
       - run: node test/hop-logs.mjs
       - run: node test/agent-api.mjs
+      - run: node test/club-isolation.mjs
       - run: node test/work-atmosphere.mjs
       - run: node test/venue-reports.mjs
       - run: node test/neighborhood-palette.mjs

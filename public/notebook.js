@@ -4,7 +4,11 @@
  const api=async(path,method='GET',body,extra={})=>{
   const controller=new AbortController(),deadline=setTimeout(()=>controller.abort(),12000);
   try {
-   const r=await fetch('/api/'+path,{signal:controller.signal,method,credentials:'same-origin',headers:{...(body?{'content-type':'application/json'}:{}),...extra},...(body?{body:JSON.stringify(body)}:{})});
+   // The server keeps two catalogues: PL;UB's, and CL;UB's with the cannabis
+   // venues added. A CL;UB request says so, so a dispensary is a known place
+   // there and an unknown one on PL;UB.
+   const q=window.state?.clubMode?(path.includes('?')?'&mode=club':'?mode=club'):'';
+   const r=await fetch('/api/'+path+q,{signal:controller.signal,method,credentials:'same-origin',headers:{...(body?{'content-type':'application/json'}:{}),...extra},...(body?{body:JSON.stringify(body)}:{})});
    let data;try{data=await r.json()}catch(e){if(e.name==='AbortError')throw e;throw new Error('Connection unavailable. Your device copy is safe.')}
    if(!r.ok)throw new Error(data.error||'Request failed.');return data;
   }catch(e){if(e.name==='AbortError')throw new Error('Cloud request timed out. Your device copy is safe. Reopen Cloud notebook to check or retry.');throw e}
@@ -210,7 +214,7 @@
   sheet.classList.add('notebook-sheet','community-sheet');
   sheet.querySelector('[data-community-back]').onclick=()=>select(p,false);
   sheet.querySelector('[data-community-write]').onclick=()=>recommend(p);
-  sheet.querySelector('[data-community-share]').onclick=()=>PlaceTools.share({title:p.n,url:new URL('?p='+encodeURIComponent(p.id),location.origin).href},sheet);
+  sheet.querySelector('[data-community-share]').onclick=()=>PlaceTools.share({title:p.n,url:new URL('?p='+encodeURIComponent(p.id)+(window.state?.clubMode?'&mode=club':''),location.origin).href},sheet);
   community(sheet.querySelector('.community-thread'),p);
  }
  const Notebook=window.Notebook={

@@ -59,7 +59,7 @@ const venueHours = p => window.WorkFinder?.hours(p) || p.hours;
 const state = {
   places: [], byId: new Map(), scores: {}, cells: new Map(), visited: new Map(), personalRatings: new Map(),
   kinds: new Set(['cafe', 'coworking', 'library']), flags: new Set(), // Food is one tap away, off by default
-  sort: 'near', mood: null, selected: null, foodLoaded: false, cannabisLoaded: false, clubMode: false, sortedIdx: [],
+  sort: 'near', mood: null, selected: null, foodLoaded: false, cannabisLoaded: false, clubMode: false, sortedIdx: [], sortedCannabisIdx: [],
 };
 window.state = state;
 const cannabisDetails = new Map();
@@ -98,7 +98,7 @@ async function loadRows(name) {
     p.d = digits(p);
     state.places.push(p); state.byId.set(id, p);
   }
-  state.sortedIdx = state.places.map(p => p.idx).sort((a, b) => a - b);
+  state.sortedIdx = state.places.filter(p => p.k !== 'cannabis').map(p => p.idx).sort((a, b) => a - b);
 }
 
 async function loadScores() {
@@ -147,7 +147,8 @@ async function loadCannabis() {
           state.byId.set(id, p);
         }
         for (const [id, det] of Object.entries(d.details || {})) cannabisDetails.set(id, det);
-        state.sortedIdx = state.places.map(p => p.idx).sort((a, b) => a - b);
+        state.sortedIdx = state.places.filter(p => p.k !== 'cannabis').map(p => p.idx).sort((a, b) => a - b);
+        state.sortedCannabisIdx = state.places.filter(p => p.k === 'cannabis').map(p => p.idx).sort((a, b) => a - b);
         state.cannabisLoaded = true;
       })
       .catch(() => { cannabisPromise = null; });
@@ -190,11 +191,17 @@ function loadVenueReports() {
     .catch(() => { venueReports = undefined; return {}; });
 }
 
-// share of Bangkok places this one beats, from the sorted index list
+// share of Bangkok places this one beats, from the sorted index list.
+// The denominator is the catalogue the index was computed against: PL;UB's own
+// catalogue for a work place, the cannabis listing for a dispensary. Mixing them
+// would put a dispensary among cafés and call it a Great Good Place.
 function topShare(p) {
-  const a = state.sortedIdx; let lo = 0, hi = a.length;
-  while (lo < hi) { const m = (lo + hi) >> 1; if (a[m] < p.idx) lo = m + 1; else hi = m; }
-  return Math.max(1, Math.round(100 * (1 - lo / a.length)));
+  const list = p.k === 'cannabis' ? state.sortedCannabisIdx : state.sortedIdx;
+  const n = list.length;
+  if (!n) return 0;
+  let lo = 0, hi = n;
+  while (lo < hi) { const m = (lo + hi) >> 1; if (list[m] < p.idx) lo = m + 1; else hi = m; }
+  return Math.max(1, Math.round(100 * (1 - lo / n)));
 }
 
 function workScore(p) {
@@ -660,7 +667,7 @@ function renderSheet(p, d, visits, report) {
     ${window.TalkMedia?.section(p.id)||''}
     <section class="ggp">
       ${petals(p)}
-      <div class="ggp-num"><span class="big">${p.idx}</span><span class="micro">Great Good Place index · top ${topShare(p)}% of Bangkok</span></div>
+      <div class="ggp-num"><span class="big">${p.idx}</span><span class="micro">${p.k === 'cannabis' ? `CL;UB index · top ${topShare(p)}% of the listed venues` : `Great Good Place index · top ${topShare(p)}% of Bangkok`}</span></div>
       <table class="ggp-table">${GGP.map(([k, sym, label], i) => `<tr><td class="sym">${sym}</td><td>${label}</td><td class="raw">${esc(rawValue(k, p, d))}</td></tr>`).join('')}</table>
     </section>
     ${visits.length ? `<section><ul class="moments">${visits.slice().reverse().map(window.momentHtml).join('')}</ul></section>` : ''}
@@ -687,7 +694,10 @@ function renderSheet(p, d, visits, report) {
   sheet.querySelector('[data-place-street]').onclick=()=>window.StreetWorld?.active?StreetWorld.resume():StreetWorld.open(p);
   sheet.querySelector('[data-place-community]').onclick = () => window.Notebook?.showCommunity(p);
   sheet.querySelector('[data-place-recommend]').onclick = () => window.Notebook?.recommend(p);
-  sheet.querySelector('.share').onclick = () => PlaceTools.share({title:p.n,url:new URL('?p='+encodeURIComponent(p.id),location.origin).href},sheet);
+  // A shared link must say which bureau it points into, or a dispensary link
+  // opened on PL;UB resolves to nothing.
+  const shareUrl = () => new URL('?p=' + encodeURIComponent(p.id) + (state.clubMode ? '&mode=club' : ''), location.origin).href;
+  sheet.querySelector('.share').onclick = () => PlaceTools.share({title:p.n,url:shareUrl()},sheet);
 }
 
 function openFromUrl() {

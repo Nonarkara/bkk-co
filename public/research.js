@@ -96,7 +96,10 @@
     // The city fabric: how much of it can honestly be given a height.
     const hood = fabric?.populations?.neighbourhoods || {};
     const boxes = fabric?.populations?.extractionBoxes || {};
+    const shipped = fabric?.shipped || {};
     const fp = hood.footprints || 0;
+    const rendered = shipped.renderedHeight ?? hood.explicitHeight;
+    const notDrawn = (shipped.explicitHeight ?? 0) - rendered;
     const fabricRows = fp ? `
       <h3 class="rd-head">The city fabric</h3>
       <dl class="rd-figures">
@@ -105,7 +108,7 @@
         ${row('With a floor count but no height', `${fmt(hood.levelsOnly)} <span class="rd-share">· ${pct(hood.levelsOnly, fp)}</span>`, 'A floor count is not a height. PLUB never turns floors into metres, so these footprints stay flat.')}
         ${row('With no height information at all', `${fmt(hood.noHeightInfo)} <span class="rd-share">· ${pct(hood.noHeightInfo, fp)}</span>`)}
       </dl>
-      <p class="rd-note">Counted against the pinned OpenStreetMap snapshot${fabric.snapshotAsOf ? ` of ${String(fabric.snapshotAsOf).slice(0, 10)}` : ''} on ${fabric.measuredOn}. ${fmt(boxes.explicitHeight || 0)} buildings carry an explicit height in the wider boxes the pipeline reads; ${fmt(hood.explicitHeight || 0)} of them fall inside a neighbourhood and are drawn. Nothing else in the snapshot states a height, so the flat outlines are the honest picture, not a missing download.</p>
+      <p class="rd-note">Counted against the pinned OpenStreetMap snapshot${fabric.snapshotAsOf ? ` of ${String(fabric.snapshotAsOf).slice(0, 10)}` : ''} on ${fabric.measuredOn}. ${fmt(boxes.explicitHeight || 0)} buildings carry an explicit height in the wider boxes the pipeline reads; ${fmt(hood.explicitHeight || 0)} of them fall inside a neighbourhood.${notDrawn ? ` Of those, ${fmt(rendered)} are drawn as volumes; the other ${fmt(notDrawn)} are parent outlines whose height is carried by a mapped building part inside them, so the volume is drawn once rather than twice.` : ''} Nothing else in the snapshot states a height, so the flat outlines are the honest picture, not a missing download.</p>
     ` : '';
 
     host.innerHTML = `

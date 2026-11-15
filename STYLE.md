@@ -42,7 +42,7 @@ Wada plate 273 (locally credited catalogue: `~/Projects/palette/data/colors.json
 ## Voice
 - EN: plain, civic, confident — state the fact, skip the jargon, no hedging.
 - TH: formal-neutral register. First person is strictly **ผม**. Never Sarabun.
-- ZH: Simplified.
+- ZH: Simplified — reserved. The interface ships no Chinese today; the rule is here for the day it does.
 - The PLUB / Samsamastiti / SCITI wordplay chain is permanent — never "correct" it.
 
 ## Protected voice

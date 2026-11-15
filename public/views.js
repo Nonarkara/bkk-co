@@ -265,11 +265,11 @@ window.beenForm = (p, btn, done) => {
     <label>Visit date<input name="visit-date" type="date" required value="${new Date(Date.now()+7*3600000).toISOString().slice(0,10)}"></label>
     <label>Your private note<textarea rows="2" maxlength="600" placeholder="Coffee, Wi-Fi, outlets, noise — what should you remember?"></textarea></label>
     <label class="photo-pick">＋ Photos · up to 4<input type="file" accept="image/*" multiple class="sr"></label><span class="micro picked" role="status"></span><div class="thumbs photo-preview"></div>
-    <details class="work-q"><summary>For people who work here (optional, shared)</summary>
+    ${p.k === 'cannabis' ? '' : `<details class="work-q"><summary>For people who work here (optional, shared)</summary>
       <div class="rate">${SCORES.map(([k, label, opts]) => `<span>${label}</span><div class="seg" data-k="${k}" role="group" aria-label="${label}">${opts.map((o, i) => `<button type="button" data-v="${i + 1}" aria-pressed="false">${o}</button>`).join('')}</div>`).join('')}</div>
-    </details>
+    </details>`}
     <button class="send" type="submit">Save visit</button>
-    <p class="micro note">Stars, words, note and photos save on this device. Back up or share later from your notebook. The four work answers, if all given, are shared anonymously.</p>`;
+    <p class="micro note">Stars, words, note and photos save on this device. Back up or share later from your notebook.${p.k === 'cannabis' ? ' A dispensary carries no working conditions, so there is nothing here to score.' : ' The four work answers, if all given, are shared anonymously.'}</p>`;
   btn.replaceWith(form);
   let stars = 0;
   try { const draft = JSON.parse(sessionStorage.getItem('plub-draft-'+p.id)||'null'); if (draft) { form.querySelector('textarea').value = draft.note || ''; form.querySelector('[name=visit-date]').value = draft.at || form.querySelector('[name=visit-date]').value; } } catch {}
@@ -283,7 +283,7 @@ window.beenForm = (p, btn, done) => {
     const b = e.target.closest('button'); if (b) b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true');
   });
   const vote = {};
-  form.querySelector('.rate').addEventListener('click', e => {
+  form.querySelector('.rate')?.addEventListener('click', e => {
     const b = e.target.closest('.seg button'); if (!b) return;
     b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
     vote[b.parentElement.dataset.k] = +b.dataset.v;

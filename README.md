@@ -8,7 +8,7 @@ dispensaries and clinics in Bangkok from open data only. Its places live in
 `public/data/places-cannabis.json`, apart from the signed catalogue below, and
 carry no working or rating claims.
 
-57,379 cafés, co-working spaces, libraries and restaurants from OpenStreetMap and Overture Maps, with separately labelled open-data indices and visitor work ratings.
+57,379 cafés, co-working spaces, libraries and restaurants — 7,379 from OpenStreetMap, 50,159 from Overture Maps, and 1 hand pin confirmed on a real visit — with separately labelled open-data indices and visitor work ratings.
 Neighbourhood stories and catalogue counts, Nong Plub as guide, and private notebooks for visits and photos on your device or synced with your notebook key.
 Visitors rate Wi-Fi, outlets, quiet and laptop-friendliness. Places nobody has rated show as not rated.
 

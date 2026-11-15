@@ -4,25 +4,60 @@ import { loadAliases, canon, catalogueUnavailable } from './aliases.js';
 import { agentApi } from './agent-api.js';
 
 const DAILY_LIMIT = 20;
-let ids, cataloguePending; // publish only the complete catalogue and aliases, once per isolate
-let names; // id -> [name, kind, index], for link previews
 let hoods; // slug -> neighbourhood, for link previews
 
-async function knownIds(env, url) {
-  if(ids)return ids;
-  if(!cataloguePending)cataloguePending=(async()=>{
-    const nextIds=new Set(),nextNames=new Map();
-    for(const f of ['work','food','cannabis']){
-      const r=await env.ASSETS.fetch(new URL(`/data/places-${f}.json`,url),{signal:AbortSignal.timeout(8000)});
-      if(!r.ok){if(f==='cannabis')continue;throw catalogueUnavailable();}
-      const d=await r.json();if(!Array.isArray(d.rows)||!Array.isArray(d.kinds))throw catalogueUnavailable();
-      for(const row of d.rows){if(!Array.isArray(row)||typeof row[0]!=='string'||!d.kinds[row[2]])throw catalogueUnavailable();nextIds.add(row[0]);nextNames.set(row[0],[row[1],d.kinds[row[2]],row[7]]);}
-    }
-    await loadAliases(env,url,nextIds);
-    names=nextNames;ids=nextIds;return ids;
-  })().catch(()=>{cataloguePending=undefined;throw catalogueUnavailable();});
-  return cataloguePending;
+// Two bureaus, two catalogues. PL;UB loads the work catalogue; CL;UB loads that
+// same catalogue plus the cannabis file. A request says which one it wants, so a
+// PL;UB request never touches the cannabis catalogue: a dispensary is not a
+// ratable PL;UB place and never gets a PL;UB link preview.
+//
+// One copy of the work catalogue serves both modes, so the isolate holds one
+// set of 57,000 ids rather than two. The cannabis file is small and separate.
+const isClubRequest = (url) => {
+  const u = typeof url === 'string' ? new URL(url) : url;
+  return u.hostname === 'club.nonarkara.org' || u.searchParams.get('mode') === 'club';
+};
+
+const catalogues = { base: null, cannabis: null }; // each loaded once per isolate
+const EMPTY = { ids: new Set(), names: new Map() };
+
+async function loadRows(env, url, file, kinds) {
+  const ids = new Set(), names = new Map();
+  const r = await env.ASSETS.fetch(new URL(`/data/places-${file}.json`, url), { signal: AbortSignal.timeout(8000) });
+  if (!r.ok) { if (file === 'cannabis') return { ids, names }; throw catalogueUnavailable(); }
+  const d = await r.json(); if (!Array.isArray(d.rows) || !Array.isArray(d.kinds)) throw catalogueUnavailable();
+  for (const row of d.rows) {
+    if (!Array.isArray(row) || typeof row[0] !== 'string' || !d.kinds[row[2]]) throw catalogueUnavailable();
+    ids.add(row[0]); names.set(row[0], [row[1], d.kinds[row[2]], row[7]]);
+  }
+  return { ids, names };
 }
+
+async function loadBase(env, url) {
+  const ids = new Set(), names = new Map();
+  for (const f of ['work', 'food']) {
+    const part = await loadRows(env, url, f);
+    for (const id of part.ids) ids.add(id);
+    for (const [id, n] of part.names) names.set(id, n);
+  }
+  await loadAliases(env, url, ids);
+  return { ids, names };
+}
+
+async function catalogue(env, url) {
+  const club = isClubRequest(url);
+  if (!catalogues.base) catalogues.base = loadBase(env, url).catch((e) => { catalogues.base = null; throw e; });
+  const base = await catalogues.base;
+  if (!club) return { ids: base.ids, name: (id) => base.names.get(id), cannabis: EMPTY };
+  if (!catalogues.cannabis) catalogues.cannabis = loadRows(env, url, 'cannabis').catch((e) => { catalogues.cannabis = null; throw e; });
+  const can = await catalogues.cannabis;
+  return {
+    ids: { has: (id) => base.ids.has(id) || can.ids.has(id) }, // one set of work places, two answers
+    name: (id) => base.names.get(id) || can.names.get(id),
+    cannabis: can,
+  };
+}
+async function knownIds(env, url) { return (await catalogue(env, url)).ids; }
 
 const SEC = {
   'x-content-type-options': 'nosniff',
@@ -85,8 +120,11 @@ async function postScore(request, env) {
   if ((request.headers.get('content-type') || '').split(';')[0] !== 'application/json') return json({ error: 'json only' }, 415);
   let body;
   try { body = await readBody(request,512); } catch(e) { return json({ error:e.message },e.status||400); }
-  let known;try{known=await knownIds(env,request.url)}catch{return json({error:catalogueUnavailable().message},503,{'retry-after':'5','cache-control':'no-store'})}
+  let known, cat;try{cat=await catalogue(env,request.url);known=cat.ids}catch{return json({error:catalogueUnavailable().message},503,{'retry-after':'5','cache-control':'no-store'})}
   if (body && typeof body === 'object') body.place = canon(body.place); // a retired twin's id rates its survivor
+  // CL;UB answers "where are the dispensaries", not "can I work there". A cannabis
+  // venue carries no working conditions, so there is nothing on it to score.
+  if (body && typeof body === 'object' && cat.cannabis.ids.has(body.place)) return json({ error: 'Dispensaries are not rated for working conditions.' }, 400);
   const { value, error } = validateScore(body, known);
   if (error) return json({ error }, 400);
 
@@ -147,6 +185,26 @@ export default {
 
 // Shared links (LINE, WhatsApp, X) show the place or neighbourhood, not the generic page.
 const KIND = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library', cannabis: 'Dispensary' };
+
+// A place resolves in one catalogue or the other, never in both at once.
+export async function resolvePlace(env, url, id) {
+  const cat = await catalogue(env, url);
+  const n = cat.name(canon(id));
+  return n ? { name: n[0], kind: n[1], index: n[2] } : null;
+}
+
+// A dispensary is not a Great Good Place: PL;UB's index means nothing there.
+export function placePreview(place, brand) {
+  if (!place) return { title: '', desc: '' };
+  const { name, kind, index } = place;
+  return {
+    title: `${name} · ${brand}`,
+    desc: kind === 'cannabis'
+      ? `${KIND[kind]} in Bangkok · a CL;UB open-data listing, from OpenStreetMap and Overture Maps.`
+      : `${KIND[kind] || 'Place'} in Bangkok · Great Good Place index ${index} of 100. Scored from open data, with Nong Plub as your guide.`,
+  };
+}
+
 async function withPreview(request, env, url) {
   const page = await env.ASSETS.fetch(new URL('/', url));
   const isClub = url.hostname === 'club.nonarkara.org' || url.searchParams.get('mode') === 'club';
@@ -162,9 +220,8 @@ async function withPreview(request, env, url) {
       const h = hoods[url.searchParams.get('hood')];
       if (h) { title = `${h.name} ${h.th} · for ${h.for.toLowerCase()} · ${brand}`; desc = `${h.stats.work} work spots within 800 m of ${h.anchorLabel}. ${h.plub}`; image = `https://co.nonarkara.org/og/${h.slug}.png?v=clean-20261104b`; }
     } else if (url.searchParams.has('p')) {
-      await knownIds(env, request.url);
-      const n = names.get(canon(url.searchParams.get('p'))); // old shared links preview the survivor
-      if (n) { title = `${n[0]} · ${brand}`; desc = `${KIND[n[1]] || 'Place'} in Bangkok · Great Good Place index ${n[2]} of 100. Scored from open data, with Nong Plub as your guide.`; }
+      const place = await resolvePlace(env, request.url, url.searchParams.get('p')); // old shared links preview the survivor
+      if (place) { ({ title, desc } = placePreview(place, brand)); }
     } else if (isClub) {
       title = 'CL;UB · Cannabis Laboratory ; Urban Bureau · Bangkok';
       desc = 'Open-data map and 3D street walkthrough of Bangkok cannabis dispensaries and licensed medical cannabis clinics.';

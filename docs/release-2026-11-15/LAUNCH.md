@@ -15,15 +15,27 @@ honestly unfinished. Commit `fcda6f4` · Worker `f9ebb73e-374b-4b9f-8a33-839866c
 
 The cannabis venues never enter the signed catalogue. The catalogue's sha256
 still matches the manifest that publishes it, and `test/venue-reports.mjs` and
-`test/check.mjs` both hold that line. The separate file is loaded only when
-someone asks for the CL;UB mode, and it carries no working or rating claims —
-there is nothing in it to score.
+`test/check.mjs` both hold that line.
+
+**The separation is real, not a promise.** The Worker keeps two catalogues. A
+PL;UB request loads the work catalogue and never touches the cannabis file; a
+CL;UB request — the club host, or `?mode=club` — loads that file as well. So a
+dispensary is not a ratable PL;UB place, a shared link to one resolves on
+CL;UB and not on PL;UB, and the place sheet calls it a CL;UB index rather
+than PL;UB's Great Good Place index. `test/club-isolation.mjs` drives the
+Worker and counts the files it fetched to prove it.
+
+CL;UB answers "where are the licensed dispensaries", not "can I work there", so
+a dispensary carries no working conditions and nothing on it to score: the
+rating endpoint refuses one, and the visit form asks no Wi-Fi, outlet, quiet or
+laptop questions there. It does carry the open map tags it inherits from
+OpenStreetMap and Overture — opening hours on 25 of the 261, a Wi-Fi tag on 2.
 
 ## 2. The security posture, as it now stands
 
 | Header | Value |
 |---|---|
-| `Content-Security-Policy` | `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:; frame-src https://www.youtube-nocookie.com; img-src/font-src/connect-src 'self' + https://tiles.openfreemap.org; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests` |
+| `Content-Security-Policy` | `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:; frame-src https://www.youtube-nocookie.com; img-src 'self' data: blob: https://tiles.openfreemap.org; font-src 'self' https://tiles.openfreemap.org; connect-src 'self' https://tiles.openfreemap.org; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests` |
 | `Strict-Transport-Security` | `max-age=31536000; includeSubDomains` |
 | `X-Frame-Options` | `DENY` |
 | `X-Content-Type-Options` | `nosniff` |
@@ -93,14 +105,18 @@ out of step. A step that cannot run is marked SKIP, never PASS.
   most valuable thing left to improve, and it is improved by people reporting
   what they find, not by code.
 - **Heights are exhausted.** The pinned snapshot holds 320 buildings with an
-  explicit height in the twelve areas; 248 fall inside the radius that ships
-  and all 248 are drawn. More volume means a newer snapshot or a decision to
-  accept a floor count as a height. PLUB takes neither on its own.
+  explicit height in the twelve areas; 248 fall inside the radius that ships.
+  244 are drawn as volumes. The other 4 are parent outlines whose volume is
+  drawn once, on the mapped height-bearing part inside them, so the same
+  building is never extruded twice. More volume means a newer snapshot or a
+  decision to accept a floor count as a height. PLUB takes neither on its own.
 - **The palette is exhausted.** 32 of the catalogue's 33 colours already have a
   job. The next category needs the grounds re-planned, not a new hex.
 - **Overpass is unreachable from this machine**, so live enrichment runs
   cannot happen here; the pinned snapshot is the only source.
-- **`club.nonarkara.org` is served by the Worker and answers 200**, but the
-  CNAME the other repository stages is still the documented path for the
-  GitHub Pages fallback. Someone with DNS access should point the record at
-  the Worker and verify the certificate; nothing in the codebase depends on it.
+
+`club.nonarkara.org` is no longer on this list: the record already points at
+the Worker. Both hosts answer 200 with a byte-identical `etag`, the same
+policy headers, and the CL;UB title and description the Worker writes for that
+host. The staged CNAME in the other repository remains the documented
+fallback path, not an open action.

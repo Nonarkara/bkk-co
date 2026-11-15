@@ -96,12 +96,18 @@ def main():
     # source also carries. This is the join that proves nothing was lost.
     shipped_heights = set()
     shipped_footprints = set()
+    rendered = 0
+    not_rendered = collections.Counter()
     for a in areas:
         payload = json.loads((DATA / 'street-world' / f"{a['id']}.json").read_text())
         for f in payload['buildings']['features']:
             shipped_footprints.add(f['id'])
             if f['properties']['heightM'] is not None:
                 shipped_heights.add(f['id'])
+                if f['properties'].get('render3D'):
+                    rendered += 1
+                else:
+                    not_rendered[f['properties'].get('flatReason') or 'unknown'] += 1
 
     payload = {
         'source': 'OpenStreetMap',
@@ -138,6 +144,12 @@ def main():
         'shipped': {
             'footprints': len(shipped_footprints),
             'explicitHeight': len(shipped_heights),
+            'renderedHeight': rendered,
+            'notRendered': dict(not_rendered),
+            'notRenderedMeaning': ('A parent outline whose own height is carried by a mapped '
+                                    'height-bearing building part inside it. The volume is drawn '
+                                    'once, on the part; the parent stays flat so the same building '
+                                    'is not extruded twice.'),
             'heightsFoundInSource': len(measured & shipped_heights),
             'heightsShippedButNotInSource': len(shipped_heights - measured),
         },

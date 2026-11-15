@@ -63,7 +63,7 @@ Not used on purpose: Google Maps scraping or API (ToS, takedown risk, cost). Add
 
 Counts (build of 2026-11-02, v2): 57,538 places = 20,235 café + 36,818 restaurant + 57 co-working + 428 library.
 Names that only describe a category ("Entrance", "ร้านอาหาร" = "restaurant") are dropped like unnamed ones; Latin-letter matching merges OSM/Overture twins.
-Only 535 carry a Wi-Fi tag and ~1,500 carry opening hours; the crowd scores are what fills the gap.
+The shipped build carries 530 places with a Wi-Fi tag and 1,558 with opening hours (`public/data/manifest.json`); the crowd scores are what fills the gap.
 
 ## Great Good Place metrics (v2) — `scripts/build-places.py`
 Six per-place deciles (`metrics` string `ASCFWN`) plus a 0-100 index (mean of the A/S/C/F percentiles):
