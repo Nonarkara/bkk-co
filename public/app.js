@@ -379,8 +379,12 @@ map.on('load', async () => {
   map.on('moveend', renderList);
   document.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show');
 
+  if (isClubStartup()) {
+    await setClubMode(true);
+    openFromUrl();
+    return;
+  }
   await firstData;
-  if (isClubStartup()) await setClubMode(true);
   refresh(); openFromUrl();
   await foodData; refresh(); openFromUrl();
 });
