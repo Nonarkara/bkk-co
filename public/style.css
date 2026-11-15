@@ -395,3 +395,16 @@ button, a, summary, .list li, .hits li, .chips button, .flags button, .wa-row,
 .place-visit-report h2 { font-size: var(--micro); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
 .cannabis-law { margin: 10px 0; padding: 8px 10px; border-left: 2px solid var(--cat-cannabis); background: var(--wash); }
 .cannabis-law p { font-size: var(--micro); line-height: 1.5; color: var(--ink); margin-top: 2px; }
+
+/* The 404 page: a signpost, not a blank wall. One line of truth, one way back. */
+.notfound { display: block; min-height: 100dvh; background: var(--paper); }
+.notfound-main { max-width: 62ch; margin: 0 auto; padding: clamp(32px, 9vh, 96px) var(--pad) 48px; }
+.notfound-main .micro { letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.notfound-main h1 { font-size: var(--big); font-weight: 600; line-height: 1.2; margin: 8px 0 6px; }
+.notfound-say { color: var(--muted); margin-bottom: 18px; }
+.notfound-actions { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.notfound-actions a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px; border: 1px solid var(--rule); font-size: var(--body); text-decoration: none; }
+.notfound-actions a.primary { border-color: var(--ink); background: var(--ink); color: var(--paper); font-weight: 500; }
+.notfound-actions a:hover { border-color: var(--ink); }
+.notfound-main .src { margin-top: 14px; color: var(--muted); line-height: 1.6; }
+.notfound-main .src a { color: var(--ink); }

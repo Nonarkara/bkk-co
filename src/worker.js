@@ -128,6 +128,16 @@ export default {
     }
     if (url.pathname === '/' && (url.hostname === 'club.nonarkara.org' || url.searchParams.get('mode') === 'club' || ['hood', 'p', 'mood'].some(k => url.searchParams.has(k)))) return await secHeaders(await withPreview(request, env, url));
     const res = await env.ASSETS.fetch(request);
+    // A lost reader is met with a signpost, not a blank wall. The 404 page is
+    // our own design, so it carries the same headers as everything else.
+    if (res.status === 404 && !url.pathname.startsWith('/data/') && !url.pathname.startsWith('/api/') && !url.pathname.startsWith('/v1')) {
+      const page = await env.ASSETS.fetch(new URL('/404.html', url));
+      const body = await page.arrayBuffer();
+      const headers = new Headers(page.headers);
+      for (const [k, v] of Object.entries(SEC)) headers.set(k, v);
+      headers.set('cache-control', 'public, max-age=600');
+      return new Response(body, { status: 404, headers });
+    }
     const h = new Headers(res.headers);
     for (const [k, v] of Object.entries(SEC)) h.set(k, v);
     const body = await res.arrayBuffer();

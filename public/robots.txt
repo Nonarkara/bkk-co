@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /data/
+
+# The read-only catalogue at /v1 is public by design: it is how a reader, a
+# researcher or an agent reads the evidence without an account.
+Allow: /v1
+
+Sitemap: https://co.nonarkara.org/sitemap.xml

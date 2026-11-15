@@ -29,6 +29,7 @@ jobs:
       - run: node test/data-role-palette.mjs
       - run: node test/no-platform-scraping.mjs
       - run: node test/security-headers.mjs
+      - run: node test/public-surfaces.mjs
       - run: node test/street-model.mjs
       - run: node test/map-motion.mjs
       - run: node test/aliases.mjs
