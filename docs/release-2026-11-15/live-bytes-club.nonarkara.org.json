@@ -1,17 +1,17 @@
 {
-  "observedAt": "2026-11-15T10:19:51.677Z",
+  "observedAt": "2026-11-15T14:58:53.399Z",
   "origin": "https://club.nonarkara.org",
-  "sourceCommit": "548c5160d3625a6dc556272c967a8322499770e4",
+  "sourceCommit": "57707f22522ae0bbc7be0a266213a1e653aec73a",
   "matched": [
     {
       "path": "404.html",
-      "bytes": 1137,
-      "sha256": "989afab20ef1f73e71ef487a57db3887fabe05fd12f7dc34b86245bd681cfe59"
+      "bytes": 1154,
+      "sha256": "1bd2bebb847d494f97889c1522677dd72d1c15b48f4dc8908df065e836472745"
     },
     {
       "path": "app.js",
-      "bytes": 52393,
-      "sha256": "8757e7060f04941a296389e72e8baef2efc04c2816453d884c44b0f03e3813c5"
+      "bytes": 55999,
+      "sha256": "0896e52f72b4fa51681f3212f830c349a5975968e8aa60b71a73c9981724ba05"
     },
     {
       "path": "atlas-model.js",
@@ -25,13 +25,13 @@
     },
     {
       "path": "atlas.js",
-      "bytes": 42228,
-      "sha256": "a435d16ee690fc5a8052efad4d948686602696d5b9c91ca040cbe11e6d08990a"
+      "bytes": 43389,
+      "sha256": "f3c7d9255e16d002bd46afca5d8a2d84e0e0b02bf8405ca1b8cc85d6174d76ac"
     },
     {
       "path": "bridge-1958.html",
-      "bytes": 4250,
-      "sha256": "373c8df2745cbe5fce932b66601802bbbb126d407cba91366ba1f911d3cbe34a"
+      "bytes": 4249,
+      "sha256": "56769fca8ababcf7ec480ec025136b076663cc55eb1e418976fd5337f82ed286"
     },
     {
       "path": "data/aliases.json",
@@ -950,8 +950,8 @@
     },
     {
       "path": "data/places-cannabis.json",
-      "bytes": 129969,
-      "sha256": "fc22b7c8b13235e586ebd131d5704f7ab04fe4a04d23923431f81b1cb0c7ca9a"
+      "bytes": 104639,
+      "sha256": "081ff8c46915753a59d0afabee94b7e09a7e7dbd9401eee0f1487e1569421533"
     },
     {
       "path": "data/places-food.json",
@@ -1050,8 +1050,8 @@
     },
     {
       "path": "day.html",
-      "bytes": 1440,
-      "sha256": "2f12d3256b4a5882d984073692708110cc21c30023e23d3819a512a03926721c"
+      "bytes": 1457,
+      "sha256": "9adc7a55834ce3852dc0db7b1cc98f9ec6d53211a1ae8bb66c3dc06d62a74517"
     },
     {
       "path": "day.js",
@@ -1069,9 +1069,14 @@
       "sha256": "f77eb05f4fe3809aea41ff59f1d19636325ba6f808dff136490204a9d8fb5988"
     },
     {
+      "path": "drnon.js",
+      "bytes": 4027,
+      "sha256": "76673850d600c787c4c78af93bdbe63a005d9071a85f415d34f0a283d2bc4f29"
+    },
+    {
       "path": "einstein-hat.js",
       "bytes": 11431,
-      "sha256": "3b1e3fc309c721aeb59d60f51bc83a353c39f7b39ece7cd371d98953c1fcc096"
+      "sha256": "89f92be0a0c3229da9f08469b0b851384bda96c80233584a1e606744e6b36166"
     },
     {
       "path": "fonts/NonArchitecture-Regular.woff2",
@@ -1155,8 +1160,8 @@
     },
     {
       "path": "footprint-palette.js",
-      "bytes": 8388,
-      "sha256": "01d9fa9a547466ecbfda02b29dc326463eb5ba1e4d0b298435f1e66baf5d4723"
+      "bytes": 8399,
+      "sha256": "67176d11a163a7642cf676206d442519377c7728978909c2b3e0144aafd7209f"
     },
     {
       "path": "hat-density.js",
@@ -1170,13 +1175,13 @@
     },
     {
       "path": "icons/plub-192.png",
-      "bytes": 36493,
-      "sha256": "3e64587a1f6b14198ff85725e87b541462cdd7c085168bbda27df7504818ddbf"
+      "bytes": 36547,
+      "sha256": "2dead5a86ddcbe1ee3a83269dd6b4b2bc113e30b286b9280434dc99e808b7c9e"
     },
     {
       "path": "icons/plub-512.png",
-      "bytes": 218226,
-      "sha256": "5678bdaf4e9f20d9199d508147a36a885d174cab8630f158fb0817b7a2dc47da"
+      "bytes": 218391,
+      "sha256": "a1c606c3247f09cffa974752a74087b67561bd34f5c06801ba06fa5dc619d5b7"
     },
     {
       "path": "journey-model.js",
@@ -1186,27 +1191,27 @@
     {
       "path": "journeys.css",
       "bytes": 5411,
-      "sha256": "6102e9def19160029f143971a8cd46e767addd901e2cb1e048f11693217045d3"
+      "sha256": "0bf3feee8605c4529943d5458d2d67b4f02589119a9583b2bf88f8eee37e1068"
     },
     {
       "path": "journeys.js",
       "bytes": 34222,
-      "sha256": "18642070669e269be626994bf784030bc61eef1af7248814d09062cf97d19d7d"
+      "sha256": "a7a2a1f9a92e4568d7454174fee20f1fcc6c16273ab393fa3d7f2c39d1b42f3f"
     },
     {
       "path": "list-tools.css",
-      "bytes": 5173,
-      "sha256": "393b660aa588377b67f18de48234d0cab1638515d8a9da218dd98a23ba6f0798"
+      "bytes": 6370,
+      "sha256": "98ca3ae971fce89f0feafa814c8e481bc01ab04ea6c0b8788182f592ad1e97c3"
     },
     {
       "path": "manga-lens.js",
-      "bytes": 11637,
-      "sha256": "6be94527d2c32787826286e1bb347468ba721a6e47311b1a542980da82070be1"
+      "bytes": 11654,
+      "sha256": "ccfa173071c0db304cf2171af875f243b52d65c9e6fb154f028307240d10b23b"
     },
     {
       "path": "manifest.webmanifest",
-      "bytes": 486,
-      "sha256": "9c717e7b2b4bca7c0d7fcf313419e2312a06e90c8816b48b4041df291a2e5fd7"
+      "bytes": 484,
+      "sha256": "63d0890ade1e6a3036385d77c4160fd99f9538ff9b6672168f90468be226ada7"
     },
     {
       "path": "map-motion.js",
@@ -1220,8 +1225,8 @@
     },
     {
       "path": "neighborhood-palette.js",
-      "bytes": 7727,
-      "sha256": "84a9a2f505ae01e1c64337c1647afad1fd303e0f483684a20afd102508833db8"
+      "bytes": 7723,
+      "sha256": "74b36a83ee86e137d03246ee8fc13b6d014e7a86b6fea4417fdf6c88df6e0446"
     },
     {
       "path": "neighborhood-photos/commons-103754956.webp",
@@ -1835,8 +1840,8 @@
     },
     {
       "path": "neighbourhoods.html",
-      "bytes": 2847,
-      "sha256": "b7761b7fadf9fe09bc9f1a116379b5a8c6c65334329691123bd813c26e590eaa"
+      "bytes": 2864,
+      "sha256": "abe0d42e413f9079e129553be01ed72bd4117a29a2efed2969f79a819d718560"
     },
     {
       "path": "neighbourhoods.js",
@@ -1845,8 +1850,8 @@
     },
     {
       "path": "notebook.css",
-      "bytes": 6543,
-      "sha256": "6e0b29c9f1e16024f1751052f8fc33e65cff501120dad3ac6105c44b2da21010"
+      "bytes": 6449,
+      "sha256": "651ad68c1aaaf881f9adfe5132f3a169e3249c7b9ba8694f61dd6899cc1634a9"
     },
     {
       "path": "notebook.js",
@@ -1855,28 +1860,28 @@
     },
     {
       "path": "og/ari.png",
-      "bytes": 193610,
-      "sha256": "7f6bf03532d78d238db4328956b4cbddbab8627341041eeef7dc95844b955511"
+      "bytes": 193687,
+      "sha256": "544e6491b8266041c7b478c82b21aa24c46a811e13a651d4e514d436476ced34"
     },
     {
       "path": "og/charoenkrung.png",
-      "bytes": 202170,
-      "sha256": "aba4e11119923ceb7b213011ce3b19e5c2a95a8167fe2c53bf1e97a563243d3b"
+      "bytes": 202089,
+      "sha256": "25fb7e5f7d99cb69bd179cd5eb118cfcc9450313acaa2f302fe572486bd95c93"
     },
     {
       "path": "og/default.png",
-      "bytes": 203589,
-      "sha256": "f5c835588b60e7bf5e76011d4ae0ae0d1f317566feb4bca0f11beea75a2b040a"
+      "bytes": 203594,
+      "sha256": "cfb4016787ae70157a6f01ba4a658741a6ed6447883386b169ecb53b7a3fdab2"
     },
     {
       "path": "og/samyan.png",
-      "bytes": 199424,
-      "sha256": "e298830d96e49010a8602362cc4e40bd19a72f4692793d98aef30a79fb09dec9"
+      "bytes": 199338,
+      "sha256": "d625e1215dd3c7745e33db7e31c35006827dcf891285e114ed03728eeedebc46"
     },
     {
       "path": "og/thonglo.png",
-      "bytes": 196132,
-      "sha256": "48e579fe90a8b96a7ad7061c0f552b60e25363135f173474be2a225a7af5db6a"
+      "bytes": 196202,
+      "sha256": "592cdae6b48a8c23fa9a8b2fcf83cc15719c9de5c13fbcfc16af4a569718cd81"
     },
     {
       "path": "passport.js",
@@ -1920,8 +1925,8 @@
     },
     {
       "path": "privacy.html",
-      "bytes": 8235,
-      "sha256": "84abfcc7325c0ca01f79c75a4a8148b3163497114dccd90f2f302519b5ee9cc3"
+      "bytes": 8269,
+      "sha256": "5d527ed60b9ae1bd020ecd21574895eadeb549e1d99c44a0af823b1e17925487"
     },
     {
       "path": "research.css",
@@ -1930,8 +1935,8 @@
     },
     {
       "path": "research.html",
-      "bytes": 6194,
-      "sha256": "1fcb392116fd3418ba08bb01f182f8b630fc6c08c754eb3e185d6395b3021cd3"
+      "bytes": 6191,
+      "sha256": "80f44abdd9ef4229bb5a8d05d1ae7cb5a1d122eec59407f4e4a38ce260b27ec1"
     },
     {
       "path": "research.js",
@@ -1955,13 +1960,13 @@
     },
     {
       "path": "street-world-3d.css",
-      "bytes": 9232,
-      "sha256": "ecf916d8e0aabad9a21d77f125523b2829c26af2d434966d95e4f8519fdefee0"
+      "bytes": 9509,
+      "sha256": "f5b464958a6c64fd035593b7ce37e0d6d8d1b31bc62ce1561291515baf5b489f"
     },
     {
       "path": "street-world-3d.js",
-      "bytes": 61016,
-      "sha256": "751df4bf120701716fd7e9f12bbb3b56c5b4349ba9161409e3b8799fd974af6a"
+      "bytes": 61969,
+      "sha256": "d2b5f7e1829c610a237d7b94f14a750b97a83c81dcba561e6315b46b2fc53b5c"
     },
     {
       "path": "street-world.css",
@@ -1970,18 +1975,18 @@
     },
     {
       "path": "street-world.js",
-      "bytes": 27269,
-      "sha256": "0012d8d1be3d7643fbc5aa6b8b06c40ff456ee68bd5cf90f41601ac82e3accb4"
+      "bytes": 27267,
+      "sha256": "b1c8d1e01edb6f98c6607ff64ea300057852aab46b299654e1972c758c37f11f"
     },
     {
       "path": "style.css",
-      "bytes": 34058,
-      "sha256": "86160df6fd159bc19eb954f51c1f0ae22bf66fd51a9b6acd477eb12c47817be6"
+      "bytes": 35440,
+      "sha256": "697993244cad56a5e19b051a53c5dc149a7d6d6b67a3469134a1390951492137"
     },
     {
       "path": "styles/plub-manga.json",
       "bytes": 7876,
-      "sha256": "5312b85435ac493df278e35c9c16c74b890afa72714182ddd742dfe956cee5e9"
+      "sha256": "741a33ccba510f2d26f6a954b6d0eb506f58e24cc73ce4e21b296101047e3fe6"
     },
     {
       "path": "talk-media.css",
@@ -2020,8 +2025,8 @@
     },
     {
       "path": "views.js",
-      "bytes": 48928,
-      "sha256": "0bcc927c5407c3a5a77e734c38f3e0cefd21c3ecaf25a84d95c2831dc848756b"
+      "bytes": 51909,
+      "sha256": "2ffbd434ffa04e592874c619d49b36555965c7fb0c6785ede532bdf04b7d7b8d"
     },
     {
       "path": "visit.css",
@@ -2043,7 +2048,7 @@
   "missing": [],
   "orphansStillServed": [],
   "summary": {
-    "matched": 407,
+    "matched": 408,
     "mismatched": 0,
     "missing": 0,
     "orphansStillServed": 0
