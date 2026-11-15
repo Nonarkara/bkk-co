@@ -55,6 +55,11 @@ h.window.MangaLens.active=false;h.palette.sync();h.flush();
 assert.equal(h.map.getLayoutProperty(overlay,'visibility'),'none');assert.equal(h.controlBox.hidden,true,'Precision view cannot show an inactive building-color legend');
 h.window.MangaLens.active=true;h.palette.sync();h.flush();
 assert.equal(h.map.getLayoutProperty(overlay,'visibility'),'visible');assert.equal(h.controlBox.hidden,false);
+h.window.MangaLens.active=false;h.window.state={clubMode:true};h.palette.sync();
+assert.equal(h.controlBox.hidden,false,'CL;UB key is available without the manga lens');
+assert.equal(h.map.getLayoutProperty(overlay,'visibility'),'none','The key does not activate footprint colors');
+h.window.MangaLens.active=true;h.window.state.clubMode=false;h.palette.sync();
+
 h.palette.refresh(places.filter(p=>p.k!=='restaurant'));h.flush();
 assert.equal(h.palette.features.length,1);assert.equal(h.palette.features[0].properties.mask,1);
 assert.deepEqual(h.palette.features[0].properties.placeIDs,['coffee']);

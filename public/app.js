@@ -188,6 +188,7 @@ function renderClubHotspots() {
 let clubModeChange = 0;
 async function setClubMode(on, { frame = true } = {}) {
   const attempt = ++clubModeChange;
+  const switching = state.clubMode !== Boolean(on);
   state.clubMode = !!on;
   state.mood = null;
   if (on) {
@@ -220,7 +221,10 @@ async function setClubMode(on, { frame = true } = {}) {
   else $('.chips').prepend(listToggle);
   for (const button of document.querySelectorAll('.chips [data-kind]')) button.hidden = on;
   const toggle = $('#club-toggle');
-  if (toggle) toggle.setAttribute('aria-pressed', String(on));
+  if (toggle) {
+    toggle.setAttribute('aria-pressed', String(on));
+    if (location.hostname === 'club.nonarkara.org') toggle.textContent = 'PL;UB · Work places';
+  }
   if (on) {
     if (!state.cannabisLoaded) {
       const box = $('#club-hotspots');
@@ -244,6 +248,7 @@ async function setClubMode(on, { frame = true } = {}) {
     map.setMaxBounds(BKK_BOUNDS);
     map.setMinZoom(9);
   }
+  if (switching) window.Atlas?.reset?.();
   renderClubHotspots();
   window.Atlas?.setClubPalette?.(on);
   window.updateMascot?.(on);
@@ -861,8 +866,17 @@ document.addEventListener('click', e => {
     else if (act.dataset.act === 'featured') window.openFeatured?.();
     else if (act.dataset.act === 'discovery') window.openDiscovery?.();
     else if (act.dataset.act === 'compare') { location.href = '/day?task=live'; return; }
-    else if (act.dataset.act === 'club') { setClubMode(!state.clubMode); return; }
-    else if (act.dataset.act === 'tiles') { window.Atlas?.toggleHats?.(); act.setAttribute('aria-pressed', String(window.Atlas?.lens === 'hats')); return; }
+    else if (act.dataset.act === 'club') {
+      if (location.hostname === 'club.nonarkara.org') location.assign('https://co.nonarkara.org/');
+      else setClubMode(!state.clubMode);
+      return;
+    }
+    else if (act.dataset.act === 'tiles') {
+      window.Atlas.toggleHats().then(() => {
+        if (isPhone()) { setListOpen(false); $('#list-toggle').focus({ preventScroll: true }); }
+      }).catch(error => { $('#count').textContent = error.message; });
+      return;
+    }
     else act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.();
   }
   const h = e.target.closest('#mood [data-hood]');

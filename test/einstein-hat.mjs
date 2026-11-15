@@ -2,6 +2,7 @@
 // one 13-gon, both orientations, no interior overlaps, and area conserved on a grid.
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
+import { runInNewContext } from 'node:vm';
 import { readFile } from 'node:fs/promises';
 
 const H = createRequire(import.meta.url)('../public/einstein-hat.js');
@@ -76,4 +77,21 @@ for(const [bounds,zoom]of[[[100.48,13.7,100.6,13.8],12.5],[[100.6,13.74,100.7,13
  const replacement=points.slice(0,30).map((p,i)=>({...p,id:'different'+i,x:bounds[0]+.001,y:bounds[1]+.001}));assert.notDeepEqual([...D.tally(g,replacement)],[...counts],'Different place sets change counts, without a prefix/suffix hash shortcut');
 }
 assert.ok(atlas.includes("m.on('moveend', () => {updateDock();syncHats()})"),'Movement triggers actual retally/rebuild');
+// Exercise the browser module's selection path: the geometry tests above can pass
+// even when the UI drops every non-café before tallying.
+for (const kind of ['cannabis', 'coworking']) {
+ const window={};
+ const state={clubMode:kind==='cannabis',kinds:new Set([kind]),flags:new Set(['wifi'])};
+ const places=[{id:'selected',k:kind},{id:'other',k:'cafe'}], visible=[];
+ runInNewContext(atlas,{window,state,AtlasModel:{},refresh:()=>{
+   visible.splice(0,visible.length,...places.filter(p=>state.kinds.has(p.k)&&window.Atlas.includes(p)).map(p=>p.id));
+ }});
+ await window.Atlas.toggleHats();
+ assert.equal(window.Atlas.lens,'hats');
+ assert.deepEqual(visible,['selected'],`Tiles must count the selected ${kind} map`);
+ assert.deepEqual([...state.flags],['wifi']);
+ await window.Atlas.toggleHats();
+ assert.equal(window.Atlas.lens,'all');
+ assert.deepEqual(visible,['selected']);
+}
 console.log(`hat patch L2: ${patch.hats.length} tiles, grid cover ${(inside / samples).toFixed(3)}, samples ${samples}`);
