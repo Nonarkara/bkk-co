@@ -138,6 +138,21 @@ def load_overture_cannabis():
         })
     return rows
 
+def classify_province(lat, lng):
+    if 13.45 <= lat <= 14.10 and 100.30 <= lng <= 100.95:
+        return 'Bangkok'
+    if 12.60 <= lat <= 13.45 and 100.75 <= lng <= 101.25:
+        return 'Pattaya / Chonburi'
+    if 18.40 <= lat <= 19.20 and 98.60 <= lng <= 99.30:
+        return 'Chiang Mai'
+    if 7.70 <= lat <= 8.25 and 98.20 <= lng <= 98.50:
+        return 'Phuket'
+    if 9.35 <= lat <= 9.80 and 99.85 <= lng <= 100.15:
+        return 'Samui / Surat Thani'
+    if 12.35 <= lat <= 12.75 and 99.80 <= lng <= 100.05:
+        return 'Hua Hin / Prachuap'
+    return 'Regional Thailand'
+
 def build():
     skipped = collections.Counter()
     osm = load_osm_cannabis(skipped)
@@ -224,7 +239,10 @@ def build():
                 (bp.F_CHAIN if p['chain'] else 0) | (bp.F_NOTABLE if p.get('notable') else 0) | \
                 (bp.F_PARK if p['park'] is not None and p['park'] <= bp.PARK_M else 0)
         rows.append([p['id'], p['n'], 0, p['y'], p['x'], flags, p['g'], p['i']] + ([p['h']] if p.get('h') else []))
-        det = {k: p[k] for k in ('th', 'h', 'c', 'web', 'social', 'tel', 'addr', 'conf', 'ds', 'm', 'sub', 'hub250m', 'hub1km') if p.get(k) is not None and p.get(k) != ''}
+        p['prov'] = classify_province(p['y'], p['x'])
+        has_contact = bool(p.get('web') or p.get('social') or p.get('tel'))
+        p['tier'] = 'A' if p.get('sub') == 'clinic' and has_contact else 'B' if (p.get('h') and has_contact) else 'C'
+        det = {k: p[k] for k in ('th', 'h', 'c', 'web', 'social', 'tel', 'addr', 'conf', 'ds', 'm', 'sub', 'hub250m', 'hub1km', 'prov', 'tier') if p.get(k) is not None and p.get(k) != ''}
         if det:
             details[p['id']] = det
 
@@ -239,6 +257,7 @@ def build():
         'total': len(rows),
         'bySource': dict(collections.Counter(p['src'] for p in places)),
         'bySub': dict(collections.Counter(p.get('sub', 'dispensary') for p in places)),
+        'byProvince': dict(collections.Counter(p.get('prov', 'Regional Thailand') for p in places).most_common()),
         'hotspots': hotspots,
         'rows': rows,
         'details': details,

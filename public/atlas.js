@@ -5,7 +5,7 @@
   const modes = {
     all: ['All places', 'Every selected kind, grouped without an index cutoff.'],
     hotspots: ['Hotspots', 'Catalogue café density, not visits or foot traffic.'],
-    hats: ['Hotspot tiles', 'Optional hat-monotile view: cafés counted inside each tile, not visits or foot traffic. Tiles and counts change with zoom.'],
+    hats: ['Einstein tiles', 'Aperiodic hat-monotile heatmap: counts whatever places you are viewing inside each tile. Tiles and counts adapt to zoom.'],
     independent: [
       'Independent',
       'Cafés with no chain signal in the catalogue; ownership is not independently certified.'
@@ -397,8 +397,8 @@
       'pins-city'
     );
     m.addSource('atlas-hats', {type:'geojson',data:empty()});
-    m.addLayer({id:'atlas-hats',type:'fill',source:'atlas-hats',layout:{visibility:'none'},paint:{'fill-color':['step',['get','n'],'#b5decc',12,'#34454c'],'fill-opacity':['interpolate',['linear'],['get','n'],1,.2,12,.4,100,.54]}},'pins-city');
-    m.addLayer({id:'atlas-hat-line',type:'line',source:'atlas-hats',layout:{visibility:'none'},paint:{'line-color':'#34454c','line-width':.7,'line-opacity':.7}},'pins-city');
+    m.addLayer({id:'atlas-hats',type:'fill',source:'atlas-hats',layout:{visibility:'none'},paint:{'fill-color':['interpolate',['linear'],['get','n'],1,'#f5ecc2',4,'#f9c1ce',10,'#f58e84',20,'#dd4027',40,'#7d133a'],'fill-opacity':['interpolate',['linear'],['get','n'],1,.28,8,.46,24,.64,60,.74]}},'pins-city');
+    m.addLayer({id:'atlas-hat-line',type:'line',source:'atlas-hats',layout:{visibility:'none'},paint:{'line-color':'#7d133a','line-width':.75,'line-opacity':.45}},'pins-city');
     for (const id of ['atlas-districts', 'atlas-parks', 'atlas-streets', 'atlas-loops'])
       m.addSource(id, { type: 'geojson', data: empty() });
     m.addLayer(
@@ -653,19 +653,19 @@
       fit.hidden =
         !mapReady || !last.length || last.some((p) => map.getBounds().contains([p.x, p.y]));
     if (lens === 'hotspots') e.textContent += ' · density: pale → dark';
-    if (lens === 'hats') e.textContent += ' · café counts per tile';
+    if (lens === 'hats') e.textContent += ' · Einstein tile density';
     if (lens === 'districts') e.textContent += ' · cafés/km²: 0 · 5 · 35+';
     if (lens === 'triangles' && loop) e.textContent = `3 café stops · ${loop.perimeter} m straight-line triangle`;
   }
   function tileSheet(index){
     const ring=hatGeom?.rings[index];if(!ring)return;
     const ps=(hatGeom.placeIDs?.[index]||[]).map(id=>state.byId.get(id)).filter(Boolean);
-    const sheet=openSheet(`<header><h1>${fmt(ps.length)} ${ps.length===1?'café':'cafés'} in this tile</h1><button class="close" aria-label="Close">×</button></header><p class="src">Actual catalogue points inside this aggregate polygon. These are not visits or a walking route. Counts and tile boundaries change with zoom.</p><button class="linkish featured-entry" data-hat-back>← Tiles in view</button><ul class="atlas-places">${ps.map(placeRow).join('')}</ul>`);
+    const sheet=openSheet(`<header><h1>${fmt(ps.length)} ${ps.length===1?'place':'places'} in this tile</h1><button class="close" aria-label="Close">×</button></header><p class="src">Actual catalogue points inside this Einstein hat-monotile polygon. Counts and tile boundaries adapt to zoom.</p><button class="linkish featured-entry" data-hat-back>← Tiles in view</button><ul class="atlas-places">${ps.map(placeRow).join('')}</ul>`);
     sheet.classList.add('atlas-sheet');bindPlaces(sheet);sheet.querySelector('[data-hat-back]').onclick=tileList;
   }
   function tileList(){
     syncHats();const b=map.getBounds(),features=map.getSource('atlas-hats')?._data?.features||[],tiles=features.filter(f=>f.geometry.coordinates[0].some(([x,y])=>b.contains([x,y]))).sort((a,b)=>b.properties.n-a.properties.n);
-    const sheet=openSheet(`<header><h1>Hotspot tiles in view</h1><button class="close" aria-label="Close">×</button></header><p class="src">Catalogue café counts per tile, most first. No visits or foot-traffic ranking. Pan or zoom the map to change this view.</p><ol class="atlas-places">${tiles.slice(0,40).map((f,i)=>`<li><button data-hat-tile="${f.properties.tile}" data-hat-patch="${esc(f.properties.patch)}"><b>Tile ${i+1} · ${fmt(f.properties.n)} ${f.properties.n===1?'café':'cafés'}</b></button></li>`).join('')||'<li>No occupied tiles in this map view.</li>'}</ol>${tiles.length>40?'<p class="src">Showing the first40tiles. Zoom in to inspect fewer at once.</p>':''}`);
+    const sheet=openSheet(`<header><h1>Einstein tiles in view</h1><button class="close" aria-label="Close">×</button></header><p class="src">Active catalogue counts per tile, most concentrated first. Pan or zoom to inspect another area.</p><ol class="atlas-places">${tiles.slice(0,40).map((f,i)=>`<li><button data-hat-tile="${f.properties.tile}" data-hat-patch="${esc(f.properties.patch)}"><b>Tile ${i+1} · ${fmt(f.properties.n)} ${f.properties.n===1?'place':'places'}</b></button></li>`).join('')||'<li>No occupied tiles in this map view.</li>'}</ol>${tiles.length>40?'<p class="src">Showing the first 40 tiles. Zoom in to inspect fewer at once.</p>':''}`);
     sheet.classList.add('atlas-sheet');sheet.querySelectorAll('[data-hat-tile]').forEach(button=>button.onclick=()=>{if(button.dataset.hatPatch!==hatGeom?.key){tileList();return;}tileSheet(Number(button.dataset.hatTile))});
   }
   function syncHats(){
@@ -676,7 +676,7 @@
       const stale=!HatDensity.covers(hatGeom,bounds,zoom);
       if(stale)hatGeom=HatDensity.geometry(bounds,zoom,EinsteinHat);
       if(!stale&&hatDrawnRevision===hatRevision)return;
-      const counts=HatDensity.tally(hatGeom,last.filter(p=>p.k==='cafe'));
+      const counts=HatDensity.tally(hatGeom,last);
       map.getSource('atlas-hats')?.setData(HatDensity.featureCollection(hatGeom,counts));
       hatDrawnRevision=hatRevision;
     }catch(e){map.getSource('atlas-hats')?.setData(empty());status('Hotspot tiles unavailable; choose Hotspots or All places.');}
@@ -997,6 +997,13 @@
     if (!items.length) return '';
     return `<details class="atlas-facts"><summary>Area &amp; place evidence · ${items.length} signals</summary><p>${items.map(esc).join(' · ')}</p>${e.evidence?.map((v) => `<p class="src"><a href="${esc(v.source_url)}" target="_blank" rel="noopener nofollow">${esc(v.evidence_type.replace(/_/g, ' '))}</a> · ${esc(v.published_at || 'date not stated')} · ${esc(v.attribute_basis || 'branch identity checked against source address')}</p>`).join('') || ''}</details>`;
   }
+  function setClubPalette(on) {
+    if (!mapReady || !map.getLayer('atlas-hats')) return;
+    map.setPaintProperty('atlas-hats', 'fill-color', on
+      ? ['interpolate', ['linear'], ['get', 'n'], 1, '#f5ecc2', 3, '#b5decc', 8, '#afd472', 16, '#87c540', 30, '#253122']
+      : ['interpolate', ['linear'], ['get', 'n'], 1, '#f5ecc2', 4, '#f9c1ce', 10, '#f58e84', 20, '#dd4027', 40, '#7d133a']);
+    map.setPaintProperty('atlas-hat-line', 'line-color', on ? '#253122' : '#7d133a');
+  }
   window.Atlas = {
     install,
     includes,
@@ -1011,6 +1018,8 @@
     facts,
     chooseDistrict,
     clusterList,
+    setClubPalette,
+    toggleHats: () => apply(lens === 'hats' ? 'all' : 'hats'),
     get lens() {
       return lens;
     },

@@ -1,7 +1,12 @@
 // PLUB views: Nong Plub's guide, neighbourhood sheets, the passport, and "I've been here".
 // Uses helpers from app.js (state, map, $, esc, fmt, select, openSheet, petals, dots, GGP, F, KIND_LABEL).
 const TRAIT_SYM = { neutral: '○', leveler: '=', talk: '❝', access: '↦', regulars: '↺', low: '▁', playful: '✳', home: '⌂' };
-function guideArt(size=104) { return `<img class="guide-art ${size<50?'guide-portrait':''}" src="plub/nong-plub.png" alt="Nong Plub" width="${size<50?size:Math.round(size*246/420)}" height="${size}">`; }
+function guideArt(size=104, pose='wave') {
+  if (typeof state !== 'undefined' && state.clubMode && typeof window.drnon === 'function') {
+    return window.drnon(pose, size, 'Dr Non, CL;UB guide');
+  }
+  return `<img class="guide-art ${size<50?'guide-portrait':''}" src="plub/nong-plub.png" alt="Nong Plub" width="${size<50?size:Math.round(size*246/420)}" height="${size}">`;
+}
 const FEELINGS = ['Calm', 'Focused', 'Cozy', 'Buzzing', 'Social', 'Inspiring', 'Slow', 'Meh'];
 const hoods = { list: [], bySlug: {}, ofId: new Map(), data: null };
 
@@ -11,7 +16,16 @@ const hoodsReady = fetch('data/hoods.json').then(r => r.json()).then(d => {
   drawHoods();
 }).catch(() => {});
 
-$('#guide').innerHTML = '<img class="plub-badge" src="plub/nong-plub.png" alt="" width="22" height="22"><span class="btn-lbl">Guide</span>';
+window.updateMascot = on => {
+  const g = $('#guide');
+  if (!g) return;
+  if (on && typeof window.drnon === 'function') {
+    g.innerHTML = `<span class="plub-badge drnon-badge" aria-hidden="true">${window.drnon('wave', 22, '')}</span><span class="btn-lbl">Dr Non</span>`;
+  } else {
+    g.innerHTML = '<img class="plub-badge" src="plub/nong-plub.png" alt="" width="22" height="22"><span class="btn-lbl">Guide</span>';
+  }
+};
+window.updateMascot(false);
 
 window.hoodOf = p => hoods.ofId.get(p.id);
 // How people actually name these areas, in Thai and English. "near" = an alias that is a neighbouring area, said so.
@@ -179,6 +193,31 @@ function histogram(P) {
 
 // ---------- the guide ----------
 $('#guide').addEventListener('click', async () => {
+  if (state.clubMode) {
+    const cs = state.cannabisStats || {};
+    const provs = Object.entries(cs.byProvince || {});
+    const subs = cs.bySub || {};
+    const total = state.sortedCannabisIdx?.length || cs.total || 0;
+    const sheet = openSheet(`
+      <header><h1>CL;UB Thailand Cannabis Directory<span class="th">Cannabis Laboratory · Urban Bureau</span></h1><button class="close" aria-label="Close">×</button></header>
+      <div class="plub-say">${guideArt(104, 'inspect')}<p><q>I'm Dr Non. Thailand has ${fmt(total)} open-data dispensaries, medical cannabis clinics, and wellness cafés mapped here. Use the hotspots or Einstein tiles to spot commercial corridors.</q></p></div>
+      <section><h2 class="micro">National coverage by province / corridor</h2>
+        <ol class="board">${provs.map(([prov, n]) => `<li><span class="nm">${esc(prov)}</span><span class="barwrap"><i style="width:${Math.min(100, n / (provs[0]?.[1] || 1) * 100)}%"></i></span><span class="meta">${n}</span></li>`).join('')}</ol>
+      </section>
+      <section><h2 class="micro">Commercialization &amp; licensing tiers</h2>
+        <dl class="wa-grid guide-tier-grid">
+          <div class="wa-row" data-state="documented"><dt>Tier A · Clinic (${fmt(subs.clinic || 0)})</dt><dd><span class="wa-mark" aria-hidden="true">✓</span> Licensed medical / Thai traditional medicine clinic with verified contact channel</dd></div>
+          <div class="wa-row" data-state="documented"><dt>Tier B · Full Ops</dt><dd><span class="wa-mark" aria-hidden="true">✓</span> Dispensary or wellness café (${fmt((subs.dispensary || 0) + (subs.cafe || 0))}) with published hours &amp; contact</dd></div>
+          <div class="wa-row" data-state="unknown"><dt>Tier C · Mapped</dt><dd><span class="wa-mark" aria-hidden="true">○</span> Open-data location without published hours or phone yet</dd></div>
+        </dl>
+      </section>
+      <section class="about"><h2 class="micro">Thai MOPH commercialization rules</h2>
+        <p class="src">Under Thailand Ministry of Public Health controlled-herb regulations, flower sales require licensed premises &amp; DTAM/MOPH compliance, age 20+ verification, no sales to pregnant/nursing persons, and no public smoking on streets or unlicensed venues.</p>
+        <p class="src">Sources: OpenStreetMap Thailand (ODbL-1.0) &amp; Overture Maps Places Bangkok (CDLA-P-2.0). Never rated for co-working.</p>
+      </section>`);
+    sheet.classList.add('guide-sheet');
+    return;
+  }
   await hoodsReady;
   const d = hoods.data, P = state.places, n = P.length || 1;
   // what the bar shows: A/S/F are computed for every place; C is the share that is independent;

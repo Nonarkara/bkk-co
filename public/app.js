@@ -150,8 +150,9 @@ async function loadCannabis() {
         for (const [id, det] of Object.entries(d.details || {})) {
           cannabisDetails.set(id, det);
           const place = state.byId.get(id);
-          if (place) { place.hub = det.hub1km; place.sub = det.sub; place.th = det.th; }
+          if (place) { place.hub = det.hub1km; place.sub = det.sub; place.th = det.th; place.prov = det.prov; place.tier = det.tier; }
         }
+        state.cannabisStats = { total: d.total, bySub: d.bySub || {}, byProvince: d.byProvince || {} };
         state.cannabisHotspots = Array.isArray(d.hotspots) ? d.hotspots : [];
         state.sortedIdx = state.places.filter(p => p.k !== 'cannabis').map(p => p.idx).sort((a, b) => a - b);
         state.sortedCannabisIdx = state.places.filter(p => p.k === 'cannabis').map(p => p.idx).sort((a, b) => a - b);
@@ -240,6 +241,12 @@ async function setClubMode(on, { frame = true } = {}) {
     map.setMinZoom(9);
   }
   renderClubHotspots();
+  window.Atlas?.setClubPalette?.(on);
+  window.updateMascot?.(on);
+  const hint = $('#list-guide-hint');
+  if (hint) hint.innerHTML = on
+    ? 'Pick a Thailand hotspot or tap a venue. Toggle <b>Einstein tiles</b> for density.'
+    : 'Tap a row to inspect details, or toggle <b>Einstein tiles</b> for concentration.';
   const u = new URL(location.href);
   if (on && location.hostname !== 'club.nonarkara.org') u.searchParams.set('mode', 'club');
   else u.searchParams.delete('mode');
@@ -478,9 +485,19 @@ function row(p, key = p.k === 'cannabis' ? (CLUB_TYPES[p.sub] || KIND_LABEL.cann
     state.flags.has('work') ? `<span title="Work score" class="ws">${Math.round(ws)}</span>` : '',
   ].join(' ');
   const kindLabel = CLUB_TYPES[p.sub] || KIND_LABEL[p.k];
+  const subParts = [kindLabel];
+  if (p.k === 'cannabis') {
+    if (p.tier) subParts.push(`Tier ${p.tier}`);
+    if (p.prov) subParts.push(p.prov);
+    if (p.hub) subParts.push(`${p.hub} nearby`);
+  } else {
+    if (p.flags & F.WIFI) subParts.push('Wi-Fi');
+    if (p.hours) subParts.push('Hours');
+    if (s) subParts.push(`★${s.n}`);
+  }
   const label=esc(p.n+(p.branch?', '+p.branch:'')+' · '+kindLabel);
   const name=`${nm(p.n)}${p.branch?' '+branchTag(p):''}`;
-  if(list)return `<li data-id="${esc(p.id)}"><button type="button" class="list-place" aria-label="${label}, ${esc(key)}">${PlaceTools.icon(p)}<span class="nm">${name}<span class="row-signals">${tail}</span></span><span class="idx" title="${state.sort==='near'?'Straight line from the map centre':'Computed catalogue signal, not a visitor star rating'}">${esc(key)}</span></button></li>`;
+  if(list)return `<li data-id="${esc(p.id)}"><button type="button" class="list-place" aria-label="${label}, ${esc(key)}">${PlaceTools.icon(p)}<span class="nm"><span class="row-title">${name}</span><span class="row-sub">${esc(subParts.join(' · '))}</span></span><span class="idx" title="${state.sort==='near'?'Straight line from the map centre':'Computed catalogue signal, not a visitor star rating'}">${esc(key)}</span></button></li>`;
   return `<li data-id="${esc(p.id)}" role="option" aria-label="${label}">${PlaceTools.icon(p)}<span class="nm">${name}</span><span class="meta">${tail}</span><span class="idx">${esc(key)}</span></li>`;
 }
 
@@ -838,6 +855,7 @@ document.addEventListener('click', e => {
     else if (act.dataset.act === 'discovery') window.openDiscovery?.();
     else if (act.dataset.act === 'compare') { location.href = '/day?task=live'; return; }
     else if (act.dataset.act === 'club') { setClubMode(!state.clubMode); return; }
+    else if (act.dataset.act === 'tiles') { window.Atlas?.toggleHats?.(); act.setAttribute('aria-pressed', String(window.Atlas?.lens === 'hats')); return; }
     else act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.();
   }
   const h = e.target.closest('#mood [data-hood]');

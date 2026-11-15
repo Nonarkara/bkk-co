@@ -80,6 +80,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .mark { font: 700 17px/1 "Sao Chingcha", var(--font); letter-spacing: .07em; text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; }
 .mark .semi { color: var(--seam); display: inline-flex; align-items: center; }
 .plub-badge { display:inline-block; width:22px; height:22px; object-fit:cover; object-position:center top; border-radius:50%; }
+.drnon-badge { display:inline-flex; align-items:center; justify-content:center; overflow:hidden; background:var(--club-guide, #b5decc); }
+.drnon-badge svg { width:22px; height:26px; display:block; }
 .brand-hero { display: block; width: 104px; height: 104px; }
 .search { flex: 1 1 92px; position: relative; display: flex; align-items: center; min-width: 0; }
 .search-lens { position: absolute; left: 10px; color: var(--muted); font-size: 14px; pointer-events: none; line-height: 1; }
@@ -395,6 +397,10 @@ body.club-mode .list-tools > .list-day { display: none; }
 /* Desktop: a 360px instrument column, map takes the rest (~75% at 1440) */
 @media (min-width: 900px) {
   body { grid-template: "bar map" auto "chips map" auto "side map" 1fr / 360px 1fr; }
+  .bar { flex-wrap: nowrap; gap: 6px; padding: 8px 8px; }
+  .bar-brand { padding-right: 8px; }
+  .bar-btn { padding: 0 7px; }
+  .search input { min-width: 60px; }
   .bar, .chips, .side { border-right: 1px solid var(--rule); }
   .side { grid-area: side; display: flex; flex-direction: column; min-height: 0; }
   .list-wrap { display: flex; flex-direction: column; min-height: 0; flex: 1; }

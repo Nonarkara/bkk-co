@@ -28,14 +28,26 @@
 .list-tools .list-close { flex:none; margin:0 0 0 auto; min-width:32px; width:32px; height:32px; font-size:var(--big); }
 .list-options { display:flex; align-items:flex-start; flex-wrap:wrap; gap:0 14px; padding:0 var(--pad); flex:none; border-bottom:1px solid var(--rule); }
 .list-tools .list-day { display:inline-flex; align-items:center; min-height:32px; font-size:var(--small); font-weight:600; text-underline-offset:3px; }
-.list-scope { display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:4px 8px; padding:5px var(--pad) 0; flex:none; }
+.list-scope { display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:4px 8px; padding:6px var(--pad) 2px; flex:none; }
 .list-scope .count { margin:0; padding:0; font-size:var(--micro); white-space:normal; }
+.scope-tiles { min-height:26px; padding:0 8px; font-size:var(--micro); font-weight:600; border:1px solid var(--rule); background:var(--paper); color:var(--ink); cursor:pointer; }
+.scope-tiles:hover { border-color:var(--ink); background:var(--wash); }
+.scope-tiles[aria-pressed="true"] { border-color:var(--ink); background:var(--guide); color:var(--ink); }
+.list-guide-hint { padding:0 var(--pad) 6px; font-size:var(--micro); color:var(--muted); line-height:1.35; border-bottom:1px solid var(--rule); }
+.list-wrap { overflow-x:hidden; }
+.list-place .nm { display:flex; flex-direction:column; gap:1px; font-weight:500; white-space:normal; overflow-wrap:anywhere; min-width:0; }
+.list-place .row-title { font-weight:600; color:var(--ink); }
+.list-place .row-sub { font-size:var(--micro); color:var(--muted); font-weight:400; line-height:1.25; }
+.list-group[data-list-group="cafe"] h3 { border-left:4px solid var(--cat-cafe); }
+.list-group[data-list-group="coworking"] h3 { border-left:4px solid var(--accent); }
+.list-group[data-list-group="library"] h3 { border-left:4px solid var(--cat-library); }
+.list-group[data-list-group="restaurant"] h3 { border-left:4px solid var(--cat-food); }
+.list-group[data-list-group="cannabis"] h3 { border-left:4px solid var(--cat-cannabis); }
 .list-order { max-width:100%; }
 .list-order select { font:inherit; font-size:var(--micro); min-height:32px; padding:2px 4px; max-width:215px; color:var(--ink); border:0; border-bottom:1px solid var(--rule); border-radius:0; background:var(--paper); }
 .list li[data-id] { padding:0; min-height:0; }
 .list-place { display:grid; grid-template-columns:20px minmax(0,1fr) auto; gap:8px; align-items:center; width:100%; min-height:32px; padding:5px var(--pad); text-align:left; }
 .list-place .place-symbol,.list-place .place-badge { width:20px; height:20px; }
-.list-place .nm { font-weight:500; white-space:normal; overflow-wrap:anywhere; }
 .list-place .idx { font-size:var(--small); color:var(--muted); font-weight:400; white-space:normal; max-width:6.5em; }
 .list-place .meta:empty { display:none; }
 .list-place .row-signals { display:inline; margin-left:5px; font-size:var(--micro); color:var(--muted); font-weight:400; }
