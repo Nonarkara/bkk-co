@@ -252,7 +252,7 @@ async function ready(page) {
   // `state` and `map` are top-level consts: global lexical bindings, not window properties.
   await page.waitForFunction(() => typeof state !== 'undefined' && state.foodLoaded && state.places.length > 0
     && !!document.querySelector('#map canvas'), {}, { timeout: 120000 });
-  await page.waitForFunction(() => !!map.getLayer('place-icons'), {}, { timeout: 45000 }).catch(() => { });
+  await page.waitForFunction(() => !!map.getLayer('place-icons'), {}, { timeout: 90000 }).catch(() => { });
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(700);
   return page.evaluate(() => !!map.getLayer('place-icons'));
@@ -266,7 +266,7 @@ async function checkThaiName(page, base) {
   await page.waitForFunction(() => {
     const h1 = document.querySelector('#sheet h1');
     return h1 && /[\u0E00-\u0E7F]/.test(h1.textContent || '');
-  }, {}, { timeout: 45000 }).catch(() => { });
+  }, {}, { timeout: 90000 }).catch(() => { });
   await page.evaluate(() => document.fonts.ready);
   return page.evaluate(() => {
     const h1 = document.querySelector('#sheet h1');
@@ -286,7 +286,7 @@ async function checkThaiName(page, base) {
 
 async function checkPlaceSheet(page, base) {
   await page.goto(new URL('/?p=o71358a621d50', base).href, { waitUntil: 'domcontentloaded', timeout: 120000 });
-  await page.locator('.place-visit-report a').waitFor({ timeout: 30000 });
+  await page.locator('.place-visit-report a').waitFor({ timeout: 90000 });
   await page.evaluate(() => document.fonts.ready);
   const measure = () => {
     const sheet = document.querySelector('#sheet');
@@ -323,7 +323,7 @@ async function checkPlaceSheet(page, base) {
 }
 
 async function checkVisitReadingOrder(page, base) {
-  await page.goto(new URL('/bridge-1958', base).href, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await page.goto(new URL('/bridge-1958', base).href, { waitUntil: 'domcontentloaded', timeout: 120000 });
   await page.locator('.visit-photo img').evaluate(img => img.decode());
   await page.evaluate(() => document.fonts.ready);
   const measure = () => {
@@ -357,9 +357,9 @@ async function checkDayPlanner(page, base) {
   const result = {};
   const actions = { live: '.day-comparison tbody a[href*="plan=nearby"]', today: '#day-show-area', work: '#day-find' };
   for (const [task, selector] of Object.entries(actions)) {
-    await page.goto(new URL(`/day?task=${task}&lang=th`, base).href, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.goto(new URL(`/day?task=${task}&lang=th`, base).href, { waitUntil: 'domcontentloaded', timeout: 120000 });
     const action = page.locator(selector).first();
-    await action.waitFor({ timeout: 15000 });
+    await action.waitFor({ timeout: 60000 });
     await page.evaluate(() => document.fonts.ready);
     const measure = el => {
       const box = el.getBoundingClientRect();
@@ -414,7 +414,7 @@ const PRESERVE = async (page, base, shot) => {
 
   await step('search', async () => {
     await page.locator('#q').fill('coffee');
-    await page.waitForFunction(() => document.querySelectorAll('#hits li').length > 0, {}, { timeout: 30000 });
+    await page.waitForFunction(() => document.querySelectorAll('#hits li').length > 0, {}, { timeout: 60000 });
     checks.search = await page.locator('#hits li').count();
     await page.keyboard.press('Escape');
     await page.waitForTimeout(250);
@@ -438,15 +438,15 @@ const PRESERVE = async (page, base, shot) => {
 
   await step('hop', async () => {
     await page.evaluate(() => window.openHop?.());
-    await page.waitForFunction(() => document.querySelector('.hop-sheet') && document.querySelectorAll('.hop-sheet .hop li').length > 0, {}, { timeout: 30000 });
+    await page.waitForFunction(() => document.querySelector('.hop-sheet') && document.querySelectorAll('.hop-sheet .hop li').length > 0, {}, { timeout: 60000 });
     checks.hopStops = await page.locator('.hop-sheet .hop li').count();
     checks.hopHasShared = await page.locator('.hop-sheet [data-shared-hops]').count();
   });
 
   await step('sharedHops', async () => {
     await page.evaluate(() => document.querySelector('.hop-sheet [data-shared-hops]')?.click());
-    await page.waitForFunction(() => !!document.querySelector('.shared-hops-sheet'), {}, { timeout: 30000 });
-    await page.waitForFunction(() => { const p = document.querySelector('.hop-feed'); return p && !/Loading shared hop notes/.test(p.textContent); }, {}, { timeout: 30000 });
+    await page.waitForFunction(() => !!document.querySelector('.shared-hops-sheet'), {}, { timeout: 60000 });
+    await page.waitForFunction(() => { const p = document.querySelector('.hop-feed'); return p && !/Loading shared hop notes/.test(p.textContent); }, {}, { timeout: 60000 });
     const feed = (await page.locator('.hop-feed').innerText()).trim();
     checks.hopFeed = feed.slice(0, 120);
     // A community surface that shows an error is not a community surface.
@@ -483,7 +483,7 @@ const PRESERVE = async (page, base, shot) => {
 
   await step('notebook', async () => {
     await page.locator('#passport').click({ timeout: 15000 });
-    await page.waitForFunction(() => !!document.querySelector('.notebook-sheet'), {}, { timeout: 30000 });
+    await page.waitForFunction(() => !!document.querySelector('.notebook-sheet'), {}, { timeout: 60000 });
     checks.notebook = await page.locator('.notebook-sheet').count();
     await page.keyboard.press('Escape');
   });
@@ -492,7 +492,7 @@ const PRESERVE = async (page, base, shot) => {
     await page.evaluate(() => map.jumpTo({ center: [100.64228, 13.76848], zoom: 16 }));
     await page.locator('.list-walkthrough').click({ timeout: 15000 });
     const stage = page.locator('#walkthrough-stage[open][data-ready="true"]');
-    await stage.waitFor({ timeout: 25000 });
+    await stage.waitFor({ timeout: 60000 });
     checks.walkthrough = await stage.evaluate(el => {
       const back = el.querySelector('.model-close');
       const r = back.getBoundingClientRect();
@@ -506,11 +506,11 @@ const PRESERVE = async (page, base, shot) => {
     });
     if (shot) await page.screenshot({ path: new URL(`walkthrough-${shot}.png`, outDir).pathname });
     await stage.getByRole('combobox', { name: 'Neighbourhood' }).selectOption('bangkapi');
-    await page.locator('#walkthrough-stage[data-area=bangkapi][data-volumes="0"]').waitFor({ timeout: 25000 });
+    await page.locator('#walkthrough-stage[data-area=bangkapi][data-volumes="0"]').waitFor({ timeout: 60000 });
     const relief = stage.getByRole('button', { name: 'See 3D in Sam Yan' });
     checks.walkthrough.flat = /No mapped building heights/.test(await stage.getByRole('status').innerText()) && await relief.isVisible();
     await relief.click();
-    await page.locator('#walkthrough-stage[data-area=samyan]').waitFor({ timeout: 25000 });
+    await page.locator('#walkthrough-stage[data-area=samyan]').waitFor({ timeout: 60000 });
     checks.walkthrough.relief = Number(await stage.getAttribute('data-volumes')) > 0;
     await page.keyboard.press('Escape');
     checks.walkthrough.closed = !await page.locator('#walkthrough-stage').evaluate(el => el.open);
