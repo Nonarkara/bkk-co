@@ -14,14 +14,12 @@ Governing design law, in order: **MSH** (`~/Projects/_reference/MSH.md`) → **g
 - Scale: 20 / 14 / 12 px, with 11 px tracked micro for qualifications. ≤4 sizes per view.
 
 ## Colour
-Wada plate 273 (locally credited catalogue: `~/Projects/palette/data/colors.json`). Plate273 owns the interface; chrome never competes with it. Owner-authorized mapped category fills use the separate Palette320 chord below.
-- Ground **#ffffff** paper, wash **#f4f4f0**.
-- Ink **#7d133a** (Pansy Purple, plate 273) — reading text and the wordmark. Contrast on white 10.36:1.
-- Guide field **#f9c1ce** (Hermosa Pink, plate 273) — Nong Plub's bounded surfaces. Ink on it 6.69:1.
-- Wordmark seam **#e88ba1** — the semicolon in `PL;UB` only. Nowhere else.
-- Structure **#b6bfc1** (Neutral Gray, plate 273) — hairlines and arcs.
-- Accent **#dd4027** (Red Orange, Palette combination 241) — **one job only: the co-working category mark.** Never a second accent, never Tailwind blue `#3B82F6`.
-- Unused plate colour: **#a36752** (Sudan Brown). Deliberately not in the interface.
+Wada combination **202**, from `~/Projects/palette/data/colors.json`. Turquoise Green (#b5decc) opens the manga map and supports the guide. Cobalt Green (#96d1aa) identifies café geometry. Slate Color (#34454c) is the reading ink. These are Palette’s digital values. The previous pink theme was retired at the owner’s request on 15 November 2026.
+- Carrier is white paper with a pale green wash. Neutral Gray (#b6bfc1) draws hairlines.
+- The seam uses #36795a, a darker green chosen for legibility. It belongs only to the wordmark.
+- Red Orange (#dd4027) identifies co-working. Other venue map colours keep their category associations.
+- Neighbourhoods use individually sourced Palette chords. Where Hermosa or Corinthian Pink led the old map, combinations 202, 281 and 188 carry the new green grounds.
+- CL;UB retains its Botanical Green register. The mobile Places control lives in the header and the map has no category toolbar.
 - **Zero** border-radius except a true circle. **Zero** drop shadows except inset hairlines and `:focus-visible`. **Zero** gradients except a flat veil where text must sit on a photo or map.
 
 ## Devices
@@ -51,32 +49,32 @@ Wada plate 273 (locally credited catalogue: `~/Projects/palette/data/colors.json
 - phrase "straight line": distances are straight-line estimates, never silently sold as walking routes.
 
 ## Allow
-- rule cream-terracotta: Nong Plub's crayon palette (warm paper, brown hair, brick cheek) is character illustration, not the interface palette. The interface ground is white with Wada plate 273 ink.
+- rule cream-terracotta: Nong Plub's crayon palette (warm paper, brown hair, brick cheek) is character illustration, not the interface palette. The interface ground is white with Slate Color ink.
 
 - colour #fbf6ea: crayon character paper (illustration only).
 - colour #9a6240: crayon character hair highlight (illustration only).
 
 ## Building-place colors · owner request7November2026
-- Manga footprint fills use Palette combination320: Café=Coral Red`#f58e84`, Co-work=Sulpher Yellow`#f5ecc2`, Library=Oil Green`#819238`, Food=Light Glaucous Blue`#a5c8d1`. These are credited digital catalogue conversions, not exact historical ink. Four data roles, not new interface accents.
+- Manga footprint fills use two verified chords: Café=Cobalt Green`#96d1aa` (202), Co-work=Sulpher Yellow`#f5ecc2`, Library=Oil Green`#819238`, Food=Light Glaucous Blue`#a5c8d1` (all from 320). These are credited digital catalogue conversions, not exact historical ink. Four data roles, not new interface accents.
 - White paper/dark outlines carry the scene. Category textures render at72% opacity beneath the existing screentone; icons and textures carry meaning without hue. Mixed categories have striped fills.
 - A fill says a matching selected category pin lies strictly inside this actual source Polygon. It does not classify the entire building's use or every floor. Unmatched footprints, holes, ambiguous boundaries and outside points remain neutral. Never assign a nearest building. Never tint an entire merged vector-feature ID: one ID may group thousands of unrelated footprints.
 - The main map retains source linework, routes and symbols. Native3D uses unchanged explicit source heights, with colors only on the corresponding single-component source footprint. Unknown heights stay flat. Both primary manga and secondary precision mode retain the same position and GPS.
 - Street sketch 3D volumes render with manga dot screentone: unclassified extrusions use palette-volume-neutral with a 12% dot tone, palette masks keep colour + texture. No invented height, no second map, tone is runtime.
-- The bottom map key is a compact content-sized instrument; source/category explanations live in Key. Header, logo, notebook and filter surfaces keep their existing white/purple identity.
-- 3D walkthrough `public/street-world-3d.js` · 2026-11-09: WebGL manga city engine with Wada plate 273 palette, explicit-height only extrusion, collision grid for all footprints, no invented heights per GSH. Screentone shaders are runtime, no second map source.
+- The bottom map key is a compact content-sized instrument; source/category explanations live in Key. Header, logo, notebook and filter surfaces keep their white, slate and green identity.
+- 3D walkthrough `public/street-world-3d.js` · 2026-11-09: WebGL manga city engine with Wada combination 202 paper mode, explicit-height only extrusion, collision grid for all footprints, no invented heights per GSH. Screentone shaders are runtime, no second map source.
 
 ## Neighborhood atmosphere · owner request7November2026
 - A separate quiet ground beneath streets/buildings carries authored neighborhood atmosphere. Existing800m story circles, exact source anchors only; never implied administrative boundaries or amenity evidence. Unassigned city ground stays neutral. CategoryPalette320 meanings remain fixed above it.
-- Regional Palette chords176(Ari),227(ThongLo),273(CharoenKrung),320(SamYan),241(Ramkhamhaeng) use locally verified digital catalogue conversions. Broad paper, a secondary band and sparse printed marks at16% opacity (28% before 7Nov Grand Budapest pass); no invented streets/parcels/density. Explain the role and circle limits in Key. This owner-authorized map ground does not add interface accents.
+- Regional Palette chords 202 (Ari and Charoen Krung), 281 (Thong Lo), 320 (Sam Yan), and 241 (Ramkhamhaeng) use locally verified digital catalogue conversions. Broad paper, a secondary band and sparse printed marks at16% opacity (28% before 7Nov Grand Budapest pass); no invented streets/parcels/density. Explain the role and circle limits in Key. This owner-authorized map ground does not add interface accents.
 - Real neighborhood reference photos keep visible creator/license/source and changes; never imply the selected venue was photographed. Primary directions stay above this optional reading depth. No AI-generated placeholder photos.
 
-## Grand Budapest basemap · owner request 7November2026
+## Grand Budapest basemap · historical notes, 7 November 2026
 - The manga map's ground follows the Grand Budapest Hotel register, built only from Sanzo Wada catalogue colours (credited digital conversions, `palette/data/colors.json`): ground Hermosa Pink`#f9c1ce`; parks/landcover Turquoise Green`#b5decc` (mint); water Pale King's Blue`#a7d4e4` with Olympic Blue`#5a82b3` waterways and Vandar Poel's Blue`#064f6e` water labels on a white halo; major-road core Pale Lemon Yellow`#ffefae`; all line-work, rail and labels Pansy Purple`#7d133a`; residential hatch Cameo Pink`#e0b3b6`. Buildings stay white (the cut-out façade); the grey screentone is down to12%. Neighbourhood mood grounds drop from28% to16% so they tint the pink rather than stack into a hot pink.
 - Every flat field follows an OpenMapTiles class the tiles already carry. No colour states a use, height or boundary the source lacks. Buildings stay white unless a matching pin is inside (Palette320 rule above, now at92% so it reads on white).
 - Known limit: café Coral Red against the pink ground is1.5:1. Café fills rely on the plum footprint outline, texture and symbol, never on hue alone.
 - `#map` paints the ground colour before the first tile, so a cold load opens on the set, not a void.
 - Chrome: the rail owns Find/Explore/Filters/Key at every width; the map dock shows only an active view's status, its way out and "Show matches". One count per view. The phone list toggle is the symbol`☰` (accessible name "List, explore and filters") so all five chips fit at360px with4px gaps. Cluster badges use a hairline border; the single pin is the stronger mark.
-## Grand Budapest, second pass · 8November2026
+## Grand Budapest, second pass · historical notes, 8 November 2026
 - Single pins wear their category colour (café Coral Red, co-work Sulpher Yellow, library Oil Green, food Light Glaucous Blue, the same chord as footprints and Key), so map pins, list icons and the Key read as one system. "Less documented" cafés stay white with a dashed ring: weaker evidence gets less colour, never the same jewel.
 - Cluster badges stay white and scale with their count (icon 0.74×→1.08×, number 11→15px from 2 to 120 places), so the dense quarters are found first instead of fifty equal labels.
 - Line weight by role: road casings stay full plum; building edges drop to 34% and paths to 50%. Uniform plum on every edge was noise.

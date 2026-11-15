@@ -197,6 +197,52 @@
         "name": "Night Green",
         "hex": "#87c540"
       }
+    ],
+    "188": [
+      {
+        "name": "Rainette Green",
+        "hex": "#8fa071"
+      },
+      {
+        "name": "Salvia Blue",
+        "hex": "#97acc8"
+      },
+      {
+        "name": "Cobalt Green",
+        "hex": "#96d1aa"
+      }
+    ],
+    "202": [
+      {
+        "name": "Turquoise Green",
+        "hex": "#b5decc"
+      },
+      {
+        "name": "Cobalt Green",
+        "hex": "#96d1aa"
+      },
+      {
+        "name": "Slate Color",
+        "hex": "#34454c"
+      }
+    ],
+    "281": [
+      {
+        "name": "Pale Lemon Yellow",
+        "hex": "#ffefae"
+      },
+      {
+        "name": "Benzol Green",
+        "hex": "#00978d"
+      },
+      {
+        "name": "Cobalt Green",
+        "hex": "#96d1aa"
+      },
+      {
+        "name": "Antwarp Blue",
+        "hex": "#007190"
+      }
     ]
   },
   "note": "Every neighbourhood ground uses one of these real Sanzo Wada combinations. The sha256 pins the credited digital catalogue the colours came from."

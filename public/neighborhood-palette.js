@@ -11,9 +11,9 @@
  const catalogue={source:'Palette · Sanzo Wada digital catalogue',path:'palette/data/colors.json',sha256:'555f11c32eb8133078fd470dd7d5320533aaa8b636f12fa06a8dd3d0ee2703b4',meaning:'Credited digital conversions, not exact historical ink.'};
  // Authored story areas: the combination and its colours are a considered choice.
  const authored={
-  ari:{chord:176,colors:[['Seashell Pink','#fdd4bd'],['Hermosa Pink','#f9c1ce'],['Calamine BLue','#78cdd0']]},
-  thonglo:{chord:227,colors:[['Light Glaucous Blue','#a5c8d1'],['Hermosa Pink','#f9c1ce'],['Cerulian Blue','#0093a5']]},
-  charoenkrung:{chord:273,colors:[['Hermosa Pink','#f9c1ce'],['Neutral Gray','#b6bfc1'],['Sudan Brown','#a36752'],['Pansy Purple','#7d133a']]},
+  ari:{chord:202,colors:[["Turquoise Green","#b5decc"],["Cobalt Green","#96d1aa"],["Slate Color","#34454c"]]},
+  thonglo:{chord:281,colors:[["Cobalt Green","#96d1aa"],["Pale Lemon Yellow","#ffefae"],["Benzol Green","#00978d"],["Antwarp Blue","#007190"]]},
+  charoenkrung:{chord:202,colors:[["Turquoise Green","#b5decc"],["Cobalt Green","#96d1aa"],["Slate Color","#34454c"]]},
   samyan:{chord:320,colors:[['Sulpher Yellow','#f5ecc2'],['Light Glaucous Blue','#a5c8d1'],['Oil Green','#819238'],['Coral Red','#f58e84']]},
   ramkhamhaeng:{chord:241,colors:[['Pale Lemon Yellow','#ffefae'],['Isabella Color','#c5a56e'],['Dark Medici Blue','#547076']]},
  };
@@ -23,7 +23,7 @@
   phranakhon:{chord:235,colors:[['Ivory Buff','#ebd3a2'],['Yellow Orange','#f99d1b'],['Grayish Lavender - B','#c0a9b3']]},
   samphanthawong:{chord:317,colors:[['Light Pinkish Cinnamon','#fcc79b'],['Ecru','#c2ae93'],['Lemon Yellow','#f8ed43'],['Turquoise Green','#b5decc']]},
   chatuchak:{chord:303,colors:[['Naples Yellow','#fbe6a0'],['Peach Red','#f15a30'],['Deep Slate Olive','#253122'],['Neutral Gray','#b6bfc1']]},
-  dindaeng:{chord:169,colors:[['Corinthian Pink','#f8b6ba'],['Pale Lemon Yellow','#ffefae'],['Warm Gray','#a1a39a']]},
+  dindaeng:{chord:188,colors:[["Rainette Green","#8fa071"],["Cobalt Green","#96d1aa"],["Salvia Blue","#97acc8"]]},
   bangkapi:{chord:178,colors:[['Ivory Buff','#ebd3a2'],['Light Glaucous Blue','#a5c8d1'],['Green Blue','#099197']]},
   prawet:{chord:326,colors:[['Sulpher Yellow','#f5ecc2'],['Peach Red','#f15a30'],['Yellow Green','#afd472'],['Night Green','#87c540']]},
  };

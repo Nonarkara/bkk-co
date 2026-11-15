@@ -1,5 +1,5 @@
 /* PLUB · Placemaking Laboratory Urban Bureau — civic daylight register.
-   Radius 0, no shadows, no gradients. One ink (Pansy Purple, Wada plate 273),
+   Radius 0, no shadows, no gradients. One ink (Slate Color, Wada combination 202),
    one accent (Red Orange) with one job, four type sizes: 20 / 14 / 12 / 11.
    Everything is self-hosted: no third-party font request, no visitor leaves the site. */
 
@@ -25,25 +25,25 @@
 .hand, .plub-say q, .hood-mood .for { font-family: "Non Architecture", "Jost", sans-serif; font-weight: 400; letter-spacing: .01em; }
 .plub-say q { font-size: var(--big); line-height: 1.3; }
 /* one small hand-drawn mark: a squiggle under the neighbourhood's purpose */
-.hood-mood .for { padding-bottom: 6px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='8' viewBox='0 0 60 8'%3E%3Cpath d='M1 5 q6 -5 12 0 t12 0 t12 0 t12 0' fill='none' stroke='%237d133a' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") left bottom / 60px 8px no-repeat; }
+.hood-mood .for { padding-bottom: 6px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='8' viewBox='0 0 60 8'%3E%3Cpath d='M1 5 q6 -5 12 0 t12 0 t12 0 t12 0' fill='none' stroke='%2334454c' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") left bottom / 60px 8px no-repeat; }
 
 :root {
   /* Paper and ground */
   --paper: #ffffff;
-  --wash: #f4f4f0;
-  --guide: #f9c1ce;          /* Hermosa Pink, plate 273 — Nong Plub's bounded surfaces */
-  --seam: #e88ba1;           /* the semicolon in the wordmark, nowhere else */
-  /* One ink. Pansy Purple, Wada plate 273. Every reading mark and every hairline. */
-  --ink: #7d133a;
-  --ink-80: #974261;         /* 6.43:1 on white — secondary text */
-  --ink-45: #c08da2;         /* a quiet tint of the same ink, for fills only */
+  --wash: #f0f5f1;
+  --guide: #b5decc;          /* Turquoise Green, combination 202 — Nong Plub's bounded surfaces */
+  --seam: #36795a;           /* the semicolon in the wordmark, nowhere else */
+  /* One ink. Slate Color, Wada combination 202. Every reading mark and every hairline. */
+  --ink: #34454c;
+  --ink-80: #5d6a70;         /* secondary text */
+  --ink-45: #a4abaf;         /* a quiet tint of the same ink, for fills only */
   --muted: var(--ink-80);
-  --rule: #b6bfc1;           /* Neutral Gray, plate 273 — hairlines and arcs */
+  --rule: #b6bfc1;           /* Neutral Gray — hairlines and arcs */
   /* The one accent. One job: the co-working category mark. Red Orange, plate 241 — the
      only catalogue colour no neighbourhood ground and no data role already wears. */
   --accent: #dd4027;
-  /* Catalogue data chord, Wada plate 320 — the map's category fills and pins. */
-  --cat-cafe: #f58e84; --cat-cowork: #f5ecc2; --cat-library: #819238; --cat-food: #a5c8d1; --cat-cannabis: #87c540;
+  /* Map categories: Cobalt Green for cafés, with the existing category tones. */
+  --cat-cafe: #96d1aa; --cat-cowork: #f5ecc2; --cat-library: #819238; --cat-food: #a5c8d1; --cat-cannabis: #87c540;
   /* Four type sizes. The wordmark is a logotype, not a type size. */
   --big: 20px; --body: 14px; --small: 12px; --micro: 11px;
   /* Motion: one duration, one curve. A state change is noticed once, then it is still. */
@@ -81,7 +81,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .mark .semi { color: var(--seam); display: inline-flex; align-items: center; }
 .plub-badge { display:inline-block; width:22px; height:22px; object-fit:cover; object-position:center top; border-radius:50%; }
 .brand-hero { display: block; width: 104px; height: 104px; }
-.search { flex: 1; position: relative; display: flex; align-items: center; min-width: 0; }
+.search { flex: 1 1 92px; position: relative; display: flex; align-items: center; min-width: 0; }
 .search-lens { position: absolute; left: 10px; color: var(--muted); font-size: 14px; pointer-events: none; line-height: 1; }
 .search input { width: 100%; min-height: 36px; padding: 6px 10px 6px 28px; font: inherit; font-size: var(--body); color: var(--ink);
   border: 1px solid var(--rule); border-radius: 0; background: var(--paper); }
@@ -118,7 +118,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
    Filters are instruments: on = ink edge and ink label, off = hairline and muted.
    Filled ground stays for primary actions inside sheets — never for resting chrome. */
 .chips button[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); }
-.chips .sep { display: none; }
+.chips button[hidden], .chips .sep { display: none; }
 .count { margin-left: auto; padding-left: 8px; color: var(--muted); font-size: var(--micro); white-space: nowrap; }
 .moods { flex: none; display: flex; gap: 4px; padding: 6px var(--pad) 0; overflow-x: auto; scrollbar-width: none; }
 .moods button, .moods a { flex: none; height: 32px; padding: 0 8px; white-space: nowrap; border: 1px solid var(--ink); }
@@ -197,7 +197,7 @@ body.club-mode .list-tools > .list-day { display: none; }
 .hotspot-pill b { font-weight: 700; color: var(--ink); background: var(--guide); padding: 0 4px; font-variant-numeric: tabular-nums; }
 .hotspot-pill span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 130px; }
 
-#map { grid-area: map; min-height: 0; background: var(--guide); } /* Grand Budapest ground before the first tile arrives */
+#map { grid-area: map; min-height: 0; background: var(--guide); } /* Catalogue green before the first tile arrives */
 .phone-only { }
 .idx { min-width: 2.2em; text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; }
 .hits .missing { min-height: 36px; font-size: var(--micro); }
@@ -463,3 +463,14 @@ body.club-mode #club-toggle[aria-pressed="true"] ~ [data-mood] { display: none; 
 .club-hotspots .hotspots-row { max-height: 32vh; overflow: auto; }
 .hotspot-pill { min-height: 32px; text-align: start; }
 .hotspot-pill span { overflow-wrap: anywhere; white-space: normal; max-width: none; }
+
+body.club-mode .chips { display: none; }
+body.club-mode .bar-actions #list-toggle { min-height: 32px; padding-inline: 8px; }
+
+.footprint-club-symbol { display: none; }
+body.club-mode .footprint-key .footprint-swatch { display: none; }
+body.club-mode .footprint-club-symbol { display: inline-flex; }
+
+body.club-mode .list-tools > .list-walkthrough { display: none; }
+@media (min-width: 900px) { body.club-mode .list-tools { display: none; } }
+body.club-mode .bar-actions { max-width: 100%; flex-wrap: wrap; }

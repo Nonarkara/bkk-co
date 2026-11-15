@@ -8,35 +8,40 @@
 <meta name="description" content="Bangkok's Great Good Places on one map: 57,379 cafés, co-working spaces, libraries and restaurants, scored from open data, with Nong Plub as your guide.">
 <meta property="og:title" content="PLUB · Placemaking Laboratory Urban Bureau">
 <meta property="og:description" content="Find your Great Good Place in Bangkok. Neighbourhood stories, data-driven scores, and a passport of where you've been.">
-<meta property="og:image" content="https://co.nonarkara.org/og/default.png?v=clean-20261104b">
+<meta property="og:image" content="https://co.nonarkara.org/og/default.png?v=green-20261115">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#7d133a">
-<link rel="manifest" href="/manifest.webmanifest">
-<link rel="icon" href="/icons/plub-192.png?v=visual-20261103">
-<link rel="apple-touch-icon" href="/icons/plub-192.png?v=visual-20261103">
+<meta name="theme-color" content="#34454c">
+<link rel="manifest" href="/manifest.webmanifest?v=green-20261115">
+<link rel="icon" href="/icons/plub-192.png?v=green-20261115">
+<link rel="apple-touch-icon" href="/icons/plub-192.png?v=green-20261115">
 <link rel="preload" href="fonts/SaoChingcha-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/NonArchitecture-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/prompt-thai-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/prompt-latin-400.woff2" as="font" type="font/woff2" crossorigin>
 <link href="vendor/maplibre-gl-4.7.1/maplibre-gl.css" rel="stylesheet">
-<link href="style.css?v=club-hunt-20261115" rel="stylesheet">
-<link href="notebook.css?v=continuation-20261105" rel="stylesheet">
+<link href="style.css?v=green-20261115" rel="stylesheet">
+<link href="notebook.css?v=green-20261115" rel="stylesheet">
 <link href="discovery.css?v=budapest-20261107" rel="stylesheet">
 <link href="atlas.css?v=budapest-20261107" rel="stylesheet">
 <link href="footprint-palette.css?v=stroll-20261107b" rel="stylesheet">
 <link href="list-tools.css?v=day-20261112" rel="stylesheet">
 <link href="street-world.css?v=stroll-20261107b" rel="stylesheet">
-<link href="street-world-3d.css?v=club-hunt-20261115" rel="stylesheet">
+<link href="street-world-3d.css?v=green-20261115" rel="stylesheet">
 <link href="talk-media.css?v=street-20261104" rel="stylesheet">
-<link href="journeys.css?v=journeys-20261103" rel="stylesheet">
+<link href="journeys.css?v=green-20261115" rel="stylesheet">
 <link href="neighborhood-photos.css?v=stroll-20261107" rel="stylesheet">
 <link href="place-preferences.css?v=stroll-20261107" rel="stylesheet">
 <link href="work-atmosphere.css?v=stroll-20261107b" rel="stylesheet">
 </head>
 <body>
+<script>
+  if (location.hostname === 'club.nonarkara.org' || new URLSearchParams(location.search).get('mode') === 'club') {
+    document.body.classList.add('club-mode');
+  }
+</script>
 <header class="bar">
   <div class="bar-brand">
     <a class="mark" href="/" aria-label="PLUB, Placemaking Laboratory Urban Bureau, home" title="PLUB · Placemaking Laboratory ; Urban Bureau">PL<span class="semi"><svg width="9" height="19" viewBox="0 0 32 84" aria-hidden="true" role="img"><circle cx="16" cy="12" r="8.5" fill="currentColor"/><path d="M25 27 C 29 40, 26 58, 13 80 C 15 68, 12 52, 12 42 C 12 34, 16 28, 25 27 Z" fill="currentColor"/><circle cx="19.5" cy="39" r="4" fill="#ffffff"/></svg></span>UB</a>
@@ -60,7 +65,6 @@
   <button data-kind="coworking" aria-pressed="true"><i class="dot coworking"></i>Co-work</button>
   <button data-kind="library" aria-pressed="true"><i class="dot library"></i>Library</button>
   <button data-kind="restaurant" aria-pressed="false"><i class="dot restaurant"></i>Food</button>
-  <button data-kind="cannabis" aria-pressed="false" hidden disabled><i class="dot cannabis"></i>Cannabis listings</button>
 </nav>
 
 <main id="map" aria-label="Map of Great Good Places in Bangkok"></main>
@@ -124,25 +128,25 @@
 <script src="place-tools.js?v=thai-20261115"></script>
 <script src="map-motion.js?v=street-20261104"></script>
 <script src="footprint-model.js?v=palette-20261107"></script>
-<script src="footprint-palette.js?v=budapest-20261107"></script>
-<script src="neighborhood-palette.js?v=special-20261108"></script>
+<script src="footprint-palette.js?v=green-20261115"></script>
+<script src="neighborhood-palette.js?v=green-20261115"></script>
 <script src="neighborhood-photos.js?v=stroll-20261107c"></script>
-<script src="manga-lens.js?v=budapest-20261107"></script>
-<script src="einstein-hat.js?v=street-20261104"></script>
+<script src="manga-lens.js?v=green-20261115"></script>
+<script src="einstein-hat.js?v=green-20261115"></script>
 <script src="hat-density.js?v=street-20261104"></script>
 <script src="atlas-model.js?v=atlas-20261103"></script>
-<script src="atlas.js?v=thai-20261115"></script>
+<script src="atlas.js?v=green-20261115"></script>
 <script src="journey-model.js?v=day-20261112"></script>
 <script src="place-preferences.js?v=stroll-20261107"></script>
-<script src="journeys.js?v=thai-20261115"></script>
+<script src="journeys.js?v=green-20261115"></script>
 <script src="talk-media.js?v=street-20261104"></script>
 <script src="work-atmosphere.js?v=stroll-20261107b"></script>
-<script src="app.js?v=club-hunt-20261115"></script>
-<script src="views.js?v=thai-20261115"></script>
+<script src="app.js?v=green-20261115"></script>
+<script src="views.js?v=green-20261115"></script>
 <script src="notebook.js?v=thai-20261115"></script>
 <script src="photos.js?v=visual-20261103"></script>
 <script src="discovery.js?v=thai-20261115"></script>
 <script src="street-model.js?v=stroll-20261107b"></script>
-<script src="street-world.js?v=club-hunt-20261115"></script>
+<script src="street-world.js?v=green-20261115"></script>
 </body>
 </html>

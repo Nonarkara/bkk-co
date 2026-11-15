@@ -418,7 +418,7 @@
       paint: {
         'circle-radius': 7,
         'circle-color': '#fff',
-        'circle-stroke-color': '#7d133a',
+        'circle-stroke-color': '#34454c',
         'circle-stroke-width': 3
       }
     });
@@ -433,7 +433,7 @@
         'text-offset': [0, -1.3],
         'text-anchor': 'bottom'
       },
-      paint: { 'text-color': '#7d133a', 'text-halo-color': '#fff', 'text-halo-width': 2 }
+      paint: { 'text-color': '#34454c', 'text-halo-color': '#fff', 'text-halo-width': 2 }
     });
     for (const id of ['route-line', 'route-stop', 'route-num'])
       if (map.getLayer(id)) map.moveLayer(id);

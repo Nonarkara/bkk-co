@@ -1,6 +1,6 @@
 // Palette320 marks contained matching place records, never a whole source-feature ID.
 (() => {
- const chord=[{kind:'cafe',name:'Café',color:'#f58e84'},{kind:'coworking',name:'Co-work',color:'#f5ecc2'},{kind:'library',name:'Library',color:'#819238'},{kind:'restaurant',name:'Food',color:'#a5c8d1'}];
+ const chord=[{kind:'cafe',name:'Café',color:'#96d1aa'},{kind:'coworking',name:'Co-work',color:'#f5ecc2'},{kind:'library',name:'Library',color:'#819238'},{kind:'restaurant',name:'Food',color:'#a5c8d1'}];
  const source='palette-footprints',layer='manga-place-footprints',empty=()=>({type:'FeatureCollection',features:[]});
  let map,keyBox,grid=FootprintModel.index([]),timer,last='',current=empty(),streetStates=new Set(),retained=null,retainedGrid=null,retainedData=null,sourceState='loading',sourcePromise=null;const swatches=new Map();
  function tile(mask){
@@ -61,14 +61,14 @@
   }).catch(()=>{sourceState='unavailable'}).finally(()=>{sourcePromise=null;paintSourceState()});
   return sourcePromise;
  }
- function legend(){return `<section class="building-key"><h2>Manga building colors · Palette 320</h2><ul>${chord.map((c,i)=>`<li><span class="footprint-swatch" style="background-image:url('${swatches.get(1<<i)||''}');background-color:${c.color}">${PlaceTools.symbol(c.kind)}</span>${c.name}</li>`).join('')}</ul><p>Colors mark matching place pins strictly inside a mapped footprint, not the use of every room or floor. Stripes mean several categories; neutral means no confirmed match. Points outside or on an uncertain edge are left unassigned.</p><p class="src">Sanzo Wada combination 320: Coral Red, Sulpher Yellow, Oil Green, Light Glaucous Blue. Credited digital conversions from Palette; textures and category symbols also distinguish the groups without hue. No nearby building is guessed. Tiny footprints may be smaller than a pixel at city scale.</p><p class="src" data-footprint-source-state role="status" aria-live="polite">${sourceNotice()}</p></section>`}
+ function legend(){return `<section class="building-key"><h2>Manga building colors</h2><ul>${chord.map((c,i)=>`<li><span class="footprint-swatch" style="background-image:url('${swatches.get(1<<i)||''}');background-color:${c.color}">${PlaceTools.symbol(c.kind)}</span>${c.name}</li>`).join('')}</ul><p>Colors mark matching place pins strictly inside a mapped footprint, not the use of every room or floor. Stripes mean several categories; neutral means no confirmed match. Points outside or on an uncertain edge are left unassigned.</p><p class="src">Cobalt Green from Palette combination 202. Sulpher Yellow, Oil Green and Light Glaucous Blue from combination 320. Credited digital conversions from Palette; textures and category symbols also distinguish the groups without hue. No nearby building is guessed. Tiny footprints may be smaller than a pixel at city scale.</p><p class="src" data-footprint-source-state role="status" aria-live="polite">${sourceNotice()}</p></section>`}
  function attach(m){
   map=m;
   loadRetained();
   document.addEventListener?.('click',e=>{if(e.target.closest?.('[data-retry-footprints]'))loadRetained()});
   map.on('style.load',()=>{last='';sync()});map.on('moveend',sync);map.on('idle',sync);
   map.on('sourcedata',e=>{if(['openmaptiles','street-buildings'].includes(e.sourceId))sync()});
-  map.addControl({onAdd(){const box=document.createElement('div');box.className='maplibregl-ctrl footprint-key-control';keyBox=box;box.hidden=true;const b=document.createElement('button');b.type='button';b.className='footprint-key';b.title='Building colors · open the map key';b.setAttribute('aria-label','Building colors: café coral, co-work yellow, library green, food blue. Open map key');b.innerHTML=chord.map(c=>`<span class="footprint-swatch" style="background-color:${c.color}">${PlaceTools.symbol(c.kind)}</span>`).join('')+'<span>Key</span>';b.onclick=()=>Atlas.key();box.append(b);return box},onRemove(){}},'bottom-left');
+  map.addControl({onAdd(){const box=document.createElement('div');box.className='maplibregl-ctrl footprint-key-control';keyBox=box;box.hidden=true;const b=document.createElement('button');b.type='button';b.className='footprint-key';b.title='Open the map key';b.setAttribute('aria-label','Map key');b.innerHTML=chord.map(c=>`<span class="footprint-swatch" style="background-color:${c.color}">${PlaceTools.symbol(c.kind)}</span>`).join('')+`<span class="footprint-club-symbol" aria-hidden="true">${PlaceTools.symbol('cannabis')}</span><span>Key</span>`;b.onclick=()=>Atlas.key();box.append(b);return box},onRemove(){}},'bottom-left');
   sync();
  }
  window.FootprintPalette={attach,refresh,sync,legend,chord,retry:loadRetained,get sourceState(){return sourceState},get features(){return current.features}};

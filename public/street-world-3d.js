@@ -16,13 +16,13 @@ const TOD = {
     emissive: '#ffe29a', sun: [-0.55, 0.68, 0.48], invert: 0, sky: 0.45, night: 0.0, wet: 0.0, fogMul: 1.0
   },
   dusk:  {
-    paper: '#f9c1ce', ink: '#7d133a', skyTop: '#b86b8e', skyHor: '#ffdfae',
-    wallLit: '#ffe9d6', wallShade: '#c98ca3', roof: '#f4c6d2', road: '#4a2538',
+    paper: '#b5decc', ink: '#34454c', skyTop: '#709390', skyHor: '#ffdfae',
+    wallLit: '#ffe9d6', wallShade: '#8ca59b', roof: '#c4decf', road: '#3c534c',
     emissive: '#ffd478', sun: [0.82, 0.22, -0.35], invert: 0, sky: 0.80, night: 0.45, wet: 0.15, fogMul: 0.85
   },
   misty: {
-    paper: '#e8dfe5', ink: '#4a233b', skyTop: '#9ea8b8', skyHor: '#f0d8d5',
-    wallLit: '#f2e8e6', wallShade: '#b7a6b2', roof: '#dfd4da', road: '#514957',
+    paper: '#dce8e0', ink: '#344c47', skyTop: '#9ea8b8', skyHor: '#d4e7dc',
+    wallLit: '#e8f0e9', wallShade: '#9fb8ad', roof: '#ccded5', road: '#465850',
     emissive: '#ffd88a', sun: [0.65, 0.28, 0.45], invert: 0, sky: 0.75, night: 0.35, wet: 0.1, fogMul: 0.42
   },
   night: {
@@ -39,7 +39,7 @@ const TOD = {
 
 // Look modes:
 // 0 = Color (Rokehan architectural anime palette)
-// 1 = Paper (Wada Plate 273 Hermosa Pink #f9c1ce + Pansy Purple #7d133a)
+// 1 = Paper (Wada 202 Turquoise Green paper and Slate Color ink)
 // 2 = Gray (Monochrome manga sumi ink)
 // 3 = Clay (Architectural white/warm clay model)
 const LOOK_CODES = { color: 0, paper: 1, gray: 2, clay: 3 };
@@ -80,14 +80,14 @@ float hash21(vec2 p) {
 vec3 applyLook(vec3 col, float inkMask, float shadeTone) {
   if (uFinish == 2) {
     // Pure line art
-    vec3 bg = uLook == 1 ? vec3(0.976, 0.757, 0.808) : (uInvert > 0.5 ? uPaper : vec3(0.97, 0.96, 0.94));
-    vec3 fg = uLook == 1 ? vec3(0.490, 0.075, 0.227) : (uInvert > 0.5 ? uInk : vec3(0.12, 0.10, 0.14));
+    vec3 bg = uLook == 1 ? vec3(0.710, 0.871, 0.800) : (uInvert > 0.5 ? uPaper : vec3(0.97, 0.96, 0.94));
+    vec3 fg = uLook == 1 ? vec3(0.204, 0.271, 0.298) : (uInvert > 0.5 ? uInk : vec3(0.12, 0.10, 0.14));
     return mix(bg, fg, clamp(inkMask, 0., 1.));
   }
   if (uLook == 1) {
-    // Wada Plate 273 Paper + Pansy Purple ink
-    vec3 wp = uInvert > 0.5 ? uPaper : vec3(0.976, 0.757, 0.808);
-    vec3 wi = uInvert > 0.5 ? uInk : vec3(0.490, 0.075, 0.227);
+    // Wada 202 paper and ink
+    vec3 wp = uInvert > 0.5 ? uPaper : vec3(0.710, 0.871, 0.800);
+    vec3 wi = uInvert > 0.5 ? uInk : vec3(0.204, 0.271, 0.298);
     return mix(wp, wi, clamp(max(shadeTone, inkMask), 0., 1.));
   }
   if (uLook == 2) {
@@ -716,10 +716,10 @@ export async function start(host, options = {}) {
     U.uNight.value = t.night;
     U.uWet.value = t.wet;
     if (groundMat) {
-      groundMat.color.set(t.invert > 0.5 ? '#0e1926' : (lookMode === 'paper' ? '#fde3ea' : '#f3eee4'));
+      groundMat.color.set(t.invert > 0.5 ? '#0e1926' : (lookMode === 'paper' ? '#e3f2eb' : '#f3eee4'));
     }
     if (outlineMat) {
-      outlineMat.color.set(t.invert > 0.5 ? '#527994' : (lookMode === 'paper' ? '#7d133a' : '#3a2d38'));
+      outlineMat.color.set(t.invert > 0.5 ? '#527994' : (lookMode === 'paper' ? '#34454c' : '#3a2d38'));
     }
     renderer.setClearColor(t.skyHor);
     lightSelect.value = tod;
@@ -1149,7 +1149,7 @@ export async function start(host, options = {}) {
 
     // Draw pins
     for (const item of placePins) {
-      minimapCtx.fillStyle = '#7d133a';
+      minimapCtx.fillStyle = '#34454c';
       minimapCtx.fillRect(cx + item.x * scale - 1.5, cy + item.z * scale - 1.5, 3, 3);
     }
 
