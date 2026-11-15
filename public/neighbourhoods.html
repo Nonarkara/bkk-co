@@ -27,20 +27,7 @@
   </header>
   <div id="compare"></div>
 </main>
-<script>
-fetch('data/street-areas.json').then(r=>r.json()).then(d=>{
-  const rows = d.areas.map((a, i)=>`
-    <article class="hood-card">
-      <p class="micro">${String(i + 1).padStart(2, '0')} · ${a.mood||'Sourced stroll'} · ${a.radiusM||0}m radius</p>
-      <h2>${a.name}<span class="th" lang="th">${a.nameTh||''}</span></h2>
-      <p class="hood-primary"><b>Cafés within 800m: ${a.cafesWithin800m||0}</b> · Mix: ${Object.entries(a.mix || {}).map(([kind, count]) => `${count} ${kind}`).join(' · ')}</p>
-      <p class="meta">${a.basis||''}</p>
-      <nav class="hood-actions"><a href="/?plan=map&amp;at=${encodeURIComponent(`${a.anchor.y},${a.anchor.x}`)}">Open on map</a><a href="/?plan=3d&amp;area=${encodeURIComponent(a.id)}">3D walkthrough</a></nav>
-    </article>
-  `).join('');
-  document.getElementById('compare').innerHTML = `<div class="hood-grid">${rows}</div>`;
-}).catch(() => { document.getElementById('compare').textContent = 'Neighbourhood data is unavailable. Try the map or reload.'; });
-</script>
+<script src="neighbourhoods.js"></script>
 <style>
 body.hoods-shell{display:grid;grid-template:"bar" auto "main" 1fr / 100%;height:100dvh;overflow:hidden;background:var(--paper)}
 .hoods-crumb{padding-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

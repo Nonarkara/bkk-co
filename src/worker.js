@@ -29,19 +29,29 @@ const SEC = {
   'x-frame-options': 'DENY',
   'referrer-policy': 'strict-origin-when-cross-origin',
   'permissions-policy': 'geolocation=(self), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()',
-  // CSP: self-only scripts/styles, inline styles allowed for dynamic UI, images from self + data:, connect to self + OSM tiles + Overture + Google Maps directions.
+  // HSTS: a browser that has seen this once refuses to try plain HTTP again.
+  'strict-transport-security': 'max-age=31536000; includeSubDomains',
+  // CSP: exactly the origins the interface loads, and nothing else.
+  //   self            — every script, style, font, image and API call is ours.
+  //   unsafe-inline   — styles only, because MapLibre sets style attributes.
+  //   openfreemap     — the map style, its vector tiles, its glyphs and sprite.
+  //   youtube-nocookie— the talk-media embed, and only that.
+  // Links out to Google Maps, OpenStreetMap and Overture are hrefs, not loads,
+  // so they need no place here. The policy used to allow them anyway.
   'content-security-policy': [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' https://www.google.com https://maps.googleapis.com",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "script-src 'self'",
+    "style-src 'self' 'unsafe-inline'",
     "worker-src 'self' blob:",
     "frame-src https://www.youtube-nocookie.com",
-    "img-src 'self' data: blob: https://tiles.openfreemap.org https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://maps.googleapis.com https://maps.gstatic.com",
-    "font-src 'self' https://fonts.gstatic.com",
-    "connect-src 'self' https://tiles.openfreemap.org https://*.openstreetmap.org https://overturemaps.org https://maps.googleapis.com https://www.google.com",
+    "img-src 'self' data: blob: https://tiles.openfreemap.org",
+    "font-src 'self' https://tiles.openfreemap.org",
+    "connect-src 'self' https://tiles.openfreemap.org",
+    "object-src 'none'",
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",
+    "upgrade-insecure-requests",
   ].join('; '),
 };
 
