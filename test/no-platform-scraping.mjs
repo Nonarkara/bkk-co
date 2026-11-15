@@ -48,6 +48,15 @@ for (const file of code) {
   }
 }
 
+// --- and no stylesheet keeps a class for a platform label ------------------------
+// The class is the other half of the branch: a rule that styles an endorsement
+// is a rule waiting for data.
+const styles = ['public/style.css', 'public/street-world-3d.css', 'public/atlas.css', 'public/visit.css'];
+for (const file of styles) {
+  const body = await text(file);
+  assert.ok(!/endorse|google/i.test(body), `${file} still styles a platform label`);
+}
+
 // --- and no source can call a platform API ---------------------------------------
 for (const file of code) {
   const body = await text(file);

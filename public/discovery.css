@@ -78,4 +78,4 @@
 /* List panel: every finder visible (wrap, no hidden sideways scroll); actions are outlines, filled means "on" */
 .moods { flex-wrap: wrap; overflow: visible; }
 .moods [data-act], .moods [data-proxy] { background: var(--paper, #fff); color: inherit; }
-.moods button[aria-pressed="true"] { background: var(--amber); }
+.moods button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }

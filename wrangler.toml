@@ -20,6 +20,10 @@ custom_domain = true
 pattern = "bkkco.nonarkara.org"
 custom_domain = true
 
+[[routes]]
+pattern = "club.nonarkara.org"
+custom_domain = true
+
 # Privacy cleanup: expired sessions and old security buckets, daily at01:15 Bangkok.
 [triggers]
 crons = ["15 18 * * *"]

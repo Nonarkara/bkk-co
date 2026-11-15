@@ -47,6 +47,7 @@
     <input id="q" type="search" placeholder="Search" autocomplete="off" enterkeyhint="search">
   </label>
   <div class="bar-actions">
+    <button id="open-3d" class="bar-btn" data-act="walkthrough" aria-label="Walk 3D World: explore Bangkok streets in 3D"><span class="btn-lbl">3D</span></button>
     <button id="guide" class="bar-btn plub-btn" aria-label="Nong Plub's guide: neighbourhoods and how places are scored"><span class="btn-lbl">Guide</span></button>
     <button id="passport" class="bar-btn pass-btn" aria-label="Your notebook"><span>Notes</span><b id="pass-n" class="count-badge">0</b></button>
   </div>
@@ -59,6 +60,7 @@
   <button data-kind="coworking" aria-pressed="true"><i class="dot coworking"></i>Co-work</button>
   <button data-kind="library" aria-pressed="true"><i class="dot library"></i>Library</button>
   <button data-kind="restaurant" aria-pressed="false"><i class="dot restaurant"></i>Food</button>
+  <button data-kind="cannabis" aria-pressed="false" hidden><i class="dot cannabis"></i>Dispensary</button>
 </nav>
 
 <main id="map" aria-label="Map of Great Good Places in Bangkok"></main>
@@ -82,6 +84,7 @@
         <button data-act="street">Street sketch</button><button data-act="media">People &amp; café videos</button>
         <button data-proxy="atlas-open">Map views</button><button data-act="now">Near me now</button><button data-act="hop">Café hop</button>
         <button data-act="compare">Neighbourhoods</button>
+        <button id="club-toggle" data-act="club" aria-pressed="false">CL;UB · Dispensaries</button>
         <button data-mood="slow" aria-pressed="false">Slow mornings</button><button data-mood="midnight" aria-pressed="false">Past midnight</button>
         <button data-mood="crossing" aria-pressed="false">Crossing paths</button><button data-mood="afterwork" aria-pressed="false">After work</button>
         <button data-proxy="atlas-key">Map key</button><a class="moods-link" href="/research">Research &amp; data</a>

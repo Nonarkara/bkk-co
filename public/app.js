@@ -59,8 +59,11 @@ const venueHours = p => window.WorkFinder?.hours(p) || p.hours;
 const state = {
   places: [], byId: new Map(), scores: {}, cells: new Map(), visited: new Map(), personalRatings: new Map(),
   kinds: new Set(['cafe', 'coworking', 'library']), flags: new Set(), // Food is one tap away, off by default
-  sort: 'near', mood: null, selected: null, foodLoaded: false, sortedIdx: [],
+  sort: 'near', mood: null, selected: null, foodLoaded: false, cannabisLoaded: false, clubMode: false, sortedIdx: [],
 };
+window.state = state;
+const cannabisDetails = new Map();
+const isClubStartup = () => location.hostname === 'club.nonarkara.org' || new URLSearchParams(location.search).get('mode') === 'club';
 
 // Retired place ids (merged twins, scripts/clean-catalogue.py) resolve to the venue that absorbed them, so shared
 // links, saved visits and notebook entries made before the clean still open the right place. byId.size is unchanged.
@@ -122,9 +125,62 @@ async function loadVisits() {
 }
 
 async function cellDetail(p) {
+  if (p.k === 'cannabis' && cannabisDetails.has(p.id)) return { ...cannabisDetails.get(p.id), loaded: true };
   const key = `${Math.floor(p.y * CELL)}-${Math.floor(p.x * CELL)}`;
   if (!state.cells.has(key)) state.cells.set(key, fetch(`data/cells/${key}.json`).then(r => (r.ok ? r.json() : {})).catch(() => ({})));
   return { ...((await state.cells.get(key))[p.id] || {}), loaded: true };
+}
+
+let cannabisPromise = null;
+async function loadCannabis() {
+  if (state.cannabisLoaded) return;
+  if (!cannabisPromise) {
+    cannabisPromise = fetch('data/places-cannabis.json')
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => {
+        if (!d?.rows) return;
+        for (const [id, n, k, y, x, flags, g, idx, hours] of d.rows) {
+          if (state.byId.has(id)) continue;
+          const p = { id, n, k: d.kinds[k], y, x, flags, g, idx, hours, low: n.toLowerCase() };
+          p.d = digits(p);
+          state.places.push(p);
+          state.byId.set(id, p);
+        }
+        for (const [id, det] of Object.entries(d.details || {})) cannabisDetails.set(id, det);
+        state.sortedIdx = state.places.map(p => p.idx).sort((a, b) => a - b);
+        state.cannabisLoaded = true;
+      })
+      .catch(() => { cannabisPromise = null; });
+  }
+  await cannabisPromise;
+}
+
+async function setClubMode(on) {
+  state.clubMode = !!on;
+  const mark = $('.mark');
+  if (mark) {
+    const semi = mark.querySelector('.semi')?.outerHTML || '<span class="semi">;</span>';
+    mark.innerHTML = on ? `CL${semi}UB` : `PL${semi}UB`;
+    mark.setAttribute('aria-label', on ? 'CLUB, Cannabis Laboratory Urban Bureau, home' : 'PLUB, Placemaking Laboratory Urban Bureau, home');
+    mark.title = on ? 'CL;UB · Cannabis Laboratory ; Urban Bureau' : 'PLUB · Placemaking Laboratory ; Urban Bureau';
+  }
+  const chip = document.querySelector('.chips [data-kind="cannabis"]');
+  if (chip) chip.hidden = !on;
+  const toggle = $('#club-toggle');
+  if (toggle) toggle.setAttribute('aria-pressed', String(on));
+  if (on) {
+    await loadCannabis();
+    state.kinds.add('cannabis');
+    if (chip) chip.setAttribute('aria-pressed', 'true');
+  } else {
+    state.kinds.delete('cannabis');
+    if (chip) chip.setAttribute('aria-pressed', 'false');
+  }
+  const u = new URL(location.href);
+  if (on && location.hostname !== 'club.nonarkara.org') u.searchParams.set('mode', 'club');
+  else u.searchParams.delete('mode');
+  history.replaceState(null, '', u);
+  refresh();
 }
 
 let venueReports;
@@ -234,7 +290,9 @@ map.on('load', async () => {
   map.on('moveend', renderList);
   document.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show');
 
-  await firstData; refresh(); openFromUrl();
+  await firstData;
+  if (isClubStartup()) await setClubMode(true);
+  refresh(); openFromUrl();
   await foodData; refresh(); openFromUrl();
 });
 
@@ -481,7 +539,7 @@ function petals(p, size = 76) {
   }).join('');
   return `<svg class="petals" viewBox="0 0 100 100" width="${size}" height="${size}" role="img" aria-label="Great Good Place profile">
     <circle cx="50" cy="50" r="43" fill="none" stroke="#b6bfc1" stroke-dasharray="2 3"/>${leaves}
-    <circle cx="50" cy="50" r="3" fill="#f59e0b"/></svg>`;
+    <circle cx="50" cy="50" r="3" fill="#7d133a"/></svg>`;
 }
 
 const dots = (v, max = 9) => `<span class="bars" aria-label="${v} of ${max}"><b>${'●'.repeat(Math.round(v * 5 / max))}</b><s>${'●'.repeat(5 - Math.round(v * 5 / max))}</s></span>`;
@@ -592,6 +650,7 @@ function renderSheet(p, d, visits, report) {
     <section class="been place-actions"><a href="${esc(window.WorkFinder?.directions(p)||`https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}`)}" target="_blank" rel="noopener">Directions ↗</a><button type="button" class="send been-open" data-place-visit>✓ I've been here</button></section>
     ${visitReportHtml(report)}
     ${factList(moreFacts, 'Contact and amenities')}
+    ${p.k === 'cannabis' ? `<section class="cannabis-law" aria-label="Dispensary classification and Thai regulation"><p class="micro">${esc({ clinic: 'Licensed medical cannabis clinic', cafe: 'Cannabis café', dispensary: 'Dispensary' }[d.sub] || 'Open-data cannabis listing')}</p><p>Under Thai Ministry of Public Health rules, cannabis flower sales require licensed medical/traditional-medicine compliance, age 20+, and no smoking on public streets or inside unlicensed venues.</p></section>` : ''}
     ${d.about || d.visit ? `<div class="place-description">${d.about ? `<p>${esc(d.about)}</p>` : ''}${d.visit ? `<p class="hand">${esc(d.visit)}</p>` : ''}</div>` : ''}
     <nav class="place-social" aria-label="Place contributions"><button type="button" data-place-community>Notes &amp; photos</button><button type="button" data-place-recommend>Add recommendation</button><button type="button" class="share">Share place</button><button type="button" data-place-street>${window.StreetWorld?.active?'Back to street sketch':'Street sketch'}</button></nav>
     ${window.WorkAtmosphere?.render(p, d, { [p.id]: state.scores[p.id] }, null, report) || ''}
@@ -700,6 +759,7 @@ document.addEventListener('click', e => {
     else if (act.dataset.act === 'featured') window.openFeatured?.();
     else if (act.dataset.act === 'discovery') window.openDiscovery?.();
     else if (act.dataset.act === 'compare') { location.href = '/day?task=live'; return; }
+    else if (act.dataset.act === 'club') { setClubMode(!state.clubMode); return; }
     else act.dataset.act === 'now' ? window.openNow?.() : window.openHop?.();
   }
   const h = e.target.closest('#mood [data-hood]');

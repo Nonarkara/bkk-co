@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Neighbourhood comparison · PLUB</title>
 <link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
-<body class="day-page">
+<body class="hoods-shell">
 <header class="bar">
   <div class="bar-brand">
     <a class="mark" href="/" aria-label="PLUB, Placemaking Laboratory Urban Bureau, home">PL<span class="semi">;</span>UB</a>
@@ -18,14 +18,15 @@
   </div>
 </header>
 <main class="page">
-<header class="hoods-head">
-  <div>
-    <p class="micro">12 SOURCED STREET SKETCH AREAS · 800 M RADIUS EACH</p>
-    <h1>Twelve neighbourhood strolls</h1>
-  </div>
-  <p class="src">Comparison of sourced street sketch areas. Unknown buildings stay flat. Height numbers are explicit OSM heights only.</p>
-</header>
-<div id="compare"></div>
+  <header class="hoods-head">
+    <div>
+      <p class="micro">12 SOURCED STREET SKETCH AREAS · 800 M RADIUS EACH</p>
+      <h1>Twelve neighbourhood strolls</h1>
+    </div>
+    <p class="src">Comparison of sourced street sketch areas. Unknown buildings stay flat. Height numbers are explicit OSM heights only. <a href="/day?task=live">Compare areas as a base →</a></p>
+  </header>
+  <div id="compare"></div>
+</main>
 <script>
 fetch('data/street-areas.json').then(r=>r.json()).then(d=>{
   const rows = d.areas.map((a, i)=>`
@@ -41,8 +42,9 @@ fetch('data/street-areas.json').then(r=>r.json()).then(d=>{
 }).catch(() => { document.getElementById('compare').textContent = 'Neighbourhood data is unavailable. Try the map or reload.'; });
 </script>
 <style>
-body.day-page{display:block;height:auto;overflow:visible}
-.page{padding:12px var(--pad) 28px;max-width:1180px;width:100%;margin:0 auto}
+body.hoods-shell{display:grid;grid-template:"bar" auto "main" 1fr / 100%;height:100dvh;overflow:hidden;background:var(--paper)}
+.hoods-crumb{padding-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.page{grid-area:main;overflow-y:auto;padding:16px var(--pad) 28px;max-width:1180px;width:100%;margin:0 auto}
 .hoods-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;padding-bottom:12px;border-bottom:2px solid var(--ink)}
 .hoods-head h1{font-size:var(--big);font-weight:600;line-height:1.2;margin-top:2px}
 .hoods-head .src{font-size:var(--small);color:var(--muted);max-width:62ch}

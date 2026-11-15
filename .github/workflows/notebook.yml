@@ -26,6 +26,8 @@ jobs:
       - run: node test/work-atmosphere.mjs
       - run: node test/venue-reports.mjs
       - run: node test/neighborhood-palette.mjs
+      - run: node test/data-role-palette.mjs
+      - run: node test/no-platform-scraping.mjs
       - run: node test/street-model.mjs
       - run: node test/map-motion.mjs
       - run: node test/aliases.mjs

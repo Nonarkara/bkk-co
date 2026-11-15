@@ -4,7 +4,8 @@
     cafe: '<path d="M5 8h11v6c0 6-11 6-11 0zM16 9h2c5 0 5 6-2 6M3 21h16M8 2v3m5-3v3"/>',
     coworking: '<path d="M4 4h16v11H4zM2 19h20M5 19v4m14-4v4"/>',
     library: '<path d="M12 5Q7 1 2 4v15q5-3 10 1 5-4 10-1V4q-5-3-10 1v15"/>',
-    restaurant: '<circle cx="12" cy="13" r="6"/><path d="M2 2v20m-2-20v7h4V2m18 0v20"/>'
+    restaurant: '<circle cx="12" cy="13" r="6"/><path d="M2 2v20m-2-20v7h4V2m18 0v20"/>',
+    cannabis: '<path d="M12 2q3 6 0 14q-3-8 0-14m0 12q5-4 8-7q-3 6-8 8m0-1q-5-4-8-7q3 6 8 8m0 0v6"/>'
   };
   function symbol(kind) {
     return `<svg class="place-symbol" viewBox="-1 0 26 26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${paths[kind] || paths.cafe}</svg>`;

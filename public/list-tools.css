@@ -6,7 +6,7 @@
   border:1px solid var(--ink); background:var(--ink); color:var(--paper);
   cursor:pointer; }
 .list-tools > .list-find:hover { background:var(--muted); }
-.list-tools > .list-find[aria-pressed="true"] { background:var(--amber); color:var(--ink); }
+.list-tools > .list-find[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
 .list-tools > .list-walkthrough { /* secondary action */
   min-height:32px; padding:3px 7px; font-weight:500; font-size:var(--small);
   border:1px solid var(--rule); background:var(--paper); color:var(--muted); cursor:pointer; }
@@ -48,8 +48,8 @@
 #list-wrap .list-scope h2 { padding:0; font-size:var(--big); line-height:1.2; font-weight:600; }
 .list .list-group { display:block; padding:0; cursor:default; }
 .list .list-group:hover { background:transparent; }
-.list-group h3 { display:flex; align-items:baseline; gap:8px; padding:6px var(--pad) 3px; font-size:1em; font-weight:600; }
-.list-group h3 span { color:var(--muted); font-weight:400; }
+.list-group h3 { display:flex; align-items:baseline; gap:8px; padding:6px var(--pad) 4px; font-size:var(--micro); font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); background:var(--wash); border-top:1px solid var(--rule); }
+.list-group h3 span { color:var(--muted); font-weight:500; font-variant-numeric:tabular-nums; }
 .list-group ol { margin:0; padding:0; list-style:none; }
 .list-group .list-more { min-height:32px; margin-left:var(--pad); color:var(--ink); text-decoration:underline; text-underline-offset:2px; }
 .list-options .list-order { display:block; margin-bottom:5px; }

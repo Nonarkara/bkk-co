@@ -12,9 +12,9 @@ async function knownIds(env, url) {
   if(ids)return ids;
   if(!cataloguePending)cataloguePending=(async()=>{
     const nextIds=new Set(),nextNames=new Map();
-    for(const f of ['work','food']){
+    for(const f of ['work','food','cannabis']){
       const r=await env.ASSETS.fetch(new URL(`/data/places-${f}.json`,url),{signal:AbortSignal.timeout(8000)});
-      if(!r.ok)throw catalogueUnavailable();
+      if(!r.ok){if(f==='cannabis')continue;throw catalogueUnavailable();}
       const d=await r.json();if(!Array.isArray(d.rows)||!Array.isArray(d.kinds))throw catalogueUnavailable();
       for(const row of d.rows){if(!Array.isArray(row)||typeof row[0]!=='string'||!d.kinds[row[2]])throw catalogueUnavailable();nextIds.add(row[0]);nextNames.set(row[0],[row[1],d.kinds[row[2]],row[7]]);}
     }
@@ -116,7 +116,7 @@ export default {
       if (request.method === 'POST') return postScore(request, env);
       return json({ error: 'method not allowed' }, 405, { allow: 'GET, POST' });
     }
-    if (url.pathname === '/' && ['hood', 'p', 'mood'].some(k => url.searchParams.has(k))) return await secHeaders(await withPreview(request, env, url));
+    if (url.pathname === '/' && (url.hostname === 'club.nonarkara.org' || url.searchParams.get('mode') === 'club' || ['hood', 'p', 'mood'].some(k => url.searchParams.has(k)))) return await secHeaders(await withPreview(request, env, url));
     const res = await env.ASSETS.fetch(request);
     const h = new Headers(res.headers);
     for (const [k, v] of Object.entries(SEC)) h.set(k, v);
@@ -126,23 +126,28 @@ export default {
 };
 
 // Shared links (LINE, WhatsApp, X) show the place or neighbourhood, not the generic page.
-const KIND = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library' };
+const KIND = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library', cannabis: 'Dispensary' };
 async function withPreview(request, env, url) {
   const page = await env.ASSETS.fetch(new URL('/', url));
+  const isClub = url.hostname === 'club.nonarkara.org' || url.searchParams.get('mode') === 'club';
+  const brand = isClub ? 'CLUB' : 'PLUB';
   let title, desc, image;
   try {
     const MOOD = { slow: 'slow mornings', midnight: 'studying past midnight', crossing: 'crossing paths', afterwork: 'after work' };
     if (MOOD[url.searchParams.get('mood')]) {
-      title = `Bangkok places for ${MOOD[url.searchParams.get('mood')]} · PLUB`;
+      title = `Bangkok places for ${MOOD[url.searchParams.get('mood')]} · ${brand}`;
       desc = 'Great Good Places across the whole city, picked from open data. Nong Plub shows you where.';
     } else if (url.searchParams.has('hood')) {
       if (!hoods) hoods = Object.fromEntries((await (await env.ASSETS.fetch(new URL('/data/hoods.json', url))).json()).hoods.map(h => [h.slug, h]));
       const h = hoods[url.searchParams.get('hood')];
-      if (h) { title = `${h.name} ${h.th} · for ${h.for.toLowerCase()} · PLUB`; desc = `${h.stats.work} work spots within 800 m of ${h.anchorLabel}. ${h.plub}`; image = `https://co.nonarkara.org/og/${h.slug}.png?v=clean-20261104b`; }
-    } else {
+      if (h) { title = `${h.name} ${h.th} · for ${h.for.toLowerCase()} · ${brand}`; desc = `${h.stats.work} work spots within 800 m of ${h.anchorLabel}. ${h.plub}`; image = `https://co.nonarkara.org/og/${h.slug}.png?v=clean-20261104b`; }
+    } else if (url.searchParams.has('p')) {
       await knownIds(env, request.url);
       const n = names.get(canon(url.searchParams.get('p'))); // old shared links preview the survivor
-      if (n) { title = `${n[0]} · PLUB`; desc = `${KIND[n[1]] || 'Place'} in Bangkok · Great Good Place index ${n[2]} of 100. Scored from open data, with Nong Plub as your guide.`; }
+      if (n) { title = `${n[0]} · ${brand}`; desc = `${KIND[n[1]] || 'Place'} in Bangkok · Great Good Place index ${n[2]} of 100. Scored from open data, with Nong Plub as your guide.`; }
+    } else if (isClub) {
+      title = 'CL;UB · Cannabis Laboratory ; Urban Bureau · Bangkok';
+      desc = 'Open-data map and 3D street walkthrough of Bangkok cannabis dispensaries and licensed medical cannabis clinics.';
     }
   } catch { /* fall back to the generic preview */ }
   const set = (attr) => ({ element(e) { e.setAttribute('content', attr); } });

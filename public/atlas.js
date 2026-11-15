@@ -145,7 +145,7 @@
     const ink = kind === 'coworking' ? '#986000' : kind === 'restaurant' ? '#547076' : '#7d133a';
     g.strokeStyle = ink;
     // Single pins wear their category colour (the same chord as the footprints and the Key); cluster badges stay white.
-    g.fillStyle = cluster ? '#fff' : kind.startsWith('cafe') && kind !== 'cafe-hidden' ? '#f58e84' : kind === 'coworking' ? '#f5ecc2' : kind === 'library' ? '#819238' : kind === 'restaurant' ? '#a5c8d1' : '#fff';
+    g.fillStyle = cluster ? '#fff' : kind.startsWith('cafe') && kind !== 'cafe-hidden' ? '#f58e84' : kind === 'coworking' ? '#f5ecc2' : kind === 'library' ? '#819238' : kind === 'restaurant' ? '#a5c8d1' : kind === 'cannabis' ? '#87c540' : '#fff';
     g.lineWidth = cluster ? 1 : 1.6; // cluster badges are hairline labels; the single pin stays the stronger mark
     g.beginPath();
     if (cluster) {
@@ -211,6 +211,20 @@
       g.quadraticCurveTo(5, -10, 0, -6);
       g.lineTo(0, 7);
       g.stroke();
+    } else if (kind === 'cannabis') {
+      g.beginPath();
+      g.moveTo(0, -10);
+      g.quadraticCurveTo(4, -4, 0, 6);
+      g.quadraticCurveTo(-4, -4, 0, -10);
+      g.moveTo(0, 4);
+      g.quadraticCurveTo(6, -1, 9, -4);
+      g.quadraticCurveTo(5, 3, 0, 5);
+      g.moveTo(0, 4);
+      g.quadraticCurveTo(-6, -1, -9, -4);
+      g.quadraticCurveTo(-5, 3, 0, 5);
+      g.moveTo(0, 5);
+      g.lineTo(0, 10);
+      g.stroke();
     } else {
       g.beginPath();
       g.arc(0, 1, 7, 0, Math.PI * 2);
@@ -270,16 +284,26 @@
       'cafe-featured',
       'coworking',
       'library',
-      'restaurant'
+      'restaurant',
+      'cannabis'
     ]) {
       const a = drawIcon(kind);
       images[kind] = a.url;
       m.addImage('atlas-' + kind, a.data, { pixelRatio: 2 });
     }
-    for (const kind of ['cafe', 'coworking', 'library', 'restaurant'])
+    for (const kind of ['cafe', 'coworking', 'library', 'restaurant', 'cannabis'])
       m.addImage('atlas-cluster-' + kind, drawIcon(kind, true).data, { pixelRatio: 2 });
     const dominant = [
       'case',
+      [
+        'all',
+        ['>=', ['get', 'cannabis'], ['get', 'cafes']],
+        ['>=', ['get', 'cannabis'], ['get', 'food']],
+        ['>=', ['get', 'cannabis'], ['get', 'work']],
+        ['>=', ['get', 'cannabis'], ['get', 'books']],
+        ['>', ['get', 'cannabis'], 0]
+      ],
+      'cannabis',
       [
         'all',
         ['>=', ['get', 'cafes'], ['get', 'food']],

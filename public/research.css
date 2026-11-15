@@ -1,15 +1,22 @@
-/* Research & data: a document, not a dashboard.
+/* Research & data: an un-bleeding MSH document with clear 1 -> 2 -> 3 hierarchy.
    The numbers are computed from the catalogue that ships, so they cannot drift from it. */
-.research-page { display:block; height:auto; min-height:100%; overflow:visible; background:var(--paper); }
-.research-bar, .research-main { max-width:84ch; margin-inline:auto; padding-inline:clamp(12px,4vw,24px); }
-.research-bar { display:flex; flex-wrap:wrap; align-items:center; gap:0 18px; border-bottom:1px solid var(--rule); }
-.research-bar a:not(.mark) { display:inline-flex; align-items:center; min-height:44px; }
-.research-bar .mark { margin-inline-end:auto; }
-.research-main { padding-block:12px 32px; overflow-wrap:anywhere; }
-.research-main h1 { font-size:var(--big); line-height:1.15; font-weight:600; margin-bottom:4px; }
-.research-main h2 { font-size:var(--body); font-weight:600; margin:18px 0 4px; padding-top:10px; border-top:1px solid var(--rule); }
+.research-page { display:grid; grid-template:"bar" auto "main" 1fr / 100%; height:100dvh; overflow:hidden; background:var(--paper); }
+.research-bar { grid-area:bar; }
+.research-main { grid-area:main; overflow-y:auto; padding:16px var(--pad) 28px; max-width:1200px; width:100%; margin-inline:auto; overflow-wrap:anywhere; }
+.research-cols { display:grid; gap:24px; align-items:start; }
+.research-col--left h1 { font-size:24px; line-height:1.15; font-weight:600; margin:2px 0 6px; }
+.research-col h2 { font-size:18px; line-height:1.25; font-weight:600; margin:2px 0 6px; }
+.research-col section { margin-top:14px; padding-top:12px; border-top:1px solid var(--rule); }
+.research-col section:first-of-type { margin-top:10px; }
 .research-main p { margin:4px 0; max-width:62ch; line-height:1.55; }
-.research-lede { color:var(--muted); margin-bottom:8px; }
+.research-lede { color:var(--muted); margin-bottom:10px; font-size:var(--body); }
+@media (min-width:900px){
+  .research-main { overflow:hidden; padding-block:0; }
+  .research-cols { grid-template-columns:minmax(320px,460px) minmax(0,1fr); height:100%; gap:0; }
+  .research-col { height:100%; overflow-y:auto; padding:16px 20px 32px; }
+  .research-col--left { border-right:1px solid var(--rule); padding-left:0; }
+  .research-col--right { padding-right:0; }
+}
 
 /* The figures: one row per fact, hairline rules, no cards. */
 .rd-figures { margin-top:8px; }

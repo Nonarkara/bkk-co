@@ -20,7 +20,7 @@ Wada plate 273 (locally credited catalogue: `~/Projects/palette/data/colors.json
 - Guide field **#f9c1ce** (Hermosa Pink, plate 273) — Nong Plub's bounded surfaces. Ink on it 6.69:1.
 - Wordmark seam **#e88ba1** — the semicolon in `PL;UB` only. Nowhere else.
 - Structure **#b6bfc1** (Neutral Gray, plate 273) — hairlines and arcs.
-- Accent **#f59e0b** (amber) — **one job only: the co-working category dot.** Never a second accent, never Tailwind blue `#3B82F6`.
+- Accent **#dd4027** (Red Orange, Palette combination 241) — **one job only: the co-working category mark.** Never a second accent, never Tailwind blue `#3B82F6`.
 - Unused plate colour: **#a36752** (Sudan Brown). Deliberately not in the interface.
 - **Zero** border-radius except a true circle. **Zero** drop shadows except inset hairlines and `:focus-visible`. **Zero** gradients except a flat veil where text must sit on a photo or map.
 

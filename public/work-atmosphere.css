@@ -1,14 +1,14 @@
 /* Workspace atmosphere: a reading panel, not a scorecard.
    Plain words, quiet hierarchy. The verdict leads, the rows follow, the rule is stated once. */
-.work-atmosphere { margin:10px 0 4px; border-top:1px solid var(--rule); padding-top:6px; }
-.work-atmosphere h2 { margin:0 0 2px; font-size:var(--body); font-weight:600; }
+.work-atmosphere { margin:10px 0 4px; border-top:1px solid var(--rule); padding-top:8px; }
+.work-atmosphere h2 { margin:0 0 2px; font-size:var(--micro); font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
 .work-atmosphere p { margin:4px 0; max-width:62ch; overflow-wrap:anywhere; }
 
 /* The verdict is the only thing that speaks first. */
-.wa-verdict { margin:0 0 6px !important; }
-.wa-verdict b { display:block; font-size:var(--body); font-weight:600; color:var(--ink); }
-.wa-verdict span { display:block; color:var(--muted); font-size:var(--micro); line-height:1.55; }
-.wa-verdict.wa-unscored b { font-weight:500; }
+.wa-verdict { margin:2px 0 6px !important; }
+.wa-verdict b { display:block; font-size:var(--big); line-height:1.2; font-weight:600; color:var(--ink); }
+.wa-verdict span { display:block; color:var(--muted); font-size:var(--micro); line-height:1.55; margin-top:2px; }
+.wa-verdict.wa-unscored b { font-size:var(--body); font-weight:500; }
 
 /* One row per dimension: what it is, whether anyone wrote it down, and who. */
 .wa-grid { margin:0 0 6px; display:grid; gap:0; }

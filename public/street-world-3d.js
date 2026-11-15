@@ -1052,7 +1052,10 @@ export async function start(host, options = {}) {
 
   function createPins(ids) {
     pinsContainer.replaceChildren();
-    const areaPlaces = [...new Set(ids.map(opt.placeById).filter(Boolean))]
+    const extra = (window.state?.clubMode && window.state?.kinds?.has('cannabis') && activeArea)
+      ? window.state.places.filter(p => p.k === 'cannabis' && Math.hypot((p.y - activeArea.anchor.y) * 111320, (p.x - activeArea.anchor.x) * 111320 * Math.cos(activeArea.anchor.y * Math.PI / 180)) <= (activeArea.radiusM || 800))
+      : [];
+    const areaPlaces = [...new Set([...ids.map(opt.placeById).filter(Boolean), ...extra])]
       .sort((a, b) => Math.hypot(a.x - activeArea.anchor.x, a.y - activeArea.anchor.y) -
                      Math.hypot(b.x - activeArea.anchor.x, b.y - activeArea.anchor.y));
 
@@ -1063,7 +1066,7 @@ export async function start(host, options = {}) {
       btn.className = `model-pin pin-${p.k}`;
       btn.setAttribute('aria-label', p.n);
       btn.innerHTML = `<span class="pin-dot ${p.k}" aria-hidden="true"></span><span class="pin-tag"></span>`;
-      btn.querySelector('.pin-tag').textContent = `${star}${p.n}`;
+      btn.querySelector('.pin-tag').textContent = p.n;
       btn.addEventListener('click', e => {
         e.stopPropagation();
         openCard(p, pt);
