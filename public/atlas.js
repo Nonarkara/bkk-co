@@ -397,7 +397,7 @@
       'pins-city'
     );
     m.addSource('atlas-hats', {type:'geojson',data:empty()});
-    m.addLayer({id:'atlas-hats',type:'fill',source:'atlas-hats',layout:{visibility:'none'},paint:{'fill-color':['interpolate',['linear'],['get','n'],1,'#f5ecc2',4,'#f9c1ce',10,'#f58e84',20,'#dd4027',40,'#7d133a'],'fill-opacity':['interpolate',['linear'],['get','n'],1,.28,8,.46,24,.64,60,.74]}},'pins-city');
+    m.addLayer({id:'atlas-hats',type:'fill',source:'atlas-hats',layout:{visibility:'none'},paint:{'fill-color':hatPalette(state.clubMode),'fill-opacity':['interpolate',['linear'],['get','n'],1,.28,8,.46,24,.64,60,.74]}},'pins-city');
     m.addLayer({id:'atlas-hat-line',type:'line',source:'atlas-hats',layout:{visibility:'none'},paint:{'line-color':'#34454c','line-width':.75,'line-opacity':.45}},'pins-city');
     for (const id of ['atlas-districts', 'atlas-parks', 'atlas-streets', 'atlas-loops'])
       m.addSource(id, { type: 'geojson', data: empty() });
@@ -1006,11 +1006,14 @@
     if (!items.length) return '';
     return `<details class="atlas-facts"><summary>Area &amp; place evidence · ${items.length} signals</summary><p>${items.map(esc).join(' · ')}</p>${e.evidence?.map((v) => `<p class="src"><a href="${esc(v.source_url)}" target="_blank" rel="noopener nofollow">${esc(v.evidence_type.replace(/_/g, ' '))}</a> · ${esc(v.published_at || 'date not stated')} · ${esc(v.attribute_basis || 'branch identity checked against source address')}</p>`).join('') || ''}</details>`;
   }
+  function hatPalette(on) {
+    return on
+      ? ['interpolate', ['linear'], ['get', 'n'], 1, '#f5ecc2', 3, '#b5decc', 8, '#afd472', 16, '#87c540', 30, '#253122']
+      : ['interpolate', ['linear'], ['get', 'n'], 1, '#b5decc', 4, '#96d1aa', 12, '#437742', 40, '#34454c'];
+  }
   function setClubPalette(on) {
     if (!mapReady || !map.getLayer('atlas-hats')) return;
-    map.setPaintProperty('atlas-hats', 'fill-color', on
-      ? ['interpolate', ['linear'], ['get', 'n'], 1, '#f5ecc2', 3, '#b5decc', 8, '#afd472', 16, '#87c540', 30, '#253122']
-      : ['interpolate', ['linear'], ['get', 'n'], 1, '#b5decc', 4, '#96d1aa', 12, '#437742', 40, '#34454c']);
+    map.setPaintProperty('atlas-hats', 'fill-color', hatPalette(on));
     map.setPaintProperty('atlas-hat-line', 'line-color', on ? '#253122' : '#34454c');
   }
   window.Atlas = {
