@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-11-15T09:29:01.841Z",
+  "observedAt": "2026-11-15T10:00:15.518Z",
   "origin": "https://club.nonarkara.org",
-  "sourceCommit": "6059a9bd3200bf2520d7781562a871fde8c7dc03",
+  "sourceCommit": "cd7227efa1e58e0c5aa4158e3f8d91f8470b1eb6",
   "matched": [
     {
       "path": "404.html",
@@ -1975,8 +1975,8 @@
     },
     {
       "path": "style.css",
-      "bytes": 31023,
-      "sha256": "8d12a6380f0a1a5242765eebe8b3b0949a8ea883c43e6d4a0c1cfa43f8ee0c19"
+      "bytes": 31343,
+      "sha256": "ddfc0cce9465080c79e95420ef988b17502aa1787bf1b9b945553809cbd60464"
     },
     {
       "path": "styles/plub-manga.json",
