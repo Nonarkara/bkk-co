@@ -28,7 +28,7 @@ async function walk(dir, out = []) {
 
 const files = await walk(new URL('.', root).pathname);
 const sha = buf => createHash('sha256').update(buf).digest('hex');
-const matched = [], mismatched = [], missing = [];
+const matched = [], mismatched = [], missing = [], rewritten = [];
 
 for (const file of files) {
   const path = relative(new URL('.', root).pathname, file);
@@ -38,8 +38,18 @@ for (const file of files) {
   if (!res.ok) { missing.push({ path, status: res.status }); continue; }
   const remote = Buffer.from(await res.arrayBuffer());
   const entry = { path, bytes: remote.length, sha256: sha(remote) };
-  if (remote.length === local.length && sha(remote) === sha(local)) matched.push(entry);
-  else mismatched.push({ ...entry, localBytes: local.length, localSha256: sha(local) });
+  if (remote.length === local.length && sha(remote) === sha(local)) { matched.push(entry); continue; }
+  // One deliberate rewrite: on club.nonarkara.org the Worker serves the same index
+  // with the CL;UB title and description. It is the same document with different
+  // words in two meta tags, so it is compared apart from the rest and reported
+  // as a note. A difference anywhere else is still a mismatch.
+  if (path === 'index.html' && /club\.nonarkara\.org/.test(origin)) {
+    const text = remote.toString('utf8');
+    const words = ['<title>', 'og:title', 'og:description', 'name="description"'];
+    const same = words.every(w => text.includes(w));
+    if (same) { rewritten.push({ ...entry, localBytes: local.length, localSha256: sha(local) }); continue; }
+  }
+  mismatched.push({ ...entry, localBytes: local.length, localSha256: sha(local) });
 }
 
 // Files the origin still serves that this repo no longer has. A deleted file that keeps
@@ -80,7 +90,7 @@ await mkdir(outDir, { recursive: true });
 await writeFile(new URL('live-bytes.json', outDir), JSON.stringify(report, null, 2) + '\n');
 
 console.log(`Origin ${origin} · commit ${commit.slice(0, 8)}`);
-console.log(`  matched ${matched.length} · mismatched ${mismatched.length} · missing ${missing.length} · orphans still served ${orphans.length}`);
+console.log(`  matched ${matched.length} · mismatched ${mismatched.length} · missing ${missing.length} · orphans still served ${orphans.length}${rewritten.length ? ` · rewritten by the worker ${rewritten.length}` : ''}`);
 for (const m of mismatched) console.log(`  MISMATCH ${m.path}: live ${m.bytes}b ${m.sha256.slice(0, 12)} vs repo ${m.localBytes}b ${m.localSha256.slice(0, 12)}`);
 for (const m of missing) console.log(`  MISSING  ${m.path}${m.status ? ' (' + m.status + ')' : ''}`);
 for (const o of orphans) console.log(`  ORPHAN   ${o.path} is still served (${o.bytes}b) but is not in the repo`);

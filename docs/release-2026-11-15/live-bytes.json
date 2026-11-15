@@ -1,8 +1,13 @@
 {
-  "observedAt": "2026-11-15T08:28:53.908Z",
-  "origin": "https://co.nonarkara.org",
-  "sourceCommit": "fcda6f491f959e18749b725366bb4ef5b1e4126d",
+  "observedAt": "2026-11-15T08:37:15.062Z",
+  "origin": "https://club.nonarkara.org",
+  "sourceCommit": "2d3df78893a8c057e84172c28bdfa8682e6fc331",
   "matched": [
+    {
+      "path": "404.html",
+      "bytes": 1137,
+      "sha256": "989afab20ef1f73e71ef487a57db3887fabe05fd12f7dc34b86245bd681cfe59"
+    },
     {
       "path": "app.js",
       "bytes": 49541,
@@ -1174,11 +1179,6 @@
       "sha256": "5678bdaf4e9f20d9199d508147a36a885d174cab8630f158fb0817b7a2dc47da"
     },
     {
-      "path": "index.html",
-      "bytes": 9809,
-      "sha256": "af1d86c9e338a2472c8a816d772364f771b282d29970285e96766767dcc66666"
-    },
-    {
       "path": "journey-model.js",
       "bytes": 9981,
       "sha256": "eefd06412c6452bf67db41ea9ce39549cbe7b48c15ab2e0ccebf77e9efc17745"
@@ -1939,6 +1939,16 @@
       "sha256": "4088b6cb8e7cfa706b95f4b91704341e1aab39748ede9e88a885f48efd05ad28"
     },
     {
+      "path": "robots.txt",
+      "bytes": 255,
+      "sha256": "33ce21b2634129385a9d7b61f4ed589b707d7a0c597a6f60e20c003540da2549"
+    },
+    {
+      "path": "sitemap.xml",
+      "bytes": 1092,
+      "sha256": "f34f5f7b45377e6451407a39a302366010295c90612d3dd4d845baecb45450cd"
+    },
+    {
       "path": "street-model.js",
       "bytes": 5842,
       "sha256": "d4ff56fabcf6a5ed9d28643f1342442d708facd86d677f46ce4c853a20be1fbd"
@@ -1965,8 +1975,8 @@
     },
     {
       "path": "style.css",
-      "bytes": 29898,
-      "sha256": "e66cbfb8ec9ef00d466b9ef541f039ab38e67bea14e2642045ec628c804a83af"
+      "bytes": 31023,
+      "sha256": "8d12a6380f0a1a5242765eebe8b3b0949a8ea883c43e6d4a0c1cfa43f8ee0c19"
     },
     {
       "path": "styles/plub-manga.json",
@@ -2033,7 +2043,7 @@
   "missing": [],
   "orphansStillServed": [],
   "summary": {
-    "matched": 405,
+    "matched": 407,
     "mismatched": 0,
     "missing": 0,
     "orphansStillServed": 0
