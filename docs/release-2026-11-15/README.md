@@ -11,7 +11,7 @@ Two bureaus over one codebase: **PL;UB** at [co.nonarkara.org](https://co.nonark
 | Worker | `f80e93e2-9f33-4d2a-bf35-7c6860684da8`, from commit `6059a9b` |
 | Domains | co · club · bkkco (301 to co) |
 | Catalogue | 57,379 places, signed; the live read-only API passes |
-| CL;UB catalogue | 261 venues in `public/data/places-cannabis.json`, loaded only in CL;UB mode |
+| CL;UB catalogue | 328 venues across Thailand in `public/data/places-cannabis.json`, loaded only in CL;UB mode |
 | Bytes on co | **408 / 408 matched**, 0 mismatched, 0 missing, 0 orphans — [proof](live-bytes-co.nonarkara.org.json) |
 | Bytes on club | **407 / 407 matched**, 0 mismatched, 0 missing, 0 orphans, 1 file rewritten by the Worker — [proof](live-bytes-club.nonarkara.org.json) |
 

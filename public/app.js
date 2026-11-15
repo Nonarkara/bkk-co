@@ -152,7 +152,11 @@ async function loadCannabis() {
           const place = state.byId.get(id);
           if (place) { place.hub = det.hub1km; place.sub = det.sub; place.th = det.th; place.prov = det.prov; place.tier = det.tier; }
         }
-        state.cannabisStats = { total: d.total, bySub: d.bySub || {}, byProvince: d.byProvince || {} };
+        // The tiers are counted from the venues themselves, so the board cannot
+        // quote one classification and label it with another.
+        const byTier = {};
+        for (const det of Object.values(d.details || {})) { const t = det.tier || 'C'; byTier[t] = (byTier[t] || 0) + 1; }
+        state.cannabisStats = { total: d.total, bySub: d.bySub || {}, byProvince: d.byProvince || {}, byTier };
         state.cannabisHotspots = Array.isArray(d.hotspots) ? d.hotspots : [];
         state.sortedIdx = state.places.filter(p => p.k !== 'cannabis').map(p => p.idx).sort((a, b) => a - b);
         state.sortedCannabisIdx = state.places.filter(p => p.k === 'cannabis').map(p => p.idx).sort((a, b) => a - b);

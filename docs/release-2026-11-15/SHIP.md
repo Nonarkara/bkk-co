@@ -15,7 +15,7 @@ in a separate file — was verified rather than trusted.
 | Claim | Checked | Result |
 |---|---|---|
 | The signed catalogue is untouched | sha256 of `places-work.json` against the manifest that publishes it | matches |
-| The cannabis venues are separate | `public/data/places-cannabis.json`, 261 rows, loaded only in CL;UB mode | apart from the catalogue |
+| The cannabis venues are separate | `public/data/places-cannabis.json`, 328 rows, loaded only in CL;UB mode | apart from the catalogue |
 | The data is open | OSM and Overture only; no platform fields anywhere | holds |
 | The deployed bytes match | `scripts/verify-live-bytes.mjs` on both domains | 408/408 and 407/407 |
 

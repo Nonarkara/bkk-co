@@ -11,7 +11,7 @@ honestly unfinished. Commit `fcda6f4` · Worker `f9ebb73e-374b-4b9f-8a33-839866c
 |---|---|---|
 | Domain | https://co.nonarkara.org | https://club.nonarkara.org |
 | Question | Where can I work? | Where are the licensed dispensaries? |
-| Data | the signed catalogue, 57,379 places | `public/data/places-cannabis.json`, 261 venues |
+| Data | the signed catalogue, 57,379 places | `public/data/places-cannabis.json`, 328 venues across Thailand |
 
 The cannabis venues never enter the signed catalogue. The catalogue's sha256
 still matches the manifest that publishes it, and `test/venue-reports.mjs` and
@@ -29,7 +29,7 @@ CL;UB answers "where are the licensed dispensaries", not "can I work there", so
 a dispensary carries no working conditions and nothing on it to score: the
 rating endpoint refuses one, and the visit form asks no Wi-Fi, outlet, quiet or
 laptop questions there. It does carry the open map tags it inherits from
-OpenStreetMap and Overture — opening hours on 25 of the 261, a Wi-Fi tag on 2.
+OpenStreetMap and Overture — opening hours on 76 of the 328, a Wi-Fi tag on 13.
 
 ## 2. The security posture, as it now stands
 
