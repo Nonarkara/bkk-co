@@ -10,9 +10,23 @@ import worker, { resolvePlace, placePreview, knownIds } from '../src/worker.js';
 const read = (path) => readFile(new URL('../public' + path, import.meta.url));
 const cannabis = JSON.parse(await read('/data/places-cannabis.json'));
 const work = JSON.parse(await read('/data/places-work.json'));
+const food = JSON.parse(await read('/data/places-food.json'));
 const clubId = cannabis.rows[0][0];
 const clubName = cannabis.rows[0][1];
 const workId = work.rows[0][0];
+
+// The base catalogue must hold no dispensary at all. PL;UB refuses a dispensary
+// because it is not in that catalogue, so this is the fact the refusal rests
+// on: checked here, not assumed.
+{
+  const base = new Set([...work.rows, ...food.rows].map(r => r[0]));
+  const cannabisIds = new Set(cannabis.rows.map(r => r[0]));
+  const shared = [...cannabisIds].filter(id => base.has(id));
+  assert.equal(shared.length, 0,
+    `${shared.length} dispensary ids are in PL;UB's catalogue (${shared.slice(0, 3).join(', ')}) — a dispensary would be a ratable PL;UB place`);
+  assert.ok(!work.kinds.includes('cannabis') && !food.kinds.includes('cannabis'),
+    "PL;UB's catalogue carries a cannabis kind");
+}
 
 const fetched = [];
 const ASSETS = {

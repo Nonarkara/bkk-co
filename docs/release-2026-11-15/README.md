@@ -23,11 +23,14 @@ repository.
 
 The document used to say the cannabis file "is loaded only when someone asks for
 the CL;UB mode". It was not true: the Worker loaded it on every request on every
-host. It is true now. A PL;UB request never touches the cannabis catalogue, a
-dispensary is not a ratable place, a shared link to one resolves on CL;UB and not
-on PL;UB, and the place sheet calls a dispensary's score a CL;UB index rather
-than PL;UB's Great Good Place index. `test/club-isolation.mjs` drives the Worker
-and counts the files it fetched.
+host. It is true now. The mode is per request, not per host — `?mode=club` on
+co.nonarkara.org is the interface's own toggle, and it asks for CL;UB — so a
+PL;UB request never touches the cannabis catalogue, a dispensary is not a
+ratable place, a shared link to one resolves in CL;UB mode and not in PL;UB
+mode, and the place sheet calls a dispensary's count of listed details what it
+is rather than PL;UB's Great Good Place index.
+`test/club-isolation.mjs` drives the Worker, counts the files it fetched and
+checks that no dispensary id is in PL;UB's catalogue at all.
 
 ## What the gates say
 

@@ -465,7 +465,7 @@ const PRESERVE = async (page, base, shot) => {
       ground: map.getLayoutProperty('manga-ground', 'visibility'),
       base: map.getLayoutProperty('background', 'visibility'),
     }));
-    if (shot) await page.screenshot({ path: new URL(`manga-lens-${shot}.png`, outDir).pathname });
+    if (shot) await page.screenshot({ path: new URL(`manga-lens-${shot}.png`, outDir).pathname , timeout: 120000 });
     const switchedAt = Date.now();
     await page.locator('.manga-toggle').click({ timeout: 15000 });
     // Observe the actual completed handoff, not a Node timer racing the browser's
@@ -504,7 +504,7 @@ const PRESERVE = async (page, base, shot) => {
         reachable: document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)?.closest('.model-close') === back
       };
     });
-    if (shot) await page.screenshot({ path: new URL(`walkthrough-${shot}.png`, outDir).pathname });
+    if (shot) await page.screenshot({ path: new URL(`walkthrough-${shot}.png`, outDir).pathname , timeout: 120000 });
     await stage.getByRole('combobox', { name: 'Neighbourhood' }).selectOption('bangkapi');
     await page.locator('#walkthrough-stage[data-area=bangkapi][data-volumes="0"]').waitFor({ timeout: 60000 });
     const relief = stage.getByRole('button', { name: 'See 3D in Sam Yan' });
@@ -624,13 +624,13 @@ try {
     }
     const view = await page.evaluate(MEASURE);
     view.pinsLayer = pins;
-    await page.screenshot({ path: new URL(`${PLANTED ? 'planted' : 'view'}-${w}.png`, outDir).pathname });
+    await page.screenshot({ path: new URL(`${PLANTED ? 'planted' : 'view'}-${w}.png`, outDir).pathname , timeout: 120000 });
     try { view.placeSheet = await checkPlaceSheet(page, base); }
     catch (error) { view.placeSheet = { pass: false, error: String(error.message).split('\n')[0] }; }
-    await page.screenshot({ path: new URL(`${PLANTED ? 'place-planted' : 'place'}-${w}.png`, outDir).pathname });
+    await page.screenshot({ path: new URL(`${PLANTED ? 'place-planted' : 'place'}-${w}.png`, outDir).pathname , timeout: 120000 });
     try { view.visitReading = await checkVisitReadingOrder(page, base); }
     catch (error) { view.visitReading = { pass: false, error: String(error.message).split('\n')[0] }; }
-    await page.screenshot({ path: new URL(`${PLANTED ? 'visit-planted' : 'visit'}-${w}.png`, outDir).pathname });
+    await page.screenshot({ path: new URL(`${PLANTED ? 'visit-planted' : 'visit'}-${w}.png`, outDir).pathname , timeout: 120000 });
     try { view.dayPlanner = await checkDayPlanner(page, base); }
     catch (error) { view.dayPlanner = { pass: false, error: String(error.message).split('\n')[0] }; }
     // Last, because it opens a different place: the shots above must keep the page

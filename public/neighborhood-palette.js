@@ -13,7 +13,7 @@
  const authored={
   ari:{chord:202,colors:[["Turquoise Green","#b5decc"],["Cobalt Green","#96d1aa"],["Slate Color","#34454c"]]},
   thonglo:{chord:281,colors:[["Cobalt Green","#96d1aa"],["Pale Lemon Yellow","#ffefae"],["Benzol Green","#00978d"],["Antwarp Blue","#007190"]]},
-  charoenkrung:{chord:202,colors:[["Turquoise Green","#b5decc"],["Cobalt Green","#96d1aa"],["Slate Color","#34454c"]]},
+  charoenkrung:{chord:273,colors:[['Hermosa Pink','#f9c1ce'],['Pansy Purple','#7d133a'],['Sudan Brown','#a36752'],['Neutral Gray','#b6bfc1']]},
   samyan:{chord:320,colors:[['Sulpher Yellow','#f5ecc2'],['Light Glaucous Blue','#a5c8d1'],['Oil Green','#819238'],['Coral Red','#f58e84']]},
   ramkhamhaeng:{chord:241,colors:[['Pale Lemon Yellow','#ffefae'],['Isabella Color','#c5a56e'],['Dark Medici Blue','#547076']]},
  };

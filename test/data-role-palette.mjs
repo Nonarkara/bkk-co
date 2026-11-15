@@ -39,19 +39,33 @@ for (const role of chord) {
 }
 
 // --- the legend names the colours it shows ---------------------------------------
-const sentence = palette.match(/Sanzo Wada combination (\d+): ([^.]*)\./);
-assert.ok(sentence, 'the legend still states which plate its colours come from');
-const plate = Number(sentence[1]);
-const plateNames = new Set((proof.combinations[plate] || []).map(c => c.name));
-const named = sentence[2].split(',').map(s => s.trim()).filter(Boolean);
-for (const role of chord) {
-  const catalogueName = (proof.combinations[plate] || []).find(c => c.hex.toLowerCase() === role.color.toLowerCase());
-  assert.ok(catalogueName, `"${role.name}" uses ${role.color}, which is not a colour of plate ${plate}`);
-  assert.ok(named.includes(catalogueName.name),
-    `the legend shows a "${role.name}" swatch but its source sentence does not name ${catalogueName.name}`);
+// A chord may draw from more than one plate — the key must then say which plate
+// each colour comes from. What it may never do is show a colour it cannot
+// account for, or account for a colour it does not show.
+const legendText = palette.replace(/<[^>]*>/g, ' ');   // the legend's source sentence, without markup
+const byPlate = new Map();                       // plate -> the names the legend gives it
+for (const sentence of legendText.split('.')) {
+  const m = sentence.trim().match(/^(.*?)\s+from\s+(?:the\s+)?(?:Palette\s+)?(?:Sanzo Wada\s+)?combination\s+(\d+)\s*$/i);
+  if (!m) continue;
+  const names = m[1].split(/,\s*|\s+and\s+/).map(s => s.trim()).filter(Boolean);
+  byPlate.set(Number(m[2]), new Set(names));
 }
-assert.equal(named.length, chord.length,
-  `the legend's source sentence names ${named.length} colours but the key shows ${chord.length}`);
+assert.ok(byPlate.size >= 1, 'the legend still states which plate its colours come from');
+for (const role of chord) {
+  // The legend must account for this mark: some plate it names must both own
+  // the colour and carry the catalogue name the legend gives that plate.
+  const accounted = Object.entries(proof.combinations).some(([plate, cols]) => {
+    const hit = cols.find(c => c.hex.toLowerCase() === role.color.toLowerCase());
+    if (!hit) return false;
+    const named = byPlate.get(Number(plate));
+    return !!named && named.has(hit.name);
+  });
+  assert.ok(accounted,
+    `the legend does not say which plate the "${role.name}" mark (${role.color}) comes from, or names it wrongly`);
+}
+const namedCount = [...byPlate.values()].reduce((n, s) => n + s.size, 0);
+assert.equal(namedCount, chord.length,
+  `the legend's source sentence names ${namedCount} colours but the key shows ${chord.length}`);
 
 // --- and the interface tokens are catalogue colours too --------------------------
 const style = await read('public/style.css');

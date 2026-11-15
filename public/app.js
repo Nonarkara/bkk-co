@@ -269,11 +269,11 @@ function loadVenueReports() {
 }
 
 // share of Bangkok places this one beats, from the sorted index list.
-// The denominator is the catalogue the index was computed against: PL;UB's own
-// catalogue for a work place, the cannabis listing for a dispensary. Mixing them
-// would put a dispensary among cafés and call it a Great Good Place.
+// Only a work place carries a Great Good Place index, so the denominator is
+// always PL;UB's own catalogue. A dispensary carries a count of listed detail
+// fields instead, and is never ranked among cafés.
 function topShare(p) {
-  const list = p.k === 'cannabis' ? state.sortedCannabisIdx : state.sortedIdx;
+  const list = state.sortedIdx;
   const n = list.length;
   if (!n) return 0;
   let lo = 0, hi = n;

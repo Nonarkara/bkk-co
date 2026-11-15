@@ -343,7 +343,7 @@ window.beenForm = (p, btn, done) => {
         note: form.querySelector('textarea').value, files: input.files });
       if (SCORES.every(([k]) => vote[k])) {
         const deadline=new AbortController(),timer=setTimeout(()=>deadline.abort(),8000);
-        const r = await fetch('/api/scores', { signal:deadline.signal, method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ place: p.id, ...vote }) }).catch(() => null);
+        const r = await fetch('/api/scores' + (window.state?.clubMode ? '?mode=club' : ''), { signal:deadline.signal, method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ place: p.id, ...vote }) }).catch(() => null);
         clearTimeout(timer);
         if (r?.ok) await loadScores(); // a refused rating (e.g. already rated today) never blocks the passport entry
       }

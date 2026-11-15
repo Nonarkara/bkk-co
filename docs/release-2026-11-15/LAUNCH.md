@@ -18,12 +18,14 @@ still matches the manifest that publishes it, and `test/venue-reports.mjs` and
 `test/check.mjs` both hold that line.
 
 **The separation is real, not a promise.** The Worker keeps two catalogues. A
-PL;UB request loads the work catalogue and never touches the cannabis file; a
-CL;UB request — the club host, or `?mode=club` — loads that file as well. So a
-dispensary is not a ratable PL;UB place, a shared link to one resolves on
-CL;UB and not on PL;UB, and the place sheet calls it a CL;UB index rather
-than PL;UB's Great Good Place index. `test/club-isolation.mjs` drives the
-Worker and counts the files it fetched to prove it.
+request that asks for PL;UB loads the work catalogue and never touches the
+cannabis file; a request that asks for CL;UB — the club host, or `?mode=club`,
+which the interface's own toggle sets — loads that file as well. So a
+dispensary is not a ratable PL;UB place, a shared link to one resolves in CL;UB
+mode and not in PL;UB mode, and the place sheet counts a dispensary's listed
+details rather than giving it PL;UB's Great Good Place index. `test/club-isolation.mjs` drives the
+Worker, counts the files it fetched and checks that no dispensary id is in
+PL;UB's catalogue at all.
 
 CL;UB answers "where are the licensed dispensaries", not "can I work there", so
 a dispensary carries no working conditions and nothing on it to score: the
