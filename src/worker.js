@@ -57,7 +57,7 @@ async function catalogue(env, url) {
     cannabis: can,
   };
 }
-async function knownIds(env, url) { return (await catalogue(env, url)).ids; }
+export async function knownIds(env, url) { return (await catalogue(env, url)).ids; }
 
 const SEC = {
   'x-content-type-options': 'nosniff',

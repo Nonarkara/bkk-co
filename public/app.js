@@ -255,8 +255,11 @@ async function setClubMode(on, { frame = true } = {}) {
 }
 
 let venueReports;
+// The visit reports are 7 KB of named, dated, first-hand evidence. A reader on a
+// slow connection must not lose them to a two-and-a-half second deadline: the
+// sheet would simply have no report on it, with nothing to say so.
 function loadVenueReports() {
-  return venueReports ??= fetch('data/venue-reports.json', { signal: AbortSignal.timeout(2500) })
+  return venueReports ??= fetch('data/venue-reports.json', { signal: AbortSignal.timeout(10000) })
     .then(r => { if (!r.ok) throw Error('Visit reports unavailable'); return r.json(); })
     .catch(() => { venueReports = undefined; return {}; });
 }

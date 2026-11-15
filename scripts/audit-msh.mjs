@@ -251,7 +251,7 @@ async function ready(page) {
   // and a slow tile server must not be able to hide a layout failure.
   // `state` and `map` are top-level consts: global lexical bindings, not window properties.
   await page.waitForFunction(() => typeof state !== 'undefined' && state.foodLoaded && state.places.length > 0
-    && !!document.querySelector('#map canvas'), {}, { timeout: 120000 });
+    && !!document.querySelector('#map canvas'), {}, { timeout: 240000 });
   await page.waitForFunction(() => !!map.getLayer('place-icons'), {}, { timeout: 90000 }).catch(() => { });
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(700);

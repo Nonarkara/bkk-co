@@ -5,7 +5,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { DatabaseSync } from 'node:sqlite';
-import worker, { resolvePlace, placePreview } from '../src/worker.js';
+import worker, { resolvePlace, placePreview, knownIds } from '../src/worker.js';
 
 const read = (path) => readFile(new URL('../public' + path, import.meta.url));
 const cannabis = JSON.parse(await read('/data/places-cannabis.json'));
@@ -77,7 +77,19 @@ const rate = async (origin, place, ip) => {
   assert.equal(b.status, 201, 'CL;UB rates a work place');
 }
 
-// 4. A shared link resolves in one catalogue only, and never calls a dispensary
+// 4. The trust boundary itself: the id set the notebook, the community feed and
+//    the rating endpoint all validate against. A dispensary is a known place in
+//    CL;UB mode and an unknown one on PL;UB.
+{
+  const main = await knownIds(env, new URL('https://co.nonarkara.org/'));
+  const club = await knownIds(env, new URL('https://club.nonarkara.org/'));
+  assert.equal(main.has(clubId), false, 'a dispensary is not a known place on PL;UB');
+  assert.equal(main.has(workId), true, 'a work place is a known place on PL;UB');
+  assert.equal(club.has(clubId), true, 'a dispensary is a known place in CL;UB mode');
+  assert.equal(club.has(workId), true, 'a work place is a known place in CL;UB mode');
+}
+
+// 5. A shared link resolves in one catalogue only, and never calls a dispensary
 //    a Great Good Place.
 {
   const onClub = await resolvePlace(env, new URL('https://club.nonarkara.org/'), clubId);
@@ -97,7 +109,7 @@ const rate = async (origin, place, ip) => {
   assert.match(plub.desc, /Great Good Place index/);
 }
 
-// 5. The client agrees with the server: a dispensary is never labelled a Great
+// 6. The client agrees with the server: a dispensary is never labelled a Great
 //    Good Place, and never asks for working conditions.
 {
   const app = (await read('/app.js')).toString();
