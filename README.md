@@ -2,6 +2,12 @@
 
 Where to work in Bangkok, on one map: **[co.nonarkara.org](https://co.nonarkara.org)**
 
+**CL;UB** — Cannabis Laboratory Urban Bureau — is the same codebase in a second
+mode at **[club.nonarkara.org](https://club.nonarkara.org)**, mapping licensed
+dispensaries and clinics in Bangkok from open data only. Its places live in
+`public/data/places-cannabis.json`, apart from the signed catalogue below, and
+carry no working or rating claims.
+
 57,379 cafés, co-working spaces, libraries and restaurants from OpenStreetMap and Overture Maps, with separately labelled open-data indices and visitor work ratings.
 Neighbourhood stories and catalogue counts, Nong Plub as guide, and private notebooks for visits and photos on your device or synced with your notebook key.
 Visitors rate Wi-Fi, outlets, quiet and laptop-friendliness. Places nobody has rated show as not rated.
@@ -31,7 +37,7 @@ Meet's space Cafe is an exact-source reviewed category correction, not a guessed
 ## Compact discovery and street sketches · 4 November 2026
 The map is the first view. Open List for nearby places, Find a work spot for the three trips, or disclose Explore/Filters for secondary choices. Counts refer to the map area; index values are not star ratings. Default list tools take83px on phone and81px on desktop.
 
-Choose Street sketch from search, Explore or a place. Five optional areas cover Ari, Samyan, Charoen Krung, Thong Lo and meet’s space/Ramkhamhaeng. Steps follow original OSM nodes and shared junctions. Only explicitly tagged building heights become volumes; unknown heights remain flat. This is an oblique sketch, not a surveyed street view or current pedestrian-access promise. Playback pauses on manual input, task change, hidden page, reduced motion and exit.
+Choose Street sketch from search, Explore or a place. Twelve areas cover Ari, Samyan, Charoen Krung, Thong Lo, meet’s space/Ramkhamhaeng, Pathum Wan, Phra Nakhon, Samphanthawong, Chatuchak, Dindaeng, Bangkapi and Prawet. Steps follow original OSM nodes and shared junctions. Only explicitly tagged building heights become volumes; unknown heights remain flat. This is an oblique sketch, not a surveyed street view or current pedestrian-access promise. Playback pauses on manual input, task change, hidden page, reduced motion and exit.
 
 Rebuild: `python3 scripts/build-street-world.py` (pinned PBF, shapely/pyproj); tests: `node test/street-world.mjs`, `node test/street-model.mjs`, `node test/map-motion.mjs`, `python3 test/street-world-source.py`. Browser checks on43827: `node test/street-browser.mjs`, `node docs/reconciliation-2026-11-04/independent-rail.mjs` (96px budget plus original-defect falsifier), `node test/reconciled-prs-browser.mjs`. Release contracts, independent review and proof: [Nov4 evidence](docs/reconciliation-2026-11-04/VALIDATION.md).
 

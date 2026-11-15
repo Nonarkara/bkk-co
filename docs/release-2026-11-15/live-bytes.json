@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-11-15T02:58:25.602Z",
+  "observedAt": "2026-11-15T08:28:53.908Z",
   "origin": "https://co.nonarkara.org",
-  "sourceCommit": "fb9341b6a81a70e2a878952e9639a154deaa5a57",
+  "sourceCommit": "fcda6f491f959e18749b725366bb4ef5b1e4126d",
   "matched": [
     {
       "path": "app.js",
@@ -1835,8 +1835,13 @@
     },
     {
       "path": "neighbourhoods.html",
-      "bytes": 3827,
-      "sha256": "669bf84112b224763dce9ed887b7013409e534bda9dee195aead4d38aac0dc7f"
+      "bytes": 2847,
+      "sha256": "b7761b7fadf9fe09bc9f1a116379b5a8c6c65334329691123bd813c26e590eaa"
+    },
+    {
+      "path": "neighbourhoods.js",
+      "bytes": 1265,
+      "sha256": "fe02dfc7e7191c1ba0c1a2d663a5136ffcc6c21ad94dadea8b68811068594650"
     },
     {
       "path": "notebook.css",
@@ -2028,7 +2033,7 @@
   "missing": [],
   "orphansStillServed": [],
   "summary": {
-    "matched": 404,
+    "matched": 405,
     "mismatched": 0,
     "missing": 0,
     "orphansStillServed": 0
