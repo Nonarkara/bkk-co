@@ -243,10 +243,6 @@ dialog.street-3d-stage {
 }
 .street-3d-stage:not([open]) { display:none; }
 .model-pin[hidden] { display:inline-flex; visibility:hidden; pointer-events:none; }
-.model-pin.pin-endorsed {
-  border-width: 1.5px;
-  font-weight: 700;
-}
 .model-bar { align-items:start; gap:5px 6px; }
 .model-area, .model-light, .model-look, .model-finish, .model-lens { max-width:100%; min-width:0; }
 .model-bar select, .model-close, .model-tool-btn, .model-start button {
