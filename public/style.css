@@ -68,8 +68,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .micro { font-size: var(--micro); font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 
-/* Bar: brand anchor + focal search + clear action tools, one unified identity line */
-.bar { grid-area: bar; position: relative; display: flex; align-items: center; gap: 10px;
+/* Bar: brand anchor + focal search + clear action tools, one unified identity line.
+   It wraps rather than crush the search. A reader who enlarges text — a 390px phone
+   at 150% is a 260px layout — must still find a usable search box on the first
+   screen, and the page must never scroll sideways. The action tools drop to a
+   second row instead; the search does not disappear. */
+.bar { grid-area: bar; position: relative; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
   padding: 8px var(--pad); border-bottom: 1px solid var(--rule); background: var(--paper); }
 .bar-brand { display: flex; align-items: center; padding-right: 12px; border-right: 1px solid var(--rule); flex: none; }
 /* The wordmark: PL;UB in his lettering. The semicolon is the seam between the two phrases. */

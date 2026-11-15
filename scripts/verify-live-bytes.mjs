@@ -87,12 +87,16 @@ const report = {
 const day = new Date().toISOString().slice(0, 10);
 const outDir = new URL(`../docs/release-${day}/`, import.meta.url);
 await mkdir(outDir, { recursive: true });
-await writeFile(new URL('live-bytes.json', outDir), JSON.stringify(report, null, 2) + '\n');
+// One proof per origin. A two-domain release has two public surfaces, and a
+// single file would keep only whichever host was checked last.
+const host = new URL(origin).hostname;
+const proofName = `live-bytes-${host}.json`;
+await writeFile(new URL(proofName, outDir), JSON.stringify(report, null, 2) + '\n');
 
 console.log(`Origin ${origin} · commit ${commit.slice(0, 8)}`);
 console.log(`  matched ${matched.length} · mismatched ${mismatched.length} · missing ${missing.length} · orphans still served ${orphans.length}${rewritten.length ? ` · rewritten by the worker ${rewritten.length}` : ''}`);
 for (const m of mismatched) console.log(`  MISMATCH ${m.path}: live ${m.bytes}b ${m.sha256.slice(0, 12)} vs repo ${m.localBytes}b ${m.localSha256.slice(0, 12)}`);
 for (const m of missing) console.log(`  MISSING  ${m.path}${m.status ? ' (' + m.status + ')' : ''}`);
 for (const o of orphans) console.log(`  ORPHAN   ${o.path} is still served (${o.bytes}b) but is not in the repo`);
-console.log(`Report: ${new URL('live-bytes.json', outDir).pathname}`);
+console.log(`Report: ${new URL(proofName, outDir).pathname}`);
 process.exit(mismatched.length || missing.length || orphans.length ? 1 : 0);

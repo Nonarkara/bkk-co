@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-11-15T08:37:15.062Z",
-  "origin": "https://club.nonarkara.org",
-  "sourceCommit": "2d3df78893a8c057e84172c28bdfa8682e6fc331",
+  "observedAt": "2026-11-15T09:28:29.237Z",
+  "origin": "https://co.nonarkara.org",
+  "sourceCommit": "6059a9bd3200bf2520d7781562a871fde8c7dc03",
   "matched": [
     {
       "path": "404.html",
@@ -10,8 +10,8 @@
     },
     {
       "path": "app.js",
-      "bytes": 49541,
-      "sha256": "5b55626a469aa077a76a8fee4f46a9e22bdf8e0b81bc7c4a74de932d341b5993"
+      "bytes": 50351,
+      "sha256": "1525598c36be1e22935bb0b13628e532bcaa38f46651bdad9006f7d25f2c932d"
     },
     {
       "path": "atlas-model.js",
@@ -915,8 +915,8 @@
     },
     {
       "path": "data/height-coverage.json",
-      "bytes": 3486,
-      "sha256": "638d5eeea1e2671a0baf81f488b8283ff8922135f34c6257bd92a112a104d6a9"
+      "bytes": 3839,
+      "sha256": "777bab197ccd8e8ca08762879da0180a908b484cce4dfe8fcd5d335b121ada49"
     },
     {
       "path": "data/hoods.json",
@@ -1177,6 +1177,11 @@
       "path": "icons/plub-512.png",
       "bytes": 218226,
       "sha256": "5678bdaf4e9f20d9199d508147a36a885d174cab8630f158fb0817b7a2dc47da"
+    },
+    {
+      "path": "index.html",
+      "bytes": 9809,
+      "sha256": "af1d86c9e338a2472c8a816d772364f771b282d29970285e96766767dcc66666"
     },
     {
       "path": "journey-model.js",
@@ -1850,8 +1855,8 @@
     },
     {
       "path": "notebook.js",
-      "bytes": 39293,
-      "sha256": "fcacd5cd06b65d2c8145cc9ea86663d1ffae9cb10ff497afef83920ed124cc4e"
+      "bytes": 39618,
+      "sha256": "8f6a0f0ebc34bf226f42dce757d5a46ae151efe95045a56cabeec3ed06a6a401"
     },
     {
       "path": "og/ari.png",
@@ -1935,8 +1940,8 @@
     },
     {
       "path": "research.js",
-      "bytes": 8784,
-      "sha256": "4088b6cb8e7cfa706b95f4b91704341e1aab39748ede9e88a885f48efd05ad28"
+      "bytes": 9171,
+      "sha256": "12aa7737327824dccd804dbc0062c0f20eece48cbb7bc16e1aeae96966411b80"
     },
     {
       "path": "robots.txt",
@@ -2020,8 +2025,8 @@
     },
     {
       "path": "views.js",
-      "bytes": 48786,
-      "sha256": "3a57d6997424aff31d6c054d7199fd3c9be2e7dda3a690cf3b830c41377f2cd4"
+      "bytes": 48928,
+      "sha256": "0bcc927c5407c3a5a77e734c38f3e0cefd21c3ecaf25a84d95c2831dc848756b"
     },
     {
       "path": "visit.css",
@@ -2043,7 +2048,7 @@
   "missing": [],
   "orphansStillServed": [],
   "summary": {
-    "matched": 407,
+    "matched": 408,
     "mismatched": 0,
     "missing": 0,
     "orphansStillServed": 0

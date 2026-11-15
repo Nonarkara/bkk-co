@@ -522,6 +522,30 @@ const PRESERVE = async (page, base, shot) => {
   return checks;
 };
 
+// A 390px phone at 150% text is a 260px layout. The search is the first-screen
+// task, so it must stay usable there and the page must never scroll sideways.
+async function checkEnlargedText(browser, base) {
+  const context = await browser.newContext({ viewport: { width: 260, height: 844 }, timezoneId: 'Asia/Bangkok' });
+  const page = await context.newPage();
+  try {
+    await page.goto(base, { waitUntil: 'domcontentloaded', timeout: 120000 });
+    await ready(page);
+    return await page.evaluate(() => {
+      const search = document.querySelector('.search');
+      const bar = document.querySelector('.bar');
+      const input = search?.querySelector('input');
+      const w = search ? search.getBoundingClientRect().width : 0;
+      const overflow = bar ? Math.max(0, bar.scrollWidth - bar.clientWidth) : 0;
+      const bleed = document.documentElement.scrollWidth > innerWidth + 1;
+      return {
+        viewport: 260, searchWidth: Math.round(w), barOverflow: overflow, bleed,
+        inputPresent: !!input,
+        pass: w >= 120 && overflow <= 1 && !bleed && !!input,
+      };
+    });
+  } finally { await context.close(); }
+}
+
 // ---------------------------------------------------------------- verdict
 function verdictFor(view, journey) {
   const fails = [];
@@ -622,6 +646,7 @@ try {
   await ready(page);
   report.journey = await PRESERVE(page, base, 'live');
   await context.close();
+  report.enlargedText = await checkEnlargedText(browser, base);
 } finally {
   await browser.close();
   if (child) child.kill();
@@ -635,6 +660,10 @@ for (const v of report.viewports) {
 {
   const r = verdictFor({ vw: 1440, vh: 900, chrome: { share: 0 }, mapShare: 1, mapShareNet: 1, mapOverlayShare: 0, mapOverlays: [], voidPx: 0, obstructionShare: 0, inflated: [], orphans: [], bleed: false, mapIsFirst: true, hierarchyRatio: 9, task: { search: true, count: true }, lang: 'en' }, report.journey);
   report.fails.push(...r.fails.map(f => ({ ...f, width: 'journey' })));
+}
+// A reader who enlarges text gets a narrower layout. The search must survive it.
+if (report.enlargedText && !report.enlargedText.pass) {
+  report.fails.push({ id: 'B15 enlarged text', detail: `at 260px (a 390px phone at 150% text) the search is ${report.enlargedText.searchWidth}px wide, the bar overflows by ${report.enlargedText.barOverflow}px and the page scrolls sideways: ${report.enlargedText.bleed}`, width: '260' });
 }
 report.verdict = report.fails.length ? (report.fails.some(f => /map share|void|bleed|runtime/.test(f.id)) ? 'BLOCK' : 'REVISE') : 'PASS';
 
@@ -656,6 +685,7 @@ for (const v of report.viewports) {
   lines.push(`  ${String(v.width).padStart(4)}px  chrome ${v.chrome.topPx}+${v.chrome.bottomPx}px (${(v.chrome.share * 100).toFixed(0)}%)  map ${(v.mapShare * 100).toFixed(0)}% (net ${(v.mapShareNet * 100).toFixed(0)}%, overlays ${(v.mapOverlayShare * 100).toFixed(1)}%)  void ${v.voidPx}px  hierarchy ${v.hierarchyRatio}x  ${v.verdict}`);
 }
 lines.push(`  journey: search ${report.journey.search} hits · chip ${report.journey.chipChanged ? 'works' : 'NO CHANGE'} · hop ${report.journey.hopStops} stops · shared feed "${String(report.journey.hopFeed).slice(0, 40)}" · lens ${report.journey.lensOn?.ground}/${report.journey.lensOff?.ground} · writes ${report.journey.writes.length}`);
+if (report.enlargedText) lines.push(`  260px  enlarged text (390px phone at 150%): search ${report.enlargedText.searchWidth}px · bar overflow ${report.enlargedText.barOverflow}px · sideways ${report.enlargedText.bleed ? 'yes' : 'no'}  ${report.enlargedText.pass ? 'PASS' : 'FAIL'}`);
 for (const f of report.fails) lines.push(`  FAIL [${f.width}] ${f.id}: ${f.detail}`);
 lines.push(`Verdict: ${report.verdict}`);
 console.log(lines.join('\n'));
