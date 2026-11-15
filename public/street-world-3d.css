@@ -331,3 +331,12 @@ dialog.street-3d-stage {
 }
 .model-bottom .model-joy { position:relative; inset:auto; align-self:flex-start; pointer-events:auto; }
 .model-bottom .model-card { position:relative; inset:auto; align-self:flex-end; pointer-events:auto; }
+
+.model-appearance { max-width: 100%; background: var(--paper); }
+.model-appearance > summary {
+  cursor: pointer;
+  min-height: 32px;
+  padding: 4px 8px;
+  border: 1px solid var(--rule);
+}
+.model-appearance-controls { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; }

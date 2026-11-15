@@ -4,7 +4,7 @@
   Overture Places (CDLA-Permissive-2.0)  -- release 2026-10-21.0, Bangkok bbox, sha-pinned
 Leaves the signed 57,379 work/food catalogue files (places-work.json, places-food.json) untouched.
 """
-import collections, hashlib, json, math, pathlib, subprocess, sys, tempfile
+import collections, hashlib, json, math, pathlib, re, subprocess, sys, tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'scripts'))
@@ -16,13 +16,26 @@ spec.loader.exec_module(bp)
 TH_BOUNDS = [97.2, 5.5, 105.8, 20.6]
 def inside_th(lng, lat): return TH_BOUNDS[0] <= lng <= TH_BOUNDS[2] and TH_BOUNDS[1] <= lat <= TH_BOUNDS[3]
 
+CLUB_NAME = re.compile(r'cannabis|canabis|dispensary|\bweed\b|ganja|\bthc\b|กัญชา', re.I)
+SHOP_NAME = re.compile(r'dispensary|cannabis shop|weed shop|ร้านกัญชา', re.I)
+CLINIC_NAME = re.compile(r'\bclinic\b|คลินิก|เวชกรรม', re.I)
+CAFE_NAME = re.compile(r'caf[eé]|coffee|คาเฟ่', re.I)
+
 def classify_sub(name, th, cat, tax, tags=None):
-    blob = f"{name or ''} {th or ''}".lower()
-    if tax == 'cannabis_clinic' or cat == 'cannabis_clinic' or 'clinic' in blob or 'คลินิก' in blob or 'สหคลินิก' in blob or 'เวชกรรม' in blob or 'แผนไทย' in blob:
+    label = f"{name or ''} {th or ''}"
+    # Overture's clinic taxonomy alone includes unrelated clinics and stores.
+    if tags is None and not CLUB_NAME.search(label):
+        return None
+    if SHOP_NAME.search(label):
+        return 'dispensary'
+    if CLINIC_NAME.search(label) and CLUB_NAME.search(label):
         return 'clinic'
-    if (tags and tags.get('amenity') == 'cafe') or 'cafe' in blob or 'café' in blob or 'coffee' in blob or 'คาเฟ่' in blob:
+    if (tags and tags.get('amenity') == 'cafe') or CAFE_NAME.search(label):
         return 'cafe'
-    return 'dispensary'
+    if 'cannabis_dispensary' in (cat, tax) or (tags and
+            (tags.get('shop') == 'cannabis' or tags.get('amenity') == 'dispensary')):
+        return 'dispensary'
+    return 'other'
 
 def load_osm_cannabis(skipped):
     if bp.sha(bp.OSM_PBF, 'md5') != bp.OSM_MD5:
@@ -104,6 +117,9 @@ def load_overture_cannabis():
             continue
         if bp.norm(name) in bp.GENERIC:
             continue
+        subtype = classify_sub(name, None, cat, tax)
+        if subtype is None:
+            continue
         rows.append({
             'id': 'o' + gid.replace('-', '')[:12],
             'n': name.strip()[:120],
@@ -118,7 +134,7 @@ def load_overture_cannabis():
             'ds': sorted(set(d for d in ds if d != 'Overture')),
             'src': 'overture',
             'brand': brand,
-            'sub': classify_sub(name, None, cat, tax),
+            'sub': subtype,
         })
     return rows
 
@@ -151,8 +167,8 @@ def build():
     for idx_p, p in enumerate(places):
         gy, gx = int(p['y'] * 100), int(p['x'] * 100)
         n250, n1000 = 0, 0
-        for dy in (-1, 0, 1):
-            for dx in (-1, 0, 1):
+        for dy in range(-2, 3):
+            for dx in range(-2, 3):
                 for j in grid.get((gy + dy, gx + dx), ()):
                     if j == idx_p:
                         continue
@@ -170,12 +186,10 @@ def build():
         g[4] = str(min(9, w_score))
         p['g'] = ''.join(g)
 
-        # CL;UB Operations & Concentration Rank (0-99)
-        tier_pts = 24 if p.get('sub') == 'clinic' else 20 if p.get('sub') == 'cafe' else 14
-        ops_pts = (18 if p.get('h') else 0) + (12 if p.get('web') or p.get('social') else 0) + (10 if p.get('tel') else 0) + (8 if p.get('addr') else 0)
-        conf_pts = 10 if (p.get('conf') or 0) >= 0.8 or p.get('src') == 'osm' else 5
-        hub_pts = min(18, n1000 * 2)
-        p['i'] = min(99, tier_pts + ops_pts + conf_pts + hub_pts)
+        # Count record fields. A category or a neighbour adds no evidence about this venue.
+        p['i'] = sum(bool(value) for value in (p.get('h'), p.get('web') or p.get('social'),
+                                                p.get('tel'), p.get('addr')))
+
 
     # Precompute top concentrated dispensary hotspots across Thailand (1.5 km greedy clusters)
     hotspots = []
@@ -190,8 +204,8 @@ def build():
             taken.add(q['id'])
         hotspots.append({
             'name': p['n'],
-            'lat': round(sum(q['y'] for q in members) / len(members), 5),
-            'lng': round(sum(q['x'] for q in members) / len(members), 5),
+            'lat': p['y'],
+            'lng': p['x'],
             'count': len(members),
             'clinics': sum(1 for q in members if q.get('sub') == 'clinic'),
             'dispensaries': sum(1 for q in members if q.get('sub') == 'dispensary'),

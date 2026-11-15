@@ -478,7 +478,8 @@ export async function start(host, options = {}) {
         <button type="button" data-mode="sky" data-preset="rooftop" aria-pressed="false">Rooftop</button>
         <button type="button" data-mode="walk" aria-pressed="false">Street</button>
       </div>
-      <button type="button" class="model-hunt-hud" data-act-hunt title="District Scavenger Hunt: visit or tap 5 spots in 3D (click to jump to next)"><span class="hunt-dot" aria-hidden="true"></span><span class="hunt-label">Hunt 0/5</span></button>
+      <button type="button" class="model-hunt-hud" data-act-hunt hidden title="Show the next virtual hunt stop"><span class="hunt-dot" aria-hidden="true"></span><span class="hunt-label">Hunt</span></button>
+      <details class="model-appearance"><summary>Appearance</summary><div class="model-appearance-controls">
       <label class="model-light"><span class="sr">Light</span><select aria-label="Light">
         <option value="day">Day</option>
         <option value="dusk">Dusk</option>
@@ -504,9 +505,9 @@ export async function start(host, options = {}) {
         <option value="50">50mm</option>
       </select></label>
       <button type="button" class="model-tool-btn" data-act-2pt aria-pressed="false" title="Keep vertical building lines parallel (2-point architectural perspective)">2-pt</button>
-      <button type="button" class="model-tool-btn" data-act-reroll title="Re-roll indicative shophouse heights for untagged footprints">Re-roll</button>
+      </div></details>
       <button type="button" class="model-close" aria-label="Back to map">Back to map</button>
-      <div class="model-coverage"><p role="status"></p><button type="button" class="model-relief" hidden></button></div>
+      <div class="model-coverage"><p role="status"></p><button type="button" class="model-relief" hidden></button><span class="sr" data-hunt-status role="status"></span></div>
     </div>
     <div class="model-pins"></div>
     <canvas class="model-minimap" width="136" height="136" title="Click radar to jump camera to street"></canvas>
@@ -624,9 +625,17 @@ export async function start(host, options = {}) {
   scene.add(huntGroup);
   let huntTargets = [];
   const huntBtn = bar.querySelector('[data-act-hunt]');
+  const huntStatus = bar.querySelector('[data-hunt-status]');
+  const huntProgress = new Map();
   const huntStorageKey = () => `plub_hunt_${activeArea?.id || 'bkk'}`;
   function getFoundHunt() {
-    try { return new Set(JSON.parse(localStorage.getItem(huntStorageKey()) || '[]')); } catch { return new Set(); }
+    const key = huntStorageKey();
+    if (!huntProgress.has(key)) {
+      let ids = [];
+      try { ids = JSON.parse(localStorage.getItem(key) || '[]'); } catch {}
+      huntProgress.set(key, new Set(Array.isArray(ids) ? ids.filter(id => typeof id === 'string') : []));
+    }
+    return huntProgress.get(key);
   }
   function saveFoundHunt(found) {
     try { localStorage.setItem(huntStorageKey(), JSON.stringify([...found])); } catch {}
@@ -640,7 +649,7 @@ export async function start(host, options = {}) {
       huntBtn.querySelector('.hunt-label').textContent = total && done === total ? `Hunt ${done}/${total} ✓` : `Hunt ${done}/${total}`;
       huntBtn.classList.toggle('is-complete', total > 0 && done === total);
     }
-    if (msg) coverageEl.textContent = msg;
+    if (msg) huntStatus.textContent = msg;
   }
   function markHuntFound(p) {
     if (!huntTargets.some(t => t.p.id === p.id)) return false;
@@ -650,7 +659,10 @@ export async function start(host, options = {}) {
     saveFoundHunt(found);
     const t = huntTargets.find(x => x.p.id === p.id);
     if (t?.beacon) t.beacon.visible = false;
-    if (t?.btn) t.btn.classList.add('is-found');
+    if (t?.btn) {
+      t.btn.classList.add('is-found');
+      t.btn.querySelector('.pin-tag').textContent = `✓ ${p.n}`;
+    }
     const done = huntTargets.filter(x => found.has(x.p.id)).length;
     updateHuntHud(done === huntTargets.length
       ? `District Hunt complete! ${done}/${huntTargets.length} spots found — ${p.n}`
@@ -668,8 +680,7 @@ export async function start(host, options = {}) {
     dist: 460, yaw: -0.45, pitch: 0.72,
     speed: 7,
     lens: '24',
-    twoPoint: false,
-    rerollSeed: 0
+    twoPoint: false
   };
   let hasRelief = false;
   let tod = 'day';
@@ -682,7 +693,6 @@ export async function start(host, options = {}) {
   const finishSelect = bar.querySelector('.model-finish select');
   const lensSelect = bar.querySelector('.model-lens select');
   const twoPtBtn = bar.querySelector('[data-act-2pt]');
-  const rerollBtn = bar.querySelector('[data-act-reroll]');
   areaSelect.disabled = true;
 
   let groundMat = null;
@@ -730,7 +740,7 @@ export async function start(host, options = {}) {
     invalidate();
   }
 
-  let activeArea = null, lastLoadedFile = null, areaRequest, streetSegments = [], activePlaceIDs = [];
+  let activeArea = null, areaRequest, streetSegments = [], activePlaceIDs = [];
   let project = (lat, lng) => ({ x: 0, z: 0 });
   let unproject = (x, z) => ({ lat: 0, lng: 0 });
   let collisionGrid = new Map();
@@ -801,22 +811,18 @@ export async function start(host, options = {}) {
     const bList = file.buildings.features;
     const pos = [], uw = [], info = [], seedAttr = [], idx = [];
     const ground = [], groundIndices = [], outlines = [];
-    let knownCount = 0, levelsCount = 0;
+    let knownCount = 0;
 
     for (const building of bList) {
       const geometry = building.geometry;
       const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
       const props = building.properties || {};
-      const { render3D, heightM, minHeightM, tags } = props;
+      const { render3D, heightM, minHeightM } = props;
       const baseHeight = minHeightM ?? 0;
       const known = render3D === true && Number.isFinite(heightM) && heightM > baseHeight;
       if (known) knownCount++;
 
-      const bSeed = hashStr(String(building.id || props.sourceID || ''), S.rerollSeed);
-      const rawLevels = parseFloat(tags?.['building:levels'] || '');
-      const hasLevels = !known && Number.isFinite(rawLevels) && rawLevels > 0 && rawLevels <= 80;
-      if (hasLevels) levelsCount++;
-
+      const bSeed = hashStr(String(building.id || props.sourceID || ''));
       for (const polygon of polygons) {
         const rings = polygon.map(ring => ring.slice(0, -1).flatMap(([lng, lat]) => {
           const point = project(lat, lng);
@@ -838,25 +844,8 @@ export async function start(host, options = {}) {
           }
         }
 
-        const boxArea = Math.max(16, (maxX - minX) * (maxZ - minZ));
-        let effHeight = heightM;
-        let tier = 2; // 2 = explicit heightM, 1 = OSM levels, 0 = indicative Bangkok shophouse massing
-        if (!known) {
-          if (hasLevels) {
-            effHeight = Math.max(4.5, Math.min(180, rawLevels * 3.6));
-            tier = 1;
-          } else {
-            // Indicative Bangkok shophouse/urban block massing (2 to 5 stories)
-            const baseFloors = boxArea < 90 ? 2 : boxArea < 380 ? 3 : 4;
-            const extraFloors = Math.floor(bSeed * 2.6);
-            effHeight = (baseFloors + extraFloors) * 3.5 + (bSeed * 1.4);
-            tier = 0;
-          }
-        }
-
         const coords = [], holes = [];
-        // Pack info: bit 0 = isRoof, bits 1..2 = tier (0..3), bits 3+ = floor(effHeight * 2)
-        const wallInfo = Math.floor(effHeight * 2) * 8 + tier * 2;
+        const wallInfo = known ? Math.floor(heightM * 2) * 8 + 4 : 0;
         const roofInfo = wallInfo + 1;
 
         for (const ring of rings) {
@@ -866,11 +855,11 @@ export async function start(host, options = {}) {
             const xa = ring[i], za = ring[i + 1], xb = ring[j], zb = ring[j + 1];
             coords.push(xa, za);
             outlines.push(xa, 0.04, za, xb, 0.04, zb);
-            // Roof outline ink segments for crisp architectural silhouette
-            outlines.push(xa, effHeight + 0.02, za, xb, effHeight + 0.02, zb);
+            if (!known) continue;
+            outlines.push(xa, heightM + 0.02, za, xb, heightM + 0.02, zb);
             const length = Math.hypot(xb - xa, zb - za);
             const v = pos.length / 3;
-            pos.push(xa, baseHeight, za, xb, baseHeight, zb, xb, effHeight, zb, xa, effHeight, za);
+            pos.push(xa, baseHeight, za, xb, baseHeight, zb, xb, heightM, zb, xa, heightM, za);
             uw.push(0, length, length, length, length, length, 0, length);
             info.push(wallInfo, wallInfo, wallInfo, wallInfo);
             seedAttr.push(bSeed, bSeed, bSeed, bSeed);
@@ -882,14 +871,15 @@ export async function start(host, options = {}) {
         const roofBase = pos.length / 3;
         for (let i = 0; i < coords.length; i += 2) {
           ground.push(coords[i], 0.02, coords[i + 1]);
-          pos.push(coords[i], effHeight, coords[i + 1]);
+          if (!known) continue;
+          pos.push(coords[i], heightM, coords[i + 1]);
           uw.push(0, 0);
           info.push(roofInfo);
           seedAttr.push(bSeed);
         }
         for (const i of triangles) {
           groundIndices.push(groundBase + i);
-          idx.push(roofBase + i);
+          if (known) idx.push(roofBase + i);
         }
       }
     }
@@ -938,53 +928,6 @@ export async function start(host, options = {}) {
       rv += pts.length * 2;
     }
 
-    // Add stylized street trees & utility poles along streets (Rokehan streetscape detail)
-    const treeInfo = Math.floor(6 * 2) * 8 + 3 * 2 + 1; // tier = 3 (foliage)
-    let treeCount = 0;
-    for (let sIdx = 0; sIdx < streetSegments.length; sIdx += 3) {
-      if (treeCount >= 180) break;
-      const [a, b] = streetSegments[sIdx];
-      const segLen = Math.hypot(b.x - a.x, b.z - a.z);
-      if (segLen < 18) continue;
-      const dx = (b.x - a.x) / segLen, dz = (b.z - a.z) / segLen;
-      const nx = -dz, nz = dx;
-      const side = (sIdx % 2 === 0) ? 1 : -1;
-      const tx = (a.x + b.x) * 0.5 + nx * side * 4.6;
-      const tz = (a.z + b.z) * 0.5 + nz * side * 4.6;
-      if (blocked(tx, tz)) continue;
-      treeCount++;
-      const tSeed = hashStr(`tree-${sIdx}`, S.rerollSeed);
-      const r = 1.45 + (tSeed * 0.75);
-      const hBase = 2.1, hTop = 5.0 + tSeed * 1.8;
-      // Trunk ink line + utility pole line on alternating segments
-      outlines.push(tx, 0.05, tz, tx, hBase + 0.5, tz);
-      if (sIdx % 6 === 0) {
-        const px = a.x + nx * (-side) * 3.9, pz = a.z + nz * (-side) * 3.9;
-        if (!blocked(px, pz)) {
-          outlines.push(px, 0.05, pz, px, 7.2, pz);
-          outlines.push(px - nx * 0.6, 6.6, pz - nz * 0.6, px + nx * 0.6, 6.6, pz + nz * 0.6);
-        }
-      }
-      // Octagonal 2-tier foliage canopy
-      const v0 = pos.length / 3;
-      const sides = 6;
-      pos.push(tx, hTop, tz);
-      uw.push(0, 0); info.push(treeInfo); seedAttr.push(tSeed);
-      pos.push(tx, hBase, tz);
-      uw.push(0, 0); info.push(treeInfo); seedAttr.push(tSeed);
-      for (let k = 0; k < sides; k++) {
-        const ang = (k / sides) * Math.PI * 2;
-        pos.push(tx + Math.cos(ang) * r, (hBase + hTop) * 0.48, tz + Math.sin(ang) * r);
-        uw.push(0, 0); info.push(treeInfo); seedAttr.push(tSeed);
-      }
-      for (let k = 0; k < sides; k++) {
-        const c1 = v0 + 2 + k;
-        const c2 = v0 + 2 + ((k + 1) % sides);
-        idx.push(v0, c1, c2);
-        idx.push(v0 + 1, c2, c1);
-      }
-    }
-
     const bGeo = new THREE.BufferGeometry();
     bGeo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
     bGeo.setAttribute('uw', new THREE.Float32BufferAttribute(uw, 2));
@@ -1025,13 +968,12 @@ export async function start(host, options = {}) {
     }
 
     hasRelief = knownCount > 0;
-    coverageEl.textContent = hasRelief
-      ? `${knownCount} mapped heights · ${levelsCount} floor-tagged · ${bList.length} 3D volumes in relief`
-      : `No mapped building heights · ${bList.length} architectural 3D massing volumes`;
+    const flatCount = bList.length - knownCount;
+    coverageEl.textContent = `${knownCount} mapped heights · ${flatCount} flat footprints`;
     reliefBtn.hidden = hasRelief || !mostRelief.heightVolumes;
     host.dataset.area = area.id;
     host.dataset.volumes = String(knownCount);
-    host.dataset.massingVolumes = String(bList.length);
+    host.dataset.massingVolumes = String(knownCount);
     host.dataset.streets = String(streetSegments.length);
     setTod(tod);
   }
@@ -1061,7 +1003,7 @@ export async function start(host, options = {}) {
     }
     if (disposed || request.signal.aborted) return false;
     activeArea = area;
-    lastLoadedFile = file;
+    huntStatus.textContent = '';
     areaSelect.value = area.id;
     cardEl.hidden = true;
     pinsContainer.innerHTML = '';
@@ -1093,9 +1035,12 @@ export async function start(host, options = {}) {
   function createPins(ids) {
     pinsContainer.replaceChildren();
     while (huntGroup.children.length) {
-      const c = huntGroup.children.pop();
-      c.geometry?.dispose?.();
-      c.material?.dispose?.();
+      const beacon = huntGroup.children[0];
+      huntGroup.remove(beacon);
+      beacon.traverse(obj => {
+        obj.geometry?.dispose();
+        obj.material?.dispose();
+      });
     }
     huntTargets = [];
     const extra = (window.state?.clubMode && window.state?.kinds?.has('cannabis') && activeArea)
@@ -1407,30 +1352,26 @@ export async function start(host, options = {}) {
     twoPtBtn.setAttribute('aria-pressed', String(S.twoPoint));
     invalidate();
   });
-  rerollBtn.addEventListener('click', () => {
-    S.rerollSeed = (S.rerollSeed + 1) % 1000;
-    if (lastLoadedFile && activeArea) {
-      buildGeometryFromFile(lastLoadedFile, activeArea);
-      invalidate();
-    }
-  });
   bar.addEventListener('click', event => {
     const mode = event.target.closest('[data-mode]');
     if (mode) { setMode(mode.dataset.mode, mode.dataset.preset); return; }
     if (event.target.closest('[data-act-hunt]')) {
       const found = getFoundHunt();
-      const next = huntTargets.find(t => !found.has(t.p.id)) || huntTargets[0];
+      const next = huntTargets.find(t => !found.has(t.p.id));
       if (next) {
         S.x = next.x; S.z = next.z;
         if (S.mode === 'walk') standNear(next.x, next.z);
         else setMode('sky', 'rooftop');
         updateHuntHud(`Next Hunt target: ${next.p.n}`);
         invalidate();
+      } else {
+        updateHuntHud('District hunt complete.');
       }
     }
   });
 
   function resize() {
+    minimapCanvas.style.bottom = `${bottomBar.offsetHeight + 20}px`;
     const w = host.clientWidth, h = host.clientHeight;
     if (!w || !h) return;
     renderer.setSize(w, h, false);
@@ -1440,13 +1381,19 @@ export async function start(host, options = {}) {
   }
   ro = new ResizeObserver(resize);
   ro.observe(host);
+  ro.observe(bottomBar);
 
   function layoutPins() {
     const w = host.clientWidth, h = host.clientHeight;
     const posVec = new THREE.Vector3();
     const cx = S.mode === 'walk' ? S.px : S.x;
     const cz = S.mode === 'walk' ? S.pz : S.z;
-    const occupied = [];
+    const radar = minimapCanvas.getBoundingClientRect();
+    const hostRect = host.getBoundingClientRect();
+    const occupied = radar.width ? [{
+      x: radar.left - hostRect.left, y: radar.top - hostRect.top,
+      right: radar.right - hostRect.left, bottom: radar.bottom - hostRect.top
+    }] : [];
     const top = bar.getBoundingClientRect().bottom + 6;
     const bottom = bottomBar.getBoundingClientRect().top - 6;
     const sizes = placePins.map(({ btn }) => [btn.offsetWidth, btn.offsetHeight]);

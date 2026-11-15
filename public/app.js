@@ -1,6 +1,7 @@
 // PLUB · Placemaking Laboratory Urban Bureau. Map, filters, sorting, search, place sheet. No bundler, no framework.
 // views.js adds the guide, neighbourhood and passport sheets on top of the helpers defined here.
-const KIND_LABEL = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library' };
+const KIND_LABEL = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library', cannabis: 'Cannabis listing' };
+const CLUB_TYPES = { clinic: 'Mapped clinic', cafe: 'Mapped café', dispensary: 'Mapped dispensary', other: 'Type unverified' };
 const safeLink = value => { try { const u=new URL(value); return ['https:','http:'].includes(u.protocol) && !u.username && !u.password ? u.href : null; } catch { return null; } };
 const F = { WIFI: 1, NOWIFI: 2, HOURS: 4, OUTDOOR: 8, OVERTURE: 16, CHAIN: 32, NOTABLE: 64, HAND: 128, PARK: 256, COFFEE: 512 }; // same bits as build-places.py
 // a place nobody has mapped yet goes to OpenStreetMap as a note; the next rebuild picks it up once mapped
@@ -136,9 +137,9 @@ async function loadCannabis() {
   if (state.cannabisLoaded) return;
   if (!cannabisPromise) {
     cannabisPromise = fetch('data/places-cannabis.json')
-      .then(r => (r.ok ? r.json() : null))
+      .then(r => { if (!r.ok) throw Error('Club catalogue unavailable'); return r.json(); })
       .then(d => {
-        if (!d?.rows) return;
+        if (!Array.isArray(d?.rows)) throw Error('Invalid club catalogue');
         for (const [id, n, k, y, x, flags, g, idx, hours] of d.rows) {
           if (state.byId.has(id)) continue;
           const p = { id, n, k: d.kinds[k], y, x, flags, g, idx, hours, low: n.toLowerCase() };
@@ -149,7 +150,7 @@ async function loadCannabis() {
         for (const [id, det] of Object.entries(d.details || {})) {
           cannabisDetails.set(id, det);
           const place = state.byId.get(id);
-          if (place && det.hub1km) place.hub = det.hub1km;
+          if (place) { place.hub = det.hub1km; place.sub = det.sub; place.th = det.th; }
         }
         state.cannabisHotspots = Array.isArray(d.hotspots) ? d.hotspots : [];
         state.sortedIdx = state.places.filter(p => p.k !== 'cannabis').map(p => p.idx).sort((a, b) => a - b);
@@ -167,16 +168,39 @@ const TH_BOUNDS = [[97.0, 5.3], [106.0, 20.8]];
 function renderClubHotspots() {
   const box = $('#club-hotspots');
   if (!box) return;
-  if (!state.clubMode || !state.cannabisHotspots.length) { box.hidden = true; box.innerHTML = ''; return; }
-  box.hidden = false;
-  box.innerHTML = `<div class="hotspots-head"><strong>Thailand Dispensary Hotspots</strong><span>${state.sortedCannabisIdx.length} venues · click to jump</span></div>
-    <div class="hotspots-row">${state.cannabisHotspots.slice(0, 8).map((h, i) =>
-      `<button type="button" class="hotspot-pill" data-hotspot="${i}" title="${esc(h.name)} · ${h.count} venues within 1.5 km"><b>${h.count}</b><span>${esc(h.name)}</span></button>`
-    ).join('')}</div>`;
+  box.hidden = !state.clubMode;
+  if (!state.clubMode) { box.replaceChildren(); return; }
+  if (!state.cannabisLoaded) {
+    box.innerHTML = '<span role="status">Directory unavailable.</span> <button type="button" data-retry-club>Retry</button>';
+    return;
+  }
+  box.innerHTML = `<details><summary>Browse hotspots · ${state.cannabisHotspots.length}</summary>
+    <div class="hotspots-row">${state.cannabisHotspots.map((h, i) =>
+      `<button type="button" class="hotspot-pill" data-hotspot="${i}"><b aria-label="${h.count} listings within 1.5 km">${h.count}</b><span>Near ${nm(h.name)}</span></button>`
+    ).join('')}</div></details>`;
 }
 
-async function setClubMode(on) {
+let clubModeChange = 0;
+async function setClubMode(on, { frame = true } = {}) {
+  const attempt = ++clubModeChange;
   state.clubMode = !!on;
+  state.mood = null;
+  if (on) {
+    for (const flag of ['wifi', 'indie', 'work']) {
+      state.flags.delete(flag);
+      document.querySelector(`[data-flag="${flag}"]`)?.setAttribute('aria-pressed', 'false');
+    }
+    state.kinds = new Set(['cannabis']);
+  }
+  $('#hits').hidden = true;
+  if (state.selected) closeSheet();
+  $('#map').setAttribute('aria-label', on ? 'Map of Thailand cannabis listings' : 'Map of Great Good Places in Bangkok');
+  for (const option of $('#list-order').options) {
+    option.hidden = (option.value === 'hubs') ? !on : (on && !['near', 'great'].includes(option.value));
+    if (option.value === 'great') option.textContent = on ? 'Most listing details' : 'Third Place Index';
+  }
+  if (!on && state.sort === 'hubs') state.sort = 'near';
+  if (on && !['near', 'great', 'hubs'].includes(state.sort)) state.sort = 'near';
   document.body.classList.toggle('club-mode', on);
   const mark = $('.mark');
   if (mark) {
@@ -193,12 +217,21 @@ async function setClubMode(on) {
   const toggle = $('#club-toggle');
   if (toggle) toggle.setAttribute('aria-pressed', String(on));
   if (on) {
+    if (!state.cannabisLoaded) {
+      const box = $('#club-hotspots');
+      box.hidden = false;
+      box.textContent = 'Loading Thailand listings…';
+    }
     await loadCannabis();
-    state.kinds = new Set(['cannabis']);
+    if (attempt !== clubModeChange) return;
     if (chip) chip.setAttribute('aria-pressed', 'true');
     map.setMaxBounds(TH_BOUNDS);
     map.setMinZoom(5);
-    if (state.sort === 'work' || state.sort === 'sanctuary') state.sort = 'hubs';
+    if (frame && state.cannabisLoaded && !new URL(location.href).searchParams.has('p')) {
+      const bounds = new maplibregl.LngLatBounds();
+      for (const p of state.places) if (p.k === 'cannabis') bounds.extend([p.x, p.y]);
+      if (!bounds.isEmpty()) map.fitBounds(bounds, { padding: 18, animate: false });
+    }
   } else {
     state.kinds = new Set(['cafe', 'coworking', 'library']);
     for (const b of document.querySelectorAll('.chips [data-kind]')) {
@@ -270,10 +303,10 @@ function refresh() {
   });
   Atlas.onRefresh(lastList);
   window.FootprintPalette?.refresh(lastList);
-  const total = state.places.length;
+  const total = state.places.length - state.sortedCannabisIdx.length;
   $('#count').textContent = `${fmt(lastList.length)} matching`;
   $('#list-filter-count').textContent=state.flags.size?' · '+state.flags.size:'';
-  $('#list-matching').textContent=`${fmt(lastList.length)} matching catalogue places of ${fmt(total)} across the covered Bangkok area. Wi-Fi and hours depend on documented or visitor information.`;
+  $('#list-matching').textContent=state.clubMode ? `${fmt(lastList.length)} matching listings across the mapped areas. Hours are from source records.` : `${fmt(lastList.length)} matching catalogue places of ${fmt(total)} across the covered Bangkok area. Wi-Fi and hours depend on documented or visitor information.`;
   renderMood();
   renderList();
   performance.mark(map.getSource('places') ? 'bkk:pins' : 'bkk:data');
@@ -377,7 +410,7 @@ const SORTS = {
 };
 
 const listGroups = [
-  ['cafe', 'Cafés'], ['coworking', 'Co-working'], ['library', 'Libraries'], ['restaurant', 'Food'], ['cannabis', 'Dispensaries'],
+  ['cafe', 'Cafés'], ['coworking', 'Co-working'], ['library', 'Libraries'], ['restaurant', 'Food'], ['cannabis', 'Cannabis listings'],
 ];
 const listPreview = 3;
 const listPageSize = 12;
@@ -422,7 +455,7 @@ function renderList() {
 
 function sortKey(p, centre) {
   return {
-    great: `${p.idx} index`,
+    great: p.k === 'cannabis' ? `${p.idx}/4 details` : `${p.idx} index`,
     near: `~${Math.round(metres(p, centre) / 10) * 10} m`,
     leveler: p.flags & F.CHAIN ? 'chain' : `◇${p.d[2]}/9 indie`,
     vitality: `⁘${p.d[1]}/9 scene`,
@@ -432,11 +465,11 @@ function sortKey(p, centre) {
     popular: `${p.d[3]}/9 footprint`,
     notable: p.d[5] ? 'record' : '—',
     work: `${Math.round(workScore(p))} work`,
-    hubs: p.hub ? `${p.hub + 1} in 1km` : 'solo',
+    hubs: p.hub ? `${p.hub} nearby` : '0 nearby',
   }[state.sort] || `${p.idx} index`;
 }
 
-function row(p, key = `${p.idx} index`, list = false) {
+function row(p, key = p.k === 'cannabis' ? (CLUB_TYPES[p.sub] || KIND_LABEL.cannabis) : `${p.idx} index`, list = false) {
   const s = state.scores[p.id];
   const ws = workScore(p);
   const tail = [
@@ -446,7 +479,8 @@ function row(p, key = `${p.idx} index`, list = false) {
     s ? `<span title="Visitor ratings">★${s.n}</span>` : '',
     state.flags.has('work') ? `<span title="Work score" class="ws">${Math.round(ws)}</span>` : '',
   ].join(' ');
-  const label=esc(p.n+(p.branch?', '+p.branch:'')+' · '+KIND_LABEL[p.k]);
+  const kindLabel = CLUB_TYPES[p.sub] || KIND_LABEL[p.k];
+  const label=esc(p.n+(p.branch?', '+p.branch:'')+' · '+kindLabel);
   const name=`${nm(p.n)}${p.branch?' '+branchTag(p):''}`;
   if(list)return `<li data-id="${esc(p.id)}"><button type="button" class="list-place" aria-label="${label}, ${esc(key)}">${PlaceTools.icon(p)}<span class="nm">${name}<span class="row-signals">${tail}</span></span><span class="idx" title="${state.sort==='near'?'Straight line from the map centre':'Computed catalogue signal, not a visitor star rating'}">${esc(key)}</span></button></li>`;
   return `<li data-id="${esc(p.id)}" role="option" aria-label="${label}">${PlaceTools.icon(p)}<span class="nm">${name}</span><span class="meta">${tail}</span><span class="idx">${esc(key)}</span></li>`;
@@ -483,7 +517,8 @@ $('#q').addEventListener('input', () => {
   if (q.length < 2) { hits.innerHTML = moodHits(); hits.hidden = false; return; }
   const starts = [], has = [];
   for (const p of state.places) {
-    if (PlaceTools.normalize(p.n).startsWith(q)) starts.push(p); else if (PlaceTools.matches(p, q)) has.push(p);
+    if ((p.k === 'cannabis') !== state.clubMode) continue;
+    if (PlaceTools.normalize(p.n).startsWith(q)) starts.push(p); else if (PlaceTools.matches(p, q) || (p.th && PlaceTools.normalize(p.th).includes(q))) has.push(p);
     if (starts.length >= 40) break;
   }
   // best first, nearest on ties: what people mean by "the good one near here"
@@ -493,7 +528,7 @@ $('#q').addEventListener('input', () => {
   hitIdx = -1;
   const c2 = map.getCenter();
   const missing = `<li class="meta missing"><a href="${osmNote(c2.lat, c2.lng)}" target="_blank" rel="noopener">Missing a place? Tell OpenStreetMap ↗</a></li>`;
-  hits.innerHTML = (window.hoodHits?.(q) || '') + (top.length ? top.map(p => row(p)).join('') : '<li class="meta">No place by that name. Try Thai or English.</li>') + missing;
+  hits.innerHTML = (state.clubMode ? '' : window.hoodHits?.(q) || '') + (top.length ? top.map(p => row(p)).join('') : '<li class="meta">No place by that name. Try Thai or English.</li>') + missing;
   hits.hidden = false;
 });
 $('#q').addEventListener('keydown', e => {
@@ -520,7 +555,7 @@ document.addEventListener('click', e => { if (!e.target.closest('.bar')) $('#hit
 // ---------- filters ----------
 document.addEventListener('click', e => {
   const b = e.target.closest('.chips button[data-kind], .flags button[data-flag]');
-  if (!b) return;
+  if (!b || b.dataset.kind === 'cannabis') return;
   const on = b.getAttribute('aria-pressed') !== 'true';
   b.setAttribute('aria-pressed', on);
   const set = b.dataset.kind ? state.kinds : state.flags;
@@ -586,7 +621,7 @@ function petals(p, size = 76) {
 const dots = (v, max = 9) => `<span class="bars" aria-label="${v} of ${max}"><b>${'●'.repeat(Math.round(v * 5 / max))}</b><s>${'●'.repeat(5 - Math.round(v * 5 / max))}</s></span>`;
 
 async function select(p, fly) {
-  if (!p) return;
+  if (!p || (p.k === 'cannabis') !== state.clubMode) return;
   state.selected = p;
   $('#hits').hidden = true;
   map.getSource('sel')?.setData(Atlas.selection(p));
@@ -686,24 +721,24 @@ function renderSheet(p, d, visits, report) {
       <h1>${nm(report?.venue || p.n)}${p.branch ? `<span class="th">${esc(p.branch)}</span>` : ''}${d.th ? `<span class="th" lang="th">${esc(d.th)}</span>` : ''}</h1>
       <button class="close" aria-label="Close">×</button>
     </header>
-    <div class="kindline">${PlaceTools.symbol(p.k)}${KIND_LABEL[p.k]}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>
+    <div class="kindline">${PlaceTools.symbol(p.k)}${esc(CLUB_TYPES[p.sub] || KIND_LABEL[p.k])}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>
     ${factList(facts, 'Hours and address')}
     <section class="been place-actions"><a href="${esc(window.WorkFinder?.directions(p)||`https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}`)}" target="_blank" rel="noopener">Directions ↗</a><button type="button" class="send been-open" data-place-visit>✓ I've been here</button></section>
     ${visitReportHtml(report)}
     ${factList(moreFacts, 'Contact and amenities')}
-    ${p.k === 'cannabis' ? `<section class="cannabis-law" aria-label="Dispensary classification and Thai regulation"><p class="micro">${esc({ clinic: 'Licensed medical cannabis clinic', cafe: 'Cannabis café', dispensary: 'Dispensary' }[d.sub] || 'Open-data cannabis listing')}</p><p>Under Thai Ministry of Public Health rules, cannabis flower sales require licensed medical/traditional-medicine compliance, age 20+, and no smoking on public streets or inside unlicensed venues.</p></section>` : ''}
+    ${p.k === 'cannabis' ? `<p class="src">Open-data listing. Licence and current availability are unverified. <a href="https://med-cannabis.dtam.moph.go.th/law/2418/" target="_blank" rel="noopener">Thai cannabis rules ↗</a></p>` : ''}
     ${d.about || d.visit ? `<div class="place-description">${d.about ? `<p>${esc(d.about)}</p>` : ''}${d.visit ? `<p class="hand">${esc(d.visit)}</p>` : ''}</div>` : ''}
     <nav class="place-social" aria-label="Place contributions"><button type="button" data-place-community>Notes &amp; photos</button><button type="button" data-place-recommend>Add recommendation</button><button type="button" class="share">Share place</button><button type="button" data-place-street>${window.StreetWorld?.active?'Back to street sketch':'Street sketch'}</button></nav>
-    ${window.WorkAtmosphere?.render(p, d, { [p.id]: state.scores[p.id] }, null, report) || ''}
-    ${window.WorkFinder?.placePanel(p)||''}
+    ${p.k === 'cannabis' ? '' : window.WorkAtmosphere?.render(p, d, { [p.id]: state.scores[p.id] }, null, report) || ''}
+    ${p.k === 'cannabis' ? '' : window.WorkFinder?.placePanel(p)||''}
     <div class="place-reference-slot"></div>
     ${Atlas.facts(p)}
     ${window.TalkMedia?.section(p.id)||''}
-    <section class="ggp">
+    ${p.k === 'cannabis' ? `<details><summary>Source details · ${p.idx} of 4 fields</summary><p>Counts listed hours, website or social link, phone and address. ${p.hub ?? 0} other mapped listings within 1 km straight line.</p></details>` : `<section class="ggp">
       ${petals(p)}
-      <div class="ggp-num"><span class="big">${p.idx}</span><span class="micro">${p.k === 'cannabis' ? `CL;UB index · top ${topShare(p)}% of the listed venues` : `Great Good Place index · top ${topShare(p)}% of Bangkok`}</span></div>
-      <table class="ggp-table">${GGP.map(([k, sym, label], i) => `<tr><td class="sym">${sym}</td><td>${label}</td><td class="raw">${esc(rawValue(k, p, d))}</td></tr>`).join('')}</table>
-    </section>
+      <div class="ggp-num"><span class="big">${p.idx}</span><span class="micro">Great Good Place index · top ${topShare(p)}% of Bangkok</span></div>
+      <table class="ggp-table">${GGP.map(([k, sym, label]) => `<tr><td class="sym">${sym}</td><td>${label}</td><td class="raw">${esc(rawValue(k, p, d))}</td></tr>`).join('')}</table>
+    </section>`}
     ${visits.length ? `<section><ul class="moments">${visits.slice().reverse().map(window.momentHtml).join('')}</ul></section>` : ''}
     <section class="scores">${scoreHtml(p)}</section>
     <nav class="links">
@@ -756,6 +791,7 @@ function openFromUrl() {
 
 // ---------- moods ----------
 function setMood(key) {
+  if (state.clubMode) return;
   Atlas.reset();
   state.mood = MOODS[key] ? key : null;
   if (state.mood) {
@@ -808,18 +844,22 @@ document.addEventListener('click', e => {
   }
   const h = e.target.closest('#mood [data-hood]');
   if (h) window.openHood?.(h.dataset.hood);
+  if (e.target.closest('[data-retry-club]')) { setClubMode(true); return; }
   const hs = e.target.closest('[data-hotspot]');
   if (hs) {
     const spot = state.cannabisHotspots[Number(hs.dataset.hotspot)];
     if (spot) {
-      map.flyTo({ center: [spot.lng, spot.lat], zoom: 15.2, duration: 500 });
-      if (isPhone()) setListOpen(false);
+      if (isPhone()) { setListOpen(false); $('#list-toggle').focus({ preventScroll: true }); }
+      const deltaLat = 1500 / 110540;
+      const deltaLng = 1500 / (111320 * Math.cos(spot.lat * Math.PI / 180));
+      map.fitBounds([[spot.lng - deltaLng, spot.lat - deltaLat], [spot.lng + deltaLng, spot.lat + deltaLat]],
+        { padding: 24, animate: !matchMedia('(prefers-reduced-motion: reduce)').matches, duration: 240 });
     }
   }
 });
 
 // an empty search box offers the moods: most people search by purpose before they know a name
-const moodHits = () => `<li data-act="walkthrough" role="option"><span class="nm"><b>Walk 3D World</b></span><span class="meta">screentoned manga Bangkok · 12 areas</span></li><li data-act="street" role="option"><span class="nm"><b>Street sketch</b></span><span class="meta">manga · mapped neighbourhoods</span></li><li data-act="media" role="option"><span class="nm"><b>People &amp; café videos</b></span><span class="meta">source leads · check branch</span></li><li data-act="featured" role="option"><span class="nm"><b>Featured places</b></span><span class="meta">verified branches · sources</span></li><li data-act="work" role="option"><span class="nm"><b>Find a work spot</b></span><span class="meta">Drive · BTS · nearby</span></li><li data-act="discovery" role="option"><span class="nm"><b>50 + 50 cafés</b></span><span class="meta">editorial · discussed</span></li><li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
+const moodHits = () => state.clubMode ? '<li class="meta">Search a cannabis listing by name.</li>' : `<li data-act="walkthrough" role="option"><span class="nm"><b>Walk 3D World</b></span><span class="meta">screentoned manga Bangkok · 12 areas</span></li><li data-act="street" role="option"><span class="nm"><b>Street sketch</b></span><span class="meta">manga · mapped neighbourhoods</span></li><li data-act="media" role="option"><span class="nm"><b>People &amp; café videos</b></span><span class="meta">source leads · check branch</span></li><li data-act="featured" role="option"><span class="nm"><b>Featured places</b></span><span class="meta">verified branches · sources</span></li><li data-act="work" role="option"><span class="nm"><b>Find a work spot</b></span><span class="meta">Drive · BTS · nearby</span></li><li data-act="discovery" role="option"><span class="nm"><b>50 + 50 cafés</b></span><span class="meta">editorial · discussed</span></li><li data-act="now" role="option"><span class="mood-dot" aria-hidden="true">◎</span><span class="nm"><b>Near me now</b></span><span class="meta">Wi-Fi · parking · calm</span></li>
   <li data-act="hop" role="option"><span class="nm"><b>Plan a café hop</b></span><span class="meta">5 stops on foot</span></li>` + Object.entries(MOODS).map(([k, m]) =>
   `<li data-mood="${k}" role="option"><span class="mood-dot" aria-hidden="true">◐</span><span class="nm">${esc(m.label)}</span><span class="meta">citywide</span></li>`).join('');
 $('#q').addEventListener('focus', () => {

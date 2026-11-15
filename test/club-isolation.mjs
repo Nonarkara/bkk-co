@@ -103,10 +103,27 @@ const rate = async (origin, place, ip) => {
   const app = (await read('/app.js')).toString();
   const views = (await read('/views.js')).toString();
   const notebook = (await read('/notebook.js')).toString();
-  assert.match(app, /\$\{p\.k === 'cannabis' \? `CL;UB index[^`]*` : `Great Good Place index[^`]*`\}/, 'the place sheet labels a dispensary with the CL;UB index, not PL;UB\'s');
+  assert.match(app, /Source details · .* of 4 fields/);
+  assert.doesNotMatch(app, /Licensed medical cannabis clinic/);
   assert.match(views, /p\.k === 'cannabis' \? '' : `<details class="work-q">/, 'a dispensary asks no working questions');
   assert.match(notebook, /mode=club/, 'the notebook tells the server which catalogue it is in');
 }
 
 db.close();
 console.log('PL;UB never loads the cannabis catalogue, a dispensary is not a ratable place, CL;UB says so on the wire, and neither surface calls a dispensary a Great Good Place.');
+
+// Regression: the bare Overture clinic classification used to admit this
+// physiotherapy practice and call explicit dispensaries clinics.
+assert.ok(!cannabis.rows.some(row => row[1].includes('เทวาคลินิกกายภาพบำบัด')));
+const meters = (a, b) => Math.hypot((a[4] - b[4]) * 111320 *
+  Math.cos((a[3] + b[3]) * 0.5 * Math.PI / 180), (a[3] - b[3]) * 110540);
+for (const row of cannabis.rows) {
+  const d = cannabis.details[row[0]];
+  assert.equal(row[7], [d.h, d.web || d.social, d.tel, d.addr].filter(Boolean).length);
+  assert.equal(d.hub1km, cannabis.rows.filter(other => other !== row && meters(row, other) <= 1000).length);
+}
+for (const h of cannabis.hotspots) {
+  const anchor = cannabis.rows.find(row => row[3] === h.lat && row[4] === h.lng && row[1] === h.name);
+  assert.ok(anchor, 'hotspot is anchored on the named source record');
+  assert.equal(h.count, cannabis.rows.filter(row => meters(anchor, row) <= 1500).length);
+}

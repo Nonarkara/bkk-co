@@ -267,7 +267,7 @@
    ? { x: target.x, y: target.y }
    : { x: centre.lng, y: centre.lat };
   try {
-   const mod = await import('./street-world-3d.js?v=rokehan-20261114');
+   const mod = await import('./street-world-3d.js?v=sourced-hunt-20261115');
    if (controller.signal.aborted) return;
    await mod.start(stage, {
     areaId: target?.id,

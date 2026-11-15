@@ -200,7 +200,7 @@ export function placePreview(place, brand) {
   return {
     title: `${name} · ${brand}`,
     desc: kind === 'cannabis'
-      ? `${KIND[kind]} in Bangkok · a CL;UB open-data listing, from OpenStreetMap and Overture Maps.`
+      ? `CL;UB open-data listing in Thailand from OpenStreetMap or Overture Maps. Licence and current availability are unverified.`
       : `${KIND[kind] || 'Place'} in Bangkok · Great Good Place index ${index} of 100. Scored from open data, with Nong Plub as your guide.`,
   };
 }
@@ -223,8 +223,8 @@ async function withPreview(request, env, url) {
       const place = await resolvePlace(env, request.url, url.searchParams.get('p')); // old shared links preview the survivor
       if (place) { ({ title, desc } = placePreview(place, brand)); }
     } else if (isClub) {
-      title = 'CL;UB · Cannabis Laboratory ; Urban Bureau · Bangkok';
-      desc = 'Open-data map and 3D street walkthrough of Bangkok cannabis dispensaries and licensed medical cannabis clinics.';
+      title = 'CL;UB · Cannabis Laboratory ; Urban Bureau · Thailand';
+      desc = 'Thailand cannabis directory from OpenStreetMap and Overture Maps. Listings do not confirm licensing or current availability.';
     }
   } catch { /* fall back to the generic preview */ }
   const set = (attr) => ({ element(e) { e.setAttribute('content', attr); } });

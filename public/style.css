@@ -454,3 +454,12 @@ button, a, summary, .list li, .hits li, .chips button, .flags button, .wa-row,
 .notfound-actions a:hover { border-color: var(--ink); }
 .notfound-main .src { margin-top: 14px; color: var(--muted); line-height: 1.6; }
 .notfound-main .src a { color: var(--ink); }
+
+body.club-mode .flags [data-flag="wifi"],
+body.club-mode .flags [data-flag="indie"],
+body.club-mode .flags [data-flag="work"],
+body.club-mode #club-toggle[aria-pressed="true"] ~ [data-mood] { display: none; }
+.club-hotspots summary { min-height: 32px; padding-block: 4px; cursor: pointer; }
+.club-hotspots .hotspots-row { max-height: 32vh; overflow: auto; }
+.hotspot-pill { min-height: 32px; text-align: start; }
+.hotspot-pill span { overflow-wrap: anywhere; white-space: normal; max-width: none; }
