@@ -209,24 +209,24 @@ async function withPreview(request, env, url) {
   const page = await env.ASSETS.fetch(new URL('/', url));
   const isClub = url.hostname === 'club.nonarkara.org' || url.searchParams.get('mode') === 'club';
   const brand = isClub ? 'CLUB' : 'PLUB';
-  let title, desc, image;
+  let title = isClub ? 'CL;UB · Cannabis Laboratory ; Urban Bureau · Thailand' : '';
+  let desc = isClub ? 'Thailand cannabis directory from OpenStreetMap and Overture Maps. Listings do not confirm licensing or current availability.' : '';
+  let image;
   try {
     const MOOD = { slow: 'slow mornings', midnight: 'studying past midnight', crossing: 'crossing paths', afterwork: 'after work' };
-    if (MOOD[url.searchParams.get('mood')]) {
+    if (!isClub && MOOD[url.searchParams.get('mood')]) {
       title = `Bangkok places for ${MOOD[url.searchParams.get('mood')]} · ${brand}`;
       desc = 'Great Good Places across the whole city, picked from open data. Nong Plub shows you where.';
-    } else if (url.searchParams.has('hood')) {
+    } else if (!isClub && url.searchParams.has('hood')) {
       if (!hoods) hoods = Object.fromEntries((await (await env.ASSETS.fetch(new URL('/data/hoods.json', url))).json()).hoods.map(h => [h.slug, h]));
       const h = hoods[url.searchParams.get('hood')];
       if (h) { title = `${h.name} ${h.th} · for ${h.for.toLowerCase()} · ${brand}`; desc = `${h.stats.work} work spots within 800 m of ${h.anchorLabel}. ${h.plub}`; image = `https://co.nonarkara.org/og/${h.slug}.png?v=green-20261115`; }
     } else if (url.searchParams.has('p')) {
       const place = await resolvePlace(env, request.url, url.searchParams.get('p')); // old shared links preview the survivor
       if (place) { ({ title, desc } = placePreview(place, brand)); }
-    } else if (isClub) {
-      title = 'CL;UB · Cannabis Laboratory ; Urban Bureau · Thailand';
-      desc = 'Thailand cannabis directory from OpenStreetMap and Overture Maps. Listings do not confirm licensing or current availability.';
     }
   } catch { /* fall back to the generic preview */ }
+  if (!title) return await secHeaders(page);
   const set = (attr) => ({ element(e) { e.setAttribute('content', attr); } });
   const rewritten = new HTMLRewriter()
     .on('title', { element(e) { e.setInnerContent(title); } })
@@ -235,11 +235,5 @@ async function withPreview(request, env, url) {
     .on('meta[name="description"]', set(desc))
     .on('meta[property="og:image"]', image ? set(image) : {})
     .transform(page);
-  if (!title) {
-    const h = new Headers(rewritten.headers);
-    for (const [k, v] of Object.entries(SEC)) h.set(k, v);
-    const body = await rewritten.arrayBuffer();
-    return new Response(body, { status: rewritten.status, statusText: rewritten.statusText, headers: h });
-  }
   return await secHeaders(rewritten);
 }

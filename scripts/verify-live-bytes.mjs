@@ -7,7 +7,7 @@
 //
 //   node scripts/verify-live-bytes.mjs [origin] [previous-proof.json]
 import { createRequire } from 'node:module';
-import { readdir, readFile, writeFile, mkdir, stat } from 'node:fs/promises';
+import { readdir, readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { join, relative } from 'node:path';
 
@@ -29,9 +29,14 @@ async function walk(dir, out = []) {
 const files = await walk(new URL('.', root).pathname);
 const sha = buf => createHash('sha256').update(buf).digest('hex');
 const matched = [], mismatched = [], missing = [], rewritten = [];
+const localPaths = new Set();
+const withoutPreviewText = text => text
+  .replace(/<title>[^<]*<\/title>/, '<title></title>')
+  .replace(/(<meta (?:property="og:(?:title|description)"|name="description") content=")[^"]*(")/g, '$1$2');
 
 for (const file of files) {
   const path = relative(new URL('.', root).pathname, file);
+  localPaths.add(path);
   const local = await readFile(file);
   let res;
   try { res = await fetch(`${origin}/${path}`, { redirect: 'follow' }); } catch (e) { missing.push({ path, error: String(e.message) }); continue; }
@@ -43,10 +48,10 @@ for (const file of files) {
   // with the CL;UB title and description. It is the same document with different
   // words in two meta tags, so it is compared apart from the rest and reported
   // as a note. A difference anywhere else is still a mismatch.
-  if (path === 'index.html' && /club\.nonarkara\.org/.test(origin)) {
+  if (path === 'index.html' && new URL(origin).hostname === 'club.nonarkara.org') {
     const text = remote.toString('utf8');
-    const words = ['<title>', 'og:title', 'og:description', 'name="description"'];
-    const same = words.every(w => text.includes(w));
+    const same = /<title>CL;UB · [^<]+<\/title>/.test(text) &&
+      withoutPreviewText(text) === withoutPreviewText(local.toString('utf8'));
     if (same) { rewritten.push({ ...entry, localBytes: local.length, localSha256: sha(local) }); continue; }
   }
   mismatched.push({ ...entry, localBytes: local.length, localSha256: sha(local) });
@@ -57,8 +62,8 @@ for (const file of files) {
 const orphans = [];
 if (previous) {
   const before = JSON.parse(await readFile(previous, 'utf8'));
-  for (const item of before.matched || []) {
-    if (matched.some(m => m.path === item.path)) continue;
+  for (const item of [...(before.matched || []), ...(before.rewritten || [])]) {
+    if (localPaths.has(item.path)) continue;
     try {
       const res = await fetch(`${origin}/${item.path}`, { redirect: 'follow' });
       if (res.ok) {
@@ -80,6 +85,7 @@ const report = {
   matched,
   mismatched,
   missing,
+  rewritten,
   orphansStillServed: orphans,
   summary: { matched: matched.length, mismatched: mismatched.length, missing: missing.length, orphansStillServed: orphans.length },
 };

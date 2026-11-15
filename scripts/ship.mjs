@@ -32,8 +32,9 @@ const step = (name, fn) => async () => {
   const t0 = Date.now();
   try {
     const note = await fn();
-    results.push({ name, state: 'PASS', ms: Date.now() - t0, note: note || '' });
-    say(`  PASS  ${name}  ${((Date.now() - t0) / 1000).toFixed(1)}s${note ? ` · ${note}` : ''}`);
+    const state = note?.startsWith('SKIP') ? 'SKIP' : 'PASS';
+    results.push({ name, state, ms: Date.now() - t0, note: note || '' });
+    say(`  ${state}  ${name}  ${((Date.now() - t0) / 1000).toFixed(1)}s${note ? ` · ${note}` : ''}`);
   } catch (error) {
     const out = (error.stdout || '') + (error.stderr || '');
     results.push({ name, state: 'FAIL', ms: Date.now() - t0, note: String(error.message).split('\n')[0] });
@@ -118,12 +119,13 @@ async function main() {
   }))();
 
   // 5. ship
-  if (DEPLOY) {
+  if (DEPLOY && !failed) {
     await (step('deploy the Worker', async () => {
       const r = await run('npx', ['wrangler', 'deploy'], { cwd: ROOT, maxBuffer: 32 * 1024 * 1024 });
       const id = String(r.stdout).split('\n').map(l => l.trim()).filter(l => l.includes('Worker Version') || l.includes('Version ID')).pop();
       return id || 'deployed';
     }))();
+    if (failed) process.exit(1);
     await (step('every deployed byte matches the repository', async () => {
       const r = await run('node', ['scripts/verify-live-bytes.mjs', LIVE], { cwd: ROOT, maxBuffer: 32 * 1024 * 1024 });
       const m = String(r.stdout).match(/matched (\d+) · mismatched (\d+) · missing (\d+) · orphans still served (\d+)/);
@@ -149,6 +151,7 @@ async function main() {
   if (DEPLOY) {
     const stamp = new Date().toISOString().slice(0, 10);
     const out = path.join(ROOT, 'docs', 'release', stamp);
+    await mkdir(out, { recursive: true });
     await writeFile(path.join(out, 'ship-report.json'), JSON.stringify({ stamp, base: BASE, live: LIVE, results }, null, 2) + '\n');
   }
 }

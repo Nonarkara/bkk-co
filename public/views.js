@@ -194,6 +194,11 @@ function histogram(P) {
 // ---------- the guide ----------
 $('#guide').addEventListener('click', async () => {
   if (state.clubMode) {
+    if (!state.cannabisLoaded) {
+      const sheet = openSheet('<header><h1>CL;UB guide</h1><button class="close" aria-label="Close">×</button></header><p role="status">The directory is not ready yet. Use Retry in the Places list if loading fails.</p>');
+      sheet.classList.add('guide-sheet');
+      return;
+    }
     const cs = state.cannabisStats || {};
     const provs = Object.entries(cs.byProvince || {});
     const subs = cs.bySub || {};
@@ -201,20 +206,21 @@ $('#guide').addEventListener('click', async () => {
     const total = state.sortedCannabisIdx?.length || cs.total || 0;
     const sheet = openSheet(`
       <header><h1>CL;UB Thailand Cannabis Directory<span class="th">Cannabis Laboratory · Urban Bureau</span></h1><button class="close" aria-label="Close">×</button></header>
-      <div class="plub-say">${guideArt(104, 'inspect')}<p><q>I'm Dr Non. Thailand has ${fmt(total)} open-data cannabis venues mapped here — ${fmt(subs.dispensary || 0)} dispensaries, ${fmt(subs.cafe || 0)} wellness cafés, ${fmt(subs.clinic || 0)} clinics and ${fmt(subs.other || 0)} the source does not classify. Use the hotspots or the Einstein tiles to see where they cluster.</q></p></div>
-      <section><h2 class="micro">National coverage by province / corridor</h2>
+      <div class="plub-say">${guideArt(104, 'inspect')}<p><q>I'm Dr Non. Thailand has ${fmt(total)} open-data cannabis venues mapped here — ${fmt(subs.dispensary || 0)} dispensaries, ${fmt(subs.cafe || 0)} cafés, ${fmt(subs.clinic || 0)} clinics and ${fmt(subs.other || 0)} the source does not classify. Use the hotspots or the Einstein tiles to see where they cluster.</q></p></div>
+      <section><h2 class="micro">Listings by approximate area</h2>
         <ol class="board">${provs.map(([prov, n]) => `<li><span class="nm">${esc(prov)}</span><span class="barwrap"><i style="width:${Math.min(100, n / (provs[0]?.[1] || 1) * 100)}%"></i></span><span class="meta">${n}</span></li>`).join('')}</ol>
+        <p class="src">Areas are grouped by coordinate ranges. These counts do not use official province boundaries.</p>
       </section>
-      <section><h2 class="micro">Commercialization &amp; licensing tiers</h2>
+      <section><h2 class="micro">Listing information</h2>
         <dl class="wa-grid guide-tier-grid">
-          <div class="wa-row" data-state="documented"><dt>Tier A · Clinic (${fmt(tiers.A || 0)})</dt><dd><span class="wa-mark" aria-hidden="true">✓</span> A medical or Thai traditional medicine clinic with a published contact channel</dd></div>
-          <div class="wa-row" data-state="documented"><dt>Tier B · Full Ops (${fmt(tiers.B || 0)})</dt><dd><span class="wa-mark" aria-hidden="true">✓</span> Published opening hours and a published contact channel</dd></div>
+          <div class="wa-row" data-state="documented"><dt>Tier A · Clinic with contact (${fmt(tiers.A || 0)})</dt><dd><span class="wa-mark" aria-hidden="true">✓</span> A medical or Thai traditional medicine clinic with a published contact channel</dd></div>
+          <div class="wa-row" data-state="documented"><dt>Tier B · Hours and contact (${fmt(tiers.B || 0)})</dt><dd><span class="wa-mark" aria-hidden="true">✓</span> Published opening hours and a published contact channel</dd></div>
           <div class="wa-row" data-state="unknown"><dt>Tier C · Mapped (${fmt(tiers.C || 0)})</dt><dd><span class="wa-mark" aria-hidden="true">○</span> An open-data location without both published hours and a contact channel</dd></div>
         </dl>
-        <p class="src">The tiers are counted from the venues themselves, not from their kind. A venue is Tier A only if it is a clinic with a contact channel, Tier B only if it publishes both hours and a contact channel, and Tier C if it is missing at least one of the two.</p>
+        <p class="src">These tiers describe details in the source records. A listing does not verify a licence or current operation.</p>
       </section>
-      <section class="about"><h2 class="micro">Thai MOPH commercialization rules</h2>
-        <p class="src">Under Thailand Ministry of Public Health controlled-herb regulations, flower sales require licensed premises &amp; DTAM/MOPH compliance, age 20+ verification, no sales to pregnant/nursing persons, and no public smoking on streets or unlicensed venues.</p>
+      <section class="about"><h2 class="micro">Thai cannabis rules</h2>
+        <p class="src"><a href="https://med-cannabis.dtam.moph.go.th/law/2418/" target="_blank" rel="noopener">Read the Ministry of Public Health notice ↗</a></p>
         <p class="src">Sources: OpenStreetMap Thailand (ODbL-1.0) &amp; Overture Maps Places (CDLA-P-2.0). Never rated for co-working.</p>
       </section>`);
     sheet.classList.add('guide-sheet');

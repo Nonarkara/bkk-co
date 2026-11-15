@@ -398,7 +398,7 @@
     );
     m.addSource('atlas-hats', {type:'geojson',data:empty()});
     m.addLayer({id:'atlas-hats',type:'fill',source:'atlas-hats',layout:{visibility:'none'},paint:{'fill-color':['interpolate',['linear'],['get','n'],1,'#f5ecc2',4,'#f9c1ce',10,'#f58e84',20,'#dd4027',40,'#7d133a'],'fill-opacity':['interpolate',['linear'],['get','n'],1,.28,8,.46,24,.64,60,.74]}},'pins-city');
-    m.addLayer({id:'atlas-hat-line',type:'line',source:'atlas-hats',layout:{visibility:'none'},paint:{'line-color':'#7d133a','line-width':.75,'line-opacity':.45}},'pins-city');
+    m.addLayer({id:'atlas-hat-line',type:'line',source:'atlas-hats',layout:{visibility:'none'},paint:{'line-color':'#34454c','line-width':.75,'line-opacity':.45}},'pins-city');
     for (const id of ['atlas-districts', 'atlas-parks', 'atlas-streets', 'atlas-loops'])
       m.addSource(id, { type: 'geojson', data: empty() });
     m.addLayer(
@@ -615,7 +615,10 @@
     }
   }
   function placeRow(p) {
-    return `<li><button data-atlas-place="${esc(p.id)}"><img src="${images[props(p).icon]}" alt="" width="28" height="28"><span><b>${PlaceTools.name(p.n)}</b><small>${p.k !== 'cafe' ? KIND_LABEL[p.k] : M.indie(p) ? 'No chain signal' : 'Chain signal'} · footprint ${p.d[3]}/9</small></span></button></li>`;
+    const detail = p.k === 'cannabis'
+      ? `${CLUB_TYPES[p.sub] || KIND_LABEL.cannabis} · ${p.idx}/4 listing fields`
+      : `${p.k !== 'cafe' ? KIND_LABEL[p.k] : M.indie(p) ? 'No chain signal' : 'Chain signal'} · footprint ${p.d[3]}/9`;
+    return `<li><button data-atlas-place="${esc(p.id)}"><img src="${images[props(p).icon]}" alt="" width="28" height="28"><span><b>${PlaceTools.name(p.n)}</b><small>${esc(detail)}</small></span></button></li>`;
   }
   function bindPlaces(sheet) {
     sheet
@@ -640,6 +643,7 @@
   }
   function updateDock() {
     const e = document.querySelector('.atlas-state');
+    document.querySelector('[data-act="tiles"]')?.setAttribute('aria-pressed', String(lens === 'hats'));
     if (!e) return;
     const area = district ? data?.districtById.get(district)?.properties.name : '';
     e.textContent = `${lens === 'all' ? '' : modes[lens][0] + ' · '}${fmt(last.length)} mapped${state.foodLoaded ? '' : ' · loading food'}${area ? ' · ' + area : ''}`;
@@ -747,8 +751,9 @@
   async function apply(next, area = district) {
     const token = ++revision;
     try {
-      if (!modes[next]) return;
-      await load();
+      if (!modes[next] || (state.clubMode && !['all', 'hats'].includes(next))) return;
+      const keepSelection = next === 'hats' || (next === 'all' && lens === 'hats' && area === district);
+      if (!keepSelection) await load();
       if (next === 'triangles' && !(await (window.barriersReady || Promise.resolve(false))))
         throw new Error(
           'River geometry unavailable; no triangle is suggested. Try again after the map loads.'
@@ -761,18 +766,16 @@
         loop = null;
         map.getSource('atlas-loops')?.setData(empty());
       }
-      state.mood = null;
-      state.flags.clear();
-      if (next !== 'all' || area) state.kinds = new Set(['cafe']);
-      document
-        .querySelectorAll('.flags [data-flag]')
-        .forEach((b) => b.setAttribute('aria-pressed', false));
-      document
-        .querySelectorAll('.chips [data-kind]')
-        .forEach((b) => b.setAttribute('aria-pressed', state.kinds.has(b.dataset.kind)));
-      closeSheet();
+      if (!keepSelection) {
+        state.mood = null;
+        state.flags.clear();
+        if (next !== 'all' || area) state.kinds = new Set(['cafe']);
+        document.querySelectorAll('.flags [data-flag]').forEach(b => b.setAttribute('aria-pressed', false));
+        document.querySelectorAll('.chips [data-kind]').forEach(b => b.setAttribute('aria-pressed', state.kinds.has(b.dataset.kind)));
+        closeSheet();
+      }
       refresh();
-      if (last.length && last.length <= 50 && next !== 'triangles') fitMatches();
+      if (!keepSelection && last.length && last.length <= 50 && next !== 'triangles') fitMatches();
       if (next === 'triangles') {
         const c = map.getCenter();
         loops = M.triangles(last, { x: c.lng, y: c.lat }, crossesRiver);
@@ -813,8 +816,9 @@
     ];
   }
   async function chooseDistrict(id) {
+    if (state.clubMode) return;
     await load();
-    if (!data.districtById.has(id)) return;
+    if (state.clubMode || !data.districtById.has(id)) return;
     await apply(lens, id);
     const f = data.districtById.get(id);
     map.fitBounds(bounds(f), { padding: 45, maxZoom: 15 });
@@ -894,6 +898,7 @@
     );
   }
   async function open() {
+    if (state.clubMode) { key(); return; }
     const sheet = openSheet(
       `<header><h1>Explore the coffee city</h1><button class="close" aria-label="Close">×</button></header><p class="src">Choose a view. The map counts all matching records, including small cafés with sparse information.</p>${lens === 'triangles' && loops.length ? '<button class="linkish" data-atlas-stops>See triangle stops →</button>' : ''}${lens==='hats'?'<button class="linkish featured-entry" data-atlas-tile-list>Inspect hotspot tiles in view →</button>':''}<button class="linkish featured-entry" data-featured-open>Featured places · verified branches →</button><button class="linkish featured-entry" data-street-world>Street sketch · explore the neighbourhood →</button><div class="atlas-modes">${Object.entries(
         modes
@@ -950,7 +955,7 @@
       const sheet = openSheet(`
         <header><h1>Read this map</h1><button class="close" aria-label="Close">×</button></header>
         <ul class="atlas-key"><li><img src="${images.cannabis}" alt="" width="34" height="34">Cannabis listing</li></ul>
-        <p>Numbered markers group mapped listings. Select one to zoom in and see the individual places.</p>
+        <p>Numbered markers group mapped listings. Einstein tiles count matching listings inside each tile. Darker tiles have more matches.</p>
         <p class="src">OpenStreetMap and Overture Maps. Select a place to see its source and available details.</p>
       `);
       sheet.classList.add('atlas-sheet');
@@ -970,7 +975,7 @@
         .map(([i, t]) => `<li><img src="${images[i]}" alt="" width="34" height="34">${t}</li>`)
         .join(
           ''
-        )}</ul>${window.FootprintPalette?.legend()||''}${window.NeighborhoodPalette?.legend()||''}<p class="src">Optional hotspot tiles: hat monotile by Smith, Myers, Kaplan and Goodman-Strauss (2023), implementation adapted from Craig Kaplan’s BSD-3 hatviz. Each tile counts catalogue cafés inside it; pale green below 12, slate from 12. Tile geometry and counts change with zoom. <a href="https://arxiv.org/abs/2303.10798" target="_blank" rel="noopener">Paper ↗</a></p><p>Numbered hexagons group actual places; they are not venue pins. Their icon is the most common selected kind. Tap to zoom; co-located places can be opened from a list. Every active record is counted, regardless of its index.</p><p><b>${esc(modes[lens][0])}</b> · ${esc(modes[lens][1])}</p><p class="src">OSM geography 24 Oct 2026; Overture places 21 Oct 2026. A low footprint is missing information, not bad coffee. Park proximity does not establish access. Publication/discussion evidence is dated and branch-specific; missing evidence means unknown. Districts are OSM administrative geometry, not our 800 m neighbourhood story circles.</p>`
+        )}</ul>${window.FootprintPalette?.legend()||''}${window.NeighborhoodPalette?.legend()||''}<p class="src">Optional hotspot tiles: hat monotile by Smith, Myers, Kaplan and Goodman-Strauss (2023), implementation adapted from Craig Kaplan’s BSD-3 hatviz. Each tile counts matching catalogue places. Darker tiles have more matches. Tile geometry and counts change with zoom. <a href="https://arxiv.org/abs/2303.10798" target="_blank" rel="noopener">Paper ↗</a></p><p>Numbered hexagons group actual places; they are not venue pins. Their icon is the most common selected kind. Tap to zoom; co-located places can be opened from a list. Every active record is counted, regardless of its index.</p><p><b>${esc(modes[lens][0])}</b> · ${esc(modes[lens][1])}</p><p class="src">OSM geography 24 Oct 2026; Overture places 21 Oct 2026. A low footprint is missing information, not bad coffee. Park proximity does not establish access. Publication/discussion evidence is dated and branch-specific; missing evidence means unknown. Districts are OSM administrative geometry, not our 800 m neighbourhood story circles.</p>`
     );
     sheet.classList.add('atlas-sheet');
   }
@@ -1001,8 +1006,8 @@
     if (!mapReady || !map.getLayer('atlas-hats')) return;
     map.setPaintProperty('atlas-hats', 'fill-color', on
       ? ['interpolate', ['linear'], ['get', 'n'], 1, '#f5ecc2', 3, '#b5decc', 8, '#afd472', 16, '#87c540', 30, '#253122']
-      : ['interpolate', ['linear'], ['get', 'n'], 1, '#f5ecc2', 4, '#f9c1ce', 10, '#f58e84', 20, '#dd4027', 40, '#7d133a']);
-    map.setPaintProperty('atlas-hat-line', 'line-color', on ? '#253122' : '#7d133a');
+      : ['interpolate', ['linear'], ['get', 'n'], 1, '#b5decc', 4, '#96d1aa', 12, '#437742', 40, '#34454c']);
+    map.setPaintProperty('atlas-hat-line', 'line-color', on ? '#253122' : '#34454c');
   }
   window.Atlas = {
     install,
