@@ -71,7 +71,7 @@ out of step. A step that cannot run is marked SKIP, never PASS.
 
 | Gate | What it proves |
 |---|---|
-| 32 test suites from CI | the model, the catalogue, the notebook, the API, the palette, the platform law, the headers |
+| 35 test suites from CI | the model, the catalogue, the notebook, the API, the palette, the platform law, the headers, the separation of the two bureaus |
 | `scripts/audit-msh.mjs` | chrome ≤34 %, map ≥60 %, no void, no orphan column, no inflated box, no Thai name without its face |
 | `scripts/audit-msh.mjs --planted` | the gate can still fail |
 | `python3 test/street-world-source.py` | every shipped footprint equals the pinned OpenStreetMap source |
