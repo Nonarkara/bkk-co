@@ -39,13 +39,13 @@ function ring(h, steps = 72) {
 window.addHoodLayers = () => {
   if(map.getSource('hoods'))return;
   map.addSource('hoods', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
-  map.addLayer({ id: 'hood-fill', type: 'fill', source: 'hoods', filter: ['==', '$type', 'Polygon'], paint: { 'fill-color': '#7d133a', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 11, 0.05, 15, 0.02] } });
-  map.addLayer({ id: 'hood-line', type: 'line', source: 'hoods', filter: ['==', '$type', 'Polygon'], paint: { 'line-color': '#7d133a', 'line-width': 1.5, 'line-dasharray': [3, 2] } });
+  map.addLayer({ id: 'hood-fill', type: 'fill', source: 'hoods', filter: ['==', '$type', 'Polygon'], paint: { 'fill-color': '#34454c', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 11, 0.05, 15, 0.02] } });
+  map.addLayer({ id: 'hood-line', type: 'line', source: 'hoods', filter: ['==', '$type', 'Polygon'], paint: { 'line-color': '#34454c', 'line-width': 1.5, 'line-dasharray': [3, 2] } });
   // labels go on top of the pins once those exist (see window.raiseHoodLabels)
   map.addLayer({ id: 'hood-label', type: 'symbol', source: 'hoods', filter: ['==', '$type', 'Point'], maxzoom: 16,
     layout: { 'text-field': ['step', ['zoom'], ['get', 'name'], 12.5, ['get', 'label']], 'text-size': 13, 'text-font': ['Noto Sans Bold'],
       'text-anchor': ['match', ['get', 'slug'], [...LABEL_BELOW], 'top', 'bottom'], 'text-allow-overlap': false, 'symbol-sort-key': 0 },
-    paint: { 'text-color': '#7d133a', 'text-halo-color': '#ffffff', 'text-halo-width': 2 } });
+    paint: { 'text-color': '#34454c', 'text-halo-color': '#ffffff', 'text-halo-width': 2 } });
   map.on('click', 'hood-fill', e => {
     if (map.queryRenderedFeatures(e.point, { layers: [...PIN_LAYERS,'route-stop'] }).length) return; // a place or routed stop wins
     openHood(e.features[0].properties.slug);
@@ -54,8 +54,8 @@ window.addHoodLayers = () => {
   // finder results and café-hop routes: numbered ink stops, dashed straight legs.
   // Manga café hop: ink line + ink stops (manga line art), not the co-working amber.
   map.addSource('route', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
-  map.addLayer({ id: 'route-line', type: 'line', source: 'route', filter: ['==', '$type', 'LineString'], paint: { 'line-color': '#7d133a', 'line-width': 3, 'line-dasharray': [2, 1.5] } });
-  map.addLayer({ id: 'route-stop', type: 'circle', source: 'route', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': 11, 'circle-color': '#7d133a', 'circle-stroke-color': '#7d133a', 'circle-stroke-width': 2 } });
+  map.addLayer({ id: 'route-line', type: 'line', source: 'route', filter: ['==', '$type', 'LineString'], paint: { 'line-color': '#34454c', 'line-width': 3, 'line-dasharray': [2, 1.5] } });
+  map.addLayer({ id: 'route-stop', type: 'circle', source: 'route', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': 11, 'circle-color': '#34454c', 'circle-stroke-color': '#34454c', 'circle-stroke-width': 2 } });
   map.addLayer({ id: 'route-num', type: 'symbol', source: 'route', filter: ['==', '$type', 'Point'], layout: { 'text-field': ['get', 'n'], 'text-size': 12, 'text-font': ['Noto Sans Bold'], 'text-allow-overlap': true }, paint: { 'text-color': '#ffffff' } });
   map.on('click','route-stop',e=>{const p=state.byId.get(e.features[0].properties.id);if(p)select(p,false)});
   map.on('mouseenter','route-stop',()=>{map.getCanvas().style.cursor='pointer'});
@@ -100,9 +100,9 @@ function strip(h) {
   return `<svg class="strip" viewBox="0 0 ${W} 40" role="img" aria-label="${h.stats.work} work spots; rank ${h.stats.stationRank} of ${h.stats.stations} stations; median ${med}">
     <line x1="6" y1="22" x2="${W - 6}" y2="22" stroke="#b6bfc1"/>
     ${all.map(v => `<line x1="${x(v)}" y1="17" x2="${x(v)}" y2="27" stroke="#b6bfc1" stroke-width=".8"/>`).join('')}
-    <line x1="${x(med)}" y1="12" x2="${x(med)}" y2="32" stroke="#974261" stroke-dasharray="2 2"/>
+    <line x1="${x(med)}" y1="12" x2="${x(med)}" y2="32" stroke="#5d6a70" stroke-dasharray="2 2"/>
     <text x="${x(med)}" y="9" text-anchor="middle">median ${med}</text>
-    <line x1="${x(h.stats.work)}" y1="6" x2="${x(h.stats.work)}" y2="36" stroke="#7d133a" stroke-width="3"/>
+    <line x1="${x(h.stats.work)}" y1="6" x2="${x(h.stats.work)}" y2="36" stroke="#34454c" stroke-width="3"/>
     <text x="${Math.min(W - 20, x(h.stats.work))}" y="40" text-anchor="end">${h.stats.work}</text></svg>`;
 }
 
@@ -170,10 +170,10 @@ function histogram(P) {
   const bins = new Array(20).fill(0);
   for (const p of P) bins[Math.min(19, Math.floor(p.idx / 5))]++;
   const max = Math.max(...bins), W = 300, H = 56, bw = W / 20;
-  const marks = hoods.list.map(h => `<line x1="${h.stats.ggp / 100 * W}" y1="0" x2="${h.stats.ggp / 100 * W}" y2="${H}" stroke="#7d133a" stroke-width="1.5"/>`).join('');
+  const marks = hoods.list.map(h => `<line x1="${h.stats.ggp / 100 * W}" y1="0" x2="${h.stats.ggp / 100 * W}" y2="${H}" stroke="#34454c" stroke-width="1.5"/>`).join('');
   return `<svg class="hist" viewBox="0 0 ${W} ${H + 12}" role="img" aria-label="Distribution of the Great Good Place index across ${P.length} places">
-    ${bins.map((b, i) => `<rect x="${i * bw + 1}" y="${H - b / max * H}" width="${bw - 2}" height="${b / max * H}" fill="#c08da2"/>`).join('')}
-    ${marks}<line x1="0" y1="${H}" x2="${W}" y2="${H}" stroke="#7d133a"/>
+    ${bins.map((b, i) => `<rect x="${i * bw + 1}" y="${H - b / max * H}" width="${bw - 2}" height="${b / max * H}" fill="#a4abaf"/>`).join('')}
+    ${marks}<line x1="0" y1="${H}" x2="${W}" y2="${H}" stroke="#34454c"/>
     <text x="0" y="${H + 11}">0</text><text x="${W / 2}" y="${H + 11}" text-anchor="middle">✦ index · each line is a neighbourhood</text><text x="${W}" y="${H + 11}" text-anchor="end">100</text></svg>`;
 }
 
@@ -372,36 +372,36 @@ async function stampCard(places) {
   await document.fonts.ready;
   g.fillStyle = '#ffffff'; g.fillRect(0, 0, W, H);
   // Wordmark in his lettering; the semicolon is the seam.
-  g.fillStyle = '#7d133a'; g.font = '700 74px "Sao Chingcha", Jost, Prompt, sans-serif'; g.fillText('PL', 80, 148);
+  g.fillStyle = '#34454c'; g.font = '700 74px "Sao Chingcha", Jost, Prompt, sans-serif'; g.fillText('PL', 80, 148);
   let wm = 80 + g.measureText('PL').width;
-  g.fillStyle = '#e88ba1'; g.fillText(';', wm, 148);
+  g.fillStyle = '#36795a'; g.fillText(';', wm, 148);
   wm += g.measureText(';').width;
-  g.fillStyle = '#7d133a'; g.fillText('UB', wm + 4, 148);
-  g.fillStyle = '#974261'; g.font = '300 30px "Sao Chingcha", Jost, Prompt, sans-serif';
+  g.fillStyle = '#34454c'; g.fillText('UB', wm + 4, 148);
+  g.fillStyle = '#5d6a70'; g.font = '300 30px "Sao Chingcha", Jost, Prompt, sans-serif';
   g.fillText('placemaking laboratory ; urban bureau · bangkok', 80, 198);
   const img = new Image();
   img.src = 'plub/nong-plub.png';
   await img.decode().catch(() => {});
   if (img.naturalWidth) { const mh = 330, mw = img.naturalWidth * mh / img.naturalHeight; g.drawImage(img, W - 80 - mw, 40, mw, mh); }
-  g.strokeStyle = '#7d133a'; g.lineWidth = 2; g.beginPath(); g.moveTo(80, 390); g.lineTo(W - 80, 390); g.stroke();
+  g.strokeStyle = '#34454c'; g.lineWidth = 2; g.beginPath(); g.moveTo(80, 390); g.lineTo(W - 80, 390); g.stroke();
   hoods.list.forEach((h, i) => {
     const n = h.ids.filter(id => places.has(id)).length;
     const cx = 80 + 230 + (i % 2) * 460, cy = 560 + Math.floor(i / 2) * 360, r = 150;
     g.save(); g.translate(cx, cy); if (n) g.rotate(-0.1);
     g.beginPath(); g.arc(0, 0, r, 0, 2 * Math.PI);
-    if (n) { g.fillStyle = '#f4f4f0'; g.fill(); g.setLineDash([]); g.strokeStyle = '#7d133a'; g.lineWidth = 6; }
+    if (n) { g.fillStyle = '#f4f4f0'; g.fill(); g.setLineDash([]); g.strokeStyle = '#34454c'; g.lineWidth = 6; }
     else { g.setLineDash([14, 12]); g.strokeStyle = '#b6bfc1'; g.lineWidth = 4; }
     g.stroke(); g.setLineDash([]);
-    g.textAlign = 'center'; g.fillStyle = n ? '#7d133a' : '#974261';
+    g.textAlign = 'center'; g.fillStyle = n ? '#34454c' : '#5d6a70';
     let fs = 44; do { g.font = `600 ${fs}px Jost, Prompt, sans-serif`; } while (g.measureText(h.name).width > 2 * r - 40 && --fs > 20);
     g.fillText(h.name, 0, n ? 10 : 0);
     g.font = '400 30px Prompt, Jost, sans-serif'; g.fillText(h.th, 0, n ? 52 : 44);
-    if (n) { g.font = '600 52px Jost, sans-serif'; g.fillStyle = '#7d133a'; g.fillText('✓', 0, -50); g.fillStyle = '#7d133a'; g.font = '400 28px Jost, sans-serif'; g.fillText(`${n} been`, 0, 98); }
+    if (n) { g.font = '600 52px Jost, sans-serif'; g.fillStyle = '#34454c'; g.fillText('✓', 0, -50); g.fillStyle = '#34454c'; g.font = '400 28px Jost, sans-serif'; g.fillText(`${n} been`, 0, 98); }
     g.restore();
   });
-  g.textAlign = 'left'; g.fillStyle = '#7d133a'; g.font = '500 40px Jost, Prompt, sans-serif';
+  g.textAlign = 'left'; g.fillStyle = '#34454c'; g.font = '500 40px Jost, Prompt, sans-serif';
   g.fillText(`${places.size} great good ${places.size === 1 ? 'place' : 'places'} · ${hoods.list.filter(h => h.ids.some(id => places.has(id))).length} of ${hoods.list.length} neighbourhoods`, 80, H - 120);
-  g.fillStyle = '#974261'; g.font = '400 30px Jost, sans-serif'; g.fillText('co.nonarkara.org', 80, H - 70);
+  g.fillStyle = '#5d6a70'; g.font = '400 30px Jost, sans-serif'; g.fillText('co.nonarkara.org', 80, H - 70);
   return new Promise(ok => c.toBlob(ok, 'image/png'));
 }
 

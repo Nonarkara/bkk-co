@@ -142,10 +142,10 @@
     c.height = h * 2;
     const g = c.getContext('2d');
     g.scale(2, 2);
-    const ink = kind === 'coworking' ? '#986000' : kind === 'restaurant' ? '#547076' : '#7d133a';
+    const ink = kind === 'coworking' ? '#986000' : kind === 'restaurant' ? '#547076' : '#34454c';
     g.strokeStyle = ink;
     // Single pins wear their category colour (the same chord as the footprints and the Key); cluster badges stay white.
-    g.fillStyle = cluster ? '#fff' : kind.startsWith('cafe') && kind !== 'cafe-hidden' ? '#f58e84' : kind === 'coworking' ? '#f5ecc2' : kind === 'library' ? '#819238' : kind === 'restaurant' ? '#a5c8d1' : kind === 'cannabis' ? '#87c540' : '#fff';
+    g.fillStyle = cluster ? '#fff' : kind.startsWith('cafe') && kind !== 'cafe-hidden' ? '#96d1aa' : kind === 'coworking' ? '#f5ecc2' : kind === 'library' ? '#819238' : kind === 'restaurant' ? '#a5c8d1' : kind === 'cannabis' ? '#87c540' : '#fff';
     g.lineWidth = cluster ? 1 : 1.6; // cluster badges are hairline labels; the single pin stays the stronger mark
     g.beginPath();
     if (cluster) {
@@ -335,7 +335,7 @@
         'text-allow-overlap': true,
         'text-ignore-placement': true
       },
-      paint: { 'text-color': '#7d133a' }
+      paint: { 'text-color': '#34454c' }
     });
     m.addLayer({
       id: 'place-icons',
@@ -364,7 +364,7 @@
         'text-max-width': 16,
         'text-allow-overlap': true
       },
-      paint: { 'text-color': '#7d133a', 'text-halo-color': '#fff', 'text-halo-width': 2 }
+      paint: { 'text-color': '#34454c', 'text-halo-color': '#fff', 'text-halo-width': 2 }
     });
     m.addSource('atlas-density', { type: 'geojson', data: empty() });
     m.addLayer(
@@ -386,19 +386,19 @@
             0,
             'rgba(249,193,206,0)',
             0.2,
-            '#f9c1ce',
+            '#b5decc',
             0.65,
             '#b65779',
             1,
-            '#7d133a'
+            '#34454c'
           ]
         }
       },
       'pins-city'
     );
     m.addSource('atlas-hats', {type:'geojson',data:empty()});
-    m.addLayer({id:'atlas-hats',type:'fill',source:'atlas-hats',layout:{visibility:'none'},paint:{'fill-color':['step',['get','n'],'#f9c1ce',12,'#7d133a'],'fill-opacity':['interpolate',['linear'],['get','n'],1,.2,12,.4,100,.54]}},'pins-city');
-    m.addLayer({id:'atlas-hat-line',type:'line',source:'atlas-hats',layout:{visibility:'none'},paint:{'line-color':'#7d133a','line-width':.7,'line-opacity':.7}},'pins-city');
+    m.addLayer({id:'atlas-hats',type:'fill',source:'atlas-hats',layout:{visibility:'none'},paint:{'fill-color':['step',['get','n'],'#b5decc',12,'#34454c'],'fill-opacity':['interpolate',['linear'],['get','n'],1,.2,12,.4,100,.54]}},'pins-city');
+    m.addLayer({id:'atlas-hat-line',type:'line',source:'atlas-hats',layout:{visibility:'none'},paint:{'line-color':'#34454c','line-width':.7,'line-opacity':.7}},'pins-city');
     for (const id of ['atlas-districts', 'atlas-parks', 'atlas-streets', 'atlas-loops'])
       m.addSource(id, { type: 'geojson', data: empty() });
     m.addLayer(
@@ -415,9 +415,9 @@
             0,
             '#fff',
             5,
-            '#f9c1ce',
+            '#b5decc',
             35,
-            '#7d133a'
+            '#34454c'
           ],
           'fill-opacity': 0.28
         }
@@ -431,7 +431,7 @@
         source: 'atlas-districts',
         layout: { visibility: 'none' },
         paint: {
-          'line-color': '#7d133a',
+          'line-color': '#34454c',
           'line-width': ['case', ['==', ['get', 'chosen'], 1], 3, 1],
           'line-opacity': 0.6
         }
@@ -454,7 +454,7 @@
         type: 'line',
         source: 'atlas-parks',
         layout: { visibility: 'none' },
-        paint: { 'line-color': '#7d133a', 'line-width': 1, 'line-dasharray': [3, 2] }
+        paint: { 'line-color': '#34454c', 'line-width': 1, 'line-dasharray': [3, 2] }
       },
       'pins-city'
     );
@@ -465,7 +465,7 @@
         source: 'atlas-streets',
         layout: { visibility: 'none' },
         paint: {
-          'line-color': '#7d133a',
+          'line-color': '#34454c',
           'line-opacity': 0.75,
           'line-width': ['interpolate', ['linear'], ['get', 'active'], 1, 1.5, 30, 5]
         }
@@ -484,7 +484,7 @@
         'text-font': ['Noto Sans Regular'],
         'text-size': 12
       },
-      paint: { 'text-color': '#7d133a', 'text-halo-color': '#fff', 'text-halo-width': 2 }
+      paint: { 'text-color': '#34454c', 'text-halo-color': '#fff', 'text-halo-width': 2 }
     });
     m.addLayer(
       {
@@ -492,7 +492,7 @@
         type: 'fill',
         source: 'atlas-loops',
         layout: { visibility: 'none' },
-        paint: { 'fill-color': '#f9c1ce', 'fill-opacity': 0.2 }
+        paint: { 'fill-color': '#b5decc', 'fill-opacity': 0.2 }
       },
       'pins-city'
     );
@@ -502,7 +502,7 @@
         type: 'line',
         source: 'atlas-loops',
         layout: { visibility: 'none' },
-        paint: { 'line-color': '#7d133a', 'line-width': 2, 'line-dasharray': [2, 2] }
+        paint: { 'line-color': '#34454c', 'line-width': 2, 'line-dasharray': [2, 2] }
       },
       'pins-city'
     );
@@ -559,7 +559,7 @@
     dock.innerHTML =
       '<div class="atlas-tools"><button data-work-start>Find a work spot</button><button data-atlas-open>Explore ↓</button><button data-atlas-key aria-label="Map key">Key</button><button data-atlas-fit hidden>Show matches</button></div><p class="atlas-state" role="status"></p><button class="atlas-reset" hidden>Clear map view ×</button>';
     document.body.append(dock);
-    const positionDock=()=>{dock.style.top=(isPhone()?document.querySelector('.chips').getBoundingClientRect().bottom+12:12)+'px'};
+    const positionDock=()=>{dock.style.top=(isPhone()?document.querySelector(state.clubMode ? '.bar' : '.chips').getBoundingClientRect().bottom+12:12)+'px'};
     const observer=new ResizeObserver(positionDock);
     for(const e of document.querySelectorAll('.bar,.chips'))observer.observe(e);
     window.addEventListener('resize',positionDock);
@@ -946,6 +946,16 @@
     });
   }
   function key() {
+    if (state.clubMode) {
+      const sheet = openSheet(`
+        <header><h1>Read this map</h1><button class="close" aria-label="Close">×</button></header>
+        <ul class="atlas-key"><li><img src="${images.cannabis}" alt="" width="34" height="34">Cannabis listing</li></ul>
+        <p>Numbered markers group mapped listings. Select one to zoom in and see the individual places.</p>
+        <p class="src">OpenStreetMap and Overture Maps. Select a place to see its source and available details.</p>
+      `);
+      sheet.classList.add('atlas-sheet');
+      return;
+    }
     const sheet = openSheet(
       `<header><h1>Read this map</h1><button class="close" aria-label="Close">×</button></header><ul class="atlas-key">${[
         ['cafe', 'Café'],
@@ -960,7 +970,7 @@
         .map(([i, t]) => `<li><img src="${images[i]}" alt="" width="34" height="34">${t}</li>`)
         .join(
           ''
-        )}</ul>${window.FootprintPalette?.legend()||''}${window.NeighborhoodPalette?.legend()||''}<p class="src">Optional hotspot tiles: hat monotile by Smith, Myers, Kaplan and Goodman-Strauss (2023), implementation adapted from Craig Kaplan’s BSD-3 hatviz. Each tile counts catalogue cafés inside it; pink below12, purple from12. Tile geometry and counts change with zoom. <a href="https://arxiv.org/abs/2303.10798" target="_blank" rel="noopener">Paper ↗</a></p><p>Numbered hexagons group actual places; they are not venue pins. Their icon is the most common selected kind. Tap to zoom; co-located places can be opened from a list. Every active record is counted, regardless of its index.</p><p><b>${esc(modes[lens][0])}</b> · ${esc(modes[lens][1])}</p><p class="src">OSM geography 24 Oct 2026; Overture places 21 Oct 2026. A low footprint is missing information, not bad coffee. Park proximity does not establish access. Publication/discussion evidence is dated and branch-specific; missing evidence means unknown. Districts are OSM administrative geometry, not our 800 m neighbourhood story circles.</p>`
+        )}</ul>${window.FootprintPalette?.legend()||''}${window.NeighborhoodPalette?.legend()||''}<p class="src">Optional hotspot tiles: hat monotile by Smith, Myers, Kaplan and Goodman-Strauss (2023), implementation adapted from Craig Kaplan’s BSD-3 hatviz. Each tile counts catalogue cafés inside it; pale green below 12, slate from 12. Tile geometry and counts change with zoom. <a href="https://arxiv.org/abs/2303.10798" target="_blank" rel="noopener">Paper ↗</a></p><p>Numbered hexagons group actual places; they are not venue pins. Their icon is the most common selected kind. Tap to zoom; co-located places can be opened from a list. Every active record is counted, regardless of its index.</p><p><b>${esc(modes[lens][0])}</b> · ${esc(modes[lens][1])}</p><p class="src">OSM geography 24 Oct 2026; Overture places 21 Oct 2026. A low footprint is missing information, not bad coffee. Park proximity does not establish access. Publication/discussion evidence is dated and branch-specific; missing evidence means unknown. Districts are OSM administrative geometry, not our 800 m neighbourhood story circles.</p>`
     );
     sheet.classList.add('atlas-sheet');
   }

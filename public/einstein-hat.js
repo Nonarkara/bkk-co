@@ -334,7 +334,7 @@
         const y = (1 + (maxY - p[1]) * s).toFixed(2);
         return (i ? 'L' : 'M') + x + ' ' + y;
       }).join('') + 'Z';
-    return `<svg class="atlas-hat" viewBox="0 0 28 28" width="28" height="28" aria-hidden="true"><path d="${d}" fill="#7d133a"/></svg>`;
+    return `<svg class="atlas-hat" viewBox="0 0 28 28" width="28" height="28" aria-hidden="true"><path d="${d}" fill="#34454c"/></svg>`;
   }
 
   root.EinsteinHat = { patch, legendSVG, area, outline: HAT };

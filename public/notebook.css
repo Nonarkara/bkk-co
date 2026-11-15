@@ -1,6 +1,7 @@
-/* Wada273, credited local catalogue conversions: pink atmosphere, purple ink,
+/* Wada combination 202, credited local catalogue conversions: green field, slate ink,
    gray structure. Existing guide artwork retains its own colours. */
-:root { --ink:#7d133a; --paper:#fff; --wash:color-mix(in srgb,#f9c1ce 12%,white); --rule:#b6bfc1; --muted:color-mix(in srgb,#7d133a 80%,white); --micro:12px; --guide-paper:#f9c1ce; }
+.notebook-sheet { --guide-paper: color-mix(in srgb, var(--guide) 22%, white); }
+
 .bar, .chips { background:var(--paper); }
 .notebook-sheet .plub-say { background:var(--wash); padding:0 4px; }
 .notebook-sheet .plub-say p { padding:8px 0; }

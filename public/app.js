@@ -209,11 +209,11 @@ async function setClubMode(on, { frame = true } = {}) {
     mark.setAttribute('aria-label', on ? 'CLUB, Cannabis Laboratory Urban Bureau, home' : 'PLUB, Placemaking Laboratory Urban Bureau, home');
     mark.title = on ? 'CL;UB · Cannabis Laboratory ; Urban Bureau' : 'PLUB · Placemaking Laboratory ; Urban Bureau';
   }
-  const chip = document.querySelector('.chips [data-kind="cannabis"]');
-  if (chip) chip.hidden = !on;
-  for (const b of document.querySelectorAll('.chips [data-kind]')) {
-    if (b.dataset.kind !== 'cannabis') b.hidden = on;
-  }
+  const listToggle = $('#list-toggle');
+  listToggle.classList.toggle('bar-btn', on);
+  if (on) $('.bar-actions').prepend(listToggle);
+  else $('.chips').prepend(listToggle);
+  for (const button of document.querySelectorAll('.chips [data-kind]')) button.hidden = on;
   const toggle = $('#club-toggle');
   if (toggle) toggle.setAttribute('aria-pressed', String(on));
   if (on) {
@@ -224,7 +224,6 @@ async function setClubMode(on, { frame = true } = {}) {
     }
     await loadCannabis();
     if (attempt !== clubModeChange) return;
-    if (chip) chip.setAttribute('aria-pressed', 'true');
     map.setMaxBounds(TH_BOUNDS);
     map.setMinZoom(5);
     if (frame && state.cannabisLoaded && !new URL(location.href).searchParams.has('p')) {
@@ -237,7 +236,6 @@ async function setClubMode(on, { frame = true } = {}) {
     for (const b of document.querySelectorAll('.chips [data-kind]')) {
       if (b.dataset.kind !== 'cannabis') b.setAttribute('aria-pressed', String(state.kinds.has(b.dataset.kind)));
     }
-    if (chip) chip.setAttribute('aria-pressed', 'false');
     map.setMaxBounds(BKK_BOUNDS);
     map.setMinZoom(9);
   }
@@ -340,13 +338,13 @@ map.on('load', async () => {
   map.addLayer({ id: 'pin-city-names', type: 'symbol', source: 'places', minzoom: 12.5, maxzoom: 15, filter: ['all',['!',['has','point_count']],['>=', ['get', 'i'], 96]],
     layout: { 'text-field': ['get', 'n'], 'text-size': 11, 'text-offset': [0, 1], 'text-anchor': 'top', 'text-optional': true,
       'text-font': ['Noto Sans Regular'], 'symbol-sort-key': ['-', 100, ['get', 'i']] },
-    paint: { 'text-color': '#7d133a', 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } });
+    paint: { 'text-color': '#34454c', 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } });
   map.addLayer({ id: 'pin-names', type: 'symbol', source: 'places', minzoom: 16, filter:['!',['has','point_count']],
     layout: { 'text-field': ['get', 'n'], 'text-size': 11, 'text-offset': [0, 1.2], 'text-anchor': 'top', 'text-optional': true,
       'text-font': ['Noto Sans Regular'], 'symbol-sort-key': ['-', 100, ['get', 'i']] },
-    paint: { 'text-color': '#7d133a', 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } });
+    paint: { 'text-color': '#34454c', 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } });
   map.addLayer({ id: 'sel', type: 'circle', source: 'sel', paint: {
-    'circle-radius': 20, 'circle-color': 'rgba(0,0,0,0)', 'circle-stroke-color': '#7d133a', 'circle-stroke-width': 2.5 } });
+    'circle-radius': 20, 'circle-color': 'rgba(0,0,0,0)', 'circle-stroke-color': '#34454c', 'circle-stroke-width': 2.5 } });
 
   Atlas.install(map);
   window.WorkFinder?.onViewsReady();
@@ -555,7 +553,7 @@ document.addEventListener('click', e => { if (!e.target.closest('.bar')) $('#hit
 // ---------- filters ----------
 document.addEventListener('click', e => {
   const b = e.target.closest('.chips button[data-kind], .flags button[data-flag]');
-  if (!b || b.dataset.kind === 'cannabis') return;
+  if (!b || (state.clubMode && b.dataset.kind)) return;
   const on = b.getAttribute('aria-pressed') !== 'true';
   b.setAttribute('aria-pressed', on);
   const set = b.dataset.kind ? state.kinds : state.flags;
@@ -610,12 +608,12 @@ function petals(p, size = 76) {
     const tx = cx + Math.cos(a) * len, ty = cy + Math.sin(a) * len;
     const nx = Math.cos(a + Math.PI / 2) * w, ny = Math.sin(a + Math.PI / 2) * w;
     const mx = cx + Math.cos(a) * len * 0.55, my = cy + Math.sin(a) * len * 0.55;
-    return `<path d="M${cx} ${cy} Q${mx + nx} ${my + ny} ${tx} ${ty} Q${mx - nx} ${my - ny} ${cx} ${cy}Z" fill="${i < 4 ? '#7d133a' : '#b6bfc1'}"/>` +
+    return `<path d="M${cx} ${cy} Q${mx + nx} ${my + ny} ${tx} ${ty} Q${mx - nx} ${my - ny} ${cx} ${cy}Z" fill="${i < 4 ? '#34454c' : '#b6bfc1'}"/>` +
 ''; // labels live in the table beside it
   }).join('');
   return `<svg class="petals" viewBox="0 0 100 100" width="${size}" height="${size}" role="img" aria-label="Great Good Place profile">
     <circle cx="50" cy="50" r="43" fill="none" stroke="#b6bfc1" stroke-dasharray="2 3"/>${leaves}
-    <circle cx="50" cy="50" r="3" fill="#7d133a"/></svg>`;
+    <circle cx="50" cy="50" r="3" fill="#34454c"/></svg>`;
 }
 
 const dots = (v, max = 9) => `<span class="bars" aria-label="${v} of ${max}"><b>${'●'.repeat(Math.round(v * 5 / max))}</b><s>${'●'.repeat(5 - Math.round(v * 5 / max))}</s></span>`;

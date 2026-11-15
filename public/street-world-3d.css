@@ -51,7 +51,7 @@
   background: var(--paper, #ffffff);
 }
 .model-seg--area { border-color: var(--rule, #b6bfc1); }
-.model-seg--mode { border-color: var(--ink, #7d133a); }
+.model-seg--mode { border-color: var(--ink, #34454c); }
 .model-seg--tod { border-color: var(--muted); }
 
 .model-seg button {
@@ -71,45 +71,45 @@
 /* Neighbourhood segment — subtle */
 .model-seg--area button { color: var(--muted); font-size: var(--micro); }
 .model-seg--area button[aria-pressed="true"] {
-  background: var(--ink, #7d133a); color: var(--paper, #ffffff); font-weight: 600;
+  background: var(--ink, #34454c); color: var(--paper, #ffffff); font-weight: 600;
 }
 
 /* Mode segment — primary action, emphasized */
 .model-seg--mode button { color: var(--ink); font-weight: 600; font-size: var(--small); }
 .model-seg--mode button[aria-pressed="true"] {
-  background: var(--ink, #7d133a); color: var(--paper, #ffffff);
+  background: var(--ink, #34454c); color: var(--paper, #ffffff);
 }
 
 /* TOD segment — tertiary visual setting, subtle */
 .model-seg--tod button { color: var(--muted); font-size: var(--micro); font-weight: 400; }
 .model-seg--tod button[aria-pressed="true"] {
-  background: var(--wash, #f4f4f0); color: var(--ink, #7d133a); font-weight: 600;
+  background: var(--wash, #f4f4f0); color: var(--ink, #34454c); font-weight: 600;
 }
 
 .model-close {
   margin-left: auto;
   min-height: 36px;
   padding: 0 14px;
-  border: 1px solid var(--ink, #7d133a);
+  border: 1px solid var(--ink, #34454c);
   background: var(--paper, #ffffff);
-  color: var(--ink, #7d133a);
+  color: var(--ink, #34454c);
   font: 600 var(--small)/1 var(--font);
   cursor: pointer;
 }
 .model-close:hover {
-  background: var(--ink, #7d133a);
+  background: var(--ink, #34454c);
   color: var(--paper, #ffffff);
 }
 .model-hunt-hud {
   display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 10px;
-  border: 1px solid var(--ink, #7d133a); background: var(--paper, #ffffff); color: var(--ink, #7d133a);
+  border: 1px solid var(--ink, #34454c); background: var(--paper, #ffffff); color: var(--ink, #34454c);
   font: 600 var(--small)/1 var(--font); cursor: pointer; white-space: nowrap;
 }
 .model-hunt-hud[hidden] { display: none; }
 .model-hunt-hud:hover { background: var(--wash, #f4f4f0); }
-.model-hunt-hud.is-complete { background: var(--ink, #7d133a); color: var(--paper, #ffffff); }
+.model-hunt-hud.is-complete { background: var(--ink, #34454c); color: var(--paper, #ffffff); }
 .hunt-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent, #dd4027); flex: none; }
-.model-hunt-hud.is-complete .hunt-dot { background: var(--guide, #f9c1ce); }
+.model-hunt-hud.is-complete .hunt-dot { background: var(--guide, #b5decc); }
 .model-pin-hunt { border-color: var(--accent, #dd4027); font-weight: 700; }
 .model-pin-hunt.is-found { opacity: 0.65; border-color: var(--rule, #b6bfc1); font-weight: 500; }
 
@@ -134,7 +134,7 @@
   bottom: 60px;
   width: 100px;
   height: 100px;
-  border: 2px solid var(--ink, #7d133a);
+  border: 2px solid var(--ink, #34454c);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.65);
   touch-action: none;
@@ -148,7 +148,7 @@
   height: 36px;
   margin: -18px 0 0 -18px;
   border-radius: 50%;
-  background: var(--ink, #7d133a);
+  background: var(--ink, #34454c);
 }
 
 .model-pins {
@@ -167,8 +167,8 @@
   align-items: center;
   gap: 4px;
   padding: 2px 6px;
-  border: 1px solid var(--ink, #7d133a);
-  background: var(--paper, #f9c1ce);
+  border: 1px solid var(--ink, #34454c);
+  background: var(--paper, #b5decc);
   cursor: pointer;
   pointer-events: auto;
   white-space: nowrap;
@@ -179,10 +179,10 @@
   border-radius: 50%;
   flex: none;
 }
-.pin-dot.cafe { background: var(--ink, #7d133a); }
+.pin-dot.cafe { background: var(--ink, #34454c); }
 .pin-dot.coworking { background: var(--accent, #dd4027); }
-.pin-dot.library { background: #fff; box-shadow: inset 0 0 0 2px var(--ink, #7d133a); }
-.pin-dot.restaurant { background: var(--ink-45, #c08da2); }
+.pin-dot.library { background: #fff; box-shadow: inset 0 0 0 2px var(--ink, #34454c); }
+.pin-dot.restaurant { background: var(--ink-45, #a4abaf); }
 .pin-dot.cannabis { background: var(--cat-cannabis, #87c540); }
 .pin-tag {
   font-size: var(--micro);
@@ -198,8 +198,8 @@
   bottom: 24px;
   width: min(320px, calc(100vw - 28px));
   padding: 12px;
-  border: 1px solid var(--ink, #7d133a);
-  background: var(--paper, #f9c1ce);
+  border: 1px solid var(--ink, #34454c);
+  background: var(--paper, #b5decc);
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -226,15 +226,15 @@
 .model-card-actions button {
   min-height: 36px;
   padding: 0 12px;
-  border: 1px solid var(--ink, #7d133a);
+  border: 1px solid var(--ink, #34454c);
   background: none;
   font-size: var(--small);
   font-weight: 500;
   cursor: pointer;
 }
 .model-card-actions .model-card-stand {
-  background: var(--ink, #7d133a);
-  color: var(--paper, #f9c1ce);
+  background: var(--ink, #34454c);
+  color: var(--paper, #b5decc);
 }
 .model-card-close {
   position: absolute;
@@ -269,13 +269,13 @@ dialog.street-3d-stage {
   white-space: nowrap;
 }
 .model-tool-btn[aria-pressed="true"] {
-  background: var(--ink, #7d133a);
-  color: var(--paper, #f9c1ce);
-  border-color: var(--ink, #7d133a);
+  background: var(--ink, #34454c);
+  color: var(--paper, #b5decc);
+  border-color: var(--ink, #34454c);
 }
 .model-seg { max-width:100%; }
 .model-seg button { font-size:inherit; white-space:normal; }
-.model-close { margin-left:0; border-color:var(--ink, #7d133a); font-weight:600; }
+.model-close { margin-left:0; border-color:var(--ink, #34454c); font-weight:600; }
 .model-coverage {
   display:flex; flex-wrap:wrap; align-items:center; gap:0 8px;
   flex-basis:max-content; max-width:100%; padding:4px 8px;
@@ -296,7 +296,7 @@ dialog.street-3d-stage {
   bottom: 48px;
   width: 120px;
   height: 120px;
-  border: 1.5px solid var(--ink, #7d133a);
+  border: 1.5px solid var(--ink, #34454c);
   background: #141824;
   z-index: 12;
   cursor: crosshair;

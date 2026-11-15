@@ -32,9 +32,9 @@
   map.addLayer({id:'street-building-flat',type:'fill',source:'street-buildings',layout:{visibility:'none'},paint:{'fill-pattern':'street-ink-tone','fill-opacity':.85}},before);
   map.addLayer({id:'street-building-edge',type:'line',source:'street-buildings',layout:{visibility:'none'},paint:{'line-color':'#514a47','line-width':1}},before);
   map.addLayer({id:'street-building-height',type:'fill-extrusion',source:'street-buildings',filter:['==',['get','render3D'],true],layout:{visibility:'none'},paint:{'fill-extrusion-color':'#e7e3dd','fill-extrusion-pattern':'street-screentone-3d','fill-extrusion-height':['get','heightM'],'fill-extrusion-base':['coalesce',['get','minHeightM'],0],'fill-extrusion-opacity':1,'fill-extrusion-vertical-gradient':false}},before);
-  map.addLayer({id:'street-stroll-line',type:'line',source:'street-stroll-line',layout:{visibility:'none'},paint:{'line-color':'#7d133a','line-width':5,'line-opacity':.4}},before);
-  map.addLayer({id:'street-selected-line',type:'line',source:'street-selected-line',layout:{visibility:'none'},paint:{'line-color':'#7d133a','line-width':3,'line-dasharray':[2,1]}},before);
-  map.addLayer({id:'street-eye',type:'circle',source:'street-eye',layout:{visibility:'none'},paint:{'circle-radius':5,'circle-color':'#7d133a','circle-stroke-color':'#fff','circle-stroke-width':2}});
+  map.addLayer({id:'street-stroll-line',type:'line',source:'street-stroll-line',layout:{visibility:'none'},paint:{'line-color':'#34454c','line-width':5,'line-opacity':.4}},before);
+  map.addLayer({id:'street-selected-line',type:'line',source:'street-selected-line',layout:{visibility:'none'},paint:{'line-color':'#34454c','line-width':3,'line-dasharray':[2,1]}},before);
+  map.addLayer({id:'street-eye',type:'circle',source:'street-eye',layout:{visibility:'none'},paint:{'circle-radius':5,'circle-color':'#34454c','circle-stroke-color':'#fff','circle-stroke-width':2}});
   const canvas=map.getCanvas();canvas.addEventListener('pointerdown',pause);map.on('movestart',e=>{if(e.originalEvent)pause()});canvas.addEventListener('wheel',pause,{passive:true});canvas.addEventListener('keydown',keyboard,true);
   installed=true;
  }
@@ -267,7 +267,7 @@
    ? { x: target.x, y: target.y }
    : { x: centre.lng, y: centre.lat };
   try {
-   const mod = await import('./street-world-3d.js?v=sourced-hunt-20261115');
+   const mod = await import('./street-world-3d.js?v=green-20261115');
    if (controller.signal.aborted) return;
    await mod.start(stage, {
     areaId: target?.id,

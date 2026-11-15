@@ -37,7 +37,7 @@
       for (const [x, y] of [[2, 2], [6, 6]]) { g.beginPath(); g.arc(x, y, 1.15, 0, Math.PI * 2); g.fill(); }
     }),
     'manga-tone-hatch': () => tile((g, s) => {
-      g.strokeStyle = '#e0b3b6'; g.lineWidth = 1;
+      g.strokeStyle = '#91b2a4'; g.lineWidth = 1;
       for (let x = -s; x < s; x += 4) { g.beginPath(); g.moveTo(x + 0.5, s); g.lineTo(x + s + 0.5, 0); g.stroke(); }
     }),
     'manga-tone-water': () => tile((g) => {
@@ -45,7 +45,7 @@
       g.beginPath(); g.moveTo(0, 4.5); g.lineTo(8, 4.5); g.stroke();
     }),
     'manga-tone-shade': () => tile((g) => {
-      g.fillStyle = '#f9c1ce';
+      g.fillStyle = '#b5decc';
       for (const [x, y] of [[1, 1], [5, 5]]) { g.beginPath(); g.arc(x, y, 0.6, 0, Math.PI * 2); g.fill(); }
     }),
   };
@@ -208,7 +208,7 @@
 
   function ensureStyle() {
     if (style) return Promise.resolve(style);
-    if (!stylePromise) stylePromise = fetch('styles/plub-manga.json', { signal: AbortSignal.timeout(15000) })
+    if (!stylePromise) stylePromise = fetch('styles/plub-manga.json?v=green-20261115', { signal: AbortSignal.timeout(15000) })
       .then(r => { if (!r.ok) throw new Error('Manga view is unavailable.'); return r.json(); })
       .then(s => { style = s; return s; })
       .catch(e => { stylePromise = null; throw e; });

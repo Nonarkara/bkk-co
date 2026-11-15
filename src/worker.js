@@ -218,7 +218,7 @@ async function withPreview(request, env, url) {
     } else if (url.searchParams.has('hood')) {
       if (!hoods) hoods = Object.fromEntries((await (await env.ASSETS.fetch(new URL('/data/hoods.json', url))).json()).hoods.map(h => [h.slug, h]));
       const h = hoods[url.searchParams.get('hood')];
-      if (h) { title = `${h.name} ${h.th} · for ${h.for.toLowerCase()} · ${brand}`; desc = `${h.stats.work} work spots within 800 m of ${h.anchorLabel}. ${h.plub}`; image = `https://co.nonarkara.org/og/${h.slug}.png?v=clean-20261104b`; }
+      if (h) { title = `${h.name} ${h.th} · for ${h.for.toLowerCase()} · ${brand}`; desc = `${h.stats.work} work spots within 800 m of ${h.anchorLabel}. ${h.plub}`; image = `https://co.nonarkara.org/og/${h.slug}.png?v=green-20261115`; }
     } else if (url.searchParams.has('p')) {
       const place = await resolvePlace(env, request.url, url.searchParams.get('p')); // old shared links preview the survivor
       if (place) { ({ title, desc } = placePreview(place, brand)); }
