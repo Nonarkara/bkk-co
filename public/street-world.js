@@ -267,7 +267,7 @@
    ? { x: target.x, y: target.y }
    : { x: centre.lng, y: centre.lat };
   try {
-   const mod = await import('./street-world-3d.js?v=integration-20261115');
+   const mod = await import('./street-world-3d.js?v=street-view-20261115');
    if (controller.signal.aborted) return;
    await mod.start(stage, {
     areaId: target?.id,
