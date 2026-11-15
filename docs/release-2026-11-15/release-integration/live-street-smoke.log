@@ -1,0 +1,5 @@
+3d 390 {"bar":{"x":10,"y":10,"width":370,"height":106.296875,"top":10,"right":380,"bottom":116.296875,"left":10},"overflow":false,"canvas":390,"coverage":"30 mapped heights · 3005 flat footprints","minimapVisible":true}
+3d 1024 {"bar":{"x":10,"y":10,"width":1004,"height":38,"top":10,"right":1014,"bottom":48,"left":10},"overflow":false,"canvas":1024,"coverage":"30 mapped heights · 3005 flat footprints","minimapVisible":true}
+3d 1440 {"bar":{"x":10,"y":10,"width":1420,"height":38,"top":10,"right":1430,"bottom":48,"left":10},"overflow":false,"canvas":1440,"coverage":"30 mapped heights · 3005 flat footprints","minimapVisible":true}
+3d 260 {"bar":{"x":10,"y":10,"width":240,"height":188.296875,"top":10,"right":250,"bottom":198.296875,"left":10},"overflow":false,"canvas":260,"coverage":"30 mapped heights · 3005 flat footprints","minimapVisible":true}
+Street/Avatar toggles, Escape and focus restore pass []

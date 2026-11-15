@@ -1,0 +1,52 @@
+
+PLUB ship gate · check only
+  local: http://127.0.0.1:43927
+  live:  https://co.nonarkara.org
+
+  FAIL  repository in step with origin  4.4s
+
+
+  35 tests from .github/workflows/notebook.yml
+  PASS  node test/stroll-graph.mjs  6.9s · Disconnected-lane falsifier, 8m progression/backtracking/end clamping, exact segment continuity and café approach qualification pass.
+  PASS  node test/footprint-neighborhood.mjs  1.8s · Narrative anchor/radius provenance for twelve areas, proved Wada catalogue chords, authored moods kept, density areas stating the catalogue
+  PASS  PLUB_VENDOR_INDEX=1 node test/maplibre-vendor.mjs  1.1s · OfficialMapLibre4.7.1 vendor SHA256/SRI, registry package integrity proof, unchanged CDN comparison, complete license and self-contained CSS
+  PASS  node test/amenity-race.mjs  1.5s · Held join + replaced evidence node updates current same-task slot; task/selection/form guards pass; original captured-slot falsifier reprodu
+  PASS  node test/preferences-model.mjs  1.5s · Shipped88ACtags:87positive/1negative, exact sourceIDs and snapshotdates pass.
+  PASS  node test/neighborhood-photos.mjs  1.3s · }
+  PASS  node test/street-world.mjs  6.0s · Street world: 12 areas in per-area files, index 2450B gzip, 20650 footprints / 248 explicit heights / 244 native extrusions, 7533 original n
+  PASS  node test/manga-lens.mjs  0.9s · Manga style: version, namespaced layer ids, ground at the bottom, real OpenMapTiles source-layers, property filters (not literals), no decla
+  PASS  node test/manga-motion.mjs  1.8s · Manga runtime: all style opacity targets, bounded timers, input/visibility/reduced-motion cancellation, instant transitions, preserved base/
+  PASS  node test/footprint-model.mjs  1.0s · Footprint component containment, holes/boundaries, mixed masks, source preservation, deduplication and 2420-component aggregation pass.
+  PASS  node test/footprint-palette.mjs  1.1s · Source loading/unavailable disclosure, no automatic retry loop and explicit retry recovery pass.
+  PASS  node test/hop-logs.mjs  3.7s · Hop publish, feed, mine flags, place filter, account isolation, stale-account 409, stop/note/feeling/photo limits, three-report hiding, mode
+  PASS  node test/agent-api.mjs  10.6s · Agent API: one canonical record with time-stamped evidence, a coverage-annotated composite shared with the interface, the twelve neighbourho
+  PASS  node test/club-isolation.mjs  2.9s · PL;UB never loads the cannabis catalogue, a dispensary is not a ratable place, CL;UB says so on the wire, and neither surface calls a dispen
+  PASS  node test/work-atmosphere.mjs  0.8s · Workspace atmosphere: unknowns stay unknown, the composite needs its coverage, visitor/mapped/venue tiers stay apart, coverage floor holds,
+  PASS  node test/venue-reports.mjs  1.1s · On-site reports fold into the shared model; unknowns stay unknown; the catalogue stays signed.
+  PASS  node test/neighborhood-palette.mjs  1.3s · Neighbourhood palette: 12 areas, every colour a real Sanzo Wada catalogue combination, every area covered, density areas stating the catalog
+  PASS  node test/data-role-palette.mjs  1.0s · Data-role palette: 4 marks, every colour a real catalogue colour, the legend names exactly what the key shows.
+  PASS  node test/no-platform-scraping.mjs  1.4s · No platform-scraped data ships, no shipped code can render a platform rating, and the catalogue carries no platform field.
+  PASS  node test/security-headers.mjs  1.1s · Security headers: HSTS, no framing, no inline scripts, and a policy that lists only the origins the interface loads.
+  PASS  node test/public-surfaces.mjs  1.1s · Public surfaces: robots.txt points at the sitemap, the sitemap names only real pages, and a missing address meets a designed page.
+  PASS  node test/street-model.mjs  2.8s · Street stepping/junction stop/branch direction/endpoints and coincident-unconnected-road falsifier pass; every area starts on source nodes.
+  PASS  node test/map-motion.mjs  1.5s · Camera durations bounded; explicit snaps preserved; reduced/hidden pages snap and stop playback.
+  PASS  node test/aliases.mjs  4.1s · PASS aliases: 10 cold Worker cases; shared atomic init, first retired-id score/community, source failures/invalid aliases recover, no partia
+  PASS  node test/place-tools.mjs  2.6s · Cleaned57,379place catalogue, reviewedMeet source correction, Unicode/token search and distinct type glyphs pass.
+  PASS  node test/check.mjs  4.7s · catalogue ok: 57379 places { cafe: 20160, coworking: 57, library: 423, restaurant: 36739 }
+  PASS  node test/atlas.mjs  5.2s · PASS atlas: 57379 conserved places, 78 districts, 832 parks, 308 streets, 27 evidence records; model honesty and triangle/river fixtures.
+  PASS  node test/journeys.mjs  5.5s · PASS journeys: 15 data/model cases, conserved catalogue hashes, 20640 workplace references, three journey modes, facility provenance, full-s
+  PASS  node test/notebook-races.mjs  3.8s · Shared Wi-Fi account allowance/rate cap, daily privacy cleanup, held-auth account deletion, foreign-key containment, impossible dates, Bangk
+  PASS  node test/notebook-dates.mjs  2.2s · Date-only and legacy instant both display3Nov in a New York browser; an ungiven score says Not rated yet.
+  PASS  node test/discovery.mjs  3.8s · 50+50 attributed entries; scoped article ranks, sampled thread counts, no inferred pins, original catalogue hashes pass.
+  PASS  node test/talk-media.mjs  2.9s · Talk-media:157entries/361videos, exact current seedIDs, no inferred branch match/pin, no automatic player, allowlisted click-to-load and clo
+  PASS  node test/einstein-hat.mjs  3.5s · hat patch L2: 25 tiles, grid cover 0.592, samples 2162
+  PASS  TZ=America/New_York node test/hours-timezone.mjs  2.0s · Bangkok hours and next weekday mood time pass across visitor timezones; invalid clocks stay unknown.
+  PASS  python3 test/enrichment.py  81.7s · Unique brand/location matching, ambiguity/distance rejection, immutable catalogue, original facts and repeatable enrichment pass.
+  PASS  MSH gate at 390 / 1024 / 1440  390.4s · PASS
+  PASS  MSH gate must fail on a planted defect  220.1s · the gate caught 10 planted failure(s)
+  PASS  shipped geometry equals the pinned OpenStreetMap source  15.7s · Raw pinned-source equality: every footprint, street vertex/ref run, shared junction and 40m cafe association pass; bad height/access inputs
+
+────────────────────────────────────────────────────────────────
+  FAIL  repository in step with origin
+  38/39 steps passed — the ship is blocked.
+────────────────────────────────────────────────────────────────
