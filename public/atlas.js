@@ -40,6 +40,7 @@
     ]
   };
   let lens = 'all',
+    lensBelowTiles = 'all',
     district = null,
     data = null,
     promise = null,
@@ -96,7 +97,7 @@
     const a = data?.byId.get(p.id),
       e = evidence(p);
     if (district && a?.district !== district) return false;
-    switch (lens) {
+    switch (lens === 'hats' ? lensBelowTiles : lens) {
       case 'independent':
       case 'triangles':
         return M.indie(p);
@@ -110,7 +111,6 @@
         return p.k === 'cafe' && (e.attributes?.architecture || e.attributes?.shophouse);
       case 'streets':
         return p.k === 'cafe' && data?.streetCafes.has(p.id);
-      case 'hats':
       case 'hotspots':
       case 'districts':
         return p.k === 'cafe';
@@ -752,8 +752,14 @@
     const token = ++revision;
     try {
       if (!modes[next] || (state.clubMode && !['all', 'hats'].includes(next))) return;
-      const keepSelection = next === 'hats' || (next === 'all' && lens === 'hats' && area === district);
-      if (!keepSelection) await load();
+      if (next === 'hats' && area === district) {
+        if (lens !== 'hats') lensBelowTiles = lens;
+        lens = 'hats';
+        refresh();
+        return;
+      }
+      if (next === 'hats') next = lensBelowTiles;
+      await load();
       if (next === 'triangles' && !(await (window.barriersReady || Promise.resolve(false))))
         throw new Error(
           'River geometry unavailable; no triangle is suggested. Try again after the map loads.'
@@ -766,16 +772,14 @@
         loop = null;
         map.getSource('atlas-loops')?.setData(empty());
       }
-      if (!keepSelection) {
-        state.mood = null;
-        state.flags.clear();
-        if (next !== 'all' || area) state.kinds = new Set(['cafe']);
-        document.querySelectorAll('.flags [data-flag]').forEach(b => b.setAttribute('aria-pressed', false));
-        document.querySelectorAll('.chips [data-kind]').forEach(b => b.setAttribute('aria-pressed', state.kinds.has(b.dataset.kind)));
-        closeSheet();
-      }
+      state.mood = null;
+      state.flags.clear();
+      if (next !== 'all' || area) state.kinds = new Set(['cafe']);
+      document.querySelectorAll('.flags [data-flag]').forEach(b => b.setAttribute('aria-pressed', false));
+      document.querySelectorAll('.chips [data-kind]').forEach(b => b.setAttribute('aria-pressed', state.kinds.has(b.dataset.kind)));
+      closeSheet();
       refresh();
-      if (!keepSelection && last.length && last.length <= 50 && next !== 'triangles') fitMatches();
+      if (last.length && last.length <= 50 && next !== 'triangles') fitMatches();
       if (next === 'triangles') {
         const c = map.getCenter();
         loops = M.triangles(last, { x: c.lng, y: c.lat }, crossesRiver);
@@ -789,7 +793,7 @@
   }
   async function reset() {
     revision++;
-    lens = 'all';
+    lens = lensBelowTiles = 'all';
     district = null;
     loops = [];
     loop = null;
@@ -1024,7 +1028,12 @@
     chooseDistrict,
     clusterList,
     setClubPalette,
-    toggleHats: () => apply(lens === 'hats' ? 'all' : 'hats'),
+    toggleHats: async () => {
+      if (lens !== 'hats') return apply('hats');
+      revision++;
+      lens = lensBelowTiles;
+      refresh();
+    },
     get lens() {
       return lens;
     },
