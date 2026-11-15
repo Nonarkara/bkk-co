@@ -505,7 +505,7 @@ export async function start(host, options = {}) {
         <option value="50">50mm</option>
       </select></label>
       <button type="button" class="model-tool-btn" data-act-2pt aria-pressed="false" title="Keep vertical building lines parallel (2-point architectural perspective)">2-pt</button>
-      <button type="button" class="model-tool-btn" data-act-avatar aria-pressed="true" title="Show/hide 3rd-person walking character in Street mode">Avatar</button>
+      <button type="button" class="model-tool-btn" data-act-avatar aria-pressed="false" title="Show or hide the walking character in Street mode">Avatar</button>
       </div></details>
       <button type="button" class="model-close" aria-label="Back to map">Back to map</button>
       <div class="model-coverage"><p role="status"></p><button type="button" class="model-relief" hidden></button><span class="sr" data-hunt-status aria-live="polite"></span></div>
@@ -644,7 +644,7 @@ export async function start(host, options = {}) {
   avatarGroup.add(avLegL, avLegR, avTorso, avHead, avHair);
   avatarGroup.visible = false;
   scene.add(avatarGroup);
-  let showAvatar = true, walkPhase = 0;
+  let showAvatar = false, walkPhase = 0;
 
   let huntTargets = [];
   const huntBtn = bar.querySelector('[data-act-hunt]');
