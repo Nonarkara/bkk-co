@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-11-15T10:00:15.518Z",
+  "observedAt": "2026-11-15T10:19:51.677Z",
   "origin": "https://club.nonarkara.org",
-  "sourceCommit": "cd7227efa1e58e0c5aa4158e3f8d91f8470b1eb6",
+  "sourceCommit": "548c5160d3625a6dc556272c967a8322499770e4",
   "matched": [
     {
       "path": "404.html",
@@ -10,8 +10,8 @@
     },
     {
       "path": "app.js",
-      "bytes": 50351,
-      "sha256": "1525598c36be1e22935bb0b13628e532bcaa38f46651bdad9006f7d25f2c932d"
+      "bytes": 52393,
+      "sha256": "8757e7060f04941a296389e72e8baef2efc04c2816453d884c44b0f03e3813c5"
     },
     {
       "path": "atlas-model.js",
@@ -950,8 +950,8 @@
     },
     {
       "path": "data/places-cannabis.json",
-      "bytes": 83806,
-      "sha256": "a5a69fc267af2e509f101c5b2743fc76b1a4b2288dae671da8a0a2e1d717ff96"
+      "bytes": 129969,
+      "sha256": "fc22b7c8b13235e586ebd131d5704f7ab04fe4a04d23923431f81b1cb0c7ca9a"
     },
     {
       "path": "data/places-food.json",
@@ -1955,13 +1955,13 @@
     },
     {
       "path": "street-world-3d.css",
-      "bytes": 8384,
-      "sha256": "398291e48bea8ab19e7a919225b40448c7882657c8185c8ed97f0d1689c564d5"
+      "bytes": 9232,
+      "sha256": "ecf916d8e0aabad9a21d77f125523b2829c26af2d434966d95e4f8519fdefee0"
     },
     {
       "path": "street-world-3d.js",
-      "bytes": 56653,
-      "sha256": "32f7c0e0d4508e6e14b7513cef2b31a77b26f900a49a3b45e5fec96cf8c06180"
+      "bytes": 61016,
+      "sha256": "751df4bf120701716fd7e9f12bbb3b56c5b4349ba9161409e3b8799fd974af6a"
     },
     {
       "path": "street-world.css",
@@ -1975,8 +1975,8 @@
     },
     {
       "path": "style.css",
-      "bytes": 31343,
-      "sha256": "ddfc0cce9465080c79e95420ef988b17502aa1787bf1b9b945553809cbd60464"
+      "bytes": 34058,
+      "sha256": "86160df6fd159bc19eb954f51c1f0ae22bf66fd51a9b6acd477eb12c47817be6"
     },
     {
       "path": "styles/plub-manga.json",
