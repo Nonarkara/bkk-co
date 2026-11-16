@@ -30,20 +30,20 @@
 :root {
   /* Paper and ground */
   --paper: #ffffff;
-  --wash: #f0f5f1;
-  --guide: #b5decc;          /* Turquoise Green, combination 202 — Nong Plub's bounded surfaces */
-  --seam: #36795a;           /* the semicolon in the wordmark, nowhere else */
-  /* One ink. Slate Color, Wada combination 202. Every reading mark and every hairline. */
-  --ink: #34454c;
-  --ink-80: #5d6a70;         /* secondary text */
-  --ink-45: #a4abaf;         /* a quiet tint of the same ink, for fills only */
+  --wash: #f4f4f0;
+  --guide: #f9c1ce;          /* Hermosa Pink, plate 273 — Nong Plub's bounded surfaces */
+  --seam: #e88ba1;           /* the semicolon in the wordmark, nowhere else */
+  /* One ink. Pansy Purple, Wada plate 273. Every reading mark and every hairline. */
+  --ink: #7d133a;
+  --ink-80: #974261;         /* 6.43:1 on white — secondary text */
+  --ink-45: #c08da2;         /* a quiet tint of the same ink, for fills only */
   --muted: var(--ink-80);
   --rule: #b6bfc1;           /* Neutral Gray — hairlines and arcs */
   /* The one accent. One job: the co-working category mark. Red Orange, plate 241 — the
      only catalogue colour no neighbourhood ground and no data role already wears. */
   --accent: #dd4027;
-  /* Map categories: Cobalt Green for cafés, with the existing category tones. */
-  --cat-cafe: #96d1aa; --cat-cowork: #f5ecc2; --cat-library: #819238; --cat-food: #a5c8d1; --cat-cannabis: #87c540; --cat-late: #34454c;
+  /* Catalogue data chord, Wada plate 320 + plate 202 late-night — the map's category fills and pins. */
+  --cat-cafe: #f58e84; --cat-cowork: #f5ecc2; --cat-library: #819238; --cat-food: #a5c8d1; --cat-cannabis: #87c540; --cat-late: #34454c;
   /* Four type sizes. The wordmark is a logotype, not a type size. */
   --big: 20px; --body: 14px; --small: 12px; --micro: 11px;
   /* Motion: one duration, one curve. A state change is noticed once, then it is still. */
