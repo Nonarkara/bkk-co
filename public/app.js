@@ -3,7 +3,7 @@
 const KIND_LABEL = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library', cannabis: 'Cannabis listing' };
 const CLUB_TYPES = { clinic: 'Mapped clinic', cafe: 'Mapped café', dispensary: 'Mapped dispensary', other: 'Type unverified' };
 const safeLink = value => { try { const u=new URL(value); return ['https:','http:'].includes(u.protocol) && !u.username && !u.password ? u.href : null; } catch { return null; } };
-const F = { WIFI: 1, NOWIFI: 2, HOURS: 4, OUTDOOR: 8, OVERTURE: 16, CHAIN: 32, NOTABLE: 64, HAND: 128, PARK: 256, COFFEE: 512 }; // same bits as build-places.py
+const F = { WIFI: 1, NOWIFI: 2, HOURS: 4, OUTDOOR: 8, OVERTURE: 16, CHAIN: 32, NOTABLE: 64, HAND: 128, PARK: 256, COFFEE: 512, LATE: 1024 }; // same bits as build-places.py
 // a place nobody has mapped yet goes to OpenStreetMap as a note; the next rebuild picks it up once mapped
 const osmNote = (y, x) => `https://www.openstreetmap.org/note/new#map=19/${y.toFixed(5)}/${x.toFixed(5)}`;
 const SCORES = [
@@ -60,7 +60,7 @@ const venueHours = p => window.WorkFinder?.hours(p) || p.hours;
 const state = {
   places: [], byId: new Map(), scores: {}, cells: new Map(), visited: new Map(), personalRatings: new Map(),
   kinds: new Set(['cafe', 'coworking', 'library']), flags: new Set(), // Food is one tap away, off by default
-  sort: 'near', mood: null, selected: null, foodLoaded: false, cannabisLoaded: false, clubMode: false, sortedIdx: [], sortedCannabisIdx: [], cannabisHotspots: [],
+  sort: 'near', mood: null, selected: null, foodLoaded: false, cannabisLoaded: false, lateNightLoaded: false, clubMode: false, sortedIdx: [], sortedCannabisIdx: [], cannabisHotspots: [],
 };
 window.state = state;
 const cannabisDetails = new Map();
@@ -165,6 +165,29 @@ async function loadCannabis() {
       .catch(() => { cannabisPromise = null; });
   }
   await cannabisPromise;
+}
+
+let lateNightPromise = null;
+async function loadLateNight() {
+  if (state.lateNightLoaded) return;
+  if (!lateNightPromise) {
+    lateNightPromise = fetch('data/late-night.json')
+      .then(r => { if (!r.ok) throw Error('Late night catalogue unavailable'); return r.json(); })
+      .then(d => {
+        if (!d?.places) throw Error('Invalid late night catalogue');
+        const places = d.places;
+        for (const id of Object.keys(places)) {
+          const p = state.byId.get(id);
+          if (!p) continue;
+          p.flags |= F.LATE;
+          p.lateNight = places[id];
+        }
+        state.lateNightStats = { total: d.places ? Object.keys(d.places).length : 0 };
+        state.lateNightLoaded = true;
+      })
+      .catch(() => { lateNightPromise = null; });
+  }
+  await lateNightPromise;
 }
 
 const BKK_BOUNDS = [[99.9, 13.1], [101.35, 14.45]];
@@ -297,6 +320,7 @@ function visible(p, now) {
   if (state.mood && !MOODS[state.mood].test(p)) return false;
   if (state.flags.has('wifi') && !(p.flags & F.WIFI) && !((state.scores[p.id]?.wifi || 0) >= 2)) return false;
   if (state.flags.has('open') && window.isOpen(venueHours(p), now) !== true) return false;
+  if (state.flags.has('late') && !(p.flags & F.LATE)) return false;
   if (state.flags.has('indie') && p.flags & F.CHAIN) return false;
   if (state.flags.has('visited') && !state.visited.has(p.id)) return false;
   if (state.flags.has('work')) {
@@ -336,6 +360,7 @@ const scoresReady=loadScores().then(()=>{
 });
 const firstData = aliasesReady.then(() => Promise.all([loadRows('work'), loadVisits()])).then(() => refresh());
 const foodData = firstData.then(() => loadRows('food')).then(() => { state.foodLoaded = true; refresh(); });
+const lateNightData = firstData.then(() => loadLateNight()).then(() => { state.lateNightLoaded = true; refresh(); });
 // Branch labels for repeated names ("Starbucks Coffee · Sathupradit Rd"): the listing's own address, or its district.
 // Fetched after the map is up; scripts/build-branches.py. A place without a published address or district gets none.
 foodData.then(() => fetch('data/branches.json')).then(r => (r.ok ? r.json() : {})).then(b => {
@@ -348,7 +373,7 @@ const PIN_LAYERS = ['pins-city', 'pins-street', 'pins', 'place-icons'];
 
 // ---------- map layers ----------
 map.on('load', async () => {
-  map.addSource('places', { type: 'geojson', cluster:true, clusterRadius:72, clusterMaxZoom:19, maxzoom:20, clusterProperties:Object.fromEntries([['cafes','cafe'],['food','restaurant'],['work','coworking'],['books','library']].map(([key,kind])=>[key,['+',['case',['==',['get','k'],kind],1,0]]])), data: { type: 'FeatureCollection', features: [] } });
+  map.addSource('places', { type: 'geojson', cluster:true, clusterRadius:72, clusterMaxZoom:19, maxzoom:20, clusterProperties:Object.fromEntries([['cafes','cafe'],['food','restaurant'],['work','coworking'],['books','library'],['late','late']].map(([key,kind])=>[key,['+',['case',['==',['get','k'],kind],1,0]]])), data: { type: 'FeatureCollection', features: [] } });
   map.addSource('sel', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
   window.addHoodLayers?.(); // views.js: neighbourhood rings sit under the pins
   // Every matching record participates in clustering. These transparent backing layers
@@ -497,6 +522,7 @@ function row(p, key = p.k === 'cannabis' ? (CLUB_TYPES[p.sub] || KIND_LABEL.cann
     state.visited.has(p.id) ? '<b title="You have been here">✓</b>' : '',
     p.flags & F.NOTABLE ? '<span title="Notable">✦</span>' : '',
     p.flags & F.WIFI ? '<span title="Wi-Fi listed">≋</span>' : '',
+    p.flags & F.LATE ? '<span title="Open late or 24 hours">🌙</span>' : '',
     s ? `<span title="Visitor ratings">★${s.n}</span>` : '',
     state.flags.has('work') ? `<span title="Work score" class="ws">${Math.round(ws)}</span>` : '',
   ].join(' ');
@@ -509,6 +535,7 @@ function row(p, key = p.k === 'cannabis' ? (CLUB_TYPES[p.sub] || KIND_LABEL.cann
   } else {
     if (p.flags & F.WIFI) subParts.push('Wi-Fi');
     if (p.hours) subParts.push('Hours');
+    if (p.flags & F.LATE) subParts.push('Late night');
     if (s) subParts.push(`★${s.n}`);
   }
   const label=esc(p.n+(p.branch?', '+p.branch:'')+' · '+kindLabel);
@@ -720,6 +747,7 @@ function renderSheet(p, d, visits, report) {
   const addressSource = safeLink(report?.place?.addressSource);
   const facts = [
     hours && ['◷', 'hours', `${open === true ? '<b>Open now</b> · ' : open === false ? '<b>Closed now</b> · ' : ''}${esc(hours.replace(/^Mo-Su (?=\d\d:\d\d-\d\d:\d\d$)/, 'Daily '))}`],
+    p.flags & F.LATE && ['🌙', 'late-night', 'Open late · 24-hour work spot'],
     addr && ['⌖', 'address', esc(addr)],
   ].filter(Boolean);
   const moreFacts = [

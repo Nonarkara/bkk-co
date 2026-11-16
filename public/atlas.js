@@ -145,7 +145,7 @@
     const ink = kind === 'coworking' ? '#986000' : kind === 'restaurant' ? '#547076' : '#34454c';
     g.strokeStyle = ink;
     // Single pins wear their category colour (the same chord as the footprints and the Key); cluster badges stay white.
-    g.fillStyle = cluster ? '#fff' : kind.startsWith('cafe') && kind !== 'cafe-hidden' ? '#96d1aa' : kind === 'coworking' ? '#f5ecc2' : kind === 'library' ? '#819238' : kind === 'restaurant' ? '#a5c8d1' : kind === 'cannabis' ? '#87c540' : '#fff';
+    g.fillStyle = cluster ? '#fff' : kind.startsWith('cafe') && kind !== 'cafe-hidden' ? '#96d1aa' : kind === 'coworking' ? '#f5ecc2' : kind === 'library' ? '#819238' : kind === 'restaurant' ? '#a5c8d1' : kind === 'cannabis' ? '#87c540' : kind === 'late' ? '#34454c' : '#fff';
     g.lineWidth = cluster ? 1 : 1.6; // cluster badges are hairline labels; the single pin stays the stronger mark
     g.beginPath();
     if (cluster) {
@@ -225,6 +225,16 @@
       g.moveTo(0, 5);
       g.lineTo(0, 10);
       g.stroke();
+    } else if (kind === 'late') {
+      g.beginPath();
+      g.arc(0, -2, 6, 0, Math.PI * 2);
+      g.moveTo(3, -6);
+      g.lineTo(-3, -6);
+      g.moveTo(0, -2);
+      g.lineTo(0, 2);
+      g.moveTo(-3, 2);
+      g.lineTo(3, 2);
+      g.stroke();
     } else {
       g.beginPath();
       g.arc(0, 1, 7, 0, Math.PI * 2);
@@ -285,13 +295,14 @@
       'coworking',
       'library',
       'restaurant',
-      'cannabis'
+      'cannabis',
+      'late'
     ]) {
       const a = drawIcon(kind);
       images[kind] = a.url;
       m.addImage('atlas-' + kind, a.data, { pixelRatio: 2 });
     }
-    for (const kind of ['cafe', 'coworking', 'library', 'restaurant', 'cannabis'])
+    for (const kind of ['cafe', 'coworking', 'library', 'restaurant', 'cannabis', 'late'])
       m.addImage('atlas-cluster-' + kind, drawIcon(kind, true).data, { pixelRatio: 2 });
     const dominant = [
       'case',

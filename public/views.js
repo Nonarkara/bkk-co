@@ -99,7 +99,7 @@ function drawHoods() {
 
 // ---------- small infographics ----------
 function compBar(k) {
-  const parts = [['cafe', 'Café'], ['coworking', 'Co-work'], ['library', 'Library'], ['restaurant', 'Food']];
+  const parts = [['cafe', 'Café'], ['coworking', 'Co-work'], ['library', 'Library'], ['restaurant', 'Food'], ['late', 'Late night']];
   const total = parts.reduce((a, [key]) => a + k[key], 0) || 1;
   return `<div class="comp" role="img" aria-label="${parts.map(([key, l]) => `${k[key]} ${l}`).join(', ')}">
     ${parts.map(([key]) => `<i class="seg-${key}" style="flex:${k[key] / total}"></i>`).join('')}</div>

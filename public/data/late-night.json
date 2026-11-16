@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "title": "Late night & 24-hour work spots",
+  "subtitle": "Bangkok cafés open past midnight or around the clock",
+  "asOf": "2026-11-16",
+  "source": "PLUB owner's curated shortlist (first-hand knowledge). Hours can change — confirm on the day.",
+  "places": {
+    "n11607152639": {
+      "name": "Oasis Coffee Rangnam",
+      "area": "Rangnam, near Victory Monument",
+      "hours": "24/7",
+      "work": "Strong: two floors, many seats, charging points, garden area; Wi-Fi mixed reviews.",
+      "suffix": "Oasis Coffee"
+    },
+    "n7058297153": {
+      "name": "Too Fast To Sleep",
+      "area": "Rama IV / Sam Yan",
+      "hours": "24/7 (Mo–Sa 00:00–24:00)",
+      "work": "Strong: library-like study/work café, books, coffee, long-running late-night work base.",
+      "suffix": "Too Fast To Sleep"
+    },
+    "o216746ef1360": {
+      "name": "Coffee Society",
+      "area": "Silom, near BTS Sala Daeng",
+      "hours": "24/7",
+      "work": "Good: free Wi-Fi and work seating, power sockets may be limited.",
+      "suffix": "Coffee Society"
+    },
+    "o37431e975784": {
+      "name": "Glur Bangkok",
+      "area": "Charoen Krung Soi 50, near BTS Saphan Taksin",
+      "hours": "24/7",
+      "work": "Casual: café-bar-hostel hybrid; better for late-night socializing than quiet deep work.",
+      "suffix": "Glur Cafe"
+    },
+    "od29ff046f20a": {
+      "name": "Think Tank",
+      "area": "Narathiwat Soi 17 / Nanglinchee",
+      "hours": "24/7",
+      "work": "Good: co-working café with walk-in access; private rooms for groups (fee).",
+      "suffix": "Think TANK"
+    },
+    "w332011985": {
+      "name": "FABLAB Cafe & Dining",
+      "area": "Sukhumvit 63 / Ekkamai",
+      "hours": "Until midnight",
+      "work": "Evening work; check noise levels and socket availability.",
+      "suffix": "FABLAB Cafe & Dining"
+    },
+    "n12255810606": {
+      "name": "The Coffee Club — Staybridge Thonglor",
+      "area": "Thonglor",
+      "hours": "24/7",
+      "work": "Good: spacious, quiet, work-oriented (2026 review).",
+      "suffix": "The Coffee Club"
+    },
+    "n2074232887": {
+      "name": "Tom N Toms Coffee",
+      "area": "Sukhumvit (selected branches)",
+      "hours": "24/7 at selected branches",
+      "work": "Good: two floors, substantial seating, wall sockets; useful after midnight.",
+      "suffix": "Tom N Toms"
+    },
+    "n3479102803": {
+      "name": "Hollys Coffee",
+      "area": "Sukhumvit 15, Siam Kit, The Street Ratchada (selected branches)",
+      "hours": "24/7 at selected branches",
+      "work": "Good for standard café work; check exact branch.",
+      "suffix": "Hollys Coffee"
+    },
+    "n10080517094": {
+      "name": "Starbucks",
+      "area": "Multiple Bangkok locations (selected branches)",
+      "hours": "24/7 at selected branches",
+      "work": "Reliable, familiar; branch-specific seating, noise, Wi-Fi vary.",
+      "suffix": "Starbucks"
+    },
+    "w943263643": {
+      "name": "Let's Say Café",
+      "area": "Ratchathewi, near Victory Monument",
+      "hours": "Daily 09:00–04:00",
+      "work": "Strong: popular with students and remote workers; multi-floor, board games, relaxed work/study atmosphere.",
+      "suffix": "Let's say cafe"
+    },
+    "n6142506085": {
+      "name": "Future Cafe and Restaurant",
+      "area": "Ratchada / Huai Khwang",
+      "hours": "Until 03:00",
+      "work": "Good late-night choice; verify seating and Wi-Fi on arrival.",
+      "suffix": "Future Cafe and Restaurant"
+    },
+    "n12317637826": {
+      "name": "Paper Plane Project",
+      "area": "T-One Building, Sukhumvit 40",
+      "hours": "Daily 09:00–01:00",
+      "work": "Strong: co-working space, café, and bar; free working Wi-Fi, communal tables by day, bar after dark.",
+      "suffix": "Paper Plane Project"
+    },
+    "n4688643102": {
+      "name": "Korean Dessert Cafe",
+      "area": "Ratchada / Huai Khwang",
+      "hours": "Until 01:00",
+      "work": "Casual: better for meetings, dessert-and-coffee than deep work.",
+      "suffix": "Korean Dessert Cafe"
+    },
+    "n4865439625": {
+      "name": "Iwane Goes Nature",
+      "area": "Sukhumvit Soi 23",
+      "hours": "Daily 07:30–midnight",
+      "work": "Good: specialty-coffee environment with midnight cutoff.",
+      "suffix": "Iwane Goes Nature"
+    },
+    "n11661600206": {
+      "name": "E-motion",
+      "area": "Sukhumvit",
+      "hours": "Until midnight",
+      "work": "Late-night coffee option in Sukhumvit corridor.",
+      "suffix": "E-motion"
+    },
+    "n12805821101": {
+      "name": "TT Café",
+      "area": "Sukhumvit Road",
+      "hours": "Tu–Sun until midnight",
+      "work": "Late-night option near Ekkamai/Phra Khanong.",
+      "suffix": "TT Café"
+    },
+    "w1493003495": {
+      "name": "Davin Cafe",
+      "area": "Khlong Lam Chiak Road",
+      "hours": "Until midnight",
+      "work": "Practical outer-area late-night option.",
+      "suffix": "Davin Cafe"
+    },
+    "n13184508798": {
+      "name": "The Trade Cafe",
+      "area": "Pracha Suk Road",
+      "hours": "Until midnight",
+      "work": "Another midnight-close option outside the central core.",
+      "suffix": "The Trade Cafe"
+    },
+    "w626686392": {
+      "name": "Arelomdee",
+      "area": "Old Town / Banglamphu",
+      "hours": "Fr–Sa until 23:00",
+      "work": "Good for an evening work session in the old town.",
+      "suffix": "Arelomdee"
+    }
+  },
+  "notInCatalogue": [
+    {
+      "name": "Fu.5 Coffee",
+      "area": "Phetchaburi / Thonglor area",
+      "hours": "24/7",
+      "work": "Good: power-socket zone and meeting room; community-oriented atmosphere.",
+      "note": "Not yet in the open-map catalogue; add via OpenStreetMap note."
+    },
+    {
+      "name": "24 Owls",
+      "area": "Ekkamai Soi 12",
+      "hours": "24/7",
+      "work": "Good: café, restaurant, co-working community; indoor and outdoor laptop seating.",
+      "note": "Not yet in the open-map catalogue; add via OpenStreetMap note."
+    },
+    {
+      "name": "Baan Rai Coffee",
+      "area": "Ekkamai / Sukhumvit 63",
+      "hours": "24/7",
+      "work": "Mixed: second floor quieter, but live music and beer garden less ideal for focused work.",
+      "note": "Not yet in the open-map catalogue; add via OpenStreetMap note."
+    }
+  ]
+}

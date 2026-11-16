@@ -43,7 +43,7 @@
      only catalogue colour no neighbourhood ground and no data role already wears. */
   --accent: #dd4027;
   /* Map categories: Cobalt Green for cafés, with the existing category tones. */
-  --cat-cafe: #96d1aa; --cat-cowork: #f5ecc2; --cat-library: #819238; --cat-food: #a5c8d1; --cat-cannabis: #87c540;
+  --cat-cafe: #96d1aa; --cat-cowork: #f5ecc2; --cat-library: #819238; --cat-food: #a5c8d1; --cat-cannabis: #87c540; --cat-late: #34454c;
   /* Four type sizes. The wordmark is a logotype, not a type size. */
   --big: 20px; --body: 14px; --small: 12px; --micro: 11px;
   /* Motion: one duration, one curve. A state change is noticed once, then it is still. */
@@ -158,6 +158,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .dot.library { background: var(--paper); box-shadow: inset 0 0 0 2px var(--ink); }
 .dot.restaurant { background: var(--ink-45); }
 .dot.cannabis { background: var(--cat-cannabis); }
+.dot.late { background: var(--cat-late); }
 
 body.club-mode {
   /* Sanzo Wada Botanical Green palette (plates 317 & 326, zoom-mood-provenance.json) */
@@ -332,6 +333,7 @@ body.club-mode .list-tools > .list-day { display: none; }
 .seg-cafe { background: var(--ink); } .seg-coworking { background: var(--accent); }
 .seg-library { background: var(--paper); box-shadow: inset 0 0 0 1.5px var(--ink); } .seg-restaurant { background: var(--ink-45); }
 .seg-cannabis { background: var(--cat-cannabis); }
+.seg-late { background: var(--cat-late); }
 .comp-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: var(--micro); color: var(--muted); }
 .comp-legend span { display: inline-flex; align-items: center; gap: 4px; }
 .traits { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 4px; }
