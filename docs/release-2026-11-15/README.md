@@ -11,7 +11,7 @@ Two bureaus over one codebase: **PL;UB** at [co.nonarkara.org](https://co.nonark
 | Worker | `f80e93e2-9f33-4d2a-bf35-7c6860684da8`, from commit `6059a9b` |
 | Domains | co · club · bkkco (301 to co) |
 | Catalogue | 57,379 places, signed; the live read-only API passes |
-| CL;UB catalogue | 328 venues across Thailand in `public/data/places-cannabis.json`, loaded only in CL;UB mode |
+| CL;UB catalogue | 328 venues across Thailand in `public/data/places-cannabis.json`, loaded only in CL;UB mode, reproducible from `scripts/build-cannabis.py` and locked by `public/data/manifest-cannabis.json` |
 | Bytes on co | **408 / 408 matched**, 0 mismatched, 0 missing, 0 orphans — [proof](live-bytes-co.nonarkara.org.json) |
 | Bytes on club | **407 / 407 matched**, 0 mismatched, 0 missing, 0 orphans, 1 file rewritten by the Worker — [proof](live-bytes-club.nonarkara.org.json) |
 
@@ -34,12 +34,31 @@ checks that no dispensary id is in PL;UB's catalogue at all.
 
 ## What the gates say
 
-- 35 test suites from CI, read out of `.github/workflows/notebook.yml` so the
+- 36 test suites from CI, read out of `.github/workflows/notebook.yml` so the
   local gate and CI cannot fall out of step.
 - MSH measured at 390 / 1024 / 1440: chrome 6%, map 65–89%, no void, no orphan
   column, no bleed — and at 260px, which is a 390px phone at 150% text.
 - The planted MSH run catches all 10 planted defects.
 - Every shipped footprint equals the pinned OpenStreetMap source, byte for byte.
+- The CL;UB catalogue is what its builder produces, byte for byte, and its
+  digest is locked so a hand-edit cannot pass unnoticed.
+
+## The catalogue is the builder's, not a hand-kept file
+
+The 328 CL;UB venues looked like they had drifted from
+`scripts/build-cannabis.py`: rebuilt in isolation the builder produced 329 rows.
+It was the isolated rebuild that was wrong. The builder reads the signed
+catalogue and drops any cannabis venue that is already a PL;UB place — one
+venue, "Cannabis Kingdom Dispensary & Cafe", is in `places-work.json` — and a
+rebuild without that file is a rebuild with one row too many. Run in the
+repository, the builder reproduces the shipped file exactly.
+
+Two gates now hold that line. `test/cannabis-catalogue.mjs` (in CI) checks the
+shipped bytes against the digest `manifest-cannabis.json` publishes, checks that
+the totals agree with the rows, and checks that the tier written beside each
+venue is the tier its own facts make it. `scripts/verify-cannabis-rebuild.mjs`
+rebuilds from the pinned sources and compares the bytes; the ship gate runs it,
+and a machine without the pinned sources marks it SKIP rather than PASS.
 
 ## What is still open
 

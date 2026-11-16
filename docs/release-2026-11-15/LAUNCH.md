@@ -17,6 +17,11 @@ The cannabis venues never enter the signed catalogue. The catalogue's sha256
 still matches the manifest that publishes it, and `test/venue-reports.mjs` and
 `test/check.mjs` both hold that line.
 
+The cannabis catalogue is likewise the builder's output and not a hand-kept
+file: `scripts/build-cannabis.py` reproduces the shipped bytes exactly, its
+digest is published in `public/data/manifest-cannabis.json`, and
+`test/cannabis-catalogue.mjs` holds that line in CI.
+
 **The separation is real, not a promise.** The Worker keeps two catalogues. A
 request that asks for PL;UB loads the work catalogue and never touches the
 cannabis file; a request that asks for CL;UB — the club host, or `?mode=club`,
@@ -73,10 +78,11 @@ out of step. A step that cannot run is marked SKIP, never PASS.
 
 | Gate | What it proves |
 |---|---|
-| 35 test suites from CI | the model, the catalogue, the notebook, the API, the palette, the platform law, the headers, the separation of the two bureaus |
+| 36 test suites from CI | the model, the catalogue, the notebook, the API, the palette, the platform law, the headers, the separation of the two bureaus, the CL;UB catalogue's lock |
 | `scripts/audit-msh.mjs` | chrome ≤34 %, map ≥60 %, no void, no orphan column, no inflated box, no Thai name without its face |
 | `scripts/audit-msh.mjs --planted` | the gate can still fail |
 | `python3 test/street-world-source.py` | every shipped footprint equals the pinned OpenStreetMap source |
+| `scripts/verify-cannabis-rebuild.mjs` | the shipped CL;UB catalogue is what its builder produces, byte for byte |
 | `scripts/verify-live-bytes.mjs` | every deployed byte equals the repository |
 
 **405 / 405 bytes matched, 0 mismatched, 0 missing, 0 orphans** at `fcda6f4`.

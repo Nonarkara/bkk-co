@@ -32,8 +32,10 @@ const step = (name, fn) => async () => {
   const t0 = Date.now();
   try {
     const note = await fn();
-    results.push({ name, state: 'PASS', ms: Date.now() - t0, note: note || '' });
-    say(`  PASS  ${name}  ${((Date.now() - t0) / 1000).toFixed(1)}s${note ? ` · ${note}` : ''}`);
+    // A check that cannot run says so and is marked SKIP — never PASS.
+    const state = String(note || '').startsWith('SKIP') ? 'SKIP' : 'PASS';
+    results.push({ name, state, ms: Date.now() - t0, note: note || '' });
+    say(`  ${state === 'SKIP' ? 'SKIP' : 'PASS'}  ${name}  ${((Date.now() - t0) / 1000).toFixed(1)}s${note ? ` · ${note}` : ''}`);
   } catch (error) {
     const out = (error.stdout || '') + (error.stderr || '');
     results.push({ name, state: 'FAIL', ms: Date.now() - t0, note: String(error.message).split('\n')[0] });
@@ -117,6 +119,12 @@ async function main() {
     return String(r.stdout).trim().split('\n').pop().slice(0, 140);
   }))();
 
+  // 4b. the CL;UB catalogue is the builder's output, not a hand-kept file
+  await (step('the CL;UB catalogue is what its builder produces', async () => {
+    const r = await run('node', ['scripts/verify-cannabis-rebuild.mjs'], { cwd: ROOT, maxBuffer: 32 * 1024 * 1024 });
+    return String(r.stdout).trim().split('\n').pop().slice(0, 140);
+  }))();
+
   // 5. ship
   if (DEPLOY) {
     await (step('deploy the Worker', async () => {
@@ -141,9 +149,11 @@ async function main() {
   }
 
   const passed = results.filter(r => r.state === 'PASS').length;
+  const skipped = results.filter(r => r.state === 'SKIP').length;
   say(`\n${'─'.repeat(64)}`);
   for (const r of results.filter(r => r.state === 'FAIL')) say(`  FAIL  ${r.name}`);
-  say(`  ${passed}/${results.length} steps passed${failed ? ' — the ship is blocked.' : '.'}`);
+  for (const r of results.filter(r => r.state === 'SKIP')) say(`  SKIP  ${r.name} · ${r.note}`);
+  say(`  ${passed}/${results.length - skipped} steps passed${skipped ? ` · ${skipped} skipped` : ''}${failed ? ' — the ship is blocked.' : '.'}`);
   say(`${'─'.repeat(64)}\n`);
   if (failed) process.exit(1);
   if (DEPLOY) {

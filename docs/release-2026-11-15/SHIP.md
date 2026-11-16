@@ -69,6 +69,7 @@ reader can land on, and never a private surface.
 | `test/security-headers.mjs` | HSTS with a real max-age, no framing, no inline script on any shipped page, and every origin in every directive is one the interface loads |
 | `test/public-surfaces.mjs` | robots → sitemap → real pages; the notebook stays unindexed; the 404 page declares its language, carries no inline script and offers a way back |
 | `test/data-role-palette.mjs` | every mark is a colour the catalogue owns; the legend names exactly what the key shows; the accent has one job |
+| `test/cannabis-catalogue.mjs` | the CL;UB catalogue is the builder's bytes, the totals agree with the rows, and every venue's tier is the tier its own facts make it |
 
 ## 5. The gate's own bugs, twice
 
@@ -96,7 +97,38 @@ and exited 1, which taught everyone to ignore its verdict. It is now compared
 apart from the rest and reported as a rewrite — a difference anywhere else is
 still a mismatch.
 
-## 8. Still honestly unfinished
+## 9. A false alarm, and the gate it produced
+
+The CL;UB catalogue looked stale: rebuilt from its committed builder it produced
+329 venues, and the shipped file holds 328. One venue — "Cannabis Kingdom
+Dispensary & Cafe" — was missing, and three access scores had moved with it.
+
+The catalogue had not drifted. The isolated rebuild was wrong. The builder reads
+the signed catalogue and drops any cannabis venue that is already a PL;UB place,
+because a venue must not be listed twice; that one venue is in
+`places-work.json`. A rebuild without the signed catalogue is a rebuild with one
+row too many — and with three access deciles and one neighbour count moved, all
+of it downstream of the same missing row. Run in the repository, the builder
+reproduces the shipped file exactly.
+
+Two things came out of the false alarm, and they are worth more than the
+original question:
+
+- **The artefact is now locked.** The builder publishes the catalogue's digest
+  in `public/data/manifest-cannabis.json`, and `test/cannabis-catalogue.mjs`
+  fails if the shipped bytes stop matching it. A hand-edit cannot pass
+  unnoticed, and neither can a builder change nobody re-ran.
+- **The ship gate now marks an unrunnable check SKIP.** It used to report a
+  step it could not run as PASS with a note — the one form of a false pass.
+  `scripts/verify-cannabis-rebuild.mjs` rebuilds the catalogue from the pinned
+  sources and compares the bytes; on a machine without those sources it says
+  SKIP, and the gate's summary counts skips apart from passes.
+
+The lesson is the one the isolation change taught, in a different place: an
+artefact is reproducible by its builder *in the context its builder reads*. A
+rebuild that drops the repository's other inputs measures something else.
+
+## 10. Still honestly unfinished
 
 - **The catalogue is thin.** 590 of 20,640 work places carry any documented
   working fact; 60 clear the coverage floor. Improved by people reporting,

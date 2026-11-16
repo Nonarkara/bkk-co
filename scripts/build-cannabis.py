@@ -3,6 +3,10 @@
   OpenStreetMap  (ODbL-1.0)              -- Geofabrik Thailand extract, MD5-pinned
   Overture Places (CDLA-Permissive-2.0)  -- release 2026-10-21.0, Bangkok bbox, sha-pinned
 Leaves the signed 57,379 work/food catalogue files (places-work.json, places-food.json) untouched.
+
+Run it in the repository, not in a bare copy: the builder reads the signed catalogue
+and drops any cannabis venue that is already a PL;UB place, so a venue is never
+listed twice. Without those two files the build is one row longer and is wrong.
 """
 import collections, hashlib, json, math, pathlib, re, subprocess, sys, tempfile
 
@@ -264,12 +268,35 @@ def build():
     }
     raw = json.dumps(payload, ensure_ascii=False, separators=(',', ':')).encode()
     (data / 'places-cannabis.json').write_bytes(raw)
+
+    # The catalogue is an artefact of this builder, not a hand-kept file. Lock its
+    # digest here so a later hand-edit, or a builder change nobody re-ran, is a
+    # visible failure instead of a silent drift (test/cannabis-catalogue.mjs).
+    manifest = {
+        'file': 'places-cannabis.json',
+        'bytes': len(raw),
+        'sha256': hashlib.sha256(raw).hexdigest(),
+        'total': payload['total'],
+        'bySource': payload['bySource'],
+        'bySub': payload['bySub'],
+        'byProvince': payload['byProvince'],
+        'builtFrom': payload['builtFrom'],
+        'builder': 'python3 scripts/build-cannabis.py',
+        'sourceContract': {
+            'osm': {'file': bp.OSM_PBF.name, 'md5': bp.OSM_MD5, 'asOf': bp.OSM_AS_OF, 'licence': 'ODbL-1.0'},
+            'overture': {'file': bp.OV_FILE.name, 'release': bp.OV_RELEASE, 'licence': 'CDLA-Permissive-2.0'},
+        },
+        'note': 'CL;UB only. The signed PL;UB catalogue (places-work.json) is never written here.',
+    }
+    (data / 'manifest-cannabis.json').write_bytes(
+        json.dumps(manifest, ensure_ascii=False, indent=1).encode() + b'\n')
+
     print(json.dumps({
         'total': payload['total'],
         'bySource': payload['bySource'],
         'bySub': payload['bySub'],
         'bytes': len(raw),
-        'sha256': hashlib.sha256(raw).hexdigest(),
+        'sha256': manifest['sha256'],
     }, indent=2))
 
 if __name__ == '__main__':

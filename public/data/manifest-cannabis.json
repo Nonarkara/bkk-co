@@ -1,0 +1,53 @@
+{
+ "file": "places-cannabis.json",
+ "bytes": 104639,
+ "sha256": "081ff8c46915753a59d0afabee94b7e09a7e7dbd9401eee0f1487e1569421533",
+ "total": 328,
+ "bySource": {
+  "osm": 228,
+  "overture": 100
+ },
+ "bySub": {
+  "dispensary": 273,
+  "cafe": 21,
+  "clinic": 3,
+  "other": 31
+ },
+ "byProvince": {
+  "Bangkok": 160,
+  "Pattaya / Chonburi": 56,
+  "Regional Thailand": 55,
+  "Chiang Mai": 27,
+  "Phuket": 16,
+  "Samui / Surat Thani": 12,
+  "Hua Hin / Prachuap": 2
+ },
+ "builtFrom": [
+  {
+   "name": "OpenStreetMap (Thailand)",
+   "asOf": "2026-10-24T20:20:51Z",
+   "licence": "ODbL-1.0"
+  },
+  {
+   "name": "Overture Maps Places (Bangkok)",
+   "release": "2026-10-21.0",
+   "licence": "CDLA-Permissive-2.0",
+   "confidenceFloor": 0.5
+  }
+ ],
+ "builder": "python3 scripts/build-cannabis.py",
+ "sourceContract": {
+  "osm": {
+   "file": "thailand-261024.osm.pbf",
+   "md5": "215e1ff30fe4d4adef2db3d664dab9da",
+   "asOf": "2026-10-24T20:20:51Z",
+   "licence": "ODbL-1.0"
+  },
+  "overture": {
+   "file": "places-2026-10-21.0-bkk.parquet",
+   "release": "2026-10-21.0",
+   "licence": "CDLA-Permissive-2.0"
+  }
+ },
+ "note": "CL;UB only. The signed PL;UB catalogue (places-work.json) is never written here."
+}
