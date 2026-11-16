@@ -1,6 +1,6 @@
 {
   "stamp": "2026-11-15",
-  "base": "http://localhost:43991",
+  "base": "http://127.0.0.1:43827",
   "planted": false,
   "viewports": [
     {
@@ -9,31 +9,24 @@
       "vw": 390,
       "vh": 844,
       "chrome": {
-        "topPx": 53,
+        "topPx": 95,
         "bottomPx": 0,
-        "share": 0.063
+        "share": 0.113
       },
-      "mapShare": 0.889,
-      "mapShareNet": 0.869,
-      "mapOverlayShare": 0.0201,
-      "mapOverlays": [
-        {
-          "cls": "maplibregl-ctrl footprint-key-control",
-          "w": 150,
-          "h": 44,
-          "area": 6620
-        }
-      ],
+      "mapShare": 0.839,
+      "mapShareNet": 0.839,
+      "mapOverlayShare": 0,
+      "mapOverlays": [],
       "mapIsFirst": true,
-      "hierarchyRatio": 14.15,
+      "hierarchyRatio": 7.45,
       "top3": [
         {
           "id": "map",
-          "area": 292500
+          "area": 276120
         },
         {
           "id": "bar",
-          "area": 20670
+          "area": 37050
         },
         {
           "id": "chips",
@@ -44,11 +37,11 @@
       "voidTop": 809,
       "voidW": 390,
       "obstruction": {
-        "area": 1959,
+        "area": 601,
         "cls": "",
         "tag": "span"
       },
-      "obstructionShare": 0.007,
+      "obstructionShare": 0.002,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -115,18 +108,11 @@
         "share": 0.059
       },
       "mapShare": 0.648,
-      "mapShareNet": 0.641,
-      "mapOverlayShare": 0.0072,
-      "mapOverlays": [
-        {
-          "cls": "maplibregl-ctrl footprint-key-control",
-          "w": 150,
-          "h": 44,
-          "area": 6620
-        }
-      ],
+      "mapShareNet": 0.648,
+      "mapOverlayShare": 0,
+      "mapOverlays": [],
       "mapIsFirst": true,
-      "hierarchyRatio": 2.16,
+      "hierarchyRatio": 2.06,
       "top3": [
         {
           "id": "map",
@@ -134,11 +120,11 @@
         },
         {
           "id": "side",
-          "area": 277200
+          "area": 290160
         },
         {
-          "id": "chips",
-          "area": 27720
+          "id": "bar",
+          "area": 19080
         }
       ],
       "voidPx": 38400,
@@ -227,7 +213,7 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 3.51,
+      "hierarchyRatio": 3.35,
       "top3": [
         {
           "id": "map",
@@ -235,11 +221,11 @@
         },
         {
           "id": "side",
-          "area": 277200
+          "area": 290160
         },
         {
-          "id": "chips",
-          "area": 27720
+          "id": "bar",
+          "area": 19080
         }
       ],
       "voidPx": 54000,
@@ -311,7 +297,7 @@
     "places": {
       "groups": 2,
       "rows": 5,
-      "chrome": 110,
+      "chrome": 115,
       "pass": true
     },
     "search": 9,
@@ -335,7 +321,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 417
+      "observedHandoffMs": 1718
     },
     "notebook": 1,
     "walkthrough": {
