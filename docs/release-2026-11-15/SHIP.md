@@ -3,7 +3,7 @@
 A day spent on the parts of a launch nobody sees: the policy, the lost reader,
 the gates, and the claims the documents make.
 
-Commit `b163dd8` · Worker `df7ad30b-14aa-4339-9a8f-f04c6d5ee3aa`
+Commit `8dc4a00` · Worker `783f68d6-a2fb-4d3b-a68d-1a9edee35898`
 
 ---
 
@@ -17,7 +17,7 @@ in a separate file — was verified rather than trusted.
 | The signed catalogue is untouched | sha256 of `places-work.json` against the manifest that publishes it | matches |
 | The cannabis venues are separate | `public/data/places-cannabis.json`, 328 rows, loaded only in CL;UB mode | apart from the catalogue |
 | The data is open | OSM and Overture only; no platform fields anywhere | holds |
-| The deployed bytes match | `scripts/verify-live-bytes.mjs` on both domains | 408/408 and 407/407 |
+| The deployed bytes match | `scripts/verify-live-bytes.mjs` on both domains | 411/411 on co, 410/410 on club plus the one rewrite |
 
 ## 2. The policy was three origins wider than the app
 

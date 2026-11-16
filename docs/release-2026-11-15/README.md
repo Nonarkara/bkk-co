@@ -8,16 +8,21 @@ Two bureaus over one codebase: **PL;UB** at [co.nonarkara.org](https://co.nonark
 
 | | |
 |---|---|
-| Worker | `f80e93e2-9f33-4d2a-bf35-7c6860684da8`, from commit `6059a9b` |
+| Worker | `783f68d6-a2fb-4d3b-a68d-1a9edee35898`, from commit `8dc4a00` |
 | Domains | co · club · bkkco (301 to co) |
 | Catalogue | 57,379 places, signed; the live read-only API passes |
 | CL;UB catalogue | 328 venues across Thailand in `public/data/places-cannabis.json`, loaded only in CL;UB mode, reproducible from `scripts/build-cannabis.py` and locked by `public/data/manifest-cannabis.json` |
-| Bytes on co | **408 / 408 matched**, 0 mismatched, 0 missing, 0 orphans — [proof](live-bytes-co.nonarkara.org.json) |
-| Bytes on club | **407 / 407 matched**, 0 mismatched, 0 missing, 0 orphans, 1 file rewritten by the Worker — [proof](live-bytes-club.nonarkara.org.json) |
+| Bytes on co | **411 / 411 matched**, 0 mismatched, 0 missing, 0 orphans — [proof](live-bytes-co.nonarkara.org.json) |
+| Bytes on club | **410 / 410 matched**, 0 mismatched, 0 missing, 0 orphans, 1 file rewritten by the Worker — [proof](live-bytes-club.nonarkara.org.json) |
 
 The one rewrite is `index.html`: the Worker writes the CL;UB title and description
 into the same page for that host. Everything else is byte-identical to this
 repository.
+
+The ship gate ran **44 / 44 steps** on this commit — the 36 suites CI runs, the
+MSH gate and its planted twin, the pinned-source geometry equality, the CL;UB
+catalogue rebuild, the deploy, the byte comparison and the live URL.
+[Report](ship-report.json).
 
 ## The two bureaus are actually separate
 

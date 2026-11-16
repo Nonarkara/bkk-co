@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-11-15T14:58:53.399Z",
+  "observedAt": "2026-11-16T02:55:20.574Z",
   "origin": "https://club.nonarkara.org",
-  "sourceCommit": "57707f22522ae0bbc7be0a266213a1e653aec73a",
+  "sourceCommit": "8dc4a004bf0960751b6097714d57b93ed1e27fac",
   "matched": [
     {
       "path": "404.html",
@@ -10,8 +10,8 @@
     },
     {
       "path": "app.js",
-      "bytes": 55999,
-      "sha256": "0896e52f72b4fa51681f3212f830c349a5975968e8aa60b71a73c9981724ba05"
+      "bytes": 56943,
+      "sha256": "253eb9aa8e9b15385fb54892b82889edd2c30c7cff7c76f949086b1ae3186cb3"
     },
     {
       "path": "atlas-model.js",
@@ -25,13 +25,18 @@
     },
     {
       "path": "atlas.js",
-      "bytes": 43389,
-      "sha256": "f3c7d9255e16d002bd46afca5d8a2d84e0e0b02bf8405ca1b8cc85d6174d76ac"
+      "bytes": 44115,
+      "sha256": "cb71e5a4dee8545679b36593b2a4d78b8c9c0f89af67e88f38278be925004e1d"
     },
     {
       "path": "bridge-1958.html",
       "bytes": 4249,
       "sha256": "56769fca8ababcf7ec480ec025136b076663cc55eb1e418976fd5337f82ed286"
+    },
+    {
+      "path": "club-mode.js",
+      "bytes": 722,
+      "sha256": "351698f7bd54206ade2d055c606a996828339e61fbb7a068fe341a6ce9725fbb"
     },
     {
       "path": "data/aliases.json",
@@ -939,6 +944,11 @@
       "sha256": "0a58f6955430e5802c5782f961f6f65eb8deec594b9101e0f7b425146b5b512f"
     },
     {
+      "path": "data/manifest-cannabis.json",
+      "bytes": 1197,
+      "sha256": "7e004361439527307525914ff5a2d3580c07d6c1fee1c2fb097f41afc371410c"
+    },
+    {
       "path": "data/manifest.json",
       "bytes": 2077,
       "sha256": "398a2d7a0ce511483eaeb560e9e37d292d70db87021c3c49d09afcc19c5120b9"
@@ -1160,8 +1170,8 @@
     },
     {
       "path": "footprint-palette.js",
-      "bytes": 8399,
-      "sha256": "67176d11a163a7642cf676206d442519377c7728978909c2b3e0144aafd7209f"
+      "bytes": 8482,
+      "sha256": "054ac1a607c7d2a75440fe8144acbdec483b17deb055c0dfa2ae101b9b5fa8c1"
     },
     {
       "path": "hat-density.js",
@@ -1225,8 +1235,8 @@
     },
     {
       "path": "neighborhood-palette.js",
-      "bytes": 7723,
-      "sha256": "74b36a83ee86e137d03246ee8fc13b6d014e7a86b6fea4417fdf6c88df6e0446"
+      "bytes": 7747,
+      "sha256": "15b8e12d701017d17509ca2c2de5affb5d74a5415466c423c906be945d1fe053"
     },
     {
       "path": "neighborhood-photos/commons-103754956.webp",
@@ -1965,8 +1975,8 @@
     },
     {
       "path": "street-world-3d.js",
-      "bytes": 61969,
-      "sha256": "d2b5f7e1829c610a237d7b94f14a750b97a83c81dcba561e6315b46b2fc53b5c"
+      "bytes": 60752,
+      "sha256": "03a89eeed66c08595f618f0ea4aa477326590ef58c310345f3d3badb095fb685"
     },
     {
       "path": "street-world.css",
@@ -1975,8 +1985,8 @@
     },
     {
       "path": "street-world.js",
-      "bytes": 27267,
-      "sha256": "b1c8d1e01edb6f98c6607ff64ea300057852aab46b299654e1972c758c37f11f"
+      "bytes": 27273,
+      "sha256": "f5d9b8a6341a5a3ee7f40ab4eb89817d3bffc87e9d38d6059122ce3f032e45e7"
     },
     {
       "path": "style.css",
@@ -2025,8 +2035,8 @@
     },
     {
       "path": "views.js",
-      "bytes": 51909,
-      "sha256": "2ffbd434ffa04e592874c619d49b36555965c7fb0c6785ede532bdf04b7d7b8d"
+      "bytes": 52542,
+      "sha256": "e50d9a8549741f7e5580acd52ee50fef4516daa61b3585197c7e0d7578652428"
     },
     {
       "path": "visit.css",
@@ -2046,9 +2056,18 @@
   ],
   "mismatched": [],
   "missing": [],
+  "rewritten": [
+    {
+      "path": "index.html",
+      "bytes": 10202,
+      "sha256": "f9c0f27bb2607842c27f8ce58a2c89cc9ed767ddd127f49719c837545e05a429",
+      "localBytes": 10201,
+      "localSha256": "803e5c201f43b44eb38653441351d84f7c415b765143926d50c2b036d2041227"
+    }
+  ],
   "orphansStillServed": [],
   "summary": {
-    "matched": 408,
+    "matched": 410,
     "mismatched": 0,
     "missing": 0,
     "orphansStillServed": 0

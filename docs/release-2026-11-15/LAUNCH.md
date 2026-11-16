@@ -1,7 +1,7 @@
 # PLUB · CL;UB — launch readiness, 15 November 2026
 
 The state of the system on the morning of a public launch, and what is still
-honestly unfinished. Commit `fcda6f4` · Worker `f9ebb73e-374b-4b9f-8a33-839866c2ef51`.
+honestly unfinished. Commit `8dc4a00` · Worker `783f68d6-a2fb-4d3b-a68d-1a9edee35898`.
 
 ---
 
@@ -85,7 +85,9 @@ out of step. A step that cannot run is marked SKIP, never PASS.
 | `scripts/verify-cannabis-rebuild.mjs` | the shipped CL;UB catalogue is what its builder produces, byte for byte |
 | `scripts/verify-live-bytes.mjs` | every deployed byte equals the repository |
 
-**405 / 405 bytes matched, 0 mismatched, 0 missing, 0 orphans** at `fcda6f4`.
+**411 / 411 bytes matched on co, 410 / 410 on club** (plus the one deliberate
+`index.html` rewrite), 0 mismatched, 0 missing, 0 orphans, at `8dc4a00`. The
+gate itself ran **44 / 44 steps**.
 
 ## 4. The honesty rules, still enforced
 
