@@ -22,8 +22,11 @@
  }
  function isStreet(){return !!(window.StreetWorld?.active&&document.querySelector('.street-panel:not([hidden])'))}
  function sync(){
-  clearTimeout(timer);if(!install())return;
-  const on=!!window.MangaLens?.active,visibility=on?'visible':'none';if(keyBox)keyBox.hidden=!on;if(map.getLayoutProperty(layer,'visibility')!==visibility)map.setLayoutProperty(layer,'visibility',visibility);
+  clearTimeout(timer);
+  const on=!!window.MangaLens?.active,visibility=on?'visible':'none';
+  if(keyBox)keyBox.hidden=!(on||window.state?.clubMode||document.body?.classList.contains('club-mode'));
+  if(!install())return;
+  if(map.getLayoutProperty(layer,'visibility')!==visibility)map.setLayoutProperty(layer,'visibility',visibility);
   if(on)timer=setTimeout(update,80);
  }
  function update(){

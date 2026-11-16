@@ -505,7 +505,7 @@ export async function start(host, options = {}) {
         <option value="50">50mm</option>
       </select></label>
       <button type="button" class="model-tool-btn" data-act-2pt aria-pressed="false" title="Keep vertical building lines parallel (2-point architectural perspective)">2-pt</button>
-      <button type="button" class="model-tool-btn" data-act-avatar aria-pressed="true" title="Show/hide 3rd-person walking character in Street mode">Avatar</button>
+      <button type="button" class="model-tool-btn" data-act-avatar aria-pressed="false" title="Show or hide the walking character in Street mode">Avatar</button>
       </div></details>
       <button type="button" class="model-close" aria-label="Back to map">Back to map</button>
       <div class="model-coverage"><p role="status"></p><button type="button" class="model-relief" hidden></button><span class="sr" data-hunt-status aria-live="polite"></span></div>
@@ -644,10 +644,8 @@ export async function start(host, options = {}) {
   avatarGroup.add(avLegL, avLegR, avTorso, avHead, avHair);
   avatarGroup.visible = false;
   scene.add(avatarGroup);
-  let showAvatar = true, walkPhase = 0;
+  let showAvatar = false, walkPhase = 0;
 
-  const treeGroup = new THREE.Group();
-  scene.add(treeGroup);
   let huntTargets = [];
   const huntBtn = bar.querySelector('[data-act-hunt]');
   const huntStatus = bar.querySelector('[data-hunt-status]');
@@ -992,39 +990,11 @@ export async function start(host, options = {}) {
       currentMeshes.push(rMesh);
     }
 
-    // Street trees along road edges (Rokehan street atmosphere)
-    while (treeGroup.children.length) {
-      const c = treeGroup.children.pop();
-      c.geometry?.dispose?.();
-      c.material?.dispose?.();
-    }
-    const trunkMat = new THREE.MeshBasicMaterial({ color: 0x5a4a3e });
-    const leafMat = new THREE.MeshBasicMaterial({ color: 0x819238 });
-    const trunkGeo = new THREE.CylinderGeometry(0.18, 0.24, 2.4, 6);
-    const leafGeo = new THREE.DodecahedronGeometry(1.65, 0);
-    let treeCount = 0;
-    for (let i = 0; i < streetSegments.length && treeCount < 140; i += 3) {
-      const seg = streetSegments[i];
-      if (!seg || seg.length < 2) continue;
-      const { x: x0, z: z0 } = seg[0], { x: x1, z: z1 } = seg[1];
-      const len = Math.hypot(x1 - x0, z1 - z0);
-      if (len < 12) continue;
-      const nx = -(z1 - z0) / len, nz = (x1 - x0) / len;
-      const tx = (x0 + x1) * 0.5 + nx * 4.8, tz = (z0 + z1) * 0.5 + nz * 4.8;
-      if (blocked(tx, tz)) continue;
-      const trunk = new THREE.Mesh(trunkGeo, trunkMat);
-      trunk.position.set(tx, 1.2, tz);
-      const canopy = new THREE.Mesh(leafGeo, leafMat);
-      canopy.position.set(tx, 3.3, tz);
-      treeGroup.add(trunk, canopy);
-      treeCount++;
-    }
-
     hasRelief = knownCount > 0;
     const flatCount = bList.length - knownCount;
     coverageEl.textContent = knownCount
       ? `${knownCount} mapped heights · ${flatCount} flat footprints`
-      : `No mapped building heights · ${flatCount} indicative footprints`;
+      : `No mapped building heights · ${flatCount} flat footprints`;
     reliefBtn.hidden = hasRelief || !mostRelief.heightVolumes;
     host.dataset.area = area.id;
     host.dataset.volumes = String(knownCount);
@@ -1554,7 +1524,10 @@ export async function start(host, options = {}) {
       if (useAv) {
         avCoatMat.color.setHex(isClub() ? 0x819238 : 0x3f4256);
         avHairMat.color.setHex(isClub() ? 0x2c2927 : 0x7b4a2d);
-        avatarGroup.position.set(S.px - Math.sin(S.wyaw) * 2.4, 0, S.pz - Math.cos(S.wyaw) * 2.4);
+        const x = S.px - Math.sin(S.wyaw) * 2.4;
+        const z = S.pz - Math.cos(S.wyaw) * 2.4;
+        avatarGroup.visible = !blocked(x, z);
+        avatarGroup.position.set(x, 0, z);
         avatarGroup.rotation.y = S.wyaw;
         const swing = moving() ? Math.sin(walkPhase) * 0.45 : 0;
         avLegL.rotation.x = swing;
