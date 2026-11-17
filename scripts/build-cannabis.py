@@ -67,7 +67,10 @@ def load_osm_cannabis(skipped):
                 t.get('shop') == 'cannabis' or
                 t.get('amenity') == 'dispensary' or
                 t.get('beverages') == 'cannabis' or
-                any(w in raw_names for w in ('cannabis', 'dispensary', 'ganja', 'weed', 'กัญชา'))
+                t.get('cbd') == 'yes' or
+                t.get('hemp') == 'yes' or
+                t.get('medical_cannabis') == 'yes' or
+                any(w in raw_names for w in ('cannabis', 'dispensary', 'ganja', 'weed', 'kush', '420', 'hemp', 'cbd', 'terpene', 'กัญชา', 'กัญชง'))
             )
             if not is_can:
                 continue
@@ -84,6 +87,7 @@ def load_osm_cannabis(skipped):
                 skipped['osm_outside'] += 1
                 continue
             th = (t.get('name:th') or '').strip()[:120]
+            pay = [lbl for k, lbl in (('payment:credit_cards', 'Cards'), ('payment:debit_cards', 'Debit'), ('payment:qr_code', 'QR'), ('payment:promptpay', 'PromptPay'), ('payment:cash', 'Cash')) if t.get(k) == 'yes']
             out.append({
                 'id': pid, 'n': name, 'k': 'cannabis', 'y': round(lat, 5), 'x': round(lng, 5),
                 'th': th if th and th != name else None,
@@ -93,6 +97,15 @@ def load_osm_cannabis(skipped):
                 'c': (t.get('cuisine') or '')[:60] or None,
                 'web': t.get('website') or t.get('contact:website'),
                 'tel': t.get('phone') or t.get('contact:phone'),
+                'ig': t.get('contact:instagram') or t.get('instagram'),
+                'fb': t.get('contact:facebook') or t.get('facebook'),
+                'line': t.get('contact:line') or t.get('line'),
+                'deliv': t.get('delivery') == 'yes',
+                'take': t.get('takeaway') == 'yes',
+                'wheel': t.get('wheelchair') in ('yes', 'limited'),
+                'ac': t.get('air_conditioning') == 'yes',
+                'smoke': t.get('smoking') if t.get('smoking') in ('yes', 'outside', 'separated', 'no') else None,
+                'pay': pay or None,
                 'addr': ' '.join(filter(None, [t.get('addr:housenumber'), t.get('addr:street'), t.get('addr:subdistrict'), t.get('addr:district')]))[:160] or None,
                 'src': 'osm',
                 'brand': t.get('brand') or t.get('brand:wikidata'),
@@ -246,7 +259,7 @@ def build():
         p['prov'] = classify_province(p['y'], p['x'])
         has_contact = bool(p.get('web') or p.get('social') or p.get('tel'))
         p['tier'] = 'A' if p.get('sub') == 'clinic' and has_contact else 'B' if (p.get('h') and has_contact) else 'C'
-        det = {k: p[k] for k in ('th', 'h', 'c', 'web', 'social', 'tel', 'addr', 'conf', 'ds', 'm', 'sub', 'hub250m', 'hub1km', 'prov', 'tier') if p.get(k) is not None and p.get(k) != ''}
+        det = {k: p[k] for k in ('th', 'h', 'c', 'web', 'social', 'tel', 'ig', 'fb', 'line', 'deliv', 'take', 'wheel', 'ac', 'smoke', 'pay', 'addr', 'conf', 'ds', 'm', 'sub', 'hub250m', 'hub1km', 'prov', 'tier') if p.get(k) is not None and p.get(k) != '' and p.get(k) is not False}
         if det:
             details[p['id']] = det
 

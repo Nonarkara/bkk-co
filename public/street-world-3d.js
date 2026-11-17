@@ -42,7 +42,7 @@ const TOD = {
 // 1 = Paper (Wada 202 Turquoise Green paper and Slate Color ink)
 // 2 = Gray (Monochrome manga sumi ink)
 // 3 = Clay (Architectural white/warm clay model)
-const LOOK_CODES = { color: 0, paper: 1, gray: 2, clay: 3 };
+const LOOK_CODES = { color: 0, paper: 1, gray: 2, clay: 3, manga: 4 };
 
 // Finish modes:
 // 0 = Lines + tone (Halftone screentone + ink outlines)
@@ -105,6 +105,12 @@ vec3 applyLook(vec3 col, float inkMask, float shadeTone) {
     vec3 ci = uInvert > 0.5 ? vec3(0.75, 0.78, 0.82) : vec3(0.22, 0.19, 0.17);
     vec3 base = mix(cs, cp, clamp(1.0 - shadeTone * 0.75, 0.0, 1.0));
     return mix(base, ci, clamp(inkMask, 0., 1.));
+  }
+  if (uLook == 4) {
+    // High-contrast Rokehan Manga Ink + Halftone Screentone
+    vec3 mp = uInvert > 0.5 ? vec3(0.05, 0.06, 0.08) : vec3(0.98, 0.98, 0.97);
+    vec3 mi = uInvert > 0.5 ? vec3(0.92, 0.94, 0.96) : vec3(0.07, 0.07, 0.09);
+    return mix(mp, mi, clamp(max(shadeTone * 0.92, inkMask), 0., 1.));
   }
   return col;
 }
@@ -197,7 +203,7 @@ void main() {
           if (uNight > 0.1 && sHash > 0.28) {
             winGlow = uNight * mix(0.55, 1.0, sHash);
           } else {
-            winFrame = 0.22;
+            winFrame = 0.62;
           }
         }
       }
@@ -214,11 +220,11 @@ void main() {
         if (uNight > 0.1 && wHash > (1.0 - 0.46 * uNight)) {
           winGlow = uNight * mix(0.45, 0.95, wHash);
         } else {
-          winFrame = 0.28;
+          winFrame = 0.68;
         }
-        // Subtle window sill/frame line
+        // Crisp architectural window sill/frame line
         float wBorder = min(min(bx - 0.18, 0.82 - bx), min(fy - 0.22, 0.78 - fy));
-        if (wBorder < 0.05) e = max(e, 0.42);
+        if (wBorder < 0.06) e = max(e, 0.72);
       }
     }
   } else {
@@ -489,6 +495,7 @@ export async function start(host, options = {}) {
       </select></label>
       <label class="model-look"><span class="sr">Look</span><select aria-label="Look" title="Surface palette (Rokehan Color, Wada Paper, Gray manga, Clay model)">
         <option value="color">Look: Color</option>
+        <option value="manga">Look: Manga Ink</option>
         <option value="paper">Look: Wada Paper</option>
         <option value="gray">Look: Gray</option>
         <option value="clay">Look: Clay</option>
@@ -988,6 +995,33 @@ export async function start(host, options = {}) {
       const rMesh = new THREE.Mesh(rGeo, matRoad);
       scene.add(rMesh);
       currentMeshes.push(rMesh);
+    }
+
+    // Screentoned, ink-outlined manga street trees (BUILD_F tier == 3, info = 6.0)
+    const trunkMat = new THREE.MeshBasicMaterial({ color: 0x3a2f29 });
+    const trunkGeo = new THREE.CylinderGeometry(0.16, 0.22, 2.4, 6);
+    const leafGeo = new THREE.DodecahedronGeometry(1.75, 1);
+    const vCount = leafGeo.attributes.position.count;
+    leafGeo.setAttribute('uw', new THREE.BufferAttribute(new Float32Array(vCount * 2), 2));
+    leafGeo.setAttribute('info', new THREE.BufferAttribute(new Float32Array(vCount).fill(6.0), 1));
+    leafGeo.setAttribute('seed', new THREE.BufferAttribute(new Float32Array(vCount).fill(0.5), 1));
+    let treeCount = 0;
+    for (let i = 0; i < streetSegments.length && treeCount < 140; i += 3) {
+      const seg = streetSegments[i];
+      if (!seg || seg.length < 2) continue;
+      const { x: x0, z: z0 } = seg[0], { x: x1, z: z1 } = seg[1];
+      const len = Math.hypot(x1 - x0, z1 - z0);
+      if (len < 12) continue;
+      const nx = -(z1 - z0) / len, nz = (x1 - x0) / len;
+      const tx = (x0 + x1) * 0.5 + nx * 4.8, tz = (z0 + z1) * 0.5 + nz * 4.8;
+      if (blocked(tx, tz)) continue;
+      const trunk = new THREE.Mesh(trunkGeo, trunkMat);
+      trunk.position.set(tx, 1.2, tz);
+      const canopy = new THREE.Mesh(leafGeo, matB);
+      canopy.position.set(tx, 3.4, tz);
+      scene.add(trunk, canopy);
+      currentMeshes.push(trunk, canopy);
+      treeCount++;
     }
 
     hasRelief = knownCount > 0;

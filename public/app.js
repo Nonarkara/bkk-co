@@ -750,14 +750,29 @@ function renderSheet(p, d, visits, report) {
     p.flags & F.LATE && ['🌙', 'late-night', 'Open late · 24-hour work spot'],
     addr && ['⌖', 'address', esc(addr)],
   ].filter(Boolean);
+  const amenityList = [
+    d.deliv && 'Delivery',
+    d.take && 'Takeaway',
+    d.ac && 'A/C',
+    d.wheel && 'Wheelchair accessible',
+    d.smoke && `Smoking: ${d.smoke}`,
+    ...(Array.isArray(d.pay) ? d.pay : []),
+  ].filter(Boolean);
+  const igUrl = d.ig ? safeLink(d.ig.startsWith('http') ? d.ig : `https://instagram.com/${d.ig.replace(/^@/, '')}`) : null;
+  const fbUrl = d.fb ? safeLink(d.fb.startsWith('http') ? d.fb : `https://facebook.com/${d.fb}`) : null;
   const moreFacts = [
     tel && ['☎', 'phone', `<a href="tel:${esc(tel.replace(/\(0\)/g, '').replace(/[^+\d]/g, ''))}">${esc(tel)}</a>`],
-    (safeLink(d.web) || safeLink(d.social) || addressSource || email) && ['↗', 'links', `<span class="place-contact">
+    (safeLink(d.web) || safeLink(d.social) || igUrl || fbUrl || d.line || addressSource || email) && ['↗', 'links', `<span class="place-contact">
       ${safeLink(d.web) ? `<a href="${esc(safeLink(d.web))}" target="_blank" rel="noopener nofollow">Website</a>` : ''}
       ${safeLink(d.social) ? `<a href="${esc(safeLink(d.social))}" target="_blank" rel="noopener nofollow">Social</a>` : ''}
+      ${igUrl ? `<a href="${esc(igUrl)}" target="_blank" rel="noopener nofollow">Instagram</a>` : ''}
+      ${fbUrl ? `<a href="${esc(fbUrl)}" target="_blank" rel="noopener nofollow">Facebook</a>` : ''}
+      ${d.line ? `<span>LINE: ${esc(d.line)}</span>` : ''}
       ${addressSource ? `<a href="${esc(addressSource)}" target="_blank" rel="noopener nofollow">Venue on LINE</a>` : ''}
       ${email && /^[\w.+-]+@[\w.-]+\.[a-z]+$/i.test(email) ? `<a href="mailto:${esc(email)}">Email</a>` : ''}</span>`],
     p.flags & F.OUTDOOR && ['☀', 'outdoor', 'Outdoor seating'],
+    amenityList.length && ['◈', 'amenities', esc(amenityList.join(' · '))],
+    p.k === 'cannabis' && d.prov && ['⌖', 'region', esc(`${d.prov}${d.tier ? ` · Tier ${d.tier}` : ''}`)],
     d.c && ['·', 'cuisine', esc(d.c.replace(/[_;]/g, ' '))],
   ].filter(Boolean);
   const factList = (rows, label) => rows.length ? `<ul class="facts" aria-label="${label}">${rows.map(([sym, key, content]) => `<li data-fact="${key}"><span class="sym" aria-hidden="true">${sym}</span><span class="fact-value">${content}</span></li>`).join('')}</ul>` : '';
