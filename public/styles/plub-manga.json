@@ -9,17 +9,17 @@
     "law": "A line here states a mapped fact. No layer may imply a height, an entrance, a footpath or a popularity the source does not carry."
   },
   "layers": [
-    { "id": "manga-ground", "type": "background", "paint": { "background-color": "#b5decc" } },
+    { "id": "manga-ground", "type": "background", "paint": { "background-color": "#f9c1ce" } },
 
     { "id": "manga-park", "type": "fill", "source": "openmaptiles", "source-layer": "park",
       "filter": ["match", ["geometry-type"], ["MultiPolygon", "Polygon"], true, false],
-      "paint": { "fill-color": "#b5decc", "fill-opacity": 1 } },
+      "paint": { "fill-color": "#f5ecc2", "fill-opacity": 0.9 } },
 
     { "id": "manga-landcover", "type": "fill", "source": "openmaptiles", "source-layer": "landcover", "minzoom": 10,
       "filter": ["all",
         ["match", ["geometry-type"], ["MultiPolygon", "Polygon"], true, false],
         ["match", ["get", "class"], ["wood", "grass", "sand", "shrub"], true, false]],
-      "paint": { "fill-color": "#b5decc", "fill-opacity": 0.85 } },
+      "paint": { "fill-color": "#fdd4bd", "fill-opacity": 0.72 } },
 
     { "id": "manga-landuse", "type": "fill", "source": "openmaptiles", "source-layer": "landuse", "maxzoom": 16,
       "filter": ["all",

@@ -43,6 +43,8 @@
 .list-group[data-list-group="library"] h3 { border-left:4px solid var(--cat-library); }
 .list-group[data-list-group="restaurant"] h3 { border-left:4px solid var(--cat-food); }
 .list-group[data-list-group="cannabis"] h3 { border-left:4px solid var(--cat-cannabis); }
+.list-pulse .pulse-links { display:flex; flex-wrap:wrap; gap:6px 12px; padding:8px var(--pad) 12px; font-size:var(--small); }
+.list-pulse .pulse-links a, .list-pulse .pulse-links button { color:var(--ink); text-decoration:underline; text-underline-offset:2px; font-weight:500; }
 .list-order { max-width:100%; }
 .list-order select { font:inherit; font-size:var(--micro); min-height:32px; padding:2px 4px; max-width:215px; color:var(--ink); border:0; border-bottom:1px solid var(--rule); border-radius:0; background:var(--paper); }
 .list li[data-id] { padding:0; min-height:0; }

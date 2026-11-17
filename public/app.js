@@ -275,6 +275,8 @@ async function setClubMode(on, { frame = true } = {}) {
   renderClubHotspots();
   window.Atlas?.setClubPalette?.(on);
   window.updateMascot?.(on);
+  if (map.getLayer('manga-ground')) map.setPaintProperty('manga-ground', 'background-color', on ? '#b5decc' : '#f9c1ce');
+  if (map.getLayer('manga-park')) map.setPaintProperty('manga-park', 'fill-color', on ? '#87c540' : '#f5ecc2');
   const hint = $('#list-guide-hint');
   if (hint) hint.innerHTML = on
     ? 'Pick a Thailand hotspot or tap a venue. Toggle <b>Einstein tiles</b> for density.'
@@ -493,7 +495,7 @@ function renderList() {
     const rows = places.slice(0, limit).map(p => row(p, sortKey(p, centre), true)).join('');
     return `<li class="list-group" data-list-group="${kind}"><h3 id="list-heading-${kind}">${label} <span>${fmt(places.length)}</span></h3>
       <ol aria-labelledby="list-heading-${kind}">${rows}</ol>${more}</li>`;
-  }).join('') : `<li class="meta">${loadingFood ? 'Loading food places…' : 'No matches in view. Pan, zoom out or clear a filter.'}</li>`;
+  }).join('') + (!state.clubMode ? `<li class="list-pulse"><h3>Talk of the town &amp; Research</h3><div class="pulse-links"><button type="button" class="linkish" data-act="discovery">50+50 editorial picks →</button><button type="button" class="linkish" data-act="featured">Featured spots →</button><a href="/research">Data bank &amp; methodology →</a></div></li>` : '') : `<li class="meta">${loadingFood ? 'Loading food places…' : 'No matches in view. Pan, zoom out or clear a filter.'}</li>`;
   if (focusedPlace) list.querySelector(`[data-id="${CSS.escape(focusedPlace)}"] button`)?.focus({ preventScroll: true });
   if (focusedGroup) list.querySelector(`[data-list-more="${CSS.escape(focusedGroup)}"]`)?.focus({ preventScroll: true });
 
@@ -798,6 +800,11 @@ function renderSheet(p, d, visits, report) {
     <div class="kindline">${PlaceTools.symbol(p.k)}${esc(CLUB_TYPES[p.sub] || KIND_LABEL[p.k])}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>
     ${factList(facts, 'Hours and address')}
     <section class="been place-actions"><a href="${esc(window.WorkFinder?.directions(p)||`https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}`)}" target="_blank" rel="noopener">Directions ↗</a><button type="button" class="send been-open" data-place-visit>✓ I've been here</button></section>
+    ${p.k === 'cannabis' ? `<details><summary>Source details · ${p.idx} of 4 fields</summary><p>Counts listed hours, website or social link, phone and address. ${p.hub ?? 0} other mapped listings within 1 km straight line.</p></details>` : `<section class="ggp">
+      ${petals(p)}
+      <div class="ggp-num"><span class="big">${p.idx}</span><span class="micro">Great Good Place index · top ${topShare(p)}% of Bangkok · <a href="/research">Research &amp; scoring →</a></span></div>
+      <table class="ggp-table">${GGP.map(([k, sym, label]) => `<tr><td class="sym">${sym}</td><td>${label}</td><td class="raw">${esc(rawValue(k, p, d))}</td></tr>`).join('')}</table>
+    </section>`}
     ${visitReportHtml(report)}
     ${factList(moreFacts, 'Contact and amenities')}
     ${p.k === 'cannabis' ? `<p class="src">Open-data listing. Licence and current availability are unverified. <a href="https://med-cannabis.dtam.moph.go.th/law/2418/" target="_blank" rel="noopener">Thai cannabis rules ↗</a></p>` : ''}
@@ -808,11 +815,6 @@ function renderSheet(p, d, visits, report) {
     <div class="place-reference-slot"></div>
     ${Atlas.facts(p)}
     ${window.TalkMedia?.section(p.id)||''}
-    ${p.k === 'cannabis' ? `<details><summary>Source details · ${p.idx} of 4 fields</summary><p>Counts listed hours, website or social link, phone and address. ${p.hub ?? 0} other mapped listings within 1 km straight line.</p></details>` : `<section class="ggp">
-      ${petals(p)}
-      <div class="ggp-num"><span class="big">${p.idx}</span><span class="micro">Great Good Place index · top ${topShare(p)}% of Bangkok</span></div>
-      <table class="ggp-table">${GGP.map(([k, sym, label]) => `<tr><td class="sym">${sym}</td><td>${label}</td><td class="raw">${esc(rawValue(k, p, d))}</td></tr>`).join('')}</table>
-    </section>`}
     ${visits.length ? `<section><ul class="moments">${visits.slice().reverse().map(window.momentHtml).join('')}</ul></section>` : ''}
     <section class="scores">${scoreHtml(p)}</section>
     <nav class="links">

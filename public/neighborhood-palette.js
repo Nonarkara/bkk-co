@@ -11,8 +11,8 @@
  const catalogue={source:'Palette · Sanzo Wada digital catalogue',path:'palette/data/colors.json',sha256:'555f11c32eb8133078fd470dd7d5320533aaa8b636f12fa06a8dd3d0ee2703b4',meaning:'Credited digital conversions, not exact historical ink.'};
  // Authored story areas: the combination and its colours are a considered choice.
  const authored={
-  ari:{chord:202,colors:[["Turquoise Green","#b5decc"],["Cobalt Green","#96d1aa"],["Slate Color","#34454c"]]},
-  thonglo:{chord:281,colors:[["Cobalt Green","#96d1aa"],["Pale Lemon Yellow","#ffefae"],["Benzol Green","#00978d"],["Antwarp Blue","#007190"]]},
+  ari:{chord:273,colors:[["Hermosa Pink","#f9c1ce"],["Sudan Brown","#a36752"],["Pansy Purple","#7d133a"]]},
+  thonglo:{chord:320,colors:[["Sulpher Yellow","#f5ecc2"],["Coral Red","#f58e84"],["Oil Green","#819238"],["Light Glaucous Blue","#a5c8d1"]]},
   charoenkrung:{chord:273,colors:[['Hermosa Pink','#f9c1ce'],['Pansy Purple','#7d133a'],['Sudan Brown','#a36752'],['Neutral Gray','#b6bfc1']]},
   samyan:{chord:320,colors:[['Sulpher Yellow','#f5ecc2'],['Light Glaucous Blue','#a5c8d1'],['Oil Green','#819238'],['Coral Red','#f58e84']]},
   ramkhamhaeng:{chord:241,colors:[['Pale Lemon Yellow','#ffefae'],['Isabella Color','#c5a56e'],['Dark Medici Blue','#547076']]},

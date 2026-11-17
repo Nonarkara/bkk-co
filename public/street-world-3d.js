@@ -854,6 +854,7 @@ export async function start(host, options = {}) {
     unproject = (x, z) => ({ lat: origin[0] - z / MY, lng: origin[1] + x / MX });
 
     const bList = file.buildings.features;
+    const hasAreaRelief = bList.some(b => b.properties?.render3D === true && Number.isFinite(b.properties?.heightM));
     const pos = [], uw = [], info = [], seedAttr = [], idx = [];
     const ground = [], groundIndices = [], outlines = [];
     let knownCount = 0;
@@ -862,12 +863,19 @@ export async function start(host, options = {}) {
       const geometry = building.geometry;
       const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
       const props = building.properties || {};
-      const { render3D, heightM, minHeightM } = props;
+      const { render3D, heightM, minHeightM, tags } = props;
       const baseHeight = minHeightM ?? 0;
       const known = render3D === true && Number.isFinite(heightM) && heightM > baseHeight;
       if (known) knownCount++;
 
       const bSeed = hashStr(String(building.id || props.sourceID || ''));
+      const rawLevels = parseFloat(tags?.['building:levels'] || '');
+      const hasLevels = !known && hasAreaRelief && Number.isFinite(rawLevels) && rawLevels > 0 && rawLevels <= 80;
+      const extrude = known || hasAreaRelief;
+      const effHeight = known ? heightM
+        : hasLevels ? Math.max(4.5, Math.min(180, rawLevels * 3.5))
+        : (7.5 + bSeed * 7.0);
+      const tier = known ? 2 : hasLevels ? 1 : 0;
       for (const polygon of polygons) {
         const rings = polygon.map(ring => ring.slice(0, -1).flatMap(([lng, lat]) => {
           const point = project(lat, lng);
@@ -890,7 +898,7 @@ export async function start(host, options = {}) {
         }
 
         const coords = [], holes = [];
-        const wallInfo = known ? Math.floor(heightM * 2) * 8 + 4 : 0;
+        const wallInfo = extrude ? Math.floor(effHeight * 2) * 8 + tier * 2 : 0;
         const roofInfo = wallInfo + 1;
 
         for (const ring of rings) {
@@ -900,11 +908,11 @@ export async function start(host, options = {}) {
             const xa = ring[i], za = ring[i + 1], xb = ring[j], zb = ring[j + 1];
             coords.push(xa, za);
             outlines.push(xa, 0.04, za, xb, 0.04, zb);
-            if (!known) continue;
-            outlines.push(xa, heightM + 0.02, za, xb, heightM + 0.02, zb);
+            if (!extrude) continue;
+            outlines.push(xa, effHeight + 0.02, za, xb, effHeight + 0.02, zb);
             const length = Math.hypot(xb - xa, zb - za);
             const v = pos.length / 3;
-            pos.push(xa, baseHeight, za, xb, baseHeight, zb, xb, heightM, zb, xa, heightM, za);
+            pos.push(xa, baseHeight, za, xb, baseHeight, zb, xb, effHeight, zb, xa, effHeight, za);
             uw.push(0, length, length, length, length, length, 0, length);
             info.push(wallInfo, wallInfo, wallInfo, wallInfo);
             seedAttr.push(bSeed, bSeed, bSeed, bSeed);
@@ -916,15 +924,15 @@ export async function start(host, options = {}) {
         const roofBase = pos.length / 3;
         for (let i = 0; i < coords.length; i += 2) {
           ground.push(coords[i], 0.02, coords[i + 1]);
-          if (!known) continue;
-          pos.push(coords[i], heightM, coords[i + 1]);
+          if (!extrude) continue;
+          pos.push(coords[i], effHeight, coords[i + 1]);
           uw.push(0, 0);
           info.push(roofInfo);
           seedAttr.push(bSeed);
         }
         for (const i of triangles) {
           groundIndices.push(groundBase + i);
-          if (known) idx.push(roofBase + i);
+          if (extrude) idx.push(roofBase + i);
         }
       }
     }
@@ -1641,7 +1649,7 @@ export async function start(host, options = {}) {
 
   // Publish readiness only after the first geometry frame has rendered.
   if (!await loadArea(startArea) || disposed) return;
-  setLook('color');
+  setLook('manga');
   setFinish('tone');
   setTod(TOD[initTod] ? initTod : 'day');
   setMode('sky');
