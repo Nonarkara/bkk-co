@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-11-17T10:24:23.898Z",
+  "observedAt": "2026-11-17T18:37:32.537Z",
   "origin": "https://club.nonarkara.org",
-  "sourceCommit": "801b780c1347c50ca1d6515c8d77317621d61e89",
+  "sourceCommit": "28e4014efc06d5b5aa95c157f858f3f2246d9603",
   "matched": [
     {
       "path": "404.html",
@@ -10,8 +10,8 @@
     },
     {
       "path": "app.js",
-      "bytes": 59151,
-      "sha256": "77fba2082fec83acd6e0d9d4759e354404b2a8d1fef752b65f0c721ef70719a6"
+      "bytes": 59801,
+      "sha256": "bb2c5d018b558b2081f45d97a15145063f488989bcf6fecce048b42c9b4026e8"
     },
     {
       "path": "atlas-model.js",
@@ -921,7 +921,7 @@
     {
       "path": "data/height-coverage.json",
       "bytes": 3839,
-      "sha256": "777bab197ccd8e8ca08762879da0180a908b484cce4dfe8fcd5d335b121ada49"
+      "sha256": "93c0d8617e30de28c107f33369102ee47e08efedbbd23c58eca8b769f8cb5286"
     },
     {
       "path": "data/hoods.json",
@@ -1215,13 +1215,13 @@
     },
     {
       "path": "list-tools.css",
-      "bytes": 6370,
-      "sha256": "98ca3ae971fce89f0feafa814c8e481bc01ab04ea6c0b8788182f592ad1e97c3"
+      "bytes": 6649,
+      "sha256": "4182dd829ccea1028de8ddc10f543b5c6a7403f119fcdadb347052e723fa0412"
     },
     {
       "path": "manga-lens.js",
       "bytes": 11654,
-      "sha256": "ccfa173071c0db304cf2171af875f243b52d65c9e6fb154f028307240d10b23b"
+      "sha256": "80d0f71d47d2028a39dbb25e9bcd50f98c06e7a399b6820ac0bfca056af6a596"
     },
     {
       "path": "manifest.webmanifest",
@@ -1240,8 +1240,8 @@
     },
     {
       "path": "neighborhood-palette.js",
-      "bytes": 7747,
-      "sha256": "15b8e12d701017d17509ca2c2de5affb5d74a5415466c423c906be945d1fe053"
+      "bytes": 7753,
+      "sha256": "dc94cdcc80adf79e1136ccb88513d1337eba79ac4098deebd3d69b2c7a7cc491"
     },
     {
       "path": "neighborhood-photos/commons-103754956.webp",
@@ -1980,8 +1980,8 @@
     },
     {
       "path": "street-world-3d.js",
-      "bytes": 65187,
-      "sha256": "6a4b7d33e3ecc7e3090521d70561c55ecdaa06b45d43a70e2467be24081cd5b2"
+      "bytes": 65757,
+      "sha256": "47fc05733cdaf2738c785853351022f59a79df1c378b679c015ded2c19024864"
     },
     {
       "path": "street-world.css",
@@ -1995,13 +1995,13 @@
     },
     {
       "path": "style.css",
-      "bytes": 35577,
-      "sha256": "9da51b382e8f7b9b9dc018357df2442dd1451f4f952aac4fabdd1ea305205ebe"
+      "bytes": 35652,
+      "sha256": "3878ffabc666173b070d23c5b9dee7c45f66e490b104409a65f2a01195b1ad79"
     },
     {
       "path": "styles/plub-manga.json",
-      "bytes": 7876,
-      "sha256": "741a33ccba510f2d26f6a954b6d0eb506f58e24cc73ce4e21b296101047e3fe6"
+      "bytes": 7878,
+      "sha256": "f030b5e6e9b659deb9e1672d0c193654b50926869137a05009612c8f52608f80"
     },
     {
       "path": "talk-media.css",
