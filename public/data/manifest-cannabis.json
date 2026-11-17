@@ -1,15 +1,15 @@
 {
  "file": "places-cannabis.json",
- "bytes": 104639,
- "sha256": "081ff8c46915753a59d0afabee94b7e09a7e7dbd9401eee0f1487e1569421533",
- "total": 328,
+ "bytes": 106818,
+ "sha256": "16aa55f014e878301de97b925f3524be7b22c68a903f003f96a65a0d2cf642e7",
+ "total": 329,
  "bySource": {
-  "osm": 228,
+  "osm": 229,
   "overture": 100
  },
  "bySub": {
   "dispensary": 273,
-  "cafe": 21,
+  "cafe": 22,
   "clinic": 3,
   "other": 31
  },
@@ -18,7 +18,7 @@
   "Pattaya / Chonburi": 56,
   "Regional Thailand": 55,
   "Chiang Mai": 27,
-  "Phuket": 16,
+  "Phuket": 17,
   "Samui / Surat Thani": 12,
   "Hua Hin / Prachuap": 2
  },
