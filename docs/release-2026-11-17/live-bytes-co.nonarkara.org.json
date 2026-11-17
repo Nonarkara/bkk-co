@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-11-17T08:19:13.650Z",
+  "observedAt": "2026-11-17T10:22:09.318Z",
   "origin": "https://co.nonarkara.org",
-  "sourceCommit": "994b5b79e264f2b21b97e256d36c3e1e9d621cc7",
+  "sourceCommit": "801b780c1347c50ca1d6515c8d77317621d61e89",
   "matched": [
     {
       "path": "404.html",
@@ -1985,8 +1985,8 @@
     },
     {
       "path": "street-world-3d.js",
-      "bytes": 62557,
-      "sha256": "48b28b24dc0bbcff58a15f3d37f80cb505cd2ad836acb50dc0fcb9d6b2c3b114"
+      "bytes": 65187,
+      "sha256": "6a4b7d33e3ecc7e3090521d70561c55ecdaa06b45d43a70e2467be24081cd5b2"
     },
     {
       "path": "street-world.css",
