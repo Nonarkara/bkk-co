@@ -513,6 +513,8 @@ export async function start(host, options = {}) {
       </select></label>
       <button type="button" class="model-tool-btn" data-act-2pt aria-pressed="false" title="Keep vertical building lines parallel (2-point architectural perspective)">2-pt</button>
       <button type="button" class="model-tool-btn" data-act-avatar aria-pressed="false" title="Show or hide the walking character in Street mode">Avatar</button>
+      <button type="button" class="model-tool-btn" data-act-shot title="Save PNG screenshot of this 3D view">📷 Shot</button>
+      <button type="button" class="model-tool-btn" data-act-reset-hunt title="Reset Scavenger Hunt progress for this district">Reset Hunt</button>
       </div></details>
       <button type="button" class="model-close" aria-label="Back to map">Back to map</button>
       <div class="model-coverage"><p role="status"></p><button type="button" class="model-relief" hidden></button><span class="sr" data-hunt-status aria-live="polite"></span></div>
@@ -676,7 +678,20 @@ export async function start(host, options = {}) {
     const total = huntTargets.length;
     if (huntBtn) {
       huntBtn.hidden = !total;
-      huntBtn.querySelector('.hunt-label').textContent = total && done === total ? `Hunt ${done}/${total} ✓` : `Hunt ${done}/${total}`;
+      let label = total && done === total ? `Hunt ${done}/${total} ✓` : `Hunt ${done}/${total}`;
+      const next = huntTargets.find(t => !found.has(t.p.id));
+      if (next) {
+        const px = S.mode === 'walk' ? S.px : S.x;
+        const pz = S.mode === 'walk' ? S.pz : S.z;
+        const distM = Math.round(Math.hypot(next.x - px, next.z - pz));
+        const yaw = S.mode === 'walk' ? S.wyaw : S.yaw;
+        const targetAng = Math.atan2(-(next.x - px), -(next.z - pz));
+        const rel = ((targetAng - yaw) % (Math.PI * 2) + Math.PI * 3) % (Math.PI * 2) - Math.PI;
+        const arrows = ['↑', '↖', '←', '↙', '↓', '↘', '→', '↗'];
+        const arrow = arrows[Math.round(((rel + Math.PI * 2) % (Math.PI * 2)) / (Math.PI / 4)) % 8];
+        label += ` · ${distM}m ${arrow}`;
+      }
+      huntBtn.querySelector('.hunt-label').textContent = label;
       huntBtn.classList.toggle('is-complete', total > 0 && done === total);
     }
     if (msg) huntStatus.textContent = msg;
@@ -1143,7 +1158,12 @@ export async function start(host, options = {}) {
         );
         ring.rotation.x = -Math.PI / 2;
         ring.position.y = 0.25;
-        beacon.add(pillar, ring);
+        const diamond = new THREE.Mesh(
+          new THREE.OctahedronGeometry(2.1, 0),
+          new THREE.MeshBasicMaterial({ color: 0xdd4027 })
+        );
+        diamond.position.y = 10.5;
+        beacon.add(pillar, ring, diamond);
         beacon.visible = !isFound;
         huntGroup.add(beacon);
         huntTargets.push({ p, x: pt.x, z: pt.z, btn, beacon });
@@ -1206,10 +1226,25 @@ export async function start(host, options = {}) {
     minimapCtx.lineWidth = 1.5;
     minimapCtx.strokeRect(tx - nearHalf, tz - nearHalf, nearHalf * 2, nearHalf * 2);
 
-    // Draw pins
+    // Draw pins + Scavenger Hunt targets on radar
+    const foundSet = getFoundHunt();
+    const huntIds = new Set(huntTargets.map(t => t.p.id));
     for (const item of placePins) {
-      minimapCtx.fillStyle = '#34454c';
-      minimapCtx.fillRect(cx + item.x * scale - 1.5, cy + item.z * scale - 1.5, 3, 3);
+      if (huntIds.has(item.p.id)) {
+        const isFound = foundSet.has(item.p.id);
+        minimapCtx.fillStyle = isFound ? '#87c540' : '#dd4027';
+        minimapCtx.beginPath();
+        minimapCtx.arc(cx + item.x * scale, cy + item.z * scale, isFound ? 3.2 : 4.4, 0, Math.PI * 2);
+        minimapCtx.fill();
+        if (!isFound) {
+          minimapCtx.strokeStyle = '#ffffff';
+          minimapCtx.lineWidth = 1.2;
+          minimapCtx.stroke();
+        }
+      } else {
+        minimapCtx.fillStyle = '#34454c';
+        minimapCtx.fillRect(cx + item.x * scale - 1.5, cy + item.z * scale - 1.5, 3, 3);
+      }
     }
 
     // Draw camera / walker position & view cone
@@ -1421,6 +1456,28 @@ export async function start(host, options = {}) {
     }
     const mode = event.target.closest('[data-mode]');
     if (mode) { setMode(mode.dataset.mode, mode.dataset.preset); return; }
+    if (event.target.closest('[data-act-shot]')) {
+      renderer.render(scene, cam);
+      const a = document.createElement('a');
+      a.download = `plub-3d-${activeArea?.id || 'bangkok'}.png`;
+      a.href = renderer.domElement.toDataURL('image/png');
+      a.click();
+      return;
+    }
+    if (event.target.closest('[data-act-reset-hunt]')) {
+      saveFoundHunt(new Set());
+      huntProgress.set(huntStorageKey(), new Set());
+      for (const t of huntTargets) {
+        if (t.beacon) t.beacon.visible = true;
+        if (t.btn) {
+          t.btn.classList.remove('is-found');
+          t.btn.querySelector('.pin-tag').textContent = `★ ${t.p.n}`;
+        }
+      }
+      updateHuntHud('Scavenger Hunt reset — 5 spots ready');
+      invalidate();
+      return;
+    }
     if (event.target.closest('[data-act-hunt]')) {
       const found = getFoundHunt();
       const next = huntTargets.find(t => !found.has(t.p.id));
@@ -1571,6 +1628,7 @@ export async function start(host, options = {}) {
       renderer.render(scene, cam);
       layoutPins();
       drawMinimap();
+      updateHuntHud();
       if (shaderFailed && host.dataset.ready === 'true') { dispose(); opt.onError(); return; }
     }
     if (moving() && !raf) raf = requestAnimationFrame(loop);
