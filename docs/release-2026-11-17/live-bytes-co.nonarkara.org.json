@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-11-17T18:34:12.998Z",
+  "observedAt": "2026-11-17T19:11:45.047Z",
   "origin": "https://co.nonarkara.org",
-  "sourceCommit": "28e4014efc06d5b5aa95c157f858f3f2246d9603",
+  "sourceCommit": "58dba9536184e0f769a077a0a1685c3cc7f4f75c",
   "matched": [
     {
       "path": "404.html",
@@ -1200,8 +1200,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 10338,
-      "sha256": "5a76617d5ef45189f4a7490d5ff39566474b4bf9f0bdb973f3e65e2c94d3bd81"
+      "bytes": 10333,
+      "sha256": "3dbcdc1fcc9ee64093f7804fdc2d95d70f8237b9bb6e035b6ce8bd0226e25317"
     },
     {
       "path": "journey-model.js",
@@ -1245,8 +1245,8 @@
     },
     {
       "path": "neighborhood-palette.js",
-      "bytes": 7753,
-      "sha256": "dc94cdcc80adf79e1136ccb88513d1337eba79ac4098deebd3d69b2c7a7cc491"
+      "bytes": 7747,
+      "sha256": "41372f570e19ea045ada795b78d146315ae0b70610e1aa77bed06053314286ce"
     },
     {
       "path": "neighborhood-photos/commons-103754956.webp",
