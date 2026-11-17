@@ -1,6 +1,6 @@
 {
   "stamp": "2026-11-17",
-  "base": "http://localhost:43991",
+  "base": "https://co.nonarkara.org",
   "planted": false,
   "viewports": [
     {
@@ -335,7 +335,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 288
+      "observedHandoffMs": 282
     },
     "notebook": 1,
     "walkthrough": {

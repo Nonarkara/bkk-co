@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-11-17T17:31:37.009Z",
+  "observedAt": "2026-11-17T18:34:12.998Z",
   "origin": "https://co.nonarkara.org",
-  "sourceCommit": "692c2ff67a93eab200de9670b4f485bfed3d03ef",
+  "sourceCommit": "28e4014efc06d5b5aa95c157f858f3f2246d9603",
   "matched": [
     {
       "path": "404.html",
@@ -921,7 +921,7 @@
     {
       "path": "data/height-coverage.json",
       "bytes": 3839,
-      "sha256": "777bab197ccd8e8ca08762879da0180a908b484cce4dfe8fcd5d335b121ada49"
+      "sha256": "93c0d8617e30de28c107f33369102ee47e08efedbbd23c58eca8b769f8cb5286"
     },
     {
       "path": "data/hoods.json",
@@ -1245,8 +1245,8 @@
     },
     {
       "path": "neighborhood-palette.js",
-      "bytes": 7742,
-      "sha256": "d617265ba7d131b86122ce7d27b68c89c0cb98222a000cca4334ffa03ab89040"
+      "bytes": 7753,
+      "sha256": "dc94cdcc80adf79e1136ccb88513d1337eba79ac4098deebd3d69b2c7a7cc491"
     },
     {
       "path": "neighborhood-photos/commons-103754956.webp",
