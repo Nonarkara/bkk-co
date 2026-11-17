@@ -11,6 +11,7 @@ const map={on(n,f){listeners.set(n,[...(listeners.get(n)||[]),f])},getLayer:id=>
 vm.runInNewContext(code,{window,document:{createElement:()=>({getContext:()=>context})},fetch:async()=>({json:async()=>areas})});const api=window.NeighborhoodPalette;
 api.attach(map);await new Promise(r=>setTimeout(r,20));
 function validate(list){assert.equal(list.length,12,'twelve neighbourhood grounds');
+ assert.equal(new Set(list.map(a=>a.chord)).size,list.length,'each neighbourhood has its own Wada combination');
  for(const a of list){
   const s=areas.areas.find(s=>s.id===a.id);assert(s,'the area exists in the shipped list');
   assert.equal(a.x,s.anchor.x,'Anchor longitude must be existing source');assert.equal(a.y,s.anchor.y,'Anchor latitude must be existing source');
@@ -24,6 +25,7 @@ function validate(list){assert.equal(list.length,12,'twelve neighbourhood ground
 validate(api.areas);
 assert.throws(()=>validate(api.areas.map((a,i)=>i? a:{...a,x:a.x+.01})),/Anchor longitude/,'False anchor negative control must fail');
 assert.throws(()=>validate(api.areas.map((a,i)=>i? a:{...a,radiusM:1000})),/800/,'False radius negative control must fail');
+assert.throws(()=>validate(api.areas.map((a,i)=>i? a:{...a,chord:api.areas[1].chord})),/own Wada combination/,'Shared-combination negative control must fail');
 assert.equal(api.catalogue.sha256,proof.sha256);
 for(const a of api.areas)if(proof.combinations[a.chord])for(const c of a.colors)assert(proof.combinations[a.chord].some(p=>p.hex===c[1]),`combination ${a.chord} keeps only proved colours`);
 assert.match(api.legend(),/not district boundaries/);assert.match(api.legend(),/unassigned/);assert.match(api.legend(),/^<details/);
