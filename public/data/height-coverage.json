@@ -5,7 +5,7 @@
   "licenseURL": "https://www.openstreetmap.org/copyright",
   "snapshotMD5": "215e1ff30fe4d4adef2db3d664dab9da",
   "snapshotAsOf": "2026-10-24T20:20:51Z",
-  "measuredOn": "2026-11-15",
+  "measuredOn": "2026-11-18",
   "method": "Every building polygon in the pinned extraction was joined by OSM id to the shipped street-world geometry. A height counts only when the source tag gives metres; a floor count is reported separately and never converted.",
   "rule": "Only explicit height / building:height tags in metres are drawn. building:levels is recorded as knowable but not a height, so those footprints stay flat. No floor conversion, no default height, no generated detail.",
   "populations": {

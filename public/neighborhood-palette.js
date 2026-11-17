@@ -53,7 +53,7 @@
   const rad=Math.PI/180,lat=area.y*rad,lon=area.x*rad,d=area.radiusM/6371008.8,ring=[];
   for(let i=0;i<=96;i++){const bearing=i/96*2*Math.PI,phi=Math.asin(Math.sin(lat)*Math.cos(d)+Math.cos(lat)*Math.sin(d)*Math.cos(bearing)),lambda=lon+Math.atan2(Math.sin(bearing)*Math.sin(d)*Math.cos(lat),Math.cos(d)-Math.sin(lat)*Math.sin(phi));ring.push([lambda/rad,phi/rad])}
   ring[ring.length-1]=ring[0].slice();
-  return {type:'Feature',id:area.id,properties:{id:area.id,name:area.name,chord:area.chord,anchorSource:'data/street-areas.json',anchorID:area.anchorID,anchorX:area.x,anchorY:area.y,radiusM:area.radiusM,role:'editorial-story-frame',meaning:'800m narrative circle, not a district boundary or amenity evidence'},geometry:{type:'Polygon',coordinates:[ring]}};
+  return {type:'Feature',id:area.id,properties:{id:area.id,name:area.name,chord:area.chord,toneId:area.id,anchorSource:'data/street-areas.json',anchorID:area.anchorID,anchorX:area.x,anchorY:area.y,radiusM:area.radiusM,role:'editorial-story-frame',meaning:'800m narrative circle, not a district boundary or amenity evidence'},geometry:{type:'Polygon',coordinates:[ring]}};
  }
  function pattern(area){
   const c=document.createElement('canvas');c.width=c.height=64;const g=c.getContext('2d'),colors=area.colors.map(x=>x[1]);
@@ -66,11 +66,11 @@
  }
  function sync(){
   if(!map?.getLayer('manga-ground')||!areas.length)return;
-  for(const area of areas){const id='neighborhood-chord-'+area.chord;if(!map.hasImage(id))map.addImage(id,pattern(area))}
+  for(const area of areas){const id='neighborhood-tone-'+area.id;if(!map.hasImage(id))map.addImage(id,pattern(area))}
   if(!map.getSource(source))map.addSource(source,{type:'geojson',tolerance:0,data:{...empty(),features:areas.map(circle)}});
   if(!map.getLayer(layer)){
    const layers=map.getStyle().layers,index=layers.findIndex(l=>l.id==='manga-ground'),before=layers[index+1]?.id;
-   map.addLayer({id:layer,type:'fill',source,layout:{visibility:'none'},paint:{'fill-pattern':['concat','neighborhood-chord-',['to-string',['get','chord']]],'fill-opacity':.16,'fill-opacity-transition':{duration:0,delay:0}}},before);
+   map.addLayer({id:layer,type:'fill',source,layout:{visibility:'none'},paint:{'fill-pattern':['concat','neighborhood-tone-',['to-string',['get','toneId']]],'fill-opacity':.16,'fill-opacity-transition':{duration:0,delay:0}}},before);
   }
   const wanted=window.MangaLens?.active?'visible':'none';if(map.getLayoutProperty(layer,'visibility')!==wanted)map.setLayoutProperty(layer,'visibility',wanted);
  }
