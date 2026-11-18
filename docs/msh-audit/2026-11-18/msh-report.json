@@ -1,6 +1,6 @@
 {
   "stamp": "2026-11-18",
-  "base": "http://127.0.0.1:43827",
+  "base": "https://co.nonarkara.org",
   "planted": false,
   "viewports": [
     {
@@ -64,7 +64,7 @@
         "lines": 2,
         "textWidth": 321.765625,
         "factsHeight": 64.890625,
-        "directionsBottom": 216.18753051757812,
+        "directionsBottom": 216.1875,
         "pass": true
       },
       "visitReading": {
@@ -335,7 +335,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 295
+      "observedHandoffMs": 330
     },
     "notebook": 1,
     "walkthrough": {

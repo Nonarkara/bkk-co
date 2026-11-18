@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-11-18T05:30:29.452Z",
+  "observedAt": "2026-11-18T06:01:55.170Z",
   "origin": "https://club.nonarkara.org",
-  "sourceCommit": "28202462382432f38d6ac5ace69a26448efed865",
+  "sourceCommit": "82c6f9767f1aeaea603de5965498a27d81256e65",
   "matched": [
     {
       "path": "404.html",
@@ -10,8 +10,8 @@
     },
     {
       "path": "app.js",
-      "bytes": 59807,
-      "sha256": "7ac0f053fa033ec0d9085ee9f05e93aa5ea31b9500818ae80fd02fc85555e67d"
+      "bytes": 59799,
+      "sha256": "483d485935f7eca221e16978a76efaa437d8f70d158adbb97fc3d30595707fc4"
     },
     {
       "path": "atlas-model.js",
@@ -950,8 +950,8 @@
     },
     {
       "path": "data/manifest-cannabis.json",
-      "bytes": 1197,
-      "sha256": "b899e76b5099d3553a258c336ca0162f8516a0c1ec66ccbb838292dd47192788"
+      "bytes": 1667,
+      "sha256": "5ec96e80285b665695b9e24f45e2fb00f03df1c5a0f3919112ff6d17d6bc28ee"
     },
     {
       "path": "data/manifest.json",
@@ -965,8 +965,8 @@
     },
     {
       "path": "data/places-cannabis.json",
-      "bytes": 106818,
-      "sha256": "16aa55f014e878301de97b925f3524be7b22c68a903f003f96a65a0d2cf642e7"
+      "bytes": 107060,
+      "sha256": "459906dd53ff51981ff3d92eef83b0a9090333e5803276edd4817c69e60b6999"
     },
     {
       "path": "data/places-food.json",
@@ -1215,8 +1215,8 @@
     },
     {
       "path": "list-tools.css",
-      "bytes": 7597,
-      "sha256": "3aa2d54c2be056ddc4a627330b8065efd26f4d59dff1599b9171a038d8dd09f4"
+      "bytes": 6941,
+      "sha256": "0a9295eb4f251e756f78c1eee82be3390436bea93b04fa0b4a514fe145d3d338"
     },
     {
       "path": "manga-lens.js",
@@ -1995,8 +1995,8 @@
     },
     {
       "path": "style.css",
-      "bytes": 35655,
-      "sha256": "fd8b9c14f2806d4a79d32d1c894fda10ee4dfc0618e9758f8671187972850f7e"
+      "bytes": 35647,
+      "sha256": "dd2d291d70966edfd1521ed6359360af7d866312cac22d201da10bf28a2d3d2b"
     },
     {
       "path": "styles/plub-manga.json",
@@ -2064,10 +2064,10 @@
   "rewritten": [
     {
       "path": "index.html",
-      "bytes": 10828,
-      "sha256": "c824e8f071941db66b161f17d5944ccdb53d23a3224e2d94752542499e1343b8",
-      "localBytes": 10827,
-      "localSha256": "03f50a89f927edea863f20fa4e93e4435aec04a5de46618341338a7b9aef258a"
+      "bytes": 10370,
+      "sha256": "23564c3a494007840134c6593fa5f4adcb8c5cac035e047c182f2b787511c3f9",
+      "localBytes": 10369,
+      "localSha256": "237e86954e9b6bb7b0f316b138dbf93322cd9d7f5b4ec8e64daf9aa168839ae8"
     }
   ],
   "orphansStillServed": [],
