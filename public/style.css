@@ -175,21 +175,21 @@ body.club-mode {
 body.club-mode .mark .semi { color: var(--club-seam); }
 body.club-mode .bar,
 body.club-mode .chips,
-body.club-mode .list-categories { border-color: var(--club-rule); }
+body.club-mode .rail-header { border-color: var(--club-rule); }
 body.club-mode #map { background: var(--club-guide); }
 body.club-mode .bar-btn-primary,
-body.club-mode .list-tools > .list-walkthrough,
+body.club-mode .rail-header .list-walkthrough,
 body.club-mode .chips button[aria-pressed="true"] { border-color: var(--club-ink); color: var(--club-ink); }
 body.club-mode .bar-btn-primary:hover,
-body.club-mode .list-tools > .list-walkthrough:hover { background: var(--club-ink); color: var(--paper); }
+body.club-mode .rail-header .list-walkthrough:hover { background: var(--club-ink); color: var(--paper); }
 body.club-mode .club-hotspots { background: var(--wash); border-color: var(--club-rule); }
 body.club-mode .hotspots-head strong { color: var(--club-ink); }
 body.club-mode .hotspots-head { color: var(--club-muted); }
 body.club-mode .hotspot-pill { border-color: var(--club-rule); color: var(--club-ink); }
 body.club-mode .hotspot-pill:hover { border-color: var(--club-ink); background: var(--club-guide); }
 body.club-mode .hotspot-pill b { background: var(--club-leaf); color: var(--club-ink); }
-body.club-mode .list-tools > .list-find,
-body.club-mode .list-tools > .list-day { display: none; }
+body.club-mode .rail-header .list-find,
+body.club-mode .rail-header .list-day { display: none; }
 .club-hotspots { padding: 8px var(--pad); border-bottom: 1px solid var(--rule); background: var(--wash); flex: none; }
 .club-hotspots[hidden] { display: none; }
 .hotspots-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px; font-size: var(--micro); color: var(--muted); }
@@ -480,6 +480,6 @@ body.club-mode .bar-actions #list-toggle { min-height: 32px; padding-inline: 8px
 body.club-mode .footprint-key .footprint-swatch { display: none; }
 body.club-mode .footprint-club-symbol { display: inline-flex; }
 
-body.club-mode .list-tools > .list-walkthrough { display: none; }
-@media (min-width: 900px) { body.club-mode .list-tools { display: none; } }
+body.club-mode .rail-header .list-walkthrough { display: none; }
+@media (min-width: 900px) { body.club-mode .rail-header { display: none; } }
 body.club-mode .bar-actions { max-width: 100%; flex-wrap: wrap; }

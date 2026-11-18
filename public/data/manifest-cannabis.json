@@ -1,7 +1,7 @@
 {
  "file": "places-cannabis.json",
- "bytes": 106818,
- "sha256": "16aa55f014e878301de97b925f3524be7b22c68a903f003f96a65a0d2cf642e7",
+ "bytes": 107060,
+ "sha256": "459906dd53ff51981ff3d92eef83b0a9090333e5803276edd4817c69e60b6999",
  "total": 329,
  "bySource": {
   "osm": 229,
@@ -33,6 +33,13 @@
    "release": "2026-10-21.0",
    "licence": "CDLA-Permissive-2.0",
    "confidenceFloor": 0.5
+  },
+  {
+   "name": "DTAM licensed cannabis register (data.go.th dtam-serv-002)",
+   "asOf": "2026-05-11",
+   "licence": "Open Data Common",
+   "records": 1722,
+   "corroborated": 8
   }
  ],
  "builder": "python3 scripts/build-cannabis.py",
@@ -47,7 +54,14 @@
    "file": "places-2026-10-21.0-bkk.parquet",
    "release": "2026-10-21.0",
    "licence": "CDLA-Permissive-2.0"
+  },
+  "dtam": {
+   "file": "dtam-serv-002.csv",
+   "md5": "7d0eb15989275db4111f793c1f3eb324",
+   "asOf": "2026-05-11",
+   "licence": "Open Data Common",
+   "url": "https://data.go.th/dataset/dtam-serv-002"
   }
  },
- "note": "CL;UB only. The signed PL;UB catalogue (places-work.json) is never written here."
+ "note": "CL;UB only. The signed PL;UB catalogue (places-work.json) is never written here. DTAM corroborates mapped venues by name + district; no coordinates are inferred."
 }

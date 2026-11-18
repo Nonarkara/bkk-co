@@ -1,50 +1,45 @@
 /* One finder wins. Work spots is the primary action; Walk 3D World is secondary.
    Explore/Filters are deliberate disclosures, not equal peers. */
-.list-tools { display:flex; align-items:center; flex-wrap:wrap; gap:2px 4px; padding:1px var(--pad); flex:none; }
-.list-tools > .list-find { /* primary action — Good for work */
-  min-height:24px; padding:0 6px; font-weight:600; font-size:var(--small);
+.rail-header { display:flex; align-items:center; flex-wrap:wrap; gap:3px; padding:2px var(--pad); flex:none; }
+.rail-header .list-find { /* primary action — Good for work */
+  min-height:20px; padding:0 6px; font-weight:600; font-size:9px;
   border:1px solid var(--ink); background:var(--ink); color:var(--paper);
   cursor:pointer; }
-.list-tools > .list-find:hover { background:var(--muted); }
-.list-tools > .list-find[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
-.list-tools > .list-walkthrough { /* secondary action */
-  min-height:22px; padding:1px 6px; font-weight:500; font-size:var(--micro);
+.rail-header .list-find:hover { background:var(--muted); }
+.rail-header .list-find[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
+.rail-header .list-walkthrough { /* secondary action */
+  min-height:18px; padding:0 5px; font-weight:500; font-size:8px;
   border:1px solid var(--rule); background:var(--paper); color:var(--muted); cursor:pointer; }
-.list-tools > .list-walkthrough:hover { border-color:var(--ink); color:var(--ink); background:var(--wash); }
-.list-tools > .list-walkthrough[aria-pressed="true"] { border-color:var(--ink); color:var(--ink); background:var(--wash); font-weight:600; }
-.list-tools > .list-day { min-height:22px; font-size:var(--micro); font-weight:600; text-underline-offset:3px; }
-.list-categories > details > summary { /* tertiary disclosure — hairline, no fill */
-  min-height:20px; display:list-item; cursor:pointer; padding:0;
-  color:var(--muted); font-weight:500; border:0; background:none; font-size:var(--micro); }
-.list-categories > details > summary::marker { content: "▸ "; color:var(--muted); }
-.list-categories > details[open] > summary { color:var(--ink); font-weight:600; }
-.list-categories > details[open] { flex-basis:100%; }
-/* Flat category band: moods and filters as sharp scannable chips in minimal vertical space */
-.list-categories { display:flex; flex-direction:column; gap:2px; padding:1px var(--pad) 0; flex:none; border-bottom:1px solid var(--rule); }
-.cat-section { display:flex; flex-direction:column; gap:2px; }
-.cat-title { font-size:9px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin:1px 0; }
-.cat-chips { display:flex; flex-wrap:wrap; gap:2px 3px; margin:0; }
-.cat-chips button { min-height:18px; padding:0 5px; font-size:9px; font-weight:500; color:var(--muted); border:1px solid var(--rule); background:var(--paper); cursor:pointer; white-space:nowrap; }
-.cat-chips button:hover { border-color:var(--ink); color:var(--ink); }
-.cat-chips button[aria-pressed="true"] { border-color:var(--ink); color:var(--ink); background:var(--wash); font-weight:600; }
-.cat-count { font-size:9px; color:var(--muted); margin:0; }
-/* Explore actions inside the disclosure keep the disclosed-chip language */
-.list-categories .explore-actions { padding:0; gap:2px 8px; flex-wrap:wrap; overflow:visible; }
-.list-categories .explore-actions button, .list-categories .explore-actions a { border:0; padding:1px 0; height:auto; min-height:20px; font-size:var(--micro); text-align:left; }
-.list-categories .explore-actions a { color:var(--ink); text-decoration:underline; text-underline-offset:2px; }
-.list-categories .explore-actions button[aria-pressed=true] { background:var(--paper); font-weight:600; text-decoration:underline; }
-.list-categories .src { margin:1px 0 2px; font-size:9px; }
-.list-tools .list-close { flex:none; margin:0 0 0 auto; min-width:28px; width:28px; height:28px; font-size:var(--big); }
-.list-categories .list-order { font-size:9px; margin:1px 0; }
-.list-categories .list-order select { min-height:18px; font-size:9px; padding:0 3px; max-width:100%; color:var(--ink); border:0; border-bottom:1px solid var(--rule); border-radius:0; background:var(--paper); }
-.list-origin { font-size:9px; margin:1px 0; color:var(--muted); }
-.list-scope { display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:2px 4px; padding:1px var(--pad) 0; flex:none; }
-.list-scope .count { margin:0; padding:0; font-size:var(--micro); white-space:normal; }
-.scope-tiles { min-height:18px; padding:0 4px; font-size:9px; font-weight:600; border:1px solid var(--rule); background:var(--paper); color:var(--ink); cursor:pointer; }
-.scope-tiles:hover { border-color:var(--ink); background:var(--wash); }
-.scope-tiles[aria-pressed="true"] { border-color:var(--ink); background:var(--guide); color:var(--ink); }
-#list-wrap .list-scope h2 { padding:0; font-size:var(--small); line-height:1.2; font-weight:600; margin:0; }
-.list-guide-hint { padding:0 var(--pad) 4px; font-size:9px; color:var(--muted); line-height:1.3; border-bottom:1px solid var(--rule); }
+.rail-header .list-walkthrough:hover { border-color:var(--ink); color:var(--ink); background:var(--wash); }
+.rail-header .list-walkthrough[aria-pressed="true"] { border-color:var(--ink); color:var(--ink); background:var(--wash); font-weight:600; }
+.rail-header .list-day { min-height:18px; font-size:8px; font-weight:600; text-underline-offset:2px; }
+/* Category chips: moods and filters visible at a glance, scannable */
+.rail-header [data-mood],
+.rail-header [data-flag] { min-height:16px; padding:0 5px; font-size:8px; font-weight:500; color:var(--muted); border:1px solid var(--rule); background:var(--paper); cursor:pointer; white-space:nowrap; }
+.rail-header [data-mood]:hover, .rail-header [data-flag]:hover { border-color:var(--ink); color:var(--ink); }
+.rail-header [data-mood][aria-pressed="true"], .rail-header [data-flag][aria-pressed="true"] { border-color:var(--ink); color:var(--ink); background:var(--wash); font-weight:600; }
+.rail-header .cat-count { font-size:8px; color:var(--muted); margin:0; }
+.rail-header .src { font-size:8px; margin:0; }
+/* Scope */
+.rail-header #places-in-view { font-size:9px; line-height:1; font-weight:600; margin:0; }
+.rail-header .scope-tiles { min-height:16px; padding:0 4px; font-size:8px; font-weight:600; border:1px solid var(--rule); background:var(--paper); color:var(--ink); cursor:pointer; }
+.rail-header .scope-tiles:hover { border-color:var(--ink); background:var(--wash); }
+.rail-header .scope-tiles[aria-pressed="true"] { border-color:var(--ink); background:var(--guide); color:var(--ink); }
+.rail-header .count { font-size:8px; margin:0; padding:0; white-space:normal; }
+.rail-header .list-order { font-size:8px; margin:0; }
+.rail-header .list-order select { min-height:16px; font-size:8px; padding:0 3px; max-width:100%; color:var(--ink); border:0; border-bottom:1px solid var(--rule); border-radius:0; background:var(--paper); }
+.rail-header .list-origin { font-size:8px; margin:0; color:var(--muted); }
+/* Explore disclosure */
+.rail-header .list-explore > summary { min-height:16px; display:list-item; cursor:pointer; padding:0; color:var(--muted); font-weight:500; border:0; background:none; font-size:8px; }
+.rail-header .list-explore > summary::marker { content: "▸ "; color:var(--muted); }
+.rail-header .list-explore[open] > summary { color:var(--ink); font-weight:600; }
+.rail-header .list-explore[open] { flex-basis:100%; }
+.rail-header .explore-actions { padding:0; gap:2px 4px; flex-wrap:wrap; overflow:visible; }
+.rail-header .explore-actions button, .rail-header .explore-actions a { border:0; padding:0 3px; height:auto; min-height:16px; font-size:8px; text-align:left; }
+.rail-header .explore-actions a { color:var(--ink); text-decoration:underline; text-underline-offset:1px; }
+.rail-header .explore-actions button[aria-pressed=true] { background:var(--paper); font-weight:600; text-decoration:underline; }
+.rail-header .list-close { flex:none; margin:0 0 0 auto; min-width:20px; width:20px; height:20px; font-size:12px; }
+.list-guide-hint { padding:0 var(--pad) 3px; font-size:8px; color:var(--muted); line-height:1.2; border-bottom:0; }
 .list-wrap { overflow-x:hidden; }
 .list-place .nm { display:flex; flex-direction:column; gap:1px; font-weight:500; white-space:normal; overflow-wrap:anywhere; min-width:0; }
 .list-place .row-title { font-weight:600; color:var(--ink); }
@@ -70,12 +65,9 @@
 /* The rail owns the one primary finder; the map keeps only its view/key instruments. */
 .atlas-tools [data-work-start] { display:none; }
 
-#list-wrap .list-scope h2 { padding:0; font-size:var(--small); line-height:1.2; font-weight:600; margin:0; }
 .list .list-group { display:block; padding:0; cursor:default; }
 .list .list-group:hover { background:transparent; }
 .list-group h3 { display:flex; align-items:baseline; gap:8px; padding:6px var(--pad) 4px; font-size:var(--micro); font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); background:var(--wash); border-top:1px solid var(--rule); }
 .list-group h3 span { color:var(--muted); font-weight:500; font-variant-numeric:tabular-nums; }
 .list-group ol { margin:0; padding:0; list-style:none; }
 .list-group .list-more { min-height:32px; margin-left:var(--pad); color:var(--ink); text-decoration:underline; text-underline-offset:2px; }
-.list-categories .list-order { font-size:9px; margin:1px 0; }
-.list-categories .list-order select { min-height:18px; font-size:9px; padding:0 3px; max-width:100%; color:var(--ink); border:0; border-bottom:1px solid var(--rule); border-radius:0; background:var(--paper); }

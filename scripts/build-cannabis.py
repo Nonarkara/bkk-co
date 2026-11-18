@@ -8,7 +8,7 @@ Run it in the repository, not in a bare copy: the builder reads the signed catal
 and drops any cannabis venue that is already a PL;UB place, so a venue is never
 listed twice. Without those two files the build is one row longer and is wrong.
 """
-import collections, hashlib, json, math, pathlib, re, subprocess, sys, tempfile
+import collections, csv, hashlib, json, math, pathlib, re, subprocess, sys, tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'scripts'))
@@ -19,6 +19,14 @@ spec.loader.exec_module(bp)
 
 TH_BOUNDS = [97.2, 5.5, 105.8, 20.6]
 def inside_th(lng, lat): return TH_BOUNDS[0] <= lng <= TH_BOUNDS[2] and TH_BOUNDS[1] <= lat <= TH_BOUNDS[3]
+
+# DTAM (Department of Thai Traditional and Alternative Medicine, Ministry of Public Health)
+# licensed cannabis venues — official Thai government register, data.go.th dataset dtam-serv-002.
+# Columns: ลำดับ, เลขที่ใบอนุญาต, ชื่อ, เขต — name + Bangkok district, NO coordinates.
+# Per GSH: district centroids are never pins. DTAM corroborates venues already mapped in OSM/Overture
+# by name + district match; unmatched rows are reported but not added (they need a hand pin).
+DTAM_CSV = bp.SOURCE_DIR / 'dtam-serv-002.csv'
+DTAM_HASH = '7d0eb15989275db4111f793c1f3eb324'  # MD5 from data.go.th CKAN, 2026-05-11
 
 CLUB_NAME = re.compile(r'cannabis|canabis|dispensary|\bweed\b|ganja|\bthc\b|กัญชา', re.I)
 SHOP_NAME = re.compile(r'dispensary|cannabis shop|weed shop|ร้านกัญชา', re.I)
@@ -155,6 +163,25 @@ def load_overture_cannabis():
         })
     return rows
 
+def load_dtam_cannabis():
+    """DTAM licensed cannabis venues (Thai FDA register). No coordinates — matched
+    to OSM/Overture venues by name + Bangkok district for corroboration only."""
+    if not DTAM_CSV.exists():
+        raise FileNotFoundError(f'DTAM source not cached: {DTAM_CSV}')
+    if hashlib.md5(DTAM_CSV.read_bytes()).hexdigest() != DTAM_HASH:
+        raise ValueError('DTAM checksum differs; review and pin a new source contract before refresh')
+    venues = []
+    with DTAM_CSV.open(encoding='utf-8-sig', newline='') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            name = (row.get('ชื่อ') or '').strip()
+            district = (row.get('เขต') or '').strip()
+            license_no = (row.get('เลขที่ใบอนุญาต') or '').strip()
+            if not name or bp.norm(name) in bp.GENERIC:
+                continue
+            venues.append({'n': name, 'district': district, 'license': license_no})
+    return venues
+
 def classify_province(lat, lng):
     if 13.45 <= lat <= 14.10 and 100.30 <= lng <= 100.95:
         return 'Bangkok'
@@ -175,6 +202,40 @@ def build():
     osm = load_osm_cannabis(skipped)
     ov = load_overture_cannabis()
     places = sorted(bp.merge(osm, ov, skipped), key=lambda r: r['id'])
+
+    # DTAM corroboration: match licensed venues to mapped venues by name + Bangkok district.
+    # DTAM has no coordinates, so unmatched rows are reported but never pinned (GSH).
+    try:
+        dtam = load_dtam_cannabis()
+        dtam_matched = 0
+        for d in dtam:
+            dn = bp.norm(d['n'])
+            if not dn:
+                continue
+            matches = []
+            for p in places:
+                pn = bp.norm(p['n'])
+                if not pn:
+                    continue
+                short, long_ = sorted((dn, pn), key=len)
+                if dn == pn or (len(short) >= 6 and short in long_):
+                    # District cross-check when OSM/Overture carries an address
+                    paddr = p.get('addr') or ''
+                    if d['district'] and d['district'] not in paddr:
+                        continue
+                    matches.append(p)
+            if len(matches) == 1:
+                p = matches[0]
+                p.setdefault('ds', []).append('dtam')
+                p['ds'] = sorted(set(p['ds']))
+                dtam_matched += 1
+            elif len(matches) > 1:
+                skipped['dtam_ambiguous'] += 1
+        skipped['dtam_matched'] = dtam_matched
+        skipped['dtam_unmatched'] = len(dtam) - dtam_matched - skipped['dtam_ambiguous']
+    except FileNotFoundError:
+        skipped['dtam_missing'] = 1
+
     # Load existing work/food ids so we never collide with a cafe/restaurant id already in the base catalogue
     data = ROOT / 'public' / 'data'
     existing_ids = set()
@@ -270,6 +331,7 @@ def build():
         'builtFrom': [
             {'name': 'OpenStreetMap (Thailand)', 'asOf': bp.OSM_AS_OF, 'licence': 'ODbL-1.0'},
             {'name': 'Overture Maps Places (Bangkok)', 'release': bp.OV_RELEASE, 'licence': 'CDLA-Permissive-2.0', 'confidenceFloor': 0.5},
+            {'name': 'DTAM licensed cannabis register (data.go.th dtam-serv-002)', 'asOf': '2026-05-11', 'licence': 'Open Data Common', 'records': len(dtam) if 'dtam' in locals() else 0, 'corroborated': skipped.get('dtam_matched', 0)},
         ],
         'total': len(rows),
         'bySource': dict(collections.Counter(p['src'] for p in places)),
@@ -298,8 +360,9 @@ def build():
         'sourceContract': {
             'osm': {'file': bp.OSM_PBF.name, 'md5': bp.OSM_MD5, 'asOf': bp.OSM_AS_OF, 'licence': 'ODbL-1.0'},
             'overture': {'file': bp.OV_FILE.name, 'release': bp.OV_RELEASE, 'licence': 'CDLA-Permissive-2.0'},
+            'dtam': {'file': DTAM_CSV.name, 'md5': DTAM_HASH, 'asOf': '2026-05-11', 'licence': 'Open Data Common', 'url': 'https://data.go.th/dataset/dtam-serv-002'},
         },
-        'note': 'CL;UB only. The signed PL;UB catalogue (places-work.json) is never written here.',
+        'note': 'CL;UB only. The signed PL;UB catalogue (places-work.json) is never written here. DTAM corroborates mapped venues by name + district; no coordinates are inferred.',
     }
     (data / 'manifest-cannabis.json').write_bytes(
         json.dumps(manifest, ensure_ascii=False, indent=1).encode() + b'\n')

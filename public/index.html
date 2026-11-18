@@ -68,43 +68,27 @@
 <aside id="side" class="side">
   <section id="list-wrap" class="list-wrap" aria-label="Places in view">
     <div id="club-hotspots" class="club-hotspots" hidden></div>
-    <div class="list-tools">
+    <!-- Single wrapping header rail: all controls flow horizontally in minimal vertical space -->
+    <div class="rail-header">
       <button class="list-find" data-act="work">Find a work spot</button>
       <button class="list-walkthrough" data-act="walkthrough">3D Hunt</button>
       <a class="list-day" href="/day">Plan your day</a>
-      <button class="close list-close phone-only" aria-label="Close list">×</button>
-    </div>
-    <p id="mood" class="mood-bar" hidden aria-live="polite"></p>
-    <div class="list-scope">
       <h2 id="places-in-view">Places in view</h2>
       <button type="button" class="scope-tiles" data-act="tiles" aria-pressed="false" title="Toggle Einstein hat-monotile concentration heatmap">⬡ Einstein tiles</button>
       <output id="count" class="count" aria-live="polite">Loading…</output>
-    </div>
-    <div class="list-categories">
-      <!-- Sharp category chips: moods visible at a glance, not hidden behind a disclosure -->
-      <div class="cat-section cat-moods">
-        <span class="cat-title">Moods</span>
-        <div class="cat-chips moods" aria-label="Moods">
-          <button data-mood="slow" aria-pressed="false">Slow mornings</button>
-          <button data-mood="midnight" aria-pressed="false">Past midnight</button>
-          <button data-mood="crossing" aria-pressed="false">Crossing paths</button>
-          <button data-mood="afterwork" aria-pressed="false">After work</button>
-        </div>
-      </div>
-      <!-- Sharp category chips: filters visible at a glance, not hidden behind a disclosure -->
-      <div class="cat-section cat-flags">
-        <span class="cat-title">Filters</span>
-        <div class="cat-chips flags" aria-label="Filters">
-          <button data-flag="wifi" aria-pressed="false" title="Wi-Fi listed or rated">≋ Wi-Fi</button>
-          <button data-flag="open" aria-pressed="false" title="Open now where hours are known">◷ Open</button>
-          <button data-flag="late" aria-pressed="false" title="Open late or 24 hours — good for overnight work">🌙 Late night</button>
-          <button data-flag="indie" aria-pressed="false" title="No chain signal">◇ Indie</button>
-          <button data-flag="visited" aria-pressed="false" title="Places you visited">✓ Been</button>
-          <button data-flag="work" aria-pressed="false" title="Good for work — visitor work score">⌨ Work</button>
-        </div>
-        <output id="list-filter-count" class="cat-count"></output>
-        <p class="src" id="list-matching"></p>
-      </div>
+      <!-- Category chips: moods and filters visible at a glance, scannable, not hidden behind disclosures -->
+      <button data-mood="slow" aria-pressed="false">Slow mornings</button>
+      <button data-mood="midnight" aria-pressed="false">Past midnight</button>
+      <button data-mood="crossing" aria-pressed="false">Crossing paths</button>
+      <button data-mood="afterwork" aria-pressed="false">After work</button>
+      <button data-flag="wifi" aria-pressed="false" title="Wi-Fi listed or rated">≋ Wi-Fi</button>
+      <button data-flag="open" aria-pressed="false" title="Open now where hours are known">◷ Open</button>
+      <button data-flag="late" aria-pressed="false" title="Open late or 24 hours — good for overnight work">🌙 Late night</button>
+      <button data-flag="indie" aria-pressed="false" title="No chain signal">◇ Indie</button>
+      <button data-flag="visited" aria-pressed="false" title="Places you visited">✓ Been</button>
+      <button data-flag="work" aria-pressed="false" title="Good for work — visitor work score">⌨ Work</button>
+      <output id="list-filter-count" class="cat-count"></output>
+      <p class="src" id="list-matching"></p>
       <label class="list-order"><span class="sr">Sort places</span><select id="list-order" aria-label="Sort places">
         <option value="near">Near map centre</option>
         <option value="great">Third Place Index</option>
@@ -127,7 +111,9 @@
         <button id="club-toggle" data-act="club" aria-pressed="false">CL;UB · Dispensaries</button>
         <button data-proxy="atlas-key">Map key</button><a class="moods-link" href="/research">Research &amp; data</a>
       </div></details>
+      <button class="close list-close phone-only" aria-label="Close list">×</button>
     </div>
+    <p id="mood" class="mood-bar" hidden aria-live="polite"></p>
     <ol id="list" class="list" aria-labelledby="places-in-view"></ol>
   </section>
   <section id="sheet" class="sheet" hidden aria-live="polite"></section>
