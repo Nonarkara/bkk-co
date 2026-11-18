@@ -3,7 +3,7 @@
 const KIND_LABEL = { cafe: 'Café', restaurant: 'Food', coworking: 'Co-working', library: 'Library', cannabis: 'Cannabis listing' };
 const CLUB_TYPES = { clinic: 'Mapped clinic', cafe: 'Mapped café', dispensary: 'Mapped dispensary', other: 'Type unverified' };
 const safeLink = value => { try { const u=new URL(value); return ['https:','http:'].includes(u.protocol) && !u.username && !u.password ? u.href : null; } catch { return null; } };
-const F = { WIFI: 1, NOWIFI: 2, HOURS: 4, OUTDOOR: 8, OVERTURE: 16, CHAIN: 32, NOTABLE: 64, HAND: 128, PARK: 256, COFFEE: 512, LATE: 1024 }; // same bits as build-places.py
+const F = { WIFI: 1, NOWIFI: 2, HOURS: 4, OUTDOOR: 8, OVERTURE: 16, CHAIN: 32, NOTABLE: 64, HAND: 128, PARK: 256, COFFEE: 512, LATE: 1024 }; // LATE is ours: late night is an overlay on places, not a kind in the catalogue, so build-places.py stops at COFFEE.
 // a place nobody has mapped yet goes to OpenStreetMap as a note; the next rebuild picks it up once mapped
 const osmNote = (y, x) => `https://www.openstreetmap.org/note/new#map=19/${y.toFixed(5)}/${x.toFixed(5)}`;
 const SCORES = [
@@ -230,6 +230,12 @@ async function setClubMode(on, { frame = true } = {}) {
   }
   if (!on && state.sort === 'hubs') state.sort = 'near';
   if (on && !['near', 'great', 'hubs'].includes(state.sort)) state.sort = 'near';
+  // At a country-wide view "near the map centre" means near the middle of
+  // Thailand, which is nowhere. The directory's own story at that scale is
+  // where the listings concentrate, so that is how the list opens — unless the
+  // reader chose an order themselves.
+  if (on && state.sort === 'near' && !state.sortChosen) state.sort = 'great';
+  if (!on && state.sort === 'hubs') state.sort = 'near';
   document.body.classList.toggle('club-mode', on);
   const mark = $('.mark');
   if (mark) {
@@ -277,6 +283,12 @@ async function setClubMode(on, { frame = true } = {}) {
   window.updateMascot?.(on);
   if (map.getLayer('manga-ground')) map.setPaintProperty('manga-ground', 'background-color', on ? '#b5decc' : '#f9c1ce');
   if (map.getLayer('manga-park')) map.setPaintProperty('manga-park', 'fill-color', on ? '#87c540' : '#f5ecc2');
+  // PL;UB's twelve neighbourhood rings and their labels are a PL;UB instrument.
+  // In CL;UB they were drawn over the cannabis map, and the labels — which carry
+  // a working-mood suffix — sat on top of the cluster counts they collided with.
+  for (const layer of ['hood-fill', 'hood-line', 'hood-label']) {
+    if (map.getLayer(layer)) map.setLayoutProperty(layer, 'visibility', on ? 'none' : 'visible');
+  }
   const hint = $('#list-guide-hint');
   if (hint) hint.innerHTML = on
     ? 'Pick a Thailand hotspot or tap a venue. Toggle <b>Einstein tiles</b> for density.'
@@ -462,7 +474,13 @@ const listGroups = [
 ];
 const listPreview = 3;
 const listPageSize = 12;
+// CL;UB's rail holds one group where PL;UB holds four. A three-row preview of
+// that one group leaves half the rail dead white space, so the cannabis
+// directory previews a page of its own: the rail's first screen should carry
+// the directory, not three rows and a void.
+const clubPreview = 20;
 const groupLimits = new Map();
+const previewFor = (kind) => (state.clubMode && kind === 'cannabis') ? clubPreview : listPreview;
 
 function renderList() {
   const wrap = $('#list-wrap');
@@ -486,10 +504,10 @@ function renderList() {
   list.innerHTML = inView.length ? listGroups.map(([kind, label]) => {
     const places = groups.get(kind);
     if (!places.length) return '';
-    const limit = groupLimits.get(kind) ?? listPreview;
+    const limit = groupLimits.get(kind) ?? previewFor(kind);
     const remaining = places.length - limit;
     const action = remaining > 0 ? `Show ${Math.min(listPageSize, remaining)} more` : 'Show fewer';
-    const more = places.length > listPreview
+    const more = places.length > previewFor(kind)
       ? `<button type="button" class="list-more" data-list-more="${kind}" aria-label="${action} · ${label}">${action}</button>`
       : '';
     const rows = places.slice(0, limit).map(p => row(p, sortKey(p, centre), true)).join('');
@@ -533,7 +551,6 @@ function row(p, key = p.k === 'cannabis' ? (CLUB_TYPES[p.sub] || KIND_LABEL.cann
   if (p.k === 'cannabis') {
     if (p.tier) subParts.push(`Tier ${p.tier}`);
     if (p.prov) subParts.push(p.prov);
-    if (p.hub) subParts.push(`${p.hub} nearby`);
   } else {
     if (p.flags & F.WIFI) subParts.push('Wi-Fi');
     if (p.hours) subParts.push('Hours');
@@ -550,9 +567,9 @@ $('#list').addEventListener('click', e => {
   const more = e.target.closest('[data-list-more]');
   if (more) {
     const kind = more.dataset.listMore;
-    const before = groupLimits.get(kind) ?? listPreview;
+    const before = groupLimits.get(kind) ?? previewFor(kind);
     const showFewer = more.textContent === 'Show fewer';
-    groupLimits.set(kind, showFewer ? listPreview : before + listPageSize);
+    groupLimits.set(kind, showFewer ? previewFor(kind) : before + listPageSize);
     renderList();
     if (!showFewer) $('#list').querySelectorAll(`[data-list-group="${kind}"] .list-place`)[before]?.focus();
     return;
@@ -560,7 +577,7 @@ $('#list').addEventListener('click', e => {
   const li = e.target.closest('li[data-id]');
   if (li) select(state.byId.get(li.dataset.id), true);
 });
-$('#list-order').addEventListener('change',e=>{state.sort=e.target.value;renderList()});
+$('#list-order').addEventListener('change',e=>{state.sort=e.target.value;state.sortChosen=true;renderList()});
 $('#list-toggle').addEventListener('click', () => setListOpen(!$('#list-wrap').classList.contains('open')));
 $('.list-close').addEventListener('click', () => setListOpen(false));
 function setListOpen(on) {

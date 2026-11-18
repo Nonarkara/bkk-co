@@ -170,6 +170,12 @@ body.club-mode {
   --club-oil: #819238;
   --club-leaf: #afd472;
   --club-teal: #099197;
+  /* CL;UB keeps the Botanical Green register (STYLE.md): the reading ink here is
+     the club's, not PL;UB's Pansy Purple. No new colour is introduced — these
+     are the club's own three values, already in use on this host. */
+  --ink: #253122;
+  --ink-80: #547076;
+  --muted: #547076;
   color: var(--club-ink);
 }
 body.club-mode .mark .semi { color: var(--club-seam); }
@@ -468,6 +474,10 @@ body.club-mode .flags [data-flag="wifi"],
 body.club-mode .flags [data-flag="indie"],
 body.club-mode .flags [data-flag="work"],
 body.club-mode #club-toggle[aria-pressed="true"] ~ [data-mood] { display: none; }
+/* The mood filters are PL;UB's working-day moods. On the cannabis directory they
+   are controls with no job behind them, so they do not stay on screen there. */
+body.club-mode .rail-chips .moods { display: none; }
+body.club-mode .rail-chips .seg-rule { display: none; }
 .club-hotspots summary { min-height: 32px; padding-block: 4px; cursor: pointer; }
 .club-hotspots .hotspots-row { max-height: 32vh; overflow: auto; }
 .hotspot-pill { min-height: 32px; text-align: start; }
@@ -481,5 +491,7 @@ body.club-mode .footprint-key .footprint-swatch { display: none; }
 body.club-mode .footprint-club-symbol { display: inline-flex; }
 
 body.club-mode .rail-header .list-walkthrough { display: none; }
-@media (min-width: 900px) { body.club-mode .rail-actions { display: none; } }
+/* The Explore disclosure stays reachable in CL;UB. Hiding the whole actions row
+   took Featured places, the source lists, the street sketch, the map views, the
+   map key and Research & data off the cannabis host with it. */
 body.club-mode .bar-actions { max-width: 100%; flex-wrap: wrap; }

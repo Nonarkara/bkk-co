@@ -99,11 +99,14 @@ function drawHoods() {
 
 // ---------- small infographics ----------
 function compBar(k) {
-  const parts = [['cafe', 'Café'], ['coworking', 'Co-work'], ['library', 'Library'], ['restaurant', 'Food'], ['late', 'Late night']];
-  const total = parts.reduce((a, [key]) => a + k[key], 0) || 1;
-  return `<div class="comp" role="img" aria-label="${parts.map(([key, l]) => `${k[key]} ${l}`).join(', ')}">
-    ${parts.map(([key]) => `<i class="seg-${key}" style="flex:${k[key] / total}"></i>`).join('')}</div>
-    <div class="comp-legend">${parts.map(([key, l]) => `<span><i class="dot ${key}"></i>${fmt(k[key])} ${l}</span>`).join('')}</div>`;
+  const parts = [['cafe', 'Café'], ['coworking', 'Co-work'], ['library', 'Library'], ['restaurant', 'Food'],
+    // Late night is an overlay on the open map, not a kind in the catalogue, so
+    // a neighbourhood's counts only carry it when the data actually has it.
+    ...(k.late != null ? [['late', 'Late night']] : [])];
+  const total = parts.reduce((a, [key]) => a + (k[key] || 0), 0) || 1;
+  return `<div class="comp" role="img" aria-label="${parts.map(([key, l]) => `${k[key] || 0} ${l}`).join(', ')}">
+    ${parts.map(([key]) => `<i class="seg-${key}" style="flex:${(k[key] || 0) / total}"></i>`).join('')}</div>
+    <div class="comp-legend">${parts.map(([key, l]) => `<span><i class="dot ${key}"></i>${fmt(k[key] || 0)} ${l}</span>`).join('')}</div>`;
 }
 
 // every rail station in Bangkok as a tick, this neighbourhood's anchor as the long one
