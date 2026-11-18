@@ -14,7 +14,7 @@ Governing design law, in order: **MSH** (`~/Projects/_reference/MSH.md`) → **g
 - Scale: 20 / 14 / 12 px, with 11 px tracked micro for qualifications. ≤4 sizes per view.
 
 ## Colour
-Wada combination **202**, from `~/Projects/palette/data/colors.json`. Turquoise Green (#b5decc) opens the manga map and supports the guide. Cobalt Green (#96d1aa) identifies café geometry. Slate Color (#34454c) is the reading ink. These are Palette’s digital values. The previous pink theme was retired at the owner’s request on 15 November 2026.
+Two registers, one per bureau, both from the Wada catalogue. **PL;UB** wears the Grand Budapest face: Hermosa Pink (#f9c1ce) ground, Pansy Purple (#7d133a) as the reading ink and line-work, Turquoise Green (#b5decc) for parks and the guide, Cobalt Green (#96d1aa) for café geometry, Neutral Gray (#b6bfc1) for hairlines. The pink was retired on 15 November 2026 and restored by the owner on 16 November (`61e07e4`) — the map's Grand Budapest pass below is current, not history. **CL;UB** keeps its Botanical Green register: Deep Slate Olive (#253122) ink, Dark Medici Blue (#547076) secondary, Night Green (#87c540) and Turquoise Green (#b5decc) grounds. Every value in both registers is a proved catalogue colour (`docs/stroll-2026-11-07/zoom-mood-provenance.json`); the interface ink steps are blends of their own bureau's ink toward white.
 - Carrier is white paper with a pale green wash. Neutral Gray (#b6bfc1) draws hairlines.
 - The seam uses #36795a, a darker green chosen for legibility. It belongs only to the wordmark.
 - Red Orange (#dd4027) identifies co-working. Other venue map colours keep their category associations.

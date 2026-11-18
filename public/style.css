@@ -170,12 +170,6 @@ body.club-mode {
   --club-oil: #819238;
   --club-leaf: #afd472;
   --club-teal: #099197;
-  /* CL;UB keeps the Botanical Green register (STYLE.md): the reading ink here is
-     the club's, not PL;UB's Pansy Purple. No new colour is introduced — these
-     are the club's own three values, already in use on this host. */
-  --ink: #253122;
-  --ink-80: #547076;
-  --muted: #547076;
   color: var(--club-ink);
 }
 body.club-mode .mark .semi { color: var(--club-seam); }
@@ -495,3 +489,28 @@ body.club-mode .rail-header .list-walkthrough { display: none; }
    took Featured places, the source lists, the street sketch, the map views, the
    map key and Research & data off the cannabis host with it. */
 body.club-mode .bar-actions { max-width: 100%; flex-wrap: wrap; }
+
+/* CL;UB keeps the Botanical Green register (STYLE.md). The interface ink here is
+   the club's own pair — Deep Slate Olive and Dark Medici Blue, both catalogue
+   colours — and not PL;UB's Pansy Purple, which belongs to the other bureau.
+   The base tokens are untouched: the club palette is its own palette, not a
+   step on PL;UB's ladder. */
+body.club-mode .search-lens,
+body.club-mode .bar-btn,
+body.club-mode .count-badge,
+body.club-mode .list-explore > summary,
+body.club-mode .list-origin,
+body.club-mode .src,
+body.club-mode .count,
+body.club-mode .chip-seg,
+body.club-mode .list-group h3,
+body.club-mode .list-group h3 span { color: var(--club-muted); }
+body.club-mode .footprint-key,
+body.club-mode #list-order,
+body.club-mode .explore-actions button,
+body.club-mode .explore-actions a,
+body.club-mode .scope-tiles,
+body.club-mode .row-title { color: var(--club-ink); }
+body.club-mode .row-sub,
+body.club-mode .idx,
+body.club-mode .list-more { color: var(--club-muted); }
