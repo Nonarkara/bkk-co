@@ -1,0 +1,277 @@
+{
+  "stamp": "2026-11-18",
+  "base": "http://127.0.0.1:43827",
+  "live": "https://co.nonarkara.org",
+  "results": [
+    {
+      "name": "repository in step with origin",
+      "state": "PASS",
+      "ms": 3895,
+      "note": "clean, identical to origin/main"
+    },
+    {
+      "name": "node test/stroll-graph.mjs",
+      "state": "PASS",
+      "ms": 432,
+      "note": "Disconnected-lane falsifier, 8m progression/backtracking/end clamping, exact segment continuity and café approach qualification pass."
+    },
+    {
+      "name": "node test/footprint-neighborhood.mjs",
+      "state": "PASS",
+      "ms": 195,
+      "note": "Narrative anchor/radius provenance for twelve areas, proved Wada catalogue chords, authored moods kept, density areas stating the catalogue "
+    },
+    {
+      "name": "PLUB_VENDOR_INDEX=1 node test/maplibre-vendor.mjs",
+      "state": "PASS",
+      "ms": 150,
+      "note": "OfficialMapLibre4.7.1 vendor SHA256/SRI, registry package integrity proof, unchanged CDN comparison, complete license and self-contained CSS"
+    },
+    {
+      "name": "node test/amenity-race.mjs",
+      "state": "PASS",
+      "ms": 182,
+      "note": "Held join + replaced evidence node updates current same-task slot; task/selection/form guards pass; original captured-slot falsifier reprodu"
+    },
+    {
+      "name": "node test/preferences-model.mjs",
+      "state": "PASS",
+      "ms": 179,
+      "note": "Shipped88ACtags:87positive/1negative, exact sourceIDs and snapshotdates pass."
+    },
+    {
+      "name": "node test/neighborhood-photos.mjs",
+      "state": "PASS",
+      "ms": 524,
+      "note": "}"
+    },
+    {
+      "name": "node test/street-world.mjs",
+      "state": "PASS",
+      "ms": 877,
+      "note": "Street world: 12 areas in per-area files, index 2450B gzip, 20650 footprints / 248 explicit heights / 244 native extrusions, 7533 original n"
+    },
+    {
+      "name": "node test/manga-lens.mjs",
+      "state": "PASS",
+      "ms": 118,
+      "note": "Manga style: version, namespaced layer ids, ground at the bottom, real OpenMapTiles source-layers, property filters (not literals), no decla"
+    },
+    {
+      "name": "node test/manga-motion.mjs",
+      "state": "PASS",
+      "ms": 141,
+      "note": "Manga runtime: all style opacity targets, bounded timers, input/visibility/reduced-motion cancellation, instant transitions, preserved base/"
+    },
+    {
+      "name": "node test/footprint-model.mjs",
+      "state": "PASS",
+      "ms": 129,
+      "note": "Footprint component containment, holes/boundaries, mixed masks, source preservation, deduplication and 2420-component aggregation pass."
+    },
+    {
+      "name": "node test/footprint-palette.mjs",
+      "state": "PASS",
+      "ms": 164,
+      "note": "Source loading/unavailable disclosure, no automatic retry loop and explicit retry recovery pass."
+    },
+    {
+      "name": "node test/hop-logs.mjs",
+      "state": "PASS",
+      "ms": 252,
+      "note": "Hop publish, feed, mine flags, place filter, account isolation, stale-account 409, stop/note/feeling/photo limits, three-report hiding, mode"
+    },
+    {
+      "name": "node test/agent-api.mjs",
+      "state": "PASS",
+      "ms": 441,
+      "note": "Agent API: one canonical record with time-stamped evidence, a coverage-annotated composite shared with the interface, the twelve neighbourho"
+    },
+    {
+      "name": "node test/club-isolation.mjs",
+      "state": "PASS",
+      "ms": 356,
+      "note": "PL;UB never loads the cannabis catalogue, a dispensary is not a ratable place, CL;UB says so on the wire, and neither surface calls a dispen"
+    },
+    {
+      "name": "node test/cannabis-catalogue.mjs",
+      "state": "PASS",
+      "ms": 190,
+      "note": "CL;UB catalogue: 329 venues, 107060 bytes, sha256 459906dd53ff…, reproducible from scripts/build-cannabis.py and locked by manifest-cannabis"
+    },
+    {
+      "name": "node scripts/stamp-assets.mjs --check",
+      "state": "PASS",
+      "ms": 277,
+      "note": "every asset reference in 7 pages carries the fingerprint of the file it points at"
+    },
+    {
+      "name": "node test/work-atmosphere.mjs",
+      "state": "PASS",
+      "ms": 119,
+      "note": "Workspace atmosphere: unknowns stay unknown, the composite needs its coverage, visitor/mapped/venue tiers stay apart, coverage floor holds, "
+    },
+    {
+      "name": "node test/venue-reports.mjs",
+      "state": "PASS",
+      "ms": 168,
+      "note": "On-site reports fold into the shared model; unknowns stay unknown; the catalogue stays signed."
+    },
+    {
+      "name": "node test/neighborhood-palette.mjs",
+      "state": "PASS",
+      "ms": 116,
+      "note": "Neighbourhood palette: 12 areas, every colour a real Sanzo Wada catalogue combination, every area covered, density areas stating the catalog"
+    },
+    {
+      "name": "node test/data-role-palette.mjs",
+      "state": "PASS",
+      "ms": 119,
+      "note": "Data-role palette: 4 marks, every colour a real catalogue colour, the legend names exactly what the key shows."
+    },
+    {
+      "name": "node test/no-platform-scraping.mjs",
+      "state": "PASS",
+      "ms": 148,
+      "note": "No platform-scraped data ships, no shipped code can render a platform rating, and the catalogue carries no platform field."
+    },
+    {
+      "name": "node test/security-headers.mjs",
+      "state": "PASS",
+      "ms": 117,
+      "note": "Security headers: HSTS, no framing, no inline scripts, and a policy that lists only the origins the interface loads."
+    },
+    {
+      "name": "node test/public-surfaces.mjs",
+      "state": "PASS",
+      "ms": 108,
+      "note": "Public surfaces: robots.txt points at the sitemap, the sitemap names only real pages, and a missing address meets a designed page."
+    },
+    {
+      "name": "node test/street-model.mjs",
+      "state": "PASS",
+      "ms": 291,
+      "note": "Street stepping/junction stop/branch direction/endpoints and coincident-unconnected-road falsifier pass; every area starts on source nodes."
+    },
+    {
+      "name": "node test/map-motion.mjs",
+      "state": "PASS",
+      "ms": 141,
+      "note": "Camera durations bounded; explicit snaps preserved; reduced/hidden pages snap and stop playback."
+    },
+    {
+      "name": "node test/aliases.mjs",
+      "state": "PASS",
+      "ms": 422,
+      "note": "PASS aliases: 10 cold Worker cases; shared atomic init, first retired-id score/community, source failures/invalid aliases recover, no partia"
+    },
+    {
+      "name": "node test/place-tools.mjs",
+      "state": "PASS",
+      "ms": 331,
+      "note": "Cleaned57,379place catalogue, reviewedMeet source correction, Unicode/token search and distinct type glyphs pass."
+    },
+    {
+      "name": "node test/check.mjs",
+      "state": "PASS",
+      "ms": 200,
+      "note": "catalogue ok: 57379 places { cafe: 20160, coworking: 57, library: 423, restaurant: 36739 }"
+    },
+    {
+      "name": "node test/atlas.mjs",
+      "state": "PASS",
+      "ms": 323,
+      "note": "PASS atlas: 57379 conserved places, 78 districts, 832 parks, 308 streets, 27 evidence records; model honesty and triangle/river fixtures."
+    },
+    {
+      "name": "node test/journeys.mjs",
+      "state": "PASS",
+      "ms": 509,
+      "note": "PASS journeys: 15 data/model cases, conserved catalogue hashes, 20640 workplace references, three journey modes, facility provenance, full-s"
+    },
+    {
+      "name": "node test/notebook-races.mjs",
+      "state": "PASS",
+      "ms": 294,
+      "note": "Shared Wi-Fi account allowance/rate cap, daily privacy cleanup, held-auth account deletion, foreign-key containment, impossible dates, Bangk"
+    },
+    {
+      "name": "node test/notebook-dates.mjs",
+      "state": "PASS",
+      "ms": 188,
+      "note": "Date-only and legacy instant both display3Nov in a New York browser; an ungiven score says Not rated yet."
+    },
+    {
+      "name": "node test/discovery.mjs",
+      "state": "PASS",
+      "ms": 145,
+      "note": "50+50 attributed entries; scoped article ranks, sampled thread counts, no inferred pins, original catalogue hashes pass."
+    },
+    {
+      "name": "node test/talk-media.mjs",
+      "state": "PASS",
+      "ms": 220,
+      "note": "Talk-media:157entries/361videos, exact current seedIDs, no inferred branch match/pin, no automatic player, allowlisted click-to-load and clo"
+    },
+    {
+      "name": "node test/einstein-hat.mjs",
+      "state": "PASS",
+      "ms": 297,
+      "note": "hat patch L2: 25 tiles, grid cover 0.592, samples 2162"
+    },
+    {
+      "name": "TZ=America/New_York node test/hours-timezone.mjs",
+      "state": "PASS",
+      "ms": 134,
+      "note": "Bangkok hours and next weekday mood time pass across visitor timezones; invalid clocks stay unknown."
+    },
+    {
+      "name": "python3 test/enrichment.py",
+      "state": "PASS",
+      "ms": 5285,
+      "note": "Unique brand/location matching, ambiguity/distance rejection, immutable catalogue, original facts and repeatable enrichment pass."
+    },
+    {
+      "name": "MSH gate at 390 / 1024 / 1440",
+      "state": "PASS",
+      "ms": 87715,
+      "note": "PASS"
+    },
+    {
+      "name": "MSH gate must fail on a planted defect",
+      "state": "PASS",
+      "ms": 74844,
+      "note": "the gate caught 11 planted failure(s)"
+    },
+    {
+      "name": "shipped geometry equals the pinned OpenStreetMap source",
+      "state": "PASS",
+      "ms": 6776,
+      "note": "Raw pinned-source equality: every footprint, street vertex/ref run, shared junction and 40m cafe association pass; bad height/access inputs "
+    },
+    {
+      "name": "the CL;UB catalogue is what its builder produces",
+      "state": "PASS",
+      "ms": 12875,
+      "note": "the committed builder reproduces the shipped catalogue exactly: 329 venues, sha256 459906dd53ff…"
+    },
+    {
+      "name": "deploy the Worker",
+      "state": "PASS",
+      "ms": 27470,
+      "note": "Current Version ID: 7bae4c6b-4451-44a3-b966-6fd9da42ac09"
+    },
+    {
+      "name": "every deployed byte matches the repository",
+      "state": "PASS",
+      "ms": 41735,
+      "note": "412 matched, 0 mismatched, 0 missing, 0 orphans"
+    },
+    {
+      "name": "the live URL answers",
+      "state": "PASS",
+      "ms": 2413,
+      "note": "5 surfaces answered 200"
+    }
+  ]
+}

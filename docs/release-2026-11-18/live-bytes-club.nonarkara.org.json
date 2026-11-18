@@ -1,17 +1,17 @@
 {
-  "observedAt": "2026-11-18T06:01:55.170Z",
+  "observedAt": "2026-11-18T18:32:08.487Z",
   "origin": "https://club.nonarkara.org",
-  "sourceCommit": "82c6f9767f1aeaea603de5965498a27d81256e65",
+  "sourceCommit": "44655cbef267365924be0dc54f14dbab799c679d",
   "matched": [
     {
       "path": "404.html",
-      "bytes": 1154,
-      "sha256": "1bd2bebb847d494f97889c1522677dd72d1c15b48f4dc8908df065e836472745"
+      "bytes": 1148,
+      "sha256": "e5708adf9853a63ea67a1a7e708097011eec42a87e171f2ff3f27cfb55077a46"
     },
     {
       "path": "app.js",
-      "bytes": 59799,
-      "sha256": "483d485935f7eca221e16978a76efaa437d8f70d158adbb97fc3d30595707fc4"
+      "bytes": 61111,
+      "sha256": "8085396fb7d21b3830a4f0d6e0f68d44e2efcda79528dac8e0d875968099d8b9"
     },
     {
       "path": "atlas-model.js",
@@ -25,13 +25,13 @@
     },
     {
       "path": "atlas.js",
-      "bytes": 44416,
-      "sha256": "e1b88e6f9ee32530105cc069e6b9f809a6af5b7ed23aaa043ad97f88cb42cdac"
+      "bytes": 44546,
+      "sha256": "ae7c5c94a692a68a6fc59c9c461b8062afa3b56d28f4284e9ce93a37f269a047"
     },
     {
       "path": "bridge-1958.html",
-      "bytes": 4249,
-      "sha256": "56769fca8ababcf7ec480ec025136b076663cc55eb1e418976fd5337f82ed286"
+      "bytes": 4221,
+      "sha256": "6b064f500584382dc3866efa087d37f92a3167fae1ed99d86c5ef5fd40fefaae"
     },
     {
       "path": "club-mode.js",
@@ -1065,8 +1065,8 @@
     },
     {
       "path": "day.html",
-      "bytes": 1457,
-      "sha256": "9adc7a55834ce3852dc0db7b1cc98f9ec6d53211a1ae8bb66c3dc06d62a74517"
+      "bytes": 1439,
+      "sha256": "8dde3e46f6a525169fe73749fe17761904bf8b0031c7c526b9ad0fcddfa5b2e7"
     },
     {
       "path": "day.js",
@@ -1215,8 +1215,8 @@
     },
     {
       "path": "list-tools.css",
-      "bytes": 6941,
-      "sha256": "0a9295eb4f251e756f78c1eee82be3390436bea93b04fa0b4a514fe145d3d338"
+      "bytes": 8095,
+      "sha256": "e7836644feb30d7c3fac6821a7e06c1dc526a7237d2171615696d276e25aafa3"
     },
     {
       "path": "manga-lens.js",
@@ -1855,8 +1855,8 @@
     },
     {
       "path": "neighbourhoods.html",
-      "bytes": 2864,
-      "sha256": "abe0d42e413f9079e129553be01ed72bd4117a29a2efed2969f79a819d718560"
+      "bytes": 2869,
+      "sha256": "2665b4d9a9064fe953fec52116bd191fe4cd442ec6e024227301cda7fa1da2cd"
     },
     {
       "path": "neighbourhoods.js",
@@ -1940,8 +1940,8 @@
     },
     {
       "path": "privacy.html",
-      "bytes": 8269,
-      "sha256": "5d527ed60b9ae1bd020ecd21574895eadeb549e1d99c44a0af823b1e17925487"
+      "bytes": 8257,
+      "sha256": "ddc1d3e0b5b8ef951acb81dcf48b914d83102112a1c19aabc4bbaad801cbfe00"
     },
     {
       "path": "research.css",
@@ -1950,8 +1950,8 @@
     },
     {
       "path": "research.html",
-      "bytes": 6191,
-      "sha256": "80f44abdd9ef4229bb5a8d05d1ae7cb5a1d122eec59407f4e4a38ce260b27ec1"
+      "bytes": 6151,
+      "sha256": "ec9fd3b4fd5df87dfe3b18d6df2d281c98494cc1d8314b6cb09e0b657c543a6f"
     },
     {
       "path": "research.js",
@@ -1995,8 +1995,8 @@
     },
     {
       "path": "style.css",
-      "bytes": 35647,
-      "sha256": "dd2d291d70966edfd1521ed6359360af7d866312cac22d201da10bf28a2d3d2b"
+      "bytes": 37057,
+      "sha256": "4af2c256a29f5dc614ba98f21d2a25e2af977527c67078ded670529650f5f3be"
     },
     {
       "path": "styles/plub-manga.json",
@@ -2040,8 +2040,8 @@
     },
     {
       "path": "views.js",
-      "bytes": 52566,
-      "sha256": "cf8774101d21e415e4c0552d8ac3f96eabf27ebbb31d32ce719e7f4f79f1d4bf"
+      "bytes": 52781,
+      "sha256": "f92f2a1f86d762c47e214abb0f4fdf37cca864f6baa1049811f4ce77a2d94c0b"
     },
     {
       "path": "visit.css",
@@ -2064,10 +2064,10 @@
   "rewritten": [
     {
       "path": "index.html",
-      "bytes": 10370,
-      "sha256": "23564c3a494007840134c6593fa5f4adcb8c5cac035e047c182f2b787511c3f9",
-      "localBytes": 10369,
-      "localSha256": "237e86954e9b6bb7b0f316b138dbf93322cd9d7f5b4ec8e64daf9aa168839ae8"
+      "bytes": 10691,
+      "sha256": "55071d59eeeb75eb6622542448f51b0592de21e9b5929cbca86e0dd381c7050f",
+      "localBytes": 10690,
+      "localSha256": "59ed0f18e4e86411e3ecb45a4cd9dd33797ba64fd6b053e78f87aee2cc5f975a"
     }
   ],
   "orphansStillServed": [],

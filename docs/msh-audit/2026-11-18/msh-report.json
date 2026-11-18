@@ -1,6 +1,6 @@
 {
   "stamp": "2026-11-18",
-  "base": "https://co.nonarkara.org",
+  "base": "http://127.0.0.1:43827",
   "planted": false,
   "viewports": [
     {
@@ -145,11 +145,11 @@
       "voidTop": 863,
       "voidW": 1024,
       "obstruction": {
-        "area": 0,
-        "cls": "",
-        "tag": ""
+        "area": 14224,
+        "cls": "flags",
+        "tag": "div"
       },
-      "obstructionShare": 0,
+      "obstructionShare": 0.025,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -246,11 +246,11 @@
       "voidTop": 863,
       "voidW": 1440,
       "obstruction": {
-        "area": 0,
-        "cls": "",
-        "tag": ""
+        "area": 14224,
+        "cls": "flags",
+        "tag": "div"
       },
-      "obstructionShare": 0,
+      "obstructionShare": 0.016,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -311,7 +311,7 @@
     "places": {
       "groups": 2,
       "rows": 5,
-      "chrome": 112,
+      "chrome": 123,
       "pass": true
     },
     "search": 9,
@@ -335,7 +335,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 281
+      "observedHandoffMs": 584
     },
     "notebook": 1,
     "walkthrough": {
