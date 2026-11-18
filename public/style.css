@@ -481,5 +481,5 @@ body.club-mode .footprint-key .footprint-swatch { display: none; }
 body.club-mode .footprint-club-symbol { display: inline-flex; }
 
 body.club-mode .rail-header .list-walkthrough { display: none; }
-@media (min-width: 900px) { body.club-mode .rail-header { display: none; } }
+@media (min-width: 900px) { body.club-mode .rail-actions { display: none; } }
 body.club-mode .bar-actions { max-width: 100%; flex-wrap: wrap; }

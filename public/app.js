@@ -963,4 +963,4 @@ document.addEventListener('click', e => {
   document.querySelector(`.atlas-dock [data-${b.dataset.proxy}]`)?.click();
 });
 
-document.querySelector('.rail-header').addEventListener('click',e=>{if(e.target.closest('[data-act],[data-mood],[data-proxy]'))for(const d of document.querySelectorAll('.rail-header details'))d.open=false});
+document.querySelector('.rail-header').addEventListener('click',e=>{if(e.target.closest('[data-act],[data-mood],[data-flag],[data-proxy]'))for(const d of document.querySelectorAll('.rail-header details'))d.open=false});

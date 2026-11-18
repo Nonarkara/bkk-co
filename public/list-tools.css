@@ -1,45 +1,63 @@
 /* One finder wins. Work spots is the primary action; Walk 3D World is secondary.
-   Explore/Filters are deliberate disclosures, not equal peers. */
-.rail-header { display:flex; align-items:center; flex-wrap:wrap; gap:3px; padding:2px var(--pad); flex:none; }
-.rail-header .list-find { /* primary action — Good for work */
-  min-height:20px; padding:0 6px; font-weight:600; font-size:9px;
+   Explore is the one disclosure; the category chips stay visible at a glance.
+   Three rows: actions (36px) · scope · 32px chip strip — rail chrome ≤128px. */
+.rail-header { display:flex; flex-direction:column; flex:none; border-bottom:1px solid var(--rule); }
+.rail-row { display:flex; align-items:center; gap:4px 6px; padding:0 var(--pad); }
+.rail-actions { flex-wrap:wrap; padding-top:6px; padding-bottom:6px; }
+.rail-actions .list-find { /* primary action — Good for work */
+  min-height:36px; padding:0 10px; font-weight:600; font-size:var(--body);
   border:1px solid var(--ink); background:var(--ink); color:var(--paper);
   cursor:pointer; }
-.rail-header .list-find:hover { background:var(--muted); }
-.rail-header .list-find[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
-.rail-header .list-walkthrough { /* secondary action */
-  min-height:18px; padding:0 5px; font-weight:500; font-size:8px;
+.rail-actions .list-find:hover { background:var(--muted); }
+.rail-actions .list-find[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
+.rail-actions .list-walkthrough { /* secondary action */
+  min-height:32px; padding:3px 7px; font-weight:500; font-size:var(--small);
   border:1px solid var(--rule); background:var(--paper); color:var(--muted); cursor:pointer; }
-.rail-header .list-walkthrough:hover { border-color:var(--ink); color:var(--ink); background:var(--wash); }
-.rail-header .list-walkthrough[aria-pressed="true"] { border-color:var(--ink); color:var(--ink); background:var(--wash); font-weight:600; }
-.rail-header .list-day { min-height:18px; font-size:8px; font-weight:600; text-underline-offset:2px; }
-/* Category chips: moods and filters visible at a glance, scannable */
-.rail-header [data-mood],
-.rail-header [data-flag] { min-height:16px; padding:0 5px; font-size:8px; font-weight:500; color:var(--muted); border:1px solid var(--rule); background:var(--paper); cursor:pointer; white-space:nowrap; }
-.rail-header [data-mood]:hover, .rail-header [data-flag]:hover { border-color:var(--ink); color:var(--ink); }
-.rail-header [data-mood][aria-pressed="true"], .rail-header [data-flag][aria-pressed="true"] { border-color:var(--ink); color:var(--ink); background:var(--wash); font-weight:600; }
-.rail-header .cat-count { font-size:8px; color:var(--muted); margin:0; }
-.rail-header .src { font-size:8px; margin:0; }
-/* Scope */
-.rail-header #places-in-view { font-size:9px; line-height:1; font-weight:600; margin:0; }
-.rail-header .scope-tiles { min-height:16px; padding:0 4px; font-size:8px; font-weight:600; border:1px solid var(--rule); background:var(--paper); color:var(--ink); cursor:pointer; }
-.rail-header .scope-tiles:hover { border-color:var(--ink); background:var(--wash); }
-.rail-header .scope-tiles[aria-pressed="true"] { border-color:var(--ink); background:var(--guide); color:var(--ink); }
-.rail-header .count { font-size:8px; margin:0; padding:0; white-space:normal; }
-.rail-header .list-order { font-size:8px; margin:0; }
-.rail-header .list-order select { min-height:16px; font-size:8px; padding:0 3px; max-width:100%; color:var(--ink); border:0; border-bottom:1px solid var(--rule); border-radius:0; background:var(--paper); }
-.rail-header .list-origin { font-size:8px; margin:0; color:var(--muted); }
-/* Explore disclosure */
-.rail-header .list-explore > summary { min-height:16px; display:list-item; cursor:pointer; padding:0; color:var(--muted); font-weight:500; border:0; background:none; font-size:8px; }
-.rail-header .list-explore > summary::marker { content: "▸ "; color:var(--muted); }
-.rail-header .list-explore[open] > summary { color:var(--ink); font-weight:600; }
-.rail-header .list-explore[open] { flex-basis:100%; }
-.rail-header .explore-actions { padding:0; gap:2px 4px; flex-wrap:wrap; overflow:visible; }
-.rail-header .explore-actions button, .rail-header .explore-actions a { border:0; padding:0 3px; height:auto; min-height:16px; font-size:8px; text-align:left; }
-.rail-header .explore-actions a { color:var(--ink); text-decoration:underline; text-underline-offset:1px; }
-.rail-header .explore-actions button[aria-pressed=true] { background:var(--paper); font-weight:600; text-decoration:underline; }
-.rail-header .list-close { flex:none; margin:0 0 0 auto; min-width:20px; width:20px; height:20px; font-size:12px; }
-.list-guide-hint { padding:0 var(--pad) 3px; font-size:8px; color:var(--muted); line-height:1.2; border-bottom:0; }
+.rail-actions .list-walkthrough:hover { border-color:var(--ink); color:var(--ink); background:var(--wash); }
+.rail-actions .list-walkthrough[aria-pressed="true"] { border-color:var(--ink); color:var(--ink); background:var(--wash); font-weight:600; }
+.rail-actions .list-day { display:inline-flex; align-items:center; min-height:32px; font-size:var(--small); font-weight:600; text-underline-offset:3px; }
+.rail-actions .list-close { flex:none; margin:0 0 0 auto; min-width:32px; width:32px; height:32px; font-size:var(--big); }
+/* Scope: headline + live count together; the density toggle sits at the row's exit. */
+.rail-scope { flex-wrap:wrap; padding-top:4px; padding-bottom:4px; }
+.rail-scope h2 { padding:0; margin:0; font-size:var(--big); line-height:1.2; font-weight:600; }
+.rail-scope .count { margin:0; padding:0 0 0 6px; font-size:var(--micro); white-space:nowrap; }
+.rail-scope .scope-tiles { margin-left:auto; min-height:26px; padding:0 8px; font-size:var(--micro); font-weight:600;
+  border:1px solid var(--rule); background:var(--paper); color:var(--ink); cursor:pointer; white-space:nowrap; }
+.rail-scope .scope-tiles:hover { border-color:var(--ink); background:var(--wash); }
+.rail-scope .scope-tiles[aria-pressed="true"] { border-color:var(--ink); background:var(--guide); color:var(--ink); }
+/* Chip strip: moods and filters as one 32px instrument row, scrolling sideways.
+   Mood chips keep the ink edge (curated), filter chips the hairline (mechanical). */
+.rail-chips { flex-wrap:wrap; padding-top:4px; padding-bottom:4px; }
+.chip-scroll { flex:1 1 0; min-width:0; display:flex; align-items:center; gap:6px;
+  overflow-x:auto; overflow-y:hidden; scrollbar-width:none; }
+.chip-scroll::-webkit-scrollbar { display:none; }
+.rail-chips .moods, .rail-chips .flags { flex:none; display:flex; align-items:center; gap:4px; padding:0; overflow:visible; flex-wrap:nowrap; }
+.chip-seg { flex:none; font-size:var(--micro); font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); padding-right:2px; }
+.seg-rule { flex:none; width:1px; height:20px; background:var(--rule); }
+.rail-chips .moods button, .rail-chips .flags button { flex:none; height:32px; padding:0 8px;
+  font-size:var(--small); font-weight:500; white-space:nowrap; cursor:pointer; }
+.rail-chips .moods button[aria-pressed="true"], .rail-chips .flags button[aria-pressed="true"] { font-weight:600; }
+.rail-chips .cat-count { flex:none; font-size:var(--micro); color:var(--muted); padding-left:2px; }
+.rail-chips .cat-count:empty { display:none; }
+/* Explore: the one disclosure, an action at the row's exit; opens full-width below. */
+.rail-actions .list-explore { flex:none; }
+.rail-actions .list-explore > summary { min-height:32px; display:flex; align-items:center; cursor:pointer;
+  color:var(--muted); font-weight:500; font-size:var(--small); border:0; background:none; list-style:none; }
+.rail-actions .list-explore > summary::-webkit-details-marker { display:none; }
+.rail-actions .list-explore > summary::before { content:"▸ "; color:var(--muted); }
+.rail-actions .list-explore[open] > summary { color:var(--ink); font-weight:600; }
+.rail-actions .list-explore[open] > summary::before { content:"▾ "; }
+.rail-actions .list-explore[open] { flex-basis:100%; }
+.explore-actions { display:flex; flex-wrap:wrap; align-items:center; gap:2px 12px; padding:2px 0 4px; }
+.explore-actions button, .explore-actions a { border:0; background:none; padding:4px 0; min-height:32px;
+  font-size:var(--small); font-weight:500; color:var(--ink); text-align:left; cursor:pointer; }
+.explore-actions a { color:var(--ink); text-decoration:underline; text-underline-offset:2px; }
+.explore-actions button[aria-pressed="true"] { font-weight:600; text-decoration:underline; text-underline-offset:2px; }
+.explore-actions .list-order { display:block; max-width:100%; }
+.explore-actions .list-order select { font:inherit; font-size:var(--micro); min-height:32px; padding:2px 4px;
+  max-width:215px; color:var(--ink); border:0; border-bottom:1px solid var(--rule); border-radius:0; background:var(--paper); }
+.explore-actions .list-origin { font-size:var(--micro); color:var(--muted); }
+.explore-actions .src { margin:2px 0 4px; font-size:var(--micro); flex-basis:100%; }
 .list-wrap { overflow-x:hidden; }
 .list-place .nm { display:flex; flex-direction:column; gap:1px; font-weight:500; white-space:normal; overflow-wrap:anywhere; min-width:0; }
 .list-place .row-title { font-weight:600; color:var(--ink); }
@@ -51,8 +69,6 @@
 .list-group[data-list-group="cannabis"] h3 { border-left:4px solid var(--cat-cannabis); }
 .list-pulse .pulse-links { display:flex; flex-wrap:wrap; gap:6px 12px; padding:8px var(--pad) 12px; font-size:var(--small); }
 .list-pulse .pulse-links a, .list-pulse .pulse-links button { color:var(--ink); text-decoration:underline; text-underline-offset:2px; font-weight:500; }
-.list-order { max-width:100%; }
-.list-order select { font:inherit; font-size:var(--micro); min-height:32px; padding:2px 4px; max-width:215px; color:var(--ink); border:0; border-bottom:1px solid var(--rule); border-radius:0; background:var(--paper); }
 .list li[data-id] { padding:0; min-height:0; }
 .list-place { display:grid; grid-template-columns:20px minmax(0,1fr) auto; gap:8px; align-items:center; width:100%; min-height:32px; padding:5px var(--pad); text-align:left; }
 .list-place .place-symbol,.list-place .place-badge { width:20px; height:20px; }
