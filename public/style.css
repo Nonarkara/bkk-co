@@ -175,7 +175,7 @@ body.club-mode {
 body.club-mode .mark .semi { color: var(--club-seam); }
 body.club-mode .bar,
 body.club-mode .chips,
-body.club-mode .list-options { border-color: var(--club-rule); }
+body.club-mode .list-categories { border-color: var(--club-rule); }
 body.club-mode #map { background: var(--club-guide); }
 body.club-mode .bar-btn-primary,
 body.club-mode .list-tools > .list-walkthrough,

@@ -80,25 +80,31 @@
       <button type="button" class="scope-tiles" data-act="tiles" aria-pressed="false" title="Toggle Einstein hat-monotile concentration heatmap">⬡ Einstein tiles</button>
       <output id="count" class="count" aria-live="polite">Loading…</output>
     </div>
-    <div class="list-options">
-      <details class="list-explore"><summary>Explore</summary><div class="moods" aria-label="Explore places">
-        <button data-act="featured">Featured places</button><button data-act="discovery">50 + 50 source lists</button>
-        <button data-act="street">Street sketch</button><button data-act="media">People &amp; café videos</button>
-        <button data-proxy="atlas-open">Map views</button><button data-act="now">Near me now</button><button data-act="hop">Café hop</button>
-        <button data-act="compare">Neighbourhoods</button>
-        <button id="club-toggle" data-act="club" aria-pressed="false">CL;UB · Dispensaries</button>
-        <button data-mood="slow" aria-pressed="false">Slow mornings</button><button data-mood="midnight" aria-pressed="false">Past midnight</button>
-        <button data-mood="crossing" aria-pressed="false">Crossing paths</button><button data-mood="afterwork" aria-pressed="false">After work</button>
-        <button data-proxy="atlas-key">Map key</button><a class="moods-link" href="/research">Research &amp; data</a>
-      </div></details>
-      <details class="list-filters"><summary>Filters &amp; sort<span id="list-filter-count"></span></summary><div class="flags" aria-label="Filters">
-        <button data-flag="wifi" aria-pressed="false" title="Wi-Fi listed or rated">≋ Wi-Fi</button>
-        <button data-flag="open" aria-pressed="false" title="Open now where hours are known">◷ Open</button>
-        <button data-flag="late" aria-pressed="false" title="Open late or 24 hours — good for overnight work">🌙 Late night</button>
-        <button data-flag="indie" aria-pressed="false" title="No chain signal">◇ Indie</button>
-        <button data-flag="visited" aria-pressed="false" title="Places you visited">✓ Been</button>
-        <button data-flag="work" aria-pressed="false" title="Good for work — visitor work score">⌨ Work</button>
-      </div><p class="src" id="list-matching"></p>
+    <div class="list-categories">
+      <!-- Sharp category chips: moods visible at a glance, not hidden behind a disclosure -->
+      <div class="cat-section cat-moods">
+        <span class="cat-title">Moods</span>
+        <div class="cat-chips moods" aria-label="Moods">
+          <button data-mood="slow" aria-pressed="false">Slow mornings</button>
+          <button data-mood="midnight" aria-pressed="false">Past midnight</button>
+          <button data-mood="crossing" aria-pressed="false">Crossing paths</button>
+          <button data-mood="afterwork" aria-pressed="false">After work</button>
+        </div>
+      </div>
+      <!-- Sharp category chips: filters visible at a glance, not hidden behind a disclosure -->
+      <div class="cat-section cat-flags">
+        <span class="cat-title">Filters</span>
+        <div class="cat-chips flags" aria-label="Filters">
+          <button data-flag="wifi" aria-pressed="false" title="Wi-Fi listed or rated">≋ Wi-Fi</button>
+          <button data-flag="open" aria-pressed="false" title="Open now where hours are known">◷ Open</button>
+          <button data-flag="late" aria-pressed="false" title="Open late or 24 hours — good for overnight work">🌙 Late night</button>
+          <button data-flag="indie" aria-pressed="false" title="No chain signal">◇ Indie</button>
+          <button data-flag="visited" aria-pressed="false" title="Places you visited">✓ Been</button>
+          <button data-flag="work" aria-pressed="false" title="Good for work — visitor work score">⌨ Work</button>
+        </div>
+        <output id="list-filter-count" class="cat-count"></output>
+        <p class="src" id="list-matching"></p>
+      </div>
       <label class="list-order"><span class="sr">Sort places</span><select id="list-order" aria-label="Sort places">
         <option value="near">Near map centre</option>
         <option value="great">Third Place Index</option>
@@ -111,8 +117,16 @@
         <option value="notable">Notable records</option>
         <option value="work">Work signals</option>
         <option value="hubs">Concentrated hubs (CL;UB)</option>
-      </select></label></details>
+      </select></label>
       <span class="list-origin" id="list-origin">From map centre</span>
+      <details class="list-explore"><summary>Explore</summary><div class="explore-actions" aria-label="Explore places">
+        <button data-act="featured">Featured places</button><button data-act="discovery">50 + 50 source lists</button>
+        <button data-act="street">Street sketch</button><button data-act="media">People &amp; café videos</button>
+        <button data-proxy="atlas-open">Map views</button><button data-act="now">Near me now</button><button data-act="hop">Café hop</button>
+        <button data-act="compare">Neighbourhoods</button>
+        <button id="club-toggle" data-act="club" aria-pressed="false">CL;UB · Dispensaries</button>
+        <button data-proxy="atlas-key">Map key</button><a class="moods-link" href="/research">Research &amp; data</a>
+      </div></details>
     </div>
     <ol id="list" class="list" aria-labelledby="places-in-view"></ol>
   </section>

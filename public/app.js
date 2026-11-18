@@ -963,4 +963,4 @@ document.addEventListener('click', e => {
   document.querySelector(`.atlas-dock [data-${b.dataset.proxy}]`)?.click();
 });
 
-document.querySelector('.list-options').addEventListener('click',e=>{if(e.target.closest('[data-act],[data-mood],[data-proxy]'))for(const d of document.querySelectorAll('.list-options details'))d.open=false});
+document.querySelector('.list-categories').addEventListener('click',e=>{if(e.target.closest('[data-act],[data-mood],[data-proxy]'))for(const d of document.querySelectorAll('.list-categories details'))d.open=false});
