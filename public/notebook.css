@@ -47,7 +47,11 @@
  .bar { gap:6px; }
  .pass-btn { padding:0 5px; gap:4px; }
  .search { min-width:0; }
- .chips { flex-wrap:nowrap; overflow-x:auto; }
+/* The category row must never lose a category: at 320px "Food" sat outside the
+   layout viewport and at 260px (a 390px phone at 150% text) "Library" was sliced
+   mid-word and "Food" was gone. The row wraps instead of scrolling sideways, so
+   all four chips stay whole and reachable at every width. */
+.chips { flex-wrap:wrap; overflow:visible; min-width:0; }
  .chips button { flex:none; }
 }
 

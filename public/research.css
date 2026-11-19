@@ -4,8 +4,8 @@
 .research-bar { grid-area:bar; }
 .research-main { grid-area:main; overflow-y:auto; padding:16px var(--pad) 28px; max-width:1200px; width:100%; margin-inline:auto; overflow-wrap:anywhere; }
 .research-cols { display:grid; gap:24px; align-items:start; }
-.research-col--left h1 { font-size:24px; line-height:1.15; font-weight:600; margin:2px 0 6px; }
-.research-col h2 { font-size:18px; line-height:1.25; font-weight:600; margin:2px 0 6px; }
+.research-col--left h1 { font-size:1.5rem; line-height:1.15; font-weight:600; margin:2px 0 6px; }
+.research-col h2 { font-size:1.125rem; line-height:1.25; font-weight:600; margin:2px 0 6px; }
 .research-col section { margin-top:14px; padding-top:12px; border-top:1px solid var(--rule); }
 .research-col section:first-of-type { margin-top:10px; }
 .research-main p { margin:4px 0; max-width:62ch; line-height:1.55; }

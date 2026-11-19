@@ -40,6 +40,24 @@
 
   const toDataUrl = blob => new Promise(ok => { const r = new FileReader(); r.onload = () => ok(r.result); r.readAsDataURL(blob); });
 
+  // A data: URL is not a network request, but fetch() treats it as one and the
+  // page's own Content-Security-Policy (connect-src 'self' …) refuses it — so a
+  // restored photo never arrived. Decode the bytes instead of asking for them.
+  function blobFromDataUrl(url) {
+    const m = /^data:([^;,]+)(;base64)?,(.*)$/s.exec(String(url || ''));
+    if (!m) throw new Error('That photo is not a readable image.');
+    const mime = m[1], body = m[3];
+    let bytes;
+    if (m[2]) {
+      const bin = atob(body);
+      bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    } else {
+      bytes = new TextEncoder().encode(decodeURIComponent(body));
+    }
+    return new Blob([bytes], { type: mime });
+  }
+
   const Passport = {
     async all() { return (await tx('readonly', s => s.getAll())) || []; },
     async visitedPlaces() {
@@ -73,7 +91,7 @@
     async update(key, patch) { return this.mutate(key, old => ({ ...old, ...patch, key, updated: new Date().toISOString() })); },
     async put(visit) { return tx('readwrite', s => s.put(visit)); },
     async clear() { return tx('readwrite', s => s.clear()); },
-    toDataUrl, shrink,
+    toDataUrl, shrink, blobFromDataUrl,
     day(value) { const at = typeof value === 'string' ? value : value.at; return /^\d{4}-\d{2}-\d{2}$/.test(at) ? at : new Date(Date.parse(at)+7*3600000).toISOString().slice(0,10); },
     async add({ place, name, kind, y, x, stars, words, note, files, at }) {
       const photos = [];
@@ -114,7 +132,7 @@
         if (!v || typeof v.place !== 'string' || typeof v.at !== 'string' || !Number.isFinite(Date.parse(v.at))) continue;
         if (!Number.isInteger(v.stars) || v.stars < 0 || v.stars > 5 || typeof v.note !== 'string' || v.note.length > 600 || !Array.isArray(v.words) || v.words.some(w => typeof w !== 'string' || w.length > 40)) throw new Error('Invalid visit in backup.');
         const backupId=await identity(v);if(have.has(backupId))continue;
-        const photos = await Promise.all((v.photos || []).slice(0,4).filter(p => typeof p === 'string' && p.length <= 3000000 && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(p)).map(p => fetch(p).then(r => r.blob()).then(b => shrink(b))));
+        const photos = await Promise.all((v.photos || []).slice(0,4).filter(p => typeof p === 'string' && p.length <= 3000000 && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(p)).map(p => blobFromDataUrl(p).then(b => shrink(b))));
         // Imported files cannot smuggle cloud identities/revisions or arbitrary fields.
         await tx('readwrite', s => s.add({ uid: crypto.randomUUID(), backupId, place:v.place, name:String(v.name || '').slice(0,200), kind:String(v.kind || ''), y:Number(v.y), x:Number(v.x), stars:v.stars, words:v.words, note:v.note, at:v.at, photos }));
         have.add(backupId); n++;

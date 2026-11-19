@@ -82,7 +82,7 @@
    list.querySelectorAll('[data-restore]').forEach(b=>b.onclick=async()=>{b.disabled=true;try{
     const r=await auth('notebook/'+b.dataset.restore,'GET',undefined,actor),p=state.byId.get(r.payload.place);if(!p)throw new Error(state.foodLoaded?'This place is not in the current catalogue.':'Place data is still loading. Try restoring again in a moment.');
     const old=(await Passport.all()).find(v=>v.uid===r.id);if(old&&!confirm('Replace this device copy with the cloud version? Export a backup first if you want to keep both versions.'))return;
-    const photos=await Promise.all(r.payload.photos.map(async u=>(await fetch(u)).blob()));
+    const photos=await Promise.all(r.payload.photos.map(async u=>Passport.blobFromDataUrl(u)));
     if((await api('account')).account?.id!==actor.id)throw new Error('Account changed. Restore again after signing in.');
     await Passport.put({...r.payload,...(old?{key:old.key}:{}),uid:r.id,name:p.n,kind:p.k,y:p.y,x:p.x,photos,cloudOwner:actor.id,cloudRevision:r.revision,updated:r.payload.at,cloudAt:r.payload.at});
     await refreshNotebook();
