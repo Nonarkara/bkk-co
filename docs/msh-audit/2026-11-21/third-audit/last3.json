@@ -1,0 +1,103 @@
+[
+ {
+  "mode": "PLUB",
+  "vp": "390",
+  "hiddenCounted": [],
+  "visibleUncounted": [],
+  "visibleUncountedCount": 0,
+  "shareOfScreen": 0.8389,
+  "shareOfBelowHeader": 0.9453,
+  "headerH": 95,
+  "canvasShare": 0.8389
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1024",
+  "hiddenCounted": [
+   {
+    "n": "French Bakery",
+    "k": "cafe",
+    "x": 408,
+    "y": 738,
+    "coveredBy": "footprint-key"
+   }
+  ],
+  "visibleUncounted": [],
+  "visibleUncountedCount": 0,
+  "shareOfScreen": 0.7233,
+  "shareOfBelowHeader": 0.7769,
+  "headerH": 53,
+  "canvasShare": 0.931
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1440",
+  "hiddenCounted": [],
+  "visibleUncounted": [
+   {
+    "n": "li-bra-ry Café",
+    "k": "cafe",
+    "x": 79,
+    "y": 827
+   },
+   {
+    "n": "li-bra-ry at Candide",
+    "k": "cafe",
+    "x": 115,
+    "y": 844
+   },
+   {
+    "n": "ไล-บรา-รี่ แอทกองดิด",
+    "k": "cafe",
+    "x": 116,
+    "y": 841
+   }
+  ],
+  "visibleUncountedCount": 3,
+  "shareOfScreen": 0.8151,
+  "shareOfBelowHeader": 0.8661,
+  "headerH": 53,
+  "canvasShare": 0.9411
+ },
+ {
+  "mode": "CLUB",
+  "vp": "390",
+  "hiddenCounted": [],
+  "visibleUncounted": [],
+  "visibleUncountedCount": 0,
+  "shareOfScreen": 0.8874,
+  "shareOfBelowHeader": 1.0108,
+  "headerH": 103,
+  "canvasShare": 0.8874
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1024",
+  "hiddenCounted": [
+   {
+    "n": "Holy Smoke Cannabis Dispensary",
+    "k": "cannabis",
+    "x": 1011,
+    "y": 731,
+    "coveredBy": "maplibregl-ctrl maplibregl-ctr"
+   }
+  ],
+  "visibleUncounted": [],
+  "visibleUncountedCount": 0,
+  "shareOfScreen": 0.6736,
+  "shareOfBelowHeader": 0.7235,
+  "headerH": 53,
+  "canvasShare": 0.931
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1440",
+  "hiddenCounted": [],
+  "visibleUncounted": [],
+  "visibleUncountedCount": 0,
+  "shareOfScreen": 0.7849,
+  "shareOfBelowHeader": 0.834,
+  "headerH": 53,
+  "canvasShare": 0.9411
+ }
+]

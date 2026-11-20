@@ -1,0 +1,2452 @@
+[
+ {
+  "mode": "PLUB",
+  "viewport": "390",
+  "w": 390,
+  "h": 844,
+  "geo": {
+   "vp": {
+    "w": 390,
+    "h": 844
+   },
+   "scroll": {
+    "body": 844,
+    "doc": 844
+   },
+   "header": {
+    "x": 0,
+    "y": 0,
+    "w": 390,
+    "h": 95,
+    "top": 0,
+    "bottom": 95,
+    "left": 0,
+    "right": 390
+   },
+   "chips": {
+    "x": 0,
+    "y": 95,
+    "w": 390,
+    "h": 41,
+    "top": 95,
+    "bottom": 136,
+    "left": 0,
+    "right": 390
+   },
+   "railHeader": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+   },
+   "listWrap": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+   },
+   "side": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+   },
+   "canvas": {
+    "x": 0,
+    "y": 136,
+    "w": 390,
+    "h": 708,
+    "top": 136,
+    "bottom": 844,
+    "left": 0,
+    "right": 390
+   },
+   "mapEl": {
+    "x": 0,
+    "y": 136,
+    "w": 390,
+    "h": 708,
+    "top": 136,
+    "bottom": 844,
+    "left": 0,
+    "right": 390
+   },
+   "chromeH": 136,
+   "chromeShare": 0.16113744075829384,
+   "mapCanvasArea": 276120,
+   "mapCanvasShareOfVp": 0.8388625592417062,
+   "hiddenMapArea": 15775.9375,
+   "visibleMapArea": 260344.0625,
+   "visibleMapShareOfVp": 0.7909346898165026,
+   "hiders": [
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "footprint-key",
+     "r": {
+      "left": 10,
+      "top": 790,
+      "right": 160.453125,
+      "bottom": 834,
+      "w": 150.453125,
+      "h": 44
+     },
+     "area": 6619.9375
+    },
+    {
+     "tag": "div",
+     "id": "",
+     "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+     "r": {
+      "left": 334,
+      "top": 146,
+      "right": 380,
+      "bottom": 236,
+      "w": 46,
+      "h": 90
+     },
+     "area": 4140
+    },
+    {
+     "tag": "div",
+     "id": "",
+     "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+     "r": {
+      "left": 334,
+      "top": 246,
+      "right": 380,
+      "bottom": 292,
+      "w": 46,
+      "h": 46
+     },
+     "area": 2116
+    },
+    {
+     "tag": "div",
+     "id": "",
+     "cls": "maplibregl-ctrl maplibregl-ctrl-group manga-ctrl",
+     "r": {
+      "left": 334,
+      "top": 302,
+      "right": 380,
+      "bottom": 348,
+      "w": 46,
+      "h": 46
+     },
+     "area": 2116
+    },
+    {
+     "tag": "span",
+     "id": "",
+     "cls": "maplibregl-ctrl-icon",
+     "r": {
+      "left": 335,
+      "top": 147,
+      "right": 379,
+      "bottom": 191,
+      "w": 44,
+      "h": 44
+     },
+     "area": 1936
+    },
+    {
+     "tag": "span",
+     "id": "",
+     "cls": "maplibregl-ctrl-icon",
+     "r": {
+      "left": 335,
+      "top": 247,
+      "right": 379,
+      "bottom": 291,
+      "w": 44,
+      "h": 44
+     },
+     "area": 1936
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "manga-toggle",
+     "r": {
+      "left": 335,
+      "top": 303,
+      "right": 379,
+      "bottom": 347,
+      "w": 44,
+      "h": 44
+     },
+     "area": 1936
+    },
+    {
+     "tag": "span",
+     "id": "",
+     "cls": "maplibregl-ctrl-icon",
+     "r": {
+      "left": 335,
+      "top": 192,
+      "right": 379,
+      "bottom": 235,
+      "w": 44,
+      "h": 43
+     },
+     "area": 1892
+    },
+    {
+     "tag": "details",
+     "id": "",
+     "cls": "maplibregl-ctrl maplibregl-ctrl-attrib maplibregl-compact",
+     "r": {
+      "left": 352,
+      "top": 806,
+      "right": 380,
+      "bottom": 834,
+      "w": 28,
+      "h": 28
+     },
+     "area": 784
+    },
+    {
+     "tag": "span",
+     "id": "",
+     "cls": "footprint-swatch",
+     "r": {
+      "left": 19,
+      "top": 800,
+      "right": 43,
+      "bottom": 824,
+      "w": 24,
+      "h": 24
+     },
+     "area": 576
+    },
+    {
+     "tag": "span",
+     "id": "",
+     "cls": "footprint-swatch",
+     "r": {
+      "left": 47,
+      "top": 800,
+      "right": 71,
+      "bottom": 824,
+      "w": 24,
+      "h": 24
+     },
+     "area": 576
+    },
+    {
+     "tag": "span",
+     "id": "",
+     "cls": "footprint-swatch",
+     "r": {
+      "left": 75,
+      "top": 800,
+      "right": 99,
+      "bottom": 824,
+      "w": 24,
+      "h": 24
+     },
+     "area": 576
+    },
+    {
+     "tag": "span",
+     "id": "",
+     "cls": "footprint-swatch",
+     "r": {
+      "left": 103,
+      "top": 800,
+      "right": 127,
+      "bottom": 824,
+      "w": 24,
+      "h": 24
+     },
+     "area": 576
+    },
+    {
+     "tag": "summary",
+     "id": "",
+     "cls": "maplibregl-ctrl-attrib-button",
+     "r": {
+      "left": 354,
+      "top": 808,
+      "right": 378,
+      "bottom": 832,
+      "w": 24,
+      "h": 24
+     },
+     "area": 576
+    }
+   ],
+   "panelArea": 0,
+   "panelShareOfVp": 0,
+   "railContentBottom": null,
+   "railSlabPx": null,
+   "count": "20,640 matching",
+   "heading": "Places in view",
+   "listGroupCounts": [],
+   "showMore": [],
+   "listRows": 0,
+   "cam": {
+    "center": {
+     "lng": 100.51518,
+     "lat": 13.7315
+    },
+    "zoom": 16.8,
+    "getBoundsOverridden": true
+   },
+   "bounds": {
+    "s": 13.729380954288402,
+    "w": 100.51397839085689,
+    "n": 13.733619026561257,
+    "e": 100.51638160914166
+   },
+   "padding": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+   },
+   "srcCounts": {
+    "total": 20640,
+    "byKind": {
+     "coworking": 57,
+     "cafe": 20160,
+     "library": 423
+    }
+   },
+   "state": {
+    "catalogueStatus": "ready",
+    "cannabisStatus": "loading",
+    "cannabisLoaded": false,
+    "clubMode": false,
+    "places": 57379,
+    "cannabisPlaces": 0
+   }
+  },
+  "pins": {
+   "layers": [
+    "pins-city",
+    "pins-street",
+    "pins"
+   ],
+   "rendered": 2,
+   "visiblePins": 0,
+   "occludedPins": 1,
+   "offscreen": 1,
+   "visKinds": {},
+   "occKinds": {
+    "cafe:map": 1
+   },
+   "perKind": {
+    "cafe": 1
+   }
+  },
+  "appRegion": {
+   "enabledKinds": [
+    "Café",
+    "Co-work",
+    "Library"
+   ],
+   "total": 11,
+   "byKind": {
+    "cafe": 10,
+    "library": 1
+   },
+   "canvasRect": {
+    "left": 0,
+    "right": 390,
+    "top": 136,
+    "bottom": 844
+   }
+  },
+  "readerRegion": {
+   "enabledKinds": [
+    "Café",
+    "Co-work",
+    "Library"
+   ],
+   "total": 106,
+   "byKind": {
+    "cafe": 101,
+    "library": 5
+   },
+   "canvasRect": {
+    "left": 0,
+    "right": 390,
+    "top": 136,
+    "bottom": 844
+   }
+  },
+  "logs": [
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/prompt-thai-400.woff2?v=80fa1143 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/prompt-latin-400.woff2?v=6d0bc99f was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/SaoChingcha-Bold.woff2?v=b81f50e4 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/jost-latin.woff2?v=235d8f89 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/NonArchitecture-Regular.woff2?v=11d2f76b was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   }
+  ]
+ },
+ {
+  "mode": "PLUB",
+  "viewport": "1024",
+  "w": 1024,
+  "h": 768,
+  "geo": {
+   "vp": {
+    "w": 1024,
+    "h": 768
+   },
+   "scroll": {
+    "body": 768,
+    "doc": 768
+   },
+   "header": {
+    "x": 0,
+    "y": 0,
+    "w": 1024,
+    "h": 53,
+    "top": 0,
+    "bottom": 53,
+    "left": 0,
+    "right": 1024
+   },
+   "chips": {
+    "x": 0,
+    "y": 53,
+    "w": 360,
+    "h": 41,
+    "top": 53,
+    "bottom": 94,
+    "left": 0,
+    "right": 360
+   },
+   "railHeader": {
+    "x": 0,
+    "y": 94,
+    "w": 359,
+    "h": 89,
+    "top": 94,
+    "bottom": 183,
+    "left": 0,
+    "right": 359
+   },
+   "listWrap": {
+    "x": 0,
+    "y": 94,
+    "w": 360,
+    "h": 412.703125,
+    "top": 94,
+    "bottom": 506.703125,
+    "left": 0,
+    "right": 360
+   },
+   "side": {
+    "x": 0,
+    "y": 94,
+    "w": 360,
+    "h": 674,
+    "top": 94,
+    "bottom": 768,
+    "left": 0,
+    "right": 360
+   },
+   "canvas": {
+    "x": 0,
+    "y": 53,
+    "w": 1024,
+    "h": 715,
+    "top": 53,
+    "bottom": 768,
+    "left": 0,
+    "right": 1024
+   },
+   "mapEl": {
+    "x": 0,
+    "y": 53,
+    "w": 1024,
+    "h": 715,
+    "top": 53,
+    "bottom": 768,
+    "left": 0,
+    "right": 1024
+   },
+   "chromeH": 94,
+   "chromeShare": 0.12239583333333333,
+   "mapCanvasArea": 732160,
+   "mapCanvasShareOfVp": 0.9309895833333334,
+   "hiddenMapArea": 183973.0625,
+   "visibleMapArea": 548186.9375,
+   "visibleMapShareOfVp": 0.6970557371775309,
+   "hiders": [
+    {
+     "tag": "section",
+     "id": "list-wrap",
+     "cls": "list-wrap",
+     "r": {
+      "left": 0,
+      "top": 94,
+      "right": 360,
+      "bottom": 506.703125,
+      "w": 360,
+      "h": 412.703125
+     },
+     "area": 148573.125
+    },
+    {
+     "tag": "nav",
+     "id": "",
+     "cls": "chips",
+     "r": {
+      "left": 0,
+      "top": 53,
+      "right": 360,
+      "bottom": 94,
+      "w": 360,
+      "h": 41
+     },
+     "area": 14760
+    },
+    {
+     "tag": "h3",
+     "id": "list-heading-cafe",
+     "cls": "",
+     "r": {
+      "left": 0,
+      "top": 184,
+      "right": 359,
+      "bottom": 210.9375,
+      "w": 359,
+      "h": 26.9375
+     },
+     "area": 9670.5625
+    },
+    {
+     "tag": "h3",
+     "id": "list-heading-library",
+     "cls": "",
+     "r": {
+      "left": 0,
+      "top": 382.078125,
+      "right": 359,
+      "bottom": 409.015625,
+      "w": 359,
+      "h": 26.9375
+     },
+     "area": 9670.5625
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "footprint-key",
+     "r": {
+      "left": 380,
+      "top": 714,
+      "right": 530.453125,
+      "bottom": 758,
+      "w": 150.453125,
+      "h": 44
+     },
+     "area": 6619.9375
+    },
+    {
+     "tag": "select",
+     "id": "list-order",
+     "cls": "",
+     "r": {
+      "left": 225.203125,
+      "top": 538.875,
+      "right": 377.203125,
+      "bottom": 570.875,
+      "w": 152,
+      "h": 32
+     },
+     "area": 4864
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "list-find",
+     "r": {
+      "left": 12,
+      "top": 100,
+      "right": 139.3125,
+      "bottom": 136,
+      "w": 127.3125,
+      "h": 36
+     },
+     "area": 4583.25
+    },
+    {
+     "tag": "div",
+     "id": "",
+     "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+     "r": {
+      "left": 968,
+      "top": 63,
+      "right": 1014,
+      "bottom": 153,
+      "w": 46,
+      "h": 90
+     },
+     "area": 4140
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "scope-tiles",
+     "r": {
+      "left": 256.171875,
+      "top": 146,
+      "right": 347,
+      "bottom": 178,
+      "w": 90.828125,
+      "h": 32
+     },
+     "area": 2906.5
+    },
+    {
+     "tag": "div",
+     "id": "",
+     "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+     "r": {
+      "left": 968,
+      "top": 163,
+      "right": 1014,
+      "bottom": 209,
+      "w": 46,
+      "h": 46
+     },
+     "area": 2116
+    },
+    {
+     "tag": "div",
+     "id": "",
+     "cls": "maplibregl-ctrl maplibregl-ctrl-group manga-ctrl",
+     "r": {
+      "left": 968,
+      "top": 219,
+      "right": 1014,
+      "bottom": 265,
+      "w": 46,
+      "h": 46
+     },
+     "area": 2116
+    },
+    {
+     "tag": "span",
+     "id": "",
+     "cls": "maplibregl-ctrl-icon",
+     "r": {
+      "left": 969,
+      "top": 64,
+      "right": 1013,
+      "bottom": 108,
+      "w": 44,
+      "h": 44
+     },
+     "area": 1936
+    },
+    {
+     "tag": "span",
+     "id": "",
+     "cls": "maplibregl-ctrl-icon",
+     "r": {
+      "left": 969,
+      "top": 164,
+      "right": 1013,
+      "bottom": 208,
+      "w": 44,
+      "h": 44
+     },
+     "area": 1936
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "manga-toggle",
+     "r": {
+      "left": 969,
+      "top": 220,
+      "right": 1013,
+      "bottom": 264,
+      "w": 44,
+      "h": 44
+     },
+     "area": 1936
+    }
+   ],
+   "panelArea": 148573.125,
+   "panelShareOfVp": 0.1889204978942871,
+   "railContentBottom": 1361.625,
+   "railSlabPx": null,
+   "count": "37 places",
+   "heading": "Places in view",
+   "listGroupCounts": [
+    "Cafés 35",
+    "Libraries 2"
+   ],
+   "showMore": [
+    "Show 12 more"
+   ],
+   "listRows": 5,
+   "cam": {
+    "center": {
+     "lng": 100.51518,
+     "lat": 13.7315
+    },
+    "zoom": 16.8,
+    "getBoundsOverridden": true
+   },
+   "bounds": {
+    "s": 13.729360003176112,
+    "w": 100.51313418340965,
+    "n": 13.733639977293421,
+    "e": 100.51722581659271
+   },
+   "padding": {
+    "top": 0,
+    "bottom": 0,
+    "left": 360,
+    "right": 0
+   },
+   "srcCounts": {
+    "total": 20640,
+    "byKind": {
+     "coworking": 57,
+     "cafe": 20160,
+     "library": 423
+    }
+   },
+   "state": {
+    "catalogueStatus": "ready",
+    "cannabisStatus": "loading",
+    "cannabisLoaded": false,
+    "clubMode": false,
+    "places": 57379,
+    "cannabisPlaces": 0
+   }
+  },
+  "pins": {
+   "layers": [
+    "pins-city",
+    "pins-street",
+    "pins"
+   ],
+   "rendered": 2,
+   "visiblePins": 0,
+   "occludedPins": 2,
+   "offscreen": 0,
+   "visKinds": {},
+   "occKinds": {
+    "cafe:map": 1,
+    "library:map": 1
+   },
+   "perKind": {
+    "cafe": 1,
+    "library": 1
+   }
+  },
+  "appRegion": {
+   "enabledKinds": [
+    "Café",
+    "Co-work",
+    "Library"
+   ],
+   "total": 161,
+   "byKind": {
+    "cafe": 154,
+    "library": 6,
+    "coworking": 1
+   },
+   "canvasRect": {
+    "left": 0,
+    "right": 1024,
+    "top": 53,
+    "bottom": 768
+   }
+  },
+  "readerRegion": {
+   "enabledKinds": [
+    "Café",
+    "Co-work",
+    "Library"
+   ],
+   "total": 212,
+   "byKind": {
+    "cafe": 204,
+    "library": 7,
+    "coworking": 1
+   },
+   "canvasRect": {
+    "left": 0,
+    "right": 1024,
+    "top": 53,
+    "bottom": 768
+   }
+  },
+  "logs": [
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/prompt-thai-400.woff2?v=80fa1143 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/prompt-latin-400.woff2?v=6d0bc99f was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/SaoChingcha-Bold.woff2?v=b81f50e4 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/jost-latin.woff2?v=235d8f89 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/NonArchitecture-Regular.woff2?v=11d2f76b was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   }
+  ]
+ },
+ {
+  "mode": "PLUB",
+  "viewport": "1440",
+  "w": 1440,
+  "h": 900,
+  "geo": {
+   "vp": {
+    "w": 1440,
+    "h": 900
+   },
+   "scroll": {
+    "body": 900,
+    "doc": 900
+   },
+   "header": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 53,
+    "top": 0,
+    "bottom": 53,
+    "left": 0,
+    "right": 1440
+   },
+   "chips": {
+    "x": 0,
+    "y": 53,
+    "w": 360,
+    "h": 41,
+    "top": 53,
+    "bottom": 94,
+    "left": 0,
+    "right": 360
+   },
+   "railHeader": {
+    "x": 0,
+    "y": 94,
+    "w": 359,
+    "h": 89,
+    "top": 94,
+    "bottom": 183,
+    "left": 0,
+    "right": 359
+   },
+   "listWrap": {
+    "x": 0,
+    "y": 94,
+    "w": 360,
+    "h": 412.703125,
+    "top": 94,
+    "bottom": 506.703125,
+    "left": 0,
+    "right": 360
+   },
+   "side": {
+    "x": 0,
+    "y": 94,
+    "w": 360,
+    "h": 806,
+    "top": 94,
+    "bottom": 900,
+    "left": 0,
+    "right": 360
+   },
+   "canvas": {
+    "x": 0,
+    "y": 53,
+    "w": 1440,
+    "h": 847,
+    "top": 53,
+    "bottom": 900,
+    "left": 0,
+    "right": 1440
+   },
+   "mapEl": {
+    "x": 0,
+    "y": 53,
+    "w": 1440,
+    "h": 847,
+    "top": 53,
+    "bottom": 900,
+    "left": 0,
+    "right": 1440
+   },
+   "chromeH": 94,
+   "chromeShare": 0.10444444444444445,
+   "mapCanvasArea": 1219680,
+   "mapCanvasShareOfVp": 0.9411111111111111,
+   "hiddenMapArea": 183973.0625,
+   "visibleMapArea": 1035706.9375,
+   "visibleMapShareOfVp": 0.7991565875771605,
+   "hiders": [
+    {
+     "tag": "section",
+     "id": "list-wrap",
+     "cls": "list-wrap",
+     "r": {
+      "left": 0,
+      "top": 94,
+      "right": 360,
+      "bottom": 506.703125,
+      "w": 360,
+      "h": 412.703125
+     },
+     "area": 148573.125
+    },
+    {
+     "tag": "nav",
+     "id": "",
+     "cls": "chips",
+     "r": {
+      "left": 0,
+      "top": 53,
+      "right": 360,
+      "bottom": 94,
+      "w": 360,
+      "h": 41
+     },
+     "area": 14760
+    },
+    {
+     "tag": "h3",
+     "id": "list-heading-cafe",
+     "cls": "",
+     "r": {
+      "left": 0,
+      "top": 184,
+      "right": 359,
+      "bottom": 210.9375,
+      "w": 359,
+      "h": 26.9375
+     },
+     "area": 9670.5625
+    },
+    {
+     "tag": "h3",
+     "id": "list-heading-library",
+     "cls": "",
+     "r": {
+      "left": 0,
+      "top": 382.078125,
+      "right": 359,
+      "bottom": 409.015625,
+      "w": 359,
+      "h": 26.9375
+     },
+     "area": 9670.5625
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "footprint-key",
+     "r": {
+      "left": 380,
+      "top": 846,
+      "right": 530.453125,
+      "bottom": 890,
+      "w": 150.453125,
+      "h": 44
+     },
+     "area": 6619.9375
+    },
+    {
+     "tag": "select",
+     "id": "list-order",
+     "cls": "",
+     "r": {
+      "left": 225.203125,
+      "top": 538.875,
+      "right": 377.203125,
+      "bottom": 570.875,
+      "w": 152,
+      "h": 32
+     },
+     "area": 4864
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "list-find",
+     "r": {
+      "left": 12,
+      "top": 100,
+      "right": 139.3125,
+      "bottom": 136,
+      "w": 127.3125,
+      "h": 36
+     },
+     "area": 4583.25
+    },
+    {
+     "tag": "div",
+     "id": "",
+     "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+     "r": {
+      "left": 1384,
+      "top": 63,
+      "right": 1430,
+      "bottom": 153,
+      "w": 46,
+      "h": 90
+     },
+     "area": 4140
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "scope-tiles",
+     "r": {
+      "left": 256.171875,
+      "top": 146,
+      "right": 347,
+      "bottom": 178,
+      "w": 90.828125,
+      "h": 32
+     },
+     "area": 2906.5
+    },
+    {
+     "tag": "div",
+     "id": "",
+     "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+     "r": {
+      "left": 1384,
+      "top": 163,
+      "right": 1430,
+      "bottom": 209,
+      "w": 46,
+      "h": 46
+     },
+     "area": 2116
+    },
+    {
+     "tag": "div",
+     "id": "",
+     "cls": "maplibregl-ctrl maplibregl-ctrl-group manga-ctrl",
+     "r": {
+      "left": 1384,
+      "top": 219,
+      "right": 1430,
+      "bottom": 265,
+      "w": 46,
+      "h": 46
+     },
+     "area": 2116
+    },
+    {
+     "tag": "span",
+     "id": "",
+     "cls": "maplibregl-ctrl-icon",
+     "r": {
+      "left": 1385,
+      "top": 64,
+      "right": 1429,
+      "bottom": 108,
+      "w": 44,
+      "h": 44
+     },
+     "area": 1936
+    },
+    {
+     "tag": "span",
+     "id": "",
+     "cls": "maplibregl-ctrl-icon",
+     "r": {
+      "left": 1385,
+      "top": 164,
+      "right": 1429,
+      "bottom": 208,
+      "w": 44,
+      "h": 44
+     },
+     "area": 1936
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "manga-toggle",
+     "r": {
+      "left": 1385,
+      "top": 220,
+      "right": 1429,
+      "bottom": 264,
+      "w": 44,
+      "h": 44
+     },
+     "area": 1936
+    }
+   ],
+   "panelArea": 148573.125,
+   "panelShareOfVp": 0.11463975694444445,
+   "railContentBottom": 1361.625,
+   "railSlabPx": null,
+   "count": "48 places",
+   "heading": "Places in view",
+   "listGroupCounts": [
+    "Cafés 46",
+    "Libraries 2"
+   ],
+   "showMore": [
+    "Show 12 more"
+   ],
+   "listRows": 5,
+   "cam": {
+    "center": {
+     "lng": 100.51518,
+     "lat": 13.7315
+    },
+    "zoom": 16.8,
+    "getBoundsOverridden": true
+   },
+   "bounds": {
+    "s": 13.728964924702723,
+    "w": 100.51185246699055,
+    "n": 13.734035047887389,
+    "e": 100.51850753300914
+   },
+   "padding": {
+    "top": 0,
+    "bottom": 0,
+    "left": 360,
+    "right": 0
+   },
+   "srcCounts": {
+    "total": 20640,
+    "byKind": {
+     "coworking": 57,
+     "cafe": 20160,
+     "library": 423
+    }
+   },
+   "state": {
+    "catalogueStatus": "ready",
+    "cannabisStatus": "loading",
+    "cannabisLoaded": false,
+    "clubMode": false,
+    "places": 57379,
+    "cannabisPlaces": 0
+   }
+  },
+  "pins": {
+   "layers": [
+    "pins-city",
+    "pins-street",
+    "pins"
+   ],
+   "rendered": 3,
+   "visiblePins": 0,
+   "occludedPins": 3,
+   "offscreen": 0,
+   "visKinds": {},
+   "occKinds": {
+    "cafe:map": 2,
+    "library:map": 1
+   },
+   "perKind": {
+    "cafe": 2,
+    "library": 1
+   }
+  },
+  "appRegion": {
+   "enabledKinds": [
+    "Café",
+    "Co-work",
+    "Library"
+   ],
+   "total": 224,
+   "byKind": {
+    "cafe": 215,
+    "library": 8,
+    "coworking": 1
+   },
+   "canvasRect": {
+    "left": 0,
+    "right": 1440,
+    "top": 53,
+    "bottom": 900
+   }
+  },
+  "readerRegion": {
+   "enabledKinds": [
+    "Café",
+    "Co-work",
+    "Library"
+   ],
+   "total": 291,
+   "byKind": {
+    "cafe": 282,
+    "library": 8,
+    "coworking": 1
+   },
+   "canvasRect": {
+    "left": 0,
+    "right": 1440,
+    "top": 53,
+    "bottom": 900
+   }
+  },
+  "logs": [
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/prompt-thai-400.woff2?v=80fa1143 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/prompt-latin-400.woff2?v=6d0bc99f was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/SaoChingcha-Bold.woff2?v=b81f50e4 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/jost-latin.woff2?v=235d8f89 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://co.nonarkara.org/fonts/NonArchitecture-Regular.woff2?v=11d2f76b was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   }
+  ]
+ },
+ {
+  "mode": "CLUB",
+  "viewport": "390",
+  "w": 390,
+  "h": 844,
+  "geo": {
+   "vp": {
+    "w": 390,
+    "h": 844
+   },
+   "scroll": {
+    "body": 844,
+    "doc": 844
+   },
+   "header": {
+    "x": 0,
+    "y": 0,
+    "w": 390,
+    "h": 103,
+    "top": 0,
+    "bottom": 103,
+    "left": 0,
+    "right": 390
+   },
+   "chips": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+   },
+   "railHeader": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+   },
+   "listWrap": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+   },
+   "side": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+   },
+   "canvas": {
+    "x": 0,
+    "y": 103,
+    "w": 390,
+    "h": 749,
+    "top": 103,
+    "bottom": 852,
+    "left": 0,
+    "right": 390
+   },
+   "mapEl": {
+    "x": 0,
+    "y": 103,
+    "w": 390,
+    "h": 741,
+    "top": 103,
+    "bottom": 844,
+    "left": 0,
+    "right": 390
+   },
+   "chromeH": 103,
+   "chromeShare": 0.12203791469194313,
+   "mapCanvasArea": 292110,
+   "mapCanvasShareOfVp": 0.8874407582938388,
+   "hiddenMapArea": 11903.9375,
+   "visibleMapArea": 280206.0625,
+   "visibleMapShareOfVp": 0.8512761650868879,
+   "hiders": [
+    {
+     "tag": "div",
+     "id": "",
+     "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+     "r": {
+      "left": 334,
+      "top": 113,
+      "right": 380,
+      "bottom": 203,
+      "w": 46,
+      "h": 90
+     },
+     "area": 4140
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "footprint-key",
+     "r": {
+      "left": 10,
+      "top": 790,
+      "right": 72.453125,
+      "bottom": 834,
+      "w": 62.453125,
+      "h": 44
+     },
+     "area": 2747.9375
+    },
+    {
+     "tag": "div",
+     "id": "",
+     "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+     "r": {
+      "left": 334,
+      "top": 213,
+      "right": 380,
+      "bottom": 259,
+      "w": 46,
+      "h": 46
+     },
+     "area": 2116
+    },
+    {
+     "tag": "div",
+     "id": "",
+     "cls": "maplibregl-ctrl maplibregl-ctrl-group manga-ctrl",
+     "r": {
+      "left": 334,
+      "top": 269,
+      "right": 380,
+      "bottom": 315,
+      "w": 46,
+      "h": 46
+     },
+     "area": 2116
+    },
+    {
+     "tag": "span",
+     "id": "",
+     "cls": "maplibregl-ctrl-icon",
+     "r": {
+      "left": 335,
+      "top": 114,
+      "right": 379,
+      "bottom": 158,
+      "w": 44,
+      "h": 44
+     },
+     "area": 1936
+    },
+    {
+     "tag": "span",
+     "id": "",
+     "cls": "maplibregl-ctrl-icon",
+     "r": {
+      "left": 335,
+      "top": 214,
+      "right": 379,
+      "bottom": 258,
+      "w": 44,
+      "h": 44
+     },
+     "area": 1936
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "manga-toggle",
+     "r": {
+      "left": 335,
+      "top": 270,
+      "right": 379,
+      "bottom": 314,
+      "w": 44,
+      "h": 44
+     },
+     "area": 1936
+    },
+    {
+     "tag": "span",
+     "id": "",
+     "cls": "maplibregl-ctrl-icon",
+     "r": {
+      "left": 335,
+      "top": 159,
+      "right": 379,
+      "bottom": 202,
+      "w": 44,
+      "h": 43
+     },
+     "area": 1892
+    },
+    {
+     "tag": "details",
+     "id": "",
+     "cls": "maplibregl-ctrl maplibregl-ctrl-attrib maplibregl-compact",
+     "r": {
+      "left": 352,
+      "top": 806,
+      "right": 380,
+      "bottom": 834,
+      "w": 28,
+      "h": 28
+     },
+     "area": 784
+    },
+    {
+     "tag": "summary",
+     "id": "",
+     "cls": "maplibregl-ctrl-attrib-button",
+     "r": {
+      "left": 354,
+      "top": 808,
+      "right": 378,
+      "bottom": 832,
+      "w": 24,
+      "h": 24
+     },
+     "area": 576
+    }
+   ],
+   "panelArea": 0,
+   "panelShareOfVp": 0,
+   "railContentBottom": null,
+   "railSlabPx": null,
+   "count": "329 matching",
+   "heading": "Places in view",
+   "listGroupCounts": [],
+   "showMore": [],
+   "listRows": 0,
+   "cam": {
+    "center": {
+     "lng": 100.55786,
+     "lat": 13.73784
+    },
+    "zoom": 12,
+    "getBoundsOverridden": true
+   },
+   "bounds": {
+    "s": 13.675383602217678,
+    "w": 100.52438603149324,
+    "n": 13.800279758013048,
+    "e": 100.59133396850501
+   },
+   "padding": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+   },
+   "srcCounts": {
+    "total": 329,
+    "byKind": {
+     "cannabis": 329
+    }
+   },
+   "state": {
+    "catalogueStatus": "ready",
+    "cannabisStatus": "ready",
+    "cannabisLoaded": true,
+    "clubMode": true,
+    "places": 57708,
+    "cannabisPlaces": 329
+   }
+  },
+  "pins": {
+   "layers": [
+    "pins-city",
+    "pins-street",
+    "pins"
+   ],
+   "rendered": 2,
+   "visiblePins": 0,
+   "occludedPins": 2,
+   "offscreen": 0,
+   "visKinds": {},
+   "occKinds": {
+    "cannabis:map": 2
+   },
+   "perKind": {
+    "cannabis": 2
+   }
+  },
+  "appRegion": {
+   "enabledKinds": [
+    "Café",
+    "Co-work",
+    "Library"
+   ],
+   "total": 159,
+   "byKind": {
+    "cafe": 156,
+    "coworking": 2,
+    "library": 1
+   },
+   "canvasRect": {
+    "left": 0,
+    "right": 390,
+    "top": 103,
+    "bottom": 852
+   }
+  },
+  "readerRegion": {
+   "enabledKinds": [
+    "Café",
+    "Co-work",
+    "Library"
+   ],
+   "total": 4254,
+   "byKind": {
+    "cafe": 4105,
+    "coworking": 40,
+    "library": 109
+   },
+   "canvasRect": {
+    "left": 0,
+    "right": 390,
+    "top": 103,
+    "bottom": 852
+   }
+  },
+  "logs": [
+   {
+    "type": "requestfailed",
+    "text": "https://tiles.openfreemap.org/planet/20261115_080022_pt/14/12766/7560.pbf :: net::ERR_ABORTED"
+   },
+   {
+    "type": "requestfailed",
+    "text": "https://tiles.openfreemap.org/planet/20261115_080022_pt/14/12766/7561.pbf :: net::ERR_ABORTED"
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/prompt-latin-400.woff2?v=6d0bc99f was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/SaoChingcha-Bold.woff2?v=b81f50e4 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/prompt-thai-400.woff2?v=80fa1143 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/jost-latin.woff2?v=235d8f89 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/NonArchitecture-Regular.woff2?v=11d2f76b was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   }
+  ]
+ },
+ {
+  "mode": "CLUB",
+  "viewport": "1024",
+  "w": 1024,
+  "h": 768,
+  "geo": {
+   "vp": {
+    "w": 1024,
+    "h": 768
+   },
+   "scroll": {
+    "body": 768,
+    "doc": 768
+   },
+   "header": {
+    "x": 0,
+    "y": 0,
+    "w": 1024,
+    "h": 53,
+    "top": 0,
+    "bottom": 53,
+    "left": 0,
+    "right": 1024
+   },
+   "chips": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+   },
+   "railHeader": {
+    "x": 0,
+    "y": 102,
+    "w": 359,
+    "h": 85,
+    "top": 102,
+    "bottom": 187,
+    "left": 0,
+    "right": 359
+   },
+   "listWrap": {
+    "x": 0,
+    "y": 53,
+    "w": 360,
+    "h": 562.3125,
+    "top": 53,
+    "bottom": 615.3125,
+    "left": 0,
+    "right": 360
+   },
+   "side": {
+    "x": 0,
+    "y": 53,
+    "w": 360,
+    "h": 715,
+    "top": 53,
+    "bottom": 768,
+    "left": 0,
+    "right": 360
+   },
+   "canvas": {
+    "x": 0,
+    "y": 53,
+    "w": 1024,
+    "h": 715,
+    "top": 53,
+    "bottom": 768,
+    "left": 0,
+    "right": 1024
+   },
+   "mapEl": {
+    "x": 0,
+    "y": 53,
+    "w": 1024,
+    "h": 715,
+    "top": 53,
+    "bottom": 768,
+    "left": 0,
+    "right": 1024
+   },
+   "chromeH": 53,
+   "chromeShare": 0.06901041666666667,
+   "mapCanvasArea": 732160,
+   "mapCanvasShareOfVp": 0.9309895833333334,
+   "hiddenMapArea": 225745.140625,
+   "visibleMapArea": 506414.859375,
+   "visibleMapShareOfVp": 0.6439397931098938,
+   "hiders": [
+    {
+     "tag": "section",
+     "id": "list-wrap",
+     "cls": "list-wrap",
+     "r": {
+      "left": 0,
+      "top": 53,
+      "right": 360,
+      "bottom": 615.3125,
+      "w": 360,
+      "h": 562.3125
+     },
+     "area": 202432.5
+    },
+    {
+     "tag": "div",
+     "id": "club-hotspots",
+     "cls": "club-hotspots",
+     "r": {
+      "left": 0,
+      "top": 53,
+      "right": 359,
+      "bottom": 102,
+      "w": 359,
+      "h": 49
+     },
+     "area": 17591
+    },
+    {
+     "tag": "h3",
+     "id": "list-heading-cannabis",
+     "cls": "",
+     "r": {
+      "left": 0,
+      "top": 188,
+      "right": 359,
+      "bottom": 214.9375,
+      "w": 359,
+      "h": 26.9375
+     },
+     "area": 9670.5625
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 381,
+      "right": 260.765625,
+      "bottom": 413,
+      "w": 248.765625,
+      "h": 32
+     },
+     "area": 7960.5
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 309,
+      "right": 248.3125,
+      "bottom": 341,
+      "w": 236.3125,
+      "h": 32
+     },
+     "area": 7562
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 237,
+      "right": 228.015625,
+      "bottom": 269,
+      "w": 216.015625,
+      "h": 32
+     },
+     "area": 6912.5
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 165,
+      "right": 223.765625,
+      "bottom": 197,
+      "w": 211.765625,
+      "h": 32
+     },
+     "area": 6776.5
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 561,
+      "right": 203.953125,
+      "bottom": 593,
+      "w": 191.953125,
+      "h": 32
+     },
+     "area": 6142.5
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 129,
+      "right": 203.140625,
+      "bottom": 161,
+      "w": 191.140625,
+      "h": 32
+     },
+     "area": 6116.5
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 273,
+      "right": 198.125,
+      "bottom": 305,
+      "w": 186.125,
+      "h": 32
+     },
+     "area": 5956
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 489,
+      "right": 189.9375,
+      "bottom": 521,
+      "w": 177.9375,
+      "h": 32
+     },
+     "area": 5694
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 597,
+      "right": 185.75,
+      "bottom": 629,
+      "w": 173.75,
+      "h": 32
+     },
+     "area": 5560
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 417,
+      "right": 180.578125,
+      "bottom": 449,
+      "w": 168.578125,
+      "h": 32
+     },
+     "area": 5394.5
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 633,
+      "right": 179.96875,
+      "bottom": 665,
+      "w": 167.96875,
+      "h": 32
+     },
+     "area": 5375
+    }
+   ],
+   "panelArea": 202432.5,
+   "panelShareOfVp": 0.25740623474121094,
+   "railContentBottom": 1010.453125,
+   "railSlabPx": null,
+   "count": "103 places",
+   "heading": "Places in view",
+   "listGroupCounts": [
+    "Cannabis listings 103"
+   ],
+   "showMore": [
+    "Show 12 more"
+   ],
+   "listRows": 8,
+   "cam": {
+    "center": {
+     "lng": 100.55786,
+     "lat": 13.73784
+    },
+    "zoom": 12,
+    "getBoundsOverridden": true
+   },
+   "bounds": {
+    "s": 13.678219098644064,
+    "w": 100.50086842284935,
+    "n": 13.797445737987417,
+    "e": 100.61485157714532
+   },
+   "padding": {
+    "top": 0,
+    "bottom": 0,
+    "left": 360,
+    "right": 0
+   },
+   "srcCounts": {
+    "total": 329,
+    "byKind": {
+     "cannabis": 329
+    }
+   },
+   "state": {
+    "catalogueStatus": "ready",
+    "cannabisStatus": "ready",
+    "cannabisLoaded": true,
+    "clubMode": true,
+    "places": 57708,
+    "cannabisPlaces": 329
+   }
+  },
+  "pins": {
+   "layers": [
+    "pins-city",
+    "pins-street",
+    "pins"
+   ],
+   "rendered": 7,
+   "visiblePins": 0,
+   "occludedPins": 7,
+   "offscreen": 0,
+   "visKinds": {},
+   "occKinds": {
+    "cannabis:map": 7
+   },
+   "perKind": {
+    "cannabis": 7
+   }
+  },
+  "appRegion": {
+   "enabledKinds": [
+    "Café",
+    "Co-work",
+    "Library"
+   ],
+   "total": 6578,
+   "byKind": {
+    "cafe": 6367,
+    "coworking": 45,
+    "library": 166
+   },
+   "canvasRect": {
+    "left": 0,
+    "right": 1024,
+    "top": 53,
+    "bottom": 768
+   }
+  },
+  "readerRegion": {
+   "enabledKinds": [
+    "Café",
+    "Co-work",
+    "Library"
+   ],
+   "total": 8403,
+   "byKind": {
+    "cafe": 8126,
+    "coworking": 46,
+    "library": 231
+   },
+   "canvasRect": {
+    "left": 0,
+    "right": 1024,
+    "top": 53,
+    "bottom": 768
+   }
+  },
+  "logs": [
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/prompt-latin-400.woff2?v=6d0bc99f was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/SaoChingcha-Bold.woff2?v=b81f50e4 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/prompt-thai-400.woff2?v=80fa1143 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/jost-latin.woff2?v=235d8f89 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/NonArchitecture-Regular.woff2?v=11d2f76b was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   }
+  ]
+ },
+ {
+  "mode": "CLUB",
+  "viewport": "1440",
+  "w": 1440,
+  "h": 900,
+  "geo": {
+   "vp": {
+    "w": 1440,
+    "h": 900
+   },
+   "scroll": {
+    "body": 900,
+    "doc": 900
+   },
+   "header": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 53,
+    "top": 0,
+    "bottom": 53,
+    "left": 0,
+    "right": 1440
+   },
+   "chips": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+   },
+   "railHeader": {
+    "x": 0,
+    "y": 102,
+    "w": 359,
+    "h": 85,
+    "top": 102,
+    "bottom": 187,
+    "left": 0,
+    "right": 359
+   },
+   "listWrap": {
+    "x": 0,
+    "y": 53,
+    "w": 360,
+    "h": 562.3125,
+    "top": 53,
+    "bottom": 615.3125,
+    "left": 0,
+    "right": 360
+   },
+   "side": {
+    "x": 0,
+    "y": 53,
+    "w": 360,
+    "h": 847,
+    "top": 53,
+    "bottom": 900,
+    "left": 0,
+    "right": 360
+   },
+   "canvas": {
+    "x": 0,
+    "y": 53,
+    "w": 1440,
+    "h": 847,
+    "top": 53,
+    "bottom": 900,
+    "left": 0,
+    "right": 1440
+   },
+   "mapEl": {
+    "x": 0,
+    "y": 53,
+    "w": 1440,
+    "h": 847,
+    "top": 53,
+    "bottom": 900,
+    "left": 0,
+    "right": 1440
+   },
+   "chromeH": 53,
+   "chromeShare": 0.058888888888888886,
+   "mapCanvasArea": 1219680,
+   "mapCanvasShareOfVp": 0.9411111111111111,
+   "hiddenMapArea": 225745.140625,
+   "visibleMapArea": 993934.859375,
+   "visibleMapShareOfVp": 0.7669250458140432,
+   "hiders": [
+    {
+     "tag": "section",
+     "id": "list-wrap",
+     "cls": "list-wrap",
+     "r": {
+      "left": 0,
+      "top": 53,
+      "right": 360,
+      "bottom": 615.3125,
+      "w": 360,
+      "h": 562.3125
+     },
+     "area": 202432.5
+    },
+    {
+     "tag": "div",
+     "id": "club-hotspots",
+     "cls": "club-hotspots",
+     "r": {
+      "left": 0,
+      "top": 53,
+      "right": 359,
+      "bottom": 102,
+      "w": 359,
+      "h": 49
+     },
+     "area": 17591
+    },
+    {
+     "tag": "h3",
+     "id": "list-heading-cannabis",
+     "cls": "",
+     "r": {
+      "left": 0,
+      "top": 188,
+      "right": 359,
+      "bottom": 214.9375,
+      "w": 359,
+      "h": 26.9375
+     },
+     "area": 9670.5625
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 381,
+      "right": 260.765625,
+      "bottom": 413,
+      "w": 248.765625,
+      "h": 32
+     },
+     "area": 7960.5
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 309,
+      "right": 248.3125,
+      "bottom": 341,
+      "w": 236.3125,
+      "h": 32
+     },
+     "area": 7562
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 237,
+      "right": 228.015625,
+      "bottom": 269,
+      "w": 216.015625,
+      "h": 32
+     },
+     "area": 6912.5
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 165,
+      "right": 223.765625,
+      "bottom": 197,
+      "w": 211.765625,
+      "h": 32
+     },
+     "area": 6776.5
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 561,
+      "right": 203.953125,
+      "bottom": 593,
+      "w": 191.953125,
+      "h": 32
+     },
+     "area": 6142.5
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 129,
+      "right": 203.140625,
+      "bottom": 161,
+      "w": 191.140625,
+      "h": 32
+     },
+     "area": 6116.5
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 273,
+      "right": 198.125,
+      "bottom": 305,
+      "w": 186.125,
+      "h": 32
+     },
+     "area": 5956
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 489,
+      "right": 189.9375,
+      "bottom": 521,
+      "w": 177.9375,
+      "h": 32
+     },
+     "area": 5694
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 597,
+      "right": 185.75,
+      "bottom": 629,
+      "w": 173.75,
+      "h": 32
+     },
+     "area": 5560
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 417,
+      "right": 180.578125,
+      "bottom": 449,
+      "w": 168.578125,
+      "h": 32
+     },
+     "area": 5394.5
+    },
+    {
+     "tag": "button",
+     "id": "",
+     "cls": "hotspot-pill",
+     "r": {
+      "left": 12,
+      "top": 633,
+      "right": 179.96875,
+      "bottom": 665,
+      "w": 167.96875,
+      "h": 32
+     },
+     "area": 5375
+    }
+   ],
+   "panelArea": 202432.5,
+   "panelShareOfVp": 0.15619791666666666,
+   "railContentBottom": 1010.453125,
+   "railSlabPx": null,
+   "count": "127 places",
+   "heading": "Places in view",
+   "listGroupCounts": [
+    "Cannabis listings 127"
+   ],
+   "showMore": [
+    "Show 12 more"
+   ],
+   "listRows": 8,
+   "cam": {
+    "center": {
+     "lng": 100.55786,
+     "lat": 13.73784
+    },
+    "zoom": 12,
+    "getBoundsOverridden": true
+   },
+   "bounds": {
+    "s": 13.667210509738581,
+    "w": 100.46516285644606,
+    "n": 13.808448211298327,
+    "e": 100.65055714355447
+   },
+   "padding": {
+    "top": 0,
+    "bottom": 0,
+    "left": 360,
+    "right": 0
+   },
+   "srcCounts": {
+    "total": 329,
+    "byKind": {
+     "cannabis": 329
+    }
+   },
+   "state": {
+    "catalogueStatus": "ready",
+    "cannabisStatus": "ready",
+    "cannabisLoaded": true,
+    "clubMode": true,
+    "places": 57708,
+    "cannabisPlaces": 329
+   }
+  },
+  "pins": {
+   "layers": [
+    "pins-city",
+    "pins-street",
+    "pins"
+   ],
+   "rendered": 12,
+   "visiblePins": 0,
+   "occludedPins": 12,
+   "offscreen": 0,
+   "visKinds": {},
+   "occKinds": {
+    "cannabis:map": 12
+   },
+   "perKind": {
+    "cannabis": 12
+   }
+  },
+  "appRegion": {
+   "enabledKinds": [
+    "Café",
+    "Co-work",
+    "Library"
+   ],
+   "total": 9693,
+   "byKind": {
+    "cafe": 9403,
+    "coworking": 48,
+    "library": 242
+   },
+   "canvasRect": {
+    "left": 0,
+    "right": 1440,
+    "top": 53,
+    "bottom": 900
+   }
+  },
+  "readerRegion": {
+   "enabledKinds": [
+    "Café",
+    "Co-work",
+    "Library"
+   ],
+   "total": 10771,
+   "byKind": {
+    "cafe": 10464,
+    "coworking": 48,
+    "library": 259
+   },
+   "canvasRect": {
+    "left": 0,
+    "right": 1440,
+    "top": 53,
+    "bottom": 900
+   }
+  },
+  "logs": [
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/prompt-latin-400.woff2?v=6d0bc99f was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/SaoChingcha-Bold.woff2?v=b81f50e4 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/prompt-thai-400.woff2?v=80fa1143 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/jost-latin.woff2?v=235d8f89 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   },
+   {
+    "type": "warning",
+    "text": "The resource https://club.nonarkara.org/fonts/NonArchitecture-Regular.woff2?v=11d2f76b was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+   }
+  ]
+ }
+]

@@ -1,0 +1,60 @@
+[
+ {
+  "mode": "PLUB",
+  "closed": {
+   "toggle": {
+    "w": 34,
+    "h": 32
+   }
+  },
+  "open": {
+   "interactive": 32,
+   "sub44": 26,
+   "sub44List": [
+    "127x36 \"Find a work spot\"",
+    "74x32 \"Plan your day\"",
+    "46x32 \"Explore\"",
+    "94x32 \"Slow mornings\"",
+    "87x32 \"Past midnight\"",
+    "94x32 \"Crossing paths\"",
+    "71x32 \"After work\"",
+    "55x32 \"≋ Wi-Fi\"",
+    "57x32 \"◷ Open\"",
+    "79x32 \"☾ Late night\""
+   ],
+   "closeBtn": {
+    "w": 32,
+    "h": 32
+   }
+  }
+ },
+ {
+  "mode": "CLUB",
+  "closed": {
+   "toggle": {
+    "w": 44,
+    "h": 44
+   }
+  },
+  "open": {
+   "interactive": 53,
+   "sub44": 42,
+   "sub44List": [
+    "366x32 \"Browse hotspots · 24\"",
+    "124x32 \"☷All Thailand · 329\"",
+    "164x32 \"37Near Million Optio\"",
+    "191x32 \"21Near Amsterdam Caf\"",
+    "136x32 \"18Near Adam's Weed\"",
+    "212x32 \"15Near Siam Smile Ca\"",
+    "151x32 \"14Near Leafers Canna\"",
+    "216x32 \"16Near HighMed Canna\"",
+    "186x32 \"11Near HerbKee Canna\"",
+    "114x32 \"10Near Shiva hut\""
+   ],
+   "closeBtn": {
+    "w": 32,
+    "h": 32
+   }
+  }
+ }
+]

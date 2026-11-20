@@ -1,0 +1,58 @@
+[
+ {
+  "mode": "PLUB",
+  "test": "deadstrip",
+  "pt": {
+   "x": 180,
+   "y": 597
+  },
+  "zoomUnderStrip": {
+   "before": 16.8,
+   "after": 16.8,
+   "changed": false
+  },
+  "zoomControl": {
+   "before": 16.8,
+   "after": 17.30316720376433,
+   "changed": true
+  }
+ },
+ {
+  "mode": "CLUB",
+  "test": "deadstrip",
+  "pt": {
+   "x": 180,
+   "y": 705
+  },
+  "zoomUnderStrip": {
+   "before": 12,
+   "after": 12,
+   "changed": false
+  },
+  "zoomControl": {
+   "before": 12,
+   "after": 12.503167203764326,
+   "changed": true
+  }
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1024",
+  "test": "hiddenIcons",
+  "rendered": 7,
+  "hidden": [
+   {
+    "n": "Stone Age Weed Dispensary Riverside",
+    "x": 309,
+    "y": 594,
+    "coveredBy": "list-wrap"
+   },
+   {
+    "n": "ร้านกัญชา Purple Haze TH",
+    "x": 188,
+    "y": 423,
+    "coveredBy": "list-wrap"
+   }
+  ]
+ }
+]

@@ -1,0 +1,316 @@
+{
+ "atlas_PLUB": {
+  "cands": [],
+  "atlasLayers": [
+   {
+    "id": "atlas-heat",
+    "type": "heatmap",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-hats",
+    "type": "fill",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-hat-line",
+    "type": "line",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-district-fill",
+    "type": "fill",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-district-line",
+    "type": "line",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-park-fill",
+    "type": "fill",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-park-line",
+    "type": "line",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-street-lines",
+    "type": "line",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-loop-fill",
+    "type": "fill",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-loop-line",
+    "type": "line",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-clusters",
+    "type": "symbol"
+   },
+   {
+    "id": "atlas-street-names",
+    "type": "symbol",
+    "vis": "none"
+   }
+  ]
+ },
+ "atlas_CLUB": {
+  "cands": [],
+  "atlasLayers": [
+   {
+    "id": "atlas-heat",
+    "type": "heatmap",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-hats",
+    "type": "fill",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-hat-line",
+    "type": "line",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-district-fill",
+    "type": "fill",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-district-line",
+    "type": "line",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-park-fill",
+    "type": "fill",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-park-line",
+    "type": "line",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-street-lines",
+    "type": "line",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-loop-fill",
+    "type": "fill",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-loop-line",
+    "type": "line",
+    "vis": "none"
+   },
+   {
+    "id": "atlas-clusters",
+    "type": "symbol"
+   },
+   {
+    "id": "atlas-street-names",
+    "type": "symbol",
+    "vis": "none"
+   }
+  ]
+ },
+ "palette_PLUB": {
+  "samples": [
+   {
+    "t": 1419,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 1670,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 1923,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 2182,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 2437,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 2690,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 2943,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 3197,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 3450,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 3703,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 3957,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 4210,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 4463,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 4718,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "",
+    "cssVar": "#f9c1ce"
+   }
+  ],
+  "final": {
+   "bodyBg": "rgb(255, 255, 255)",
+   "bodyClass": "",
+   "mangaInstalled": true
+  }
+ },
+ "palette_CLUB": {
+  "samples": [
+   {
+    "t": 1441,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "club-mode",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 1694,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "club-mode",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 1946,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "club-mode",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 2199,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "club-mode",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 2450,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "club-mode",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 2702,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "club-mode",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 2955,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "club-mode",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 3208,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "club-mode",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 3462,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "club-mode",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 3715,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "club-mode",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 3968,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "club-mode",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 4221,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "club-mode",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 4472,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "club-mode",
+    "cssVar": "#f9c1ce"
+   },
+   {
+    "t": 4726,
+    "bodyBg": "rgb(255, 255, 255)",
+    "bodyClass": "club-mode",
+    "cssVar": "#f9c1ce"
+   }
+  ],
+  "final": {
+   "bodyBg": "rgb(255, 255, 255)",
+   "bodyClass": "club-mode",
+   "mangaInstalled": true
+  }
+ }
+}

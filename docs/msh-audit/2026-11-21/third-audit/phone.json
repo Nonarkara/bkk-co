@@ -1,0 +1,290 @@
+[
+ {
+  "mode": "PLUB",
+  "closed": {
+   "toggle": {
+    "txt": "☰",
+    "w": 34,
+    "h": 32,
+    "x": 12,
+    "y": 99,
+    "disp": "flex",
+    "vis": true
+   },
+   "listWrapRect": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sideClass": "side",
+   "count": "20,640 matching",
+   "rows": 0,
+   "mapCanvas": [
+    0,
+    136,
+    390,
+    708
+   ]
+  },
+  "open": {
+   "listWrapRect": [
+    0,
+    478,
+    390,
+    366
+   ],
+   "rows": [
+    "House of CommonsCafé~30 m",
+    "Baba Mama CafeCafé~40 m",
+    "Such A Small WorldCafé~70 ",
+    "ห้องสมุดประชาชี Prachachee"
+   ],
+   "rowCount": 4,
+   "closeBtn": {
+    "w": 32,
+    "h": 32
+   },
+   "smallTargets": [
+    {
+     "t": "Find a work spot",
+     "tag": "button",
+     "w": 127,
+     "h": 36
+    },
+    {
+     "t": "Plan your day",
+     "tag": "a",
+     "w": 74,
+     "h": 32
+    },
+    {
+     "t": "Explore",
+     "tag": "summary",
+     "w": 46,
+     "h": 32
+    },
+    {
+     "t": "Slow mornings",
+     "tag": "button",
+     "w": 94,
+     "h": 32
+    },
+    {
+     "t": "Past midnight",
+     "tag": "button",
+     "w": 87,
+     "h": 32
+    },
+    {
+     "t": "Crossing paths",
+     "tag": "button",
+     "w": 94,
+     "h": 32
+    },
+    {
+     "t": "After work",
+     "tag": "button",
+     "w": 71,
+     "h": 32
+    },
+    {
+     "t": "≋ Wi-Fi",
+     "tag": "button",
+     "w": 55,
+     "h": 32
+    },
+    {
+     "t": "◷ Open",
+     "tag": "button",
+     "w": 57,
+     "h": 32
+    },
+    {
+     "t": "☾ Late night",
+     "tag": "button",
+     "w": 79,
+     "h": 32
+    },
+    {
+     "t": "◇ Indie",
+     "tag": "button",
+     "w": 54,
+     "h": 32
+    },
+    {
+     "t": "✓ Been",
+     "tag": "button",
+     "w": 55,
+     "h": 32
+    }
+   ],
+   "listOrder": {
+    "rect": [
+     225,
+     925,
+     152,
+     32
+    ],
+    "disp": "inline-block",
+    "vis": "visible",
+    "op": "1",
+    "insidePanel": false,
+    "panelRect": [
+     0,
+     478,
+     390,
+     366
+    ],
+    "hitAtCenter": "none"
+   },
+   "count": "20 places"
+  }
+ },
+ {
+  "mode": "CLUB",
+  "closed": {
+   "toggle": {
+    "txt": "☰",
+    "w": 44,
+    "h": 44,
+    "x": 12,
+    "y": 50,
+    "disp": "flex",
+    "vis": true
+   },
+   "listWrapRect": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "sideClass": "side",
+   "count": "329 matching",
+   "rows": 0,
+   "mapCanvas": [
+    0,
+    103,
+    390,
+    749
+   ]
+  },
+  "open": {
+   "listWrapRect": [
+    0,
+    354,
+    390,
+    490
+   ],
+   "rows": [
+    "Fat Buds​​ EkkamaiMapped d",
+    "Fat Buds​ ​SathornMapped d",
+    "TOPSHELFMapped dispensary ",
+    "Thai Cannabis ClubMapped d",
+    "Amsterdam Cafe BangkokMapp",
+    "Bang FloraMapped dispensar",
+    "Fairly Good Cannabis Bangk",
+    "Highcraft Thailand Dispens"
+   ],
+   "rowCount": 8,
+   "closeBtn": {
+    "w": 32,
+    "h": 32
+   },
+   "smallTargets": [
+    {
+     "t": "Browse hotspots · 24",
+     "tag": "summary",
+     "w": 366,
+     "h": 32
+    },
+    {
+     "t": "☷All Thailand · 329",
+     "tag": "button",
+     "w": 124,
+     "h": 32
+    },
+    {
+     "t": "37Near Million Option ",
+     "tag": "button",
+     "w": 164,
+     "h": 32
+    },
+    {
+     "t": "21Near Amsterdam Cafe ",
+     "tag": "button",
+     "w": 191,
+     "h": 32
+    },
+    {
+     "t": "18Near Adam's Weed",
+     "tag": "button",
+     "w": 136,
+     "h": 32
+    },
+    {
+     "t": "15Near Siam Smile Cann",
+     "tag": "button",
+     "w": 212,
+     "h": 32
+    },
+    {
+     "t": "14Near Leafers Cannabi",
+     "tag": "button",
+     "w": 151,
+     "h": 32
+    },
+    {
+     "t": "16Near HighMed Cannabi",
+     "tag": "button",
+     "w": 216,
+     "h": 32
+    },
+    {
+     "t": "11Near HerbKee Cannabi",
+     "tag": "button",
+     "w": 186,
+     "h": 32
+    },
+    {
+     "t": "10Near Shiva hut",
+     "tag": "button",
+     "w": 114,
+     "h": 32
+    },
+    {
+     "t": "16Near All Time High C",
+     "tag": "button",
+     "w": 236,
+     "h": 32
+    },
+    {
+     "t": "21Near Aom",
+     "tag": "button",
+     "w": 93,
+     "h": 32
+    }
+   ],
+   "listOrder": {
+    "rect": [
+     12,
+     571,
+     152,
+     32
+    ],
+    "disp": "inline-block",
+    "vis": "visible",
+    "op": "1",
+    "insidePanel": true,
+    "panelRect": [
+     0,
+     354,
+     390,
+     490
+    ],
+    "hitAtCenter": "row-title"
+   },
+   "count": "70 places"
+  }
+ }
+]

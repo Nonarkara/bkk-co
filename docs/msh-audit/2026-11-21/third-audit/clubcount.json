@@ -1,0 +1,115 @@
+[
+ {
+  "mode": "PLUB",
+  "vp": "390",
+  "count": "20,640 matching",
+  "inB": {
+   "cafe": 19,
+   "library": 1
+  },
+  "totalInB": 20,
+  "cannabisInB": 0,
+  "iconsRendered": 2,
+  "iconsVisible": 2,
+  "byKind": {
+   "cafe|place-icons": 1,
+   "cafe|pins": 1
+  },
+  "listRows": 0
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1024",
+  "count": "37 places",
+  "inB": {
+   "cafe": 35,
+   "library": 2
+  },
+  "totalInB": 37,
+  "cannabisInB": 0,
+  "iconsRendered": 4,
+  "iconsVisible": 4,
+  "byKind": {
+   "cafe|place-icons": 1,
+   "library|place-icons": 1,
+   "cafe|pins": 1,
+   "library|pins": 1
+  },
+  "listRows": 5,
+  "heading": "Cafés 35"
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1440",
+  "count": "48 places",
+  "inB": {
+   "cafe": 46,
+   "library": 2
+  },
+  "totalInB": 48,
+  "cannabisInB": 0,
+  "iconsRendered": 6,
+  "iconsVisible": 6,
+  "byKind": {
+   "cafe|place-icons": 2,
+   "library|place-icons": 1,
+   "cafe|pins": 2,
+   "library|pins": 1
+  },
+  "listRows": 5,
+  "heading": "Cafés 46"
+ },
+ {
+  "mode": "CLUB",
+  "vp": "390",
+  "count": "329 matching",
+  "inB": {
+   "cannabis": 70
+  },
+  "totalInB": 70,
+  "cannabisInB": 70,
+  "iconsRendered": 4,
+  "iconsVisible": 4,
+  "byKind": {
+   "cannabis|place-icons": 2,
+   "cannabis|pins-city": 2
+  },
+  "listRows": 0
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1024",
+  "count": "103 places",
+  "inB": {
+   "cannabis": 103
+  },
+  "totalInB": 103,
+  "cannabisInB": 103,
+  "iconsRendered": 14,
+  "iconsVisible": 10,
+  "byKind": {
+   "cannabis|place-icons": 7,
+   "cannabis|pins-city": 7
+  },
+  "listRows": 8,
+  "heading": "Cannabis listings 103"
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1440",
+  "count": "127 places",
+  "inB": {
+   "cannabis": 127
+  },
+  "totalInB": 127,
+  "cannabisInB": 127,
+  "iconsRendered": 24,
+  "iconsVisible": 24,
+  "byKind": {
+   "cannabis|place-icons": 12,
+   "cannabis|pins-city": 12
+  },
+  "listRows": 8,
+  "heading": "Cannabis listings 127"
+ }
+]

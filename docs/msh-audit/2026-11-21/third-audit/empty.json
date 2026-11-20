@@ -1,0 +1,43 @@
+[
+ {
+  "mode": "PLUB",
+  "searchEmpty": {
+   "count": "48 places",
+   "listText": "Cafés 46 House of CommonsCafé~30 mBaba Mama CafeCafé~40 mSuch A Small WorldCafé~70 mShow 12 moreLibraries 2 ห้องสมุดประชาชี Prachachee Libra",
+   "rows": 5,
+   "retry": false,
+   "catalogueStatus": "ready"
+  }
+ },
+ {
+  "mode": "PLUB",
+  "pinkLeak": [
+   {
+    "tag": "main",
+    "id": "map",
+    "cls": "maplibregl-map",
+    "bg": "rgb(249, 193, 206)",
+    "rect": [
+     0,
+     53,
+     1440,
+     847
+    ]
+   }
+  ]
+ },
+ {
+  "mode": "CLUB",
+  "searchEmpty": {
+   "count": "127 places",
+   "listText": "Cannabis listings 127 Lollipop Farm Cannabis DispensaryMapped dispensary · Tier B · Bangkok4/4 detailsAddicted Cannabis ClubMapped dispensar",
+   "rows": 8,
+   "retry": false,
+   "catalogueStatus": "ready"
+  }
+ },
+ {
+  "mode": "CLUB",
+  "pinkLeak": []
+ }
+]

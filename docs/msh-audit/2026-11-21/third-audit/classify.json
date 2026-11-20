@@ -1,0 +1,195 @@
+[
+ {
+  "mode": "PLUB",
+  "vp": "390",
+  "disp": "20,640 matching",
+  "dispN": 20640,
+  "visCounted": 20,
+  "visNotCounted": 0,
+  "hiddenCounted": 0,
+  "hiddenNotCounted": 0,
+  "offscreen": 20620,
+  "visNotCountedList": [],
+  "bubbleSum": 28,
+  "bubbleVisibleSum": 28,
+  "individualPins": 4,
+  "individualVisible": 4,
+  "panelRect": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "canvasRect": [
+   0,
+   136,
+   390,
+   708
+  ]
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1024",
+  "disp": "37 places",
+  "dispN": 37,
+  "visCounted": 36,
+  "visNotCounted": 0,
+  "hiddenCounted": 1,
+  "hiddenNotCounted": 3,
+  "offscreen": 20600,
+  "visNotCountedList": [],
+  "bubbleSum": 46,
+  "bubbleVisibleSum": 43,
+  "individualPins": 4,
+  "individualVisible": 4,
+  "panelRect": [
+   0,
+   94,
+   360,
+   413
+  ],
+  "canvasRect": [
+   0,
+   53,
+   1024,
+   715
+  ]
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1440",
+  "disp": "48 places",
+  "dispN": 48,
+  "visCounted": 48,
+  "visNotCounted": 3,
+  "hiddenCounted": 0,
+  "hiddenNotCounted": 0,
+  "offscreen": 20589,
+  "visNotCountedList": [
+   {
+    "k": "cafe",
+    "n": "li-bra-ry Café",
+    "x": 79,
+    "y": 827,
+    "leftOfPanel": true,
+    "belowPanel": true
+   },
+   {
+    "k": "cafe",
+    "n": "li-bra-ry at Candide",
+    "x": 115,
+    "y": 844,
+    "leftOfPanel": true,
+    "belowPanel": true
+   },
+   {
+    "k": "cafe",
+    "n": "ไล-บรา-รี่ แอทกองดิด",
+    "x": 116,
+    "y": 841,
+    "leftOfPanel": true,
+    "belowPanel": true
+   }
+  ],
+  "bubbleSum": 50,
+  "bubbleVisibleSum": 50,
+  "individualPins": 7,
+  "individualVisible": 7,
+  "panelRect": [
+   0,
+   94,
+   360,
+   413
+  ],
+  "canvasRect": [
+   0,
+   53,
+   1440,
+   847
+  ]
+ },
+ {
+  "mode": "CLUB",
+  "vp": "390",
+  "disp": "329 matching",
+  "dispN": 329,
+  "visCounted": 70,
+  "visNotCounted": 0,
+  "hiddenCounted": 0,
+  "hiddenNotCounted": 0,
+  "offscreen": 259,
+  "visNotCountedList": [],
+  "bubbleSum": 74,
+  "bubbleVisibleSum": 74,
+  "individualPins": 4,
+  "individualVisible": 4,
+  "panelRect": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "canvasRect": [
+   0,
+   103,
+   390,
+   749
+  ]
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1024",
+  "disp": "103 places",
+  "dispN": 103,
+  "visCounted": 102,
+  "visNotCounted": 0,
+  "hiddenCounted": 1,
+  "hiddenNotCounted": 15,
+  "offscreen": 211,
+  "visNotCountedList": [],
+  "bubbleSum": 113,
+  "bubbleVisibleSum": 98,
+  "individualPins": 14,
+  "individualVisible": 10,
+  "panelRect": [
+   0,
+   53,
+   360,
+   562
+  ],
+  "canvasRect": [
+   0,
+   53,
+   1024,
+   715
+  ]
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1440",
+  "disp": "127 places",
+  "dispN": 127,
+  "visCounted": 127,
+  "visNotCounted": 0,
+  "hiddenCounted": 0,
+  "hiddenNotCounted": 0,
+  "offscreen": 202,
+  "visNotCountedList": [],
+  "bubbleSum": 115,
+  "bubbleVisibleSum": 115,
+  "individualPins": 24,
+  "individualVisible": 24,
+  "panelRect": [
+   0,
+   53,
+   360,
+   562
+  ],
+  "canvasRect": [
+   0,
+   53,
+   1440,
+   847
+  ]
+ }
+]

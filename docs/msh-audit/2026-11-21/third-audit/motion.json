@@ -1,0 +1,42 @@
+[
+ {
+  "mode": "PLUB",
+  "reduced": true,
+  "mqReduce": true,
+  "animatedEls": 0,
+  "transitionedEls": 236,
+  "mapAnimation": {
+   "rotate": "moving"
+  },
+  "mapPitch": 0,
+  "prefersReducedCSS": true,
+  "count": "48 places",
+  "logs": [
+   "warning:The resource https://co.nonarkara.org/fonts/prompt-thai-400.woff2?v=80fa1143 was preloaded using link preload but not us",
+   "warning:The resource https://co.nonarkara.org/fonts/prompt-latin-400.woff2?v=6d0bc99f was preloaded using link preload but not u",
+   "warning:The resource https://co.nonarkara.org/fonts/SaoChingcha-Bold.woff2?v=b81f50e4 was preloaded using link preload but not u",
+   "warning:The resource https://co.nonarkara.org/fonts/jost-latin.woff2?v=235d8f89 was preloaded using link preload but not used wi",
+   "warning:The resource https://co.nonarkara.org/fonts/NonArchitecture-Regular.woff2?v=11d2f76b was preloaded using link preload bu"
+  ]
+ },
+ {
+  "mode": "CLUB",
+  "reduced": true,
+  "mqReduce": true,
+  "animatedEls": 0,
+  "transitionedEls": 357,
+  "mapAnimation": {
+   "rotate": "moving"
+  },
+  "mapPitch": 0,
+  "prefersReducedCSS": true,
+  "count": "127 places",
+  "logs": [
+   "warning:The resource https://club.nonarkara.org/fonts/prompt-latin-400.woff2?v=6d0bc99f was preloaded using link preload but not",
+   "warning:The resource https://club.nonarkara.org/fonts/SaoChingcha-Bold.woff2?v=b81f50e4 was preloaded using link preload but not",
+   "warning:The resource https://club.nonarkara.org/fonts/prompt-thai-400.woff2?v=80fa1143 was preloaded using link preload but not ",
+   "warning:The resource https://club.nonarkara.org/fonts/jost-latin.woff2?v=235d8f89 was preloaded using link preload but not used ",
+   "warning:The resource https://club.nonarkara.org/fonts/NonArchitecture-Regular.woff2?v=11d2f76b was preloaded using link preload "
+  ]
+ }
+]

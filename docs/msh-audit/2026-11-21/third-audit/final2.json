@@ -1,0 +1,478 @@
+[
+ {
+  "mode": "PLUB",
+  "vp": "390",
+  "canvasA": 276120,
+  "appHidden": 0,
+  "mapHidden": 15776,
+  "mapMinusAppChromeShare": 0.8389,
+  "mapMinusAllChromeShare": 0.7909,
+  "canvasShare": 0.8389,
+  "hunts": [],
+  "smallTargets": [
+   {
+    "t": "PLUB, Placemaking Laborato",
+    "tag": "a",
+    "w": 70,
+    "h": 22,
+    "y": 15
+   },
+   {
+    "t": "q",
+    "tag": "input",
+    "w": 277,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "3D District Scavenger Hunt",
+    "tag": "button",
+    "w": 66,
+    "h": 36,
+    "y": 50
+   },
+   {
+    "t": "Nong Plub's guide: neighbo",
+    "tag": "button",
+    "w": 79,
+    "h": 36,
+    "y": 50
+   },
+   {
+    "t": "Your notebook",
+    "tag": "button",
+    "w": 71,
+    "h": 36,
+    "y": 50
+   },
+   {
+    "t": "List, explore and filters",
+    "tag": "button",
+    "w": 34,
+    "h": 32,
+    "y": 99
+   },
+   {
+    "t": "Café",
+    "tag": "button",
+    "w": 64,
+    "h": 32,
+    "y": 99
+   },
+   {
+    "t": "Co-work",
+    "tag": "button",
+    "w": 84,
+    "h": 32,
+    "y": 99
+   },
+   {
+    "t": "Library",
+    "tag": "button",
+    "w": 77,
+    "h": 32,
+    "y": 99
+   },
+   {
+    "t": "Food",
+    "tag": "button",
+    "w": 66,
+    "h": 32,
+    "y": 99
+   }
+  ],
+  "smallCount": 11
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1024",
+  "canvasA": 732160,
+  "appHidden": 163333,
+  "mapHidden": 15776,
+  "mapMinusAppChromeShare": 0.7233,
+  "mapMinusAllChromeShare": 0.7032,
+  "canvasShare": 0.931,
+  "hunts": [],
+  "smallTargets": [
+   {
+    "t": "PLUB, Placemaking Laborato",
+    "tag": "a",
+    "w": 70,
+    "h": 22,
+    "y": 15
+   },
+   {
+    "t": "q",
+    "tag": "input",
+    "w": 440,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "3D District Scavenger Hunt",
+    "tag": "button",
+    "w": 66,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "Nong Plub's guide: neighbo",
+    "tag": "button",
+    "w": 83,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "Your notebook",
+    "tag": "button",
+    "w": 83,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "Café",
+    "tag": "button",
+    "w": 67,
+    "h": 32,
+    "y": 57
+   },
+   {
+    "t": "Co-work",
+    "tag": "button",
+    "w": 87,
+    "h": 32,
+    "y": 57
+   },
+   {
+    "t": "Library",
+    "tag": "button",
+    "w": 80,
+    "h": 32,
+    "y": 57
+   },
+   {
+    "t": "Food",
+    "tag": "button",
+    "w": 69,
+    "h": 32,
+    "y": 57
+   },
+   {
+    "t": "Toggle attribution",
+    "tag": "summary",
+    "w": 24,
+    "h": 24,
+    "y": 732
+   }
+  ],
+  "smallCount": 15
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1440",
+  "canvasA": 1219680,
+  "appHidden": 163333,
+  "mapHidden": 15776,
+  "mapMinusAppChromeShare": 0.8151,
+  "mapMinusAllChromeShare": 0.8029,
+  "canvasShare": 0.9411,
+  "hunts": [],
+  "smallTargets": [
+   {
+    "t": "PLUB, Placemaking Laborato",
+    "tag": "a",
+    "w": 70,
+    "h": 22,
+    "y": 15
+   },
+   {
+    "t": "q",
+    "tag": "input",
+    "w": 440,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "3D District Scavenger Hunt",
+    "tag": "button",
+    "w": 66,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "Nong Plub's guide: neighbo",
+    "tag": "button",
+    "w": 83,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "Your notebook",
+    "tag": "button",
+    "w": 83,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "Café",
+    "tag": "button",
+    "w": 67,
+    "h": 32,
+    "y": 57
+   },
+   {
+    "t": "Co-work",
+    "tag": "button",
+    "w": 87,
+    "h": 32,
+    "y": 57
+   },
+   {
+    "t": "Library",
+    "tag": "button",
+    "w": 80,
+    "h": 32,
+    "y": 57
+   },
+   {
+    "t": "Food",
+    "tag": "button",
+    "w": 69,
+    "h": 32,
+    "y": 57
+   },
+   {
+    "t": "Toggle attribution",
+    "tag": "summary",
+    "w": 24,
+    "h": 24,
+    "y": 864
+   }
+  ],
+  "smallCount": 15
+ },
+ {
+  "mode": "CLUB",
+  "vp": "390",
+  "canvasA": 292110,
+  "appHidden": 0,
+  "mapHidden": 11904,
+  "mapMinusAppChromeShare": 0.8874,
+  "mapMinusAllChromeShare": 0.8513,
+  "canvasShare": 0.8874,
+  "hunts": [],
+  "smallTargets": [
+   {
+    "t": "CLUB, Cannabis Laboratory ",
+    "tag": "a",
+    "w": 71,
+    "h": 22,
+    "y": 15
+   },
+   {
+    "t": "q",
+    "tag": "input",
+    "w": 276,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "3D District Scavenger Hunt",
+    "tag": "button",
+    "w": 66,
+    "h": 36,
+    "y": 54
+   },
+   {
+    "t": "Nong Plub's guide: neighbo",
+    "tag": "button",
+    "w": 85,
+    "h": 36,
+    "y": 54
+   },
+   {
+    "t": "Your notebook",
+    "tag": "button",
+    "w": 71,
+    "h": 36,
+    "y": 54
+   },
+   {
+    "t": "Toggle attribution",
+    "tag": "summary",
+    "w": 24,
+    "h": 24,
+    "y": 808
+   }
+  ],
+  "smallCount": 6
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1024",
+  "canvasA": 732160,
+  "appHidden": 202433,
+  "mapHidden": 11904,
+  "mapMinusAppChromeShare": 0.6736,
+  "mapMinusAllChromeShare": 0.6584,
+  "canvasShare": 0.931,
+  "hunts": [],
+  "smallTargets": [
+   {
+    "t": "CLUB, Cannabis Laboratory ",
+    "tag": "a",
+    "w": 71,
+    "h": 22,
+    "y": 15
+   },
+   {
+    "t": "q",
+    "tag": "input",
+    "w": 440,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "3D District Scavenger Hunt",
+    "tag": "button",
+    "w": 66,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "Nong Plub's guide: neighbo",
+    "tag": "button",
+    "w": 89,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "Your notebook",
+    "tag": "button",
+    "w": 83,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "Toggle attribution",
+    "tag": "summary",
+    "w": 24,
+    "h": 24,
+    "y": 732
+   },
+   {
+    "t": "Browse hotspots · 24",
+    "tag": "summary",
+    "w": 335,
+    "h": 32,
+    "y": 61
+   },
+   {
+    "t": "Explore",
+    "tag": "summary",
+    "w": 46,
+    "h": 32,
+    "y": 108
+   },
+   {
+    "t": "⬡ Einstein tiles",
+    "tag": "button",
+    "w": 91,
+    "h": 32,
+    "y": 150
+   },
+   {
+    "t": "Show 12 more · Cannabis li",
+    "tag": "button",
+    "w": 97,
+    "h": 32,
+    "y": 583
+   }
+  ],
+  "smallCount": 10
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1440",
+  "canvasA": 1219680,
+  "appHidden": 202433,
+  "mapHidden": 11904,
+  "mapMinusAppChromeShare": 0.7849,
+  "mapMinusAllChromeShare": 0.7757,
+  "canvasShare": 0.9411,
+  "hunts": [],
+  "smallTargets": [
+   {
+    "t": "CLUB, Cannabis Laboratory ",
+    "tag": "a",
+    "w": 71,
+    "h": 22,
+    "y": 15
+   },
+   {
+    "t": "q",
+    "tag": "input",
+    "w": 440,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "3D District Scavenger Hunt",
+    "tag": "button",
+    "w": 66,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "Nong Plub's guide: neighbo",
+    "tag": "button",
+    "w": 89,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "Your notebook",
+    "tag": "button",
+    "w": 83,
+    "h": 36,
+    "y": 8
+   },
+   {
+    "t": "Toggle attribution",
+    "tag": "summary",
+    "w": 24,
+    "h": 24,
+    "y": 864
+   },
+   {
+    "t": "Browse hotspots · 24",
+    "tag": "summary",
+    "w": 335,
+    "h": 32,
+    "y": 61
+   },
+   {
+    "t": "Explore",
+    "tag": "summary",
+    "w": 46,
+    "h": 32,
+    "y": 108
+   },
+   {
+    "t": "⬡ Einstein tiles",
+    "tag": "button",
+    "w": 91,
+    "h": 32,
+    "y": 150
+   },
+   {
+    "t": "Show 12 more · Cannabis li",
+    "tag": "button",
+    "w": 97,
+    "h": 32,
+    "y": 583
+   }
+  ],
+  "smallCount": 10
+ }
+]

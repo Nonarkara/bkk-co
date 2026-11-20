@@ -1,0 +1,147 @@
+[
+ {
+  "mode": "PLUB",
+  "res": {
+   "testPt": {
+    "x": 180,
+    "y": 567
+   },
+   "hitIsMap": false,
+   "hitName": "side",
+   "sideRect": [
+    0,
+    94,
+    360,
+    806
+   ],
+   "panelBottom": 507,
+   "canvasBottom": 900,
+   "sidePointerEvents": "auto",
+   "sideZ": "2",
+   "sidePos": "static",
+   "sideBg": "rgba(0, 0, 0, 0)",
+   "canvasZ": "auto"
+  },
+  "dragUnderRail": false,
+  "dragControl": true,
+  "more": {
+   "count": "46 places",
+   "heads": [
+    "Cafés 44",
+    "Libraries 2"
+   ],
+   "steps": [
+    {
+     "rows": 17,
+     "label": "Show 12 more"
+    },
+    {
+     "rows": 29,
+     "label": "Show 12 more"
+    },
+    {
+     "rows": 41,
+     "label": "Show 5 more"
+    },
+    {
+     "rows": 46,
+     "label": "(gone)"
+    }
+   ],
+   "finalRows": 46,
+   "olScrollH": 2284,
+   "olClientH": 717,
+   "overflow": "auto",
+   "panelRect": [
+    0,
+    94,
+    360,
+    806
+   ]
+  }
+ },
+ {
+  "mode": "CLUB",
+  "res": {
+   "testPt": {
+    "x": 180,
+    "y": 675
+   },
+   "hitIsMap": false,
+   "hitName": "side",
+   "sideRect": [
+    0,
+    53,
+    360,
+    847
+   ],
+   "panelBottom": 615,
+   "canvasBottom": 900,
+   "sidePointerEvents": "auto",
+   "sideZ": "2",
+   "sidePos": "static",
+   "sideBg": "rgba(0, 0, 0, 0)",
+   "canvasZ": "auto"
+  },
+  "dragUnderRail": false,
+  "dragControl": true,
+  "more": {
+   "count": "123 places",
+   "heads": [
+    "Cannabis listings 123"
+   ],
+   "steps": [
+    {
+     "rows": 20,
+     "label": "Show 12 more"
+    },
+    {
+     "rows": 32,
+     "label": "Show 12 more"
+    },
+    {
+     "rows": 44,
+     "label": "Show 12 more"
+    },
+    {
+     "rows": 56,
+     "label": "Show 12 more"
+    },
+    {
+     "rows": 68,
+     "label": "Show 12 more"
+    },
+    {
+     "rows": 80,
+     "label": "Show 12 more"
+    },
+    {
+     "rows": 92,
+     "label": "Show 12 more"
+    },
+    {
+     "rows": 104,
+     "label": "Show 12 more"
+    },
+    {
+     "rows": 116,
+     "label": "Show 7 more"
+    },
+    {
+     "rows": 123,
+     "label": "(gone)"
+    }
+   ],
+   "finalRows": 123,
+   "olScrollH": 6245,
+   "olClientH": 713,
+   "overflow": "auto",
+   "panelRect": [
+    0,
+    53,
+    360,
+    847
+   ]
+  }
+ }
+]

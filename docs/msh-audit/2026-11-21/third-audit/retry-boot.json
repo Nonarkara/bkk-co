@@ -1,0 +1,312 @@
+[
+ {
+  "test": "RETRY",
+  "mode": "PLUB",
+  "target": "places-work.json",
+  "before": {
+   "count": "unavailable",
+   "listText": "Directory unavailable. Retry",
+   "rows": 0,
+   "retryVisible": true,
+   "catalogueStatus": "failed",
+   "cannabisStatus": "loading",
+   "clubMode": false,
+   "bodyClass": ""
+  },
+  "after": {
+   "count": "48 places",
+   "listText": "Cafés 46 House of CommonsCafé~30 mBaba Mama CafeCafé~40 mSuch A Small WorldCafé~70 mShow 12 moreLibraries 2 ห้องสมุดประชาชี Prachachee Libra",
+   "rows": 5,
+   "retryVisible": false,
+   "catalogueStatus": "ready",
+   "cannabisStatus": "loading",
+   "clubMode": false,
+   "bodyClass": ""
+  },
+  "refetched": [
+   "places-work.json"
+  ]
+ },
+ {
+  "test": "RETRY",
+  "mode": "CLUB",
+  "target": "places-cannabis.json",
+  "before": {
+   "count": "unavailable",
+   "listText": "Directory unavailable. Retry",
+   "rows": 0,
+   "retryVisible": true,
+   "catalogueStatus": "ready",
+   "cannabisStatus": "failed",
+   "clubMode": true,
+   "bodyClass": "club-mode"
+  },
+  "after": {
+   "count": "127 places",
+   "listText": "Cannabis listings 127 Lollipop Farm Cannabis DispensaryMapped dispensary · Tier B · Bangkok4/4 detailsAddicted Cannabis ClubMapped dispensar",
+   "rows": 8,
+   "retryVisible": false,
+   "catalogueStatus": "ready",
+   "cannabisStatus": "ready",
+   "clubMode": true,
+   "bodyClass": "club-mode"
+  },
+  "refetched": [
+   "places-cannabis.json"
+  ]
+ },
+ {
+  "test": "BOOT",
+  "mode": "PLUB",
+  "target": "places-work.json",
+  "samples": [
+   {
+    "t": 1630,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "loading",
+    "cannabisStatus": "loading",
+    "clubMode": false,
+    "bodyClass": ""
+   },
+   {
+    "t": 1934,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "loading",
+    "cannabisStatus": "loading",
+    "clubMode": false,
+    "bodyClass": ""
+   },
+   {
+    "t": 2235,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "loading",
+    "cannabisStatus": "loading",
+    "clubMode": false,
+    "bodyClass": ""
+   },
+   {
+    "t": 2537,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "loading",
+    "cannabisStatus": "loading",
+    "clubMode": false,
+    "bodyClass": ""
+   },
+   {
+    "t": 2841,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "loading",
+    "cannabisStatus": "loading",
+    "clubMode": false,
+    "bodyClass": ""
+   },
+   {
+    "t": 3144,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "loading",
+    "cannabisStatus": "loading",
+    "clubMode": false,
+    "bodyClass": ""
+   },
+   {
+    "t": 3447,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "loading",
+    "cannabisStatus": "loading",
+    "clubMode": false,
+    "bodyClass": ""
+   },
+   {
+    "t": 3750,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "loading",
+    "cannabisStatus": "loading",
+    "clubMode": false,
+    "bodyClass": ""
+   },
+   {
+    "t": 4053,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "loading",
+    "cannabisStatus": "loading",
+    "clubMode": false,
+    "bodyClass": ""
+   },
+   {
+    "t": 4356,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "loading",
+    "cannabisStatus": "loading",
+    "clubMode": false,
+    "bodyClass": ""
+   }
+  ],
+  "final": {
+   "count": "48 places",
+   "listText": "Cafés 46 House of CommonsCafé~30 mBaba Mama CafeCafé~40 mSuch A Small WorldCafé~70 mShow 12 moreLibraries 2 ห้องสมุดประชาชี Prachachee Libra",
+   "rows": 5,
+   "retryVisible": false,
+   "catalogueStatus": "ready",
+   "cannabisStatus": "loading",
+   "clubMode": false,
+   "bodyClass": ""
+  }
+ },
+ {
+  "test": "BOOT",
+  "mode": "CLUB",
+  "target": "places-cannabis.json",
+  "samples": [
+   {
+    "t": 1474,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "loading",
+    "cannabisStatus": "loading",
+    "clubMode": true,
+    "bodyClass": "club-mode"
+   },
+   {
+    "t": 1777,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "loading",
+    "cannabisStatus": "loading",
+    "clubMode": true,
+    "bodyClass": "club-mode"
+   },
+   {
+    "t": 2078,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "loading",
+    "cannabisStatus": "loading",
+    "clubMode": true,
+    "bodyClass": "club-mode"
+   },
+   {
+    "t": 2381,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "ready",
+    "cannabisStatus": "loading",
+    "clubMode": true,
+    "bodyClass": "club-mode"
+   },
+   {
+    "t": 2683,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "ready",
+    "cannabisStatus": "loading",
+    "clubMode": true,
+    "bodyClass": "club-mode"
+   },
+   {
+    "t": 2986,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "ready",
+    "cannabisStatus": "loading",
+    "clubMode": true,
+    "bodyClass": "club-mode"
+   },
+   {
+    "t": 3289,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "ready",
+    "cannabisStatus": "loading",
+    "clubMode": true,
+    "bodyClass": "club-mode"
+   },
+   {
+    "t": 3592,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "ready",
+    "cannabisStatus": "loading",
+    "clubMode": true,
+    "bodyClass": "club-mode"
+   },
+   {
+    "t": 3895,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "ready",
+    "cannabisStatus": "loading",
+    "clubMode": true,
+    "bodyClass": "club-mode"
+   },
+   {
+    "t": 4198,
+    "count": "Loading…",
+    "listText": "Loading the directory…",
+    "rows": 0,
+    "retryVisible": false,
+    "catalogueStatus": "ready",
+    "cannabisStatus": "loading",
+    "clubMode": true,
+    "bodyClass": "club-mode"
+   }
+  ],
+  "final": {
+   "count": "127 places",
+   "listText": "Cannabis listings 127 Lollipop Farm Cannabis DispensaryMapped dispensary · Tier B · Bangkok4/4 detailsAddicted Cannabis ClubMapped dispensar",
+   "rows": 8,
+   "retryVisible": false,
+   "catalogueStatus": "ready",
+   "cannabisStatus": "ready",
+   "clubMode": true,
+   "bodyClass": "club-mode"
+  }
+ }
+]

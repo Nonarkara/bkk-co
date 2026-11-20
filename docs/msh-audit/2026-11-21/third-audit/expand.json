@@ -1,0 +1,418 @@
+[
+ {
+  "mode": "PLUB",
+  "base": {
+   "overMap": [
+    {
+     "name": "chips",
+     "rect": [
+      0,
+      53,
+      360,
+      41
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl maplibregl-ctrl-gr",
+     "rect": [
+      1384,
+      63,
+      46,
+      90
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl-icon",
+     "rect": [
+      1385,
+      64,
+      44,
+      44
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl-icon",
+     "rect": [
+      1385,
+      109,
+      44,
+      43
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl maplibregl-ctrl-gr",
+     "rect": [
+      1384,
+      163,
+      46,
+      46
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl-icon",
+     "rect": [
+      1385,
+      164,
+      44,
+      44
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl maplibregl-ctrl-gr",
+     "rect": [
+      1384,
+      219,
+      46,
+      46
+     ]
+    },
+    {
+     "name": "manga-toggle",
+     "rect": [
+      1385,
+      220,
+      44,
+      44
+     ]
+    },
+    {
+     "name": "footprint-key",
+     "rect": [
+      380,
+      846,
+      150,
+      44
+     ]
+    },
+    {
+     "name": "footprint-swatch",
+     "rect": [
+      389,
+      856,
+      24,
+      24
+     ]
+    },
+    {
+     "name": "footprint-swatch",
+     "rect": [
+      417,
+      856,
+      24,
+      24
+     ]
+    },
+    {
+     "name": "footprint-swatch",
+     "rect": [
+      445,
+      856,
+      24,
+      24
+     ]
+    },
+    {
+     "name": "footprint-swatch",
+     "rect": [
+      473,
+      856,
+      24,
+      24
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl maplibregl-ctrl-at",
+     "rect": [
+      1402,
+      862,
+      28,
+      28
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl-attrib-button",
+     "rect": [
+      1404,
+      864,
+      24,
+      24
+     ]
+    },
+    {
+     "name": "list-wrap",
+     "rect": [
+      0,
+      94,
+      360,
+      413
+     ]
+    },
+    {
+     "name": "list-find",
+     "rect": [
+      12,
+      100,
+      127,
+      36
+     ]
+    },
+    {
+     "name": "scope-tiles",
+     "rect": [
+      256,
+      146,
+      91,
+      32
+     ]
+    },
+    {
+     "name": "list-heading-cafe",
+     "rect": [
+      0,
+      184,
+      359,
+      27
+     ]
+    },
+    {
+     "name": "list-heading-library",
+     "rect": [
+      0,
+      382,
+      359,
+      27
+     ]
+    }
+   ],
+   "listOrder": {
+    "rect": [
+     225,
+     539,
+     152,
+     32
+    ],
+    "op": "1",
+    "vis": "visible",
+    "bg": "rgb(255, 255, 255)",
+    "inViewport": true,
+    "hit": "side"
+   },
+   "listWrapRect": [
+    0,
+    94,
+    360,
+    413
+   ],
+   "rows": 5,
+   "count": "48 places"
+  },
+  "opened": {
+   "detClass": "list-explore",
+   "panelRect": [
+    0,
+    94,
+    360,
+    806
+   ],
+   "panelBottom": 900,
+   "panelRight": 360,
+   "contentRowRect": [
+    12,
+    172,
+    335,
+    377
+   ],
+   "spillBottom": 549,
+   "spillRight": 347,
+   "spillsBelowPanel": -351,
+   "spillsRightOfPanel": -13
+  },
+  "more": {
+   "before": 5,
+   "after": 17,
+   "label": "Show 12 more",
+   "count": "48 places"
+  }
+ },
+ {
+  "mode": "CLUB",
+  "base": {
+   "overMap": [
+    {
+     "name": "maplibregl-ctrl maplibregl-ctrl-gr",
+     "rect": [
+      1384,
+      63,
+      46,
+      90
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl-icon",
+     "rect": [
+      1385,
+      64,
+      44,
+      44
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl-icon",
+     "rect": [
+      1385,
+      109,
+      44,
+      43
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl maplibregl-ctrl-gr",
+     "rect": [
+      1384,
+      163,
+      46,
+      46
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl-icon",
+     "rect": [
+      1385,
+      164,
+      44,
+      44
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl maplibregl-ctrl-gr",
+     "rect": [
+      1384,
+      219,
+      46,
+      46
+     ]
+    },
+    {
+     "name": "manga-toggle",
+     "rect": [
+      1385,
+      220,
+      44,
+      44
+     ]
+    },
+    {
+     "name": "footprint-key",
+     "rect": [
+      380,
+      846,
+      62,
+      44
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl maplibregl-ctrl-at",
+     "rect": [
+      1402,
+      862,
+      28,
+      28
+     ]
+    },
+    {
+     "name": "maplibregl-ctrl-attrib-button",
+     "rect": [
+      1404,
+      864,
+      24,
+      24
+     ]
+    },
+    {
+     "name": "list-wrap",
+     "rect": [
+      0,
+      53,
+      360,
+      562
+     ]
+    },
+    {
+     "name": "club-hotspots",
+     "rect": [
+      0,
+      53,
+      359,
+      49
+     ]
+    },
+    {
+     "name": "scope-tiles",
+     "rect": [
+      256,
+      150,
+      91,
+      32
+     ]
+    },
+    {
+     "name": "list-heading-cannabis",
+     "rect": [
+      0,
+      188,
+      359,
+      27
+     ]
+    }
+   ],
+   "listOrder": {
+    "rect": [
+     12,
+     268,
+     152,
+     32
+    ],
+    "op": "1",
+    "vis": "visible",
+    "bg": "rgb(255, 255, 255)",
+    "inViewport": true,
+    "hit": "row-title"
+   },
+   "listWrapRect": [
+    0,
+    53,
+    360,
+    562
+   ],
+   "rows": 8,
+   "count": "127 places"
+  },
+  "opened": {
+   "detClass": "list-explore",
+   "panelRect": [
+    0,
+    53,
+    360,
+    810
+   ],
+   "panelBottom": 863,
+   "panelRight": 360,
+   "contentRowRect": [
+    12,
+    140,
+    335,
+    248
+   ],
+   "spillBottom": 388,
+   "spillRight": 347,
+   "spillsBelowPanel": -475,
+   "spillsRightOfPanel": -13
+  },
+  "more": {
+   "before": 8,
+   "after": 20,
+   "label": "Show 12 more",
+   "count": "127 places"
+  }
+ }
+]

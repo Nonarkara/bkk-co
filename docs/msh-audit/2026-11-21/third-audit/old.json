@@ -1,0 +1,98 @@
+[
+ {
+  "vp": "390",
+  "hasMap": true,
+  "canvasRect": [
+   0,
+   136,
+   390,
+   708
+  ],
+  "canvasArea": 276120,
+  "hiddenArea": 15776,
+  "mapCanvasShareOfVp": 0.8389,
+  "visibleMapShareOfVp": 0.7909,
+  "coverers": [
+   "footprint-key [150x44@10,790]",
+   "maplibregl-ctrl maplibregl-ctr [46x90@334,146]",
+   "maplibregl-ctrl maplibregl-ctr [46x46@334,246]",
+   "maplibregl-ctrl maplibregl-ctr [46x46@334,302]",
+   "maplibregl-ctrl-icon [44x44@335,147]",
+   "maplibregl-ctrl-icon [44x44@335,247]"
+  ],
+  "panelRect": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "panelBg": "rgba(0, 0, 0, 0)",
+  "lastRowBottom": null,
+  "slabBelowLastRow": null,
+  "count": "20,640 matching"
+ },
+ {
+  "vp": "1024",
+  "hasMap": true,
+  "canvasRect": [
+   360,
+   53,
+   664,
+   715
+  ],
+  "canvasArea": 474760,
+  "hiddenArea": 15776,
+  "mapCanvasShareOfVp": 0.6037,
+  "visibleMapShareOfVp": 0.5836,
+  "coverers": [
+   "footprint-key [150x44@370,714]",
+   "maplibregl-ctrl maplibregl-ctr [46x90@968,63]",
+   "maplibregl-ctrl maplibregl-ctr [46x46@968,163]",
+   "maplibregl-ctrl maplibregl-ctr [46x46@968,219]",
+   "maplibregl-ctrl-icon [44x44@969,64]",
+   "maplibregl-ctrl-icon [44x44@969,164]"
+  ],
+  "panelRect": [
+   0,
+   94,
+   359,
+   674
+  ],
+  "panelBg": "rgba(0, 0, 0, 0)",
+  "lastRowBottom": 507,
+  "slabBelowLastRow": 261,
+  "count": "37 places"
+ },
+ {
+  "vp": "1440",
+  "hasMap": true,
+  "canvasRect": [
+   360,
+   53,
+   1080,
+   847
+  ],
+  "canvasArea": 914760,
+  "hiddenArea": 15776,
+  "mapCanvasShareOfVp": 0.7058,
+  "visibleMapShareOfVp": 0.6937,
+  "coverers": [
+   "footprint-key [150x44@370,846]",
+   "maplibregl-ctrl maplibregl-ctr [46x90@1384,63]",
+   "maplibregl-ctrl maplibregl-ctr [46x46@1384,163]",
+   "maplibregl-ctrl maplibregl-ctr [46x46@1384,219]",
+   "maplibregl-ctrl-icon [44x44@1385,64]",
+   "maplibregl-ctrl-icon [44x44@1385,164]"
+  ],
+  "panelRect": [
+   0,
+   94,
+   359,
+   806
+  ],
+  "panelBg": "rgba(0, 0, 0, 0)",
+  "lastRowBottom": 507,
+  "slabBelowLastRow": 393,
+  "count": "48 places"
+ }
+]

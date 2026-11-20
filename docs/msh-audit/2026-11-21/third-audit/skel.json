@@ -1,0 +1,121 @@
+[
+ {
+  "mode": "PLUB",
+  "panelRect": [
+   0,
+   94,
+   360,
+   221
+  ],
+  "panelArea": 79560,
+  "skeletonCount": 1,
+  "paintedSkeletonCount": 1,
+  "leaves": [
+   [
+    127,
+    11
+   ],
+   [
+    248,
+    11
+   ],
+   [
+    295,
+    11
+   ],
+   [
+    188,
+    11
+   ]
+  ],
+  "leafArea": 9433,
+  "fillPctOfPanel": 11.9,
+  "text": "Find a work spot Plan your day Explore Moods Slow mornings Past midnight Crossin"
+ },
+ {
+  "mode": "CLUB",
+  "panelRect": [
+   0,
+   53,
+   360,
+   254
+  ],
+  "panelArea": 91547,
+  "skeletonCount": 1,
+  "paintedSkeletonCount": 1,
+  "leaves": [
+   [
+    127,
+    11
+   ],
+   [
+    248,
+    11
+   ],
+   [
+    295,
+    11
+   ],
+   [
+    188,
+    11
+   ]
+  ],
+  "leafArea": 9433,
+  "fillPctOfPanel": 10.3,
+  "text": "Loading Thailand listings… Find a work spot Plan your day Explore Moods Slow mor"
+ },
+ {
+  "mode": "PLUB",
+  "failedRetries": {
+   "retryCount": 1,
+   "texts": [
+    "Retry"
+   ],
+   "rects": [
+    [
+     121,
+     188,
+     52,
+     44
+    ]
+   ],
+   "panelRect": [
+    0,
+    94,
+    360,
+    142
+   ]
+  }
+ },
+ {
+  "mode": "CLUB",
+  "failedRetries": {
+   "retryCount": 2,
+   "texts": [
+    "Retry",
+    "Retry"
+   ],
+   "rects": [
+    [
+     144,
+     61,
+     52,
+     44
+    ],
+    [
+     121,
+     204,
+     52,
+     44
+    ]
+   ],
+   "panelRect": [
+    0,
+    53,
+    360,
+    199
+   ]
+  }
+ }
+]

@@ -1,0 +1,366 @@
+[
+ {
+  "mode": "PLUB",
+  "vp": "390",
+  "big": [
+   "370765 f1f19628-e65f-447d-b32a-57072a122fc8",
+   "138680 nong-plub.png",
+   "283994 7561.pbf",
+   "422677 7560.pbf"
+  ],
+  "disp": "20,640 matching",
+  "inApp": 20,
+  "inReaderVisible": 0,
+  "inHiddenPanel": 0,
+  "inLeftBelowPanel": 0,
+  "panelRect": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "chipsRect": [
+   0,
+   95,
+   390,
+   41
+  ],
+  "pills": [],
+  "pillCount": 0,
+  "canvasRect": [
+   0,
+   136,
+   390,
+   708
+  ]
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1024",
+  "big": [
+   "370765 6151e35a-bb62-43a6-92ec-fee2bcc574b3",
+   "138680 nong-plub.png",
+   "422677 7560.pbf",
+   "283994 7561.pbf"
+  ],
+  "disp": "37 places",
+  "inApp": 37,
+  "inReaderVisible": 0,
+  "inHiddenPanel": 0,
+  "inLeftBelowPanel": 0,
+  "panelRect": [
+   0,
+   94,
+   360,
+   413
+  ],
+  "chipsRect": [
+   0,
+   53,
+   360,
+   41
+  ],
+  "pills": [],
+  "pillCount": 0,
+  "canvasRect": [
+   0,
+   53,
+   1024,
+   715
+  ]
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1440",
+  "big": [
+   "370765 cd306abc-fd12-46d3-8652-4bae7370a76f",
+   "138680 nong-plub.png",
+   "422677 7560.pbf",
+   "283994 7561.pbf"
+  ],
+  "disp": "48 places",
+  "inApp": 48,
+  "inReaderVisible": 0,
+  "inHiddenPanel": 0,
+  "inLeftBelowPanel": 0,
+  "panelRect": [
+   0,
+   94,
+   360,
+   413
+  ],
+  "chipsRect": [
+   0,
+   53,
+   360,
+   41
+  ],
+  "pills": [],
+  "pillCount": 0,
+  "canvasRect": [
+   0,
+   53,
+   1440,
+   847
+  ]
+ },
+ {
+  "mode": "CLUB",
+  "vp": "390",
+  "big": [
+   "370765 edfa988a-2737-4a92-92b0-9ba9dc6592c9",
+   "138680 nong-plub.png",
+   "129313 1889.pbf",
+   "169395 1890.pbf",
+   "123946 1890.pbf",
+   "160247 1889.pbf"
+  ],
+  "disp": "329 matching",
+  "inApp": 70,
+  "inReaderVisible": 0,
+  "inHiddenPanel": 0,
+  "inLeftBelowPanel": 0,
+  "panelRect": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "chipsRect": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "pills": [
+   {
+    "txt": "☷All Thailand · 32",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "hitEl": "bar",
+    "insideListWrap": true
+   },
+   {
+    "txt": "37Near Million Opt",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "hitEl": "bar",
+    "insideListWrap": true
+   },
+   {
+    "txt": "21Near Amsterdam C",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "hitEl": "bar",
+    "insideListWrap": true
+   },
+   {
+    "txt": "18Near Adam's Weed",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "hitEl": "bar",
+    "insideListWrap": true
+   }
+  ],
+  "pillCount": 25,
+  "canvasRect": [
+   0,
+   103,
+   390,
+   749
+  ]
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1024",
+  "big": [
+   "370765 a07a8388-5964-4e3f-a375-d13951ad58f5",
+   "422677 7560.pbf",
+   "283994 7561.pbf",
+   "138680 nong-plub.png",
+   "169395 1890.pbf",
+   "125231 1889.pbf",
+   "129313 1889.pbf",
+   "123946 1890.pbf",
+   "160247 1889.pbf",
+   "118429 1890.pbf"
+  ],
+  "disp": "103 places",
+  "inApp": 103,
+  "inReaderVisible": 0,
+  "inHiddenPanel": 0,
+  "inLeftBelowPanel": 0,
+  "panelRect": [
+   0,
+   53,
+   360,
+   562
+  ],
+  "chipsRect": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "pills": [
+   {
+    "txt": "☷All Thailand · 32",
+    "rect": [
+     12,
+     93,
+     124,
+     32
+    ],
+    "hitEl": "rail-row rail-actions",
+    "insideListWrap": true
+   },
+   {
+    "txt": "37Near Million Opt",
+    "rect": [
+     140,
+     93,
+     164,
+     32
+    ],
+    "hitEl": "rail-row rail-actions",
+    "insideListWrap": true
+   },
+   {
+    "txt": "21Near Amsterdam C",
+    "rect": [
+     12,
+     129,
+     191,
+     32
+    ],
+    "hitEl": "rail-row rail-actions",
+    "insideListWrap": true
+   },
+   {
+    "txt": "18Near Adam's Weed",
+    "rect": [
+     207,
+     129,
+     136,
+     32
+    ],
+    "hitEl": "rail-row rail-actions",
+    "insideListWrap": true
+   }
+  ],
+  "pillCount": 25,
+  "canvasRect": [
+   0,
+   53,
+   1024,
+   715
+  ]
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1440",
+  "big": [
+   "370765 f2776ee4-85fc-40d7-95d7-a33da730956d",
+   "138680 nong-plub.png",
+   "422677 7560.pbf",
+   "283994 7561.pbf",
+   "160247 1889.pbf",
+   "169395 1890.pbf",
+   "123946 1890.pbf",
+   "129313 1889.pbf",
+   "105807 1890.pbf",
+   "109687 1891.pbf",
+   "120029 1889.pbf",
+   "118429 1890.pbf",
+   "125231 1889.pbf",
+   "101634 1891.pbf",
+   "110582 1891.pbf"
+  ],
+  "disp": "127 places",
+  "inApp": 127,
+  "inReaderVisible": 0,
+  "inHiddenPanel": 0,
+  "inLeftBelowPanel": 0,
+  "panelRect": [
+   0,
+   53,
+   360,
+   562
+  ],
+  "chipsRect": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "pills": [
+   {
+    "txt": "☷All Thailand · 32",
+    "rect": [
+     12,
+     93,
+     124,
+     32
+    ],
+    "hitEl": "rail-row rail-actions",
+    "insideListWrap": true
+   },
+   {
+    "txt": "37Near Million Opt",
+    "rect": [
+     140,
+     93,
+     164,
+     32
+    ],
+    "hitEl": "rail-row rail-actions",
+    "insideListWrap": true
+   },
+   {
+    "txt": "21Near Amsterdam C",
+    "rect": [
+     12,
+     129,
+     191,
+     32
+    ],
+    "hitEl": "rail-row rail-actions",
+    "insideListWrap": true
+   },
+   {
+    "txt": "18Near Adam's Weed",
+    "rect": [
+     207,
+     129,
+     136,
+     32
+    ],
+    "hitEl": "rail-row rail-actions",
+    "insideListWrap": true
+   }
+  ],
+  "pillCount": 25,
+  "canvasRect": [
+   0,
+   53,
+   1440,
+   847
+  ]
+ }
+]

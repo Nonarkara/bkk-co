@@ -1,0 +1,175 @@
+[
+ {
+  "mode": "PLUB",
+  "vp": {
+   "w": 390,
+   "h": 844
+  },
+  "canvasRect": [
+   0,
+   136,
+   390,
+   708
+  ],
+  "canvasArea": 276120,
+  "mapVisibleArea": 259245,
+  "chromeArea": 16875,
+  "mapShareOfFirstScreen": 0.7876,
+  "chromeOverMap": 0.0513,
+  "mapShareOfCanvas": 0.9389,
+  "chromeByName": {
+   "maplibregl-ctrl-icon": 660,
+   "footprint-key": 445,
+   "maplibregl-ctrl-attrib-butto": 225,
+   "[object SVGAnimatedString]": 193,
+   "manga-toggle": 176,
+   "footprint-swatch": 112,
+   "SPAN": 49,
+   "maplibregl-ctrl maplibregl-c": 15
+  }
+ },
+ {
+  "mode": "PLUB",
+  "vp": {
+   "w": 1024,
+   "h": 768
+  },
+  "canvasRect": [
+   0,
+   53,
+   1024,
+   715
+  ],
+  "canvasArea": 732160,
+  "mapVisibleArea": 461097,
+  "chromeArea": 274545,
+  "mapShareOfFirstScreen": 0.5863,
+  "chromeOverMap": 0.3491,
+  "mapShareOfCanvas": 0.6268,
+  "chromeByName": {
+   "side": 10440,
+   "list-place": 3432,
+   "row-sub": 2214,
+   "row-title": 1986,
+   "SPAN": 1320,
+   "list-heading-library": 1062,
+   "list-heading-cafe": 1050,
+   "rail-row rail-actions": 994
+  }
+ },
+ {
+  "mode": "PLUB",
+  "vp": {
+   "w": 1440,
+   "h": 900
+  },
+  "canvasRect": [
+   0,
+   53,
+   1440,
+   847
+  ],
+  "canvasArea": 1219680,
+  "mapVisibleArea": 900495,
+  "chromeArea": 322065,
+  "mapShareOfFirstScreen": 0.6948,
+  "chromeOverMap": 0.2485,
+  "mapShareOfCanvas": 0.7366,
+  "chromeByName": {
+   "side": 15720,
+   "list-place": 3432,
+   "row-sub": 2214,
+   "row-title": 1986,
+   "SPAN": 1320,
+   "list-heading-library": 1062,
+   "list-heading-cafe": 1050,
+   "rail-row rail-actions": 994
+  }
+ },
+ {
+  "mode": "CLUB",
+  "vp": {
+   "w": 390,
+   "h": 844
+  },
+  "canvasRect": [
+   0,
+   103,
+   390,
+   749
+  ],
+  "canvasArea": 292110,
+  "mapVisibleArea": 276030,
+  "chromeArea": 12960,
+  "mapShareOfFirstScreen": 0.8386,
+  "chromeOverMap": 0.0394,
+  "mapShareOfCanvas": 0.9552,
+  "chromeByName": {
+   "maplibregl-ctrl-icon": 660,
+   "maplibregl-ctrl-attrib-butto": 225,
+   "footprint-key": 224,
+   "manga-toggle": 176,
+   "[object SVGAnimatedString]": 91,
+   "SPAN": 49,
+   "maplibregl-ctrl maplibregl-c": 15
+  }
+ },
+ {
+  "mode": "CLUB",
+  "vp": {
+   "w": 1024,
+   "h": 768
+  },
+  "canvasRect": [
+   0,
+   53,
+   1024,
+   715
+  ],
+  "canvasArea": 732160,
+  "mapVisibleArea": 464751,
+  "chromeArea": 270891,
+  "mapShareOfFirstScreen": 0.591,
+  "chromeOverMap": 0.3445,
+  "mapShareOfCanvas": 0.6318,
+  "chromeByName": {
+   "side": 6120,
+   "list-place": 5542,
+   "row-title": 4332,
+   "row-sub": 3525,
+   "rail-row rail-actions": 1520,
+   "SUMMARY": 1392,
+   "list-heading-cannabis": 1032,
+   "idx": 969
+  }
+ },
+ {
+  "mode": "CLUB",
+  "vp": {
+   "w": 1440,
+   "h": 900
+  },
+  "canvasRect": [
+   0,
+   53,
+   1440,
+   847
+  ],
+  "canvasArea": 1219680,
+  "mapVisibleArea": 904149,
+  "chromeArea": 318411,
+  "mapShareOfFirstScreen": 0.6976,
+  "chromeOverMap": 0.2457,
+  "mapShareOfCanvas": 0.7396,
+  "chromeByName": {
+   "side": 11400,
+   "list-place": 5542,
+   "row-title": 4332,
+   "row-sub": 3525,
+   "rail-row rail-actions": 1520,
+   "SUMMARY": 1392,
+   "list-heading-cannabis": 1032,
+   "idx": 969
+  }
+ }
+]

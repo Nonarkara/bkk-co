@@ -1,0 +1,1899 @@
+{
+ "url": "https://co.nonarkara.org",
+ "dom": {
+  "tag": "body",
+  "box": [
+   0,
+   0,
+   1440,
+   900
+  ],
+  "pos": "static",
+  "bg": "rgb(255, 255, 255)",
+  "kids": [
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "header",
+    "cls": "bar",
+    "box": [
+     0,
+     0,
+     1440,
+     53
+    ],
+    "pos": "relative",
+    "bg": "rgb(255, 255, 255)",
+    "kids": [
+     {
+      "tag": "div",
+      "cls": "bar-brand",
+      "box": [
+       14,
+       15,
+       83,
+       22
+      ],
+      "pos": "static",
+      "bg": "rgba(0, 0, 0, 0)",
+      "kids": [
+       {
+        "tag": "a",
+        "cls": "mark",
+        "box": [
+         14,
+         15,
+         70,
+         22
+        ],
+        "pos": "static",
+        "bg": "rgba(0, 0, 0, 0)",
+        "txt": "PL UB",
+        "kids": [
+         {
+          "tag": "span",
+          "cls": "semi",
+          "box": [
+           43,
+           17,
+           9,
+           19
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)",
+          "kids": [
+           {
+            "tag": "svg",
+            "box": [
+             43,
+             17,
+             9,
+             19
+            ],
+            "pos": "static",
+            "bg": "rgba(0, 0, 0, 0)",
+            "kids": [
+             {
+              "tag": "circle",
+              "box": [
+               45,
+               17,
+               4,
+               4
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)"
+             },
+             {
+              "tag": "path",
+              "box": [
+               46,
+               23,
+               3,
+               12
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)"
+             },
+             {
+              "tag": "circle",
+              "box": [
+               47,
+               24,
+               2,
+               2
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "tag": "label",
+      "cls": "search",
+      "box": [
+       109,
+       8,
+       440,
+       36
+      ],
+      "pos": "relative",
+      "bg": "rgba(0, 0, 0, 0)",
+      "kids": [
+       {
+        "tag": "span",
+        "cls": "sr",
+        "box": [
+         109,
+         26,
+         1,
+         1
+        ],
+        "pos": "absolute",
+        "bg": "rgba(0, 0, 0, 0)",
+        "txt": "Search places ·",
+        "kids": [
+         {
+          "tag": "span",
+          "box": [
+           109,
+           87,
+           32,
+           67
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)",
+          "txt": "ค้นหาสถานที่"
+         }
+        ]
+       },
+       {
+        "tag": "span",
+        "cls": "search-lens",
+        "box": [
+         115,
+         19,
+         8,
+         14
+        ],
+        "pos": "absolute",
+        "bg": "rgba(0, 0, 0, 0)",
+        "txt": "⌕"
+       },
+       {
+        "tag": "input",
+        "id": "q",
+        "box": [
+         109,
+         8,
+         440,
+         36
+        ],
+        "pos": "static",
+        "bg": "rgb(255, 255, 255)"
+       }
+      ]
+     },
+     {
+      "tag": "div",
+      "cls": "bar-actions",
+      "box": [
+       1182,
+       8,
+       244,
+       36
+      ],
+      "pos": "static",
+      "bg": "rgba(0, 0, 0, 0)",
+      "kids": [
+       {
+        "tag": "button",
+        "id": "open-3d",
+        "cls": "bar-btn bar-btn-primary",
+        "box": [
+         1182,
+         8,
+         66,
+         36
+        ],
+        "pos": "static",
+        "bg": "rgb(244, 244, 240)",
+        "kids": [
+         {
+          "tag": "span",
+          "cls": "btn-lbl",
+          "box": [
+           1193,
+           20,
+           44,
+           12
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)",
+          "txt": "3D Hunt"
+         }
+        ]
+       },
+       {
+        "tag": "button",
+        "id": "guide",
+        "cls": "bar-btn plub-btn",
+        "box": [
+         1254,
+         8,
+         83,
+         36
+        ],
+        "pos": "static",
+        "bg": "rgb(255, 255, 255)",
+        "kids": [
+         {
+          "tag": "img",
+          "cls": "plub-badge",
+          "box": [
+           1265,
+           15,
+           22,
+           22
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)"
+         },
+         {
+          "tag": "span",
+          "cls": "btn-lbl",
+          "box": [
+           1293,
+           20,
+           33,
+           12
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)",
+          "txt": "Guide"
+         }
+        ]
+       },
+       {
+        "tag": "button",
+        "id": "passport",
+        "cls": "bar-btn pass-btn",
+        "box": [
+         1343,
+         8,
+         83,
+         36
+        ],
+        "pos": "static",
+        "bg": "rgb(255, 255, 255)",
+        "kids": [
+         {
+          "tag": "span",
+          "box": [
+           1354,
+           19,
+           36,
+           14
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)",
+          "txt": "Notes"
+         },
+         {
+          "tag": "b",
+          "id": "pass-n",
+          "cls": "count-badge",
+          "box": [
+           1396,
+           18,
+           19,
+           17
+          ],
+          "pos": "static",
+          "bg": "rgb(244, 244, 240)",
+          "txt": "0"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "tag": "ul",
+      "id": "hits",
+      "cls": "hits",
+      "box": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "pos": "absolute",
+      "bg": "rgb(255, 255, 255)"
+     }
+    ]
+   },
+   {
+    "tag": "nav",
+    "cls": "chips",
+    "box": [
+     0,
+     53,
+     360,
+     41
+    ],
+    "pos": "static",
+    "bg": "rgb(255, 255, 255)",
+    "kids": [
+     {
+      "tag": "button",
+      "id": "list-toggle",
+      "cls": "phone-only",
+      "box": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "pos": "static",
+      "bg": "rgba(0, 0, 0, 0)",
+      "txt": "☰"
+     },
+     {
+      "tag": "button",
+      "box": [
+       12,
+       57,
+       67,
+       32
+      ],
+      "pos": "static",
+      "bg": "rgba(0, 0, 0, 0)",
+      "txt": "Café",
+      "kids": [
+       {
+        "tag": "svg",
+        "box": [
+         21,
+         65,
+         16,
+         16
+        ],
+        "pos": "static",
+        "bg": "rgba(0, 0, 0, 0)",
+        "kids": [
+         {
+          "tag": "path",
+          "box": [
+           23,
+           66,
+           11,
+           12
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "tag": "button",
+      "box": [
+       83,
+       57,
+       87,
+       32
+      ],
+      "pos": "static",
+      "bg": "rgba(0, 0, 0, 0)",
+      "txt": "Co-work",
+      "kids": [
+       {
+        "tag": "svg",
+        "box": [
+         92,
+         65,
+         16,
+         16
+        ],
+        "pos": "static",
+        "bg": "rgba(0, 0, 0, 0)",
+        "kids": [
+         {
+          "tag": "path",
+          "box": [
+           93,
+           67,
+           12,
+           12
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "tag": "button",
+      "box": [
+       174,
+       57,
+       80,
+       32
+      ],
+      "pos": "static",
+      "bg": "rgba(0, 0, 0, 0)",
+      "txt": "Library",
+      "kids": [
+       {
+        "tag": "svg",
+        "box": [
+         183,
+         65,
+         16,
+         16
+        ],
+        "pos": "static",
+        "bg": "rgba(0, 0, 0, 0)",
+        "kids": [
+         {
+          "tag": "path",
+          "box": [
+           184,
+           67,
+           12,
+           11
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "tag": "button",
+      "box": [
+       257,
+       57,
+       69,
+       32
+      ],
+      "pos": "static",
+      "bg": "rgba(0, 0, 0, 0)",
+      "txt": "Food",
+      "kids": [
+       {
+        "tag": "svg",
+        "box": [
+         266,
+         65,
+         16,
+         16
+        ],
+        "pos": "static",
+        "bg": "rgba(0, 0, 0, 0)",
+        "kids": [
+         {
+          "tag": "circle",
+          "box": [
+           271,
+           69,
+           7,
+           7
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)"
+         },
+         {
+          "tag": "path",
+          "box": [
+           267,
+           66,
+           14,
+           12
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "tag": "main",
+    "id": "map",
+    "cls": "maplibregl-map",
+    "box": [
+     0,
+     53,
+     1440,
+     847
+    ],
+    "pos": "relative",
+    "bg": "rgb(249, 193, 206)",
+    "kids": [
+     {
+      "tag": "div",
+      "cls": "maplibregl-canvas-container maplibregl-interactive maplibregl-touch-drag-pan maplibregl-touch-zoom-rotate",
+      "box": [
+       0,
+       53,
+       1440,
+       0
+      ],
+      "pos": "static",
+      "bg": "rgba(0, 0, 0, 0)",
+      "kids": [
+       {
+        "tag": "canvas",
+        "cls": "maplibregl-canvas",
+        "box": [
+         0,
+         53,
+         1440,
+         847
+        ],
+        "pos": "absolute",
+        "bg": "rgba(0, 0, 0, 0)"
+       }
+      ]
+     },
+     {
+      "tag": "div",
+      "cls": "maplibregl-control-container",
+      "box": [
+       0,
+       53,
+       1440,
+       0
+      ],
+      "pos": "static",
+      "bg": "rgba(0, 0, 0, 0)",
+      "kids": [
+       {
+        "tag": "div",
+        "cls": "maplibregl-ctrl-top-left ",
+        "box": [
+         0,
+         53,
+         0,
+         0
+        ],
+        "pos": "absolute",
+        "bg": "rgba(0, 0, 0, 0)"
+       },
+       {
+        "tag": "div",
+        "cls": "maplibregl-ctrl-top-right ",
+        "box": [
+         1384,
+         53,
+         56,
+         212
+        ],
+        "pos": "absolute",
+        "bg": "rgba(0, 0, 0, 0)",
+        "kids": [
+         {
+          "tag": "div",
+          "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+          "box": [
+           1384,
+           63,
+           46,
+           90
+          ],
+          "pos": "static",
+          "bg": "rgb(255, 255, 255)",
+          "kids": [
+           {
+            "tag": "button",
+            "cls": "maplibregl-ctrl-zoom-in",
+            "box": [
+             1385,
+             64,
+             44,
+             44
+            ],
+            "pos": "static",
+            "bg": "rgba(0, 0, 0, 0)",
+            "kids": [
+             {
+              "tag": "span",
+              "cls": "maplibregl-ctrl-icon",
+              "box": [
+               1385,
+               64,
+               44,
+               44
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)"
+             }
+            ]
+           },
+           {
+            "tag": "button",
+            "cls": "maplibregl-ctrl-zoom-out",
+            "box": [
+             1385,
+             108,
+             44,
+             44
+            ],
+            "pos": "static",
+            "bg": "rgba(0, 0, 0, 0)",
+            "kids": [
+             {
+              "tag": "span",
+              "cls": "maplibregl-ctrl-icon",
+              "box": [
+               1385,
+               109,
+               44,
+               43
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "tag": "div",
+          "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+          "box": [
+           1384,
+           163,
+           46,
+           46
+          ],
+          "pos": "static",
+          "bg": "rgb(255, 255, 255)",
+          "kids": [
+           {
+            "tag": "button",
+            "cls": "maplibregl-ctrl-geolocate",
+            "box": [
+             1385,
+             164,
+             44,
+             44
+            ],
+            "pos": "static",
+            "bg": "rgba(0, 0, 0, 0)",
+            "kids": [
+             {
+              "tag": "span",
+              "cls": "maplibregl-ctrl-icon",
+              "box": [
+               1385,
+               164,
+               44,
+               44
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "tag": "div",
+          "cls": "maplibregl-ctrl maplibregl-ctrl-group manga-ctrl",
+          "box": [
+           1384,
+           219,
+           46,
+           46
+          ],
+          "pos": "static",
+          "bg": "rgb(255, 255, 255)",
+          "kids": [
+           {
+            "tag": "button",
+            "cls": "manga-toggle",
+            "box": [
+             1385,
+             220,
+             44,
+             44
+            ],
+            "pos": "static",
+            "bg": "rgb(244, 244, 240)",
+            "kids": [
+             {
+              "tag": "svg",
+              "box": [
+               1397,
+               232,
+               20,
+               20
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "tag": "div",
+        "cls": "maplibregl-ctrl-bottom-left ",
+        "box": [
+         370,
+         846,
+         160,
+         54
+        ],
+        "pos": "absolute",
+        "bg": "rgba(0, 0, 0, 0)",
+        "kids": [
+         {
+          "tag": "div",
+          "cls": "maplibregl-ctrl footprint-key-control",
+          "box": [
+           380,
+           846,
+           150,
+           44
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)",
+          "kids": [
+           {
+            "tag": "button",
+            "cls": "footprint-key",
+            "box": [
+             380,
+             846,
+             150,
+             44
+            ],
+            "pos": "static",
+            "bg": "rgb(255, 255, 255)",
+            "kids": [
+             {
+              "tag": "span",
+              "cls": "footprint-swatch",
+              "box": [
+               389,
+               856,
+               24,
+               24
+              ],
+              "pos": "static",
+              "bg": "rgb(150, 209, 170)"
+             },
+             {
+              "tag": "span",
+              "cls": "footprint-swatch",
+              "box": [
+               417,
+               856,
+               24,
+               24
+              ],
+              "pos": "static",
+              "bg": "rgb(245, 236, 194)"
+             },
+             {
+              "tag": "span",
+              "cls": "footprint-swatch",
+              "box": [
+               445,
+               856,
+               24,
+               24
+              ],
+              "pos": "static",
+              "bg": "rgb(129, 146, 56)"
+             },
+             {
+              "tag": "span",
+              "cls": "footprint-swatch",
+              "box": [
+               473,
+               856,
+               24,
+               24
+              ],
+              "pos": "static",
+              "bg": "rgb(165, 200, 209)"
+             },
+             {
+              "tag": "span",
+              "cls": "footprint-club-symbol",
+              "box": [
+               0,
+               0,
+               0,
+               0
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)"
+             },
+             {
+              "tag": "span",
+              "box": [
+               501,
+               858,
+               20,
+               20
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)",
+              "txt": "Key"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "tag": "div",
+        "cls": "maplibregl-ctrl-bottom-right ",
+        "box": [
+         1392,
+         852,
+         48,
+         48
+        ],
+        "pos": "absolute",
+        "bg": "rgba(0, 0, 0, 0)",
+        "kids": [
+         {
+          "tag": "details",
+          "cls": "maplibregl-ctrl maplibregl-ctrl-attrib maplibregl-compact",
+          "box": [
+           1402,
+           862,
+           28,
+           28
+          ],
+          "pos": "relative",
+          "bg": "rgb(255, 255, 255)",
+          "kids": [
+           {
+            "tag": "summary",
+            "cls": "maplibregl-ctrl-attrib-button",
+            "box": [
+             1404,
+             864,
+             24,
+             24
+            ],
+            "pos": "relative",
+            "bg": "rgba(255, 255, 255, 0.5)"
+           },
+           {
+            "tag": "div",
+            "cls": "maplibregl-ctrl-attrib-inner",
+            "box": [
+             0,
+             0,
+             0,
+             0
+            ],
+            "pos": "static",
+            "bg": "rgba(0, 0, 0, 0)",
+            "txt": "Places © · © OSM contributors | Data from",
+            "kids": [
+             {
+              "tag": "a",
+              "box": [
+               0,
+               0,
+               0,
+               0
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)",
+              "txt": "Overture Maps"
+             },
+             {
+              "tag": "a",
+              "box": [
+               0,
+               0,
+               0,
+               0
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)",
+              "txt": "OpenFreeMap"
+             },
+             {
+              "tag": "a",
+              "box": [
+               0,
+               0,
+               0,
+               0
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)",
+              "txt": "© OpenMapTiles"
+             },
+             {
+              "tag": "a",
+              "box": [
+               0,
+               0,
+               0,
+               0
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)",
+              "txt": "OpenStreetMap"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "tag": "aside",
+    "id": "side",
+    "cls": "side",
+    "box": [
+     0,
+     94,
+     360,
+     806
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)",
+    "kids": [
+     {
+      "tag": "section",
+      "id": "list-wrap",
+      "cls": "list-wrap",
+      "box": [
+       0,
+       94,
+       360,
+       413
+      ],
+      "pos": "static",
+      "bg": "rgb(255, 255, 255)",
+      "kids": [
+       {
+        "tag": "div",
+        "id": "club-hotspots",
+        "cls": "club-hotspots",
+        "box": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "pos": "static",
+        "bg": "rgb(244, 244, 240)"
+       },
+       {
+        "tag": "div",
+        "cls": "rail-header",
+        "box": [
+         0,
+         94,
+         359,
+         89
+        ],
+        "pos": "static",
+        "bg": "rgba(0, 0, 0, 0)",
+        "kids": [
+         {
+          "tag": "div",
+          "cls": "rail-row rail-actions",
+          "box": [
+           0,
+           94,
+           359,
+           48
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)",
+          "kids": [
+           {
+            "tag": "button",
+            "cls": "list-find",
+            "box": [
+             12,
+             100,
+             127,
+             36
+            ],
+            "pos": "static",
+            "bg": "rgb(125, 19, 58)",
+            "txt": "Find a work spot"
+           },
+           {
+            "tag": "a",
+            "cls": "list-day",
+            "box": [
+             145,
+             102,
+             74,
+             32
+            ],
+            "pos": "static",
+            "bg": "rgba(0, 0, 0, 0)",
+            "txt": "Plan your day"
+           },
+           {
+            "tag": "details",
+            "cls": "list-explore",
+            "box": [
+             225,
+             102,
+             46,
+             32
+            ],
+            "pos": "static",
+            "bg": "rgba(0, 0, 0, 0)",
+            "kids": [
+             {
+              "tag": "summary",
+              "box": [
+               225,
+               102,
+               46,
+               32
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)",
+              "txt": "Explore"
+             },
+             {
+              "tag": "div",
+              "cls": "explore-actions",
+              "box": [
+               225,
+               134,
+               46,
+               1228
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)"
+             }
+            ]
+           },
+           {
+            "tag": "button",
+            "cls": "close list-close phone-only",
+            "box": [
+             0,
+             0,
+             0,
+             0
+            ],
+            "pos": "static",
+            "bg": "rgba(0, 0, 0, 0)",
+            "txt": "×"
+           }
+          ]
+         },
+         {
+          "tag": "div",
+          "cls": "rail-row rail-scope",
+          "box": [
+           0,
+           142,
+           359,
+           40
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)",
+          "kids": [
+           {
+            "tag": "h2",
+            "id": "places-in-view",
+            "box": [
+             12,
+             150,
+             127,
+             24
+            ],
+            "pos": "static",
+            "bg": "rgba(0, 0, 0, 0)",
+            "txt": "Places in view"
+           },
+           {
+            "tag": "output",
+            "id": "count",
+            "cls": "count",
+            "box": [
+             145,
+             154,
+             51,
+             16
+            ],
+            "pos": "static",
+            "bg": "rgba(0, 0, 0, 0)",
+            "txt": "48 places"
+           },
+           {
+            "tag": "button",
+            "cls": "scope-tiles",
+            "box": [
+             256,
+             146,
+             91,
+             32
+            ],
+            "pos": "static",
+            "bg": "rgb(255, 255, 255)",
+            "txt": "⬡ Einstein tiles"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "tag": "p",
+        "id": "mood",
+        "cls": "mood-bar",
+        "box": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "pos": "static",
+        "bg": "rgba(0, 0, 0, 0)"
+       },
+       {
+        "tag": "ol",
+        "id": "list",
+        "cls": "list",
+        "box": [
+         0,
+         183,
+         359,
+         324
+        ],
+        "pos": "static",
+        "bg": "rgba(0, 0, 0, 0)",
+        "kids": [
+         {
+          "tag": "li",
+          "cls": "list-group",
+          "box": [
+           0,
+           183,
+           359,
+           198
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)",
+          "kids": [
+           {
+            "tag": "h3",
+            "id": "list-heading-cafe",
+            "box": [
+             0,
+             184,
+             359,
+             27
+            ],
+            "pos": "static",
+            "bg": "rgb(244, 244, 240)",
+            "txt": "Cafés",
+            "kids": [
+             {
+              "tag": "span",
+              "box": [
+               62,
+               191,
+               15,
+               16
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)",
+              "txt": "46"
+             }
+            ]
+           },
+           {
+            "tag": "ol",
+            "box": [
+             0,
+             211,
+             359,
+             138
+            ],
+            "pos": "static",
+            "bg": "rgba(0, 0, 0, 0)",
+            "kids": [
+             {
+              "tag": "li",
+              "box": [
+               0,
+               211,
+               359,
+               46
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)"
+             },
+             {
+              "tag": "li",
+              "box": [
+               0,
+               257,
+               359,
+               46
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)"
+             },
+             {
+              "tag": "li",
+              "box": [
+               0,
+               303,
+               359,
+               46
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)"
+             }
+            ]
+           },
+           {
+            "tag": "button",
+            "cls": "list-more",
+            "box": [
+             12,
+             349,
+             97,
+             32
+            ],
+            "pos": "static",
+            "bg": "rgba(0, 0, 0, 0)",
+            "txt": "Show 12 more"
+           }
+          ]
+         },
+         {
+          "tag": "li",
+          "cls": "list-group",
+          "box": [
+           0,
+           381,
+           359,
+           126
+          ],
+          "pos": "static",
+          "bg": "rgba(0, 0, 0, 0)",
+          "kids": [
+           {
+            "tag": "h3",
+            "id": "list-heading-library",
+            "box": [
+             0,
+             382,
+             359,
+             27
+            ],
+            "pos": "static",
+            "bg": "rgb(244, 244, 240)",
+            "txt": "Libraries",
+            "kids": [
+             {
+              "tag": "span",
+              "box": [
+               83,
+               389,
+               7,
+               16
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)",
+              "txt": "2"
+             }
+            ]
+           },
+           {
+            "tag": "ol",
+            "box": [
+             0,
+             409,
+             359,
+             98
+            ],
+            "pos": "static",
+            "bg": "rgba(0, 0, 0, 0)",
+            "kids": [
+             {
+              "tag": "li",
+              "box": [
+               0,
+               409,
+               359,
+               49
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)"
+             },
+             {
+              "tag": "li",
+              "box": [
+               0,
+               458,
+               359,
+               49
+              ],
+              "pos": "static",
+              "bg": "rgba(0, 0, 0, 0)"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "tag": "section",
+      "id": "sheet",
+      "cls": "sheet",
+      "box": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "pos": "static",
+      "bg": "rgb(255, 255, 255)"
+     }
+    ]
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "dialog",
+    "cls": "photo-viewer",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "absolute",
+    "bg": "rgb(255, 255, 255)",
+    "kids": [
+     {
+      "tag": "button",
+      "box": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "pos": "static",
+      "bg": "rgba(0, 0, 0, 0)",
+      "txt": "Close photo"
+     },
+     {
+      "tag": "img",
+      "box": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "pos": "static",
+      "bg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "script",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "tag": "div",
+    "cls": "atlas-dock",
+    "box": [
+     372,
+     12,
+     0,
+     0
+    ],
+    "pos": "fixed",
+    "bg": "rgba(0, 0, 0, 0)",
+    "kids": [
+     {
+      "tag": "div",
+      "cls": "atlas-tools",
+      "box": [
+       372,
+       12,
+       0,
+       0
+      ],
+      "pos": "static",
+      "bg": "rgba(0, 0, 0, 0)",
+      "kids": [
+       {
+        "tag": "button",
+        "box": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "pos": "static",
+        "bg": "rgb(52, 69, 76)",
+        "txt": "Find a work spot"
+       },
+       {
+        "tag": "button",
+        "box": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "pos": "static",
+        "bg": "rgb(255, 255, 255)",
+        "txt": "Explore ↓"
+       },
+       {
+        "tag": "button",
+        "box": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "pos": "static",
+        "bg": "rgb(255, 255, 255)",
+        "txt": "Key"
+       },
+       {
+        "tag": "button",
+        "box": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "pos": "static",
+        "bg": "rgb(255, 255, 255)",
+        "txt": "Show matches"
+       }
+      ]
+     },
+     {
+      "tag": "p",
+      "cls": "atlas-state",
+      "box": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "pos": "static",
+      "bg": "rgb(255, 255, 255)",
+      "txt": "20,640 mapped"
+     },
+     {
+      "tag": "button",
+      "cls": "atlas-reset",
+      "box": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "pos": "static",
+      "bg": "rgb(255, 255, 255)",
+      "txt": "Clear map view ×"
+     }
+    ]
+   }
+  ]
+ },
+ "htmlLen": 38584,
+ "scripts": [
+  "https://co.nonarkara.org/club-mode.js?v=351698f7",
+  "https://co.nonarkara.org/vendor/maplibre-gl-4.7.1/maplibre-gl.js?v=be9633c4",
+  "https://co.nonarkara.org/hours.js?v=59c56300",
+  "https://co.nonarkara.org/plub.js?v=4f5d2d1f",
+  "https://co.nonarkara.org/drnon.js?v=76673850",
+  "https://co.nonarkara.org/passport.js?v=b3b6a79f",
+  "https://co.nonarkara.org/place-tools.js?v=c1d27c85",
+  "https://co.nonarkara.org/map-motion.js?v=904b9dda",
+  "https://co.nonarkara.org/footprint-model.js?v=15939d12",
+  "https://co.nonarkara.org/footprint-palette.js?v=054ac1a6",
+  "https://co.nonarkara.org/neighborhood-palette.js?v=41372f57",
+  "https://co.nonarkara.org/neighborhood-photos.js?v=078e8a7d",
+  "https://co.nonarkara.org/manga-lens.js?v=e5a0c469",
+  "https://co.nonarkara.org/einstein-hat.js?v=89f92be0",
+  "https://co.nonarkara.org/hat-density.js?v=ea1fd618",
+  "https://co.nonarkara.org/atlas-model.js?v=daec7d22",
+  "https://co.nonarkara.org/atlas.js?v=4656b995",
+  "https://co.nonarkara.org/journey-model.js?v=eefd0641",
+  "https://co.nonarkara.org/place-preferences.js?v=f46df898",
+  "https://co.nonarkara.org/journeys.js?v=a7a2a1f9",
+  "https://co.nonarkara.org/talk-media.js?v=5f3467b8",
+  "https://co.nonarkara.org/work-atmosphere.js?v=d082a598",
+  "https://co.nonarkara.org/app.js?v=be73d63d",
+  "https://co.nonarkara.org/views.js?v=f92f2a1f",
+  "https://co.nonarkara.org/notebook.js?v=6f98eb10",
+  "https://co.nonarkara.org/photos.js?v=6ba3ccb8",
+  "https://co.nonarkara.org/discovery.js?v=f77eb05f",
+  "https://co.nonarkara.org/street-model.js?v=d4ff56fa",
+  "https://co.nonarkara.org/street-world.js?v=2d4faa8d"
+ ],
+ "metas": [
+  "<meta charset=\"utf-8\">",
+  "<meta name=\"referrer\" content=\"strict-origin-when-cross-origin\">",
+  "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">",
+  "<meta name=\"description\" content=\"Bangkok's Great Good Places on one map: 57,379 cafés, co-working spaces, libraries and restaurants, scored from open data, with Nong Plub as your guide.\">",
+  "<meta property=\"og:title\" content=\"PLUB · Placemaking Laboratory Urban Bureau\">",
+  "<meta property=\"og:description\" content=\"Find your Great Good Place in Bangkok. Neighbourhood stories, data-driven scores, and a passport of where you've been.\">",
+  "<meta property=\"og:image\" content=\"https://co.nonarkara.org/og/default.png?v=green-20261115\">",
+  "<meta property=\"og:image:width\" content=\"1200\">",
+  "<meta property=\"og:image:height\" content=\"630\">",
+  "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+  "<meta name=\"theme-color\" content=\"#7d133a\">"
+ ],
+ "logs": [
+  {
+   "type": "warning",
+   "text": "The resource https://co.nonarkara.org/fonts/prompt-thai-400.woff2?v=80fa1143 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+  },
+  {
+   "type": "warning",
+   "text": "The resource https://co.nonarkara.org/fonts/prompt-latin-400.woff2?v=6d0bc99f was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+  },
+  {
+   "type": "warning",
+   "text": "The resource https://co.nonarkara.org/fonts/SaoChingcha-Bold.woff2?v=b81f50e4 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+  },
+  {
+   "type": "warning",
+   "text": "The resource https://co.nonarkara.org/fonts/jost-latin.woff2?v=235d8f89 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+  },
+  {
+   "type": "warning",
+   "text": "The resource https://co.nonarkara.org/fonts/NonArchitecture-Regular.woff2?v=11d2f76b was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+  }
+ ]
+}

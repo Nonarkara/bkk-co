@@ -1,0 +1,346 @@
+{
+ "PLUB": {
+  "samples": [
+   {
+    "t": 1129,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 1353,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 1586,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 1808,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 2030,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 2252,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 2475,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 2698,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 2922,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 3148,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 3371,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 3594,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 3818,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 4043,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 4267,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   },
+   {
+    "t": 4492,
+    "ground": "\"#f9c1ce\"",
+    "bodyClass": "",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(249, 193, 206)",
+    "manga": true
+   }
+  ],
+  "final": {
+   "ground": "\"#f9c1ce\"",
+   "bodyClass": "",
+   "vars": {
+    "--guide": "#f9c1ce"
+   },
+   "mapBg": "rgb(249, 193, 206)"
+  }
+ },
+ "CLUB": {
+  "samples": [
+   {
+    "t": 1361,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 1583,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 1804,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 2027,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 2248,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 2470,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 2692,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 2916,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 3139,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 3370,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 3594,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 3817,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 4040,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 4264,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 4487,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   },
+   {
+    "t": 4710,
+    "ground": "\"#b5decc\"",
+    "bodyClass": "club-mode",
+    "vars": {
+     "--guide": "#f9c1ce"
+    },
+    "mapBg": "rgb(181, 222, 204)",
+    "manga": true
+   }
+  ],
+  "final": {
+   "ground": "\"#b5decc\"",
+   "bodyClass": "club-mode",
+   "vars": {
+    "--guide": "#f9c1ce"
+   },
+   "mapBg": "rgb(181, 222, 204)"
+  }
+ }
+}

@@ -1,0 +1,294 @@
+[
+ {
+  "mode": "PLUB",
+  "vp": "1440",
+  "state": "loading",
+  "snap": {
+   "count": "Loading…",
+   "heading": "Places in view",
+   "listText": "Loading the directory…",
+   "rowCount": 0,
+   "items": [],
+   "skeletonCount": 1,
+   "skeletonClasses": [
+    "list-skeleton"
+   ],
+   "retryBtn": null,
+   "panelRect": [
+    0,
+    94,
+    360,
+    221
+   ],
+   "panelContentBottom": 315,
+   "panelSlabPx": 0,
+   "clubMode": false,
+   "catalogueStatus": "loading",
+   "cannabisStatus": "loading",
+   "bodyClass": "",
+   "htmlClass": ""
+  }
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1440",
+  "state": "failed",
+  "snap": {
+   "count": "unavailable",
+   "heading": "Places in view",
+   "listText": "Directory unavailable. Retry",
+   "rowCount": 0,
+   "items": [],
+   "skeletonCount": 0,
+   "skeletonClasses": [],
+   "retryBtn": {
+    "text": "Retry",
+    "w": 52,
+    "h": 44,
+    "visible": true,
+    "bg": "rgb(255, 255, 255)"
+   },
+   "panelRect": [
+    0,
+    94,
+    360,
+    142
+   ],
+   "panelContentBottom": 236,
+   "panelSlabPx": 0,
+   "clubMode": false,
+   "catalogueStatus": "failed",
+   "cannabisStatus": "loading",
+   "bodyClass": "",
+   "htmlClass": ""
+  },
+  "retryResult": {
+   "clicked": true,
+   "refetched": [
+    "places-work.json"
+   ],
+   "before": "unavailable",
+   "after": "unavailable",
+   "afterStatus": "failed"
+  }
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1024",
+  "state": "loading",
+  "snap": {
+   "count": "Loading…",
+   "heading": "Places in view",
+   "listText": "Loading the directory…",
+   "rowCount": 0,
+   "items": [],
+   "skeletonCount": 1,
+   "skeletonClasses": [
+    "list-skeleton"
+   ],
+   "retryBtn": null,
+   "panelRect": [
+    0,
+    94,
+    360,
+    221
+   ],
+   "panelContentBottom": 315,
+   "panelSlabPx": 0,
+   "clubMode": false,
+   "catalogueStatus": "loading",
+   "cannabisStatus": "loading",
+   "bodyClass": "",
+   "htmlClass": ""
+  }
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1024",
+  "state": "failed",
+  "snap": {
+   "count": "unavailable",
+   "heading": "Places in view",
+   "listText": "Directory unavailable. Retry",
+   "rowCount": 0,
+   "items": [],
+   "skeletonCount": 0,
+   "skeletonClasses": [],
+   "retryBtn": {
+    "text": "Retry",
+    "w": 52,
+    "h": 44,
+    "visible": true,
+    "bg": "rgb(255, 255, 255)"
+   },
+   "panelRect": [
+    0,
+    94,
+    360,
+    142
+   ],
+   "panelContentBottom": 236,
+   "panelSlabPx": 0,
+   "clubMode": false,
+   "catalogueStatus": "failed",
+   "cannabisStatus": "loading",
+   "bodyClass": "",
+   "htmlClass": ""
+  },
+  "retryResult": {
+   "clicked": true,
+   "refetched": [
+    "places-work.json"
+   ],
+   "before": "unavailable",
+   "after": "unavailable",
+   "afterStatus": "failed"
+  }
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1440",
+  "state": "loading",
+  "snap": {
+   "count": "Loading…",
+   "heading": "Places in view",
+   "listText": "Loading the directory…",
+   "rowCount": 0,
+   "items": [],
+   "skeletonCount": 1,
+   "skeletonClasses": [
+    "list-skeleton"
+   ],
+   "retryBtn": null,
+   "panelRect": [
+    0,
+    53,
+    360,
+    254
+   ],
+   "panelContentBottom": 307,
+   "panelSlabPx": 0,
+   "clubMode": true,
+   "catalogueStatus": "loading",
+   "cannabisStatus": "loading",
+   "bodyClass": "club-mode",
+   "htmlClass": ""
+  }
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1440",
+  "state": "failed",
+  "snap": {
+   "count": "unavailable",
+   "heading": "Places in view",
+   "listText": "Directory unavailable. Retry",
+   "rowCount": 0,
+   "items": [],
+   "skeletonCount": 0,
+   "skeletonClasses": [],
+   "retryBtn": {
+    "text": "Retry",
+    "w": 52,
+    "h": 44,
+    "visible": true,
+    "bg": "rgb(255, 255, 255)"
+   },
+   "panelRect": [
+    0,
+    53,
+    360,
+    199
+   ],
+   "panelContentBottom": 252,
+   "panelSlabPx": 0,
+   "clubMode": true,
+   "catalogueStatus": "failed",
+   "cannabisStatus": "failed",
+   "bodyClass": "club-mode",
+   "htmlClass": ""
+  },
+  "retryResult": {
+   "clicked": true,
+   "refetched": [
+    "places-cannabis.json"
+   ],
+   "before": "unavailable",
+   "after": "unavailable",
+   "afterStatus": "failed"
+  }
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1024",
+  "state": "loading",
+  "snap": {
+   "count": "Loading…",
+   "heading": "Places in view",
+   "listText": "Loading the directory…",
+   "rowCount": 0,
+   "items": [],
+   "skeletonCount": 1,
+   "skeletonClasses": [
+    "list-skeleton"
+   ],
+   "retryBtn": null,
+   "panelRect": [
+    0,
+    53,
+    360,
+    254
+   ],
+   "panelContentBottom": 307,
+   "panelSlabPx": 0,
+   "clubMode": true,
+   "catalogueStatus": "loading",
+   "cannabisStatus": "loading",
+   "bodyClass": "club-mode",
+   "htmlClass": ""
+  }
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1024",
+  "state": "failed",
+  "snap": {
+   "count": "unavailable",
+   "heading": "Places in view",
+   "listText": "Directory unavailable. Retry",
+   "rowCount": 0,
+   "items": [],
+   "skeletonCount": 0,
+   "skeletonClasses": [],
+   "retryBtn": {
+    "text": "Retry",
+    "w": 52,
+    "h": 44,
+    "visible": true,
+    "bg": "rgb(255, 255, 255)"
+   },
+   "panelRect": [
+    0,
+    53,
+    360,
+    199
+   ],
+   "panelContentBottom": 252,
+   "panelSlabPx": 0,
+   "clubMode": true,
+   "catalogueStatus": "failed",
+   "cannabisStatus": "failed",
+   "bodyClass": "club-mode",
+   "htmlClass": ""
+  },
+  "retryResult": {
+   "clicked": true,
+   "refetched": [
+    "places-cannabis.json"
+   ],
+   "before": "unavailable",
+   "after": "unavailable",
+   "afterStatus": "failed"
+  }
+ }
+]

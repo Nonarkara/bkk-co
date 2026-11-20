@@ -1,0 +1,39 @@
+[
+ {
+  "mode": "PLUB",
+  "before": {
+   "count": "48 places",
+   "chips": [
+    "☰:false",
+    "Café:true",
+    "Co-work:true",
+    "Library:true",
+    "Food:false"
+   ]
+  },
+  "count": "0 places",
+  "heading": "Places in view",
+  "listText": "No matches in view. Pan, zoom out or clear a filter.",
+  "rows": 0,
+  "retry": false,
+  "status": "ready"
+ },
+ {
+  "mode": "CLUB",
+  "before": {
+   "count": "127 places",
+   "chips": [
+    "Café:true",
+    "Co-work:true",
+    "Library:true",
+    "Food:false"
+   ]
+  },
+  "count": "127 places",
+  "heading": "Places in view",
+  "listText": "Cannabis listings 127 Lollipop Farm Cannabis DispensaryMapped dispensary · Tier B · Bangkok4/4 detailsAddicted Cannabis ClubMapped dispensary · Tier B · Bangkok",
+  "rows": 8,
+  "retry": false,
+  "status": "ready"
+ }
+]

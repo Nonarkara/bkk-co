@@ -1,0 +1,126 @@
+[
+ {
+  "mode": "PLUB",
+  "vp": "1024",
+  "pt": {
+   "x": 180,
+   "y": 577
+  },
+  "hit": "side",
+  "movedUnder": false,
+  "movedControl": true,
+  "more": {
+   "before": {
+    "c": {
+     "lng": 100.51385655517362,
+     "lat": 13.731928539318446
+    },
+    "z": 16.8,
+    "n": "37 places"
+   },
+   "after": {
+    "c": {
+     "lng": 100.51385655517362,
+     "lat": 13.731928539318446
+    },
+    "z": 16.8,
+    "n": "37 places",
+    "rows": 17
+   },
+   "camMoved": false
+  }
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1440",
+  "pt": {
+   "x": 180,
+   "y": 577
+  },
+  "hit": "side",
+  "movedUnder": false,
+  "movedControl": true,
+  "more": {
+   "before": {
+    "c": {
+     "lng": 100.51386305699094,
+     "lat": 13.731926433993536
+    },
+    "z": 16.8,
+    "n": "46 places"
+   },
+   "after": {
+    "c": {
+     "lng": 100.51386305699094,
+     "lat": 13.731926433993536
+    },
+    "z": 16.8,
+    "n": "46 places",
+    "rows": 17
+   },
+   "camMoved": false
+  }
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1024",
+  "pt": {
+   "x": 180,
+   "y": 685
+  },
+  "hit": "side",
+  "movedUnder": false,
+  "movedControl": true,
+  "more": {
+   "before": {
+    "c": {
+     "lng": 100.52104182090977,
+     "lat": 13.74976133094988
+    },
+    "z": 12,
+    "n": "90 places"
+   },
+   "after": {
+    "c": {
+     "lng": 100.52104182090977,
+     "lat": 13.74976133094988
+    },
+    "z": 12,
+    "n": "90 places",
+    "rows": 20
+   },
+   "camMoved": false
+  }
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1440",
+  "pt": {
+   "x": 180,
+   "y": 685
+  },
+  "hit": "side",
+  "movedUnder": false,
+  "movedControl": true,
+  "more": {
+   "before": {
+    "c": {
+     "lng": 100.52099197945745,
+     "lat": 13.749777468675944
+    },
+    "z": 12,
+    "n": "119 places"
+   },
+   "after": {
+    "c": {
+     "lng": 100.52099197945745,
+     "lat": 13.749777468675944
+    },
+    "z": 12,
+    "n": "119 places",
+    "rows": 20
+   },
+   "camMoved": false
+  }
+ }
+]

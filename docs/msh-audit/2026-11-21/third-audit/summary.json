@@ -1,0 +1,234 @@
+[
+ {
+  "mode": "PLUB",
+  "vp": "390",
+  "w": 390,
+  "h": 844,
+  "canvasA": 276120,
+  "appH": 0,
+  "mapH": 15776,
+  "shareCanvas": 0.8389,
+  "shareMinusAppChrome": 0.8389,
+  "shareMinusAllChrome": 0.7909,
+  "deadStripPx": 0,
+  "deadStripShare": 0,
+  "panelRect": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "disp": "20,640 matching",
+  "counted": 20,
+  "visCounted": 20,
+  "visNotCounted": 0,
+  "unc": [],
+  "camPadding": {
+   "top": 0,
+   "bottom": 0,
+   "left": 0,
+   "right": 0
+  },
+  "centerScreen": [
+   195,
+   490
+  ],
+  "zoom": 16.8
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1024",
+  "w": 1024,
+  "h": 768,
+  "canvasA": 732160,
+  "appH": 163333,
+  "mapH": 15776,
+  "shareCanvas": 0.931,
+  "shareMinusAppChrome": 0.7233,
+  "shareMinusAllChrome": 0.7032,
+  "deadStripPx": 93600,
+  "deadStripShare": 0.119,
+  "panelRect": [
+   0,
+   94,
+   360,
+   413
+  ],
+  "disp": "37 places",
+  "counted": 37,
+  "visCounted": 36,
+  "visNotCounted": 0,
+  "unc": [],
+  "camPadding": {
+   "top": 0,
+   "bottom": 0,
+   "left": 360,
+   "right": 0
+  },
+  "centerScreen": [
+   692,
+   411
+  ],
+  "zoom": 16.8
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1440",
+  "w": 1440,
+  "h": 900,
+  "canvasA": 1219680,
+  "appH": 163333,
+  "mapH": 15776,
+  "shareCanvas": 0.9411,
+  "shareMinusAppChrome": 0.8151,
+  "shareMinusAllChrome": 0.8029,
+  "deadStripPx": 141120,
+  "deadStripShare": 0.1089,
+  "panelRect": [
+   0,
+   94,
+   360,
+   413
+  ],
+  "disp": "48 places",
+  "counted": 48,
+  "visCounted": 48,
+  "visNotCounted": 3,
+  "unc": [
+   {
+    "n": "li-bra-ry Café",
+    "x": 79,
+    "y": 827
+   },
+   {
+    "n": "li-bra-ry at Candide",
+    "x": 115,
+    "y": 844
+   },
+   {
+    "n": "ไล-บรา-รี่ แอทกองดิด",
+    "x": 116,
+    "y": 841
+   }
+  ],
+  "camPadding": {
+   "top": 0,
+   "bottom": 0,
+   "left": 360,
+   "right": 0
+  },
+  "centerScreen": [
+   900,
+   477
+  ],
+  "zoom": 16.8
+ },
+ {
+  "mode": "CLUB",
+  "vp": "390",
+  "w": 390,
+  "h": 844,
+  "canvasA": 292110,
+  "appH": 0,
+  "mapH": 11904,
+  "shareCanvas": 0.8874,
+  "shareMinusAppChrome": 0.8874,
+  "shareMinusAllChrome": 0.8513,
+  "deadStripPx": 0,
+  "deadStripShare": 0,
+  "panelRect": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "disp": "329 matching",
+  "counted": 70,
+  "visCounted": 70,
+  "visNotCounted": 0,
+  "unc": [],
+  "camPadding": {
+   "top": 0,
+   "bottom": 0,
+   "left": 0,
+   "right": 0
+  },
+  "centerScreen": [
+   195,
+   478
+  ],
+  "zoom": 12
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1024",
+  "w": 1024,
+  "h": 768,
+  "canvasA": 732160,
+  "appH": 202433,
+  "mapH": 11904,
+  "shareCanvas": 0.931,
+  "shareMinusAppChrome": 0.6736,
+  "shareMinusAllChrome": 0.6584,
+  "deadStripPx": 54720,
+  "deadStripShare": 0.0696,
+  "panelRect": [
+   0,
+   53,
+   360,
+   562
+  ],
+  "disp": "103 places",
+  "counted": 103,
+  "visCounted": 102,
+  "visNotCounted": 0,
+  "unc": [],
+  "camPadding": {
+   "top": 0,
+   "bottom": 0,
+   "left": 360,
+   "right": 0
+  },
+  "centerScreen": [
+   692,
+   411
+  ],
+  "zoom": 12
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1440",
+  "w": 1440,
+  "h": 900,
+  "canvasA": 1219680,
+  "appH": 202433,
+  "mapH": 11904,
+  "shareCanvas": 0.9411,
+  "shareMinusAppChrome": 0.7849,
+  "shareMinusAllChrome": 0.7757,
+  "deadStripPx": 102240,
+  "deadStripShare": 0.0789,
+  "panelRect": [
+   0,
+   53,
+   360,
+   562
+  ],
+  "disp": "127 places",
+  "counted": 127,
+  "visCounted": 127,
+  "visNotCounted": 0,
+  "unc": [],
+  "camPadding": {
+   "top": 0,
+   "bottom": 0,
+   "left": 360,
+   "right": 0
+  },
+  "centerScreen": [
+   900,
+   477
+  ],
+  "zoom": 12
+ }
+]

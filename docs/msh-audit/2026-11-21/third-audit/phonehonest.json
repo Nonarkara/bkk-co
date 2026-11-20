@@ -1,0 +1,46 @@
+[
+ {
+  "mode": "PLUB",
+  "drawerRect": [
+   0,
+   478,
+   390,
+   366
+  ],
+  "canvasRect": [
+   0,
+   136,
+   390,
+   708
+  ],
+  "count": "20 places",
+  "appBoundsCounted": 20,
+  "readerVisible": 14,
+  "countedButHidden": 6,
+  "visibleMapHeightPx": 342,
+  "canvasHeightPx": 708,
+  "visibleMapShareOfCanvas": 0.483
+ },
+ {
+  "mode": "CLUB",
+  "drawerRect": [
+   0,
+   354,
+   390,
+   490
+  ],
+  "canvasRect": [
+   0,
+   103,
+   390,
+   749
+  ],
+  "count": "70 places",
+  "appBoundsCounted": 70,
+  "readerVisible": 8,
+  "countedButHidden": 62,
+  "visibleMapHeightPx": 251,
+  "canvasHeightPx": 749,
+  "visibleMapShareOfCanvas": 0.336
+ }
+]

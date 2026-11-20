@@ -1,0 +1,151 @@
+{
+ "F7": {
+  "loads": 16,
+  "mapWarn": [
+   {
+    "load": 1,
+    "mode": "PLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 2,
+    "mode": "PLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 3,
+    "mode": "PLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 4,
+    "mode": "PLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 5,
+    "mode": "PLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 6,
+    "mode": "PLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 7,
+    "mode": "PLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 8,
+    "mode": "PLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 9,
+    "mode": "CLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 10,
+    "mode": "CLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 11,
+    "mode": "CLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 12,
+    "mode": "CLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 13,
+    "mode": "CLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 14,
+    "mode": "CLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 15,
+    "mode": "CLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   },
+   {
+    "load": 16,
+    "mode": "CLUB",
+    "mapWarnings": [],
+    "otherWarnings": []
+   }
+  ]
+ },
+ "font150_PLUB": {
+  "headingFont": "30px",
+  "rowFont": null,
+  "bodyFont": "21px",
+  "rootFont": "24px",
+  "panelRect": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "mapCanvas": [
+   0,
+   192,
+   390,
+   652
+  ],
+  "count": "20,640 matching",
+  "overflowX": 0,
+  "chipsOverflow": [
+   390,
+   390
+  ]
+ },
+ "font150_CLUB": {
+  "headingFont": "30px",
+  "rowFont": null,
+  "bodyFont": "21px",
+  "rootFont": "24px",
+  "panelRect": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "mapCanvas": [
+   0,
+   110,
+   390,
+   742
+  ],
+  "count": "329 matching",
+  "overflowX": 0,
+  "chipsOverflow": [
+   0,
+   0
+  ]
+ }
+}

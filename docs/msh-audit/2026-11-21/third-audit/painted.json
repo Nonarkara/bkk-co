@@ -1,0 +1,68 @@
+[
+ {
+  "mode": "PLUB",
+  "vp": "390",
+  "paintedMapArea": 65783,
+  "coveredArea": 263377,
+  "paintedMapShareOfVp": 0.1999,
+  "coveredShareOfVp": 0.8001,
+  "interactiveMapPts": 3028,
+  "nonMapPts": 217,
+  "totalPts": 3245
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1024",
+  "paintedMapArea": 250124,
+  "coveredArea": 536308,
+  "paintedMapShareOfVp": 0.318,
+  "coveredShareOfVp": 0.682,
+  "interactiveMapPts": 2253,
+  "nonMapPts": 1347,
+  "totalPts": 3600
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1440",
+  "paintedMapArea": 417731,
+  "coveredArea": 878269,
+  "paintedMapShareOfVp": 0.3223,
+  "coveredShareOfVp": 0.6777,
+  "interactiveMapPts": 2697,
+  "nonMapPts": 963,
+  "totalPts": 3660
+ },
+ {
+  "mode": "CLUB",
+  "vp": "390",
+  "paintedMapArea": 46491,
+  "coveredArea": 282669,
+  "paintedMapShareOfVp": 0.1412,
+  "coveredShareOfVp": 0.8588,
+  "interactiveMapPts": 3245,
+  "nonMapPts": 165,
+  "totalPts": 3410
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1024",
+  "paintedMapArea": 95734,
+  "coveredArea": 690698,
+  "paintedMapShareOfVp": 0.1217,
+  "coveredShareOfVp": 0.8783,
+  "interactiveMapPts": 2273,
+  "nonMapPts": 1327,
+  "totalPts": 3600
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1440",
+  "paintedMapArea": 185950,
+  "coveredArea": 1110050,
+  "paintedMapShareOfVp": 0.1435,
+  "coveredShareOfVp": 0.8565,
+  "interactiveMapPts": 2706,
+  "nonMapPts": 954,
+  "totalPts": 3660
+ }
+]

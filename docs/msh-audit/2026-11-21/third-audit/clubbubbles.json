@@ -1,0 +1,378 @@
+[
+ {
+  "mode": "PLUB",
+  "vp": "1024",
+  "srcByKind": {
+   "coworking": 57,
+   "cafe": 20160,
+   "library": 423
+  },
+  "bubbleCount": 10,
+  "visibleBubbles": 8,
+  "bubbleSumVisible": 37,
+  "bubbleKinds": [
+   "mixed"
+  ],
+  "iconsByKind": {
+   "cafe": 1,
+   "library": 1
+  },
+  "iconsVisibleByKind": {
+   "cafe": 1,
+   "library": 1
+  },
+  "disp": "37 places",
+  "railHeadings": [
+   "Cafés 35",
+   "Libraries 2"
+  ],
+  "bubbleRows": [
+   {
+    "pc": 2,
+    "kind": "mixed",
+    "x": 457,
+    "y": 322,
+    "visible": true
+   },
+   {
+    "pc": 8,
+    "kind": "mixed",
+    "x": 379,
+    "y": 180,
+    "visible": true
+   },
+   {
+    "pc": 8,
+    "kind": "mixed",
+    "x": 637,
+    "y": 320,
+    "visible": true
+   },
+   {
+    "pc": 3,
+    "kind": "mixed",
+    "x": 576,
+    "y": 177,
+    "visible": true
+   },
+   {
+    "pc": 3,
+    "kind": "mixed",
+    "x": 883,
+    "y": 62,
+    "visible": true
+   },
+   {
+    "pc": 5,
+    "kind": "mixed",
+    "x": 382,
+    "y": 668,
+    "visible": true
+   },
+   {
+    "pc": 6,
+    "kind": "mixed",
+    "x": 774,
+    "y": 746,
+    "visible": true
+   },
+   {
+    "pc": 2,
+    "kind": "mixed",
+    "x": 729,
+    "y": 493,
+    "visible": true
+   }
+  ]
+ },
+ {
+  "mode": "PLUB",
+  "vp": "1440",
+  "srcByKind": {
+   "coworking": 57,
+   "cafe": 20160,
+   "library": 423
+  },
+  "bubbleCount": 11,
+  "visibleBubbles": 11,
+  "bubbleSumVisible": 50,
+  "bubbleKinds": [
+   "mixed"
+  ],
+  "iconsByKind": {
+   "cafe": 3,
+   "library": 1
+  },
+  "iconsVisibleByKind": {
+   "cafe": 3,
+   "library": 1
+  },
+  "disp": "48 places",
+  "railHeadings": [
+   "Cafés 46",
+   "Libraries 2"
+  ],
+  "bubbleRows": [
+   {
+    "pc": 2,
+    "kind": "mixed",
+    "x": 665,
+    "y": 388,
+    "visible": true
+   },
+   {
+    "pc": 8,
+    "kind": "mixed",
+    "x": 587,
+    "y": 246,
+    "visible": true
+   },
+   {
+    "pc": 3,
+    "kind": "mixed",
+    "x": 412,
+    "y": 127,
+    "visible": true
+   },
+   {
+    "pc": 8,
+    "kind": "mixed",
+    "x": 845,
+    "y": 386,
+    "visible": true
+   },
+   {
+    "pc": 3,
+    "kind": "mixed",
+    "x": 784,
+    "y": 243,
+    "visible": true
+   },
+   {
+    "pc": 3,
+    "kind": "mixed",
+    "x": 1091,
+    "y": 128,
+    "visible": true
+   },
+   {
+    "pc": 6,
+    "kind": "mixed",
+    "x": 743,
+    "y": 112,
+    "visible": true
+   },
+   {
+    "pc": 4,
+    "kind": "mixed",
+    "x": 112,
+    "y": 867,
+    "visible": true
+   },
+   {
+    "pc": 5,
+    "kind": "mixed",
+    "x": 590,
+    "y": 734,
+    "visible": true
+   },
+   {
+    "pc": 6,
+    "kind": "mixed",
+    "x": 982,
+    "y": 812,
+    "visible": true
+   }
+  ]
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1024",
+  "srcByKind": {
+   "cannabis": 329
+  },
+  "bubbleCount": 17,
+  "visibleBubbles": 16,
+  "bubbleSumVisible": 98,
+  "bubbleKinds": [
+   "mixed"
+  ],
+  "iconsByKind": {
+   "cannabis": 7
+  },
+  "iconsVisibleByKind": {
+   "cannabis": 5
+  },
+  "disp": "103 places",
+  "railHeadings": [
+   "Cannabis listings 103"
+  ],
+  "bubbleRows": [
+   {
+    "pc": 4,
+    "kind": "mixed",
+    "x": 615,
+    "y": 149,
+    "visible": true
+   },
+   {
+    "pc": 2,
+    "kind": "mixed",
+    "x": 720,
+    "y": 159,
+    "visible": true
+   },
+   {
+    "pc": 4,
+    "kind": "mixed",
+    "x": 591,
+    "y": 519,
+    "visible": true
+   },
+   {
+    "pc": 4,
+    "kind": "mixed",
+    "x": 412,
+    "y": 506,
+    "visible": true
+   },
+   {
+    "pc": 18,
+    "kind": "mixed",
+    "x": 515,
+    "y": 479,
+    "visible": true
+   },
+   {
+    "pc": 7,
+    "kind": "mixed",
+    "x": 458,
+    "y": 395,
+    "visible": true
+   },
+   {
+    "pc": 5,
+    "kind": "mixed",
+    "x": 600,
+    "y": 322,
+    "visible": true
+   },
+   {
+    "pc": 3,
+    "kind": "mixed",
+    "x": 998,
+    "y": 760,
+    "visible": true
+   },
+   {
+    "pc": 2,
+    "kind": "mixed",
+    "x": 971,
+    "y": 657,
+    "visible": true
+   },
+   {
+    "pc": 4,
+    "kind": "mixed",
+    "x": 956,
+    "y": 579,
+    "visible": true
+   }
+  ]
+ },
+ {
+  "mode": "CLUB",
+  "vp": "1440",
+  "srcByKind": {
+   "cannabis": 329
+  },
+  "bubbleCount": 18,
+  "visibleBubbles": 18,
+  "bubbleSumVisible": 115,
+  "bubbleKinds": [
+   "mixed"
+  ],
+  "iconsByKind": {
+   "cannabis": 12
+  },
+  "iconsVisibleByKind": {
+   "cannabis": 12
+  },
+  "disp": "127 places",
+  "railHeadings": [
+   "Cannabis listings 127"
+  ],
+  "bubbleRows": [
+   {
+    "pc": 15,
+    "kind": "mixed",
+    "x": 552,
+    "y": 343,
+    "visible": true
+   },
+   {
+    "pc": 4,
+    "kind": "mixed",
+    "x": 823,
+    "y": 215,
+    "visible": true
+   },
+   {
+    "pc": 2,
+    "kind": "mixed",
+    "x": 928,
+    "y": 225,
+    "visible": true
+   },
+   {
+    "pc": 4,
+    "kind": "mixed",
+    "x": 799,
+    "y": 585,
+    "visible": true
+   },
+   {
+    "pc": 4,
+    "kind": "mixed",
+    "x": 620,
+    "y": 572,
+    "visible": true
+   },
+   {
+    "pc": 18,
+    "kind": "mixed",
+    "x": 723,
+    "y": 545,
+    "visible": true
+   },
+   {
+    "pc": 7,
+    "kind": "mixed",
+    "x": 666,
+    "y": 461,
+    "visible": true
+   },
+   {
+    "pc": 5,
+    "kind": "mixed",
+    "x": 808,
+    "y": 388,
+    "visible": true
+   },
+   {
+    "pc": 3,
+    "kind": "mixed",
+    "x": 1206,
+    "y": 826,
+    "visible": true
+   },
+   {
+    "pc": 2,
+    "kind": "mixed",
+    "x": 1179,
+    "y": 723,
+    "visible": true
+   }
+  ]
+ }
+]

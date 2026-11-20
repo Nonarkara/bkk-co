@@ -1,0 +1,708 @@
+[
+ {
+  "mode": "PLUB",
+  "vp": {
+   "w": 390,
+   "h": 844
+  },
+  "disp": "20,640 matching",
+  "dispN": 20640,
+  "canvasArea": 276120,
+  "hiddenArea": 15776,
+  "visibleMapArea": 260344,
+  "visibleMapShareOfVp": 0.7909,
+  "mapCanvasShareOfVp": 0.8389,
+  "coverers": [
+   "footprint-key [150x44@10,790] 6620",
+   "maplibregl-ctrl maplibregl-ctrl-gr [46x90@334,146] 4140",
+   "maplibregl-ctrl maplibregl-ctrl-gr [46x46@334,246] 2116",
+   "maplibregl-ctrl maplibregl-ctrl-gr [46x46@334,302] 2116",
+   "manga-toggle [44x44@335,303] 1936",
+   "maplibregl-ctrl maplibregl-ctrl-at [28x28@352,806] 784",
+   "footprint-swatch [24x24@19,800] 576",
+   "footprint-swatch [24x24@47,800] 576"
+  ],
+  "bubbles": 6,
+  "bubbleVisible": 6,
+  "clusterSum": 28,
+  "clusterVisibleSum": 28,
+  "clusterHiddenSum": 0,
+  "srcVisible": 20,
+  "srcHidden": 0,
+  "camera": {
+   "center": {
+    "lng": 100.51518,
+    "lat": 13.7315
+   },
+   "zoom": 16.8,
+   "padding": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+   }
+  },
+  "centerScreen": [
+   195,
+   490
+  ],
+  "canvasRect": [
+   0,
+   136,
+   390,
+   708
+  ],
+  "appBounds": {
+   "w": 100.51397839085689,
+   "e": 100.51638160914166,
+   "s": 13.729380954288402,
+   "n": 13.733619026561257
+  },
+  "bubbleRows": [
+   {
+    "n": 8,
+    "x": 140,
+    "y": 400
+   },
+   {
+    "n": 3,
+    "x": 79,
+    "y": 256
+   },
+   {
+    "n": 3,
+    "x": 386,
+    "y": 142
+   },
+   {
+    "n": 6,
+    "x": 38,
+    "y": 126
+   },
+   {
+    "n": 6,
+    "x": 277,
+    "y": 825
+   },
+   {
+    "n": 2,
+    "x": 232,
+    "y": 573
+   }
+  ],
+  "logs": []
+ },
+ {
+  "mode": "PLUB",
+  "vp": {
+   "w": 1024,
+   "h": 768
+  },
+  "disp": "37 places",
+  "dispN": 37,
+  "canvasArea": 732160,
+  "hiddenArea": 183973,
+  "visibleMapArea": 548187,
+  "visibleMapShareOfVp": 0.6971,
+  "mapCanvasShareOfVp": 0.931,
+  "coverers": [
+   "list-wrap [360x413@0,94] 148573",
+   "chips [360x41@0,53] 14760",
+   "list-heading-cafe [359x27@0,184] 9671",
+   "list-heading-library [359x27@0,382] 9671",
+   "footprint-key [150x44@380,714] 6620",
+   "list-order [152x32@225,539] 4864",
+   "list-find [127x36@12,100] 4583",
+   "maplibregl-ctrl maplibregl-ctrl-gr [46x90@968,63] 4140"
+  ],
+  "bubbles": 10,
+  "bubbleVisible": 9,
+  "clusterSum": 46,
+  "clusterVisibleSum": 43,
+  "clusterHiddenSum": 3,
+  "srcVisible": 36,
+  "srcHidden": 4,
+  "camera": {
+   "center": {
+    "lng": 100.51518,
+    "lat": 13.7315
+   },
+   "zoom": 16.8,
+   "padding": {
+    "top": 0,
+    "bottom": 0,
+    "left": 360,
+    "right": 0
+   }
+  },
+  "centerScreen": [
+   692,
+   411
+  ],
+  "canvasRect": [
+   0,
+   53,
+   1024,
+   715
+  ],
+  "appBounds": {
+   "w": 100.51313418340965,
+   "e": 100.51722581659271,
+   "s": 13.729360003176112,
+   "n": 13.733639977293421
+  },
+  "bubbleRows": [
+   {
+    "n": 2,
+    "x": 457,
+    "y": 322
+   },
+   {
+    "n": 8,
+    "x": 379,
+    "y": 180
+   },
+   {
+    "n": 8,
+    "x": 637,
+    "y": 320
+   },
+   {
+    "n": 3,
+    "x": 576,
+    "y": 177
+   },
+   {
+    "n": 3,
+    "x": 883,
+    "y": 62
+   },
+   {
+    "n": 6,
+    "x": 535,
+    "y": 46
+   },
+   {
+    "n": 5,
+    "x": 382,
+    "y": 668
+   },
+   {
+    "n": 6,
+    "x": 774,
+    "y": 746
+   },
+   {
+    "n": 2,
+    "x": 729,
+    "y": 493
+   }
+  ],
+  "logs": []
+ },
+ {
+  "mode": "PLUB",
+  "vp": {
+   "w": 1440,
+   "h": 900
+  },
+  "disp": "48 places",
+  "dispN": 48,
+  "canvasArea": 1219680,
+  "hiddenArea": 183973,
+  "visibleMapArea": 1035707,
+  "visibleMapShareOfVp": 0.7992,
+  "mapCanvasShareOfVp": 0.9411,
+  "coverers": [
+   "list-wrap [360x413@0,94] 148573",
+   "chips [360x41@0,53] 14760",
+   "list-heading-cafe [359x27@0,184] 9671",
+   "list-heading-library [359x27@0,382] 9671",
+   "footprint-key [150x44@380,846] 6620",
+   "list-order [152x32@225,539] 4864",
+   "list-find [127x36@12,100] 4583",
+   "maplibregl-ctrl maplibregl-ctrl-gr [46x90@1384,63] 4140"
+  ],
+  "bubbles": 11,
+  "bubbleVisible": 11,
+  "clusterSum": 50,
+  "clusterVisibleSum": 50,
+  "clusterHiddenSum": 0,
+  "srcVisible": 51,
+  "srcHidden": 0,
+  "camera": {
+   "center": {
+    "lng": 100.51518,
+    "lat": 13.7315
+   },
+   "zoom": 16.8,
+   "padding": {
+    "top": 0,
+    "bottom": 0,
+    "left": 360,
+    "right": 0
+   }
+  },
+  "centerScreen": [
+   900,
+   477
+  ],
+  "canvasRect": [
+   0,
+   53,
+   1440,
+   847
+  ],
+  "appBounds": {
+   "w": 100.51185246699055,
+   "e": 100.51850753300914,
+   "s": 13.728964924702723,
+   "n": 13.734035047887389
+  },
+  "bubbleRows": [
+   {
+    "n": 2,
+    "x": 665,
+    "y": 388
+   },
+   {
+    "n": 8,
+    "x": 587,
+    "y": 246
+   },
+   {
+    "n": 3,
+    "x": 412,
+    "y": 127
+   },
+   {
+    "n": 8,
+    "x": 845,
+    "y": 386
+   },
+   {
+    "n": 3,
+    "x": 784,
+    "y": 243
+   },
+   {
+    "n": 3,
+    "x": 1091,
+    "y": 128
+   },
+   {
+    "n": 6,
+    "x": 743,
+    "y": 112
+   },
+   {
+    "n": 4,
+    "x": 112,
+    "y": 867
+   },
+   {
+    "n": 5,
+    "x": 590,
+    "y": 734
+   },
+   {
+    "n": 6,
+    "x": 982,
+    "y": 812
+   },
+   {
+    "n": 2,
+    "x": 937,
+    "y": 559
+   }
+  ],
+  "logs": []
+ },
+ {
+  "mode": "CLUB",
+  "vp": {
+   "w": 390,
+   "h": 844
+  },
+  "disp": "329 matching",
+  "dispN": 329,
+  "canvasArea": 292110,
+  "hiddenArea": 11904,
+  "visibleMapArea": 280206,
+  "visibleMapShareOfVp": 0.8513,
+  "mapCanvasShareOfVp": 0.8874,
+  "coverers": [
+   "maplibregl-ctrl maplibregl-ctrl-gr [46x90@334,113] 4140",
+   "footprint-key [62x44@10,790] 2748",
+   "maplibregl-ctrl maplibregl-ctrl-gr [46x46@334,213] 2116",
+   "maplibregl-ctrl maplibregl-ctrl-gr [46x46@334,269] 2116",
+   "manga-toggle [44x44@335,270] 1936",
+   "maplibregl-ctrl maplibregl-ctrl-at [28x28@352,806] 784",
+   "maplibregl-ctrl-attrib-button [24x24@354,808] 576"
+  ],
+  "bubbles": 10,
+  "bubbleVisible": 10,
+  "clusterSum": 74,
+  "clusterVisibleSum": 74,
+  "clusterHiddenSum": 0,
+  "srcVisible": 70,
+  "srcHidden": 0,
+  "camera": {
+   "center": {
+    "lng": 100.55786,
+    "lat": 13.73784
+   },
+   "zoom": 12,
+   "padding": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+   }
+  },
+  "centerScreen": [
+   195,
+   478
+  ],
+  "canvasRect": [
+   0,
+   103,
+   390,
+   749
+  ],
+  "appBounds": {
+   "w": 100.52438603149324,
+   "e": 100.59133396850501,
+   "s": 13.675383602217678,
+   "n": 13.800279758013048
+  },
+  "bubbleRows": [
+   {
+    "n": 4,
+    "x": 118,
+    "y": 216
+   },
+   {
+    "n": 2,
+    "x": 223,
+    "y": 226
+   },
+   {
+    "n": 4,
+    "x": 94,
+    "y": 586
+   },
+   {
+    "n": 18,
+    "x": 18,
+    "y": 546
+   },
+   {
+    "n": 5,
+    "x": 103,
+    "y": 389
+   },
+   {
+    "n": 4,
+    "x": 367,
+    "y": 623
+   },
+   {
+    "n": 2,
+    "x": 237,
+    "y": 561
+   },
+   {
+    "n": 14,
+    "x": 322,
+    "y": 538
+   },
+   {
+    "n": 2,
+    "x": 365,
+    "y": 469
+   },
+   {
+    "n": 19,
+    "x": 187,
+    "y": 465
+   }
+  ],
+  "logs": [
+   {
+    "type": "requestfailed",
+    "text": "https://tiles.openfreemap.org/planet/20261115_080022_pt/14/12766/7560.pbf :: net::ERR_ABORTED"
+   },
+   {
+    "type": "requestfailed",
+    "text": "https://tiles.openfreemap.org/planet/20261115_080022_pt/14/12766/7561.pbf :: net::ERR_ABORTED"
+   }
+  ]
+ },
+ {
+  "mode": "CLUB",
+  "vp": {
+   "w": 1024,
+   "h": 768
+  },
+  "disp": "103 places",
+  "dispN": 103,
+  "canvasArea": 732160,
+  "hiddenArea": 225745,
+  "visibleMapArea": 506415,
+  "visibleMapShareOfVp": 0.6439,
+  "mapCanvasShareOfVp": 0.931,
+  "coverers": [
+   "list-wrap [360x562@0,53] 202433",
+   "club-hotspots [359x49@0,53] 17591",
+   "list-heading-cannabis [359x27@0,188] 9671",
+   "hotspot-pill [249x32@12,381] 7961",
+   "hotspot-pill [236x32@12,309] 7562",
+   "hotspot-pill [216x32@12,237] 6913",
+   "hotspot-pill [212x32@12,165] 6777",
+   "hotspot-pill [192x32@12,561] 6143"
+  ],
+  "bubbles": 17,
+  "bubbleVisible": 16,
+  "clusterSum": 113,
+  "clusterVisibleSum": 98,
+  "clusterHiddenSum": 15,
+  "srcVisible": 102,
+  "srcHidden": 16,
+  "camera": {
+   "center": {
+    "lng": 100.55786,
+    "lat": 13.73784
+   },
+   "zoom": 12,
+   "padding": {
+    "top": 0,
+    "bottom": 0,
+    "left": 360,
+    "right": 0
+   }
+  },
+  "centerScreen": [
+   692,
+   411
+  ],
+  "canvasRect": [
+   0,
+   53,
+   1024,
+   715
+  ],
+  "appBounds": {
+   "w": 100.50086842284935,
+   "e": 100.61485157714532,
+   "s": 13.678219098644064,
+   "n": 13.797445737987417
+  },
+  "bubbleRows": [
+   {
+    "n": 4,
+    "x": 615,
+    "y": 149
+   },
+   {
+    "n": 2,
+    "x": 720,
+    "y": 159
+   },
+   {
+    "n": 4,
+    "x": 591,
+    "y": 519
+   },
+   {
+    "n": 4,
+    "x": 412,
+    "y": 506
+   },
+   {
+    "n": 18,
+    "x": 515,
+    "y": 479
+   },
+   {
+    "n": 7,
+    "x": 458,
+    "y": 395
+   },
+   {
+    "n": 5,
+    "x": 600,
+    "y": 322
+   },
+   {
+    "n": 3,
+    "x": 998,
+    "y": 760
+   },
+   {
+    "n": 2,
+    "x": 971,
+    "y": 657
+   },
+   {
+    "n": 4,
+    "x": 956,
+    "y": 579
+   },
+   {
+    "n": 4,
+    "x": 864,
+    "y": 556
+   },
+   {
+    "n": 2,
+    "x": 734,
+    "y": 494
+   },
+   {
+    "n": 14,
+    "x": 819,
+    "y": 471
+   },
+   {
+    "n": 4,
+    "x": 928,
+    "y": 447
+   }
+  ],
+  "logs": []
+ },
+ {
+  "mode": "CLUB",
+  "vp": {
+   "w": 1440,
+   "h": 900
+  },
+  "disp": "127 places",
+  "dispN": 127,
+  "canvasArea": 1219680,
+  "hiddenArea": 225745,
+  "visibleMapArea": 993935,
+  "visibleMapShareOfVp": 0.7669,
+  "mapCanvasShareOfVp": 0.9411,
+  "coverers": [
+   "list-wrap [360x562@0,53] 202433",
+   "club-hotspots [359x49@0,53] 17591",
+   "list-heading-cannabis [359x27@0,188] 9671",
+   "hotspot-pill [249x32@12,381] 7961",
+   "hotspot-pill [236x32@12,309] 7562",
+   "hotspot-pill [216x32@12,237] 6913",
+   "hotspot-pill [212x32@12,165] 6777",
+   "hotspot-pill [192x32@12,561] 6143"
+  ],
+  "bubbles": 18,
+  "bubbleVisible": 18,
+  "clusterSum": 115,
+  "clusterVisibleSum": 115,
+  "clusterHiddenSum": 0,
+  "srcVisible": 127,
+  "srcHidden": 0,
+  "camera": {
+   "center": {
+    "lng": 100.55786,
+    "lat": 13.73784
+   },
+   "zoom": 12,
+   "padding": {
+    "top": 0,
+    "bottom": 0,
+    "left": 360,
+    "right": 0
+   }
+  },
+  "centerScreen": [
+   900,
+   477
+  ],
+  "canvasRect": [
+   0,
+   53,
+   1440,
+   847
+  ],
+  "appBounds": {
+   "w": 100.46516285644606,
+   "e": 100.65055714355447,
+   "s": 13.667210509738581,
+   "n": 13.808448211298327
+  },
+  "bubbleRows": [
+   {
+    "n": 15,
+    "x": 552,
+    "y": 343
+   },
+   {
+    "n": 4,
+    "x": 823,
+    "y": 215
+   },
+   {
+    "n": 2,
+    "x": 928,
+    "y": 225
+   },
+   {
+    "n": 4,
+    "x": 799,
+    "y": 585
+   },
+   {
+    "n": 4,
+    "x": 620,
+    "y": 572
+   },
+   {
+    "n": 18,
+    "x": 723,
+    "y": 545
+   },
+   {
+    "n": 7,
+    "x": 666,
+    "y": 461
+   },
+   {
+    "n": 5,
+    "x": 808,
+    "y": 388
+   },
+   {
+    "n": 3,
+    "x": 1206,
+    "y": 826
+   },
+   {
+    "n": 2,
+    "x": 1179,
+    "y": 723
+   },
+   {
+    "n": 4,
+    "x": 1164,
+    "y": 645
+   },
+   {
+    "n": 4,
+    "x": 1072,
+    "y": 622
+   },
+   {
+    "n": 2,
+    "x": 942,
+    "y": 560
+   },
+   {
+    "n": 14,
+    "x": 1027,
+    "y": 537
+   }
+  ],
+  "logs": []
+ }
+]
