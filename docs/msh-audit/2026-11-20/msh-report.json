@@ -42,10 +42,14 @@
           "area": 15990
         }
       ],
-      "voidPx": 13715,
-      "voidTop": 809,
-      "voidW": 390,
-      "voidH": 35,
+      "voidPx": 10286,
+      "voidTop": 0,
+      "voidW": 146,
+      "voidH": 70,
+      "band": {
+        "h": 106,
+        "w": 33
+      },
       "obstruction": {
         "area": 601,
         "cls": "",
@@ -61,12 +65,12 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 210,
+        "total": 211,
         "omTotal": 177,
         "omLine": 115,
         "omFill": 58,
         "omSymbol": 4,
-        "places": 11
+        "places": 12
       },
       "camera": {
         "zoom": 16.8,
@@ -136,8 +140,8 @@
         "columnPx": 89,
         "share": 0.158
       },
-      "mapShare": 0.61,
-      "mapShareNet": 0.603,
+      "mapShare": 0.764,
+      "mapShareNet": 0.757,
       "mapOverlayShare": 0.0072,
       "mapOverlays": [
         {
@@ -148,11 +152,11 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 1.94,
+      "hierarchyRatio": 2.99,
       "top3": [
         {
           "id": "map",
-          "area": 562408
+          "area": 867328
         },
         {
           "id": "side",
@@ -163,16 +167,20 @@
           "area": 54272
         }
       ],
-      "voidPx": 38400,
-      "voidTop": 863,
-      "voidW": 1024,
+      "voidPx": 22400,
+      "voidTop": 0,
+      "voidW": 597,
       "voidH": 38,
-      "obstruction": {
-        "area": 551,
-        "cls": "",
-        "tag": "select"
+      "band": {
+        "h": 38,
+        "w": 597
       },
-      "obstructionShare": 0.001,
+      "obstruction": {
+        "area": 2173,
+        "cls": "",
+        "tag": "span"
+      },
+      "obstructionShare": 0.003,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -182,12 +190,12 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 318,
-        "omTotal": 261,
-        "omLine": 155,
-        "omFill": 95,
-        "omSymbol": 11,
-        "places": 15
+        "total": 347,
+        "omTotal": 288,
+        "omLine": 172,
+        "omFill": 101,
+        "omSymbol": 15,
+        "places": 16
       },
       "camera": {
         "zoom": 16.8,
@@ -257,8 +265,8 @@
         "columnPx": 89,
         "share": 0.158
       },
-      "mapShare": 0.706,
-      "mapShareNet": 0.701,
+      "mapShare": 0.815,
+      "mapShareNet": 0.81,
       "mapOverlayShare": 0.0051,
       "mapOverlays": [
         {
@@ -269,11 +277,11 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 3.15,
+      "hierarchyRatio": 4.2,
       "top3": [
         {
           "id": "map",
-          "area": 914760
+          "area": 1219680
         },
         {
           "id": "side",
@@ -284,16 +292,20 @@
           "area": 76320
         }
       ],
-      "voidPx": 54000,
-      "voidTop": 863,
-      "voidW": 1440,
+      "voidPx": 36000,
+      "voidTop": 0,
+      "voidW": 960,
       "voidH": 38,
-      "obstruction": {
-        "area": 551,
-        "cls": "",
-        "tag": "select"
+      "band": {
+        "h": 38,
+        "w": 960
       },
-      "obstructionShare": 0.001,
+      "obstruction": {
+        "area": 2173,
+        "cls": "",
+        "tag": "span"
+      },
+      "obstructionShare": 0.002,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -303,12 +315,12 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 362,
-        "omTotal": 330,
-        "omLine": 207,
-        "omFill": 105,
-        "omSymbol": 18,
-        "places": 20
+        "total": 416,
+        "omTotal": 347,
+        "omLine": 215,
+        "omFill": 112,
+        "omSymbol": 20,
+        "places": 23
       },
       "camera": {
         "zoom": 16.8,
@@ -373,13 +385,13 @@
       "vw": 390,
       "vh": 844,
       "chrome": {
-        "topPx": 95,
+        "topPx": 103,
         "bottomPx": 0,
         "columnPx": 0,
-        "share": 0.113
+        "share": 0.122
       },
-      "mapShare": 0.887,
-      "mapShareNet": 0.879,
+      "mapShare": 0.878,
+      "mapShareNet": 0.87,
       "mapOverlayShare": 0.0083,
       "mapOverlays": [
         {
@@ -390,27 +402,31 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 7.88,
+      "hierarchyRatio": 7.19,
       "top3": [
         {
           "id": "map",
-          "area": 292110
+          "area": 288990
         },
         {
           "id": "bar",
-          "area": 37050
+          "area": 40170
         }
       ],
-      "voidPx": 13715,
-      "voidTop": 809,
-      "voidW": 390,
+      "voidPx": 9143,
+      "voidTop": 0,
+      "voidW": 260,
       "voidH": 35,
+      "band": {
+        "h": 70,
+        "w": 98
+      },
       "obstruction": {
-        "area": 1927,
+        "area": 1668,
         "cls": "",
         "tag": "span"
       },
-      "obstructionShare": 0.007,
+      "obstructionShare": 0.006,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -453,8 +469,8 @@
         "columnPx": 85,
         "share": 0.153
       },
-      "mapShare": 0.61,
-      "mapShareNet": 0.607,
+      "mapShare": 0.721,
+      "mapShareNet": 0.718,
       "mapOverlayShare": 0.003,
       "mapOverlays": [
         {
@@ -465,11 +481,11 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 1.84,
+      "hierarchyRatio": 2.84,
       "top3": [
         {
           "id": "map",
-          "area": 562408
+          "area": 867328
         },
         {
           "id": "side",
@@ -480,16 +496,20 @@
           "area": 54272
         }
       ],
-      "voidPx": 38400,
+      "voidPx": 22400,
       "voidTop": 0,
-      "voidW": 43,
-      "voidH": 900,
-      "obstruction": {
-        "area": 0,
-        "cls": "",
-        "tag": ""
+      "voidW": 597,
+      "voidH": 38,
+      "band": {
+        "h": 38,
+        "w": 597
       },
-      "obstructionShare": 0,
+      "obstruction": {
+        "area": 2173,
+        "cls": "",
+        "tag": "span"
+      },
+      "obstructionShare": 0.003,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -499,12 +519,12 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 10974,
-        "omTotal": 10932,
-        "omLine": 10596,
-        "omFill": 307,
-        "omSymbol": 29,
-        "places": 29
+        "total": 15928,
+        "omTotal": 15881,
+        "omLine": 15483,
+        "omFill": 360,
+        "omSymbol": 38,
+        "places": 33
       },
       "camera": {
         "zoom": 12,
@@ -532,8 +552,8 @@
         "columnPx": 85,
         "share": 0.153
       },
-      "mapShare": 0.706,
-      "mapShareNet": 0.704,
+      "mapShare": 0.785,
+      "mapShareNet": 0.783,
       "mapOverlayShare": 0.0021,
       "mapOverlays": [
         {
@@ -544,11 +564,11 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 3,
+      "hierarchyRatio": 4,
       "top3": [
         {
           "id": "map",
-          "area": 914760
+          "area": 1219680
         },
         {
           "id": "side",
@@ -559,16 +579,20 @@
           "area": 76320
         }
       ],
-      "voidPx": 54000,
+      "voidPx": 36000,
       "voidTop": 0,
-      "voidW": 60,
-      "voidH": 900,
-      "obstruction": {
-        "area": 0,
-        "cls": "",
-        "tag": ""
+      "voidW": 960,
+      "voidH": 38,
+      "band": {
+        "h": 38,
+        "w": 960
       },
-      "obstructionShare": 0,
+      "obstruction": {
+        "area": 2173,
+        "cls": "",
+        "tag": "span"
+      },
+      "obstructionShare": 0.002,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -578,12 +602,12 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 2499,
-        "omTotal": 2473,
-        "omLine": 1831,
-        "omFill": 622,
-        "omSymbol": 20,
-        "places": 12
+        "total": 19980,
+        "omTotal": 19922,
+        "omLine": 19437,
+        "omFill": 443,
+        "omSymbol": 42,
+        "places": 42
       },
       "camera": {
         "zoom": 12,
@@ -628,7 +652,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 603
+      "observedHandoffMs": 919
     },
     "notebook": 1,
     "walkthrough": {
@@ -646,41 +670,31 @@
     "writes": []
   },
   "club": {
-    "errors": [
-      "console: Failed to load resource: net::ERR_CONNECTION_REFUSED",
-      "console: TypeError: Failed to fetch\n    at http://127.0.0.1:43839/vendor/maplibre-gl-4.7.1/maplibre-gl.js?v=be9633c4:42:7068\n    at Generator.next (<anonymous>)\n    at http://127.0.0.1:43839/vendor/maplibre-gl-4.7.1/maplibre-gl.js?v=be9633c4:42:343\n    at new Promise (<anonymous>)\n    at e (http://127.0.0.1:43839/vendor/maplibre-gl-4.7.1/maplibre-gl.js?v=be9633c4:42:82)\n    at http://127.0.0.1:43839/vendor/maplibre-gl-4.7.1/maplibre-gl.js?v=be9633c4:42:6784\n    at O (http://127.0.0.1:43839/vendor/maplibre-gl-4.7.1/maplibre-gl.js?v=be9633c4:42:7394)\n    at t.h (http://127.0.0.1:43839/vendor/maplibre-gl-4.7.1/maplibre-gl.js?v=be9633c4:42:333505)\n    at de.loadURL (http://127.0.0.1:43839/vendor/maplibre-gl-4.7.1/maplibre-gl.js?v=be9633c4:46:114493)\n    at t.Map._updateStyle (http://127.0.0.1:43839/vendor/maplibre-gl-4.7.1/maplibre-gl.js?v=be9633c4:46:405369)"
-    ],
-    "clubMode": false,
+    "errors": [],
+    "clubMode": true,
     "explore": {
       "present": true,
       "open": true,
-      "height": 264,
+      "height": 248,
       "destinations": 21
     },
     "moodsHidden": true,
     "camera": {
-      "zoom": 16.8,
-      "mpp": 1.3
+      "zoom": 12,
+      "mpp": 37.1
     },
     "thailandAction": {
-      "present": false
+      "present": true,
+      "label": "☷All Thailand · 329",
+      "before": 12,
+      "after": 6.81,
+      "zoomedOut": true
     },
-    "search": 2,
-    "verdict": "REVISE"
+    "search": 9,
+    "verdict": "PASS"
   },
-  "verdict": "REVISE",
-  "fails": [
-    {
-      "id": "B14 preservation",
-      "detail": "the club mode did not open",
-      "width": "club"
-    },
-    {
-      "id": "B14 preservation",
-      "detail": "CL;UB has no explicit All Thailand action",
-      "width": "club"
-    }
-  ],
+  "verdict": "PASS",
+  "fails": [],
   "filterStrip": [
     {
       "mode": "plub",

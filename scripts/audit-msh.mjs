@@ -71,7 +71,13 @@ const MEASURE = () => {
     const r = el.getBoundingClientRect();
     if (r.width < 1 || r.height < 1) return false;
     const s = getComputedStyle(el);
-    return s.visibility !== 'hidden' && s.display !== 'none' && +s.opacity !== 0;
+    if (s.visibility === 'hidden' || s.display === 'none' || +s.opacity === 0) return false;
+    // A closed <details> does not lay its content out, but Chrome still reports
+    // a box for it — and that stray box was painting a band of the rail, hiding
+    // the flat white the reader actually sees. checkVisibility() with no
+    // arguments is the honest test.
+    if (el.checkVisibility && !el.checkVisibility()) return false;
+    return true;
   };
   const all = [...document.querySelectorAll('body *')].filter(shown);
   const text = el => (el.innerText || '').trim();
@@ -110,7 +116,11 @@ const MEASURE = () => {
   const mapEl = document.querySelector('#map') || document.querySelector('.maplibregl-map');
   const mapRect = mapEl ? mapEl.getBoundingClientRect() : null;
   let visibleMap = mapRect ? mapRect.width * mapRect.height : 0;
-  for (const sel of ['#side', '#sheet', 'header.bar', 'nav.chips']) {
+  // The rail is a paper panel over the map's left edge, so what the reader
+  // cannot see of the map is the PANEL, not the transparent column that holds
+  // it. Subtracting the column took the map's share down by the height of an
+  // empty container; subtracting the panel takes away exactly what is covered.
+  for (const sel of ['.list-wrap', '#sheet', 'header.bar', 'nav.chips']) {
     const el = document.querySelector(sel);
     if (!el || !shown(el)) continue;
     const r = el.getBoundingClientRect();
@@ -145,7 +155,12 @@ const MEASURE = () => {
   // Measured on a grid, because a void is a region, not a band.
   const COLS = 24, ROWS = 24, cw = vw / COLS, ch = vh / ROWS;
   const free = new Uint8Array(COLS * ROWS).fill(1);
-  const overlaps = (r, cell) => cell.x * cw + cw > r.left && (cell.x + 1) * cw < r.right && cell.y * ch + ch > r.top && (cell.y + 1) * ch < r.bottom;
+  // A cell overlaps a box when the two rectangles meet. The old test required
+  // the cell to sit strictly inside the box, so the last cell column of the
+  // map was never marked — leaving a free strip down the edge of the screen
+  // that masked the dead band the band measure was looking for.
+  const overlaps = (r, cell) => cell.x * cw < r.right && (cell.x + 1) * cw > r.left
+    && cell.y * ch < r.bottom && (cell.y + 1) * ch > r.top;
   const cellsOf = (r, keepFree) => {
     for (let y = 0; y < ROWS; y++) for (let x = 0; x < COLS; x++) {
       const cell = { x, y };
@@ -155,7 +170,27 @@ const MEASURE = () => {
   };
   // The map's own surface is a named job: it is not a void.
   if (mapRect) cellsOf(mapRect, true);
-  for (const el of all) { if (text(el)) cellsOf(el.getBoundingClientRect(), true); }
+  // A void is flat emptiness. The page's ground — the paper behind everything —
+  // is flat, and a region holding nothing but the ground is a void. An element
+  // paints its box only when it paints something: its own background that
+  // differs from the ground, a visible rule, or its own text. A container that
+  // merely holds a descendant's text paints nothing around it, and marking such
+  // a box as occupied is exactly how a rail carrying one short list looked like
+  // a full screen of content: the list's own box was counted as occupied, and
+  // the 360 x 392 px of flat white below it never appeared.
+  const ground = getComputedStyle(document.body).backgroundColor;
+  const ownText = el => [...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim().length);
+  const paints = el => {
+    const s = getComputedStyle(el);
+    if (s.backgroundImage && s.backgroundImage !== 'none') return true;
+    const bg = s.backgroundColor;
+    if (bg && bg !== 'rgba(0, 0, 0, 0)' && bg !== ground) return true;
+    // A hairline rule paints its edge, not the box around it. Counting a 1px
+    // border as if it filled its element marked the whole rail — 360 x 806 px —
+    // as content, and the flat white below the last place vanished again.
+    return ownText(el);
+  };
+  for (const el of all) { if (paints(el)) cellsOf(el.getBoundingClientRect(), true); }
   // A void is a region, not a band. The old probe took the longest free run in a
   // single row and multiplied it by one row's height, so a tall narrow dead band
   // in the rail — exactly the shape this defect takes — scored as one row's worth
@@ -178,12 +213,42 @@ const MEASURE = () => {
     }
     voidPx = best.area * cw * ch; voidW = best.w * cw; voidTop = best.y * ch; voidH = best.h * ch;
   }
+  // The tallest dead band. The largest free rectangle is the biggest by area,
+  // but a slab 43% of the screen's height is only 11% of its area — so the
+  // area threshold alone let it through. A band that runs down a third of the
+  // screen and is wide enough to be a column is a dead band whatever its area.
+  let band = { h: 0, w: 0 };
+  {
+    // The longest CONTIGUOUS free run down each column. Counting free cells
+    // instead of runs added up the gaps between list rows and reported a band
+    // wider than the space that was actually empty.
+    const run = new Int32Array(COLS);
+    for (let x = 0; x < COLS; x++) {
+      let cur = 0;
+      for (let y = 0; y < ROWS; y++) {
+        if (free[y * COLS + x]) { cur++; if (cur > run[x]) run[x] = cur; }
+        else cur = 0;
+      }
+    }
+    for (let x = 0; x < COLS; x++) {
+      if (run[x] < band.h) continue;
+      let x0 = x; while (x0 > 0 && run[x0 - 1] >= run[x]) x0--;
+      let x1 = x; while (x1 < COLS - 1 && run[x1 + 1] >= run[x]) x1++;
+      const cand = { h: run[x], w: (x1 - x0 + 1) * cw };
+      if (cand.h > band.h || (cand.h === band.h && cand.w > band.w)) band = cand;
+    }
+  }
 
   // 3a-ii. nothing covers the map on load: the largest overlay standing on the map's surface
   let obstruction = { area: 0, cls: '', tag: '' };
   if (mapRect) {
     for (const el of all) {
       if (el === mapEl || el.contains(mapEl) || el.closest('#map') || el.closest('.maplibregl-control-container')) continue;
+      // The rail's own panel and the category strip are the product's furniture
+      // and they are already taken off the map's share. Counting them again as
+      // obstructions would flag the rail itself; the rule is about what
+      // *unexpectedly* stands on the map.
+      if (el.closest('#side') || el.closest('nav.chips')) continue;
       const r = el.getBoundingClientRect();
       const ox = Math.max(0, Math.min(mapRect.right, r.right) - Math.max(mapRect.left, r.left));
       const oy = Math.max(0, Math.min(mapRect.bottom, r.bottom) - Math.max(mapRect.top, r.top));
@@ -304,6 +369,7 @@ const MEASURE = () => {
     mapOverlays: mapOverlays.slice(0, 6),
     mapIsFirst, hierarchyRatio: +ratio.toFixed(2), top3,
     voidPx: Math.round(voidPx), voidTop: Math.round(voidTop), voidW: Math.round(voidW), voidH: Math.round(voidH),
+    band: { h: Math.round(band.h * ch), w: Math.round(band.w) },
     obstruction, obstructionShare: +obstructionShare.toFixed(3),
     inflated: inflated.slice(0, 6), orphans: orphans.slice(0, 6), bleed,
     clip: { navOutside, stripHidden: Math.round(stripHidden), stripRendered },
@@ -753,6 +819,12 @@ function verdictFor(view, journey) {
   if (view.mapOverlayShare > 0.06) F('B9 map overlay chrome', `PLUB's own overlays stand on ${(view.mapOverlayShare * 100).toFixed(1)}% of the first screen: ${(view.mapOverlays || []).map(o => `${o.cls} ${o.w}x${o.h}`).join('; ')}`);
   const voidShare = (view.vw * view.vh) ? view.voidPx / (view.vw * view.vh) : 0;
   if (voidShare > 0.18) F('B4 void', `${(voidShare * 100).toFixed(0)}% of the first screen carries nothing`);
+  // A dead band: flat emptiness running down more than a third of the screen,
+  // wide enough to be a column. The area rule alone let a 360 x 392 px slab
+  // through — 43% of the screen's height, but only 11% of its area.
+  if (view.band && view.band.h > view.vh * 0.30 && view.band.w >= Math.max(200, view.vw * 0.25)) {
+    F('B4 void', `a flat empty band ${view.band.w}x${view.band.h} runs down ${(100 * view.band.h / view.vh).toFixed(0)}% of the screen with nothing in it`);
+  }
   if (view.obstructionShare > 0.12) F('B9 map obstruction', `${view.obstruction.cls || view.obstruction.tag} covers ${(view.obstructionShare * 100).toFixed(0)}% of the map`);
   if (view.inflated.length) F('B3 box fit', view.inflated.map(i => `${i.cls || i.tag} ${i.h}px holds ${i.textH}px of text`).join('; '));
   if (view.orphans.length) F('B4 orphan column', view.orphans.map(o => `${o.cls || o.tag} ${o.w}px wide on ${view.vw}px`).join('; '));
@@ -951,7 +1023,7 @@ if (PLANTED) {
 const lines = [];
 lines.push(`MSH audit ${stamp} · ${report.base} · planted=${PLANTED}`);
 for (const v of report.viewports) {
-  lines.push(`  ${(v.mode || 'plub').padEnd(5)} ${String(v.width).padStart(4)}px  chrome ${v.chrome.topPx}+${v.chrome.bottomPx}+${v.chrome.columnPx || 0}px (${(v.chrome.share * 100).toFixed(0)}%)  map ${(v.mapShare * 100).toFixed(0)}% (net ${(v.mapShareNet * 100).toFixed(0)}%)  void ${(100 * v.voidPx / (v.vw * v.vh)).toFixed(1)}% ${v.voidW}x${v.voidH}  lines ${v.mapContent?.omLine ?? '?'}  z${v.camera?.zoom ?? '?'}  ${v.verdict}`);
+  lines.push(`  ${(v.mode || 'plub').padEnd(5)} ${String(v.width).padStart(4)}px  chrome ${v.chrome.topPx}+${v.chrome.bottomPx}+${v.chrome.columnPx || 0}px (${(v.chrome.share * 100).toFixed(0)}%)  map ${(v.mapShare * 100).toFixed(0)}% (net ${(v.mapShareNet * 100).toFixed(0)}%)  void ${(100 * v.voidPx / (v.vw * v.vh)).toFixed(1)}% ${v.voidW}x${v.voidH}  band ${v.band?.w}x${v.band?.h}  lines ${v.mapContent?.omLine ?? '?'}  z${v.camera?.zoom ?? '?'}  ${v.verdict}`);
 }
 lines.push(`  journey: search ${report.journey.search} hits · chip ${report.journey.chipChanged ? 'works' : 'NO CHANGE'} · hop ${report.journey.hopStops} stops · shared feed "${String(report.journey.hopFeed).slice(0, 40)}" · lens ${report.journey.lensOn?.ground}/${report.journey.lensOff?.ground} · writes ${report.journey.writes.length}`);
 if (report.club) lines.push(`  club:   mode ${report.club.clubMode} · explore ${report.club.explore?.height}px/${report.club.explore?.destinations} destinations · moods hidden ${report.club.moodsHidden} · camera z${report.club.camera?.zoom} (${report.club.camera?.mpp} m/px) · all-thailand ${report.club.thailandAction?.zoomedOut ? 'works' : 'NO'} · search ${report.club.search} · errors ${(report.club.errors || []).length}`);

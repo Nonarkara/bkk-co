@@ -70,6 +70,22 @@
 .list-group[data-list-group="restaurant"] h3 { border-left:4px solid var(--cat-food); }
 .list-group[data-list-group="cannabis"] h3 { border-left:4px solid var(--cat-cannabis); }
 .list li[data-id] { padding:0; min-height:0; }
+/* A loading rail is not a blank rail. The house law asks for a skeleton or the
+   last good data with its timestamp; these are the rows that are coming, drawn
+   as the house's own hairline blocks. No invented names — grey rules only.
+   The selector has to out-specify `.list li`, which is a flex row, or the four
+   bars are squeezed into one line instead of stacked as four rows. */
+.list li.list-skeleton { display: block; padding: 10px var(--pad); }
+.list li.list-skeleton span { display: block; height: 11px; margin-bottom: 9px; background: var(--rule); }
+.list li.list-skeleton span:last-child { margin-bottom: 0; }
+.list li.list-skeleton span:nth-child(1) { width: 38%; }
+.list li.list-skeleton span:nth-child(2) { width: 74%; }
+.list li.list-skeleton span:nth-child(3) { width: 88%; }
+.list li.list-skeleton span:nth-child(4) { width: 56%; }
+/* A retry is an isolated control, pressed with a thumb: 44px, and the house's
+   own ink edge. */
+.retry { min-height: 44px; padding: 0 12px; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); font-size: var(--small); }
+.retry:hover { background: var(--ink); color: var(--paper); }
 .list-place { display:grid; grid-template-columns:20px minmax(0,1fr) auto; gap:8px; align-items:center; width:100%; min-height:32px; padding:5px var(--pad); text-align:left; }
 .list-place .place-symbol,.list-place .place-badge { width:20px; height:20px; }
 .list-place .idx { font-size:var(--small); color:var(--muted); font-weight:400; white-space:normal; max-width:6.5em; }

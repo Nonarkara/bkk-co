@@ -21,13 +21,19 @@
 <link rel="preload" href="fonts/jost-latin.woff2?v=235d8f89" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/prompt-thai-400.woff2?v=80fa1143" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/prompt-latin-400.woff2?v=6d0bc99f" as="font" type="font/woff2" crossorigin>
+<!-- The manga lens's own style. It replaces the basemap's layers with line and
+     tone, and until it arrives the basemap's expressions are evaluated against
+     tiles that do not carry every property they read — which is where the
+     console's "expected a number, found null" came from. Preloading it closes
+     that window, so the lens is in place before the first tile is parsed. -->
+<link rel="preload" href="styles/plub-manga.json?v=f030b5e6" as="fetch" crossorigin>
 <link href="vendor/maplibre-gl-4.7.1/maplibre-gl.css?v=576b085f" rel="stylesheet">
-<link href="style.css?v=c0e9a094" rel="stylesheet">
+<link href="style.css?v=d4c0f331" rel="stylesheet">
 <link href="notebook.css?v=fc097343" rel="stylesheet">
 <link href="discovery.css?v=7ad5c0e9" rel="stylesheet">
 <link href="atlas.css?v=83bf2ccd" rel="stylesheet">
 <link href="footprint-palette.css?v=fae59c62" rel="stylesheet">
-<link href="list-tools.css?v=b15557e5" rel="stylesheet">
+<link href="list-tools.css?v=95c4f612" rel="stylesheet">
 <link href="street-world.css?v=56358991" rel="stylesheet">
 <link href="street-world-3d.css?v=f5b46495" rel="stylesheet">
 <link href="talk-media.css?v=9e7056ed" rel="stylesheet">
@@ -141,22 +147,22 @@
 <script src="footprint-palette.js?v=054ac1a6"></script>
 <script src="neighborhood-palette.js?v=41372f57"></script>
 <script src="neighborhood-photos.js?v=078e8a7d"></script>
-<script src="manga-lens.js?v=80d0f71d"></script>
+<script src="manga-lens.js?v=00f5ec18"></script>
 <script src="einstein-hat.js?v=89f92be0"></script>
 <script src="hat-density.js?v=ea1fd618"></script>
 <script src="atlas-model.js?v=daec7d22"></script>
-<script src="atlas.js?v=ae7c5c94"></script>
+<script src="atlas.js?v=4656b995"></script>
 <script src="journey-model.js?v=eefd0641"></script>
 <script src="place-preferences.js?v=f46df898"></script>
 <script src="journeys.js?v=a7a2a1f9"></script>
 <script src="talk-media.js?v=5f3467b8"></script>
 <script src="work-atmosphere.js?v=d082a598"></script>
-<script src="app.js?v=46d9209b"></script>
+<script src="app.js?v=81684801"></script>
 <script src="views.js?v=f92f2a1f"></script>
 <script src="notebook.js?v=6f98eb10"></script>
 <script src="photos.js?v=6ba3ccb8"></script>
 <script src="discovery.js?v=f77eb05f"></script>
 <script src="street-model.js?v=d4ff56fa"></script>
-<script src="street-world.js?v=f5d9b8a6"></script>
+<script src="street-world.js?v=2d4faa8d"></script>
 </body>
 </html>

@@ -1,0 +1,898 @@
+{
+  "stamp": "2026-11-20",
+  "base": "http://127.0.0.1:43839",
+  "planted": true,
+  "viewports": [
+    {
+      "mode": "plub",
+      "width": 390,
+      "height": 844,
+      "vw": 390,
+      "vh": 844,
+      "chrome": {
+        "topPx": 95,
+        "bottomPx": 0,
+        "columnPx": 0,
+        "share": 0.113
+      },
+      "mapShare": 0.839,
+      "mapShareNet": 0.385,
+      "mapOverlayShare": 0.4535,
+      "mapOverlays": [
+        {
+          "cls": "maplibregl-ctrl footprint-key-control",
+          "w": 150,
+          "h": 44,
+          "area": 6620
+        },
+        {
+          "cls": "atlas-tools",
+          "w": 281,
+          "h": 520,
+          "area": 142645
+        }
+      ],
+      "mapIsFirst": true,
+      "hierarchyRatio": 1.65,
+      "top3": [
+        {
+          "id": "map",
+          "area": 276120
+        },
+        {
+          "id": "planted-defect",
+          "area": 167700
+        },
+        {
+          "id": "bar",
+          "area": 37050
+        }
+      ],
+      "voidPx": 13715,
+      "voidTop": 809,
+      "voidW": 390,
+      "voidH": 35,
+      "obstruction": {
+        "area": 161460,
+        "cls": "",
+        "tag": "div"
+      },
+      "obstructionShare": 0.585,
+      "inflated": [],
+      "orphans": [],
+      "bleed": false,
+      "clip": {
+        "navOutside": [],
+        "stripHidden": 0,
+        "stripRendered": false
+      },
+      "mapContent": {
+        "total": 210,
+        "omTotal": 177,
+        "omLine": 115,
+        "omFill": 58,
+        "omSymbol": 4,
+        "places": 11
+      },
+      "camera": {
+        "zoom": 16.8,
+        "mpp": 1.3
+      },
+      "task": {
+        "search": true,
+        "count": true,
+        "firstUseful": "text"
+      },
+      "lang": "en",
+      "title": "PLUB · Placemaking Laboratory Urban Bureau",
+      "pinsLayer": true,
+      "placeSheet": {
+        "lines": 2,
+        "textWidth": 321.765625,
+        "factsHeight": 64.890625,
+        "directionsBottom": 216.1875,
+        "pass": true,
+        "plantedRejected": true
+      },
+      "visitReading": {
+        "photoLeads": true,
+        "titleTop": 261.25,
+        "verdictBottom": 427.078125,
+        "directionsBottom": 529.671875,
+        "wifiBottom": 711.859375,
+        "width": 390,
+        "pass": true,
+        "plantedRejected": true
+      },
+      "dayPlanner": {
+        "live": {
+          "actionBottom": 586.59375,
+          "width": 390,
+          "pass": true
+        },
+        "today": {
+          "actionBottom": 439.40625,
+          "width": 390,
+          "pass": true
+        },
+        "work": {
+          "actionBottom": 520.3125,
+          "width": 390,
+          "pass": true
+        },
+        "plantedRejected": true,
+        "pass": true
+      },
+      "thaiName": {
+        "text": "ห้องสมุดเทศบาลเมืองพระประแดง",
+        "font": "Prompt",
+        "size": "20px",
+        "leading": 1.65,
+        "marked": true,
+        "pass": true
+      },
+      "verdict": "BLOCK"
+    },
+    {
+      "mode": "plub",
+      "width": 1024,
+      "height": 900,
+      "vw": 1024,
+      "vh": 900,
+      "chrome": {
+        "topPx": 53,
+        "bottomPx": 0,
+        "columnPx": 89,
+        "share": 0.158
+      },
+      "mapShare": 0.61,
+      "mapShareNet": 0.333,
+      "mapOverlayShare": 0.2769,
+      "mapOverlays": [
+        {
+          "cls": "maplibregl-ctrl footprint-key-control",
+          "w": 150,
+          "h": 44,
+          "area": 6620
+        },
+        {
+          "cls": "atlas-tools",
+          "w": 478,
+          "h": 520,
+          "area": 248601
+        }
+      ],
+      "mapIsFirst": true,
+      "hierarchyRatio": 1.28,
+      "top3": [
+        {
+          "id": "map",
+          "area": 562408
+        },
+        {
+          "id": "planted-defect",
+          "area": 440320
+        },
+        {
+          "id": "side",
+          "area": 290160
+        }
+      ],
+      "voidPx": 38400,
+      "voidTop": 863,
+      "voidW": 1024,
+      "voidH": 38,
+      "obstruction": {
+        "area": 285520,
+        "cls": "",
+        "tag": "div"
+      },
+      "obstructionShare": 0.508,
+      "inflated": [],
+      "orphans": [],
+      "bleed": false,
+      "clip": {
+        "navOutside": [],
+        "stripHidden": 0,
+        "stripRendered": false
+      },
+      "mapContent": {
+        "total": 318,
+        "omTotal": 261,
+        "omLine": 155,
+        "omFill": 95,
+        "omSymbol": 11,
+        "places": 15
+      },
+      "camera": {
+        "zoom": 16.8,
+        "mpp": 1.3
+      },
+      "task": {
+        "search": true,
+        "count": true,
+        "firstUseful": "text"
+      },
+      "lang": "en",
+      "title": "PLUB · Placemaking Laboratory Urban Bureau",
+      "pinsLayer": true,
+      "placeSheet": {
+        "lines": 2,
+        "textWidth": 266.46875,
+        "factsHeight": 64.890625,
+        "directionsBottom": 214.1875,
+        "pass": true,
+        "plantedRejected": true
+      },
+      "visitReading": {
+        "photoLeads": true,
+        "titleTop": 63,
+        "verdictBottom": 228.828125,
+        "directionsBottom": 331.421875,
+        "wifiBottom": 493.3125,
+        "width": 1024,
+        "pass": true,
+        "plantedRejected": true
+      },
+      "dayPlanner": {
+        "live": {
+          "actionBottom": 554.125,
+          "width": 1024,
+          "pass": true
+        },
+        "today": {
+          "actionBottom": 360.75,
+          "width": 1024,
+          "pass": true
+        },
+        "work": {
+          "actionBottom": 333.65625,
+          "width": 1024,
+          "pass": true
+        },
+        "plantedRejected": true,
+        "pass": true
+      },
+      "thaiName": {
+        "text": "ห้องสมุดเทศบาลเมืองพระประแดง",
+        "font": "Prompt",
+        "size": "20px",
+        "leading": 1.65,
+        "marked": true,
+        "pass": true
+      },
+      "verdict": "BLOCK"
+    },
+    {
+      "mode": "plub",
+      "width": 1440,
+      "height": 900,
+      "vw": 1440,
+      "vh": 900,
+      "chrome": {
+        "topPx": 53,
+        "bottomPx": 0,
+        "columnPx": 89,
+        "share": 0.158
+      },
+      "mapShare": 0.706,
+      "mapShareNet": 0.389,
+      "mapOverlayShare": 0.3171,
+      "mapOverlays": [
+        {
+          "cls": "maplibregl-ctrl footprint-key-control",
+          "w": 150,
+          "h": 44,
+          "area": 6620
+        },
+        {
+          "cls": "atlas-tools",
+          "w": 778,
+          "h": 520,
+          "area": 404349
+        }
+      ],
+      "mapIsFirst": true,
+      "hierarchyRatio": 1.48,
+      "top3": [
+        {
+          "id": "map",
+          "area": 914760
+        },
+        {
+          "id": "planted-defect",
+          "area": 619200
+        },
+        {
+          "id": "side",
+          "area": 290160
+        }
+      ],
+      "voidPx": 54000,
+      "voidTop": 863,
+      "voidW": 1440,
+      "voidH": 38,
+      "obstruction": {
+        "area": 464400,
+        "cls": "",
+        "tag": "div"
+      },
+      "obstructionShare": 0.508,
+      "inflated": [],
+      "orphans": [],
+      "bleed": false,
+      "clip": {
+        "navOutside": [],
+        "stripHidden": 0,
+        "stripRendered": false
+      },
+      "mapContent": {
+        "total": 394,
+        "omTotal": 330,
+        "omLine": 207,
+        "omFill": 105,
+        "omSymbol": 18,
+        "places": 20
+      },
+      "camera": {
+        "zoom": 16.8,
+        "mpp": 1.3
+      },
+      "task": {
+        "search": true,
+        "count": true,
+        "firstUseful": "text"
+      },
+      "lang": "en",
+      "title": "PLUB · Placemaking Laboratory Urban Bureau",
+      "pinsLayer": true,
+      "placeSheet": {
+        "lines": 2,
+        "textWidth": 266.46875,
+        "factsHeight": 64.890625,
+        "directionsBottom": 214.1875,
+        "pass": true,
+        "plantedRejected": true
+      },
+      "visitReading": {
+        "photoLeads": true,
+        "titleTop": 63,
+        "verdictBottom": 228.828125,
+        "directionsBottom": 331.421875,
+        "wifiBottom": 493.3125,
+        "width": 1440,
+        "pass": true,
+        "plantedRejected": true
+      },
+      "dayPlanner": {
+        "live": {
+          "actionBottom": 554.125,
+          "width": 1440,
+          "pass": true
+        },
+        "today": {
+          "actionBottom": 360.75,
+          "width": 1440,
+          "pass": true
+        },
+        "work": {
+          "actionBottom": 333.65625,
+          "width": 1440,
+          "pass": true
+        },
+        "plantedRejected": true,
+        "pass": true
+      },
+      "thaiName": {
+        "text": "ห้องสมุดเทศบาลเมืองพระประแดง",
+        "font": "Prompt",
+        "size": "20px",
+        "leading": 1.65,
+        "marked": true,
+        "pass": true
+      },
+      "verdict": "BLOCK"
+    },
+    {
+      "mode": "club",
+      "width": 390,
+      "height": 844,
+      "vw": 390,
+      "vh": 844,
+      "chrome": {
+        "topPx": 95,
+        "bottomPx": 0,
+        "columnPx": 0,
+        "share": 0.113
+      },
+      "mapShare": 0.887,
+      "mapShareNet": 0.435,
+      "mapOverlayShare": 0.4519,
+      "mapOverlays": [
+        {
+          "cls": "maplibregl-ctrl footprint-key-control",
+          "w": 62,
+          "h": 44,
+          "area": 2748
+        },
+        {
+          "cls": "atlas-tools",
+          "w": 281,
+          "h": 520,
+          "area": 146014
+        }
+      ],
+      "mapIsFirst": true,
+      "hierarchyRatio": 1.74,
+      "top3": [
+        {
+          "id": "map",
+          "area": 292110
+        },
+        {
+          "id": "planted-defect",
+          "area": 167700
+        },
+        {
+          "id": "bar",
+          "area": 37050
+        }
+      ],
+      "voidPx": 13715,
+      "voidTop": 809,
+      "voidW": 390,
+      "voidH": 35,
+      "obstruction": {
+        "area": 167700,
+        "cls": "",
+        "tag": "div"
+      },
+      "obstructionShare": 0.574,
+      "inflated": [],
+      "orphans": [],
+      "bleed": false,
+      "clip": {
+        "navOutside": [],
+        "stripHidden": 0,
+        "stripRendered": false
+      },
+      "mapContent": {
+        "total": 6420,
+        "omTotal": 6396,
+        "omLine": 6210,
+        "omFill": 171,
+        "omSymbol": 15,
+        "places": 14
+      },
+      "camera": {
+        "zoom": 12,
+        "mpp": 37.1
+      },
+      "task": {
+        "search": true,
+        "count": true,
+        "firstUseful": "text"
+      },
+      "lang": "en",
+      "title": "CL;UB · Cannabis Laboratory ; Urban Bureau · Thailand",
+      "pinsLayer": true,
+      "verdict": "BLOCK"
+    },
+    {
+      "mode": "club",
+      "width": 1024,
+      "height": 900,
+      "vw": 1024,
+      "vh": 900,
+      "chrome": {
+        "topPx": 53,
+        "bottomPx": 0,
+        "columnPx": 85,
+        "share": 0.153
+      },
+      "mapShare": 0.61,
+      "mapShareNet": 0.338,
+      "mapOverlayShare": 0.2727,
+      "mapOverlays": [
+        {
+          "cls": "maplibregl-ctrl footprint-key-control",
+          "w": 62,
+          "h": 44,
+          "area": 2748
+        },
+        {
+          "cls": "atlas-tools",
+          "w": 478,
+          "h": 520,
+          "area": 248601
+        }
+      ],
+      "mapIsFirst": true,
+      "hierarchyRatio": 1.28,
+      "top3": [
+        {
+          "id": "map",
+          "area": 562408
+        },
+        {
+          "id": "planted-defect",
+          "area": 440320
+        },
+        {
+          "id": "side",
+          "area": 304920
+        }
+      ],
+      "voidPx": 38400,
+      "voidTop": 0,
+      "voidW": 43,
+      "voidH": 900,
+      "obstruction": {
+        "area": 285520,
+        "cls": "",
+        "tag": "div"
+      },
+      "obstructionShare": 0.508,
+      "inflated": [],
+      "orphans": [],
+      "bleed": false,
+      "clip": {
+        "navOutside": [],
+        "stripHidden": 0,
+        "stripRendered": false
+      },
+      "mapContent": {
+        "total": 10974,
+        "omTotal": 10932,
+        "omLine": 10596,
+        "omFill": 307,
+        "omSymbol": 29,
+        "places": 29
+      },
+      "camera": {
+        "zoom": 12,
+        "mpp": 37.1
+      },
+      "task": {
+        "search": true,
+        "count": true,
+        "firstUseful": "text"
+      },
+      "lang": "en",
+      "title": "CL;UB · Cannabis Laboratory ; Urban Bureau · Thailand",
+      "pinsLayer": true,
+      "verdict": "BLOCK"
+    },
+    {
+      "mode": "club",
+      "width": 1440,
+      "height": 900,
+      "vw": 1440,
+      "vh": 900,
+      "chrome": {
+        "topPx": 53,
+        "bottomPx": 0,
+        "columnPx": 85,
+        "share": 0.153
+      },
+      "mapShare": 0.706,
+      "mapShareNet": 0.392,
+      "mapOverlayShare": 0.3141,
+      "mapOverlays": [
+        {
+          "cls": "maplibregl-ctrl footprint-key-control",
+          "w": 62,
+          "h": 44,
+          "area": 2748
+        },
+        {
+          "cls": "atlas-tools",
+          "w": 778,
+          "h": 520,
+          "area": 404349
+        }
+      ],
+      "mapIsFirst": true,
+      "hierarchyRatio": 1.48,
+      "top3": [
+        {
+          "id": "map",
+          "area": 914760
+        },
+        {
+          "id": "planted-defect",
+          "area": 619200
+        },
+        {
+          "id": "side",
+          "area": 304920
+        }
+      ],
+      "voidPx": 54000,
+      "voidTop": 0,
+      "voidW": 60,
+      "voidH": 900,
+      "obstruction": {
+        "area": 464400,
+        "cls": "",
+        "tag": "div"
+      },
+      "obstructionShare": 0.508,
+      "inflated": [],
+      "orphans": [],
+      "bleed": false,
+      "clip": {
+        "navOutside": [],
+        "stripHidden": 0,
+        "stripRendered": false
+      },
+      "mapContent": {
+        "total": 15931,
+        "omTotal": 15873,
+        "omLine": 15453,
+        "omFill": 383,
+        "omSymbol": 37,
+        "places": 42
+      },
+      "camera": {
+        "zoom": 12,
+        "mpp": 37.1
+      },
+      "task": {
+        "search": true,
+        "count": true,
+        "firstUseful": "text"
+      },
+      "lang": "en",
+      "title": "CL;UB · Cannabis Laboratory ; Urban Bureau · Thailand",
+      "pinsLayer": true,
+      "verdict": "BLOCK"
+    }
+  ],
+  "journey": {
+    "places": {
+      "groups": 2,
+      "rows": 5,
+      "chrome": 89,
+      "pass": true
+    },
+    "ungroupedRejected": true,
+    "search": 9,
+    "hitsDismissed": true,
+    "chipReachable": true,
+    "chipChanged": true,
+    "hopStops": 5,
+    "hopHasShared": 1,
+    "hopFeed": "No shared hop notes yet. Choose real stops from the planner to write the first.",
+    "hopFeedOk": true,
+    "lens": {
+      "installed": true,
+      "layers": 18
+    },
+    "lensOn": {
+      "pressed": "true",
+      "ground": "visible",
+      "base": "none"
+    },
+    "lensOff": {
+      "pressed": "false",
+      "ground": "none",
+      "base": "visible",
+      "observedHandoffMs": 290
+    },
+    "notebook": 1,
+    "walkthrough": {
+      "area": "samyan",
+      "streets": 5099,
+      "volumes": 174,
+      "options": 12,
+      "reachable": true,
+      "flat": true,
+      "relief": true,
+      "closed": true
+    },
+    "pinsLayer": true,
+    "errors": [],
+    "writes": []
+  },
+  "club": {
+    "errors": [],
+    "clubMode": true,
+    "explore": {
+      "present": true,
+      "open": true,
+      "height": 248,
+      "destinations": 21
+    },
+    "moodsHidden": true,
+    "camera": {
+      "zoom": 12,
+      "mpp": 37.1
+    },
+    "thailandAction": {
+      "present": true,
+      "label": "☷All Thailand · 329",
+      "before": 12,
+      "after": 6.4,
+      "zoomedOut": true
+    },
+    "search": 9,
+    "verdict": "PASS"
+  },
+  "verdict": "BLOCK",
+  "fails": [
+    {
+      "id": "B9 map share",
+      "detail": "the map holds 39% of the first screen once PLUB's own overlays are taken off it",
+      "width": "plub-390"
+    },
+    {
+      "id": "B9 map overlay chrome",
+      "detail": "PLUB's own overlays stand on 45.4% of the first screen: maplibregl-ctrl footprint-key-control 150x44; atlas-tools 281x520",
+      "width": "plub-390"
+    },
+    {
+      "id": "B9 map obstruction",
+      "detail": "div covers 59% of the map",
+      "width": "plub-390"
+    },
+    {
+      "id": "B9 map share",
+      "detail": "the map holds 33% of the first screen once PLUB's own overlays are taken off it",
+      "width": "plub-1024"
+    },
+    {
+      "id": "B9 map overlay chrome",
+      "detail": "PLUB's own overlays stand on 27.7% of the first screen: maplibregl-ctrl footprint-key-control 150x44; atlas-tools 478x520",
+      "width": "plub-1024"
+    },
+    {
+      "id": "B9 map obstruction",
+      "detail": "div covers 51% of the map",
+      "width": "plub-1024"
+    },
+    {
+      "id": "B7 hierarchy",
+      "detail": "top two areas differ by only 1.28x",
+      "width": "plub-1024"
+    },
+    {
+      "id": "B9 map share",
+      "detail": "the map holds 39% of the first screen once PLUB's own overlays are taken off it",
+      "width": "plub-1440"
+    },
+    {
+      "id": "B9 map overlay chrome",
+      "detail": "PLUB's own overlays stand on 31.7% of the first screen: maplibregl-ctrl footprint-key-control 150x44; atlas-tools 778x520",
+      "width": "plub-1440"
+    },
+    {
+      "id": "B9 map obstruction",
+      "detail": "div covers 51% of the map",
+      "width": "plub-1440"
+    },
+    {
+      "id": "B7 hierarchy",
+      "detail": "top two areas differ by only 1.48x",
+      "width": "plub-1440"
+    },
+    {
+      "id": "B9 map share",
+      "detail": "the map holds 44% of the first screen once PLUB's own overlays are taken off it",
+      "width": "club-390"
+    },
+    {
+      "id": "B9 map overlay chrome",
+      "detail": "PLUB's own overlays stand on 45.2% of the first screen: maplibregl-ctrl footprint-key-control 62x44; atlas-tools 281x520",
+      "width": "club-390"
+    },
+    {
+      "id": "B9 map obstruction",
+      "detail": "div covers 57% of the map",
+      "width": "club-390"
+    },
+    {
+      "id": "B9 map share",
+      "detail": "the map holds 34% of the first screen once PLUB's own overlays are taken off it",
+      "width": "club-1024"
+    },
+    {
+      "id": "B9 map overlay chrome",
+      "detail": "PLUB's own overlays stand on 27.3% of the first screen: maplibregl-ctrl footprint-key-control 62x44; atlas-tools 478x520",
+      "width": "club-1024"
+    },
+    {
+      "id": "B9 map obstruction",
+      "detail": "div covers 51% of the map",
+      "width": "club-1024"
+    },
+    {
+      "id": "B7 hierarchy",
+      "detail": "top two areas differ by only 1.28x",
+      "width": "club-1024"
+    },
+    {
+      "id": "B9 map share",
+      "detail": "the map holds 39% of the first screen once PLUB's own overlays are taken off it",
+      "width": "club-1440"
+    },
+    {
+      "id": "B9 map overlay chrome",
+      "detail": "PLUB's own overlays stand on 31.4% of the first screen: maplibregl-ctrl footprint-key-control 62x44; atlas-tools 778x520",
+      "width": "club-1440"
+    },
+    {
+      "id": "B9 map obstruction",
+      "detail": "div covers 51% of the map",
+      "width": "club-1440"
+    },
+    {
+      "id": "B7 hierarchy",
+      "detail": "top two areas differ by only 1.48x",
+      "width": "club-1440"
+    }
+  ],
+  "filterStrip": [
+    {
+      "mode": "plub",
+      "width": 390,
+      "present": true,
+      "open": true,
+      "hidden": 0,
+      "chips": 10,
+      "rows": 4,
+      "overflowX": "visible",
+      "outside": [],
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "mode": "plub",
+      "width": 1440,
+      "present": true,
+      "open": true,
+      "hidden": 0,
+      "chips": 10,
+      "rows": 4,
+      "overflowX": "visible",
+      "outside": [],
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "mode": "club",
+      "width": 390,
+      "present": true,
+      "open": true,
+      "hidden": 0,
+      "chips": 3,
+      "rows": 1,
+      "overflowX": "visible",
+      "outside": [],
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "mode": "club",
+      "width": 1440,
+      "present": true,
+      "open": true,
+      "hidden": 0,
+      "chips": 3,
+      "rows": 1,
+      "overflowX": "visible",
+      "outside": [],
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "enlargedText": {
+    "viewport": 260,
+    "searchWidth": 147,
+    "barOverflow": 0,
+    "bleed": false,
+    "inputPresent": true,
+    "chipsOutside": [],
+    "pass": true
+  }
+}

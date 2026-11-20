@@ -45,6 +45,11 @@ const MOODS = {
 
 const CELL = 20;
 const $ = s => document.querySelector(s);
+// The rail must say what it is doing before the first byte of the catalogue
+// arrives. The static markup says "Loading…"; the rows themselves follow at
+// once, so the panel is never an empty white slab while the request is on the
+// wire.
+paintLoadingRail(false);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 // A catalogue name may be Thai. Thai needs its own face, its own leading and no
 // tracking — and the browser only applies those when the text is marked as Thai.
@@ -66,6 +71,10 @@ const state = {
   places: [], byId: new Map(), scores: {}, cells: new Map(), visited: new Map(), personalRatings: new Map(),
   kinds: new Set(['cafe', 'coworking', 'library']), flags: new Set(), // Food is one tap away, off by default
   sort: 'near', mood: null, selected: null, foodLoaded: false, cannabisLoaded: false, lateNightLoaded: false, clubMode: false, sortedIdx: [], sortedCannabisIdx: [], cannabisHotspots: [],
+  // The catalogue's own state. 'loading' is not the same as 'empty': a reader
+  // told "0 places" while the catalogue is still on the wire is told the city
+  // is empty, and a reader told that after a failed fetch is told it for good.
+  catalogueStatus: 'loading', catalogueError: null, cannabisStatus: 'loading',
 };
 window.state = state;
 const cannabisDetails = new Map();
@@ -88,6 +97,37 @@ const map = new maplibregl.Map({
   attributionControl: { compact: true, customAttribution: 'Places © <a href="https://overturemaps.org">Overture Maps</a> · © OSM contributors' },
 });
 MapMotion.bind(map);
+// The rail is a panel over the map's left edge, so the camera's centre must be
+// the centre of the map the reader can actually see — not the centre of the
+// canvas the panel covers. Without this the ground would move 180px left the
+// moment the rail became a floating panel.
+const RAIL_WIDTH = 360;
+const railPadding = () => (isPhone()
+  ? { top: 0, bottom: 0, left: 0, right: 0 }
+  : { top: 0, bottom: 0, left: RAIL_WIDTH, right: 0 });
+try { map.setPadding(railPadding()); } catch { /* the transform is not ready yet */ }
+// MapLibre's getBounds() reads the whole canvas. The rail is a paper panel over
+// the canvas's left edge, so the map the reader can see is narrower than the
+// canvas — and every consumer (the list, the 3D hunt, the hat layer, the journey
+// origins) asks that same question. The answer is corrected once, here: the
+// region right of the panel. It never claims a place is visible when the panel
+// is standing over it, and it keeps the reading conservative rather than
+// generous about the strip of map below the panel.
+const rawGetBounds = map.getBounds.bind(map);
+map.getBounds = () => {
+  const bounds = rawGetBounds();
+  if (isPhone()) return bounds;
+  const canvas = map.getCanvas();
+  const sw = map.unproject([RAIL_WIDTH, canvas.clientHeight]);
+  const ne = map.unproject([canvas.clientWidth, 0]);
+  return new maplibregl.LngLatBounds(sw, ne);
+};
+addEventListener('resize', () => {
+  const want = railPadding();
+  const have = map.getPadding();
+  if (have.left === want.left && have.right === want.right && have.top === want.top && have.bottom === want.bottom) return;
+  try { map.setPadding(want); } catch { /* the map is not ready yet */ }
+});
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
 if ('geolocation' in navigator) map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true } }), 'top-right');
 // A lens, not a second map: the same source, drawn as line and tone.
@@ -97,9 +137,14 @@ window.NeighborhoodPalette?.attach(map);
 
 // ---------- data ----------
 async function loadRows(name) {
-  const { kinds, rows } = await (await fetch(`data/places-${name}.json`)).json();
+  const response = await fetch(`data/places-${name}.json`);
+  if (!response.ok) throw new Error(`places-${name}.json answered ${response.status}`);
+  const { kinds, rows } = await response.json();
   // idx: Great Good Place index, mean of the A/S/C/F percentiles (scripts/build-places.py)
   for (const [id, n, k, y, x, flags, g, idx, hours] of rows) {
+    // A retry must not load the same catalogue twice. The reader who pressed
+    // Retry on a failed fetch should get one catalogue, not two copies of it.
+    if (state.byId.has(id)) continue;
     const p = { id, n, k: kinds[k], y, x, flags, g, idx, hours, low: n.toLowerCase() };
     p.d = digits(p);
     state.places.push(p); state.byId.set(id, p);
@@ -138,9 +183,11 @@ async function cellDetail(p) {
 }
 
 let cannabisPromise = null;
-async function loadCannabis() {
+async function loadCannabis({ retry = false } = {}) {
   if (state.cannabisLoaded) return;
+  if (retry) cannabisPromise = null;
   if (!cannabisPromise) {
+    state.cannabisStatus = 'loading';
     cannabisPromise = fetch('data/places-cannabis.json')
       .then(r => { if (!r.ok) throw Error('Club catalogue unavailable'); return r.json(); })
       .then(d => {
@@ -166,8 +213,13 @@ async function loadCannabis() {
         state.sortedIdx = state.places.filter(p => p.k !== 'cannabis').map(p => p.idx).sort((a, b) => a - b);
         state.sortedCannabisIdx = state.places.filter(p => p.k === 'cannabis').map(p => p.idx).sort((a, b) => a - b);
         state.cannabisLoaded = true;
+        state.cannabisStatus = 'ready';
       })
-      .catch(() => { cannabisPromise = null; });
+      // A failed attempt is not repeated behind the reader's back. The rail says
+      // "unavailable" and stays there until the reader presses the button that
+      // really re-fetches. A directory that flickers from unavailable back to
+      // loading on its own is a directory the reader cannot reason about.
+      .catch(error => { state.cannabisStatus = 'failed'; console.error('The cannabis directory did not load', error); });
   }
   await cannabisPromise;
 }
@@ -198,13 +250,64 @@ async function loadLateNight() {
 const BKK_BOUNDS = [[99.9, 13.1], [101.35, 14.45]];
 const TH_BOUNDS = [[97.0, 5.3], [106.0, 20.8]];
 
+// A failed directory is worth asking for again. The reader gets a button that
+// actually fetches, and the rail says "Loading" while it does.
+async function retryDirectory() {
+  if (state.clubMode) {
+    state.cannabisStatus = 'loading';
+    renderClubHotspots();
+    refresh();
+    await loadCannabis({ retry: true });
+    renderClubHotspots();
+    // The camera never reached the listings while the directory was missing,
+    // because there was nothing to frame. Now there is: the map goes where the
+    // listings are, so the reader is not left looking at an empty Bangkok with
+    // a full directory behind it.
+    if (state.cannabisLoaded) {
+      const landing = clubLanding();
+      if (landing) map.jumpTo({ center: landing.center, zoom: landing.zoom, animate: false });
+      else {
+        const bounds = clubBounds();
+        if (bounds) map.fitBounds(bounds, { padding: 18, animate: false });
+      }
+    }
+    refresh();
+    return;
+  }
+  state.catalogueStatus = 'loading';
+  state.catalogueError = null;
+  refresh();
+  try {
+    await Promise.all([loadRows('work'), loadVisits()]);
+    state.catalogueStatus = 'ready';
+    // The food catalogue rides on the work catalogue; if the first attempt died
+    // before it, the reader who presses Retry deserves the food rows too.
+    if (!state.foodLoaded) {
+      await loadRows('food');
+      state.foodLoaded = true;
+    }
+  } catch (error) {
+    state.catalogueStatus = 'failed';
+    state.catalogueError = error;
+    console.error('The catalogue did not load', error);
+  }
+  refresh();
+}
+
 function renderClubHotspots() {
   const box = $('#club-hotspots');
   if (!box) return;
   box.hidden = !state.clubMode;
   if (!state.clubMode) { box.replaceChildren(); return; }
   if (!state.cannabisLoaded) {
-    box.innerHTML = '<span role="status">Directory unavailable.</span> <button type="button" data-retry-club>Retry</button>';
+    // "Unavailable" is a fact about a failed load, not about one still in
+    // flight. Saying it while the directory is on the wire is the same lie the
+    // rail used to tell.
+    if (state.cannabisStatus === 'failed') {
+      box.innerHTML = '<span role="status">Directory unavailable.</span> <button type="button" class="retry" data-retry-catalogue>Retry</button>';
+      return;
+    }
+    box.innerHTML = '<span role="status">Loading Thailand listings…</span>';
     return;
   }
   const total = state.cannabisStats?.total ?? state.places.filter(p => p.k === 'cannabis').length;
@@ -235,6 +338,30 @@ function clubBounds() {
   for (const p of state.places) if (p.k === 'cannabis') bounds.extend([p.x, p.y]);
   return bounds.isEmpty() ? null : bounds;
 }
+
+// The mode's own colours on the map. PL;UB's ground is Grand Budapest pink and
+// CL;UB's is Botanical Green — one product, one palette, one job for each
+// colour. The manga lens brings PL;UB's ground with it every time it installs
+// its layers, which happens after its own style is fetched. So the mode's
+// palette is applied from ONE place, and that place is called again when the
+// lens installs. Otherwise the order of two network requests decides which
+// product's map the reader lands on, and the reader's mode is a race.
+//
+// It was a race: the lens's style arrived after the mode was claimed, and
+// CL;UB painted PL;UB's ground. The palette now follows the mode.
+function applyModePalette() {
+  const on = state.clubMode;
+  if (map.getLayer('manga-ground')) map.setPaintProperty('manga-ground', 'background-color', on ? '#b5decc' : '#f9c1ce');
+  if (map.getLayer('manga-park')) map.setPaintProperty('manga-park', 'fill-color', on ? '#87c540' : '#f5ecc2');
+  window.Atlas?.setClubPalette?.(on);
+  // PL;UB's twelve neighbourhood rings and their labels are a PL;UB instrument.
+  // In CL;UB they were drawn over the cannabis map, and the labels — which carry
+  // a working-mood suffix — sat on top of the cluster counts they collided with.
+  for (const layer of ['hood-fill', 'hood-line', 'hood-label']) {
+    if (map.getLayer(layer)) map.setLayoutProperty(layer, 'visibility', on ? 'none' : 'visible');
+  }
+}
+window.applyModePalette = applyModePalette;
 async function setClubMode(on, { frame = true } = {}) {
   const attempt = ++clubModeChange;
   const switching = state.clubMode !== Boolean(on);
@@ -308,16 +435,11 @@ async function setClubMode(on, { frame = true } = {}) {
   }
   if (switching) window.Atlas?.reset?.();
   renderClubHotspots();
-  window.Atlas?.setClubPalette?.(on);
+  applyModePalette();
   window.updateMascot?.(on);
-  if (map.getLayer('manga-ground')) map.setPaintProperty('manga-ground', 'background-color', on ? '#b5decc' : '#f9c1ce');
-  if (map.getLayer('manga-park')) map.setPaintProperty('manga-park', 'fill-color', on ? '#87c540' : '#f5ecc2');
   // PL;UB's twelve neighbourhood rings and their labels are a PL;UB instrument.
   // In CL;UB they were drawn over the cannabis map, and the labels — which carry
   // a working-mood suffix — sat on top of the cluster counts they collided with.
-  for (const layer of ['hood-fill', 'hood-line', 'hood-label']) {
-    if (map.getLayer(layer)) map.setLayoutProperty(layer, 'visibility', on ? 'none' : 'visible');
-  }
   const hint = $('#list-guide-hint');
   if (hint) hint.innerHTML = on
     ? 'Pick a Thailand hotspot or tap a venue. Toggle <b>Einstein tiles</b> for density.'
@@ -401,8 +523,20 @@ const scoresReady=loadScores().then(()=>{
   const panel=document.querySelector('#sheet .scores');if(panel&&state.selected)panel.innerHTML=scoreHtml(state.selected);
   window.WorkFinder?.kindsChanged();
 });
-const firstData = aliasesReady.then(() => Promise.all([loadRows('work'), loadVisits()])).then(() => refresh());
-const foodData = firstData.then(() => loadRows('food')).then(() => { state.foodLoaded = true; refresh(); });
+// The mode is known from the URL before any catalogue is on the wire. Claiming
+// it now means the cannabis host never paints PL;UB's café list for half a
+// second while its own directory is still loading: the reader arrived at a
+// cannabis wordmark and must not be handed a café list first.
+if (isClubStartup()) setClubMode(true);
+
+const firstData = aliasesReady.then(() => Promise.all([loadRows('work'), loadVisits()]))
+  .then(() => { state.catalogueStatus = 'ready'; refresh(); })
+  // A catalogue that failed to load is not an empty catalogue. Say so, and
+  // leave the reader something to press.
+  .catch(error => { state.catalogueStatus = 'failed'; state.catalogueError = error; console.error('The catalogue did not load', error); refresh(); });
+const foodData = firstData.then(() => state.catalogueStatus === 'ready' ? loadRows('food') : null)
+  .catch(error => { console.error('The food catalogue did not load', error); })
+  .then(() => { state.foodLoaded = true; refresh(); });
 const lateNightData = firstData.then(() => loadLateNight()).then(() => { state.lateNightLoaded = true; refresh(); });
 // Branch labels for repeated names ("Starbucks Coffee · Sathupradit Rd"): the listing's own address, or its district.
 // Fetched after the map is up; scripts/build-branches.py. A place without a published address or district gets none.
@@ -422,13 +556,13 @@ map.on('load', async () => {
   // Every matching record participates in clustering. These transparent backing layers
   // retain the legacy interaction surfaces; semantic symbols carry the visible marks.
   for (const [id,minzoom,maxzoom] of [['pins-city',0,13],['pins-street',13,15],['pins',15,24]]) map.addLayer({id,type:'circle',source:'places',minzoom,maxzoom,filter:['!',['has','point_count']],paint:{'circle-radius':14,'circle-opacity':0}});
-  map.addLayer({ id: 'pin-city-names', type: 'symbol', source: 'places', minzoom: 12.5, maxzoom: 15, filter: ['all',['!',['has','point_count']],['>=', ['get', 'i'], 96]],
+  map.addLayer({ id: 'pin-city-names', type: 'symbol', source: 'places', minzoom: 12.5, maxzoom: 15, filter: ['all',['!',['has','point_count']],['>=', ['coalesce',['get','i'],0], 96]],
     layout: { 'text-field': ['get', 'n'], 'text-size': 11, 'text-offset': [0, 1], 'text-anchor': 'top', 'text-optional': true,
-      'text-font': ['Noto Sans Regular'], 'symbol-sort-key': ['-', 100, ['get', 'i']] },
+      'text-font': ['Noto Sans Regular'], 'symbol-sort-key': ['-', 100, ['coalesce', ['get', 'i'], 0]] },
     paint: { 'text-color': '#34454c', 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } });
   map.addLayer({ id: 'pin-names', type: 'symbol', source: 'places', minzoom: 16, filter:['!',['has','point_count']],
     layout: { 'text-field': ['get', 'n'], 'text-size': 11, 'text-offset': [0, 1.2], 'text-anchor': 'top', 'text-optional': true,
-      'text-font': ['Noto Sans Regular'], 'symbol-sort-key': ['-', 100, ['get', 'i']] },
+      'text-font': ['Noto Sans Regular'], 'symbol-sort-key': ['-', 100, ['coalesce', ['get', 'i'], 0]] },
     paint: { 'text-color': '#34454c', 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } });
   map.addLayer({ id: 'sel', type: 'circle', source: 'sel', paint: {
     'circle-radius': 20, 'circle-color': 'rgba(0,0,0,0)', 'circle-stroke-color': '#34454c', 'circle-stroke-width': 2.5 } });
@@ -507,9 +641,28 @@ const listPageSize = 12;
 // that one group leaves half the rail dead white space, so the cannabis
 // directory previews a page of its own: the rail's first screen should carry
 // the directory, not three rows and a void.
-const clubPreview = 20;
+// CL;UB's rail lists cannabis venues, and its column is the one thing standing
+// between the reader and the map. Twenty rows filled the whole column at 1024
+// and took a third of the screen with them, leaving the map 60.4% — a margin
+// of four tenths of a point over the house floor. Eight rows, with the rest one
+// tap away behind "Show 12 more", keeps the map the largest object on the
+// screen in both modes and makes the panel a floating paper card again.
+const clubPreview = 8;
 const groupLimits = new Map();
 const previewFor = (kind) => (state.clubMode && kind === 'cannabis') ? clubPreview : listPreview;
+
+// The rail's two honest states before the catalogue arrives: still loading, and
+// failed. The skeleton is a promise of rows to come — four grey bars where the
+// rows will land, so the panel is never an empty white slab. Painted at boot,
+// before any request settles, because "still loading" is a fact the reader is
+// owed while the request is on the wire, not only after it has failed.
+function paintLoadingRail(failed) {
+  const list = $('#list');
+  if (!list) return;
+  list.innerHTML = failed
+    ? '<li class="meta">Directory unavailable. <button type="button" class="retry" data-retry-catalogue>Retry</button></li>'
+    : '<li class="meta">Loading the directory…</li><li class="list-skeleton" aria-hidden="true"><span></span><span></span><span></span><span></span></li>';
+}
 
 function renderList() {
   const wrap = $('#list-wrap');
@@ -523,9 +676,22 @@ function renderList() {
   $('#list-origin').hidden = state.sort !== 'near';
   const loadingFood = state.kinds.has('restaurant') && !state.foodLoaded;
   const count = $('#count');
+  const list = $('#list');
+  // Three states, never confused with one another: still loading, failed, and
+  // genuinely nothing in view. The old rail told the reader "0 places — no
+  // matches in view" while the catalogue was on the wire, and told it for good
+  // when the fetch failed, with nothing to retry. On CL;UB the directory in
+  // question is the cannabis one.
+  const status = state.clubMode ? state.cannabisStatus : state.catalogueStatus;
+  if (status !== 'ready') {
+    const failed = status === 'failed';
+    count.textContent = failed ? 'unavailable' : 'Loading…';
+    count.title = failed ? 'The directory could not be loaded.' : 'The directory is still loading.';
+    paintLoadingRail(failed);
+    return;
+  }
   count.textContent = `${fmt(inView.length)} ${inView.length === 1 ? 'place' : 'places'}${loadingFood ? ' · food loading' : ''}`;
   count.title = `${fmt(inView.length)} matches in map bounds. Distances are straight lines from the map centre.`;
-  const list = $('#list');
   const focusedPlace = document.activeElement.closest('.list-place')?.closest('li')?.dataset.id;
   const focusedGroup = document.activeElement.dataset.listMore;
   const groups = new Map(listGroups.map(([kind]) => [kind, []]));
@@ -976,7 +1142,8 @@ document.addEventListener('click', e => {
   }
   const h = e.target.closest('#mood [data-hood]');
   if (h) window.openHood?.(h.dataset.hood);
-  if (e.target.closest('[data-retry-club]')) { setClubMode(true); return; }
+  if (e.target.closest('[data-retry-club]')) { retryDirectory(); return; }
+  if (e.target.closest('[data-retry-catalogue]')) { retryDirectory(); return; }
   const th = e.target.closest('[data-thailand]');
   if (th) {
     const bounds = clubBounds();

@@ -304,27 +304,32 @@
     }
     for (const kind of ['cafe', 'coworking', 'library', 'restaurant', 'cannabis', 'late'])
       m.addImage('atlas-cluster-' + kind, drawIcon(kind, true).data, { pixelRatio: 2 });
+    // A cluster that has no cannabis/cafes/food/work/books property makes
+    // ['get'] return null, and MapLibre rejects a comparison between null and a
+    // number. Every count is coalesced to 0, so the comparison is always
+    // between two numbers and the console is quiet.
+    const n = key => ['coalesce', ['get', key], 0];
     const dominant = [
       'case',
       [
         'all',
-        ['>=', ['get', 'cannabis'], ['get', 'cafes']],
-        ['>=', ['get', 'cannabis'], ['get', 'food']],
-        ['>=', ['get', 'cannabis'], ['get', 'work']],
-        ['>=', ['get', 'cannabis'], ['get', 'books']],
-        ['>', ['get', 'cannabis'], 0]
+        ['>=', n('cannabis'), n('cafes')],
+        ['>=', n('cannabis'), n('food')],
+        ['>=', n('cannabis'), n('work')],
+        ['>=', n('cannabis'), n('books')],
+        ['>', n('cannabis'), 0]
       ],
       'cannabis',
       [
         'all',
-        ['>=', ['get', 'cafes'], ['get', 'food']],
-        ['>=', ['get', 'cafes'], ['get', 'work']],
-        ['>=', ['get', 'cafes'], ['get', 'books']]
+        ['>=', n('cafes'), n('food')],
+        ['>=', n('cafes'), n('work')],
+        ['>=', n('cafes'), n('books')]
       ],
       'cafe',
-      ['all', ['>=', ['get', 'food'], ['get', 'work']], ['>=', ['get', 'food'], ['get', 'books']]],
+      ['all', ['>=', n('food'), n('work')], ['>=', n('food'), n('books')]],
       'restaurant',
-      ['>=', ['get', 'work'], ['get', 'books']],
+      ['>=', n('work'), n('books')],
       'coworking',
       'library'
     ];
@@ -408,7 +413,7 @@
       'pins-city'
     );
     m.addSource('atlas-hats', {type:'geojson',data:empty()});
-    m.addLayer({id:'atlas-hats',type:'fill',source:'atlas-hats',layout:{visibility:'none'},paint:{'fill-color':hatPalette(state.clubMode),'fill-opacity':['interpolate',['linear'],['get','n'],1,.28,8,.46,24,.64,60,.74]}},'pins-city');
+    m.addLayer({id:'atlas-hats',type:'fill',source:'atlas-hats',layout:{visibility:'none'},paint:{'fill-color':hatPalette(state.clubMode),'fill-opacity':['interpolate',['linear'],['coalesce',['get','n'],0],1,.28,8,.46,24,.64,60,.74]}},'pins-city');
     m.addLayer({id:'atlas-hat-line',type:'line',source:'atlas-hats',layout:{visibility:'none'},paint:{'line-color':'#34454c','line-width':.75,'line-opacity':.45}},'pins-city');
     for (const id of ['atlas-districts', 'atlas-parks', 'atlas-streets', 'atlas-loops'])
       m.addSource(id, { type: 'geojson', data: empty() });
@@ -422,7 +427,7 @@
           'fill-color': [
             'interpolate',
             ['linear'],
-            ['get', 'density'],
+            ['coalesce', ['get', 'density'], 0],
             0,
             '#fff',
             5,
@@ -478,7 +483,7 @@
         paint: {
           'line-color': '#34454c',
           'line-opacity': 0.75,
-          'line-width': ['interpolate', ['linear'], ['get', 'active'], 1, 1.5, 30, 5]
+          'line-width': ['interpolate', ['linear'], ['coalesce', ['get', 'active'], 0], 1, 1.5, 30, 5]
         }
       },
       'pins-city'
@@ -1019,8 +1024,8 @@
   }
   function hatPalette(on) {
     return on
-      ? ['interpolate', ['linear'], ['get', 'n'], 1, '#f5ecc2', 3, '#b5decc', 8, '#afd472', 16, '#87c540', 30, '#253122']
-      : ['interpolate', ['linear'], ['get', 'n'], 1, '#b5decc', 4, '#96d1aa', 12, '#437742', 40, '#34454c'];
+      ? ['interpolate', ['linear'], ['coalesce', ['get', 'n'], 0], 1, '#f5ecc2', 3, '#b5decc', 8, '#afd472', 16, '#87c540', 30, '#253122']
+      : ['interpolate', ['linear'], ['coalesce', ['get', 'n'], 0], 1, '#b5decc', 4, '#96d1aa', 12, '#437742', 40, '#34454c'];
   }
   function setClubPalette(on) {
     if (!mapReady || !map.getLayer('atlas-hats')) return;

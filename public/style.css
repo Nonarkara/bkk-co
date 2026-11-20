@@ -418,16 +418,32 @@ body.club-mode .rail-header .list-day { display: none; }
 /* Desktop: a 360px instrument column, map takes the rest (~75% at 1440) */
 @media (min-width: 900px) {
   body { grid-template: "bar bar" auto "chips map" auto "side map" 1fr / 360px 1fr; }
+  /* The map is the ground: it fills everything under the bar, and the rail is a
+     paper panel laid over its left edge that ends where its content ends. A
+     rail that ran the full height of the screen left 360 x 392 px of flat
+     white below the last place — 43% of the viewport — with no job to do. The
+     camera's centre is kept where the reader can see it (the map's padding in
+     app.js), so the framing does not move when the ground moves. */
+  #map { grid-column: 1 / 3; grid-row: 2 / 4; }
   .bar { flex-wrap: nowrap; gap: 12px; padding: 8px 14px; border-right: 0; }
   .bar-brand { padding-right: 12px; }
   .bar-btn { padding: 0 10px; }
   .search { flex: 1; max-width: 440px; min-width: 140px; }
   .bar-actions { margin-left: auto; }
-  .chips, .side { border-right: 1px solid var(--rule); }
-  .side { grid-area: side; display: flex; flex-direction: column; min-height: 0; }
-  .list-wrap { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+  .chips, .side { z-index: 2; }
+  .chips { background: var(--paper); }
+  .side { grid-area: side; display: flex; flex-direction: column; min-height: 0; background: transparent; }
+  .chips, .list-wrap, .side .sheet { border-right: 1px solid var(--rule); }
+  /* The panel hugs its content: a short list gives a short panel and the map
+     carries the space below it. A long list fills the column and scrolls
+     inside it. */
+  .list-wrap { display: flex; flex-direction: column; min-height: 0; flex: 0 1 auto; max-height: 100%; background: var(--paper); }
+  .side .sheet { background: var(--paper); }
   .list-wrap h2 { padding: 10px var(--pad) 6px; }
   .list { list-style: none; padding: 0; overflow-y: auto; flex: 1; }
+  /* The map's own bottom-left control would slide under the rail's column.
+     The Key stays beside the panel, where the reader last saw it. */
+  .maplibregl-ctrl-bottom-left { left: 370px; }
   .sheet { position: static; order: -1; flex: none; max-height: 70%; border-top: 0; border-bottom: 2px solid var(--ink); }
   .hits { max-height: 70dvh; }
   .phone-only { display: none !important; }
@@ -497,7 +513,10 @@ body.club-mode .chip-scroll .seg-rule { display: none; }
 .hotspot-pill span { overflow-wrap: anywhere; white-space: normal; max-width: none; }
 
 body.club-mode .chips { display: none; }
-body.club-mode .bar-actions #list-toggle { min-height: 32px; padding-inline: 8px; }
+/* On CL;UB this button moves out of the dense chip row into the bar, and on a
+   phone it is the only way to reach the places list. It is an isolated
+   control there, so it takes the 44px rule. */
+body.club-mode .bar-actions #list-toggle { min-height: 44px; min-width: 44px; padding-inline: 8px; }
 
 .footprint-club-symbol { display: none; }
 body.club-mode .footprint-key .footprint-swatch { display: none; }
