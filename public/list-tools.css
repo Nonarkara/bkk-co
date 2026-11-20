@@ -11,7 +11,7 @@
 .rail-actions .list-find:hover { background:var(--muted); }
 .rail-actions .list-find[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
 .rail-actions .list-day { display:inline-flex; align-items:center; min-height:32px; font-size:var(--small); font-weight:600; text-underline-offset:3px; }
-.rail-actions .list-close { flex:none; margin:0 0 0 auto; min-width:32px; width:32px; height:32px; font-size:var(--big); }
+.rail-actions .list-close { flex:none; margin:0 0 0 auto; min-width:44px; width:44px; height:44px; font-size:var(--big); }
 /* Scope: headline + live count together; the density toggle sits at the row's exit. */
 .rail-scope { flex-wrap:wrap; padding-top:4px; padding-bottom:4px; }
 .rail-scope h2 { padding:0; margin:0; font-size:var(--big); line-height:1.2; font-weight:600; }
@@ -103,3 +103,11 @@
 .list-group h3 span { color:var(--muted); font-weight:500; font-variant-numeric:tabular-nums; }
 .list-group ol { margin:0; padding:0; list-style:none; }
 .list-group .list-more { min-height:32px; margin-left:var(--pad); color:var(--ink); text-decoration:underline; text-underline-offset:2px; }
+/* The rail's one disclosure for the whole list, in its own row at the foot of
+   the list. It is a full-width row, so it takes the 44px floor, and it says
+   how many places it will open — "Show all 123 places" — because a disclosure
+   that hides its own size is a disclosure the reader cannot judge. */
+.list .list-reveal { display:block; padding:0; }
+.list .list-reveal .list-more { display:block; width:100%; min-height:44px; padding:0 var(--pad); text-align:start;
+  color:var(--ink); text-decoration:underline; text-underline-offset:2px; border:0; background:transparent; cursor:pointer; }
+.list .list-reveal .list-more:hover { background:var(--wash); }

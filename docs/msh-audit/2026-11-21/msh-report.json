@@ -15,8 +15,8 @@
         "columnPx": 0,
         "share": 0.113
       },
-      "mapShare": 0.839,
-      "mapShareNet": 0.819,
+      "mapShare": 0.825,
+      "mapShareNet": 0.805,
       "mapOverlayShare": 0.0201,
       "mapOverlays": [
         {
@@ -27,11 +27,11 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 7.45,
+      "hierarchyRatio": 7.33,
       "top3": [
         {
           "id": "map",
-          "area": 276120
+          "area": 271440
         },
         {
           "id": "bar",
@@ -39,7 +39,7 @@
         },
         {
           "id": "chips",
-          "area": 15990
+          "area": 20670
         }
       ],
       "voidPx": 10286,
@@ -47,15 +47,15 @@
       "voidW": 146,
       "voidH": 70,
       "band": {
-        "h": 106,
-        "w": 33
+        "h": 141,
+        "w": 16
       },
       "obstruction": {
-        "area": 601,
+        "area": 213,
         "cls": "",
         "tag": "span"
       },
-      "obstructionShare": 0.002,
+      "obstructionShare": 0.001,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -65,12 +65,12 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 211,
+        "total": 210,
         "omTotal": 177,
         "omLine": 115,
         "omFill": 58,
         "omSymbol": 4,
-        "places": 12
+        "places": 11
       },
       "camera": {
         "zoom": 16.8,
@@ -140,8 +140,8 @@
         "columnPx": 89,
         "share": 0.158
       },
-      "mapShare": 0.764,
-      "mapShareNet": 0.757,
+      "mapShare": 0.759,
+      "mapShareNet": 0.752,
       "mapOverlayShare": 0.0072,
       "mapOverlays": [
         {
@@ -265,8 +265,8 @@
         "columnPx": 89,
         "share": 0.158
       },
-      "mapShare": 0.815,
-      "mapShareNet": 0.81,
+      "mapShare": 0.811,
+      "mapShareNet": 0.806,
       "mapOverlayShare": 0.0051,
       "mapOverlays": [
         {
@@ -469,8 +469,8 @@
         "columnPx": 85,
         "share": 0.153
       },
-      "mapShare": 0.721,
-      "mapShareNet": 0.718,
+      "mapShare": 0.716,
+      "mapShareNet": 0.713,
       "mapOverlayShare": 0.003,
       "mapOverlays": [
         {
@@ -552,8 +552,8 @@
         "columnPx": 85,
         "share": 0.153
       },
-      "mapShare": 0.785,
-      "mapShareNet": 0.783,
+      "mapShare": 0.781,
+      "mapShareNet": 0.779,
       "mapOverlayShare": 0.0021,
       "mapOverlays": [
         {
@@ -602,12 +602,12 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 19950,
+        "total": 19980,
         "omTotal": 19922,
         "omLine": 19437,
         "omFill": 443,
         "omSymbol": 42,
-        "places": 12
+        "places": 42
       },
       "camera": {
         "zoom": 12,
@@ -652,7 +652,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 2023
+      "observedHandoffMs": 320
     },
     "notebook": 1,
     "walkthrough": {
@@ -670,16 +670,7 @@
     "writes": []
   },
   "club": {
-    "errors": [
-      "console: Connecting to 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAM1klEQVR4AeybfWxeVRnAn/N2b7vVIV/7IMrHxlAY0aBbWxxBBqEtH2unhGg0MYG/5COCbAnMaKLwh1FGsiGYCf+BMdFgCLq2sLUlwCRM+zFFDRNlbANM2LrxIaNd+7bv9fmdvuf23Nv7fr8dI6E5zz3Peb7O8zz3nHPPPfdtSj75i2Tgk4RE0iFywhNyeWvHuZe2dbQ3tXd+t7mt88ct7Z1bmts7tgEWVxo8ZJCN+TvnzTlPyKrWdSs1wA1NbR3bFY4cN3JwSmSnBMGjgQT3ZYNgQxDIbYDFlQYPGWTRUdiODWzNdUbmJCFrrrnmDALQQAZSxryiAW7RQDoVzlQot6DTiQ1sYbOptXMDfZRrqBT5miak6ep15ze1rnsok00fJgB1oFlhVqlLi5y6JCtLL5iSc744Kcu+nLEADg0eMrMUpwnNYoIt2seh1...V5wom3J1YQ5eT/DdUhsc9s/ZSdGjxSOZaIKW7WV40L8SVGL7tZdULoka3wUF/XD1LGnK8PnIeUFvmBGkd2HDYNPTVfen/ZKH/46ULp39YoL/5mgQw8OV+GNVkAODR4yPQ+3CiDqkNiR/VIU+36ZUqPKR6WbLBiqK97k33V8LkV4jVJiOt7QN8gh/u6v59OZZZKYDYqPTyOVDwsfBN5/3BKDr1WJxzpkSwAHBo8ZEKFKDIoxmzUPpYM9ffcmXszj0pU0appQpwfHLwM9Xdt1TvXoqv9xQSgvC6FowrlFnS6sIEtbA71dm2lj3INlSI/JwnxO2a1JwANZL3ConqTXmpMaq2khK30JmPkZ2LMVsDiIpvgGZVBFh2F9djAlm97LvA5T0jcab6SDfZu3zW0s/vXGujmwd7uH2qwGwGL93VvhofMS70zX9TiduaqfcITMleB1Mru/wEAAP///PRLVgAAAAZJREFUAwAqW/nFN3SJrgAAAABJRU5ErkJggg==' violates the following Content Security Policy directive: \"connect-src 'self' https://tiles.openfreemap.org\". The action has been blocked.",
-      "console: Connecting to 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAM1klEQVR4AeybfWxeVRnAn/N2b7vVIV/7IMrHxlAY0aBbWxxBBqEtH2unhGg0MYG/5COCbAnMaKLwh1FGsiGYCf+BMdFgCLq2sLUlwCRM+zFFDRNlbANM2LrxIaNd+7bv9fmdvuf23Nv7fr8dI6E5zz3Peb7O8zz3nHPPPfdtSj75i2Tgk4RE0iFywhNyeWvHuZe2dbQ3tXd+t7mt88ct7Z1bmts7tgEWVxo8ZJCN+TvnzTlPyKrWdSs1wA1NbR3bFY4cN3JwSmSnBMGjgQT3ZYNgQxDIbYDFlQYPGWTRUdiODWzNdUbmJCFrrrnmDALQQAZSxryiAW7RQDoVzlQot6DTiQ1sYbOptXMDfZRrqBT5miak6ep15ze1rnsok00fJgB1oFlhVqlLi5y6JCtLL5iSc744Kcu+nLEADg0eMrMUpwnNYoIt2seh1...V5wom3J1YQ5eT/DdUhsc9s/ZSdGjxSOZaIKW7WV40L8SVGL7tZdULoka3wUF/XD1LGnK8PnIeUFvmBGkd2HDYNPTVfen/ZKH/46ULp39YoL/5mgQw8OV+GNVkAODR4yPQ+3CiDqkNiR/VIU+36ZUqPKR6WbLBiqK97k33V8LkV4jVJiOt7QN8gh/u6v59OZZZKYDYqPTyOVDwsfBN5/3BKDr1WJxzpkSwAHBo8ZEKFKDIoxmzUPpYM9ffcmXszj0pU0appQpwfHLwM9Xdt1TvXoqv9xQSgvC6FowrlFnS6sIEtbA71dm2lj3INlSI/JwnxO2a1JwANZL3ConqTXmpMaq2khK30JmPkZ2LMVsDiIpvgGZVBFh2F9djAlm97LvA5T0jcab6SDfZu3zW0s/vXGujmwd7uH2qwGwGL93VvhofMS70zX9TiduaqfcITMleB1Mru/wEAAP///PRLVgAAAAZJREFUAwAqW/nFN3SJrgAAAABJRU5ErkJggg==' violates the following Content Security Policy directive: \"connect-src 'self' https://tiles.openfreemap.org\". The action has been blocked.",
-      "console: Connecting to 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAM1klEQVR4AeybfWxeVRnAn/N2b7vVIV/7IMrHxlAY0aBbWxxBBqEtH2unhGg0MYG/5COCbAnMaKLwh1FGsiGYCf+BMdFgCLq2sLUlwCRM+zFFDRNlbANM2LrxIaNd+7bv9fmdvuf23Nv7fr8dI6E5zz3Peb7O8zz3nHPPPfdtSj75i2Tgk4RE0iFywhNyeWvHuZe2dbQ3tXd+t7mt88ct7Z1bmts7tgEWVxo8ZJCN+TvnzTlPyKrWdSs1wA1NbR3bFY4cN3JwSmSnBMGjgQT3ZYNgQxDIbYDFlQYPGWTRUdiODWzNdUbmJCFrrrnmDALQQAZSxryiAW7RQDoVzlQot6DTiQ1sYbOptXMDfZRrqBT5miak6ep15ze1rnsok00fJgB1oFlhVqlLi5y6JCtLL5iSc744Kcu+nLEADg0eMrMUpwnNYoIt2seh1...V5wom3J1YQ5eT/DdUhsc9s/ZSdGjxSOZaIKW7WV40L8SVGL7tZdULoka3wUF/XD1LGnK8PnIeUFvmBGkd2HDYNPTVfen/ZKH/46ULp39YoL/5mgQw8OV+GNVkAODR4yPQ+3CiDqkNiR/VIU+36ZUqPKR6WbLBiqK97k33V8LkV4jVJiOt7QN8gh/u6v59OZZZKYDYqPTyOVDwsfBN5/3BKDr1WJxzpkSwAHBo8ZEKFKDIoxmzUPpYM9ffcmXszj0pU0appQpwfHLwM9Xdt1TvXoqv9xQSgvC6FowrlFnS6sIEtbA71dm2lj3INlSI/JwnxO2a1JwANZL3ConqTXmpMaq2khK30JmPkZ2LMVsDiIpvgGZVBFh2F9djAlm97LvA5T0jcab6SDfZu3zW0s/vXGujmwd7uH2qwGwGL93VvhofMS70zX9TiduaqfcITMleB1Mru/wEAAP///PRLVgAAAAZJREFUAwAqW/nFN3SJrgAAAABJRU5ErkJggg==' violates the following Content Security Policy directive: \"connect-src 'self' https://tiles.openfreemap.org\". The action has been blocked.",
-      "console: Connecting to 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAM1klEQVR4AeybfWxeVRnAn/N2b7vVIV/7IMrHxlAY0aBbWxxBBqEtH2unhGg0MYG/5COCbAnMaKLwh1FGsiGYCf+BMdFgCLq2sLUlwCRM+zFFDRNlbANM2LrxIaNd+7bv9fmdvuf23Nv7fr8dI6E5zz3Peb7O8zz3nHPPPfdtSj75i2Tgk4RE0iFywhNyeWvHuZe2dbQ3tXd+t7mt88ct7Z1bmts7tgEWVxo8ZJCN+TvnzTlPyKrWdSs1wA1NbR3bFY4cN3JwSmSnBMGjgQT3ZYNgQxDIbYDFlQYPGWTRUdiODWzNdUbmJCFrrrnmDALQQAZSxryiAW7RQDoVzlQot6DTiQ1sYbOptXMDfZRrqBT5miak6ep15ze1rnsok00fJgB1oFlhVqlLi5y6JCtLL5iSc744Kcu+nLEADg0eMrMUpwnNYoIt2seh1...V5wom3J1YQ5eT/DdUhsc9s/ZSdGjxSOZaIKW7WV40L8SVGL7tZdULoka3wUF/XD1LGnK8PnIeUFvmBGkd2HDYNPTVfen/ZKH/46ULp39YoL/5mgQw8OV+GNVkAODR4yPQ+3CiDqkNiR/VIU+36ZUqPKR6WbLBiqK97k33V8LkV4jVJiOt7QN8gh/u6v59OZZZKYDYqPTyOVDwsfBN5/3BKDr1WJxzpkSwAHBo8ZEKFKDIoxmzUPpYM9ffcmXszj0pU0appQpwfHLwM9Xdt1TvXoqv9xQSgvC6FowrlFnS6sIEtbA71dm2lj3INlSI/JwnxO2a1JwANZL3ConqTXmpMaq2khK30JmPkZ2LMVsDiIpvgGZVBFh2F9djAlm97LvA5T0jcab6SDfZu3zW0s/vXGujmwd7uH2qwGwGL93VvhofMS70zX9TiduaqfcITMleB1Mru/wEAAP///PRLVgAAAAZJREFUAwAqW/nFN3SJrgAAAABJRU5ErkJggg==' violates the following Content Security Policy directive: \"connect-src 'self' https://tiles.openfreemap.org\". The action has been blocked.",
-      "console: Connecting to 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAM1klEQVR4AeybfWxeVRnAn/N2b7vVIV/7IMrHxlAY0aBbWxxBBqEtH2unhGg0MYG/5COCbAnMaKLwh1FGsiGYCf+BMdFgCLq2sLUlwCRM+zFFDRNlbANM2LrxIaNd+7bv9fmdvuf23Nv7fr8dI6E5zz3Peb7O8zz3nHPPPfdtSj75i2Tgk4RE0iFywhNyeWvHuZe2dbQ3tXd+t7mt88ct7Z1bmts7tgEWVxo8ZJCN+TvnzTlPyKrWdSs1wA1NbR3bFY4cN3JwSmSnBMGjgQT3ZYNgQxDIbYDFlQYPGWTRUdiODWzNdUbmJCFrrrnmDALQQAZSxryiAW7RQDoVzlQot6DTiQ1sYbOptXMDfZRrqBT5miak6ep15ze1rnsok00fJgB1oFlhVqlLi5y6JCtLL5iSc744Kcu+nLEADg0eMrMUpwnNYoIt2seh1...V5wom3J1YQ5eT/DdUhsc9s/ZSdGjxSOZaIKW7WV40L8SVGL7tZdULoka3wUF/XD1LGnK8PnIeUFvmBGkd2HDYNPTVfen/ZKH/46ULp39YoL/5mgQw8OV+GNVkAODR4yPQ+3CiDqkNiR/VIU+36ZUqPKR6WbLBiqK97k33V8LkV4jVJiOt7QN8gh/u6v59OZZZKYDYqPTyOVDwsfBN5/3BKDr1WJxzpkSwAHBo8ZEKFKDIoxmzUPpYM9ffcmXszj0pU0appQpwfHLwM9Xdt1TvXoqv9xQSgvC6FowrlFnS6sIEtbA71dm2lj3INlSI/JwnxO2a1JwANZL3ConqTXmpMaq2khK30JmPkZ2LMVsDiIpvgGZVBFh2F9djAlm97LvA5T0jcab6SDfZu3zW0s/vXGujmwd7uH2qwGwGL93VvhofMS70zX9TiduaqfcITMleB1Mru/wEAAP///PRLVgAAAAZJREFUAwAqW/nFN3SJrgAAAABJRU5ErkJggg==' violates the following Content Security Policy directive: \"connect-src 'self' https://tiles.openfreemap.org\". The action has been blocked.",
-      "console: Connecting to 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAM1klEQVR4AeybfWxeVRnAn/N2b7vVIV/7IMrHxlAY0aBbWxxBBqEtH2unhGg0MYG/5COCbAnMaKLwh1FGsiGYCf+BMdFgCLq2sLUlwCRM+zFFDRNlbANM2LrxIaNd+7bv9fmdvuf23Nv7fr8dI6E5zz3Peb7O8zz3nHPPPfdtSj75i2Tgk4RE0iFywhNyeWvHuZe2dbQ3tXd+t7mt88ct7Z1bmts7tgEWVxo8ZJCN+TvnzTlPyKrWdSs1wA1NbR3bFY4cN3JwSmSnBMGjgQT3ZYNgQxDIbYDFlQYPGWTRUdiODWzNdUbmJCFrrrnmDALQQAZSxryiAW7RQDoVzlQot6DTiQ1sYbOptXMDfZRrqBT5miak6ep15ze1rnsok00fJgB1oFlhVqlLi5y6JCtLL5iSc744Kcu+nLEADg0eMrMUpwnNYoIt2seh1...V5wom3J1YQ5eT/DdUhsc9s/ZSdGjxSOZaIKW7WV40L8SVGL7tZdULoka3wUF/XD1LGnK8PnIeUFvmBGkd2HDYNPTVfen/ZKH/46ULp39YoL/5mgQw8OV+GNVkAODR4yPQ+3CiDqkNiR/VIU+36ZUqPKR6WbLBiqK97k33V8LkV4jVJiOt7QN8gh/u6v59OZZZKYDYqPTyOVDwsfBN5/3BKDr1WJxzpkSwAHBo8ZEKFKDIoxmzUPpYM9ffcmXszj0pU0appQpwfHLwM9Xdt1TvXoqv9xQSgvC6FowrlFnS6sIEtbA71dm2lj3INlSI/JwnxO2a1JwANZL3ConqTXmpMaq2khK30JmPkZ2LMVsDiIpvgGZVBFh2F9djAlm97LvA5T0jcab6SDfZu3zW0s/vXGujmwd7uH2qwGwGL93VvhofMS70zX9TiduaqfcITMleB1Mru/wEAAP///PRLVgAAAAZJREFUAwAqW/nFN3SJrgAAAABJRU5ErkJggg==' violates the following Content Security Policy directive: \"connect-src 'self' https://tiles.openfreemap.org\". The action has been blocked.",
-      "console: Connecting to 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAM1klEQVR4AeybfWxeVRnAn/N2b7vVIV/7IMrHxlAY0aBbWxxBBqEtH2unhGg0MYG/5COCbAnMaKLwh1FGsiGYCf+BMdFgCLq2sLUlwCRM+zFFDRNlbANM2LrxIaNd+7bv9fmdvuf23Nv7fr8dI6E5zz3Peb7O8zz3nHPPPfdtSj75i2Tgk4RE0iFywhNyeWvHuZe2dbQ3tXd+t7mt88ct7Z1bmts7tgEWVxo8ZJCN+TvnzTlPyKrWdSs1wA1NbR3bFY4cN3JwSmSnBMGjgQT3ZYNgQxDIbYDFlQYPGWTRUdiODWzNdUbmJCFrrrnmDALQQAZSxryiAW7RQDoVzlQot6DTiQ1sYbOptXMDfZRrqBT5miak6ep15ze1rnsok00fJgB1oFlhVqlLi5y6JCtLL5iSc744Kcu+nLEADg0eMrMUpwnNYoIt2seh1...V5wom3J1YQ5eT/DdUhsc9s/ZSdGjxSOZaIKW7WV40L8SVGL7tZdULoka3wUF/XD1LGnK8PnIeUFvmBGkd2HDYNPTVfen/ZKH/46ULp39YoL/5mgQw8OV+GNVkAODR4yPQ+3CiDqkNiR/VIU+36ZUqPKR6WbLBiqK97k33V8LkV4jVJiOt7QN8gh/u6v59OZZZKYDYqPTyOVDwsfBN5/3BKDr1WJxzpkSwAHBo8ZEKFKDIoxmzUPpYM9ffcmXszj0pU0appQpwfHLwM9Xdt1TvXoqv9xQSgvC6FowrlFnS6sIEtbA71dm2lj3INlSI/JwnxO2a1JwANZL3ConqTXmpMaq2khK30JmPkZ2LMVsDiIpvgGZVBFh2F9djAlm97LvA5T0jcab6SDfZu3zW0s/vXGujmwd7uH2qwGwGL93VvhofMS70zX9TiduaqfcITMleB1Mru/wEAAP///PRLVgAAAAZJREFUAwAqW/nFN3SJrgAAAABJRU5ErkJggg==' violates the following Content Security Policy directive: \"connect-src 'self' https://tiles.openfreemap.org\". The action has been blocked.",
-      "console: Connecting to 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAM1klEQVR4AeybfWxeVRnAn/N2b7vVIV/7IMrHxlAY0aBbWxxBBqEtH2unhGg0MYG/5COCbAnMaKLwh1FGsiGYCf+BMdFgCLq2sLUlwCRM+zFFDRNlbANM2LrxIaNd+7bv9fmdvuf23Nv7fr8dI6E5zz3Peb7O8zz3nHPPPfdtSj75i2Tgk4RE0iFywhNyeWvHuZe2dbQ3tXd+t7mt88ct7Z1bmts7tgEWVxo8ZJCN+TvnzTlPyKrWdSs1wA1NbR3bFY4cN3JwSmSnBMGjgQT3ZYNgQxDIbYDFlQYPGWTRUdiODWzNdUbmJCFrrrnmDALQQAZSxryiAW7RQDoVzlQot6DTiQ1sYbOptXMDfZRrqBT5miak6ep15ze1rnsok00fJgB1oFlhVqlLi5y6JCtLL5iSc744Kcu+nLEADg0eMrMUpwnNYoIt2seh1...V5wom3J1YQ5eT/DdUhsc9s/ZSdGjxSOZaIKW7WV40L8SVGL7tZdULoka3wUF/XD1LGnK8PnIeUFvmBGkd2HDYNPTVfen/ZKH/46ULp39YoL/5mgQw8OV+GNVkAODR4yPQ+3CiDqkNiR/VIU+36ZUqPKR6WbLBiqK97k33V8LkV4jVJiOt7QN8gh/u6v59OZZZKYDYqPTyOVDwsfBN5/3BKDr1WJxzpkSwAHBo8ZEKFKDIoxmzUPpYM9ffcmXszj0pU0appQpwfHLwM9Xdt1TvXoqv9xQSgvC6FowrlFnS6sIEtbA71dm2lj3INlSI/JwnxO2a1JwANZL3ConqTXmpMaq2khK30JmPkZ2LMVsDiIpvgGZVBFh2F9djAlm97LvA5T0jcab6SDfZu3zW0s/vXGujmwd7uH2qwGwGL93VvhofMS70zX9TiduaqfcITMleB1Mru/wEAAP///PRLVgAAAAZJREFUAwAqW/nFN3SJrgAAAABJRU5ErkJggg==' violates the following Content Security Policy directive: \"connect-src 'self' https://tiles.openfreemap.org\". The action has been blocked."
-    ],
+    "errors": [],
     "clubMode": true,
     "explore": {
       "present": true,
@@ -696,7 +687,7 @@
       "present": true,
       "label": "☷All Thailand · 329",
       "before": 12,
-      "after": 7.17,
+      "after": 6.81,
       "zoomedOut": true
     },
     "search": 9,

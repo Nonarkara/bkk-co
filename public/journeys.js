@@ -569,7 +569,7 @@
     if ([60, 120, 240, 480].includes(options.duration)) choice.duration = options.duration;
     // A start the user can no longer see is a silent lie about "near": follow the map unless the chosen start is still in view.
     const o = choice.origin;
-    if (!o || o.kind === 'map' || !map.getBounds().contains([o.x, o.y])) choice.origin = centre();
+    if (!o || o.kind === 'map' || !(globalThis.visibleOnMap?.(o) ?? map.getBounds().contains([o.x, o.y]))) choice.origin = centre();
     const sheet = openSheet(controls());
     sheet.classList.add('journey-sheet');
     if (thai) sheet.lang = 'th';

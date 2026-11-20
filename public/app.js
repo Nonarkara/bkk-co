@@ -107,12 +107,13 @@ const railPadding = () => (isPhone()
   : { top: 0, bottom: 0, left: RAIL_WIDTH, right: 0 });
 try { map.setPadding(railPadding()); } catch { /* the transform is not ready yet */ }
 // MapLibre's getBounds() reads the whole canvas. The rail is a paper panel over
-// the canvas's left edge, so the map the reader can see is narrower than the
-// canvas — and every consumer (the list, the 3D hunt, the hat layer, the journey
-// origins) asks that same question. The answer is corrected once, here: the
-// region right of the panel. It never claims a place is visible when the panel
-// is standing over it, and it keeps the reading conservative rather than
-// generous about the strip of map below the panel.
+// the canvas's left edge, so the ground the reader pans on the right of the
+// paper is a region, not the canvas. The layers that draw over the map — the
+// atlas hats, the district shapes — are clipped to that region so they never
+// grow under the paper. This is a DRAWING region, not a visibility test: the
+// reader also sees the strip of ground below the panel, and the place list
+// counts what is actually on screen, which is a different question with a
+// different answer. See visibleOnMap().
 const rawGetBounds = map.getBounds.bind(map);
 map.getBounds = () => {
   const bounds = rawGetBounds();
@@ -122,6 +123,30 @@ map.getBounds = () => {
   const ne = map.unproject([canvas.clientWidth, 0]);
   return new maplibregl.LngLatBounds(sw, ne);
 };
+// "Places in view" is one question with one answer: can the reader see this
+// place on the map right now? The visible map is not a rectangle. The rail is a
+// paper panel laid over the canvas that ends where its content ends, so the
+// ground the reader can see is an L — and the Key legend and the map's own
+// controls cover patches of it. A bounding box cannot say any of that, and the
+// first cut (a fixed 360px column for the canvas's whole height) counted three
+// painted places as invisible and one invisible place as visible. The DOM can
+// say it: a place is visible when the topmost thing at its projected pixel is
+// the map canvas itself.
+function visibleOnMap(place) {
+  const canvas = map.getCanvas();
+  if (!canvas) return false;
+  // MapLibre takes a LngLatLike, not a {x,y} pair: normalise or it throws.
+  const lngLat = Array.isArray(place) ? place : [place.x, place.y];
+  const pt = map.project(lngLat);
+  if (pt.x < 0 || pt.y < 0 || pt.x > canvas.clientWidth || pt.y > canvas.clientHeight) return false;
+  const box = canvas.getBoundingClientRect();
+  const top = document.elementsFromPoint(box.left + pt.x, box.top + pt.y)[0];
+  if (!top) return false;
+  if (top === canvas) return true;
+  // A place painted as its own marker is visible when that marker is on top.
+  return top.closest?.('#map') === map.getContainer();
+}
+globalThis.visibleOnMap = visibleOnMap;
 addEventListener('resize', () => {
   const want = railPadding();
   const have = map.getPadding();
@@ -303,10 +328,17 @@ function renderClubHotspots() {
     // "Unavailable" is a fact about a failed load, not about one still in
     // flight. Saying it while the directory is on the wire is the same lie the
     // rail used to tell.
+    // And it is said ONCE. The rail's list already carries "Directory
+    // unavailable" with the Retry button; this banner said it a second time,
+    // with a second Retry button, at the top of the screen. Two banners and
+    // two buttons for one failure is a choice the reader was asked to make for
+    // no reason. The list owns the failure; this box stays empty.
     if (state.cannabisStatus === 'failed') {
-      box.innerHTML = '<span role="status">Directory unavailable.</span> <button type="button" class="retry" data-retry-catalogue>Retry</button>';
+      box.hidden = true;
+      box.replaceChildren();
       return;
     }
+    box.hidden = false;
     box.innerHTML = '<span role="status">Loading Thailand listings…</span>';
     return;
   }
@@ -636,7 +668,6 @@ const listGroups = [
   ['cafe', 'Cafés'], ['coworking', 'Co-working'], ['library', 'Libraries'], ['restaurant', 'Food'], ['cannabis', 'Cannabis listings'],
 ];
 const listPreview = 3;
-const listPageSize = 12;
 // CL;UB's rail holds one group where PL;UB holds four. A three-row preview of
 // that one group leaves half the rail dead white space, so the cannabis
 // directory previews a page of its own: the rail's first screen should carry
@@ -645,7 +676,7 @@ const listPageSize = 12;
 // between the reader and the map. Twenty rows filled the whole column at 1024
 // and took a third of the screen with them, leaving the map 60.4% — a margin
 // of four tenths of a point over the house floor. Eight rows, with the rest one
-// tap away behind "Show 12 more", keeps the map the largest object on the
+// tap away behind one "Show all 123", keeps the map the largest object on the
 // screen in both modes and makes the panel a floating paper card again.
 const clubPreview = 8;
 const groupLimits = new Map();
@@ -667,8 +698,13 @@ function paintLoadingRail(failed) {
 function renderList() {
   const wrap = $('#list-wrap');
   if (isPhone() && !wrap.classList.contains('open')) return;
-  const b = map.getBounds(), c = map.getCenter(), centre = { y: c.lat, x: c.lng };
-  let inView = lastList.filter(p => b.contains([p.x, p.y]));
+  const c = map.getCenter(), centre = { y: c.lat, x: c.lng };
+  // What the reader can SEE, not what the camera contains. The raw canvas
+  // bounds are the cheap first cut; the DOM decides the rest, because the
+  // paper panel, the Key legend and the map's own controls stand over parts
+  // of the canvas and the count must not claim a place the reader cannot see.
+  const canvasBounds = rawGetBounds();
+  let inView = lastList.filter(p => canvasBounds.contains([p.x, p.y]) && visibleOnMap(p));
   inView = state.sort === 'near'
     ? inView.map(p => [metres(p, centre), p]).sort((a, z) => a[0] - z[0]).map(a => a[1])
     : inView.sort(SORTS[state.sort]);
@@ -691,24 +727,33 @@ function renderList() {
     return;
   }
   count.textContent = `${fmt(inView.length)} ${inView.length === 1 ? 'place' : 'places'}${loadingFood ? ' · food loading' : ''}`;
-  count.title = `${fmt(inView.length)} matches in map bounds. Distances are straight lines from the map centre.`;
+  count.title = `${fmt(inView.length)} places the reader can see on the map right now. Distances are straight lines from the map centre.`;
   const focusedPlace = document.activeElement.closest('.list-place')?.closest('li')?.dataset.id;
   const focusedGroup = document.activeElement.dataset.listMore;
   const groups = new Map(listGroups.map(([kind]) => [kind, []]));
   for (const place of inView) groups.get(place.k)?.push(place);
-  list.innerHTML = inView.length ? listGroups.map(([kind, label]) => {
+  // ONE disclosure for the whole rail, not a ladder of pages per group. The
+  // ladder cost ten clicks to reach every listing in CL;UB's view (8 rows,
+  // then "Show 12 more", six times, then a 6245px scroll inside a 713px
+  // window) — a smaller list, not a cheaper one. "Show all 123" is one click
+  // to everything, and the same click in both modes.
+  let shown = 0;
+  const body = inView.length ? listGroups.map(([kind, label]) => {
     const places = groups.get(kind);
     if (!places.length) return '';
     const limit = groupLimits.get(kind) ?? previewFor(kind);
-    const remaining = places.length - limit;
-    const action = remaining > 0 ? `Show ${Math.min(listPageSize, remaining)} more` : 'Show fewer';
-    const more = places.length > previewFor(kind)
-      ? `<button type="button" class="list-more" data-list-more="${kind}" aria-label="${action} · ${label}">${action}</button>`
-      : '';
+    shown += Math.min(limit, places.length);
     const rows = places.slice(0, limit).map(p => row(p, sortKey(p, centre), true)).join('');
     return `<li class="list-group" data-list-group="${kind}"><h3 id="list-heading-${kind}">${label} <span>${fmt(places.length)}</span></h3>
-      <ol aria-labelledby="list-heading-${kind}">${rows}</ol>${more}</li>`;
+      <ol aria-labelledby="list-heading-${kind}">${rows}</ol></li>`;
   }).join('') : `<li class="meta">${loadingFood ? 'Loading food places…' : 'No matches in view. Pan, zoom out or clear a filter.'}</li>`;
+  const expanded = groupLimits.get('all') === Infinity;
+  const reveal = inView.length && (expanded || shown < inView.length)
+    ? expanded
+      ? `<li class="list-reveal"><button type="button" class="list-more" data-list-more="all" data-list-more-state="fewer" aria-label="Show fewer places">Show fewer</button></li>`
+      : `<li class="list-reveal"><button type="button" class="list-more" data-list-more="all" data-list-more-state="all" aria-label="Show all ${fmt(inView.length)} places">Show all ${fmt(inView.length)} places</button></li>`
+    : '';
+  list.innerHTML = body + reveal;
   if (focusedPlace) list.querySelector(`[data-id="${CSS.escape(focusedPlace)}"] button`)?.focus({ preventScroll: true });
   if (focusedGroup) list.querySelector(`[data-list-more="${CSS.escape(focusedGroup)}"]`)?.focus({ preventScroll: true });
 
@@ -761,12 +806,21 @@ function row(p, key = p.k === 'cannabis' ? (CLUB_TYPES[p.sub] || KIND_LABEL.cann
 $('#list').addEventListener('click', e => {
   const more = e.target.closest('[data-list-more]');
   if (more) {
-    const kind = more.dataset.listMore;
-    const before = groupLimits.get(kind) ?? previewFor(kind);
-    const showFewer = more.textContent === 'Show fewer';
-    groupLimits.set(kind, showFewer ? previewFor(kind) : before + listPageSize);
+    const showFewer = more.dataset.listMoreState === 'fewer';
+    if (showFewer) {
+      groupLimits.clear();
+    } else {
+      // One click opens every group in full.
+      groupLimits.set('all', Infinity);
+      for (const [kind] of listGroups) groupLimits.set(kind, Infinity);
+    }
     renderList();
-    if (!showFewer) $('#list').querySelectorAll(`[data-list-group="${kind}"] .list-place`)[before]?.focus();
+    if (!showFewer) {
+      // The first newly revealed row is where the reader's eye already is.
+      const target = [...$('#list').querySelectorAll('.list-group')]
+        .find(g => g.querySelectorAll('.list-place').length > previewFor(g.dataset.listGroup));
+      if (target) target.querySelectorAll('.list-place')[previewFor(target.dataset.listGroup)]?.focus({ preventScroll: true });
+    }
     return;
   }
   const li = e.target.closest('li[data-id]');

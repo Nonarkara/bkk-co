@@ -671,7 +671,7 @@
     const fit = document.querySelector('[data-atlas-fit]');
     if (fit)
       fit.hidden =
-        !mapReady || !last.length || last.some((p) => map.getBounds().contains([p.x, p.y]));
+        !mapReady || !last.length || last.some((p) => globalThis.visibleOnMap?.(p) ?? map.getBounds().contains([p.x, p.y]));
     if (lens === 'hotspots') e.textContent += ' · density: pale → dark';
     if (lens === 'hats') e.textContent += ' · Einstein tile density';
     if (lens === 'districts') e.textContent += ' · cafés/km²: 0 · 5 · 35+';
@@ -684,7 +684,7 @@
     sheet.classList.add('atlas-sheet');bindPlaces(sheet);sheet.querySelector('[data-hat-back]').onclick=tileList;
   }
   function tileList(){
-    syncHats();const b=map.getBounds(),features=map.getSource('atlas-hats')?._data?.features||[],tiles=features.filter(f=>f.geometry.coordinates[0].some(([x,y])=>b.contains([x,y]))).sort((a,b)=>b.properties.n-a.properties.n);
+    syncHats();const b=map.getBounds(),features=map.getSource('atlas-hats')?._data?.features||[],tiles=features.filter(f=>f.geometry.coordinates[0].some(([x,y])=>globalThis.visibleOnMap?.({x,y}) ?? b.contains([x,y]))).sort((a,b)=>b.properties.n-a.properties.n);
     const sheet=openSheet(`<header><h1>Einstein tiles in view</h1><button class="close" aria-label="Close">×</button></header><p class="src">Active catalogue counts per tile, most concentrated first. Pan or zoom to inspect another area.</p><ol class="atlas-places">${tiles.slice(0,40).map((f,i)=>`<li><button data-hat-tile="${f.properties.tile}" data-hat-patch="${esc(f.properties.patch)}"><b>Tile ${i+1} · ${fmt(f.properties.n)} ${f.properties.n===1?'place':'places'}</b></button></li>`).join('')||'<li>No occupied tiles in this map view.</li>'}</ol>${tiles.length>40?'<p class="src">Showing the first 40 tiles. Zoom in to inspect fewer at once.</p>':''}`);
     sheet.classList.add('atlas-sheet');sheet.querySelectorAll('[data-hat-tile]').forEach(button=>button.onclick=()=>{if(button.dataset.hatPatch!==hatGeom?.key){tileList();return;}tileSheet(Number(button.dataset.hatTile))});
   }

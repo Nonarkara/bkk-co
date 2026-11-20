@@ -15,9 +15,9 @@
         "columnPx": 0,
         "share": 0.113
       },
-      "mapShare": 0.839,
-      "mapShareNet": 0.385,
-      "mapOverlayShare": 0.4535,
+      "mapShare": 0.825,
+      "mapShareNet": 0.381,
+      "mapOverlayShare": 0.4432,
       "mapOverlays": [
         {
           "cls": "maplibregl-ctrl footprint-key-control",
@@ -29,15 +29,15 @@
           "cls": "atlas-tools",
           "w": 281,
           "h": 520,
-          "area": 142645
+          "area": 139275
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 1.65,
+      "hierarchyRatio": 1.62,
       "top3": [
         {
           "id": "map",
-          "area": 276120
+          "area": 271440
         },
         {
           "id": "planted-defect",
@@ -53,15 +53,15 @@
       "voidW": 146,
       "voidH": 70,
       "band": {
-        "h": 106,
-        "w": 33
+        "h": 141,
+        "w": 16
       },
       "obstruction": {
-        "area": 161460,
+        "area": 156780,
         "cls": "",
         "tag": "div"
       },
-      "obstructionShare": 0.585,
+      "obstructionShare": 0.578,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -71,12 +71,12 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 202,
-        "omTotal": 178,
+        "total": 210,
+        "omTotal": 177,
         "omLine": 115,
         "omFill": 58,
-        "omSymbol": 5,
-        "places": 2
+        "omSymbol": 4,
+        "places": 11
       },
       "camera": {
         "zoom": 16.8,
@@ -93,8 +93,8 @@
       "placeSheet": {
         "lines": 2,
         "textWidth": 321.765625,
-        "factsHeight": 64.89065551757812,
-        "directionsBottom": 216.18753051757812,
+        "factsHeight": 64.890625,
+        "directionsBottom": 216.1875,
         "pass": true,
         "plantedRejected": true
       },
@@ -149,8 +149,8 @@
         "columnPx": 89,
         "share": 0.158
       },
-      "mapShare": 0.764,
-      "mapShareNet": 0.341,
+      "mapShare": 0.759,
+      "mapShareNet": 0.336,
       "mapOverlayShare": 0.4232,
       "mapOverlays": [
         {
@@ -195,7 +195,7 @@
         "cls": "",
         "tag": "div"
       },
-      "obstructionShare": 0.625,
+      "obstructionShare": 0.63,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -283,8 +283,8 @@
         "columnPx": 89,
         "share": 0.158
       },
-      "mapShare": 0.815,
-      "mapShareNet": 0.394,
+      "mapShare": 0.811,
+      "mapShareNet": 0.39,
       "mapOverlayShare": 0.4211,
       "mapOverlays": [
         {
@@ -329,7 +329,7 @@
         "cls": "",
         "tag": "div"
       },
-      "obstructionShare": 0.586,
+      "obstructionShare": 0.589,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -506,8 +506,8 @@
         "columnPx": 85,
         "share": 0.153
       },
-      "mapShare": 0.721,
-      "mapShareNet": 0.302,
+      "mapShare": 0.716,
+      "mapShareNet": 0.297,
       "mapOverlayShare": 0.419,
       "mapOverlays": [
         {
@@ -552,7 +552,7 @@
         "cls": "",
         "tag": "div"
       },
-      "obstructionShare": 0.662,
+      "obstructionShare": 0.667,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -595,8 +595,8 @@
         "columnPx": 85,
         "share": 0.153
       },
-      "mapShare": 0.785,
-      "mapShareNet": 0.367,
+      "mapShare": 0.781,
+      "mapShareNet": 0.363,
       "mapOverlayShare": 0.4181,
       "mapOverlays": [
         {
@@ -641,7 +641,7 @@
         "cls": "",
         "tag": "div"
       },
-      "obstructionShare": 0.609,
+      "obstructionShare": 0.612,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -702,7 +702,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 4719
+      "observedHandoffMs": 1016
     },
     "notebook": 1,
     "walkthrough": {
@@ -747,17 +747,17 @@
   "fails": [
     {
       "id": "B9 map share",
-      "detail": "the map holds 39% of the first screen once PLUB's own overlays are taken off it",
+      "detail": "the map holds 38% of the first screen once PLUB's own overlays are taken off it",
       "width": "plub-390"
     },
     {
       "id": "B9 map overlay chrome",
-      "detail": "PLUB's own overlays stand on 45.4% of the first screen: maplibregl-ctrl footprint-key-control 150x44; atlas-tools 281x520",
+      "detail": "PLUB's own overlays stand on 44.3% of the first screen: maplibregl-ctrl footprint-key-control 150x44; atlas-tools 281x520",
       "width": "plub-390"
     },
     {
       "id": "B9 map obstruction",
-      "detail": "div covers 59% of the map",
+      "detail": "div covers 58% of the map",
       "width": "plub-390"
     },
     {
@@ -817,12 +817,12 @@
     },
     {
       "id": "B9 map obstruction",
-      "detail": "div covers 66% of the map",
+      "detail": "div covers 67% of the map",
       "width": "club-1024"
     },
     {
       "id": "B9 map share",
-      "detail": "the map holds 37% of the first screen once PLUB's own overlays are taken off it",
+      "detail": "the map holds 36% of the first screen once PLUB's own overlays are taken off it",
       "width": "club-1440"
     },
     {

@@ -133,6 +133,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
    Filled ground stays for primary actions inside sheets — never for resting chrome. */
 .chips button[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); }
 .chips button[hidden], .chips .sep { display: none; }
+/* The phone's list toggle is the only way to reach the directory, so it is a
+   primary control and not one more chip in a dense row: it takes the 44px
+   floor in both modes. CL;UB moves it into the bar, where the same rule
+   already applied; PL;UB left it in the strip at 34x32, and a 34x32 target
+   is the price of one tap. */
+.chips #list-toggle { min-height: 44px; min-width: 44px; justify-content: center; }
 .count { margin-left: auto; padding-left: 8px; color: var(--muted); font-size: var(--micro); white-space: nowrap; }
 .moods { flex: none; display: flex; gap: 4px; padding: 6px var(--pad) 0; overflow-x: auto; scrollbar-width: none; }
 .moods button, .moods a { flex: none; min-height: 32px; padding: 0 8px; white-space: nowrap; border: 1px solid var(--ink); }
@@ -433,6 +439,15 @@ body.club-mode .rail-header .list-day { display: none; }
   .chips, .side { z-index: 2; }
   .chips { background: var(--paper); }
   .side { grid-area: side; display: flex; flex-direction: column; min-height: 0; background: transparent; }
+  /* The rail is a paper panel laid over the map, not a column standing in
+     front of it — but the grid cell is still the full height of the screen.
+     Without this, the 360px strip below the panel's last row was painted map
+     that no pointer event could reach: visible, untouchable, dead (a drag
+     there did not move the map; a wheel there did not zoom). The panel and
+     the sheet take the hit box back; the empty ground below them belongs to
+     the map, and the reader can pan and zoom it. */
+  .side { pointer-events: none; }
+  .list-wrap, .side .sheet { pointer-events: auto; }
   .chips, .list-wrap, .side .sheet { border-right: 1px solid var(--rule); }
   /* The panel hugs its content: a short list gives a short panel and the map
      carries the space below it. A long list fills the column and scrolls
