@@ -90,7 +90,7 @@
     // in CL;UB, the mode's palette has to be put back the moment the lens
     // installs, or the order of two network requests decides which product's
     // colours the map wears.
-    window.applyModePalette?.();
+    globalThis.applyModePalette?.();
     return true;
   }
   function installNow() {
@@ -217,9 +217,17 @@
   // own expressions are evaluated against tiles that do not carry every
   // property they read, and the console says "expected a number, found null".
   function styleUrl() {
-    const link = document.querySelector('link[rel="preload"][href*="plub-manga.json"]');
-    if (link && link.href) return link.href;
-    return new URL('styles/plub-manga.json?v=green-20261115', location.href).href;
+    // The page declares this style — preloaded, with the fingerprint of its
+    // bytes. The lens fetches exactly that URL, so the preload is reused and the
+    // two can never drift apart. It matters: until the lens is in, the basemap's
+    // own expressions are evaluated against tiles that do not carry every
+    // property they read, and the console says "expected a number, found null".
+    // The fallback keeps the lens working where there is no document to ask.
+    try {
+      const link = document.querySelector?.('link[rel="preload"][href*="plub-manga.json"]');
+      if (link && link.href) return link.href;
+    } catch { /* no document to ask */ }
+    return 'styles/plub-manga.json?v=green-20261115';
   }
 
   function ensureStyle() {

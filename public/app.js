@@ -361,7 +361,7 @@ function applyModePalette() {
     if (map.getLayer(layer)) map.setLayoutProperty(layer, 'visibility', on ? 'none' : 'visible');
   }
 }
-window.applyModePalette = applyModePalette;
+globalThis.applyModePalette = applyModePalette;
 async function setClubMode(on, { frame = true } = {}) {
   const attempt = ++clubModeChange;
   const switching = state.clubMode !== Boolean(on);
