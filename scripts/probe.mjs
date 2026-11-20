@@ -45,7 +45,7 @@ const out = await page.evaluate(() => {
   const sel = [
     '.bar', '.mark', '.search input', '.bar-btn', '.chips button[data-kind="cafe"]',
     '.chips button[data-kind="coworking"]', '.chips button[data-kind="library"]',
-    '.chips button[data-kind="restaurant"]', '.list-find', '.list-walkthrough',
+    '.chips button[data-kind="restaurant"]', '.list-find', '#open-3d',
     '.list-scope h2', '.count', '.list-group h3', '.list-place .nm', '.list-place .idx',
     '.list-place .place-symbol', '.list-place .place-badge', '.dot.cafe', '.dot.coworking',
     '.micro', '.list-options .flags button', '.atlas-dock', '.atlas-state', '.atlas-tools button',

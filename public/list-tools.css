@@ -10,35 +10,37 @@
   cursor:pointer; }
 .rail-actions .list-find:hover { background:var(--muted); }
 .rail-actions .list-find[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
-.rail-actions .list-walkthrough { /* secondary action */
-  min-height:32px; padding:3px 7px; font-weight:500; font-size:var(--small);
-  border:1px solid var(--rule); background:var(--paper); color:var(--muted); cursor:pointer; }
-.rail-actions .list-walkthrough:hover { border-color:var(--ink); color:var(--ink); background:var(--wash); }
-.rail-actions .list-walkthrough[aria-pressed="true"] { border-color:var(--ink); color:var(--ink); background:var(--wash); font-weight:600; }
 .rail-actions .list-day { display:inline-flex; align-items:center; min-height:32px; font-size:var(--small); font-weight:600; text-underline-offset:3px; }
 .rail-actions .list-close { flex:none; margin:0 0 0 auto; min-width:32px; width:32px; height:32px; font-size:var(--big); }
 /* Scope: headline + live count together; the density toggle sits at the row's exit. */
 .rail-scope { flex-wrap:wrap; padding-top:4px; padding-bottom:4px; }
 .rail-scope h2 { padding:0; margin:0; font-size:var(--big); line-height:1.2; font-weight:600; }
 .rail-scope .count { margin:0; padding:0 0 0 6px; font-size:var(--micro); white-space:nowrap; }
-.rail-scope .scope-tiles { margin-left:auto; min-height:26px; padding:0 8px; font-size:var(--micro); font-weight:600;
+/* "Einstein tiles" was 91x26px — under the house 32px chip height and under the
+   tap floor. It is a standalone control, so it gets the full chip height. */
+.rail-scope .scope-tiles { margin-left:auto; min-height:32px; padding:0 8px; font-size:var(--micro); font-weight:600;
   border:1px solid var(--rule); background:var(--paper); color:var(--ink); cursor:pointer; white-space:nowrap; }
 .rail-scope .scope-tiles:hover { border-color:var(--ink); background:var(--wash); }
 .rail-scope .scope-tiles[aria-pressed="true"] { border-color:var(--ink); background:var(--guide); color:var(--ink); }
-/* Chip strip: moods and filters as one 32px instrument row, scrolling sideways.
-   Mood chips keep the ink edge (curated), filter chips the hairline (mechanical). */
-.rail-chips { flex-wrap:wrap; padding-top:4px; padding-bottom:4px; }
-.chip-scroll { flex:1 1 0; min-width:0; display:flex; align-items:center; gap:6px;
-  overflow-x:auto; overflow-y:hidden; scrollbar-width:none; }
-.chip-scroll::-webkit-scrollbar { display:none; }
-.rail-chips .moods, .rail-chips .flags { flex:none; display:flex; align-items:center; gap:4px; padding:0; overflow:visible; flex-wrap:nowrap; }
+/* Chip strip: moods and filters as wrapped rows, never a sideways scroller.
+   The old strip scrolled 875px of content inside a 335px rail with the scrollbar
+   hidden, so six filters were invisible and "Crossing paths" was cut at the rail
+   edge. The strip now lives inside the Explore disclosure and lays out as rows:
+   every chip whole, fully visible once the reader opens the one disclosure.
+   The rail's own header above the places stays compact — the places come first. */
+.chip-scroll { flex:1 1 100%; min-width:0; display:grid; grid-template-columns:1fr auto; align-items:start;
+  gap:4px 6px; overflow:visible; }
+.chip-scroll .moods { grid-column:1 / -1; }
+.chip-scroll .seg-rule { grid-column:1 / -1; width:100%; height:1px; }
+.chip-scroll .flags { grid-column:1; }
+.chip-scroll .moods, .chip-scroll .flags { min-width:0; display:flex; flex-wrap:wrap; align-items:center; gap:4px; padding:0; overflow:visible; }
 .chip-seg { flex:none; font-size:var(--micro); font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); padding-right:2px; }
 .seg-rule { flex:none; width:1px; height:20px; background:var(--rule); }
-.rail-chips .moods button, .rail-chips .flags button { flex:none; height:32px; padding:0 8px;
+.chip-scroll .moods button, .chip-scroll .flags button { flex:none; min-height:32px; padding:0 8px;
   font-size:var(--small); font-weight:500; white-space:nowrap; cursor:pointer; }
-.rail-chips .moods button[aria-pressed="true"], .rail-chips .flags button[aria-pressed="true"] { font-weight:600; }
-.rail-chips .cat-count { flex:none; font-size:var(--micro); color:var(--muted); padding-left:2px; }
-.rail-chips .cat-count:empty { display:none; }
+.chip-scroll .moods button[aria-pressed="true"], .chip-scroll .flags button[aria-pressed="true"] { font-weight:600; }
+.chip-scroll .cat-count { flex:none; font-size:var(--micro); color:var(--muted); padding-left:2px; }
+.chip-scroll .cat-count:empty { display:none; }
 /* Explore: the one disclosure, an action at the row's exit; opens full-width below. */
 .rail-actions .list-explore { flex:none; }
 .rail-actions .list-explore > summary { min-height:32px; display:flex; align-items:center; cursor:pointer;
@@ -67,8 +69,6 @@
 .list-group[data-list-group="library"] h3 { border-left:4px solid var(--cat-library); }
 .list-group[data-list-group="restaurant"] h3 { border-left:4px solid var(--cat-food); }
 .list-group[data-list-group="cannabis"] h3 { border-left:4px solid var(--cat-cannabis); }
-.list-pulse .pulse-links { display:flex; flex-wrap:wrap; gap:6px 12px; padding:8px var(--pad) 12px; font-size:var(--small); }
-.list-pulse .pulse-links a, .list-pulse .pulse-links button { color:var(--ink); text-decoration:underline; text-underline-offset:2px; font-weight:500; }
 .list li[data-id] { padding:0; min-height:0; }
 .list-place { display:grid; grid-template-columns:20px minmax(0,1fr) auto; gap:8px; align-items:center; width:100%; min-height:32px; padding:5px var(--pad); text-align:left; }
 .list-place .place-symbol,.list-place .place-badge { width:20px; height:20px; }

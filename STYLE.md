@@ -11,7 +11,7 @@ Governing design law, in order: **MSH** (`~/Projects/_reference/MSH.md`) → **g
 - **Non Architecture** — the owner's Latin handwriting for Nong Plub's voice, neighbourhood purpose and owner visit notes; never data, numbers or Thai. Self-hosted and preloaded.
 - **Jost** — UI and body (400/500/600). House face.
 - **Prompt** — Thai, non-looped only (IBM Plex Sans Thai / Noto Sans Thai / Kanit are the alternates). Never a looped face (Sarabun, TH Sarabun New): looped heads read as "not made by Thais".
-- Scale: 20 / 14 / 12 px, with 11 px tracked micro for qualifications. ≤4 sizes per view.
+- Scale: 20 / 14 / 12 px, with 11 px tracked micro for qualifications. ≤4 sizes per view. The four sizes are declared in `rem` (`1.25 / 0.875 / 0.75 / 0.6875rem`), so they read as 20 / 14 / 12 / 11 px at the browser's default 16 px and grow with a reader who asks for larger text. Every control that holds text has a `min-height`, so the layout grows with the reader instead of clipping their words.
 
 ## Colour
 Two registers, one per bureau, both from the Wada catalogue. **PL;UB** wears the Grand Budapest face: Hermosa Pink (#f9c1ce) ground, Pansy Purple (#7d133a) as the reading ink and line-work, Turquoise Green (#b5decc) for parks and the guide, Cobalt Green (#96d1aa) for café geometry, Neutral Gray (#b6bfc1) for hairlines. The pink was retired on 15 November 2026 and restored by the owner on 16 November (`61e07e4`) — the map's Grand Budapest pass below is current, not history. **CL;UB** keeps its Botanical Green register: Deep Slate Olive (#253122) ink, Dark Medici Blue (#547076) secondary, Night Green (#87c540) and Turquoise Green (#b5decc) grounds. Every value in both registers is a proved catalogue colour (`docs/stroll-2026-11-07/zoom-mood-provenance.json`); the interface ink steps are blends of their own bureau's ink toward white.
@@ -25,7 +25,7 @@ Two registers, one per bureau, both from the Wada catalogue. **PL;UB** wears the
 ## Devices
 - Hairline 1px rules; boxes are their label plus ~0.5–1× padding. Nothing is inflated to fill a container.
 - **Chrome filter chips are hairline instruments, not posters** (owner strip audit, 4 Nov 2026): off = `--rule` border + muted label, on = `--ink` border + ink label, paper ground, 32 px label-plus-padding. The chip row is a dense group — MSH wins over the 44 px rule here; 44 px belongs to isolated controls and full-width rows only. A filled ground means a primary action inside a sheet, never a resting filter state. The map dock (`atlas.css`) speaks the same language.
-- **Symbols over words** where the meaning is one glance: `▲▼ → ✓ ▾ ◐ ✦ ↦ ⁘ ◇ ◎ ≋ ✎`. Each carries a fact; none is decoration.
+- **Symbols over words** where the meaning is one glance: `▲▼ → ✓ ▾ ◐ ✦ ↦ ⁘ ◇ ◎ ≋ ✎ ☾`. Each carries a fact; none is decoration. `☾` is the late-night mark — a hairline moon glyph, never the 🌙 emoji.
 - The semicolon in `PL;UB` is the seam: `PL` = Placemaking Laboratory, `UB` = Urban Bureau.
 - Numbers always carry a source and a tier. "Not rated yet" is the honest state; never show a score a visitor did not give.
 

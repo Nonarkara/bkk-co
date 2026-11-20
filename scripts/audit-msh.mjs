@@ -96,6 +96,15 @@ const MEASURE = () => {
     const topEls = pinned.filter(el => el.getBoundingClientRect().top <= 1);
     if (topEls.length) topPx = Math.max(...topEls.map(el => el.getBoundingClientRect().bottom));
   }
+  // The rail is an edge instrument, but its own header is chrome: a band the reader
+  // passes before any list row. At desktop it sits inside a column, so the top-band
+  // probe above never saw it and reported a screen with a 123px band as "6% chrome".
+  let columnPx = 0;
+  const railHead = document.querySelector('#side .rail-header');
+  if (railHead && shown(railHead)) {
+    const r = railHead.getBoundingClientRect();
+    if (r.left < vw * 0.5 && r.width > 0 && r.width < vw * 0.5) columnPx = r.height;
+  }
 
   // 2. map share of the first screen — the map is the content, panels are instruments
   const mapEl = document.querySelector('#map') || document.querySelector('.maplibregl-map');
@@ -147,14 +156,27 @@ const MEASURE = () => {
   // The map's own surface is a named job: it is not a void.
   if (mapRect) cellsOf(mapRect, true);
   for (const el of all) { if (text(el)) cellsOf(el.getBoundingClientRect(), true); }
-  let voidPx = 0, voidTop = 0, voidW = 0;
-  for (let y = 0; y < ROWS; y++) {
-    let run = 0, best = 0, bestX = 0;
-    for (let x = 0; x < COLS; x++) {
-      if (free[y * COLS + x]) { if (!run) bestX = x; run++; if (run > best) best = run; }
-      else run = 0;
+  // A void is a region, not a band. The old probe took the longest free run in a
+  // single row and multiplied it by one row's height, so a tall narrow dead band
+  // in the rail — exactly the shape this defect takes — scored as one row's worth
+  // and could never trip the threshold. Find the largest free rectangle instead.
+  let voidPx = 0, voidTop = 0, voidW = 0, voidH = 0;
+  {
+    const heights = new Int32Array(COLS);
+    let best = { area: 0, x: 0, y: 0, w: 0, h: 0 };
+    for (let y = 0; y < ROWS; y++) {
+      for (let x = 0; x < COLS; x++) heights[x] = free[y * COLS + x] ? heights[x] + 1 : 0;
+      for (let x = 0; x < COLS; x++) {
+        let minH = Infinity;
+        for (let x2 = x; x2 < COLS; x2++) {
+          if (!heights[x2]) break;
+          minH = Math.min(minH, heights[x2]);
+          const area = minH * (x2 - x + 1);
+          if (area > best.area) best = { area, x, y: y - minH + 1, w: x2 - x + 1, h: minH };
+        }
+      }
     }
-    if (best * cw * ch > voidPx) { voidPx = best * cw * ch; voidW = best * cw; voidTop = y * ch; }
+    voidPx = best.area * cw * ch; voidW = best.w * cw; voidTop = best.y * ch; voidH = best.h * ch;
   }
 
   // 3a-ii. nothing covers the map on load: the largest overlay standing on the map's surface
@@ -229,17 +251,63 @@ const MEASURE = () => {
   });
   const firstUseful = firstScreenElements.length ? (firstScreenElements[firstScreenElements.length - 1]?.id || 'text') : null;
 
+  // 3e. clipped controls. A control the layout pushes outside the viewport, or a
+  // strip that hides its overflow behind a removed scrollbar, is not reachable.
+  // At 320px "Food" sat at x=287-353 — outside the layout viewport — and at 260px
+  // "Library" was sliced mid-word. The document did not scroll; the control was
+  // simply gone, which the old probe could not see.
+  const navChips = [...document.querySelectorAll('nav.chips button')].map(b => {
+    const r = b.getBoundingClientRect();
+    return { label: (b.innerText || '').trim().slice(0, 14), right: Math.round(r.right), w: Math.round(r.width) };
+  });
+  const navOutside = navChips.filter(c => c.w > 0 && c.right > vw + 1);
+  // The filter strip lives inside the Explore disclosure. A closed disclosure
+  // does not lay its content out, so scrollWidth/clientWidth on it is a layout
+  // artefact of a box that was never rendered — not a hidden scroller. The real
+  // question ("is any filter unreachable?") is asked in checkFilterStrip, with
+  // the disclosure open. Here we only report a strip that is on screen.
+  const strip = document.querySelector('.chip-scroll');
+  // A closed <details> does not lay its content out. Chrome still reports a
+  // box for the child, so the test cannot be "does it have a rect" — it is
+  // "is this subtree being rendered at all". checkVisibility() with no
+  // arguments answers exactly that; with an options object Chrome reports
+  // false for anything it cannot prove visible.
+  const stripRendered = !!(strip && strip.checkVisibility && strip.checkVisibility());
+  const stripHidden = stripRendered ? Math.max(0, strip.scrollWidth - strip.clientWidth) : 0;
+
+  // 3f. what the map actually draws. A share metric without a content floor always
+  // prefers a bigger, emptier map: CL;UB once held 88.7% of the phone screen at
+  // 4,259 m per pixel, carrying three cluster numbers and no street line-work.
+  let mapContent = null, camera = null;
+  try {
+    const feats = map.queryRenderedFeatures();
+    const om = feats.filter(f => f.source === 'openmaptiles');
+    mapContent = {
+      total: feats.length,
+      omTotal: om.length,
+      omLine: om.filter(f => f.layer.type === 'line').length,
+      omFill: om.filter(f => f.layer.type === 'fill').length,
+      omSymbol: om.filter(f => f.layer.type === 'symbol').length,
+      places: feats.filter(f => f.source === 'places').length,
+    };
+    const z = map.getZoom(), c = map.getCenter();
+    camera = { zoom: +z.toFixed(2), mpp: +(156543.03392 * Math.cos(c.lat * Math.PI / 180) / Math.pow(2, z)).toFixed(1) };
+  } catch { /* the map is not ready yet */ }
+
   return {
     vw, vh,
-    chrome: { topPx: Math.round(topPx), bottomPx: Math.round(bottomPx), share: +((topPx + bottomPx) / vh).toFixed(3) },
+    chrome: { topPx: Math.round(topPx), bottomPx: Math.round(bottomPx), columnPx: Math.round(columnPx),
+      share: +((topPx + bottomPx + columnPx) / vh).toFixed(3) },
     mapShare: +mapShare.toFixed(3),
     mapShareNet: +mapShareNet.toFixed(3),
     mapOverlayShare: +mapOverlayShare.toFixed(4),
     mapOverlays: mapOverlays.slice(0, 6),
     mapIsFirst, hierarchyRatio: +ratio.toFixed(2), top3,
-    voidPx: Math.round(voidPx), voidTop: Math.round(voidTop), voidW: Math.round(voidW),
+    voidPx: Math.round(voidPx), voidTop: Math.round(voidTop), voidW: Math.round(voidW), voidH: Math.round(voidH),
     obstruction, obstructionShare: +obstructionShare.toFixed(3),
     inflated: inflated.slice(0, 6), orphans: orphans.slice(0, 6), bleed,
+    clip: { navOutside, stripHidden: Math.round(stripHidden), stripRendered },
+    mapContent, camera,
     task: { search: inFold(q), count: countPlaced, firstUseful },
     lang: document.documentElement.lang || '',
     title: document.title,
@@ -253,8 +321,25 @@ async function ready(page) {
   await page.waitForFunction(() => typeof state !== 'undefined' && state.foodLoaded && state.places.length > 0
     && !!document.querySelector('#map canvas'), {}, { timeout: 240000 });
   await page.waitForFunction(() => !!map.getLayer('place-icons'), {}, { timeout: 90000 }).catch(() => { });
+  // The basemap must have painted before the screen is judged. A map that has not
+  // drawn yet is not a layout: measuring it reported "the basemap drew nothing"
+  // and failed a screen that was merely early. The wait must be for what the
+  // verdict measures — the street line-work — not for one feature. A single
+  // polygon satisfied the old wait long before the lines were on the canvas,
+  // and a resized canvas reports nothing until the next frame.
+  await page.waitForFunction(() => {
+    try {
+      const om = map.queryRenderedFeatures({ source: 'openmaptiles' });
+      const lines = om.filter(f => f.layer.type === 'line').length;
+      const seen = window.__mshLines || 0;
+      window.__mshLines = lines;
+      // Two consecutive reads of at least the floor: the map has stopped
+      // growing and the lines are really there.
+      return lines >= 40 && seen >= 40;
+    } catch { return false; }
+  }, { polling: 250 }, { timeout: 120000 }).catch(() => { });
   await page.evaluate(() => document.fonts.ready);
-  await page.waitForTimeout(700);
+  await page.waitForTimeout(1200);
   return page.evaluate(() => !!map.getLayer('place-icons'));
 }
 
@@ -490,7 +575,9 @@ const PRESERVE = async (page, base, shot) => {
 
   await step('walkthrough', async () => {
     await page.evaluate(() => map.jumpTo({ center: [100.64228, 13.76848], zoom: 16 }));
-    await page.locator('.list-walkthrough').click({ timeout: 15000 });
+    // The 3D hunt lives in the header band, once. The rail used to carry a second
+    // copy of the same control, ninety pixels away from it.
+    await page.locator('#open-3d').click({ timeout: 15000 });
     const stage = page.locator('#walkthrough-stage[open][data-ready="true"]');
     await stage.waitFor({ timeout: 60000 });
     checks.walkthrough = await stage.evaluate(el => {
@@ -522,8 +609,8 @@ const PRESERVE = async (page, base, shot) => {
   return checks;
 };
 
-// A 390px phone at 150% text is a 260px layout. The search is the first-screen
-// task, so it must stay usable there and the page must never scroll sideways.
+// A reader who enlarges text gets a narrower layout. The search must survive it,
+// and no category may be pushed out of the viewport by it.
 async function checkEnlargedText(browser, base) {
   const context = await browser.newContext({ viewport: { width: 260, height: 844 }, timezoneId: 'Asia/Bangkok' });
   const page = await context.newPage();
@@ -537,13 +624,122 @@ async function checkEnlargedText(browser, base) {
       const w = search ? search.getBoundingClientRect().width : 0;
       const overflow = bar ? Math.max(0, bar.scrollWidth - bar.clientWidth) : 0;
       const bleed = document.documentElement.scrollWidth > innerWidth + 1;
+      // The header bar was never the control that got lost: the category row was.
+      const chips = [...document.querySelectorAll('nav.chips button')].map(b => {
+        const r = b.getBoundingClientRect();
+        return { label: (b.innerText || '').trim().slice(0, 14), right: Math.round(r.right), w: Math.round(r.width) };
+      });
+      const outside = chips.filter(c => c.w > 0 && c.right > innerWidth + 1);
       return {
         viewport: 260, searchWidth: Math.round(w), barOverflow: overflow, bleed,
         inputPresent: !!input,
-        pass: w >= 120 && overflow <= 1 && !bleed && !!input,
+        chipsOutside: outside,
+        pass: w >= 120 && overflow <= 1 && !bleed && !!input && outside.length === 0,
       };
     });
   } finally { await context.close(); }
+}
+
+// The filter strip now lives inside the Explore disclosure. Putting filters
+// behind a labelled disclosure is honest design; putting them inside a
+// horizontal scroller with the scrollbar removed is not — that is how
+// "Crossing paths" lost half its name to an invisible edge. This opens the
+// disclosure and asks the only question that matters: once the reader is
+// looking at it, is every filter reachable, unwrapped and uncut?
+async function checkFilterStrip(page) {
+  // On a phone the rail is a drawer. The filters are not on screen until the
+  // reader opens it, so the check must open the drawer first — otherwise it
+  // measures a box nobody can see and calls it empty.
+  await page.evaluate(() => {
+    const rail = document.querySelector('#list-wrap');
+    const open = rail && rail.classList.contains('open');
+    const toggle = document.querySelector('#list-toggle');
+    // The toggle only exists on a phone. On a desktop the rail is always there.
+    const toggleVisible = toggle && toggle.checkVisibility ? toggle.checkVisibility() : toggle.getClientRects().length > 0;
+    if (!open && toggleVisible) toggle.click();
+  });
+  await page.waitForTimeout(700);
+  return await page.evaluate(() => {
+    const det = document.querySelector('#side .list-explore');
+    if (!det) return { present: false, pass: false, detail: 'the Explore disclosure is missing' };
+    det.open = true;
+    const strip = det.querySelector('.chip-scroll');
+    if (!strip) return { present: false, pass: false, detail: 'the filter strip is missing' };
+    const visible = strip.checkVisibility ? strip.checkVisibility() : strip.getClientRects().length > 0;
+    if (!visible) return { present: false, pass: false, detail: 'the filter strip is not on screen — the rail never opened' };
+    const box = strip.getBoundingClientRect();
+    const hidden = Math.max(0, strip.scrollWidth - strip.clientWidth);
+    const chips = [...strip.querySelectorAll('button')].map(b => {
+      const r = b.getBoundingClientRect();
+      return { label: (b.innerText || '').trim().slice(0, 14), left: Math.round(r.left), right: Math.round(r.right), w: Math.round(r.width), top: Math.round(r.top) };
+    }).filter(c => c.w > 0); // a button in a hidden group has no box: it is not offered
+    const outside = chips.filter(c => c.right > box.right + 1 || c.left < box.left - 1);
+    const rows = new Set(chips.map(c => c.top)).size;
+    const pass = chips.length > 0 && hidden <= 1 && outside.length === 0;
+    return {
+      present: true, open: det.open, hidden: Math.round(hidden), chips: chips.length, rows,
+      overflowX: getComputedStyle(strip).overflowX,
+      outside: outside.map(c => c.label),
+      pass,
+      detail: pass ? '' : `${chips.length} filters in ${rows} row(s), ${hidden}px hidden, ${outside.length} outside the strip`,
+    };
+  });
+}
+
+// CL;UB is half the product: a mode the old instrument never opened. Its own
+// preservation is measured here — the mood group that did nothing, the Explore
+// disclosure that was removed wholesale, the country-wide camera, the country action.
+async function checkClub(page, base) {
+  const checks = { errors: [] };
+  checks.clubMode = await page.evaluate(() => !!state.clubMode);
+  checks.explore = await page.evaluate(() => {
+    const d = document.querySelector('#side .list-explore');
+    if (!d) return { present: false };
+    d.open = true;
+    const actions = d.querySelector('.explore-actions');
+    const r = actions ? actions.getBoundingClientRect() : { height: 0 };
+    const buttons = actions ? actions.querySelectorAll('button, a').length : 0;
+    return { present: true, open: d.open, height: Math.round(r.height), destinations: buttons };
+  });
+  checks.moodsHidden = await page.evaluate(() => {
+    const m = document.querySelector('#side .chip-scroll .moods');
+    if (!m) return true;
+    const s = getComputedStyle(m);
+    return s.display === 'none' || s.visibility === 'hidden';
+  });
+  checks.camera = await page.evaluate(() => {
+    const z = map.getZoom(), c = map.getCenter();
+    return { zoom: +z.toFixed(2), mpp: +(156543.03392 * Math.cos(c.lat * Math.PI / 180) / Math.pow(2, z)).toFixed(1) };
+  });
+  checks.thailandAction = await page.evaluate(async () => {
+    const d = document.querySelector('#club-hotspots details');
+    if (!d) return { present: false };
+    d.open = true;
+    const b = d.querySelector('[data-thailand]');
+    if (!b) return { present: false };
+    const before = map.getZoom();
+    b.click();
+    // The flight to the national bounds takes longer than a beat. Wait for the
+    // camera to settle, or the check reads a half-finished flight as a dead button.
+    let after = before, last = before;
+    for (let i = 0; i < 40; i++) {
+      await new Promise(r => setTimeout(r, 150));
+      after = map.getZoom();
+      if (Math.abs(after - last) < 0.01 && i > 3) break;
+      last = after;
+    }
+    return { present: true, label: b.textContent.trim(), before: +before.toFixed(2), after: +after.toFixed(2), zoomedOut: after < before - 1 };
+  });
+  checks.search = await page.evaluate(async () => {
+    const q = document.querySelector('#q');
+    if (!q) return 0;
+    q.focus();
+    q.value = 'dispensary';
+    q.dispatchEvent(new Event('input', { bubbles: true }));
+    await new Promise(r => setTimeout(r, 900));
+    return document.querySelectorAll('#hits li').length;
+  });
+  return checks;
 }
 
 // ---------------------------------------------------------------- verdict
@@ -564,6 +760,16 @@ function verdictFor(view, journey) {
   if (!view.mapIsFirst) F('B7 hierarchy', 'the map is not the largest thing on the first screen');
   if (view.hierarchyRatio < 1.5) F('B7 hierarchy', `top two areas differ by only ${view.hierarchyRatio}x`);
   if (!view.task.search || !view.task.count) F('B1 first-screen task', 'the search or the count is below the fold');
+  // The map must draw the place. The city views render thousands of source street
+  // lines; the empty national view rendered 16. Below the floor, the map is a field.
+  if (view.mapContent) {
+    if (view.mapContent.omTotal === 0) F('B9 map content', 'the basemap drew nothing on the first screen');
+    else if (view.mapContent.omLine < 40) F('B9 map content', `the first screen draws ${view.mapContent.omLine} source street lines — the map is a field, not a place`);
+  }
+  if (view.clip) {
+    if (view.clip.navOutside && view.clip.navOutside.length) F('B13 no clip', `the category row pushes ${view.clip.navOutside.map(c => c.label || 'a chip').join(', ')} outside the viewport`);
+    if (view.clip.stripHidden > 1) F('B3 box fit', `the rail hides ${view.clip.stripHidden}px of filters in a scroller with no scrollbar`);
+  }
   if (view.lang !== 'en') F('B12 language', `lang is "${view.lang}"`);
   if (view.placeSheet && (!view.placeSheet.pass || (PLANTED && view.placeSheet.plantedRejected !== true))) F('B1 place sheet', `Bridge facts or Directions failed the reading budget: ${JSON.stringify(view.placeSheet)}`);
   if (view.thaiName && !view.thaiName.pass) F('B12 Thai typography', `a Thai place name does not wear the Thai face: ${JSON.stringify(view.thaiName)}`);
@@ -593,17 +799,39 @@ function verdictFor(view, journey) {
   return { fails, verdict: fails.length ? (fails.some(f => /map share|void|bleed|runtime/.test(f.id)) ? 'BLOCK' : 'REVISE') : 'PASS' };
 }
 
+// CL;UB is a second product in the same codebase. The instrument that never
+// opened it could not see the four defects that lived only there.
+function clubVerdict(club) {
+  const fails = [];
+  const F = (id, detail) => fails.push({ id, detail });
+  if (!club) return { fails, verdict: 'REVISE' };
+  if (!club.clubMode) F('B14 preservation', 'the club mode did not open');
+  if (!club.explore?.present || !club.explore.height) F('B14 preservation', `the Explore disclosure is missing or empty in CL;UB (${JSON.stringify(club.explore)})`);
+  if (!club.moodsHidden) F('B14 preservation', 'CL;UB shows a mood group whose chips do nothing');
+  if (!club.thailandAction?.present) F('B14 preservation', 'CL;UB has no explicit All Thailand action');
+  if (club.camera && club.camera.zoom < 11) F('B9 map content', `CL;UB opens at zoom ${club.camera.zoom} (${club.camera.mpp} m per pixel) — the country, not the listings`);
+  if (!club.search) F('B14 preservation', 'CL;UB search returns nothing');
+  return { fails, verdict: fails.length ? 'REVISE' : 'PASS' };
+}
+
 // ---------------------------------------------------------------- run
 const { chromium } = loadPlaywright();
 const base = await startServer();
 await mkdir(outDir, { recursive: true });
 const browser = await chromium.launch({ headless: true, args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'], ...(CHROME ? { executablePath: CHROME } : {}) });
-const report = { stamp, base, planted: PLANTED, viewports: [], journey: null, verdict: 'PASS', fails: [] };
+const report = { stamp, base, planted: PLANTED, viewports: [], journey: null, club: null, verdict: 'PASS', fails: [] };
+// Two products live in this codebase. The instrument that only opened PL;UB
+// could not see the four defects that existed only in CL;UB.
+const MODES = [
+  { key: 'plub', label: 'PL;UB', url: base, full: true },
+  { key: 'club', label: 'CL;UB', url: base + (base.includes('?') ? '&' : '?') + 'mode=club', full: false },
+];
 try {
+  for (const mode of MODES) {
   for (const { w, h } of WIDTHS) {
     const context = await browser.newContext({ viewport: { width: w, height: h }, timezoneId: 'Asia/Bangkok' });
     const page = await context.newPage();
-    await page.goto(base, { waitUntil: 'domcontentloaded', timeout: 120000 });
+    await page.goto(mode.url, { waitUntil: 'domcontentloaded', timeout: 120000 });
     const pins = await ready(page);
     if (PLANTED) {
       // A known defect: a big empty panel over the map. The gate must catch it.
@@ -624,21 +852,24 @@ try {
     }
     const view = await page.evaluate(MEASURE);
     view.pinsLayer = pins;
-    await page.screenshot({ path: new URL(`${PLANTED ? 'planted' : 'view'}-${w}.png`, outDir).pathname , timeout: 120000 });
-    try { view.placeSheet = await checkPlaceSheet(page, base); }
-    catch (error) { view.placeSheet = { pass: false, error: String(error.message).split('\n')[0] }; }
-    await page.screenshot({ path: new URL(`${PLANTED ? 'place-planted' : 'place'}-${w}.png`, outDir).pathname , timeout: 120000 });
-    try { view.visitReading = await checkVisitReadingOrder(page, base); }
-    catch (error) { view.visitReading = { pass: false, error: String(error.message).split('\n')[0] }; }
-    await page.screenshot({ path: new URL(`${PLANTED ? 'visit-planted' : 'visit'}-${w}.png`, outDir).pathname , timeout: 120000 });
-    try { view.dayPlanner = await checkDayPlanner(page, base); }
-    catch (error) { view.dayPlanner = { pass: false, error: String(error.message).split('\n')[0] }; }
-    // Last, because it opens a different place: the shots above must keep the page
-    // they were taken on.
-    try { view.thaiName = await checkThaiName(page, base); }
-    catch (error) { view.thaiName = { pass: false, error: String(error.message).split('\n')[0] }; }
-    report.viewports.push({ width: w, height: h, ...view });
+    await page.screenshot({ path: new URL(`${PLANTED ? 'planted' : 'view'}-${mode.key}-${w}.png`, outDir).pathname , timeout: 120000 });
+    if (mode.full) {
+      try { view.placeSheet = await checkPlaceSheet(page, base); }
+      catch (error) { view.placeSheet = { pass: false, error: String(error.message).split('\n')[0] }; }
+      await page.screenshot({ path: new URL(`${PLANTED ? 'place-planted' : 'place'}-${w}.png`, outDir).pathname , timeout: 120000 });
+      try { view.visitReading = await checkVisitReadingOrder(page, base); }
+      catch (error) { view.visitReading = { pass: false, error: String(error.message).split('\n')[0] }; }
+      await page.screenshot({ path: new URL(`${PLANTED ? 'visit-planted' : 'visit'}-${w}.png`, outDir).pathname , timeout: 120000 });
+      try { view.dayPlanner = await checkDayPlanner(page, base); }
+      catch (error) { view.dayPlanner = { pass: false, error: String(error.message).split('\n')[0] }; }
+      // Last, because it opens a different place: the shots above must keep the page
+      // they were taken on.
+      try { view.thaiName = await checkThaiName(page, base); }
+      catch (error) { view.thaiName = { pass: false, error: String(error.message).split('\n')[0] }; }
+    }
+    report.viewports.push({ mode: mode.key, width: w, height: h, ...view });
     await context.close();
+  }
   }
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, timezoneId: 'Asia/Bangkok' });
   const page = await context.newPage();
@@ -646,6 +877,33 @@ try {
   await ready(page);
   report.journey = await PRESERVE(page, base, 'live');
   await context.close();
+  // CL;UB's own preservation, in its own mode.
+  {
+    const cctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, timezoneId: 'Asia/Bangkok' });
+    const cpage = await cctx.newPage();
+    const errs = [];
+    cpage.on('pageerror', e => errs.push(String(e)));
+    cpage.on('console', m => { if (m.type() === 'error') errs.push('console: ' + m.text()); });
+    await cpage.goto(MODES[1].url, { waitUntil: 'domcontentloaded', timeout: 120000 });
+    await ready(cpage);
+    report.club = { ...(await checkClub(cpage, base)), errors: errs };
+    await cctx.close();
+  }
+  // The filter strip, measured open, in both modes, at both ends of the range.
+  // Its own context, so opening the disclosure cannot disturb a measurement
+  // already taken.
+  report.filterStrip = [];
+  for (const mode of MODES) {
+    for (const { w, h } of [{ w: 390, h: 844 }, { w: 1440, h: 900 }]) {
+      const sctx = await browser.newContext({ viewport: { width: w, height: h }, timezoneId: 'Asia/Bangkok' });
+      const spage = await sctx.newPage();
+      await spage.goto(mode.url, { waitUntil: 'domcontentloaded', timeout: 120000 });
+      await ready(spage);
+      const res = await checkFilterStrip(spage);
+      report.filterStrip.push({ mode: mode.key, width: w, ...res });
+      await sctx.close();
+    }
+  }
   report.enlargedText = await checkEnlargedText(browser, base);
 } finally {
   await browser.close();
@@ -654,16 +912,27 @@ try {
 
 for (const v of report.viewports) {
   const r = verdictFor(v, null);
-  report.fails.push(...r.fails.map(f => ({ ...f, width: v.width })));
+  report.fails.push(...r.fails.map(f => ({ ...f, width: `${v.mode}-${v.width}` })));
   v.verdict = r.verdict;
 }
 {
   const r = verdictFor({ vw: 1440, vh: 900, chrome: { share: 0 }, mapShare: 1, mapShareNet: 1, mapOverlayShare: 0, mapOverlays: [], voidPx: 0, obstructionShare: 0, inflated: [], orphans: [], bleed: false, mapIsFirst: true, hierarchyRatio: 9, task: { search: true, count: true }, lang: 'en' }, report.journey);
   report.fails.push(...r.fails.map(f => ({ ...f, width: 'journey' })));
 }
+{
+  const r = clubVerdict(report.club);
+  report.fails.push(...r.fails.map(f => ({ ...f, width: 'club' })));
+  if (report.club) report.club.verdict = r.verdict;
+}
 // A reader who enlarges text gets a narrower layout. The search must survive it.
 if (report.enlargedText && !report.enlargedText.pass) {
-  report.fails.push({ id: 'B15 enlarged text', detail: `at 260px (a 390px phone at 150% text) the search is ${report.enlargedText.searchWidth}px wide, the bar overflows by ${report.enlargedText.barOverflow}px and the page scrolls sideways: ${report.enlargedText.bleed}`, width: '260' });
+  report.fails.push({ id: 'B15 enlarged text', detail: `at 260px (a 390px phone at 150% text) the search is ${report.enlargedText.searchWidth}px wide, the bar overflows by ${report.enlargedText.barOverflow}px, the page scrolls sideways: ${report.enlargedText.bleed}, and ${(report.enlargedText.chipsOutside || []).map(c => c.label || 'a chip').join(', ') || 'no chip'} sits outside the viewport`, width: '260' });
+}
+// Every filter must be reachable once the reader opens Explore. A filter that
+// is cut, or scrolled out of sight behind a removed scrollbar, is not offered —
+// it is hidden, and a hidden filter is a lie about what the map can show.
+for (const s of report.filterStrip || []) {
+  if (!s.pass) report.fails.push({ id: 'B3 box fit', detail: `the filter strip hides filters: ${s.detail || 'the strip is missing'}`, width: `${s.mode}-${s.width}-strip` });
 }
 report.verdict = report.fails.length ? (report.fails.some(f => /map share|void|bleed|runtime/.test(f.id)) ? 'BLOCK' : 'REVISE') : 'PASS';
 
@@ -682,10 +951,12 @@ if (PLANTED) {
 const lines = [];
 lines.push(`MSH audit ${stamp} · ${report.base} · planted=${PLANTED}`);
 for (const v of report.viewports) {
-  lines.push(`  ${String(v.width).padStart(4)}px  chrome ${v.chrome.topPx}+${v.chrome.bottomPx}px (${(v.chrome.share * 100).toFixed(0)}%)  map ${(v.mapShare * 100).toFixed(0)}% (net ${(v.mapShareNet * 100).toFixed(0)}%, overlays ${(v.mapOverlayShare * 100).toFixed(1)}%)  void ${v.voidPx}px  hierarchy ${v.hierarchyRatio}x  ${v.verdict}`);
+  lines.push(`  ${(v.mode || 'plub').padEnd(5)} ${String(v.width).padStart(4)}px  chrome ${v.chrome.topPx}+${v.chrome.bottomPx}+${v.chrome.columnPx || 0}px (${(v.chrome.share * 100).toFixed(0)}%)  map ${(v.mapShare * 100).toFixed(0)}% (net ${(v.mapShareNet * 100).toFixed(0)}%)  void ${(100 * v.voidPx / (v.vw * v.vh)).toFixed(1)}% ${v.voidW}x${v.voidH}  lines ${v.mapContent?.omLine ?? '?'}  z${v.camera?.zoom ?? '?'}  ${v.verdict}`);
 }
 lines.push(`  journey: search ${report.journey.search} hits · chip ${report.journey.chipChanged ? 'works' : 'NO CHANGE'} · hop ${report.journey.hopStops} stops · shared feed "${String(report.journey.hopFeed).slice(0, 40)}" · lens ${report.journey.lensOn?.ground}/${report.journey.lensOff?.ground} · writes ${report.journey.writes.length}`);
+if (report.club) lines.push(`  club:   mode ${report.club.clubMode} · explore ${report.club.explore?.height}px/${report.club.explore?.destinations} destinations · moods hidden ${report.club.moodsHidden} · camera z${report.club.camera?.zoom} (${report.club.camera?.mpp} m/px) · all-thailand ${report.club.thailandAction?.zoomedOut ? 'works' : 'NO'} · search ${report.club.search} · errors ${(report.club.errors || []).length}`);
 if (report.enlargedText) lines.push(`  260px  enlarged text (390px phone at 150%): search ${report.enlargedText.searchWidth}px · bar overflow ${report.enlargedText.barOverflow}px · sideways ${report.enlargedText.bleed ? 'yes' : 'no'}  ${report.enlargedText.pass ? 'PASS' : 'FAIL'}`);
+for (const s of report.filterStrip || []) lines.push(`  strip  ${s.mode} ${s.width}px: ${s.chips} filters in ${s.rows} row(s) · ${s.hidden}px hidden · outside ${(s.outside || []).length}  ${s.pass ? 'PASS' : 'FAIL'}`);
 for (const f of report.fails) lines.push(`  FAIL [${f.width}] ${f.id}: ${f.detail}`);
 lines.push(`Verdict: ${report.verdict}`);
 console.log(lines.join('\n'));

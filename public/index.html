@@ -22,12 +22,12 @@
 <link rel="preload" href="fonts/prompt-thai-400.woff2?v=80fa1143" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/prompt-latin-400.woff2?v=6d0bc99f" as="font" type="font/woff2" crossorigin>
 <link href="vendor/maplibre-gl-4.7.1/maplibre-gl.css?v=576b085f" rel="stylesheet">
-<link href="style.css?v=4af2c256" rel="stylesheet">
+<link href="style.css?v=c0e9a094" rel="stylesheet">
 <link href="notebook.css?v=fc097343" rel="stylesheet">
 <link href="discovery.css?v=7ad5c0e9" rel="stylesheet">
 <link href="atlas.css?v=83bf2ccd" rel="stylesheet">
 <link href="footprint-palette.css?v=fae59c62" rel="stylesheet">
-<link href="list-tools.css?v=e7836644" rel="stylesheet">
+<link href="list-tools.css?v=b15557e5" rel="stylesheet">
 <link href="street-world.css?v=56358991" rel="stylesheet">
 <link href="street-world-3d.css?v=f5b46495" rel="stylesheet">
 <link href="talk-media.css?v=9e7056ed" rel="stylesheet">
@@ -72,9 +72,28 @@
     <div class="rail-header">
       <div class="rail-row rail-actions">
         <button class="list-find" data-act="work">Find a work spot</button>
-        <button class="list-walkthrough" data-act="walkthrough">3D Hunt</button>
         <a class="list-day" href="/day">Plan your day</a>
         <details class="list-explore"><summary>Explore</summary><div class="explore-actions" aria-label="Explore places">
+          <div class="chip-scroll">
+            <div class="moods" role="group" aria-label="Moods">
+              <span class="chip-seg">Moods</span>
+              <button data-mood="slow" aria-pressed="false">Slow mornings</button>
+              <button data-mood="midnight" aria-pressed="false">Past midnight</button>
+              <button data-mood="crossing" aria-pressed="false">Crossing paths</button>
+              <button data-mood="afterwork" aria-pressed="false">After work</button>
+            </div>
+            <span class="seg-rule" aria-hidden="true"></span>
+            <div class="flags" role="group" aria-label="Filters">
+              <span class="chip-seg">Filters</span>
+              <button data-flag="wifi" aria-pressed="false" title="Wi-Fi listed or rated">≋ Wi-Fi</button>
+              <button data-flag="open" aria-pressed="false" title="Open now where hours are known">◷ Open</button>
+              <button data-flag="late" aria-pressed="false" title="Open late or 24 hours — good for overnight work">☾ Late night</button>
+              <button data-flag="indie" aria-pressed="false" title="No chain signal">◇ Indie</button>
+              <button data-flag="visited" aria-pressed="false" title="Places you visited">✓ Been</button>
+              <button data-flag="work" aria-pressed="false" title="Good for work — visitor work score">⌨ Work</button>
+            </div>
+            <output id="list-filter-count" class="cat-count"></output>
+          </div>
           <label class="list-order"><span class="sr">Sort places</span><select id="list-order" aria-label="Sort places">
             <option value="near">Near map centre</option>
             <option value="great">Third Place Index</option>
@@ -104,28 +123,6 @@
         <output id="count" class="count" aria-live="polite">Loading…</output>
         <button type="button" class="scope-tiles" data-act="tiles" aria-pressed="false" title="Toggle Einstein hat-monotile concentration heatmap">⬡ Einstein tiles</button>
       </div>
-      <div class="rail-row rail-chips">
-        <div class="chip-scroll">
-          <div class="moods" role="group" aria-label="Moods">
-            <span class="chip-seg">Moods</span>
-            <button data-mood="slow" aria-pressed="false">Slow mornings</button>
-            <button data-mood="midnight" aria-pressed="false">Past midnight</button>
-            <button data-mood="crossing" aria-pressed="false">Crossing paths</button>
-            <button data-mood="afterwork" aria-pressed="false">After work</button>
-          </div>
-          <span class="seg-rule" aria-hidden="true"></span>
-          <div class="flags" role="group" aria-label="Filters">
-            <span class="chip-seg">Filters</span>
-            <button data-flag="wifi" aria-pressed="false" title="Wi-Fi listed or rated">≋ Wi-Fi</button>
-            <button data-flag="open" aria-pressed="false" title="Open now where hours are known">◷ Open</button>
-            <button data-flag="late" aria-pressed="false" title="Open late or 24 hours — good for overnight work">🌙 Late night</button>
-            <button data-flag="indie" aria-pressed="false" title="No chain signal">◇ Indie</button>
-            <button data-flag="visited" aria-pressed="false" title="Places you visited">✓ Been</button>
-            <button data-flag="work" aria-pressed="false" title="Good for work — visitor work score">⌨ Work</button>
-          </div>
-          <output id="list-filter-count" class="cat-count"></output>
-        </div>
-      </div>
     </div>
     <p id="mood" class="mood-bar" hidden aria-live="polite"></p>
     <ol id="list" class="list" aria-labelledby="places-in-view"></ol>
@@ -154,7 +151,7 @@
 <script src="journeys.js?v=a7a2a1f9"></script>
 <script src="talk-media.js?v=5f3467b8"></script>
 <script src="work-atmosphere.js?v=d082a598"></script>
-<script src="app.js?v=8085396f"></script>
+<script src="app.js?v=46d9209b"></script>
 <script src="views.js?v=f92f2a1f"></script>
 <script src="notebook.js?v=6f98eb10"></script>
 <script src="photos.js?v=6ba3ccb8"></script>

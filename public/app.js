@@ -54,6 +54,11 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': 
 const nm = s => PlaceTools.name(s);const fmt = n => n.toLocaleString('en-US');
 const isPhone = () => !window.matchMedia('(min-width: 900px)').matches;
 const metres = (a, b) => Math.hypot((a.y - b.y) * 111320, (a.x - b.x) * 111320 * Math.cos(a.y * Math.PI / 180));
+// A distance is read at a glance: metres under a kilometre, kilometres above it.
+// Raw metres wrote "73210 m" for a venue three quarters of an hour away.
+const distLabel = (m) => m >= 1000
+  ? `~${(m / 1000).toFixed(m >= 10000 ? 0 : 1)} km`
+  : `~${Math.round(m / 10) * 10} m`;
 const digits = p => [...p.g].map(Number);
 const venueHours = p => window.WorkFinder?.hours(p) || p.hours;
 
@@ -202,13 +207,34 @@ function renderClubHotspots() {
     box.innerHTML = '<span role="status">Directory unavailable.</span> <button type="button" data-retry-club>Retry</button>';
     return;
   }
+  const total = state.cannabisStats?.total ?? state.places.filter(p => p.k === 'cannabis').length;
   box.innerHTML = `<details><summary>Browse hotspots · ${state.cannabisHotspots.length}</summary>
-    <div class="hotspots-row">${state.cannabisHotspots.map((h, i) =>
+    <div class="hotspots-row"><button type="button" class="hotspot-pill" data-thailand><b aria-label="All ${total} listings across Thailand">☷</b><span>All Thailand · ${fmt(total)}</span></button>${state.cannabisHotspots.map((h, i) =>
       `<button type="button" class="hotspot-pill" data-hotspot="${i}"><b aria-label="${h.count} listings within 1.5 km">${h.count}</b><span>Near ${nm(h.name)}</span></button>`
     ).join('')}</div></details>`;
 }
 
 let clubModeChange = 0;
+// CL;UB's landing camera is the metro, not the country. Fitting all 329
+// listings put the reader at 4.3 km per pixel: most of the phone screen
+// carried three cluster numbers and no street line-work. Bangkok holds 160 of
+// the listings, so the map opens on the listings themselves, at a zoom where
+// the basemap still draws its streets. "All Thailand" stays reachable — but
+// as an action the reader takes, never as the view they arrive in.
+const CLUB_LANDING_ZOOM = 12;
+function clubLanding() {
+  const bkk = state.places.filter(p => p.k === 'cannabis' && p.prov === 'Bangkok');
+  if (!bkk.length) return null;
+  const mid = Math.floor(bkk.length / 2);
+  const lats = bkk.map(p => p.y).sort((a, b) => a - b);
+  const lngs = bkk.map(p => p.x).sort((a, b) => a - b);
+  return { center: [lngs[mid], lats[mid]], zoom: CLUB_LANDING_ZOOM };
+}
+function clubBounds() {
+  const bounds = new maplibregl.LngLatBounds();
+  for (const p of state.places) if (p.k === 'cannabis') bounds.extend([p.x, p.y]);
+  return bounds.isEmpty() ? null : bounds;
+}
 async function setClubMode(on, { frame = true } = {}) {
   const attempt = ++clubModeChange;
   const switching = state.clubMode !== Boolean(on);
@@ -265,9 +291,12 @@ async function setClubMode(on, { frame = true } = {}) {
     map.setMaxBounds(TH_BOUNDS);
     map.setMinZoom(5);
     if (frame && state.cannabisLoaded && !new URL(location.href).searchParams.has('p')) {
-      const bounds = new maplibregl.LngLatBounds();
-      for (const p of state.places) if (p.k === 'cannabis') bounds.extend([p.x, p.y]);
-      if (!bounds.isEmpty()) map.fitBounds(bounds, { padding: 18, animate: false });
+      const landing = clubLanding();
+      if (landing) map.jumpTo({ center: landing.center, zoom: landing.zoom, animate: false });
+      else {
+        const bounds = clubBounds();
+        if (bounds) map.fitBounds(bounds, { padding: 18, animate: false });
+      }
     }
   } else {
     state.kinds = new Set(['cafe', 'coworking', 'library']);
@@ -513,7 +542,7 @@ function renderList() {
     const rows = places.slice(0, limit).map(p => row(p, sortKey(p, centre), true)).join('');
     return `<li class="list-group" data-list-group="${kind}"><h3 id="list-heading-${kind}">${label} <span>${fmt(places.length)}</span></h3>
       <ol aria-labelledby="list-heading-${kind}">${rows}</ol>${more}</li>`;
-  }).join('') + (!state.clubMode ? `<li class="list-pulse"><h3>Talk of the town &amp; Research</h3><div class="pulse-links"><button type="button" class="linkish" data-act="discovery">50+50 editorial picks →</button><button type="button" class="linkish" data-act="featured">Featured spots →</button><a href="/research">Data bank &amp; methodology →</a></div></li>` : '') : `<li class="meta">${loadingFood ? 'Loading food places…' : 'No matches in view. Pan, zoom out or clear a filter.'}</li>`;
+  }).join('') : `<li class="meta">${loadingFood ? 'Loading food places…' : 'No matches in view. Pan, zoom out or clear a filter.'}</li>`;
   if (focusedPlace) list.querySelector(`[data-id="${CSS.escape(focusedPlace)}"] button`)?.focus({ preventScroll: true });
   if (focusedGroup) list.querySelector(`[data-list-more="${CSS.escape(focusedGroup)}"]`)?.focus({ preventScroll: true });
 
@@ -522,7 +551,7 @@ function renderList() {
 function sortKey(p, centre) {
   return {
     great: p.k === 'cannabis' ? `${p.idx}/4 details` : `${p.idx} index`,
-    near: `~${Math.round(metres(p, centre) / 10) * 10} m`,
+    near: distLabel(metres(p, centre)),
     leveler: p.flags & F.CHAIN ? 'chain' : `◇${p.d[2]}/9 indie`,
     vitality: `⁘${p.d[1]}/9 scene`,
     regulars: state.visited.has(p.id) ? '✓ regular' : `♡ home`,
@@ -542,7 +571,7 @@ function row(p, key = p.k === 'cannabis' ? (CLUB_TYPES[p.sub] || KIND_LABEL.cann
     state.visited.has(p.id) ? '<b title="You have been here">✓</b>' : '',
     p.flags & F.NOTABLE ? '<span title="Notable">✦</span>' : '',
     p.flags & F.WIFI ? '<span title="Wi-Fi listed">≋</span>' : '',
-    p.flags & F.LATE ? '<span title="Open late or 24 hours">🌙</span>' : '',
+    p.flags & F.LATE ? '<span title="Open late or 24 hours">☾</span>' : '',
     s ? `<span title="Visitor ratings">★${s.n}</span>` : '',
     state.flags.has('work') ? `<span title="Work score" class="ws">${Math.round(ws)}</span>` : '',
   ].join(' ');
@@ -766,7 +795,7 @@ function renderSheet(p, d, visits, report) {
   const addressSource = safeLink(report?.place?.addressSource);
   const facts = [
     hours && ['◷', 'hours', `${open === true ? '<b>Open now</b> · ' : open === false ? '<b>Closed now</b> · ' : ''}${esc(hours.replace(/^Mo-Su (?=\d\d:\d\d-\d\d:\d\d$)/, 'Daily '))}`],
-    p.flags & F.LATE && ['🌙', 'late-night', 'Open late · 24-hour work spot'],
+    p.flags & F.LATE && ['☾', 'late-night', 'Open late · 24-hour work spot'],
     addr && ['⌖', 'address', esc(addr)],
   ].filter(Boolean);
   const amenityList = [
@@ -948,6 +977,12 @@ document.addEventListener('click', e => {
   const h = e.target.closest('#mood [data-hood]');
   if (h) window.openHood?.(h.dataset.hood);
   if (e.target.closest('[data-retry-club]')) { setClubMode(true); return; }
+  const th = e.target.closest('[data-thailand]');
+  if (th) {
+    const bounds = clubBounds();
+    if (bounds) map.fitBounds(bounds, { padding: 24, animate: !matchMedia('(prefers-reduced-motion: reduce)').matches, duration: 240 });
+    return;
+  }
   const hs = e.target.closest('[data-hotspot]');
   if (hs) {
     const spot = state.cannabisHotspots[Number(hs.dataset.hotspot)];
@@ -980,4 +1015,9 @@ document.addEventListener('click', e => {
   document.querySelector(`.atlas-dock [data-${b.dataset.proxy}]`)?.click();
 });
 
-document.querySelector('.rail-header').addEventListener('click',e=>{if(e.target.closest('[data-act],[data-mood],[data-flag],[data-proxy]'))for(const d of document.querySelectorAll('.rail-header details'))d.open=false});
+// An action in the rail header closes the Explore disclosure. A click inside the
+// disclosure must not: the mood and filter chips now live in there.
+document.querySelector('.rail-header').addEventListener('click', e => {
+  if (e.target.closest('.list-explore')) return;
+  if (e.target.closest('[data-act],[data-mood],[data-flag],[data-proxy]')) for (const d of document.querySelectorAll('.rail-header details')) d.open = false;
+});

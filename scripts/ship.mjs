@@ -66,10 +66,12 @@ async function main() {
   // 1. the working tree must be committed and in step with origin
   await (step('repository in step with origin', async () => {
     await run('git', ['fetch', 'origin', '-q'], { cwd: ROOT });
-    // The gate's own evidence — the MSH report and the byte proofs it writes —
-    // lands in the repository. That output is not source: it must not stop the
-    // next run, or the gate can only ever run once a day.
-    const EVIDENCE = /^\s*[MADRCU?!]{1,2}\s+(docs\/msh-audit\/|docs\/release\/)/;
+    // The gate's own evidence — the MSH report, the byte proofs, the baseline
+    // screenshots the browser tests re-shoot — lands under docs/. That output is
+    // not source and it is not served, so it must not stop the next run, or the
+    // gate can only ever run once a day. Anything under public/ still has to be
+    // committed.
+    const EVIDENCE = /^\s*[MADRCU?!]{1,2}\s+docs\//;
     const dirty = (await run('git', ['status', '--porcelain'], { cwd: ROOT })).stdout
       .split('\n').filter(l => l.trim() && !EVIDENCE.test(l)).join('\n');
     if (dirty) throw new Error(`the working tree is not clean:\n${dirty}`);
