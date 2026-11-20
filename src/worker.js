@@ -165,6 +165,19 @@ export default {
       return json({ error: 'method not allowed' }, 405, { allow: 'GET, POST' });
     }
     if (url.pathname === '/' && (url.hostname === 'club.nonarkara.org' || url.searchParams.get('mode') === 'club' || ['hood', 'p', 'mood'].some(k => url.searchParams.has(k)))) return await secHeaders(await withPreview(request, env, url));
+    // A browser asks for /favicon.ico on every origin whether or not the page
+    // declares an icon. Answering it with the mark we already ship is honest:
+    // an unnamed 404 on every page view is a hole in the product, not a detail.
+    if (url.pathname === '/favicon.ico') {
+      const icon = await env.ASSETS.fetch(new URL('/icons/plub-192.png', url));
+      if (icon.ok) {
+        const headers = new Headers(icon.headers);
+        headers.set('content-type', 'image/png');
+        headers.set('cache-control', 'public, max-age=86400');
+        for (const [k, v] of Object.entries(SEC)) headers.set(k, v);
+        return new Response(icon.body, { status: 200, headers });
+      }
+    }
     const res = await env.ASSETS.fetch(request);
     // A lost reader is met with a signpost, not a blank wall. The 404 page is
     // our own design, so it carries the same headers as everything else.
