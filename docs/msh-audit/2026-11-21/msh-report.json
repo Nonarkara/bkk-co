@@ -658,7 +658,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 278
+      "observedHandoffMs": 306
     },
     "notebook": 1,
     "walkthrough": {
@@ -764,6 +764,88 @@
     "chipsOutside": [],
     "pass": true
   },
+  "surfaces": [
+    {
+      "name": "/research",
+      "width": 390,
+      "found": []
+    },
+    {
+      "name": "/research",
+      "width": 1440,
+      "found": []
+    },
+    {
+      "name": "/neighbourhoods",
+      "width": 390,
+      "found": []
+    },
+    {
+      "name": "/neighbourhoods",
+      "width": 1440,
+      "found": []
+    },
+    {
+      "name": "/privacy",
+      "width": 390,
+      "found": []
+    },
+    {
+      "name": "/privacy",
+      "width": 1440,
+      "found": []
+    },
+    {
+      "name": "/day",
+      "width": 390,
+      "found": []
+    },
+    {
+      "name": "/day",
+      "width": 1440,
+      "found": []
+    },
+    {
+      "name": "/bridge-1958",
+      "width": 390,
+      "found": []
+    },
+    {
+      "name": "/bridge-1958",
+      "width": 1440,
+      "found": []
+    },
+    {
+      "name": "guide",
+      "width": 390,
+      "found": []
+    },
+    {
+      "name": "notebook",
+      "width": 390,
+      "found": []
+    },
+    {
+      "name": "3d-hunt",
+      "width": 390,
+      "found": []
+    },
+    {
+      "name": "guide",
+      "width": 1440,
+      "found": []
+    },
+    {
+      "name": "notebook",
+      "width": 1440,
+      "found": []
+    },
+    {
+      "name": "3d-hunt",
+      "width": 1440,
+      "found": []
+    }
+  ],
   "disclosure": [
     {
       "mode": "plub",

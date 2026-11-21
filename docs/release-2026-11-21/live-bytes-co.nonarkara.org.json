@@ -1,17 +1,17 @@
 {
-  "observedAt": "2026-11-21T00:12:24.439Z",
+  "observedAt": "2026-11-21T02:32:09.056Z",
   "origin": "https://co.nonarkara.org",
-  "sourceCommit": "3cc2b3fd1e545893c1adadb21cd8748a1e452ce0",
+  "sourceCommit": "b4eef718ce33da25db42a82cdee369195a5060e4",
   "matched": [
     {
       "path": "404.html",
       "bytes": 1204,
-      "sha256": "05a2138c8b47aa510d28636efb51670b38360773a3cb487b7f31a186cf1e073b"
+      "sha256": "8102075fa33dd17c0b308a8d954c68683ee9a13a40b8f27e1627524f25077579"
     },
     {
       "path": "app.js",
-      "bytes": 76930,
-      "sha256": "125f7360ace98fb03192d594336c98d46b68dac9b20a4cbde098791c4315beb9"
+      "bytes": 77612,
+      "sha256": "b1e219ea369ce7e50dabf0709dc491361903a513141a82e4c7d2f11d0aa1f28e"
     },
     {
       "path": "atlas-model.js",
@@ -31,7 +31,7 @@
     {
       "path": "bridge-1958.html",
       "bytes": 4221,
-      "sha256": "c82268be4bc35cb9d27a62f88caaadc6360ab1025bcf245673e5bd78086ff3f8"
+      "sha256": "770354e713959d639767277b6055b0edf18434a10cb88815dbd1b36e71956ccf"
     },
     {
       "path": "club-mode.js",
@@ -1066,7 +1066,7 @@
     {
       "path": "day.html",
       "bytes": 1495,
-      "sha256": "e0728fad65d76187668f7b7e710d8eaac83111d68ed12ed65f5b23706d366fe0"
+      "sha256": "a186db0691c3cb43cbacd46c9a252bf9e813e6863eb533b3739389594a90620f"
     },
     {
       "path": "day.js",
@@ -1201,7 +1201,7 @@
     {
       "path": "index.html",
       "bytes": 11075,
-      "sha256": "e78a15bdc0aa517ca4ef18cebd7c1bd7006a11eace695a8e259ffd522cca3e39"
+      "sha256": "d1a9d032cab6edfbef2545f07fe319816fbeeb1bbc562c5ce9b888413d4efd61"
     },
     {
       "path": "journey-model.js",
@@ -1851,7 +1851,7 @@
     {
       "path": "neighborhood-photos.css",
       "bytes": 2067,
-      "sha256": "78675acddb6524f633c82caaad0910b5704bf45c9bed9197ff501ba90848922d"
+      "sha256": "76a0567717ccbd082b25584d687b5f11e9f312cbe308403cb5bffbcf84d3232c"
     },
     {
       "path": "neighborhood-photos.js",
@@ -1861,7 +1861,7 @@
     {
       "path": "neighbourhoods.html",
       "bytes": 2925,
-      "sha256": "4b95b8cfe56540946944767f4d0a59342bcd0e117743f1a9124e2e99ec4761fb"
+      "sha256": "3b94f3c7126adf5ae1fedacd4049c84a4b8cb8219ecb1577721ebcef1d19feb2"
     },
     {
       "path": "neighbourhoods.js",
@@ -1870,8 +1870,8 @@
     },
     {
       "path": "notebook.css",
-      "bytes": 6765,
-      "sha256": "21aceac7f074f51f4bc8f712fa31a40e80b748e8882450037f2c1c7513976e6d"
+      "bytes": 7097,
+      "sha256": "1a3f6b3ab7dd49530014c6a33f1718cf364f824bb00fff6aa0b8421014f76e7c"
     },
     {
       "path": "notebook.js",
@@ -1946,7 +1946,7 @@
     {
       "path": "privacy.html",
       "bytes": 8313,
-      "sha256": "5470de044501029525d76f4ab1ce31471df072a7e86c5de573d9f2479bf21385"
+      "sha256": "ff77e7e2167813ecf1e9e9038df88dd7199b59ada2ca270d69b4b8568908d4ac"
     },
     {
       "path": "research.css",
@@ -1956,7 +1956,7 @@
     {
       "path": "research.html",
       "bytes": 6151,
-      "sha256": "645cd20fd0d2f330c1fb1d7e97f451a77a4aa9932dd2c8fe6ba0b10a2fa11397"
+      "sha256": "71e34fe4cbd1875b18002284568b8178f1a49ffceded09f3df4b862128eb67ea"
     },
     {
       "path": "research.js",
@@ -1980,8 +1980,8 @@
     },
     {
       "path": "street-world-3d.css",
-      "bytes": 9509,
-      "sha256": "f5b464958a6c64fd035593b7ce37e0d6d8d1b31bc62ce1561291515baf5b489f"
+      "bytes": 10036,
+      "sha256": "2cdccda5c767425157efce05c37c8957a55ff0934f5dbec19268a9ce7e0ea5fd"
     },
     {
       "path": "street-world-3d.js",
@@ -2001,7 +2001,7 @@
     {
       "path": "style.css",
       "bytes": 42121,
-      "sha256": "1160ffab9e11c96687c9d62490944d49b82aa60ce055962e83b0cfdaa12be8c0"
+      "sha256": "8c527a5608ff84ae06b7a6548501b331c756c76a302ea44334123ec704189c39"
     },
     {
       "path": "styles/plub-manga.json",

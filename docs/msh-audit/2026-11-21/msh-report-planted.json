@@ -95,6 +95,8 @@
           "sel": "button#planted-tiny",
           "w": 22,
           "h": 22,
+          "effW": 22,
+          "effH": 22,
           "text": "x"
         }
       ],
@@ -237,6 +239,8 @@
           "sel": "button#planted-tiny",
           "w": 22,
           "h": 22,
+          "effW": 22,
+          "effH": 22,
           "text": "x"
         }
       ],
@@ -379,6 +383,8 @@
           "sel": "button#planted-tiny",
           "w": 22,
           "h": 22,
+          "effW": 22,
+          "effH": 22,
           "text": "x"
         }
       ],
@@ -521,6 +527,8 @@
           "sel": "button#planted-tiny",
           "w": 22,
           "h": 22,
+          "effW": 22,
+          "effH": 22,
           "text": "x"
         }
       ],
@@ -618,6 +626,8 @@
           "sel": "button#planted-tiny",
           "w": 22,
           "h": 22,
+          "effW": 22,
+          "effH": 22,
           "text": "x"
         }
       ],
@@ -715,6 +725,8 @@
           "sel": "button#planted-tiny",
           "w": 22,
           "h": 22,
+          "effW": 22,
+          "effH": 22,
           "text": "x"
         }
       ],
@@ -750,7 +762,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 323
+      "observedHandoffMs": 478
     },
     "notebook": 1,
     "walkthrough": {
@@ -922,6 +934,86 @@
       "id": "B13 tap target",
       "detail": "the phone drawer at club 390px has no keyboard way out: Escape did not close the drawer",
       "width": "club-390-escape"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "/research at 390px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "-research-390-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "/research at 1440px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "-research-1440-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "/neighbourhoods at 390px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "-neighbourhoods-390-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "/neighbourhoods at 1440px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "-neighbourhoods-1440-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "/privacy at 390px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "-privacy-390-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "/privacy at 1440px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "-privacy-1440-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "/day at 390px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "-day-390-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "/day at 1440px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "-day-1440-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "/bridge-1958 at 390px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "-bridge-1958-390-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "/bridge-1958 at 1440px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "-bridge-1958-1440-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "guide at 390px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "guide-390-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "notebook at 390px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "notebook-390-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "3d-hunt at 390px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "3d-hunt-390-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "guide at 1440px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "guide-1440-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "notebook at 1440px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "notebook-1440-taps"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "3d-hunt at 1440px has a control a finger cannot hit: button#planted-tiny 22x22 \"x\"",
+      "width": "3d-hunt-1440-taps"
     }
   ],
   "filterStrip": [
@@ -987,6 +1079,232 @@
     "chipsOutside": [],
     "pass": true
   },
+  "surfaces": [
+    {
+      "name": "/research",
+      "width": 390,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "/research",
+      "width": 1440,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "/neighbourhoods",
+      "width": 390,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "/neighbourhoods",
+      "width": 1440,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "/privacy",
+      "width": 390,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "/privacy",
+      "width": 1440,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "/day",
+      "width": 390,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "/day",
+      "width": 1440,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "/bridge-1958",
+      "width": 390,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "/bridge-1958",
+      "width": 1440,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "guide",
+      "width": 390,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "notebook",
+      "width": 390,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "3d-hunt",
+      "width": 390,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "guide",
+      "width": 1440,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "notebook",
+      "width": 1440,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    },
+    {
+      "name": "3d-hunt",
+      "width": 1440,
+      "found": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "effW": 22,
+          "effH": 22,
+          "text": "x"
+        }
+      ]
+    }
+  ],
   "disclosure": [
     {
       "mode": "plub",
