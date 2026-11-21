@@ -1,0 +1,15 @@
+{
+  "before": {
+    "count": "18,589 places",
+    "label": "Show all 18,589 places",
+    "rows": 9
+  },
+  "clickMs": 677,
+  "after": {
+    "rows": 8851,
+    "count": "8,851 places",
+    "listScrollH": 434464,
+    "listClientH": 391,
+    "nodes": 67619
+  }
+}

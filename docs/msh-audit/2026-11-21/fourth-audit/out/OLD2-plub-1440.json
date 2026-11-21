@@ -1,0 +1,6907 @@
+{
+  "label": "OLD2-plub",
+  "url": "http://127.0.0.1:8801/index.html",
+  "mode": "plub",
+  "vw": 1440,
+  "vh": 900,
+  "rec": {
+    "vw": 1440,
+    "vh": 900,
+    "before": {
+      "url": "http://127.0.0.1:8801/index.html",
+      "title": "PLUB · Placemaking Laboratory Urban Bureau",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "hasMap": true,
+      "canvas": {
+        "x": 0,
+        "y": 53,
+        "w": 1440,
+        "h": 847,
+        "cw": 1440,
+        "ch": 847
+      },
+      "share": {
+        "canvas": {
+          "x": 0,
+          "y": 53,
+          "w": 1440,
+          "h": 847
+        },
+        "samples": 33840,
+        "step": 6,
+        "mapSharePainted": 0,
+        "mapShareUsable": 0,
+        "paintedPx": 0,
+        "usablePx": 0,
+        "covers": [
+          {
+            "tag": "HEADER",
+            "cls": "bar",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "w": 1440,
+              "h": 53
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 109,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "NAV",
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "2"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 57,
+              "w": 67,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 21,
+              "y": 65,
+              "w": 16,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 23,
+              "y": 66,
+              "w": 11,
+              "h": 12
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 83,
+              "y": 57,
+              "w": 87,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 92,
+              "y": 65,
+              "w": 16,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 93,
+              "y": 67,
+              "w": 12,
+              "h": 12
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 174,
+              "y": 57,
+              "w": 80,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 183,
+              "y": 65,
+              "w": 16,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 184,
+              "y": 67,
+              "w": 12,
+              "h": 11
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 257,
+              "y": 57,
+              "w": 69,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 266,
+              "y": 65,
+              "w": 16,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "circle",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 271,
+              "y": 69,
+              "w": 7,
+              "h": 7
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 267,
+              "y": 66,
+              "w": 14,
+              "h": 12
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "MAIN",
+            "cls": "maplibregl-map",
+            "id": "map",
+            "insideMap": true,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 1440,
+              "h": 847
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(249, 193, 206)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1384,
+              "y": 63,
+              "w": 46,
+              "h": 90
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "maplibregl-ctrl-zoom-in",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1385,
+              "y": 64,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "maplibregl-ctrl-icon",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1385,
+              "y": 64,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "maplibregl-ctrl-zoom-out",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1385,
+              "y": 108,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "maplibregl-ctrl-icon",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1385,
+              "y": 109,
+              "w": 44,
+              "h": 43
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1384,
+              "y": 163,
+              "w": 46,
+              "h": 46
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "maplibregl-ctrl-geolocate",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1385,
+              "y": 164,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "maplibregl-ctrl-icon",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1385,
+              "y": 164,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-group manga-ctrl",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1384,
+              "y": 219,
+              "w": 46,
+              "h": 46
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "manga-toggle",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1385,
+              "y": 220,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(244, 244, 240)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1397,
+              "y": 232,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "rect",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1399,
+              "y": 234,
+              "w": 17,
+              "h": 17
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1400,
+              "y": 235,
+              "w": 11,
+              "h": 11
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "circle",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1402,
+              "y": 237,
+              "w": 2,
+              "h": 2
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "circle",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1408,
+              "y": 243,
+              "w": 2,
+              "h": 2
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl footprint-key-control",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 380,
+              "y": 846,
+              "w": 150,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "footprint-key",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 380,
+              "y": 846,
+              "w": 150,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "footprint-swatch",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 389,
+              "y": 856,
+              "w": 24,
+              "h": 24
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(150, 209, 170)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 392,
+              "y": 859,
+              "w": 18,
+              "h": 18
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 395,
+              "y": 860,
+              "w": 13,
+              "h": 13
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "footprint-swatch",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 417,
+              "y": 856,
+              "w": 24,
+              "h": 24
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(245, 236, 194)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 420,
+              "y": 859,
+              "w": 18,
+              "h": 18
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 422,
+              "y": 862,
+              "w": 14,
+              "h": 13
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "footprint-swatch",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 445,
+              "y": 856,
+              "w": 24,
+              "h": 24
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(129, 146, 56)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 448,
+              "y": 859,
+              "w": 18,
+              "h": 18
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 450,
+              "y": 861,
+              "w": 14,
+              "h": 12
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "footprint-swatch",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 473,
+              "y": 856,
+              "w": 24,
+              "h": 24
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(165, 200, 209)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 476,
+              "y": 859,
+              "w": 18,
+              "h": 18
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "circle",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 481,
+              "y": 864,
+              "w": 8,
+              "h": 8
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 477,
+              "y": 860,
+              "w": 15,
+              "h": 14
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 501,
+              "y": 858,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DETAILS",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-attrib maplibregl-compact",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1402,
+              "y": 862,
+              "w": 28,
+              "h": 28
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SUMMARY",
+            "cls": "maplibregl-ctrl-attrib-button",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1404,
+              "y": 864,
+              "w": 24,
+              "h": 24
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(255, 255, 255, 0.5)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "ASIDE",
+            "cls": "side",
+            "id": "side",
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 94,
+              "w": 360,
+              "h": 806
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "2"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "list-wrap",
+            "id": "list-wrap",
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 94,
+              "w": 360,
+              "h": 413
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "rail-header",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 94,
+              "w": 359,
+              "h": 89
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "rail-row rail-actions",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 94,
+              "w": 359,
+              "h": 48
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "list-find",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 100,
+              "w": 127,
+              "h": 36
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(125, 19, 58)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "A",
+            "cls": "list-day",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 145,
+              "y": 102,
+              "w": 74,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DETAILS",
+            "cls": "list-explore",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 102,
+              "w": 46,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SUMMARY",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 102,
+              "w": 46,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "explore-actions",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 134,
+              "w": 46,
+              "h": 1228
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "chip-scroll",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 136,
+              "w": 46,
+              "h": 401
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "moods",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 136,
+              "w": 46,
+              "h": 160
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "chip-seg",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 136,
+              "w": 47,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 156,
+              "w": 94,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 192,
+              "w": 87,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 228,
+              "w": 94,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 264,
+              "w": 71,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "flags",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 305,
+              "w": 40,
+              "h": 232
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "chip-seg",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 305,
+              "w": 46,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 325,
+              "w": 55,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 361,
+              "w": 57,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 397,
+              "w": 79,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 433,
+              "w": 54,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 469,
+              "w": 55,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 505,
+              "w": 55,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LABEL",
+            "cls": "list-order",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 539,
+              "w": 46,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SELECT",
+            "cls": "",
+            "id": "list-order",
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 539,
+              "w": 152,
+              "h": 32
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "list-origin",
+            "id": "list-origin",
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 573,
+              "w": 46,
+              "h": 48
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "P",
+            "cls": "src",
+            "id": "list-matching",
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 625,
+              "w": 58,
+              "h": 223
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 854,
+              "w": 46,
+              "h": 43
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 899,
+              "w": 46,
+              "h": 60
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "rail-row rail-scope",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 142,
+              "w": 359,
+              "h": 40
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "H2",
+            "cls": "",
+            "id": "places-in-view",
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 150,
+              "w": 127,
+              "h": 24
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "OUTPUT",
+            "cls": "count",
+            "id": "count",
+            "insideMap": false,
+            "rect": {
+              "x": 145,
+              "y": 154,
+              "w": 51,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "scope-tiles",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 256,
+              "y": 146,
+              "w": 91,
+              "h": 32
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "OL",
+            "cls": "list",
+            "id": "list",
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 183,
+              "w": 359,
+              "h": 324
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LI",
+            "cls": "list-group",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 183,
+              "w": 359,
+              "h": 198
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "H3",
+            "cls": "",
+            "id": "list-heading-cafe",
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 184,
+              "w": 359,
+              "h": 27
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(244, 244, 240)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 62,
+              "y": 191,
+              "w": 15,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "OL",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 211,
+              "w": 359,
+              "h": 138
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LI",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 211,
+              "w": 359,
+              "h": 46
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "list-place",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 212,
+              "w": 359,
+              "h": 45
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "IMG",
+            "cls": "place-symbol place-badge",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 224,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "nm",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 217,
+              "w": 265,
+              "h": 35
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-title",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 217,
+              "w": 265,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-sub",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 238,
+              "w": 265,
+              "h": 14
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "idx",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 313,
+              "y": 226,
+              "w": 34,
+              "h": 17
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LI",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 257,
+              "w": 359,
+              "h": 46
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "list-place",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 258,
+              "w": 359,
+              "h": 45
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "IMG",
+            "cls": "place-symbol place-badge",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 271,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "nm",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 263,
+              "w": 265,
+              "h": 35
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-title",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 263,
+              "w": 265,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-sub",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 284,
+              "w": 265,
+              "h": 14
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "idx",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 313,
+              "y": 272,
+              "w": 34,
+              "h": 17
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LI",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 303,
+              "w": 359,
+              "h": 46
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "list-place",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 304,
+              "w": 359,
+              "h": 45
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "IMG",
+            "cls": "place-symbol place-badge",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 317,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "nm",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 309,
+              "w": 265,
+              "h": 35
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-title",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 309,
+              "w": 265,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-sub",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 330,
+              "w": 265,
+              "h": 14
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "idx",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 313,
+              "y": 318,
+              "w": 34,
+              "h": 17
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "list-more",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 349,
+              "w": 97,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LI",
+            "cls": "list-group",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 381,
+              "w": 359,
+              "h": 126
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "H3",
+            "cls": "",
+            "id": "list-heading-library",
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 382,
+              "w": 359,
+              "h": 27
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(244, 244, 240)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 83,
+              "y": 389,
+              "w": 7,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "OL",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 409,
+              "w": 359,
+              "h": 98
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LI",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 409,
+              "w": 359,
+              "h": 49
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "list-place",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 410,
+              "w": 359,
+              "h": 48
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "IMG",
+            "cls": "place-symbol place-badge",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 424,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "nm",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 415,
+              "w": 265,
+              "h": 38
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-title",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 415,
+              "w": 265,
+              "h": 23
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 416,
+              "w": 233,
+              "h": 21
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-sub",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 439,
+              "w": 265,
+              "h": 14
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "idx",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 313,
+              "y": 425,
+              "w": 34,
+              "h": 17
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LI",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 458,
+              "w": 359,
+              "h": 49
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "list-place",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 459,
+              "w": 359,
+              "h": 48
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "IMG",
+            "cls": "place-symbol place-badge",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 473,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "nm",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 464,
+              "w": 258,
+              "h": 38
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-title",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 464,
+              "w": 258,
+              "h": 23
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 465,
+              "w": 231,
+              "h": 21
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-sub",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 488,
+              "w": 258,
+              "h": 14
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "idx",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 306,
+              "y": 474,
+              "w": 41,
+              "h": 17
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          }
+        ],
+        "blockedSamples": [
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      "listWrap": {
+        "rect": {
+          "x": 0,
+          "y": 94,
+          "w": 360,
+          "h": 412.7,
+          "top": 94,
+          "bottom": 506.7,
+          "left": 0,
+          "right": 360
+        },
+        "bg": "rgb(255, 255, 255)",
+        "pe": "auto",
+        "overflowY": "auto",
+        "scrollH": 413,
+        "clientH": 413
+      },
+      "listChildren": [
+        {
+          "cls": "list-group",
+          "tag": "LI",
+          "top": 183,
+          "bottom": 381,
+          "h": 198,
+          "text": "CAFÉS\n46\nHouse of Commons\nCafé\n~30 m\nBaba Mama Cafe\nCafé\n~40",
+          "visible": true
+        },
+        {
+          "cls": "list-group",
+          "tag": "LI",
+          "top": 381,
+          "bottom": 507,
+          "h": 126,
+          "text": "LIBRARIES\n2\nห้องสมุดประชาชี Prachachee Library\nLibrary\n~40 m",
+          "visible": true
+        }
+      ],
+      "slab": 0,
+      "lastContentCls": "list-group",
+      "rows": 5,
+      "statedText": "48 places",
+      "statedCount": 48,
+      "camera": {
+        "centre": {
+          "lng": 100.51518,
+          "lat": 13.7315
+        },
+        "zoom": 16.8,
+        "centreScreen": {
+          "x": 900,
+          "y": 477
+        },
+        "padding": {
+          "top": 0,
+          "bottom": 0,
+          "left": 360,
+          "right": 0
+        }
+      },
+      "candidates": 0,
+      "count": {
+        "appCount": 0,
+        "myCount": 0,
+        "stated": 48,
+        "mismatches": [],
+        "mismatchTotal": 0,
+        "appNames": [],
+        "myNames": []
+      },
+      "buttons": [
+        {
+          "cls": "bar-btn bar-btn-primary",
+          "id": "open-3d",
+          "text": "3D Hunt",
+          "aria": "3D District Scavenger Hunt: explore Bangkok streets in 3D",
+          "expanded": null,
+          "w": 66.2,
+          "h": 36,
+          "rect": {
+            "x": 1182.2,
+            "y": 8,
+            "w": 66.2,
+            "h": 36,
+            "top": 8,
+            "bottom": 44,
+            "left": 1182.2,
+            "right": 1248.3
+          }
+        },
+        {
+          "cls": "bar-btn plub-btn",
+          "id": "guide",
+          "text": "Guide",
+          "aria": "Nong Plub's guide: neighbourhoods and how places are scored",
+          "expanded": null,
+          "w": 82.8,
+          "h": 36,
+          "rect": {
+            "x": 1254.3,
+            "y": 8,
+            "w": 82.8,
+            "h": 36,
+            "top": 8,
+            "bottom": 44,
+            "left": 1254.3,
+            "right": 1337.1
+          }
+        },
+        {
+          "cls": "bar-btn pass-btn",
+          "id": "passport",
+          "text": "Notes\n0",
+          "aria": "Your notebook",
+          "expanded": null,
+          "w": 82.9,
+          "h": 36,
+          "rect": {
+            "x": 1343.1,
+            "y": 8,
+            "w": 82.9,
+            "h": 36,
+            "top": 8,
+            "bottom": 44,
+            "left": 1343.1,
+            "right": 1426
+          }
+        },
+        {
+          "cls": "",
+          "id": null,
+          "text": "Café",
+          "aria": null,
+          "expanded": null,
+          "w": 66.5,
+          "h": 32,
+          "rect": {
+            "x": 12,
+            "y": 57,
+            "w": 66.5,
+            "h": 32,
+            "top": 57,
+            "bottom": 89,
+            "left": 12,
+            "right": 78.5
+          }
+        },
+        {
+          "cls": "",
+          "id": null,
+          "text": "Co-work",
+          "aria": null,
+          "expanded": null,
+          "w": 87.1,
+          "h": 32,
+          "rect": {
+            "x": 82.5,
+            "y": 57,
+            "w": 87.1,
+            "h": 32,
+            "top": 57,
+            "bottom": 89,
+            "left": 82.5,
+            "right": 169.6
+          }
+        },
+        {
+          "cls": "",
+          "id": null,
+          "text": "Library",
+          "aria": null,
+          "expanded": null,
+          "w": 79.8,
+          "h": 32,
+          "rect": {
+            "x": 173.6,
+            "y": 57,
+            "w": 79.8,
+            "h": 32,
+            "top": 57,
+            "bottom": 89,
+            "left": 173.6,
+            "right": 253.5
+          }
+        },
+        {
+          "cls": "",
+          "id": null,
+          "text": "Food",
+          "aria": null,
+          "expanded": null,
+          "w": 68.9,
+          "h": 32,
+          "rect": {
+            "x": 257.5,
+            "y": 57,
+            "w": 68.9,
+            "h": 32,
+            "top": 57,
+            "bottom": 89,
+            "left": 257.5,
+            "right": 326.3
+          }
+        },
+        {
+          "cls": "maplibregl-ctrl-zoom-in",
+          "id": null,
+          "text": "",
+          "aria": "Zoom in",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 1385,
+            "y": 64,
+            "w": 44,
+            "h": 44,
+            "top": 64,
+            "bottom": 108,
+            "left": 1385,
+            "right": 1429
+          }
+        },
+        {
+          "cls": "maplibregl-ctrl-zoom-out",
+          "id": null,
+          "text": "",
+          "aria": "Zoom out",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 1385,
+            "y": 108,
+            "w": 44,
+            "h": 44,
+            "top": 108,
+            "bottom": 152,
+            "left": 1385,
+            "right": 1429
+          }
+        },
+        {
+          "cls": "maplibregl-ctrl-geolocate",
+          "id": null,
+          "text": "",
+          "aria": "Find my location",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 1385,
+            "y": 164,
+            "w": 44,
+            "h": 44,
+            "top": 164,
+            "bottom": 208,
+            "left": 1385,
+            "right": 1429
+          }
+        },
+        {
+          "cls": "manga-toggle",
+          "id": null,
+          "text": "",
+          "aria": "Manga view",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 1385,
+            "y": 220,
+            "w": 44,
+            "h": 44,
+            "top": 220,
+            "bottom": 264,
+            "left": 1385,
+            "right": 1429
+          }
+        },
+        {
+          "cls": "footprint-key",
+          "id": null,
+          "text": "Key",
+          "aria": "Map key",
+          "expanded": null,
+          "w": 150.5,
+          "h": 44,
+          "rect": {
+            "x": 380,
+            "y": 846,
+            "w": 150.5,
+            "h": 44,
+            "top": 846,
+            "bottom": 890,
+            "left": 380,
+            "right": 530.5
+          }
+        },
+        {
+          "cls": "list-find",
+          "id": null,
+          "text": "Find a work spot",
+          "aria": null,
+          "expanded": null,
+          "w": 127.3,
+          "h": 36,
+          "rect": {
+            "x": 12,
+            "y": 100,
+            "w": 127.3,
+            "h": 36,
+            "top": 100,
+            "bottom": 136,
+            "left": 12,
+            "right": 139.3
+          }
+        },
+        {
+          "cls": "scope-tiles",
+          "id": null,
+          "text": "⬡ Einstein tiles",
+          "aria": null,
+          "expanded": null,
+          "w": 90.8,
+          "h": 32,
+          "rect": {
+            "x": 256.2,
+            "y": 146,
+            "w": 90.8,
+            "h": 32,
+            "top": 146,
+            "bottom": 178,
+            "left": 256.2,
+            "right": 347
+          }
+        },
+        {
+          "cls": "list-place",
+          "id": null,
+          "text": "House of Commons\nCafé\n~30 m",
+          "aria": "House of Commons · Café, ~30 m",
+          "expanded": null,
+          "w": 359,
+          "h": 45,
+          "rect": {
+            "x": 0,
+            "y": 211.9,
+            "w": 359,
+            "h": 45,
+            "top": 211.9,
+            "bottom": 257,
+            "left": 0,
+            "right": 359
+          }
+        },
+        {
+          "cls": "list-place",
+          "id": null,
+          "text": "Baba Mama Cafe\nCafé\n~40 m",
+          "aria": "Baba Mama Cafe · Café, ~40 m",
+          "expanded": null,
+          "w": 359,
+          "h": 45,
+          "rect": {
+            "x": 0,
+            "y": 258,
+            "w": 359,
+            "h": 45,
+            "top": 258,
+            "bottom": 303,
+            "left": 0,
+            "right": 359
+          }
+        },
+        {
+          "cls": "list-place",
+          "id": null,
+          "text": "Such A Small World\nCafé\n~70 m",
+          "aria": "Such A Small World · Café, ~70 m",
+          "expanded": null,
+          "w": 359,
+          "h": 45,
+          "rect": {
+            "x": 0,
+            "y": 304,
+            "w": 359,
+            "h": 45,
+            "top": 304,
+            "bottom": 349.1,
+            "left": 0,
+            "right": 359
+          }
+        },
+        {
+          "cls": "list-more",
+          "id": null,
+          "text": "Show 12 more",
+          "aria": "Show 12 more · Cafés",
+          "expanded": null,
+          "w": 97,
+          "h": 32,
+          "rect": {
+            "x": 12,
+            "y": 349.1,
+            "w": 97,
+            "h": 32,
+            "top": 349.1,
+            "bottom": 381.1,
+            "left": 12,
+            "right": 109
+          }
+        },
+        {
+          "cls": "list-place",
+          "id": null,
+          "text": "ห้องสมุดประชาชี Prachachee Library\nLibrary\n~40 m",
+          "aria": "ห้องสมุดประชาชี Prachachee Library · Library, ~40 m",
+          "expanded": null,
+          "w": 359,
+          "h": 47.8,
+          "rect": {
+            "x": 0,
+            "y": 410,
+            "w": 359,
+            "h": 47.8,
+            "top": 410,
+            "bottom": 457.9,
+            "left": 0,
+            "right": 359
+          }
+        },
+        {
+          "cls": "list-place",
+          "id": null,
+          "text": "ห้องสมุดสารานุกรมไทยสำหรับเยาวชนฯ\nLibrary\n~150 m",
+          "aria": "ห้องสมุดสารานุกรมไทยสำหรับเยาวชนฯ · Library, ~150 m",
+          "expanded": null,
+          "w": 359,
+          "h": 47.8,
+          "rect": {
+            "x": 0,
+            "y": 458.9,
+            "w": 359,
+            "h": 47.8,
+            "top": 458.9,
+            "bottom": 506.7,
+            "left": 0,
+            "right": 359
+          }
+        }
+      ],
+      "reveal": [
+        {
+          "cls": "list-more",
+          "text": "Show 12 more",
+          "aria": "Show 12 more · Cafés",
+          "state": null,
+          "visible": true
+        }
+      ],
+      "keyLegends": [
+        {
+          "cls": "atlas-dock",
+          "rect": {
+            "x": 372,
+            "y": 12,
+            "w": 0,
+            "h": 0
+          },
+          "insideMap": false,
+          "bg": "rgba(0, 0, 0, 0)",
+          "visible": true,
+          "text": "Find a work spotExplore ↓KeyShow matches20,640 mappedClear m"
+        },
+        {
+          "cls": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "insideMap": false,
+          "bg": "rgb(255, 255, 255)",
+          "visible": false,
+          "text": "Key"
+        }
+      ],
+      "ground": [
+        {
+          "x": 180,
+          "y": 514.703125,
+          "stack": [
+            "ASIDE.side",
+            "CANVAS.maplibregl-canvas",
+            "MAIN.maplibregl-map"
+          ],
+          "canvasHit": false
+        },
+        {
+          "x": 180,
+          "y": 546.703125,
+          "stack": [
+            "ASIDE.side",
+            "CANVAS.maplibregl-canvas",
+            "MAIN.maplibregl-map"
+          ],
+          "canvasHit": false
+        },
+        {
+          "x": 180,
+          "y": 586.703125,
+          "stack": [
+            "ASIDE.side",
+            "CANVAS.maplibregl-canvas",
+            "MAIN.maplibregl-map"
+          ],
+          "canvasHit": false
+        },
+        {
+          "x": 180,
+          "y": 646.703125,
+          "stack": [
+            "ASIDE.side",
+            "CANVAS.maplibregl-canvas",
+            "MAIN.maplibregl-map"
+          ],
+          "canvasHit": false
+        }
+      ]
+    },
+    "flash": {
+      "samples": 41,
+      "otherModeHits": 0,
+      "firstHitIndex": null,
+      "firstTexts": [
+        "PL\nUB\nSearch places · ค้นหาสถานที่\n⌕\n3D Hunt\nGuide\nNotes\n0\nCafé\nCo-work\nLibrary\nFood\nFind a work spot\nPlan your day\nExplore\nPlaces in view\nLoading…\n⬡ Einstein tiles",
+        "PL\nUB\nSearch places · ค้นหาสถานที่\n⌕\n3D Hunt\nGuide\nNotes\n0\nCafé\nCo-work\nLibrary\nFood\nPlaces © Overture Maps · © OSM contributors\nFind a work spot\nPlan your day\nExplore\nPlaces in view\nLoading…\n⬡ Einstein tiles\nLoading the directory…",
+        "PL\nUB\nSearch places · ค้นหาสถานที่\n⌕\n3D Hunt\nGuide\nNotes\n0\nCafé\nCo-work\nLibrary\nFood\nPlaces © Overture Maps · © OSM contributors\nFind a work spot\nPlan your day\nExplore\nPlaces in view\nLoading…\n⬡ Einstein tiles\nLoading the directory…",
+        "PL\nUB\nSearch places · ค้นหาสถานที่\n⌕\n3D Hunt\nGuide\nNotes\n0\nCafé\nCo-work\nLibrary\nFood\nPlaces © Overture Maps · © OSM contributors\nFind a work spot\nPlan your day\nExplore\nPlaces in view\nLoading…\n⬡ Einstein tiles\nLoading the directory…"
+      ]
+    },
+    "ground": {
+      "point": {
+        "x": 180,
+        "y": 566.7
+      },
+      "before": {
+        "c": {
+          "lng": 100.51518,
+          "lat": 13.7315
+        },
+        "z": 16.8
+      },
+      "afterDrag": {
+        "c": {
+          "lng": 100.51518,
+          "lat": 13.7315
+        },
+        "z": 16.8
+      },
+      "afterWheel": {
+        "c": {
+          "lng": 100.51518,
+          "lat": 13.7315
+        },
+        "z": 16.8
+      },
+      "dragMoved": false,
+      "dragDeltaLng": 0,
+      "dragDeltaLat": 0,
+      "wheelChangedZoom": false,
+      "zoomDelta": 0,
+      "verdict": "GROUND_DEAD"
+    },
+    "disclosure": {
+      "clicks": 0,
+      "labels": [],
+      "rowsBefore": 5,
+      "rowsAfter": null,
+      "scrollH": 324,
+      "clientH": 324,
+      "label": null,
+      "rowsPre": {
+        "scrollH": 324,
+        "clientH": 324
+      }
+    },
+    "afterDisclosure": {
+      "url": "http://127.0.0.1:8801/index.html",
+      "title": "PLUB · Placemaking Laboratory Urban Bureau",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "hasMap": true,
+      "canvas": {
+        "x": 0,
+        "y": 53,
+        "w": 1440,
+        "h": 847,
+        "cw": 1440,
+        "ch": 847
+      },
+      "share": {
+        "canvas": {
+          "x": 0,
+          "y": 53,
+          "w": 1440,
+          "h": 847
+        },
+        "samples": 33840,
+        "step": 6,
+        "mapSharePainted": 0,
+        "mapShareUsable": 0,
+        "paintedPx": 0,
+        "usablePx": 0,
+        "covers": [
+          {
+            "tag": "HEADER",
+            "cls": "bar",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "w": 1440,
+              "h": 53
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 109,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "NAV",
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "2"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 57,
+              "w": 67,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 21,
+              "y": 65,
+              "w": 16,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 23,
+              "y": 66,
+              "w": 11,
+              "h": 12
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 83,
+              "y": 57,
+              "w": 87,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 92,
+              "y": 65,
+              "w": 16,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 93,
+              "y": 67,
+              "w": 12,
+              "h": 12
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 174,
+              "y": 57,
+              "w": 80,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 183,
+              "y": 65,
+              "w": 16,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 184,
+              "y": 67,
+              "w": 12,
+              "h": 11
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 257,
+              "y": 57,
+              "w": 69,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 266,
+              "y": 65,
+              "w": 16,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "circle",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 271,
+              "y": 69,
+              "w": 7,
+              "h": 7
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 267,
+              "y": 66,
+              "w": 14,
+              "h": 12
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "MAIN",
+            "cls": "maplibregl-map",
+            "id": "map",
+            "insideMap": true,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 1440,
+              "h": 847
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(249, 193, 206)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1384,
+              "y": 63,
+              "w": 46,
+              "h": 90
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "maplibregl-ctrl-zoom-in",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1385,
+              "y": 64,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "maplibregl-ctrl-icon",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1385,
+              "y": 64,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "maplibregl-ctrl-zoom-out",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1385,
+              "y": 108,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "maplibregl-ctrl-icon",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1385,
+              "y": 109,
+              "w": 44,
+              "h": 43
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1384,
+              "y": 163,
+              "w": 46,
+              "h": 46
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "maplibregl-ctrl-geolocate",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1385,
+              "y": 164,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "maplibregl-ctrl-icon",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1385,
+              "y": 164,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-group manga-ctrl",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1384,
+              "y": 219,
+              "w": 46,
+              "h": 46
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "manga-toggle",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1385,
+              "y": 220,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(244, 244, 240)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1397,
+              "y": 232,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "rect",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1399,
+              "y": 234,
+              "w": 17,
+              "h": 17
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1400,
+              "y": 235,
+              "w": 11,
+              "h": 11
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "circle",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1402,
+              "y": 237,
+              "w": 2,
+              "h": 2
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "circle",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1408,
+              "y": 243,
+              "w": 2,
+              "h": 2
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl footprint-key-control",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 380,
+              "y": 846,
+              "w": 150,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "footprint-key",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 380,
+              "y": 846,
+              "w": 150,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "footprint-swatch",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 389,
+              "y": 856,
+              "w": 24,
+              "h": 24
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(150, 209, 170)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 392,
+              "y": 859,
+              "w": 18,
+              "h": 18
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 395,
+              "y": 860,
+              "w": 13,
+              "h": 13
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "footprint-swatch",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 417,
+              "y": 856,
+              "w": 24,
+              "h": 24
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(245, 236, 194)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 420,
+              "y": 859,
+              "w": 18,
+              "h": 18
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 422,
+              "y": 862,
+              "w": 14,
+              "h": 13
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "footprint-swatch",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 445,
+              "y": 856,
+              "w": 24,
+              "h": 24
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(129, 146, 56)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 448,
+              "y": 859,
+              "w": 18,
+              "h": 18
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 450,
+              "y": 861,
+              "w": 14,
+              "h": 12
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "footprint-swatch",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 473,
+              "y": 856,
+              "w": 24,
+              "h": 24
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(165, 200, 209)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 476,
+              "y": 859,
+              "w": 18,
+              "h": 18
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "circle",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 481,
+              "y": 864,
+              "w": 8,
+              "h": 8
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 477,
+              "y": 860,
+              "w": 15,
+              "h": 14
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 501,
+              "y": 858,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DETAILS",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-attrib maplibregl-compact",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1402,
+              "y": 862,
+              "w": 28,
+              "h": 28
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SUMMARY",
+            "cls": "maplibregl-ctrl-attrib-button",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 1404,
+              "y": 864,
+              "w": 24,
+              "h": 24
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(255, 255, 255, 0.5)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "ASIDE",
+            "cls": "side",
+            "id": "side",
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 94,
+              "w": 360,
+              "h": 806
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "2"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "list-wrap",
+            "id": "list-wrap",
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 94,
+              "w": 360,
+              "h": 413
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "rail-header",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 94,
+              "w": 359,
+              "h": 89
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "rail-row rail-actions",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 94,
+              "w": 359,
+              "h": 48
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "list-find",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 100,
+              "w": 127,
+              "h": 36
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(125, 19, 58)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "A",
+            "cls": "list-day",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 145,
+              "y": 102,
+              "w": 74,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DETAILS",
+            "cls": "list-explore",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 102,
+              "w": 46,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SUMMARY",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 102,
+              "w": 46,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "explore-actions",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 134,
+              "w": 46,
+              "h": 1228
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "chip-scroll",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 136,
+              "w": 46,
+              "h": 401
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "moods",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 136,
+              "w": 46,
+              "h": 160
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "chip-seg",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 136,
+              "w": 47,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 156,
+              "w": 94,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 192,
+              "w": 87,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 228,
+              "w": 94,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 264,
+              "w": 71,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "flags",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 305,
+              "w": 40,
+              "h": 232
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "chip-seg",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 305,
+              "w": 46,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 325,
+              "w": 55,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 361,
+              "w": 57,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 397,
+              "w": 79,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 433,
+              "w": 54,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 469,
+              "w": 55,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 505,
+              "w": 55,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LABEL",
+            "cls": "list-order",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 539,
+              "w": 46,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SELECT",
+            "cls": "",
+            "id": "list-order",
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 539,
+              "w": 152,
+              "h": 32
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "list-origin",
+            "id": "list-origin",
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 573,
+              "w": 46,
+              "h": 48
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "P",
+            "cls": "src",
+            "id": "list-matching",
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 625,
+              "w": 58,
+              "h": 223
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 854,
+              "w": 46,
+              "h": 43
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 225,
+              "y": 899,
+              "w": 46,
+              "h": 60
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "rail-row rail-scope",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 142,
+              "w": 359,
+              "h": 40
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "H2",
+            "cls": "",
+            "id": "places-in-view",
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 150,
+              "w": 127,
+              "h": 24
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "OUTPUT",
+            "cls": "count",
+            "id": "count",
+            "insideMap": false,
+            "rect": {
+              "x": 145,
+              "y": 154,
+              "w": 51,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "scope-tiles",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 256,
+              "y": 146,
+              "w": 91,
+              "h": 32
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "OL",
+            "cls": "list",
+            "id": "list",
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 183,
+              "w": 359,
+              "h": 324
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LI",
+            "cls": "list-group",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 183,
+              "w": 359,
+              "h": 198
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "H3",
+            "cls": "",
+            "id": "list-heading-cafe",
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 184,
+              "w": 359,
+              "h": 27
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(244, 244, 240)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 62,
+              "y": 191,
+              "w": 15,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "OL",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 211,
+              "w": 359,
+              "h": 138
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LI",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 211,
+              "w": 359,
+              "h": 46
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "list-place",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 212,
+              "w": 359,
+              "h": 45
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "IMG",
+            "cls": "place-symbol place-badge",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 224,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "nm",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 217,
+              "w": 265,
+              "h": 35
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-title",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 217,
+              "w": 265,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-sub",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 238,
+              "w": 265,
+              "h": 14
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "idx",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 313,
+              "y": 226,
+              "w": 34,
+              "h": 17
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LI",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 257,
+              "w": 359,
+              "h": 46
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "list-place",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 258,
+              "w": 359,
+              "h": 45
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "IMG",
+            "cls": "place-symbol place-badge",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 271,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "nm",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 263,
+              "w": 265,
+              "h": 35
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-title",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 263,
+              "w": 265,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-sub",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 284,
+              "w": 265,
+              "h": 14
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "idx",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 313,
+              "y": 272,
+              "w": 34,
+              "h": 17
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LI",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 303,
+              "w": 359,
+              "h": 46
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "list-place",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 304,
+              "w": 359,
+              "h": 45
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "IMG",
+            "cls": "place-symbol place-badge",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 317,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "nm",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 309,
+              "w": 265,
+              "h": 35
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-title",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 309,
+              "w": 265,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-sub",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 330,
+              "w": 265,
+              "h": 14
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "idx",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 313,
+              "y": 318,
+              "w": 34,
+              "h": 17
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "list-more",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 349,
+              "w": 97,
+              "h": 32
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LI",
+            "cls": "list-group",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 381,
+              "w": 359,
+              "h": 126
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "H3",
+            "cls": "",
+            "id": "list-heading-library",
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 382,
+              "w": 359,
+              "h": 27
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(244, 244, 240)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 83,
+              "y": 389,
+              "w": 7,
+              "h": 16
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "OL",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 409,
+              "w": 359,
+              "h": 98
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LI",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 409,
+              "w": 359,
+              "h": 49
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "list-place",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 410,
+              "w": 359,
+              "h": 48
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "IMG",
+            "cls": "place-symbol place-badge",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 424,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "nm",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 415,
+              "w": 265,
+              "h": 38
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-title",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 415,
+              "w": 265,
+              "h": 23
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 416,
+              "w": 233,
+              "h": 21
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-sub",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 439,
+              "w": 265,
+              "h": 14
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "idx",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 313,
+              "y": 425,
+              "w": 34,
+              "h": 17
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "LI",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 458,
+              "w": 359,
+              "h": 49
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "list-place",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 459,
+              "w": 359,
+              "h": 48
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "IMG",
+            "cls": "place-symbol place-badge",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 12,
+              "y": 473,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "nm",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 464,
+              "w": 258,
+              "h": 38
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-title",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 464,
+              "w": 258,
+              "h": 23
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 465,
+              "w": 231,
+              "h": 21
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "row-sub",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 40,
+              "y": 488,
+              "w": 258,
+              "h": 14
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "idx",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 306,
+              "y": 474,
+              "w": 41,
+              "h": 17
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          }
+        ],
+        "blockedSamples": [
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "cls": "chips",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 53,
+              "w": 360,
+              "h": 41
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      "listWrap": {
+        "rect": {
+          "x": 0,
+          "y": 94,
+          "w": 360,
+          "h": 412.7,
+          "top": 94,
+          "bottom": 506.7,
+          "left": 0,
+          "right": 360
+        },
+        "bg": "rgb(255, 255, 255)",
+        "pe": "auto",
+        "overflowY": "auto",
+        "scrollH": 413,
+        "clientH": 413
+      },
+      "listChildren": [
+        {
+          "cls": "list-group",
+          "tag": "LI",
+          "top": 183,
+          "bottom": 381,
+          "h": 198,
+          "text": "CAFÉS\n46\nHouse of Commons\nCafé\n~30 m\nBaba Mama Cafe\nCafé\n~40",
+          "visible": true
+        },
+        {
+          "cls": "list-group",
+          "tag": "LI",
+          "top": 381,
+          "bottom": 507,
+          "h": 126,
+          "text": "LIBRARIES\n2\nห้องสมุดประชาชี Prachachee Library\nLibrary\n~40 m",
+          "visible": true
+        }
+      ],
+      "slab": 0,
+      "lastContentCls": "list-group",
+      "rows": 5,
+      "statedText": "48 places",
+      "statedCount": 48,
+      "camera": {
+        "centre": {
+          "lng": 100.51518,
+          "lat": 13.7315
+        },
+        "zoom": 16.8,
+        "centreScreen": {
+          "x": 900,
+          "y": 477
+        },
+        "padding": {
+          "top": 0,
+          "bottom": 0,
+          "left": 360,
+          "right": 0
+        }
+      },
+      "candidates": 0,
+      "count": {
+        "appCount": 0,
+        "myCount": 0,
+        "stated": 48,
+        "mismatches": [],
+        "mismatchTotal": 0,
+        "appNames": [],
+        "myNames": []
+      },
+      "buttons": [
+        {
+          "cls": "bar-btn bar-btn-primary",
+          "id": "open-3d",
+          "text": "3D Hunt",
+          "aria": "3D District Scavenger Hunt: explore Bangkok streets in 3D",
+          "expanded": null,
+          "w": 66.2,
+          "h": 36,
+          "rect": {
+            "x": 1182.2,
+            "y": 8,
+            "w": 66.2,
+            "h": 36,
+            "top": 8,
+            "bottom": 44,
+            "left": 1182.2,
+            "right": 1248.3
+          }
+        },
+        {
+          "cls": "bar-btn plub-btn",
+          "id": "guide",
+          "text": "Guide",
+          "aria": "Nong Plub's guide: neighbourhoods and how places are scored",
+          "expanded": null,
+          "w": 82.8,
+          "h": 36,
+          "rect": {
+            "x": 1254.3,
+            "y": 8,
+            "w": 82.8,
+            "h": 36,
+            "top": 8,
+            "bottom": 44,
+            "left": 1254.3,
+            "right": 1337.1
+          }
+        },
+        {
+          "cls": "bar-btn pass-btn",
+          "id": "passport",
+          "text": "Notes\n0",
+          "aria": "Your notebook",
+          "expanded": null,
+          "w": 82.9,
+          "h": 36,
+          "rect": {
+            "x": 1343.1,
+            "y": 8,
+            "w": 82.9,
+            "h": 36,
+            "top": 8,
+            "bottom": 44,
+            "left": 1343.1,
+            "right": 1426
+          }
+        },
+        {
+          "cls": "",
+          "id": null,
+          "text": "Café",
+          "aria": null,
+          "expanded": null,
+          "w": 66.5,
+          "h": 32,
+          "rect": {
+            "x": 12,
+            "y": 57,
+            "w": 66.5,
+            "h": 32,
+            "top": 57,
+            "bottom": 89,
+            "left": 12,
+            "right": 78.5
+          }
+        },
+        {
+          "cls": "",
+          "id": null,
+          "text": "Co-work",
+          "aria": null,
+          "expanded": null,
+          "w": 87.1,
+          "h": 32,
+          "rect": {
+            "x": 82.5,
+            "y": 57,
+            "w": 87.1,
+            "h": 32,
+            "top": 57,
+            "bottom": 89,
+            "left": 82.5,
+            "right": 169.6
+          }
+        },
+        {
+          "cls": "",
+          "id": null,
+          "text": "Library",
+          "aria": null,
+          "expanded": null,
+          "w": 79.8,
+          "h": 32,
+          "rect": {
+            "x": 173.6,
+            "y": 57,
+            "w": 79.8,
+            "h": 32,
+            "top": 57,
+            "bottom": 89,
+            "left": 173.6,
+            "right": 253.5
+          }
+        },
+        {
+          "cls": "",
+          "id": null,
+          "text": "Food",
+          "aria": null,
+          "expanded": null,
+          "w": 68.9,
+          "h": 32,
+          "rect": {
+            "x": 257.5,
+            "y": 57,
+            "w": 68.9,
+            "h": 32,
+            "top": 57,
+            "bottom": 89,
+            "left": 257.5,
+            "right": 326.3
+          }
+        },
+        {
+          "cls": "maplibregl-ctrl-zoom-in",
+          "id": null,
+          "text": "",
+          "aria": "Zoom in",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 1385,
+            "y": 64,
+            "w": 44,
+            "h": 44,
+            "top": 64,
+            "bottom": 108,
+            "left": 1385,
+            "right": 1429
+          }
+        },
+        {
+          "cls": "maplibregl-ctrl-zoom-out",
+          "id": null,
+          "text": "",
+          "aria": "Zoom out",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 1385,
+            "y": 108,
+            "w": 44,
+            "h": 44,
+            "top": 108,
+            "bottom": 152,
+            "left": 1385,
+            "right": 1429
+          }
+        },
+        {
+          "cls": "maplibregl-ctrl-geolocate",
+          "id": null,
+          "text": "",
+          "aria": "Find my location",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 1385,
+            "y": 164,
+            "w": 44,
+            "h": 44,
+            "top": 164,
+            "bottom": 208,
+            "left": 1385,
+            "right": 1429
+          }
+        },
+        {
+          "cls": "manga-toggle",
+          "id": null,
+          "text": "",
+          "aria": "Manga view",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 1385,
+            "y": 220,
+            "w": 44,
+            "h": 44,
+            "top": 220,
+            "bottom": 264,
+            "left": 1385,
+            "right": 1429
+          }
+        },
+        {
+          "cls": "footprint-key",
+          "id": null,
+          "text": "Key",
+          "aria": "Map key",
+          "expanded": null,
+          "w": 150.5,
+          "h": 44,
+          "rect": {
+            "x": 380,
+            "y": 846,
+            "w": 150.5,
+            "h": 44,
+            "top": 846,
+            "bottom": 890,
+            "left": 380,
+            "right": 530.5
+          }
+        },
+        {
+          "cls": "list-find",
+          "id": null,
+          "text": "Find a work spot",
+          "aria": null,
+          "expanded": null,
+          "w": 127.3,
+          "h": 36,
+          "rect": {
+            "x": 12,
+            "y": 100,
+            "w": 127.3,
+            "h": 36,
+            "top": 100,
+            "bottom": 136,
+            "left": 12,
+            "right": 139.3
+          }
+        },
+        {
+          "cls": "scope-tiles",
+          "id": null,
+          "text": "⬡ Einstein tiles",
+          "aria": null,
+          "expanded": null,
+          "w": 90.8,
+          "h": 32,
+          "rect": {
+            "x": 256.2,
+            "y": 146,
+            "w": 90.8,
+            "h": 32,
+            "top": 146,
+            "bottom": 178,
+            "left": 256.2,
+            "right": 347
+          }
+        },
+        {
+          "cls": "list-place",
+          "id": null,
+          "text": "House of Commons\nCafé\n~30 m",
+          "aria": "House of Commons · Café, ~30 m",
+          "expanded": null,
+          "w": 359,
+          "h": 45,
+          "rect": {
+            "x": 0,
+            "y": 211.9,
+            "w": 359,
+            "h": 45,
+            "top": 211.9,
+            "bottom": 257,
+            "left": 0,
+            "right": 359
+          }
+        },
+        {
+          "cls": "list-place",
+          "id": null,
+          "text": "Baba Mama Cafe\nCafé\n~40 m",
+          "aria": "Baba Mama Cafe · Café, ~40 m",
+          "expanded": null,
+          "w": 359,
+          "h": 45,
+          "rect": {
+            "x": 0,
+            "y": 258,
+            "w": 359,
+            "h": 45,
+            "top": 258,
+            "bottom": 303,
+            "left": 0,
+            "right": 359
+          }
+        },
+        {
+          "cls": "list-place",
+          "id": null,
+          "text": "Such A Small World\nCafé\n~70 m",
+          "aria": "Such A Small World · Café, ~70 m",
+          "expanded": null,
+          "w": 359,
+          "h": 45,
+          "rect": {
+            "x": 0,
+            "y": 304,
+            "w": 359,
+            "h": 45,
+            "top": 304,
+            "bottom": 349.1,
+            "left": 0,
+            "right": 359
+          }
+        },
+        {
+          "cls": "list-more",
+          "id": null,
+          "text": "Show 12 more",
+          "aria": "Show 12 more · Cafés",
+          "expanded": null,
+          "w": 97,
+          "h": 32,
+          "rect": {
+            "x": 12,
+            "y": 349.1,
+            "w": 97,
+            "h": 32,
+            "top": 349.1,
+            "bottom": 381.1,
+            "left": 12,
+            "right": 109
+          }
+        },
+        {
+          "cls": "list-place",
+          "id": null,
+          "text": "ห้องสมุดประชาชี Prachachee Library\nLibrary\n~40 m",
+          "aria": "ห้องสมุดประชาชี Prachachee Library · Library, ~40 m",
+          "expanded": null,
+          "w": 359,
+          "h": 47.8,
+          "rect": {
+            "x": 0,
+            "y": 410,
+            "w": 359,
+            "h": 47.8,
+            "top": 410,
+            "bottom": 457.9,
+            "left": 0,
+            "right": 359
+          }
+        },
+        {
+          "cls": "list-place",
+          "id": null,
+          "text": "ห้องสมุดสารานุกรมไทยสำหรับเยาวชนฯ\nLibrary\n~150 m",
+          "aria": "ห้องสมุดสารานุกรมไทยสำหรับเยาวชนฯ · Library, ~150 m",
+          "expanded": null,
+          "w": 359,
+          "h": 47.8,
+          "rect": {
+            "x": 0,
+            "y": 458.9,
+            "w": 359,
+            "h": 47.8,
+            "top": 458.9,
+            "bottom": 506.7,
+            "left": 0,
+            "right": 359
+          }
+        }
+      ],
+      "reveal": [
+        {
+          "cls": "list-more",
+          "text": "Show 12 more",
+          "aria": "Show 12 more · Cafés",
+          "state": null,
+          "visible": true
+        }
+      ],
+      "keyLegends": [
+        {
+          "cls": "atlas-dock",
+          "rect": {
+            "x": 372,
+            "y": 12,
+            "w": 0,
+            "h": 0
+          },
+          "insideMap": false,
+          "bg": "rgba(0, 0, 0, 0)",
+          "visible": true,
+          "text": "Find a work spotExplore ↓KeyShow matches20,640 mappedClear m"
+        },
+        {
+          "cls": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "insideMap": false,
+          "bg": "rgb(255, 255, 255)",
+          "visible": false,
+          "text": "Key"
+        }
+      ],
+      "ground": [
+        {
+          "x": 180,
+          "y": 514.703125,
+          "stack": [
+            "ASIDE.side",
+            "CANVAS.maplibregl-canvas",
+            "MAIN.maplibregl-map"
+          ],
+          "canvasHit": false
+        },
+        {
+          "x": 180,
+          "y": 546.703125,
+          "stack": [
+            "ASIDE.side",
+            "CANVAS.maplibregl-canvas",
+            "MAIN.maplibregl-map"
+          ],
+          "canvasHit": false
+        },
+        {
+          "x": 180,
+          "y": 586.703125,
+          "stack": [
+            "ASIDE.side",
+            "CANVAS.maplibregl-canvas",
+            "MAIN.maplibregl-map"
+          ],
+          "canvasHit": false
+        },
+        {
+          "x": 180,
+          "y": 646.703125,
+          "stack": [
+            "ASIDE.side",
+            "CANVAS.maplibregl-canvas",
+            "MAIN.maplibregl-map"
+          ],
+          "canvasHit": false
+        }
+      ]
+    },
+    "targets": {
+      "measured": [
+        {
+          "sel": "#list-toggle",
+          "w": 0,
+          "h": 0,
+          "visible": false,
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0
+          },
+          "aria": "List, explore and filters"
+        },
+        {
+          "sel": ".list-close",
+          "w": 0,
+          "h": 0,
+          "visible": false,
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0
+          },
+          "aria": "Close list"
+        },
+        {
+          "sel": ".close",
+          "w": 0,
+          "h": 0,
+          "visible": false,
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0
+          },
+          "aria": "Close list"
+        },
+        {
+          "sel": ".sheet .close",
+          "missing": true
+        }
+      ],
+      "undersized": [
+        {
+          "cls": "bar-btn bar-btn-primary",
+          "id": "open-3d",
+          "text": "3D Hunt",
+          "w": 66.2,
+          "h": 36
+        },
+        {
+          "cls": "bar-btn plub-btn",
+          "id": "guide",
+          "text": "Guide",
+          "w": 82.8,
+          "h": 36
+        },
+        {
+          "cls": "bar-btn pass-btn",
+          "id": "passport",
+          "text": "Notes\n0",
+          "w": 82.9,
+          "h": 36
+        },
+        {
+          "cls": "",
+          "id": null,
+          "text": "Café",
+          "w": 66.5,
+          "h": 32
+        },
+        {
+          "cls": "",
+          "id": null,
+          "text": "Co-work",
+          "w": 87.1,
+          "h": 32
+        },
+        {
+          "cls": "",
+          "id": null,
+          "text": "Library",
+          "w": 79.8,
+          "h": 32
+        },
+        {
+          "cls": "",
+          "id": null,
+          "text": "Food",
+          "w": 68.9,
+          "h": 32
+        },
+        {
+          "cls": "list-find",
+          "id": null,
+          "text": "Find a work spot",
+          "w": 127.3,
+          "h": 36
+        },
+        {
+          "cls": "scope-tiles",
+          "id": null,
+          "text": "⬡ Einstein tiles",
+          "w": 90.8,
+          "h": 32
+        },
+        {
+          "cls": "list-more",
+          "id": null,
+          "text": "Show 12 more",
+          "w": 97,
+          "h": 32
+        }
+      ]
+    },
+    "keyboard": {
+      "sequence": [
+        {
+          "tag": "BUTTON",
+          "cls": "list-find",
+          "id": null,
+          "text": "Find a work spot",
+          "visible": true,
+          "w": 127,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(125, 19, 58)"
+        },
+        {
+          "tag": "A",
+          "cls": "list-day",
+          "id": null,
+          "text": "Plan your day",
+          "visible": true,
+          "w": 74,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "SUMMARY",
+          "cls": "",
+          "id": null,
+          "text": "Explore",
+          "visible": true,
+          "w": 46,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "scope-tiles",
+          "id": null,
+          "text": "⬡ Einstein tiles",
+          "visible": true,
+          "w": 91,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "list-place",
+          "id": null,
+          "text": "House of Commons\nCafé\n~30 m",
+          "visible": true,
+          "w": 359,
+          "h": 45,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "list-place",
+          "id": null,
+          "text": "Baba Mama Cafe\nCafé\n~40 m",
+          "visible": true,
+          "w": 359,
+          "h": 45,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "list-place",
+          "id": null,
+          "text": "Such A Small World\nCafé\n~70 m",
+          "visible": true,
+          "w": 359,
+          "h": 45,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "list-more",
+          "id": null,
+          "text": "Show 12 more",
+          "visible": true,
+          "w": 97,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "list-place",
+          "id": null,
+          "text": "ห้องสมุดประชาชี Prachachee Library\nLibrary\n~40 m",
+          "visible": true,
+          "w": 359,
+          "h": 48,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "list-place",
+          "id": null,
+          "text": "ห้องสมุดสารานุกรมไทยสำหรับเยาวชนฯ\nLibrary\n~150 m",
+          "visible": true,
+          "w": 359,
+          "h": 48,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "none": true
+        },
+        {
+          "tag": "A",
+          "cls": "mark",
+          "id": null,
+          "text": "PL\nUB",
+          "visible": true,
+          "w": 70,
+          "h": 22,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "INPUT",
+          "cls": "",
+          "id": "q",
+          "text": "",
+          "visible": true,
+          "w": 440,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn bar-btn-primary",
+          "id": "open-3d",
+          "text": "3D Hunt",
+          "visible": true,
+          "w": 66,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(244, 244, 240)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn plub-btn",
+          "id": "guide",
+          "text": "Guide",
+          "visible": true,
+          "w": 83,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn pass-btn",
+          "id": "passport",
+          "text": "Notes\n0",
+          "visible": true,
+          "w": 83,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "",
+          "id": null,
+          "text": "Café",
+          "visible": true,
+          "w": 67,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "",
+          "id": null,
+          "text": "Co-work",
+          "visible": true,
+          "w": 87,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "",
+          "id": null,
+          "text": "Library",
+          "visible": true,
+          "w": 80,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "",
+          "id": null,
+          "text": "Food",
+          "visible": true,
+          "w": 69,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "CANVAS",
+          "cls": "maplibregl-canvas",
+          "id": null,
+          "text": "Map",
+          "visible": true,
+          "w": 1440,
+          "h": 847,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-zoom-in",
+          "id": null,
+          "text": "Zoom in",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-zoom-out",
+          "id": null,
+          "text": "Zoom out",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-geolocate",
+          "id": null,
+          "text": "Find my location",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "manga-toggle",
+          "id": null,
+          "text": "Manga view",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgb(244, 244, 240)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "footprint-key",
+          "id": null,
+          "text": "Key",
+          "visible": true,
+          "w": 150,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "SUMMARY",
+          "cls": "maplibregl-ctrl-attrib-button",
+          "id": null,
+          "text": "Toggle attribution",
+          "visible": true,
+          "w": 24,
+          "h": 24,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(255, 255, 255, 0.5)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "list-find",
+          "id": null,
+          "text": "Find a work spot",
+          "visible": true,
+          "w": 127,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(125, 19, 58)"
+        },
+        {
+          "tag": "A",
+          "cls": "list-day",
+          "id": null,
+          "text": "Plan your day",
+          "visible": true,
+          "w": 74,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "SUMMARY",
+          "cls": "",
+          "id": null,
+          "text": "Explore",
+          "visible": true,
+          "w": 46,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "scope-tiles",
+          "id": null,
+          "text": "⬡ Einstein tiles",
+          "visible": true,
+          "w": 91,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "list-place",
+          "id": null,
+          "text": "House of Commons\nCafé\n~30 m",
+          "visible": true,
+          "w": 359,
+          "h": 45,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "list-place",
+          "id": null,
+          "text": "Baba Mama Cafe\nCafé\n~40 m",
+          "visible": true,
+          "w": 359,
+          "h": 45,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "list-place",
+          "id": null,
+          "text": "Such A Small World\nCafé\n~70 m",
+          "visible": true,
+          "w": 359,
+          "h": 45,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "list-more",
+          "id": null,
+          "text": "Show 12 more",
+          "visible": true,
+          "w": 97,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "list-place",
+          "id": null,
+          "text": "ห้องสมุดประชาชี Prachachee Library\nLibrary\n~40 m",
+          "visible": true,
+          "w": 359,
+          "h": 48,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "list-place",
+          "id": null,
+          "text": "ห้องสมุดสารานุกรมไทยสำหรับเยาวชนฯ\nLibrary\n~150 m",
+          "visible": true,
+          "w": 359,
+          "h": 48,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "A",
+          "cls": "mark",
+          "id": null,
+          "text": "PL\nUB",
+          "visible": true,
+          "w": 70,
+          "h": 22,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "INPUT",
+          "cls": "",
+          "id": "q",
+          "text": "",
+          "visible": true,
+          "w": 440,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn bar-btn-primary",
+          "id": "open-3d",
+          "text": "3D Hunt",
+          "visible": true,
+          "w": 66,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(244, 244, 240)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn plub-btn",
+          "id": "guide",
+          "text": "Guide",
+          "visible": true,
+          "w": 83,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn pass-btn",
+          "id": "passport",
+          "text": "Notes\n0",
+          "visible": true,
+          "w": 83,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "",
+          "id": null,
+          "text": "Café",
+          "visible": true,
+          "w": 67,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "",
+          "id": null,
+          "text": "Co-work",
+          "visible": true,
+          "w": 87,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "",
+          "id": null,
+          "text": "Library",
+          "visible": true,
+          "w": 80,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "",
+          "id": null,
+          "text": "Food",
+          "visible": true,
+          "w": 69,
+          "h": 32,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "CANVAS",
+          "cls": "maplibregl-canvas",
+          "id": null,
+          "text": "Map",
+          "visible": true,
+          "w": 1440,
+          "h": 847,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-zoom-in",
+          "id": null,
+          "text": "Zoom in",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-zoom-out",
+          "id": null,
+          "text": "Zoom out",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-geolocate",
+          "id": null,
+          "text": "Find my location",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "noIndicator": [],
+      "escapeClose": {
+        "listOpenBefore": false,
+        "togglePressed": "false"
+      }
+    },
+    "maplibre": {
+      "warnings": [],
+      "errors": [
+        "Failed to load resource: the server responded with a status of 404 (File not found)"
+      ],
+      "pageErrors": []
+    }
+  }
+}

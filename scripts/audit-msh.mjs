@@ -487,6 +487,30 @@ async function checkDisclosure(page, phone) {
   };
 }
 
+async function checkDrawerEscape(page) {
+  // The phone drawer stands on the map. It has a 44px close button, so it is
+  // not a trap — but a keyboard reader who opens it has to be able to leave it
+  // with the key they already know. The fourth audit found it had no way out
+  // but the button, and no Escape.
+  const wrap = page.locator('#list-wrap');
+  const toggle = page.locator('#list-toggle');
+  if (!(await toggle.count())) return { pass: true, skipped: 'no list toggle on this surface' };
+  const wasOpen = await wrap.evaluate(el => el.classList.contains('open'));
+  if (!wasOpen) await toggle.click();
+  await page.waitForTimeout(700);
+  const opened = await wrap.evaluate(el => el.classList.contains('open'));
+  if (!opened) return { pass: true, skipped: 'the rail is not a drawer on this surface' };
+  await page.keyboard.press('Escape');
+  await page.waitForTimeout(700);
+  const closed = !(await wrap.evaluate(el => el.classList.contains('open')));
+  const focusBack = await page.evaluate(() => document.activeElement?.id || '');
+  return {
+    pass: closed,
+    closed, focusBack,
+    why: closed ? '' : 'Escape did not close the drawer',
+  };
+}
+
 async function ready(page) {
   // Gate on the app's own data, not on the map's load event: 'load' waits for external tiles
   // and a slow tile server must not be able to hide a layout failure.
@@ -1102,6 +1126,7 @@ try {
   // The disclosure, in both modes, on the desktop and on a phone with the
   // drawer open. It must keep its promise and it must not take the map.
   report.disclosure = [];
+  report.drawerEscape = [];
   for (const mode of MODES) {
     for (const { w, h, open } of [{ w: 390, h: 844, open: true }, { w: 1440, h: 900, open: false }]) {
       const dctx = await browser.newContext({ viewport: { width: w, height: h }, timezoneId: 'Asia/Bangkok' });
@@ -1114,6 +1139,22 @@ try {
       }
       const res = await checkDisclosure(dpage, open);
       report.disclosure.push({ mode: mode.key, width: w, ...res });
+      // The phone drawer must also be escapable by keyboard. Only on the phone:
+      // on the desktop the rail is permanent chrome, not a drawer.
+      if (open) {
+        if (PLANTED) {
+          // A fourth known defect: a handler that swallows the key the reader
+          // would use to leave the drawer. The gate must catch it.
+          await dpage.evaluate(() => {
+            document.addEventListener('keydown', e => {
+              if (e.key === 'Escape') e.stopImmediatePropagation();
+            }, true);
+          });
+          await dpage.waitForTimeout(300);
+        }
+        const esc = await checkDrawerEscape(dpage);
+        report.drawerEscape.push({ mode: mode.key, width: w, ...esc });
+      }
       await dctx.close();
     }
   }
@@ -1154,6 +1195,12 @@ for (const d of report.disclosure || []) {
   if (!d.kept) report.fails.push({ id: 'B1 first-screen task', detail: `the disclosure broke its promise at ${d.mode} ${d.width}px: "${d.label}" delivered ${d.afterRows} rows`, width: `${d.mode}-${d.width}-disclosure` });
   if (!d.mapKept) report.fails.push({ id: 'B9 map share', detail: `opening the disclosure at ${d.mode} ${d.width}px took the map from ${d.mapBefore}% to ${d.mapAfter}%`, width: `${d.mode}-${d.width}-disclosure` });
 }
+// The phone drawer stands on the map, so it must be escapable by keyboard. A
+// drawer with a 44px close button and no Escape is a surface a keyboard reader
+// cannot leave the way they expect to.
+for (const e of report.drawerEscape || []) {
+  if (!e.pass) report.fails.push({ id: 'B13 tap target', detail: `the phone drawer at ${e.mode} ${e.width}px has no keyboard way out: ${e.why || 'Escape did not close it'}`, width: `${e.mode}-${e.width}-escape` });
+}
 report.verdict = report.fails.length ? (report.fails.some(f => /map share|void|bleed|runtime/.test(f.id)) ? 'BLOCK' : 'REVISE') : 'PASS';
 
 await writeFile(new URL(PLANTED ? 'msh-report-planted.json' : 'msh-report.json', outDir), JSON.stringify(report, null, 2) + '\n');
@@ -1161,9 +1208,12 @@ await writeFile(new URL(PLANTED ? 'msh-report-planted.json' : 'msh-report.json',
 // The gate must be able to fail.
 if (PLANTED) {
   const caught = report.fails.some(f => /void|obstruct|map/.test(f.id));
-  console.log(`Planted defect: ${report.fails.length} failure(s) reported; the gate caught it: ${caught}.`);
+  // The planted drawer must be rejected too: a check that cannot fail is a
+  // decoration. Both modes' drawers are swallowed, so both must be reported.
+  const escRejected = (report.drawerEscape || []).length > 0 && report.drawerEscape.every(e => !e.pass);
+  console.log(`Planted defect: ${report.fails.length} failure(s) reported; the gate caught it: ${caught}; the swallowed Escape was rejected: ${escRejected}.`);
   for (const f of report.fails) console.log(`  PLANTED FAIL [${f.width}] ${f.id}: ${f.detail}`);
-  if (!caught || report.journey.ungroupedRejected !== true || report.fails.some(f => f.width === 'journey' || f.id === 'B1 place sheet' || f.id === 'B1 visit reading order' || f.id === 'B1 day planner')) { console.error('THE PLANTED OR PRESERVATION CHECK FAILED.'); process.exit(2); }
+  if (!caught || !escRejected || report.journey.ungroupedRejected !== true || report.fails.some(f => f.width === 'journey' || f.id === 'B1 place sheet' || f.id === 'B1 visit reading order' || f.id === 'B1 day planner')) { console.error('THE PLANTED OR PRESERVATION CHECK FAILED.'); process.exit(2); }
   console.log(`Report: ${new URL('msh-report-planted.json', outDir).pathname}`);
   process.exit(0);
 }
@@ -1177,6 +1227,7 @@ lines.push(`  journey: search ${report.journey.search} hits · chip ${report.jou
 if (report.club) lines.push(`  club:   mode ${report.club.clubMode} · explore ${report.club.explore?.height}px/${report.club.explore?.destinations} destinations · moods hidden ${report.club.moodsHidden} · camera z${report.club.camera?.zoom} (${report.club.camera?.mpp} m/px) · all-thailand ${report.club.thailandAction?.zoomedOut ? 'works' : 'NO'} · search ${report.club.search} · errors ${(report.club.errors || []).length}`);
 if (report.enlargedText) lines.push(`  260px  enlarged text (390px phone at 150%): search ${report.enlargedText.searchWidth}px · bar overflow ${report.enlargedText.barOverflow}px · sideways ${report.enlargedText.bleed ? 'yes' : 'no'}  ${report.enlargedText.pass ? 'PASS' : 'FAIL'}`);
 for (const s of report.filterStrip || []) lines.push(`  strip  ${s.mode} ${s.width}px: ${s.chips} filters in ${s.rows} row(s) · ${s.hidden}px hidden · outside ${(s.outside || []).length}  ${s.pass ? 'PASS' : 'FAIL'}`);
+for (const e of report.drawerEscape || []) lines.push(`  escape ${e.mode} ${e.width}px: the drawer closes on Escape and returns focus to "${e.focusBack || 'nothing'}"  ${e.pass ? 'PASS' : 'FAIL'}`);
 for (const f of report.fails) lines.push(`  FAIL [${f.width}] ${f.id}: ${f.detail}`);
 lines.push(`Verdict: ${report.verdict}`);
 console.log(lines.join('\n'));

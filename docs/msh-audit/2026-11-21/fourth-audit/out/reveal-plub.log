@@ -1,0 +1,110 @@
+{
+ "mode": "plub",
+ "url": "https://co.nonarkara.org",
+ "viewports": {
+  "1024": {
+   "vw": 1024,
+   "vh": 768,
+   "before": {
+    "count": "37 places",
+    "rows": 5,
+    "label": "Show all 37 places",
+    "aria": "Show all 37 places",
+    "panel": {
+     "x": 0,
+     "y": 94,
+     "w": 360,
+     "h": 425.7,
+     "top": 94,
+     "bottom": 519.7,
+     "left": 0,
+     "right": 360
+    },
+    "listScrollH": 337,
+    "listClientH": 337,
+    "share": {
+     "painted": 68.55,
+     "usable": 67.05
+    },
+    "zoom": 16.8,
+    "lastPlaceBottom": 475
+   },
+   "after": {
+    "count": "37 places",
+    "rows": 37,
+    "label": null,
+    "aria": null,
+    "panel": {
+     "x": 0,
+     "y": 94,
+     "w": 360,
+     "h": 674,
+     "top": 94,
+     "bottom": 768,
+     "left": 0,
+     "right": 360
+    },
+    "listScrollH": 1859,
+    "listClientH": 585,
+    "share": {
+     "painted": 57.74,
+     "usable": 57.74
+    },
+    "zoom": 16.8,
+    "lastPlaceBottom": 1997
+   }
+  },
+  "1440": {
+   "vw": 1440,
+   "vh": 900,
+   "before": {
+    "count": "51 places",
+    "rows": 5,
+    "label": "Show all 51 places",
+    "aria": "Show all 51 places",
+    "panel": {
+     "x": 0,
+     "y": 94,
+     "w": 360,
+     "h": 425.7,
+     "top": 94,
+     "bottom": 519.7,
+     "left": 0,
+     "right": 360
+    },
+    "listScrollH": 337,
+    "listClientH": 337,
+    "share": {
+     "painted": 79.08,
+     "usable": 77.59
+    },
+    "zoom": 16.8,
+    "lastPlaceBottom": 475
+   },
+   "after": {
+    "count": "51 places",
+    "rows": 51,
+    "label": null,
+    "aria": null,
+    "panel": {
+     "x": 0,
+     "y": 94,
+     "w": 360,
+     "h": 806,
+     "top": 94,
+     "bottom": 900,
+     "left": 0,
+     "right": 360
+    },
+    "listScrollH": 2530,
+    "listClientH": 717,
+    "share": {
+     "painted": 68.78,
+     "usable": 68.78
+    },
+    "zoom": 16.8,
+    "lastPlaceBottom": 2668
+   }
+  }
+ }
+}

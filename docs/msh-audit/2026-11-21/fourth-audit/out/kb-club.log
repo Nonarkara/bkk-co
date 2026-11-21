@@ -1,0 +1,99 @@
+{
+ "mode": "club",
+ "drawerOpen": {
+  "open": true,
+  "rect": {
+   "y": 354,
+   "h": 490
+  }
+ },
+ "escape": {
+  "open": true,
+  "active": "close list-close phone-only"
+ },
+ "tabbed": 40,
+ "focusedInDrawer": 16,
+ "focusedOutsideDrawer": [
+  {
+   "tag": "BUTTON",
+   "cls": "bar-btn bar-btn-primary",
+   "id": "open-3d",
+   "text": "3D Hunt",
+   "y": 54,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "bar-btn plub-btn",
+   "id": "guide",
+   "text": "Dr Non",
+   "y": 54,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "bar-btn pass-btn",
+   "id": "passport",
+   "text": "Notes\n0",
+   "y": 54,
+   "visible": true
+  },
+  {
+   "tag": "CANVAS",
+   "cls": "maplibregl-canvas",
+   "id": null,
+   "text": "Map",
+   "y": 103,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "maplibregl-ctrl-zoom-in",
+   "id": null,
+   "text": "Zoom in",
+   "y": 114,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "maplibregl-ctrl-zoom-out",
+   "id": null,
+   "text": "Zoom out",
+   "y": 158,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "maplibregl-ctrl-geolocate",
+   "id": null,
+   "text": "Find my location",
+   "y": 214,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "manga-toggle",
+   "id": null,
+   "text": "Manga view",
+   "y": 270,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "footprint-key",
+   "id": null,
+   "text": "Key",
+   "y": 790,
+   "visible": true
+  },
+  {
+   "tag": "SUMMARY",
+   "cls": "maplibregl-ctrl-attrib-button",
+   "id": null,
+   "text": "Toggle attribution",
+   "y": 808,
+   "visible": true
+  }
+ ],
+ "withoutFocusIndicator": []
+}

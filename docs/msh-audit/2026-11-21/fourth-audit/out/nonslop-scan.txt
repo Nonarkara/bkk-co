@@ -1,0 +1,73 @@
+non-slop scan /tmp/msh-audit-verifier-4/new/public  ·  55 files  ·  style: /tmp/msh-audit-verifier-4/new/STYLE.md (7 rules, 0 fonts, 2 colours allowed; 2 phrases, 1 voice markers protected)
+  note: /tmp/msh-audit-verifier-4/new/STYLE.md: "PL;UB" is a short marker. It is honoured, and it hides every sentence that contains it.
+  note: /tmp/msh-audit-verifier-4/new/STYLE.md: "PL;UB" is a short marker. It is honoured, and it hides every sentence that contains it.
+  note: /tmp/msh-audit-verifier-4/new/STYLE.md: "PL;UB" is a short marker. It is honoured, and it hides every sentence that contains it.
+  note: /tmp/msh-audit-verifier-4/new/STYLE.md: "PL;UB" is a short marker. It is honoured, and it hides every sentence that contains it.
+  note: /tmp/msh-audit-verifier-4/new/STYLE.md: "PL;UB" is a short marker. It is honoured, and it hides every sentence that contains it.
+  note: /tmp/msh-audit-verifier-4/new/STYLE.md: "PL;UB" is a short marker. It is honoured, and it hides every sentence that contains it.
+  note: /tmp/msh-audit-verifier-4/new/STYLE.md: "PL;UB" is a short marker. It is honoured, and it hides every sentence that contains it.
+
+drnon.js
+  ALLOWED   cream-terracotta     L5  #fbf6ea + #9a6240
+            STYLE.md: Nong Plub's crayon palette (warm paper, brown hair, brick cheek) is character illustration, not the interface palette. The interface ground is white with Slate Color ink.
+
+list-tools.css
+  P2        accent-border-card   L67  border-left:4px solid
+            Coloured left-border 'accent' cards (≥2)
+            fix: Drop the stripe; if it encodes a state, say the state in words too.
+
+street-world-3d.js
+  P1        emoji-icons          L516  1 emoji icons
+            Emoji used as UI icons (buttons, nav, headings, labels, icon props)
+            fix: Use a word, or one real icon set used sparingly.
+
+app.js
+  REVIEW    agentless-passive    L725  The directory could not be loaded.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+notebook.js
+  REVIEW    agentless-passive    L189  n)} · nothing has been published.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+passport.js
+  REVIEW    agentless-passive    L87  This device visit was removed.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+place-preferences.js
+  REVIEW    agentless-passive    L67  Browser storage is unavailable; choices were not saved.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+privacy.html
+  REVIEW    agentless-passive    L55  The visit date is not published.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+research.html
+  REVIEW    agentless-passive    L56  It is published only when at least half the weight is documented, and it always names the dimensions it could not score.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+  REVIEW    agentless-passive    L64  Commercial platform fields are published as
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+research.js
+  REVIEW    agentless-passive    L122  The visitor rating record was unreachable when this page was rendered, so visitor ratings are not counted in these figures.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+talk-media.js
+  REVIEW    agentless-passive    L160  That catalogue place is not loaded on the map yet.
+            Passive with no actor (the outcome is stated, the cause is not)
+            do not rewrite. Do not rewrite this automatically. Quote the sentence, ask who did it, and if the reader needs to know, name them. The passive is a camera angle: it is only a question when the cause is missing. When the actor is the reader ('your request was sent') the sentence stays.
+
+media/venue-reports/the-bridge-1958/interior.jpg
+  P2        heavy-image            528 KB
+            Image over 500 KB shipped as-is
+            fix: Resize to the largest displayed size and serve AVIF/WebP; set width/height.
+
+Verdict: REVIEW  points 4 (distinct rules: P0 0 · P1 1 · P2 2)  ·  allowed 1  ·  review 9 (sentences to read; not scored, not rewritten)
+SLOP = ≥8 points, a P0 stacked with another P0/P1, or P0/P1 hits in ≥3 categories. REVIEW = 3–7. A screen, not a judge: render it and get a second reviewer.

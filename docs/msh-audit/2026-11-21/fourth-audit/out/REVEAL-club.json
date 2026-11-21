@@ -1,0 +1,110 @@
+{
+  "mode": "club",
+  "url": "https://club.nonarkara.org",
+  "viewports": {
+    "1024": {
+      "vw": 1024,
+      "vh": 768,
+      "before": {
+        "count": "103 places",
+        "rows": 8,
+        "label": "Show all 103 places",
+        "aria": "Show all 103 places",
+        "panel": {
+          "x": 0,
+          "y": 53,
+          "w": 360,
+          "h": 575.3,
+          "top": 53,
+          "bottom": 628.3,
+          "left": 0,
+          "right": 360
+        },
+        "listScrollH": 441,
+        "listClientH": 441,
+        "share": {
+          "painted": 63.67,
+          "usable": 63.01
+        },
+        "zoom": 12,
+        "lastPlaceBottom": 583
+      },
+      "after": {
+        "count": "103 places",
+        "rows": 103,
+        "label": null,
+        "aria": null,
+        "panel": {
+          "x": 0,
+          "y": 53,
+          "w": 360,
+          "h": 715,
+          "top": 53,
+          "bottom": 768,
+          "left": 0,
+          "right": 360
+        },
+        "listScrollH": 5253,
+        "listClientH": 581,
+        "share": {
+          "painted": 58.34,
+          "usable": 58.34
+        },
+        "zoom": 12,
+        "lastPlaceBottom": 5395
+      }
+    },
+    "1440": {
+      "vw": 1440,
+      "vh": 900,
+      "before": {
+        "count": "127 places",
+        "rows": 8,
+        "label": "Show all 127 places",
+        "aria": "Show all 127 places",
+        "panel": {
+          "x": 0,
+          "y": 53,
+          "w": 360,
+          "h": 575.3,
+          "top": 53,
+          "bottom": 628.3,
+          "left": 0,
+          "right": 360
+        },
+        "listScrollH": 441,
+        "listClientH": 441,
+        "share": {
+          "painted": 76.11,
+          "usable": 75.09
+        },
+        "zoom": 12,
+        "lastPlaceBottom": 583
+      },
+      "after": {
+        "count": "127 places",
+        "rows": 127,
+        "label": null,
+        "aria": null,
+        "panel": {
+          "x": 0,
+          "y": 53,
+          "w": 360,
+          "h": 847,
+          "top": 53,
+          "bottom": 900,
+          "left": 0,
+          "right": 360
+        },
+        "listScrollH": 6463,
+        "listClientH": 713,
+        "share": {
+          "painted": 69.15,
+          "usable": 69.15
+        },
+        "zoom": 12,
+        "lastPlaceBottom": 6605
+      }
+    }
+  }
+}

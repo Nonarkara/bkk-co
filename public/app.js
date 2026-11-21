@@ -870,6 +870,19 @@ function setListOpen(on) {
   $('#list-toggle').setAttribute('aria-pressed', on);
   if (on) { $('#sheet').hidden = true; renderList(); }
 }
+// The phone drawer is the only surface on the phone that stands on the map, so
+// Escape must close it and hand the reader back to the button that opened it.
+// (The fourth audit's finding 6: the drawer had a 44px close button and no
+// keyboard way out.) Escape inside the search field clears the search instead —
+// Chrome does that natively, and the reader is still typing, not navigating.
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  const wrap = $('#list-wrap');
+  if (!wrap.classList.contains('open')) return;
+  if (document.activeElement === $('#q')) return;
+  setListOpen(false);
+  $('#list-toggle').focus({ preventScroll: true });
+});
 
 // ---------- search ----------
 let hitIdx = -1;

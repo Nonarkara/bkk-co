@@ -1,17 +1,17 @@
 {
-  "observedAt": "2026-11-20T22:56:52.199Z",
+  "observedAt": "2026-11-21T00:14:51.964Z",
   "origin": "https://club.nonarkara.org",
-  "sourceCommit": "d085acebc9cf5aa82069582a17c69a25538453b2",
+  "sourceCommit": "3cc2b3fd1e545893c1adadb21cd8748a1e452ce0",
   "matched": [
     {
       "path": "404.html",
       "bytes": 1204,
-      "sha256": "b59ddc70433de2d1cff83c76fe4e011d839dc05030da1b3e07c67c25e77c7828"
+      "sha256": "05a2138c8b47aa510d28636efb51670b38360773a3cb487b7f31a186cf1e073b"
     },
     {
       "path": "app.js",
-      "bytes": 74880,
-      "sha256": "ac2846cf2579ab01f11092c612cf82cd24a1cf5fda0e11bb25046347582143e2"
+      "bytes": 76930,
+      "sha256": "125f7360ace98fb03192d594336c98d46b68dac9b20a4cbde098791c4315beb9"
     },
     {
       "path": "atlas-model.js",
@@ -21,7 +21,7 @@
     {
       "path": "atlas.css",
       "bytes": 3673,
-      "sha256": "83bf2ccdb80b4d7f09a204137a205b7d84f55b1a49b27aa796c39b4ccf3c6665"
+      "sha256": "20de45312d71b923ae8a1f22959f26c1c1adf2b2fbbc1d2ea8749bec3b43af3d"
     },
     {
       "path": "atlas.js",
@@ -31,7 +31,7 @@
     {
       "path": "bridge-1958.html",
       "bytes": 4221,
-      "sha256": "dc37cf776b1e34cc68c4d149b645a671d00a3814224b726fd7ea9040202663a1"
+      "sha256": "c82268be4bc35cb9d27a62f88caaadc6360ab1025bcf245673e5bd78086ff3f8"
     },
     {
       "path": "club-mode.js",
@@ -1066,7 +1066,7 @@
     {
       "path": "day.html",
       "bytes": 1495,
-      "sha256": "0104ce39673aae51be2682a850cbfca79ea5aaa6a1ba64d047e9e7458232d982"
+      "sha256": "e0728fad65d76187668f7b7e710d8eaac83111d68ed12ed65f5b23706d366fe0"
     },
     {
       "path": "day.js",
@@ -1076,7 +1076,7 @@
     {
       "path": "discovery.css",
       "bytes": 5803,
-      "sha256": "7ad5c0e9a37e9e362b4fac6ca3c083184b909060b0179338907a4e56abe714c9"
+      "sha256": "e7376b25fc3f2bd942f21b61c68f4d36d90c1755d30c8af56f148366bd11388e"
     },
     {
       "path": "discovery.js",
@@ -1206,7 +1206,7 @@
     {
       "path": "journeys.css",
       "bytes": 5411,
-      "sha256": "0bf3feee8605c4529943d5458d2d67b4f02589119a9583b2bf88f8eee37e1068"
+      "sha256": "3ead1931712e2fdb513b1493538bed5cb4f42352ea09cc1d353066d6af4ca25f"
     },
     {
       "path": "journeys.js",
@@ -1215,8 +1215,8 @@
     },
     {
       "path": "list-tools.css",
-      "bytes": 9687,
-      "sha256": "0d270173b82029e8d2276c7196954e6267962e4de4b12f0a31001a8f5e745904"
+      "bytes": 10048,
+      "sha256": "4c489ca1f87c01a30c3e5535567ea794d5e391bb388c7bd06b948ff16121af45"
     },
     {
       "path": "manga-lens.js",
@@ -1856,7 +1856,7 @@
     {
       "path": "neighbourhoods.html",
       "bytes": 2925,
-      "sha256": "c0c3f8e94868f2e7b72dd190e7487da99faa6cca7a44e96307ca09c4552725fc"
+      "sha256": "4b95b8cfe56540946944767f4d0a59342bcd0e117743f1a9124e2e99ec4761fb"
     },
     {
       "path": "neighbourhoods.js",
@@ -1866,7 +1866,7 @@
     {
       "path": "notebook.css",
       "bytes": 6765,
-      "sha256": "fc0973434ec070bae91903f8d38766bc253aa0446d6d04c600944f1c1447313e"
+      "sha256": "21aceac7f074f51f4bc8f712fa31a40e80b748e8882450037f2c1c7513976e6d"
     },
     {
       "path": "notebook.js",
@@ -1941,7 +1941,7 @@
     {
       "path": "privacy.html",
       "bytes": 8313,
-      "sha256": "fc0d9927e62817006ae591e9c741e94e3215e93d92d8c60fa0a74d97681baab2"
+      "sha256": "5470de044501029525d76f4ab1ce31471df072a7e86c5de573d9f2479bf21385"
     },
     {
       "path": "research.css",
@@ -1951,7 +1951,7 @@
     {
       "path": "research.html",
       "bytes": 6151,
-      "sha256": "7f192aaa66415905ad8c6292c7d75ed0c9619f61b2e17bbc286958731fc65778"
+      "sha256": "645cd20fd0d2f330c1fb1d7e97f451a77a4aa9932dd2c8fe6ba0b10a2fa11397"
     },
     {
       "path": "research.js",
@@ -1995,8 +1995,8 @@
     },
     {
       "path": "style.css",
-      "bytes": 41025,
-      "sha256": "16408c1636816f55233d72ec6d69af78d4c1a9142d4630a16478a1f96f01d55b"
+      "bytes": 42121,
+      "sha256": "1160ffab9e11c96687c9d62490944d49b82aa60ce055962e83b0cfdaa12be8c0"
     },
     {
       "path": "styles/plub-manga.json",
@@ -2065,9 +2065,9 @@
     {
       "path": "index.html",
       "bytes": 11076,
-      "sha256": "ed91e5ca8ee89e684edce3a871ee82bd9428fab86cc08edc9af4a42bf3d5c1d1",
+      "sha256": "4f440bd03ea263dafbae4532ad8b47c14091faab7557982f4eee02b4dade4aa3",
       "localBytes": 11075,
-      "localSha256": "f244a5a062d3791730f365d981da3fcf7cf588c6af6a10f64d0cea3ba2333dad"
+      "localSha256": "e78a15bdc0aa517ca4ef18cebd7c1bd7006a11eace695a8e259ffd522cca3e39"
     }
   ],
   "orphansStillServed": [],

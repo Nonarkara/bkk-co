@@ -1,5 +1,5 @@
 {
-  "stamp": "2026-11-20",
+  "stamp": "2026-11-21",
   "base": "http://127.0.0.1:43839",
   "planted": false,
   "viewports": [
@@ -658,7 +658,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 299
+      "observedHandoffMs": 278
     },
     "notebook": 1,
     "walkthrough": {
@@ -823,6 +823,24 @@
       "mapAfter": 76,
       "mapArrival": null,
       "pass": true,
+      "why": ""
+    }
+  ],
+  "drawerEscape": [
+    {
+      "mode": "plub",
+      "width": 390,
+      "pass": true,
+      "closed": true,
+      "focusBack": "list-toggle",
+      "why": ""
+    },
+    {
+      "mode": "club",
+      "width": 390,
+      "pass": true,
+      "closed": true,
+      "focusBack": "list-toggle",
       "why": ""
     }
   ]

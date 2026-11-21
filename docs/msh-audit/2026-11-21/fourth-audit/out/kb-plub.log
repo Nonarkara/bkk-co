@@ -1,0 +1,99 @@
+{
+ "mode": "plub",
+ "drawerOpen": {
+  "open": true,
+  "rect": {
+   "y": 457,
+   "h": 387
+  }
+ },
+ "escape": {
+  "open": true,
+  "active": "list-find"
+ },
+ "tabbed": 40,
+ "focusedInDrawer": 11,
+ "focusedOutsideDrawer": [
+  {
+   "tag": "BUTTON",
+   "cls": "",
+   "id": null,
+   "text": "Café",
+   "y": 105,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "",
+   "id": null,
+   "text": "Co-work",
+   "y": 105,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "",
+   "id": null,
+   "text": "Library",
+   "y": 105,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "",
+   "id": null,
+   "text": "Food",
+   "y": 105,
+   "visible": true
+  },
+  {
+   "tag": "CANVAS",
+   "cls": "maplibregl-canvas",
+   "id": null,
+   "text": "Map",
+   "y": 148,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "maplibregl-ctrl-zoom-in",
+   "id": null,
+   "text": "Zoom in",
+   "y": 159,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "maplibregl-ctrl-zoom-out",
+   "id": null,
+   "text": "Zoom out",
+   "y": 203,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "maplibregl-ctrl-geolocate",
+   "id": null,
+   "text": "Find my location",
+   "y": 259,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "manga-toggle",
+   "id": null,
+   "text": "Manga view",
+   "y": 315,
+   "visible": true
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "footprint-key",
+   "id": null,
+   "text": "Key",
+   "y": 790,
+   "visible": true
+  }
+ ],
+ "withoutFocusIndicator": []
+}

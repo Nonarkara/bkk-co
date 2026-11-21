@@ -1,0 +1,256 @@
+{
+  "mode": "club",
+  "url": "https://club.nonarkara.org",
+  "errors": [],
+  "closed": {
+    "countText": "329 matching",
+    "countVisible": false,
+    "headingText": "Places in view",
+    "headingVisible": false,
+    "listOpen": false,
+    "listWrapRect": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "bottom": 0
+    },
+    "rows": 0,
+    "listScrollH": 0,
+    "listClientH": 0,
+    "listText": "Loading the directory…",
+    "closeBtn": {
+      "w": 0,
+      "h": 0,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bottom": 0
+      },
+      "visible": false,
+      "aria": "Close list"
+    },
+    "reveal": [],
+    "toggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 50
+      },
+      "pressed": "false",
+      "visible": true
+    }
+  },
+  "dragClosed": {
+    "before": {
+      "c": {
+        "lng": 100.55786,
+        "lat": 13.73784
+      },
+      "z": 12
+    },
+    "after": {
+      "c": {
+        "lng": 100.57103823562016,
+        "lat": 13.74468197498058
+      },
+      "z": 12
+    },
+    "moved": true
+  },
+  "open": {
+    "countText": "46 places",
+    "countVisible": true,
+    "headingText": "Places in view",
+    "headingVisible": true,
+    "listOpen": true,
+    "listWrapRect": {
+      "x": 0,
+      "y": 354,
+      "w": 390,
+      "h": 489.5,
+      "bottom": 844
+    },
+    "rows": 8,
+    "listScrollH": 441,
+    "listClientH": 342,
+    "listText": "CANNABIS LISTINGS\n46\nAddicted Cannabis Club\nMapped dispensary · Tier B · Bangkok\n4/4 details\nTOPSHELF\nMapped dispensary · Tier B · Bangkok\n4/4 details\nThai Cannabis Club\nMapped dispensary · Tier B · Bangkok\n4/4 details\nAmsterdam Cafe Bangkok\nMapped café · Tier",
+    "closeBtn": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 334,
+        "y": 411,
+        "w": 44,
+        "h": 44,
+        "bottom": 455
+      },
+      "visible": true,
+      "aria": "Close list"
+    },
+    "reveal": [
+      {
+        "text": "Show all 46 places",
+        "aria": "Show all 46 places",
+        "state": "all"
+      }
+    ],
+    "toggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 50
+      },
+      "pressed": "true",
+      "visible": true
+    }
+  },
+  "openAfterWait": {
+    "countText": "46 places",
+    "countVisible": true,
+    "headingText": "Places in view",
+    "headingVisible": true,
+    "listOpen": true,
+    "listWrapRect": {
+      "x": 0,
+      "y": 354,
+      "w": 390,
+      "h": 489.5,
+      "bottom": 844
+    },
+    "rows": 8,
+    "listScrollH": 441,
+    "listClientH": 342,
+    "listText": "CANNABIS LISTINGS\n46\nAddicted Cannabis Club\nMapped dispensary · Tier B · Bangkok\n4/4 details\nTOPSHELF\nMapped dispensary · Tier B · Bangkok\n4/4 details\nThai Cannabis Club\nMapped dispensary · Tier B · Bangkok\n4/4 details\nAmsterdam Cafe Bangkok\nMapped café · Tier",
+    "closeBtn": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 334,
+        "y": 411,
+        "w": 44,
+        "h": 44,
+        "bottom": 455
+      },
+      "visible": true,
+      "aria": "Close list"
+    },
+    "reveal": [
+      {
+        "text": "Show all 46 places",
+        "aria": "Show all 46 places",
+        "state": "all"
+      }
+    ],
+    "toggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 50
+      },
+      "pressed": "true",
+      "visible": true
+    }
+  },
+  "afterReveal": {
+    "countText": "9 places",
+    "countVisible": true,
+    "headingText": "Places in view",
+    "headingVisible": true,
+    "listOpen": true,
+    "listWrapRect": {
+      "x": 0,
+      "y": 354,
+      "w": 390,
+      "h": 489.5,
+      "bottom": 844
+    },
+    "rows": 9,
+    "listScrollH": 487,
+    "listClientH": 342,
+    "listText": "CANNABIS LISTINGS\n9\nAddicted Cannabis Club\nMapped dispensary · Tier B · Bangkok\n4/4 details\nTime Traveler Dispensary Bangkok\nMapped dispensary · Tier C · Bangkok\n3/4 details\nGreen Fairy Dispensary\nMapped dispensary · Tier C · Bangkok\n3/4 details\nHigh Got You -",
+    "closeBtn": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 334,
+        "y": 411,
+        "w": 44,
+        "h": 44,
+        "bottom": 455
+      },
+      "visible": true,
+      "aria": "Close list"
+    },
+    "reveal": [
+      {
+        "text": "Show fewer",
+        "aria": "Show fewer places",
+        "state": "fewer"
+      }
+    ],
+    "toggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 50
+      },
+      "pressed": "true",
+      "visible": true
+    }
+  },
+  "afterEscape": {
+    "countText": "9 places",
+    "countVisible": true,
+    "headingText": "Places in view",
+    "headingVisible": true,
+    "listOpen": true,
+    "listWrapRect": {
+      "x": 0,
+      "y": 354,
+      "w": 390,
+      "h": 489.5,
+      "bottom": 844
+    },
+    "rows": 9,
+    "listScrollH": 487,
+    "listClientH": 342,
+    "listText": "CANNABIS LISTINGS\n9\nAddicted Cannabis Club\nMapped dispensary · Tier B · Bangkok\n4/4 details\nTime Traveler Dispensary Bangkok\nMapped dispensary · Tier C · Bangkok\n3/4 details\nGreen Fairy Dispensary\nMapped dispensary · Tier C · Bangkok\n3/4 details\nHigh Got You -",
+    "closeBtn": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 334,
+        "y": 411,
+        "w": 44,
+        "h": 44,
+        "bottom": 455
+      },
+      "visible": true,
+      "aria": "Close list"
+    },
+    "reveal": [
+      {
+        "text": "Show fewer",
+        "aria": "Show fewer places",
+        "state": "fewer"
+      }
+    ],
+    "toggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 50
+      },
+      "pressed": "true",
+      "visible": true
+    }
+  }
+}

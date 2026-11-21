@@ -1,0 +1,24 @@
+{
+  "at1024": {
+    "count": "37 places",
+    "label": "Show all 37 places",
+    "rows": 5,
+    "zoom": 16.8
+  },
+  "zoomedOut": {
+    "count": "19,875 places",
+    "label": "Show all 19,875 places",
+    "rows": 9,
+    "zoom": 9.2,
+    "listScrollH": 552
+  },
+  "clickMs": 1643,
+  "after": {
+    "rows": 19875,
+    "count": "19,875 places",
+    "listScrollH": 994923,
+    "listClientH": 585,
+    "nodes": 151093,
+    "label": "Show fewer"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "mode": "club",
+  "url": "https://club.nonarkara.org",
+  "emptyBefore": {
+    "count": "103 places",
+    "centre": {
+      "lng": 100.55786,
+      "lat": 13.73784,
+      "zoom": 12
+    },
+    "rows": 8,
+    "listText": "CANNABIS LISTINGS\n103\nFat Buds​​ Ekkamai\nMapped dispensary · Tier B · Bangkok\n4/4 details\nFat Buds​ ​Sathorn\nMapped disp"
+  },
+  "emptyAfter": {
+    "count": "0 places",
+    "centre": {
+      "lng": 104.59375,
+      "lat": 7.59999999999998,
+      "zoom": 8
+    },
+    "rows": 0,
+    "listText": "No matches in view. Pan, zoom out or clear a filter.",
+    "emptyMsg": true,
+    "meta": true
+  },
+  "loading": {
+    "count": "Loading…",
+    "loadingWord": true,
+    "phrases": [
+      "Loading Thailand listings…",
+      "Loading…",
+      "Loading the directory…"
+    ],
+    "boxHidden": false,
+    "boxText": "Loading Thailand listings…",
+    "rows": 0
+  },
+  "oldClubLadder0": {
+    "count": "127 places",
+    "rows": 8,
+    "more": [
+      "Show 12 more"
+    ],
+    "listScrollH": 428,
+    "listClientH": 428
+  },
+  "oldClubLadderEnd": {
+    "rows": 44,
+    "scrollH": 2187,
+    "clientH": 713,
+    "more": [
+      "Show 12 more"
+    ]
+  },
+  "oldClubClicks": 14,
+  "oldClubLabels": [
+    "Show 12 more",
+    "Show 12 more",
+    "Show 12 more",
+    "Show 12 more",
+    "Show 12 more",
+    "Show 12 more",
+    "Show 12 more",
+    "Show 12 more",
+    "Show 12 more",
+    "Show 11 more",
+    "Show fewer",
+    "Show 12 more",
+    "Show 12 more",
+    "Show 12 more"
+  ]
+}

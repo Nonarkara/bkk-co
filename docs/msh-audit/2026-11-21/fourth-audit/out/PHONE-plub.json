@@ -1,0 +1,256 @@
+{
+  "mode": "plub",
+  "url": "https://co.nonarkara.org",
+  "errors": [],
+  "closed": {
+    "countText": "20,640 matching",
+    "countVisible": false,
+    "headingText": "Places in view",
+    "headingVisible": false,
+    "listOpen": false,
+    "listWrapRect": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "bottom": 0
+    },
+    "rows": 0,
+    "listScrollH": 0,
+    "listClientH": 0,
+    "listText": "Loading the directory…",
+    "closeBtn": {
+      "w": 0,
+      "h": 0,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bottom": 0
+      },
+      "visible": false,
+      "aria": "Close list"
+    },
+    "reveal": [],
+    "toggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 99
+      },
+      "pressed": "false",
+      "visible": true
+    }
+  },
+  "dragClosed": {
+    "before": {
+      "c": {
+        "lng": 100.51518,
+        "lat": 13.7315
+      },
+      "z": 16.8
+    },
+    "after": {
+      "c": {
+        "lng": 100.51564215736448,
+        "lat": 13.73173943898614
+      },
+      "z": 16.8
+    },
+    "moved": true
+  },
+  "open": {
+    "countText": "12 places",
+    "countVisible": true,
+    "headingText": "Places in view",
+    "headingVisible": true,
+    "listOpen": true,
+    "listWrapRect": {
+      "x": 0,
+      "y": 457,
+      "w": 390,
+      "h": 386.9,
+      "bottom": 844
+    },
+    "rows": 4,
+    "listScrollH": 288,
+    "listClientH": 288,
+    "listText": "CAFÉS\n11\nHouse of Commons\nCafé\n~70 m\nBaba Mama Cafe\nCafé\n~70 m\nSuch A Small World\nCafé\n~80 m\nLIBRARIES\n1\nห้องสมุดประชาชี Prachachee Library\nLibrary\n~80 m\nShow all 12 places",
+    "closeBtn": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 334,
+        "y": 465,
+        "w": 44,
+        "h": 44,
+        "bottom": 509
+      },
+      "visible": true,
+      "aria": "Close list"
+    },
+    "reveal": [
+      {
+        "text": "Show all 12 places",
+        "aria": "Show all 12 places",
+        "state": "all"
+      }
+    ],
+    "toggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 99
+      },
+      "pressed": "true",
+      "visible": true
+    }
+  },
+  "openAfterWait": {
+    "countText": "12 places",
+    "countVisible": true,
+    "headingText": "Places in view",
+    "headingVisible": true,
+    "listOpen": true,
+    "listWrapRect": {
+      "x": 0,
+      "y": 457,
+      "w": 390,
+      "h": 386.9,
+      "bottom": 844
+    },
+    "rows": 4,
+    "listScrollH": 288,
+    "listClientH": 288,
+    "listText": "CAFÉS\n11\nHouse of Commons\nCafé\n~70 m\nBaba Mama Cafe\nCafé\n~70 m\nSuch A Small World\nCafé\n~80 m\nLIBRARIES\n1\nห้องสมุดประชาชี Prachachee Library\nLibrary\n~80 m\nShow all 12 places",
+    "closeBtn": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 334,
+        "y": 465,
+        "w": 44,
+        "h": 44,
+        "bottom": 509
+      },
+      "visible": true,
+      "aria": "Close list"
+    },
+    "reveal": [
+      {
+        "text": "Show all 12 places",
+        "aria": "Show all 12 places",
+        "state": "all"
+      }
+    ],
+    "toggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 99
+      },
+      "pressed": "true",
+      "visible": true
+    }
+  },
+  "afterReveal": {
+    "countText": "9 places",
+    "countVisible": true,
+    "headingText": "Places in view",
+    "headingVisible": true,
+    "listOpen": true,
+    "listWrapRect": {
+      "x": 0,
+      "y": 354,
+      "w": 390,
+      "h": 489.5,
+      "bottom": 844
+    },
+    "rows": 9,
+    "listScrollH": 490,
+    "listClientH": 391,
+    "listText": "CAFÉS\n9\nSuch A Small World\nCafé\n~80 m\nSarnies & Friends\nCafé\n~80 m\nChoco.project\nCafé\n~90 m\nคาเฟ่ อเมซอน · ถ.เจริญกรุง แขวงตลาดน้อย\nCafé\n~110 m\nCafé Amazon · ถ.เจริญกรุง แขวงตลาดน้อย\nCafé · Wi-Fi · Hours\n~120 m\n976 Cafe\nCafé\n~170 m\nJUST Kxree - FUN Cafe\nCafé\n~",
+    "closeBtn": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 334,
+        "y": 362,
+        "w": 44,
+        "h": 44,
+        "bottom": 406
+      },
+      "visible": true,
+      "aria": "Close list"
+    },
+    "reveal": [
+      {
+        "text": "Show fewer",
+        "aria": "Show fewer places",
+        "state": "fewer"
+      }
+    ],
+    "toggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 99
+      },
+      "pressed": "true",
+      "visible": true
+    }
+  },
+  "afterEscape": {
+    "countText": "9 places",
+    "countVisible": true,
+    "headingText": "Places in view",
+    "headingVisible": true,
+    "listOpen": true,
+    "listWrapRect": {
+      "x": 0,
+      "y": 354,
+      "w": 390,
+      "h": 489.5,
+      "bottom": 844
+    },
+    "rows": 9,
+    "listScrollH": 490,
+    "listClientH": 391,
+    "listText": "CAFÉS\n9\nSuch A Small World\nCafé\n~80 m\nSarnies & Friends\nCafé\n~80 m\nChoco.project\nCafé\n~90 m\nคาเฟ่ อเมซอน · ถ.เจริญกรุง แขวงตลาดน้อย\nCafé\n~110 m\nCafé Amazon · ถ.เจริญกรุง แขวงตลาดน้อย\nCafé · Wi-Fi · Hours\n~120 m\n976 Cafe\nCafé\n~170 m\nJUST Kxree - FUN Cafe\nCafé\n~",
+    "closeBtn": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 334,
+        "y": 362,
+        "w": 44,
+        "h": 44,
+        "bottom": 406
+      },
+      "visible": true,
+      "aria": "Close list"
+    },
+    "reveal": [
+      {
+        "text": "Show fewer",
+        "aria": "Show fewer places",
+        "state": "fewer"
+      }
+    ],
+    "toggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 99
+      },
+      "pressed": "true",
+      "visible": true
+    }
+  }
+}

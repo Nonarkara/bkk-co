@@ -1,5 +1,5 @@
 {
-  "stamp": "2026-11-20",
+  "stamp": "2026-11-21",
   "base": "http://127.0.0.1:43839",
   "planted": true,
   "viewports": [
@@ -750,7 +750,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 292
+      "observedHandoffMs": 323
     },
     "notebook": 1,
     "walkthrough": {
@@ -912,6 +912,16 @@
       "id": "B13 tap target",
       "detail": "button#planted-tiny 22x22 \"x\"",
       "width": "club-1440"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "the phone drawer at plub 390px has no keyboard way out: Escape did not close the drawer",
+      "width": "plub-390-escape"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "the phone drawer at club 390px has no keyboard way out: Escape did not close the drawer",
+      "width": "club-390-escape"
     }
   ],
   "filterStrip": [
@@ -976,5 +986,85 @@
     "inputPresent": true,
     "chipsOutside": [],
     "pass": true
-  }
+  },
+  "disclosure": [
+    {
+      "mode": "plub",
+      "width": 390,
+      "label": "Show all 19 places",
+      "promised": 19,
+      "beforeRows": 4,
+      "afterRows": 19,
+      "kept": true,
+      "mapKept": true,
+      "mapBefore": 33.3,
+      "mapAfter": 22.6,
+      "mapArrival": 80.6,
+      "pass": true,
+      "why": ""
+    },
+    {
+      "mode": "plub",
+      "width": 1440,
+      "label": "Show all 51 places",
+      "promised": 51,
+      "beforeRows": 5,
+      "afterRows": 51,
+      "kept": true,
+      "mapKept": true,
+      "mapBefore": 79.7,
+      "mapAfter": 76.6,
+      "mapArrival": null,
+      "pass": true,
+      "why": ""
+    },
+    {
+      "mode": "club",
+      "width": 390,
+      "label": "Show all 70 places",
+      "promised": 70,
+      "beforeRows": 8,
+      "afterRows": 70,
+      "kept": true,
+      "mapKept": true,
+      "mapBefore": 28.8,
+      "mapAfter": 28.8,
+      "mapArrival": 86.8,
+      "pass": true,
+      "why": ""
+    },
+    {
+      "mode": "club",
+      "width": 1440,
+      "label": "Show all 127 places",
+      "promised": 127,
+      "beforeRows": 8,
+      "afterRows": 127,
+      "kept": true,
+      "mapKept": true,
+      "mapBefore": 76.2,
+      "mapAfter": 76,
+      "mapArrival": null,
+      "pass": true,
+      "why": ""
+    }
+  ],
+  "drawerEscape": [
+    {
+      "mode": "plub",
+      "width": 390,
+      "pass": false,
+      "closed": false,
+      "focusBack": "list-toggle",
+      "why": "Escape did not close the drawer"
+    },
+    {
+      "mode": "club",
+      "width": 390,
+      "pass": false,
+      "closed": false,
+      "focusBack": "list-toggle",
+      "why": "Escape did not close the drawer"
+    }
+  ]
 }

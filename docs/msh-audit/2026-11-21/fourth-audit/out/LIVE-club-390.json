@@ -1,0 +1,3128 @@
+{
+  "label": "LIVE-club",
+  "url": "https://club.nonarkara.org",
+  "mode": "club",
+  "vw": 390,
+  "vh": 844,
+  "rec": {
+    "vw": 390,
+    "vh": 844,
+    "before": {
+      "url": "https://club.nonarkara.org/",
+      "title": "CL;UB · Cannabis Laboratory ; Urban Bureau · Thailand",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "hasMap": true,
+      "canvas": {
+        "x": 0,
+        "y": 103,
+        "w": 390,
+        "h": 749,
+        "cw": 390,
+        "ch": 749
+      },
+      "share": {
+        "canvas": {
+          "x": 0,
+          "y": 103,
+          "w": 390,
+          "h": 749
+        },
+        "samples": 7995,
+        "step": 6,
+        "mapSharePainted": 83.49,
+        "mapShareUsable": 82.97,
+        "paintedPx": 274824,
+        "usablePx": 273096,
+        "covers": [
+          {
+            "tag": "HEADER",
+            "cls": "bar",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "w": 390,
+              "h": 103
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 334,
+              "y": 113,
+              "w": 46,
+              "h": 90
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "maplibregl-ctrl-zoom-in",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 335,
+              "y": 114,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "maplibregl-ctrl-icon",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 335,
+              "y": 114,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "maplibregl-ctrl-zoom-out",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 335,
+              "y": 158,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "maplibregl-ctrl-icon",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 335,
+              "y": 159,
+              "w": 44,
+              "h": 43
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 334,
+              "y": 213,
+              "w": 46,
+              "h": 46
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "maplibregl-ctrl-geolocate",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 335,
+              "y": 214,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "maplibregl-ctrl-icon",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 335,
+              "y": 214,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-group manga-ctrl",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 334,
+              "y": 269,
+              "w": 46,
+              "h": 46
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "manga-toggle",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 335,
+              "y": 270,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(244, 244, 240)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 347,
+              "y": 282,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "rect",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 349,
+              "y": 284,
+              "w": 17,
+              "h": 17
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 350,
+              "y": 285,
+              "w": 11,
+              "h": 11
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "circle",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 352,
+              "y": 287,
+              "w": 2,
+              "h": 2
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "circle",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 358,
+              "y": 293,
+              "w": 2,
+              "h": 2
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl footprint-key-control",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 10,
+              "y": 790,
+              "w": 62,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "footprint-key",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 10,
+              "y": 790,
+              "w": 62,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "footprint-club-symbol",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 19,
+              "y": 802,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 19,
+              "y": 802,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 23,
+              "y": 804,
+              "w": 12,
+              "h": 15
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 43,
+              "y": 802,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DETAILS",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-attrib maplibregl-compact",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 352,
+              "y": 806,
+              "w": 28,
+              "h": 28
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SUMMARY",
+            "cls": "maplibregl-ctrl-attrib-button",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 354,
+              "y": 808,
+              "w": 24,
+              "h": 24
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(255, 255, 255, 0.5)",
+            "pe": "auto",
+            "z": "auto"
+          }
+        ],
+        "blockedSamples": [
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      "listWrap": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        },
+        "bg": "rgba(0, 0, 0, 0)",
+        "pe": "auto",
+        "overflowY": "auto",
+        "scrollH": 0,
+        "clientH": 0
+      },
+      "listChildren": [
+        {
+          "cls": "meta",
+          "tag": "LI",
+          "top": 0,
+          "bottom": 0,
+          "h": 0,
+          "text": "Loading the directory…",
+          "visible": false
+        },
+        {
+          "cls": "list-skeleton",
+          "tag": "LI",
+          "top": 0,
+          "bottom": 0,
+          "h": 0,
+          "text": "",
+          "visible": false
+        }
+      ],
+      "slab": 0,
+      "lastPlaceRect": null,
+      "flatSlab": null,
+      "lastPlaceBottom": null,
+      "lastContentCls": "list-skeleton",
+      "rows": 0,
+      "statedText": "329 matching",
+      "statedCount": 329,
+      "camera": {
+        "centre": {
+          "lng": 100.55786,
+          "lat": 13.73784
+        },
+        "zoom": 12,
+        "centreScreen": {
+          "x": 195,
+          "y": 478
+        },
+        "padding": {
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        }
+      },
+      "candidates": 70,
+      "count": {
+        "appCount": 70,
+        "myCount": 70,
+        "stated": 329,
+        "appFnAvailable": true,
+        "candidateSample": [
+          {
+            "keys": [
+              "id",
+              "n",
+              "k",
+              "y",
+              "x",
+              "flags",
+              "g",
+              "idx",
+              "hours",
+              "low",
+              "d",
+              "hub",
+              "sub",
+              "th",
+              "prov",
+              "tier"
+            ],
+            "id": "n10057902624",
+            "x": 100.56021,
+            "y": 13.73888
+          },
+          {
+            "keys": [
+              "id",
+              "n",
+              "k",
+              "y",
+              "x",
+              "flags",
+              "g",
+              "idx",
+              "hours",
+              "low",
+              "d",
+              "hub",
+              "sub",
+              "th",
+              "prov",
+              "tier"
+            ],
+            "id": "n10287097951",
+            "x": 100.57844,
+            "y": 13.72449
+          }
+        ],
+        "mismatches": [],
+        "mismatchTotal": 0,
+        "appNames": [
+          "n10057902624",
+          "n10287097951",
+          "n10605740867",
+          "n10772905454",
+          "n10826845256",
+          "n11158599306",
+          "n11158604718",
+          "n11235261488",
+          "n11414407011",
+          "n11497295493",
+          "n11497314857",
+          "n11806326769",
+          "n11806344569",
+          "n11806530269",
+          "n11811310123",
+          "n11832102869",
+          "n11832108470",
+          "n11836139974",
+          "n11981384231",
+          "n13068338851",
+          "n13327440855",
+          "n13388788332",
+          "n14242845803",
+          "n5321525721",
+          "n8560511016",
+          "o0426d4447d3a",
+          "o04dc36683b47",
+          "o06ef23848b70",
+          "o0e2671ee4585",
+          "o194b15aad726",
+          "o19ba9807b004",
+          "o2a6ad087173f",
+          "o2c204dd4fc02",
+          "o48d064459559",
+          "o4a8c8fcf9f92",
+          "o5a95928ea35d",
+          "o6652dc59104f",
+          "o6f3999b0d092",
+          "o786deafc4faf",
+          "o7a38f5073655",
+          "o7e53aedd9bbf",
+          "o8a18066a086e",
+          "o8cd1110ab5d7",
+          "o8ea510e0655a",
+          "o90130f33b3e4",
+          "o9312d0c2316b",
+          "o9c741beb8a33",
+          "oac25a04a7f83",
+          "oac58a2abbe02",
+          "ob481432009e4",
+          "obf30e59378cb",
+          "oc05ea40bdb3e",
+          "oc2091ee4eff0",
+          "oc52a66f83234",
+          "oc7dff4aa4830",
+          "od064df4ebaae",
+          "od227f23ba0ee",
+          "od43a156cbbea",
+          "od89a2fad630f",
+          "oe331db5aeb74"
+        ],
+        "myNames": [
+          "n10057902624",
+          "n10287097951",
+          "n10605740867",
+          "n10772905454",
+          "n10826845256",
+          "n11158599306",
+          "n11158604718",
+          "n11235261488",
+          "n11414407011",
+          "n11497295493",
+          "n11497314857",
+          "n11806326769",
+          "n11806344569",
+          "n11806530269",
+          "n11811310123",
+          "n11832102869",
+          "n11832108470",
+          "n11836139974",
+          "n11981384231",
+          "n13068338851",
+          "n13327440855",
+          "n13388788332",
+          "n14242845803",
+          "n5321525721",
+          "n8560511016",
+          "o0426d4447d3a",
+          "o04dc36683b47",
+          "o06ef23848b70",
+          "o0e2671ee4585",
+          "o194b15aad726",
+          "o19ba9807b004",
+          "o2a6ad087173f",
+          "o2c204dd4fc02",
+          "o48d064459559",
+          "o4a8c8fcf9f92",
+          "o5a95928ea35d",
+          "o6652dc59104f",
+          "o6f3999b0d092",
+          "o786deafc4faf",
+          "o7a38f5073655",
+          "o7e53aedd9bbf",
+          "o8a18066a086e",
+          "o8cd1110ab5d7",
+          "o8ea510e0655a",
+          "o90130f33b3e4",
+          "o9312d0c2316b",
+          "o9c741beb8a33",
+          "oac25a04a7f83",
+          "oac58a2abbe02",
+          "ob481432009e4",
+          "obf30e59378cb",
+          "oc05ea40bdb3e",
+          "oc2091ee4eff0",
+          "oc52a66f83234",
+          "oc7dff4aa4830",
+          "od064df4ebaae",
+          "od227f23ba0ee",
+          "od43a156cbbea",
+          "od89a2fad630f",
+          "oe331db5aeb74"
+        ]
+      },
+      "buttons": [
+        {
+          "cls": "phone-only bar-btn",
+          "id": "list-toggle",
+          "text": "☰",
+          "aria": "List, explore and filters",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 12,
+            "y": 50,
+            "w": 44,
+            "h": 44,
+            "top": 50,
+            "bottom": 94,
+            "left": 12,
+            "right": 56
+          }
+        },
+        {
+          "cls": "bar-btn bar-btn-primary",
+          "id": "open-3d",
+          "text": "3D Hunt",
+          "aria": "3D District Scavenger Hunt: explore Bangkok streets in 3D",
+          "expanded": null,
+          "w": 66.2,
+          "h": 36,
+          "rect": {
+            "x": 62,
+            "y": 54,
+            "w": 66.2,
+            "h": 36,
+            "top": 54,
+            "bottom": 90,
+            "left": 62,
+            "right": 128.2
+          }
+        },
+        {
+          "cls": "bar-btn plub-btn",
+          "id": "guide",
+          "text": "Dr Non",
+          "aria": "Nong Plub's guide: neighbourhoods and how places are scored",
+          "expanded": null,
+          "w": 85.2,
+          "h": 36,
+          "rect": {
+            "x": 134.2,
+            "y": 54,
+            "w": 85.2,
+            "h": 36,
+            "top": 54,
+            "bottom": 90,
+            "left": 134.2,
+            "right": 219.3
+          }
+        },
+        {
+          "cls": "bar-btn pass-btn",
+          "id": "passport",
+          "text": "Notes\n0",
+          "aria": "Your notebook",
+          "expanded": null,
+          "w": 70.9,
+          "h": 36,
+          "rect": {
+            "x": 225.3,
+            "y": 54,
+            "w": 70.9,
+            "h": 36,
+            "top": 54,
+            "bottom": 90,
+            "left": 225.3,
+            "right": 296.2
+          }
+        },
+        {
+          "cls": "maplibregl-ctrl-zoom-in",
+          "id": null,
+          "text": "",
+          "aria": "Zoom in",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 335,
+            "y": 114,
+            "w": 44,
+            "h": 44,
+            "top": 114,
+            "bottom": 158,
+            "left": 335,
+            "right": 379
+          }
+        },
+        {
+          "cls": "maplibregl-ctrl-zoom-out",
+          "id": null,
+          "text": "",
+          "aria": "Zoom out",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 335,
+            "y": 158,
+            "w": 44,
+            "h": 44,
+            "top": 158,
+            "bottom": 202,
+            "left": 335,
+            "right": 379
+          }
+        },
+        {
+          "cls": "maplibregl-ctrl-geolocate",
+          "id": null,
+          "text": "",
+          "aria": "Find my location",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 335,
+            "y": 214,
+            "w": 44,
+            "h": 44,
+            "top": 214,
+            "bottom": 258,
+            "left": 335,
+            "right": 379
+          }
+        },
+        {
+          "cls": "manga-toggle",
+          "id": null,
+          "text": "",
+          "aria": "Manga view",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 335,
+            "y": 270,
+            "w": 44,
+            "h": 44,
+            "top": 270,
+            "bottom": 314,
+            "left": 335,
+            "right": 379
+          }
+        },
+        {
+          "cls": "footprint-key",
+          "id": null,
+          "text": "Key",
+          "aria": "Map key",
+          "expanded": null,
+          "w": 62.5,
+          "h": 44,
+          "rect": {
+            "x": 10,
+            "y": 790,
+            "w": 62.5,
+            "h": 44,
+            "top": 790,
+            "bottom": 834,
+            "left": 10,
+            "right": 72.5
+          }
+        }
+      ],
+      "reveal": [],
+      "keyLegends": [
+        {
+          "cls": "atlas-dock",
+          "rect": {
+            "x": 10,
+            "y": 115,
+            "w": 0,
+            "h": 0
+          },
+          "insideMap": false,
+          "bg": "rgba(0, 0, 0, 0)",
+          "visible": true,
+          "text": "Find a work spotExplore ↓KeyShow matches329 mappedClear map "
+        },
+        {
+          "cls": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "insideMap": false,
+          "bg": "rgb(255, 255, 255)",
+          "visible": false,
+          "text": "Key"
+        }
+      ],
+      "ground": [
+        {
+          "x": 180,
+          "y": 8,
+          "stack": [
+            "INPUT.",
+            "LABEL.search",
+            "HEADER.bar"
+          ],
+          "canvasHit": false
+        },
+        {
+          "x": 180,
+          "y": 40,
+          "stack": [
+            "INPUT.",
+            "LABEL.search",
+            "HEADER.bar"
+          ],
+          "canvasHit": false
+        },
+        {
+          "x": 180,
+          "y": 80,
+          "stack": [
+            "BUTTON.bar-btn plub-btn",
+            "DIV.bar-actions",
+            "HEADER.bar"
+          ],
+          "canvasHit": false
+        },
+        {
+          "x": 180,
+          "y": 140,
+          "stack": [
+            "CANVAS.maplibregl-canvas",
+            "MAIN.maplibregl-map",
+            "BODY.club-mode"
+          ],
+          "canvasHit": false
+        }
+      ]
+    },
+    "flash": {
+      "samples": 41,
+      "otherModeHits": 0,
+      "firstHitIndex": null,
+      "firstTexts": [
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "ground": {
+      "verdict": "NO_PANEL"
+    },
+    "disclosure": {
+      "clicks": 0,
+      "labels": [],
+      "rowsBefore": 0,
+      "rowsAfter": null,
+      "scrollH": 0,
+      "clientH": 0,
+      "label": null,
+      "rowsPre": {
+        "scrollH": 0,
+        "clientH": 0
+      }
+    },
+    "afterDisclosure": {
+      "url": "https://club.nonarkara.org/",
+      "title": "CL;UB · Cannabis Laboratory ; Urban Bureau · Thailand",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "hasMap": true,
+      "canvas": {
+        "x": 0,
+        "y": 103,
+        "w": 390,
+        "h": 749,
+        "cw": 390,
+        "ch": 749
+      },
+      "share": {
+        "canvas": {
+          "x": 0,
+          "y": 103,
+          "w": 390,
+          "h": 749
+        },
+        "samples": 7995,
+        "step": 6,
+        "mapSharePainted": 83.49,
+        "mapShareUsable": 82.97,
+        "paintedPx": 274824,
+        "usablePx": 273096,
+        "covers": [
+          {
+            "tag": "HEADER",
+            "cls": "bar",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "w": 390,
+              "h": 103
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 334,
+              "y": 113,
+              "w": 46,
+              "h": 90
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "maplibregl-ctrl-zoom-in",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 335,
+              "y": 114,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "maplibregl-ctrl-icon",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 335,
+              "y": 114,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "maplibregl-ctrl-zoom-out",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 335,
+              "y": 158,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "maplibregl-ctrl-icon",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 335,
+              "y": 159,
+              "w": 44,
+              "h": 43
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-group",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 334,
+              "y": 213,
+              "w": 46,
+              "h": 46
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "maplibregl-ctrl-geolocate",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 335,
+              "y": 214,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "maplibregl-ctrl-icon",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 335,
+              "y": 214,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-group manga-ctrl",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 334,
+              "y": 269,
+              "w": 46,
+              "h": 46
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "manga-toggle",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 335,
+              "y": 270,
+              "w": 44,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(244, 244, 240)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 347,
+              "y": 282,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "rect",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 349,
+              "y": 284,
+              "w": 17,
+              "h": 17
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 350,
+              "y": 285,
+              "w": 11,
+              "h": 11
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "circle",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 352,
+              "y": 287,
+              "w": 2,
+              "h": 2
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "circle",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 358,
+              "y": 293,
+              "w": 2,
+              "h": 2
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DIV",
+            "cls": "maplibregl-ctrl footprint-key-control",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 10,
+              "y": 790,
+              "w": 62,
+              "h": 44
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "BUTTON",
+            "cls": "footprint-key",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 10,
+              "y": 790,
+              "w": 62,
+              "h": 44
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "footprint-club-symbol",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 19,
+              "y": 802,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "svg",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 19,
+              "y": 802,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "path",
+            "cls": "[object SVGAnimatedString]",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 23,
+              "y": 804,
+              "w": 12,
+              "h": 15
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SPAN",
+            "cls": "",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 43,
+              "y": 802,
+              "w": 20,
+              "h": 20
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "DETAILS",
+            "cls": "maplibregl-ctrl maplibregl-ctrl-attrib maplibregl-compact",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 352,
+              "y": 806,
+              "w": 28,
+              "h": 28
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgb(255, 255, 255)",
+            "pe": "auto",
+            "z": "auto"
+          },
+          {
+            "tag": "SUMMARY",
+            "cls": "maplibregl-ctrl-attrib-button",
+            "id": null,
+            "insideMap": true,
+            "rect": {
+              "x": 354,
+              "y": 808,
+              "w": 24,
+              "h": 24
+            },
+            "opaque": true,
+            "blocks": true,
+            "bg": "rgba(255, 255, 255, 0.5)",
+            "pe": "auto",
+            "z": "auto"
+          }
+        ],
+        "blockedSamples": [
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "cls": "",
+            "id": null,
+            "insideMap": false,
+            "rect": {
+              "x": 102,
+              "y": 87,
+              "w": 32,
+              "h": 67
+            },
+            "opaque": false,
+            "blocks": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      "listWrap": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        },
+        "bg": "rgba(0, 0, 0, 0)",
+        "pe": "auto",
+        "overflowY": "auto",
+        "scrollH": 0,
+        "clientH": 0
+      },
+      "listChildren": [
+        {
+          "cls": "meta",
+          "tag": "LI",
+          "top": 0,
+          "bottom": 0,
+          "h": 0,
+          "text": "Loading the directory…",
+          "visible": false
+        },
+        {
+          "cls": "list-skeleton",
+          "tag": "LI",
+          "top": 0,
+          "bottom": 0,
+          "h": 0,
+          "text": "",
+          "visible": false
+        }
+      ],
+      "slab": 0,
+      "lastPlaceRect": null,
+      "flatSlab": null,
+      "lastPlaceBottom": null,
+      "lastContentCls": "list-skeleton",
+      "rows": 0,
+      "statedText": "329 matching",
+      "statedCount": 329,
+      "camera": {
+        "centre": {
+          "lng": 100.55786,
+          "lat": 13.73784
+        },
+        "zoom": 12,
+        "centreScreen": {
+          "x": 195,
+          "y": 478
+        },
+        "padding": {
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        }
+      },
+      "candidates": 70,
+      "count": {
+        "appCount": 70,
+        "myCount": 70,
+        "stated": 329,
+        "appFnAvailable": true,
+        "candidateSample": [
+          {
+            "keys": [
+              "id",
+              "n",
+              "k",
+              "y",
+              "x",
+              "flags",
+              "g",
+              "idx",
+              "hours",
+              "low",
+              "d",
+              "hub",
+              "sub",
+              "th",
+              "prov",
+              "tier"
+            ],
+            "id": "n10057902624",
+            "x": 100.56021,
+            "y": 13.73888
+          },
+          {
+            "keys": [
+              "id",
+              "n",
+              "k",
+              "y",
+              "x",
+              "flags",
+              "g",
+              "idx",
+              "hours",
+              "low",
+              "d",
+              "hub",
+              "sub",
+              "th",
+              "prov",
+              "tier"
+            ],
+            "id": "n10287097951",
+            "x": 100.57844,
+            "y": 13.72449
+          }
+        ],
+        "mismatches": [],
+        "mismatchTotal": 0,
+        "appNames": [
+          "n10057902624",
+          "n10287097951",
+          "n10605740867",
+          "n10772905454",
+          "n10826845256",
+          "n11158599306",
+          "n11158604718",
+          "n11235261488",
+          "n11414407011",
+          "n11497295493",
+          "n11497314857",
+          "n11806326769",
+          "n11806344569",
+          "n11806530269",
+          "n11811310123",
+          "n11832102869",
+          "n11832108470",
+          "n11836139974",
+          "n11981384231",
+          "n13068338851",
+          "n13327440855",
+          "n13388788332",
+          "n14242845803",
+          "n5321525721",
+          "n8560511016",
+          "o0426d4447d3a",
+          "o04dc36683b47",
+          "o06ef23848b70",
+          "o0e2671ee4585",
+          "o194b15aad726",
+          "o19ba9807b004",
+          "o2a6ad087173f",
+          "o2c204dd4fc02",
+          "o48d064459559",
+          "o4a8c8fcf9f92",
+          "o5a95928ea35d",
+          "o6652dc59104f",
+          "o6f3999b0d092",
+          "o786deafc4faf",
+          "o7a38f5073655",
+          "o7e53aedd9bbf",
+          "o8a18066a086e",
+          "o8cd1110ab5d7",
+          "o8ea510e0655a",
+          "o90130f33b3e4",
+          "o9312d0c2316b",
+          "o9c741beb8a33",
+          "oac25a04a7f83",
+          "oac58a2abbe02",
+          "ob481432009e4",
+          "obf30e59378cb",
+          "oc05ea40bdb3e",
+          "oc2091ee4eff0",
+          "oc52a66f83234",
+          "oc7dff4aa4830",
+          "od064df4ebaae",
+          "od227f23ba0ee",
+          "od43a156cbbea",
+          "od89a2fad630f",
+          "oe331db5aeb74"
+        ],
+        "myNames": [
+          "n10057902624",
+          "n10287097951",
+          "n10605740867",
+          "n10772905454",
+          "n10826845256",
+          "n11158599306",
+          "n11158604718",
+          "n11235261488",
+          "n11414407011",
+          "n11497295493",
+          "n11497314857",
+          "n11806326769",
+          "n11806344569",
+          "n11806530269",
+          "n11811310123",
+          "n11832102869",
+          "n11832108470",
+          "n11836139974",
+          "n11981384231",
+          "n13068338851",
+          "n13327440855",
+          "n13388788332",
+          "n14242845803",
+          "n5321525721",
+          "n8560511016",
+          "o0426d4447d3a",
+          "o04dc36683b47",
+          "o06ef23848b70",
+          "o0e2671ee4585",
+          "o194b15aad726",
+          "o19ba9807b004",
+          "o2a6ad087173f",
+          "o2c204dd4fc02",
+          "o48d064459559",
+          "o4a8c8fcf9f92",
+          "o5a95928ea35d",
+          "o6652dc59104f",
+          "o6f3999b0d092",
+          "o786deafc4faf",
+          "o7a38f5073655",
+          "o7e53aedd9bbf",
+          "o8a18066a086e",
+          "o8cd1110ab5d7",
+          "o8ea510e0655a",
+          "o90130f33b3e4",
+          "o9312d0c2316b",
+          "o9c741beb8a33",
+          "oac25a04a7f83",
+          "oac58a2abbe02",
+          "ob481432009e4",
+          "obf30e59378cb",
+          "oc05ea40bdb3e",
+          "oc2091ee4eff0",
+          "oc52a66f83234",
+          "oc7dff4aa4830",
+          "od064df4ebaae",
+          "od227f23ba0ee",
+          "od43a156cbbea",
+          "od89a2fad630f",
+          "oe331db5aeb74"
+        ]
+      },
+      "buttons": [
+        {
+          "cls": "phone-only bar-btn",
+          "id": "list-toggle",
+          "text": "☰",
+          "aria": "List, explore and filters",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 12,
+            "y": 50,
+            "w": 44,
+            "h": 44,
+            "top": 50,
+            "bottom": 94,
+            "left": 12,
+            "right": 56
+          }
+        },
+        {
+          "cls": "bar-btn bar-btn-primary",
+          "id": "open-3d",
+          "text": "3D Hunt",
+          "aria": "3D District Scavenger Hunt: explore Bangkok streets in 3D",
+          "expanded": null,
+          "w": 66.2,
+          "h": 36,
+          "rect": {
+            "x": 62,
+            "y": 54,
+            "w": 66.2,
+            "h": 36,
+            "top": 54,
+            "bottom": 90,
+            "left": 62,
+            "right": 128.2
+          }
+        },
+        {
+          "cls": "bar-btn plub-btn",
+          "id": "guide",
+          "text": "Dr Non",
+          "aria": "Nong Plub's guide: neighbourhoods and how places are scored",
+          "expanded": null,
+          "w": 85.2,
+          "h": 36,
+          "rect": {
+            "x": 134.2,
+            "y": 54,
+            "w": 85.2,
+            "h": 36,
+            "top": 54,
+            "bottom": 90,
+            "left": 134.2,
+            "right": 219.3
+          }
+        },
+        {
+          "cls": "bar-btn pass-btn",
+          "id": "passport",
+          "text": "Notes\n0",
+          "aria": "Your notebook",
+          "expanded": null,
+          "w": 70.9,
+          "h": 36,
+          "rect": {
+            "x": 225.3,
+            "y": 54,
+            "w": 70.9,
+            "h": 36,
+            "top": 54,
+            "bottom": 90,
+            "left": 225.3,
+            "right": 296.2
+          }
+        },
+        {
+          "cls": "maplibregl-ctrl-zoom-in",
+          "id": null,
+          "text": "",
+          "aria": "Zoom in",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 335,
+            "y": 114,
+            "w": 44,
+            "h": 44,
+            "top": 114,
+            "bottom": 158,
+            "left": 335,
+            "right": 379
+          }
+        },
+        {
+          "cls": "maplibregl-ctrl-zoom-out",
+          "id": null,
+          "text": "",
+          "aria": "Zoom out",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 335,
+            "y": 158,
+            "w": 44,
+            "h": 44,
+            "top": 158,
+            "bottom": 202,
+            "left": 335,
+            "right": 379
+          }
+        },
+        {
+          "cls": "maplibregl-ctrl-geolocate",
+          "id": null,
+          "text": "",
+          "aria": "Find my location",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 335,
+            "y": 214,
+            "w": 44,
+            "h": 44,
+            "top": 214,
+            "bottom": 258,
+            "left": 335,
+            "right": 379
+          }
+        },
+        {
+          "cls": "manga-toggle",
+          "id": null,
+          "text": "",
+          "aria": "Manga view",
+          "expanded": null,
+          "w": 44,
+          "h": 44,
+          "rect": {
+            "x": 335,
+            "y": 270,
+            "w": 44,
+            "h": 44,
+            "top": 270,
+            "bottom": 314,
+            "left": 335,
+            "right": 379
+          }
+        },
+        {
+          "cls": "footprint-key",
+          "id": null,
+          "text": "Key",
+          "aria": "Map key",
+          "expanded": null,
+          "w": 62.5,
+          "h": 44,
+          "rect": {
+            "x": 10,
+            "y": 790,
+            "w": 62.5,
+            "h": 44,
+            "top": 790,
+            "bottom": 834,
+            "left": 10,
+            "right": 72.5
+          }
+        }
+      ],
+      "reveal": [],
+      "keyLegends": [
+        {
+          "cls": "atlas-dock",
+          "rect": {
+            "x": 10,
+            "y": 115,
+            "w": 0,
+            "h": 0
+          },
+          "insideMap": false,
+          "bg": "rgba(0, 0, 0, 0)",
+          "visible": true,
+          "text": "Find a work spotExplore ↓KeyShow matches329 mappedClear map "
+        },
+        {
+          "cls": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "insideMap": false,
+          "bg": "rgb(255, 255, 255)",
+          "visible": false,
+          "text": "Key"
+        }
+      ],
+      "ground": [
+        {
+          "x": 180,
+          "y": 8,
+          "stack": [
+            "INPUT.",
+            "LABEL.search",
+            "HEADER.bar"
+          ],
+          "canvasHit": false
+        },
+        {
+          "x": 180,
+          "y": 40,
+          "stack": [
+            "INPUT.",
+            "LABEL.search",
+            "HEADER.bar"
+          ],
+          "canvasHit": false
+        },
+        {
+          "x": 180,
+          "y": 80,
+          "stack": [
+            "BUTTON.bar-btn plub-btn",
+            "DIV.bar-actions",
+            "HEADER.bar"
+          ],
+          "canvasHit": false
+        },
+        {
+          "x": 180,
+          "y": 140,
+          "stack": [
+            "CANVAS.maplibregl-canvas",
+            "MAIN.maplibregl-map",
+            "BODY.club-mode"
+          ],
+          "canvasHit": false
+        }
+      ]
+    },
+    "targets": {
+      "measured": [
+        {
+          "sel": "#list-toggle",
+          "w": 44,
+          "h": 44,
+          "visible": true,
+          "display": "flex",
+          "rect": {
+            "x": 12,
+            "y": 50
+          },
+          "aria": "List, explore and filters"
+        },
+        {
+          "sel": ".list-close",
+          "w": 0,
+          "h": 0,
+          "visible": false,
+          "display": "block",
+          "rect": {
+            "x": 0,
+            "y": 0
+          },
+          "aria": "Close list"
+        },
+        {
+          "sel": ".close",
+          "w": 0,
+          "h": 0,
+          "visible": false,
+          "display": "block",
+          "rect": {
+            "x": 0,
+            "y": 0
+          },
+          "aria": "Close list"
+        },
+        {
+          "sel": ".sheet .close",
+          "missing": true
+        }
+      ],
+      "undersized": [
+        {
+          "cls": "bar-btn bar-btn-primary",
+          "id": "open-3d",
+          "text": "3D Hunt",
+          "w": 66.2,
+          "h": 36
+        },
+        {
+          "cls": "bar-btn plub-btn",
+          "id": "guide",
+          "text": "Dr Non",
+          "w": 85.2,
+          "h": 36
+        },
+        {
+          "cls": "bar-btn pass-btn",
+          "id": "passport",
+          "text": "Notes\n0",
+          "w": 70.9,
+          "h": 36
+        }
+      ]
+    },
+    "keyboard": {
+      "sequence": [
+        {
+          "tag": "A",
+          "cls": "mark",
+          "id": null,
+          "text": "CL\nUB",
+          "visible": true,
+          "w": 71,
+          "h": 22,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "INPUT",
+          "cls": "",
+          "id": "q",
+          "text": "",
+          "visible": true,
+          "w": 276,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "phone-only bar-btn",
+          "id": "list-toggle",
+          "text": "☰",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn bar-btn-primary",
+          "id": "open-3d",
+          "text": "3D Hunt",
+          "visible": true,
+          "w": 66,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(244, 244, 240)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn plub-btn",
+          "id": "guide",
+          "text": "Dr Non",
+          "visible": true,
+          "w": 85,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn pass-btn",
+          "id": "passport",
+          "text": "Notes\n0",
+          "visible": true,
+          "w": 71,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "CANVAS",
+          "cls": "maplibregl-canvas",
+          "id": null,
+          "text": "Map",
+          "visible": true,
+          "w": 390,
+          "h": 749,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-zoom-in",
+          "id": null,
+          "text": "Zoom in",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-zoom-out",
+          "id": null,
+          "text": "Zoom out",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-geolocate",
+          "id": null,
+          "text": "Find my location",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "manga-toggle",
+          "id": null,
+          "text": "Manga view",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgb(244, 244, 240)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "footprint-key",
+          "id": null,
+          "text": "Key",
+          "visible": true,
+          "w": 62,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "SUMMARY",
+          "cls": "maplibregl-ctrl-attrib-button",
+          "id": null,
+          "text": "Toggle attribution",
+          "visible": true,
+          "w": 24,
+          "h": 24,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(255, 255, 255, 0.5)"
+        },
+        {
+          "none": true
+        },
+        {
+          "tag": "A",
+          "cls": "mark",
+          "id": null,
+          "text": "CL\nUB",
+          "visible": true,
+          "w": 71,
+          "h": 22,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "INPUT",
+          "cls": "",
+          "id": "q",
+          "text": "",
+          "visible": true,
+          "w": 276,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "phone-only bar-btn",
+          "id": "list-toggle",
+          "text": "☰",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn bar-btn-primary",
+          "id": "open-3d",
+          "text": "3D Hunt",
+          "visible": true,
+          "w": 66,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(244, 244, 240)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn plub-btn",
+          "id": "guide",
+          "text": "Dr Non",
+          "visible": true,
+          "w": 85,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn pass-btn",
+          "id": "passport",
+          "text": "Notes\n0",
+          "visible": true,
+          "w": 71,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "CANVAS",
+          "cls": "maplibregl-canvas",
+          "id": null,
+          "text": "Map",
+          "visible": true,
+          "w": 390,
+          "h": 749,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-zoom-in",
+          "id": null,
+          "text": "Zoom in",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-zoom-out",
+          "id": null,
+          "text": "Zoom out",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-geolocate",
+          "id": null,
+          "text": "Find my location",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "manga-toggle",
+          "id": null,
+          "text": "Manga view",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgb(244, 244, 240)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "footprint-key",
+          "id": null,
+          "text": "Key",
+          "visible": true,
+          "w": 62,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "SUMMARY",
+          "cls": "maplibregl-ctrl-attrib-button",
+          "id": null,
+          "text": "Toggle attribution",
+          "visible": true,
+          "w": 24,
+          "h": 24,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(255, 255, 255, 0.5)"
+        },
+        {
+          "tag": "A",
+          "cls": "mark",
+          "id": null,
+          "text": "CL\nUB",
+          "visible": true,
+          "w": 71,
+          "h": 22,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "INPUT",
+          "cls": "",
+          "id": "q",
+          "text": "",
+          "visible": true,
+          "w": 276,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "phone-only bar-btn",
+          "id": "list-toggle",
+          "text": "☰",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn bar-btn-primary",
+          "id": "open-3d",
+          "text": "3D Hunt",
+          "visible": true,
+          "w": 66,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(244, 244, 240)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn plub-btn",
+          "id": "guide",
+          "text": "Dr Non",
+          "visible": true,
+          "w": 85,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn pass-btn",
+          "id": "passport",
+          "text": "Notes\n0",
+          "visible": true,
+          "w": 71,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "CANVAS",
+          "cls": "maplibregl-canvas",
+          "id": null,
+          "text": "Map",
+          "visible": true,
+          "w": 390,
+          "h": 749,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-zoom-in",
+          "id": null,
+          "text": "Zoom in",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-zoom-out",
+          "id": null,
+          "text": "Zoom out",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-geolocate",
+          "id": null,
+          "text": "Find my location",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "manga-toggle",
+          "id": null,
+          "text": "Manga view",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgb(244, 244, 240)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "footprint-key",
+          "id": null,
+          "text": "Key",
+          "visible": true,
+          "w": 62,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "SUMMARY",
+          "cls": "maplibregl-ctrl-attrib-button",
+          "id": null,
+          "text": "Toggle attribution",
+          "visible": true,
+          "w": 24,
+          "h": 24,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(255, 255, 255, 0.5)"
+        },
+        {
+          "none": true
+        },
+        {
+          "tag": "A",
+          "cls": "mark",
+          "id": null,
+          "text": "CL\nUB",
+          "visible": true,
+          "w": 71,
+          "h": 22,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "INPUT",
+          "cls": "",
+          "id": "q",
+          "text": "",
+          "visible": true,
+          "w": 276,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "phone-only bar-btn",
+          "id": "list-toggle",
+          "text": "☰",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn bar-btn-primary",
+          "id": "open-3d",
+          "text": "3D Hunt",
+          "visible": true,
+          "w": 66,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(244, 244, 240)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn plub-btn",
+          "id": "guide",
+          "text": "Dr Non",
+          "visible": true,
+          "w": 85,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "bar-btn pass-btn",
+          "id": "passport",
+          "text": "Notes\n0",
+          "visible": true,
+          "w": 71,
+          "h": 36,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 1,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "tag": "CANVAS",
+          "cls": "maplibregl-canvas",
+          "id": null,
+          "text": "Map",
+          "visible": true,
+          "w": 390,
+          "h": 749,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(125, 19, 58)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-zoom-in",
+          "id": null,
+          "text": "Zoom in",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 0,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "maplibregl-ctrl-zoom-out",
+          "id": null,
+          "text": "Zoom out",
+          "visible": true,
+          "w": 44,
+          "h": 44,
+          "outlineW": 2,
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(37, 49, 34)",
+          "shadow": false,
+          "borderW": 1,
+          "borderBottom": 0,
+          "bg": "rgba(0, 0, 0, 0)"
+        }
+      ],
+      "noIndicator": [],
+      "escapeClose": {
+        "listOpenBefore": false,
+        "togglePressed": "false"
+      }
+    },
+    "maplibre": {
+      "warnings": [
+        "[.WebGL-0x13c00b73800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "[.WebGL-0x13c00b73800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "[.WebGL-0x13c00b73800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "[.WebGL-0x13c00b73800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+      ],
+      "errors": [],
+      "pageErrors": []
+    }
+  }
+}
