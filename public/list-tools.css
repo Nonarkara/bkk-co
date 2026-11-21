@@ -1,24 +1,28 @@
 /* One finder wins. Work spots is the primary action; Walk 3D World is secondary.
    Explore is the one disclosure; the category chips stay visible at a glance.
-   Three rows: actions (36px) · scope · 32px chip strip — rail chrome ≤128px. */
+   Three rows: actions (44px) · scope · 32px chip strip.
+   Every control in these two rows is ISOLATED — one per row, not a dense chip
+   group — so each takes the 44px tap floor (MSH B13). The chips inside the
+   Explore disclosure stay at 32px: that is a dense group, and the house rule
+   says so in as many words. */
 .rail-header { display:flex; flex-direction:column; flex:none; border-bottom:1px solid var(--rule); }
 .rail-row { display:flex; align-items:center; gap:4px 6px; padding:0 var(--pad); }
 .rail-actions { flex-wrap:wrap; padding-top:6px; padding-bottom:6px; }
 .rail-actions .list-find { /* primary action — Good for work */
-  min-height:36px; padding:0 10px; font-weight:600; font-size:var(--body);
+  min-height:44px; padding:0 10px; font-weight:600; font-size:var(--body);
   border:1px solid var(--ink); background:var(--ink); color:var(--paper);
   cursor:pointer; }
 .rail-actions .list-find:hover { background:var(--muted); }
 .rail-actions .list-find[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
-.rail-actions .list-day { display:inline-flex; align-items:center; min-height:32px; font-size:var(--small); font-weight:600; text-underline-offset:3px; }
+.rail-actions .list-day { display:inline-flex; align-items:center; min-height:44px; font-size:var(--small); font-weight:600; text-underline-offset:3px; }
 .rail-actions .list-close { flex:none; margin:0 0 0 auto; min-width:44px; width:44px; height:44px; font-size:var(--big); }
 /* Scope: headline + live count together; the density toggle sits at the row's exit. */
 .rail-scope { flex-wrap:wrap; padding-top:4px; padding-bottom:4px; }
 .rail-scope h2 { padding:0; margin:0; font-size:var(--big); line-height:1.2; font-weight:600; }
 .rail-scope .count { margin:0; padding:0 0 0 6px; font-size:var(--micro); white-space:nowrap; }
 /* "Einstein tiles" was 91x26px — under the house 32px chip height and under the
-   tap floor. It is a standalone control, so it gets the full chip height. */
-.rail-scope .scope-tiles { margin-left:auto; min-height:32px; padding:0 8px; font-size:var(--micro); font-weight:600;
+   tap floor. It is a standalone control, so it takes the tap floor: 44px. */
+.rail-scope .scope-tiles { margin-left:auto; min-height:44px; padding:0 8px; font-size:var(--micro); font-weight:600;
   border:1px solid var(--rule); background:var(--paper); color:var(--ink); cursor:pointer; white-space:nowrap; }
 .rail-scope .scope-tiles:hover { border-color:var(--ink); background:var(--wash); }
 .rail-scope .scope-tiles[aria-pressed="true"] { border-color:var(--ink); background:var(--guide); color:var(--ink); }
@@ -41,9 +45,11 @@
 .chip-scroll .moods button[aria-pressed="true"], .chip-scroll .flags button[aria-pressed="true"] { font-weight:600; }
 .chip-scroll .cat-count { flex:none; font-size:var(--micro); color:var(--muted); padding-left:2px; }
 .chip-scroll .cat-count:empty { display:none; }
-/* Explore: the one disclosure, an action at the row's exit; opens full-width below. */
+/* Explore: the one disclosure, an action at the row's exit; opens full-width below.
+   The summary is an isolated control — it is the only way into the disclosure —
+   so it takes the 44px tap floor. */
 .rail-actions .list-explore { flex:none; }
-.rail-actions .list-explore > summary { min-height:32px; display:flex; align-items:center; cursor:pointer;
+.rail-actions .list-explore > summary { min-height:44px; display:flex; align-items:center; cursor:pointer;
   color:var(--muted); font-weight:500; font-size:var(--small); border:0; background:none; list-style:none; }
 .rail-actions .list-explore > summary::-webkit-details-marker { display:none; }
 .rail-actions .list-explore > summary::before { content:"▸ "; color:var(--muted); }
@@ -56,7 +62,7 @@
 .explore-actions a { color:var(--ink); text-decoration:underline; text-underline-offset:2px; }
 .explore-actions button[aria-pressed="true"] { font-weight:600; text-decoration:underline; text-underline-offset:2px; }
 .explore-actions .list-order { display:block; max-width:100%; }
-.explore-actions .list-order select { font:inherit; font-size:var(--micro); min-height:32px; padding:2px 4px;
+.explore-actions .list-order select { font:inherit; font-size:var(--micro); min-height:44px; padding:2px 4px;
   max-width:215px; color:var(--ink); border:0; border-bottom:1px solid var(--rule); border-radius:0; background:var(--paper); }
 .explore-actions .list-origin { font-size:var(--micro); color:var(--muted); }
 .explore-actions .src { margin:2px 0 4px; font-size:var(--micro); flex-basis:100%; }

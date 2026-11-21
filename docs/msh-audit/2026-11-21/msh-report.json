@@ -10,13 +10,13 @@
       "vw": 390,
       "vh": 844,
       "chrome": {
-        "topPx": 95,
+        "topPx": 111,
         "bottomPx": 0,
         "columnPx": 0,
-        "share": 0.113
+        "share": 0.132
       },
-      "mapShare": 0.825,
-      "mapShareNet": 0.805,
+      "mapShare": 0.806,
+      "mapShareNet": 0.786,
       "mapOverlayShare": 0.0201,
       "mapOverlays": [
         {
@@ -27,35 +27,35 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 7.33,
+      "hierarchyRatio": 6.13,
       "top3": [
         {
           "id": "map",
-          "area": 271440
+          "area": 265200
         },
         {
           "id": "bar",
-          "area": 37050
+          "area": 43290
         },
         {
           "id": "chips",
           "area": 20670
         }
       ],
-      "voidPx": 10286,
-      "voidTop": 0,
+      "voidPx": 5143,
+      "voidTop": 70,
       "voidW": 146,
-      "voidH": 70,
+      "voidH": 35,
       "band": {
-        "h": 141,
+        "h": 70,
         "w": 16
       },
       "obstruction": {
-        "area": 213,
+        "area": 0,
         "cls": "",
-        "tag": "span"
+        "tag": ""
       },
-      "obstructionShare": 0.001,
+      "obstructionShare": 0,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -65,9 +65,9 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 210,
-        "omTotal": 177,
-        "omLine": 115,
+        "total": 208,
+        "omTotal": 176,
+        "omLine": 114,
         "omFill": 58,
         "omSymbol": 4,
         "places": 11
@@ -84,6 +84,7 @@
       "lang": "en",
       "title": "PLUB · Placemaking Laboratory Urban Bureau",
       "pinsLayer": true,
+      "taps": [],
       "placeSheet": {
         "lines": 2,
         "textWidth": 321.765625,
@@ -135,13 +136,13 @@
       "vw": 1024,
       "vh": 900,
       "chrome": {
-        "topPx": 53,
+        "topPx": 61,
         "bottomPx": 0,
-        "columnPx": 89,
-        "share": 0.158
+        "columnPx": 109,
+        "share": 0.189
       },
-      "mapShare": 0.759,
-      "mapShareNet": 0.752,
+      "mapShare": 0.742,
+      "mapShareNet": 0.735,
       "mapOverlayShare": 0.0072,
       "mapOverlays": [
         {
@@ -156,24 +157,24 @@
       "top3": [
         {
           "id": "map",
-          "area": 867328
+          "area": 859136
         },
         {
           "id": "side",
-          "area": 290160
+          "area": 287280
         },
         {
           "id": "bar",
-          "area": 54272
+          "area": 62464
         }
       ],
-      "voidPx": 22400,
+      "voidPx": 6400,
       "voidTop": 0,
-      "voidW": 597,
+      "voidW": 171,
       "voidH": 38,
       "band": {
         "h": 38,
-        "w": 597
+        "w": 171
       },
       "obstruction": {
         "area": 2173,
@@ -190,10 +191,10 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 347,
-        "omTotal": 288,
+        "total": 345,
+        "omTotal": 286,
         "omLine": 172,
-        "omFill": 101,
+        "omFill": 99,
         "omSymbol": 15,
         "places": 16
       },
@@ -209,6 +210,7 @@
       "lang": "en",
       "title": "PLUB · Placemaking Laboratory Urban Bureau",
       "pinsLayer": true,
+      "taps": [],
       "placeSheet": {
         "lines": 2,
         "textWidth": 266.46875,
@@ -260,13 +262,13 @@
       "vw": 1440,
       "vh": 900,
       "chrome": {
-        "topPx": 53,
+        "topPx": 61,
         "bottomPx": 0,
-        "columnPx": 89,
-        "share": 0.158
+        "columnPx": 109,
+        "share": 0.189
       },
-      "mapShare": 0.811,
-      "mapShareNet": 0.806,
+      "mapShare": 0.797,
+      "mapShareNet": 0.792,
       "mapOverlayShare": 0.0051,
       "mapOverlays": [
         {
@@ -277,28 +279,28 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 4.2,
+      "hierarchyRatio": 4.21,
       "top3": [
         {
           "id": "map",
-          "area": 1219680
+          "area": 1208160
         },
         {
           "id": "side",
-          "area": 290160
+          "area": 287280
         },
         {
           "id": "bar",
-          "area": 76320
+          "area": 87840
         }
       ],
-      "voidPx": 36000,
+      "voidPx": 20250,
       "voidTop": 0,
-      "voidW": 960,
+      "voidW": 540,
       "voidH": 38,
       "band": {
         "h": 38,
-        "w": 960
+        "w": 540
       },
       "obstruction": {
         "area": 2173,
@@ -315,10 +317,10 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 416,
-        "omTotal": 347,
+        "total": 414,
+        "omTotal": 345,
         "omLine": 215,
-        "omFill": 112,
+        "omFill": 110,
         "omSymbol": 20,
         "places": 23
       },
@@ -334,6 +336,7 @@
       "lang": "en",
       "title": "PLUB · Placemaking Laboratory Urban Bureau",
       "pinsLayer": true,
+      "taps": [],
       "placeSheet": {
         "lines": 2,
         "textWidth": 266.46875,
@@ -385,13 +388,13 @@
       "vw": 390,
       "vh": 844,
       "chrome": {
-        "topPx": 103,
+        "topPx": 111,
         "bottomPx": 0,
         "columnPx": 0,
-        "share": 0.122
+        "share": 0.132
       },
-      "mapShare": 0.878,
-      "mapShareNet": 0.87,
+      "mapShare": 0.868,
+      "mapShareNet": 0.86,
       "mapOverlayShare": 0.0083,
       "mapOverlays": [
         {
@@ -402,31 +405,31 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 7.19,
+      "hierarchyRatio": 6.6,
       "top3": [
         {
           "id": "map",
-          "area": 288990
+          "area": 285870
         },
         {
           "id": "bar",
-          "area": 40170
+          "area": 43290
         }
       ],
-      "voidPx": 9143,
-      "voidTop": 0,
-      "voidW": 260,
+      "voidPx": 3429,
+      "voidTop": 70,
+      "voidW": 98,
       "voidH": 35,
       "band": {
-        "h": 70,
+        "h": 35,
         "w": 98
       },
       "obstruction": {
-        "area": 1668,
+        "area": 1539,
         "cls": "",
         "tag": "span"
       },
-      "obstructionShare": 0.006,
+      "obstructionShare": 0.005,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -436,11 +439,11 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 6420,
-        "omTotal": 6396,
-        "omLine": 6210,
-        "omFill": 171,
-        "omSymbol": 15,
+        "total": 6348,
+        "omTotal": 6324,
+        "omLine": 6145,
+        "omFill": 165,
+        "omSymbol": 14,
         "places": 14
       },
       "camera": {
@@ -455,6 +458,7 @@
       "lang": "en",
       "title": "CL;UB · Cannabis Laboratory ; Urban Bureau · Thailand",
       "pinsLayer": true,
+      "taps": [],
       "verdict": "PASS"
     },
     {
@@ -464,13 +468,13 @@
       "vw": 1024,
       "vh": 900,
       "chrome": {
-        "topPx": 53,
+        "topPx": 61,
         "bottomPx": 0,
-        "columnPx": 85,
-        "share": 0.153
+        "columnPx": 109,
+        "share": 0.189
       },
-      "mapShare": 0.716,
-      "mapShareNet": 0.713,
+      "mapShare": 0.693,
+      "mapShareNet": 0.69,
       "mapOverlayShare": 0.003,
       "mapOverlays": [
         {
@@ -485,24 +489,24 @@
       "top3": [
         {
           "id": "map",
-          "area": 867328
+          "area": 859136
         },
         {
           "id": "side",
-          "area": 304920
+          "area": 302040
         },
         {
           "id": "bar",
-          "area": 54272
+          "area": 62464
         }
       ],
-      "voidPx": 22400,
+      "voidPx": 6400,
       "voidTop": 0,
-      "voidW": 597,
+      "voidW": 171,
       "voidH": 38,
       "band": {
         "h": 38,
-        "w": 597
+        "w": 171
       },
       "obstruction": {
         "area": 2173,
@@ -519,11 +523,11 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 15928,
-        "omTotal": 15881,
-        "omLine": 15483,
-        "omFill": 360,
-        "omSymbol": 38,
+        "total": 15742,
+        "omTotal": 15695,
+        "omLine": 15321,
+        "omFill": 337,
+        "omSymbol": 37,
         "places": 33
       },
       "camera": {
@@ -538,6 +542,7 @@
       "lang": "en",
       "title": "CL;UB · Cannabis Laboratory ; Urban Bureau · Thailand",
       "pinsLayer": true,
+      "taps": [],
       "verdict": "PASS"
     },
     {
@@ -547,13 +552,13 @@
       "vw": 1440,
       "vh": 900,
       "chrome": {
-        "topPx": 53,
+        "topPx": 61,
         "bottomPx": 0,
-        "columnPx": 85,
-        "share": 0.153
+        "columnPx": 109,
+        "share": 0.189
       },
-      "mapShare": 0.781,
-      "mapShareNet": 0.779,
+      "mapShare": 0.762,
+      "mapShareNet": 0.76,
       "mapOverlayShare": 0.0021,
       "mapOverlays": [
         {
@@ -568,24 +573,24 @@
       "top3": [
         {
           "id": "map",
-          "area": 1219680
+          "area": 1208160
         },
         {
           "id": "side",
-          "area": 304920
+          "area": 302040
         },
         {
           "id": "bar",
-          "area": 76320
+          "area": 87840
         }
       ],
-      "voidPx": 36000,
+      "voidPx": 20250,
       "voidTop": 0,
-      "voidW": 960,
+      "voidW": 540,
       "voidH": 38,
       "band": {
         "h": 38,
-        "w": 960
+        "w": 540
       },
       "obstruction": {
         "area": 2173,
@@ -602,11 +607,11 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 19980,
-        "omTotal": 19922,
-        "omLine": 19437,
-        "omFill": 443,
-        "omSymbol": 42,
+        "total": 19701,
+        "omTotal": 19643,
+        "omLine": 19185,
+        "omFill": 417,
+        "omSymbol": 41,
         "places": 42
       },
       "camera": {
@@ -621,6 +626,7 @@
       "lang": "en",
       "title": "CL;UB · Cannabis Laboratory ; Urban Bureau · Thailand",
       "pinsLayer": true,
+      "taps": [],
       "verdict": "PASS"
     }
   ],
@@ -628,7 +634,7 @@
     "places": {
       "groups": 2,
       "rows": 5,
-      "chrome": 89,
+      "chrome": 109,
       "pass": true
     },
     "search": 9,
@@ -652,7 +658,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 315
+      "observedHandoffMs": 299
     },
     "notebook": 1,
     "walkthrough": {
@@ -675,7 +681,7 @@
     "explore": {
       "present": true,
       "open": true,
-      "height": 248,
+      "height": 260,
       "destinations": 21
     },
     "moodsHidden": true,
@@ -757,5 +763,67 @@
     "inputPresent": true,
     "chipsOutside": [],
     "pass": true
-  }
+  },
+  "disclosure": [
+    {
+      "mode": "plub",
+      "width": 390,
+      "label": "Show all 19 places",
+      "promised": 19,
+      "beforeRows": 4,
+      "afterRows": 19,
+      "kept": true,
+      "mapKept": true,
+      "mapBefore": 33.3,
+      "mapAfter": 22.6,
+      "mapArrival": 80.6,
+      "pass": true,
+      "why": ""
+    },
+    {
+      "mode": "plub",
+      "width": 1440,
+      "label": "Show all 51 places",
+      "promised": 51,
+      "beforeRows": 5,
+      "afterRows": 51,
+      "kept": true,
+      "mapKept": true,
+      "mapBefore": 79.7,
+      "mapAfter": 76.6,
+      "mapArrival": null,
+      "pass": true,
+      "why": ""
+    },
+    {
+      "mode": "club",
+      "width": 390,
+      "label": "Show all 70 places",
+      "promised": 70,
+      "beforeRows": 8,
+      "afterRows": 70,
+      "kept": true,
+      "mapKept": true,
+      "mapBefore": 28.8,
+      "mapAfter": 28.8,
+      "mapArrival": 86.8,
+      "pass": true,
+      "why": ""
+    },
+    {
+      "mode": "club",
+      "width": 1440,
+      "label": "Show all 127 places",
+      "promised": 127,
+      "beforeRows": 8,
+      "afterRows": 127,
+      "kept": true,
+      "mapKept": true,
+      "mapBefore": 76.2,
+      "mapAfter": 76,
+      "mapArrival": null,
+      "pass": true,
+      "why": ""
+    }
+  ]
 }

@@ -16,7 +16,7 @@
 .moment-actions button { padding:2px 8px; }
 .cloud-state { font-size:var(--micro); color:var(--muted); }
 .notebook-sheet label, .edit-visit label,.been-form label:not(.photo-pick) { display:block; margin-top:6px; font-weight:500; }
-.notebook-sheet input:not([type=checkbox]),.notebook-sheet textarea,.notebook-sheet select,.been-form input[type=date] { width:100%; min-height:36px; border:1px solid var(--ink); background:var(--paper); border-radius:0; padding:6px; font:inherit; color:var(--ink); }
+.notebook-sheet input:not([type=checkbox]),.notebook-sheet textarea,.notebook-sheet select,.been-form input[type=date] { width:100%; min-height:44px; border:1px solid var(--ink); background:var(--paper); border-radius:0; padding:6px; font:inherit; color:var(--ink); }
 .notebook-sheet input[type=checkbox] { width:18px; height:18px; flex:none; accent-color:var(--ink); }
 .notebook-sheet textarea { resize:vertical; }
 .notebook-search input { margin-top:4px; }
@@ -56,8 +56,8 @@
 }
 
 /* Text enlargement changes box height rather than cropping the label. */
-.search input { height:auto; min-height:36px; line-height:1.4; padding-block:6px; }
-.pass-btn { height:auto; min-height:36px; }
+.search input { height:auto; min-height:44px; line-height:1.4; padding-block:6px; }
+.pass-btn { height:auto; min-height:44px; }
 .chips button { height:auto; min-height:32px; padding-block:4px; line-height:1.35; }
 .notebook-sheet .send,.been-form .send { height:auto; min-height:44px; padding:8px 12px; line-height:1.35; }
 .notebook-sheet .local-settings,.notebook-sheet > details:not(.notebook-stamps) { margin-top:10px; }
@@ -67,7 +67,7 @@
 .photo-viewer button { display:block; min-height:44px; padding:6px 12px; margin-bottom:6px; border:1px solid var(--ink); }
 .photo-viewer img { display:block; max-width:100%; max-height:calc(100dvh - 100px); width:auto; height:auto; object-fit:contain; }
 
-.backup-parts a { display:block; width:fit-content; min-height:36px; padding:6px 0; }
+.backup-parts a { display:block; width:fit-content; min-height:44px; padding:6px 0; }
 
 .photo-pick:focus-within { outline:2px solid var(--ink); outline-offset:2px; }
 /* Visit controls grow with text; labels remain beside their own wrapping choices. */

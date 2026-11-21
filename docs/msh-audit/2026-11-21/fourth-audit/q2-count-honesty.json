@@ -1,0 +1,155 @@
+[
+  {
+    "mode": "PL;UB",
+    "vw": 390,
+    "phase": "before",
+    "statedCount": "20,640 matching",
+    "appRecomputed": 19,
+    "auditorReading": 19,
+    "disagreement": 0,
+    "countedButNotVisible": [],
+    "visibleButNotCounted": []
+  },
+  {
+    "mode": "PL;UB",
+    "vw": 390,
+    "phase": "afterDisclosure",
+    "statedCount": "20,640 matching",
+    "appRecomputed": 19,
+    "auditorReading": 19,
+    "disagreement": 0,
+    "countedButNotVisible": [],
+    "visibleButNotCounted": []
+  },
+  {
+    "mode": "PL;UB",
+    "vw": 1024,
+    "phase": "before",
+    "statedCount": "37 places",
+    "appRecomputed": 37,
+    "auditorReading": 36,
+    "disagreement": 1,
+    "countedButNotVisible": [
+      {
+        "id": "n4545861394",
+        "x": 408,
+        "y": 738,
+        "why": "under-opaque:footprint-swatch"
+      }
+    ],
+    "visibleButNotCounted": []
+  },
+  {
+    "mode": "PL;UB",
+    "vw": 1024,
+    "phase": "afterDisclosure",
+    "statedCount": "20 places",
+    "appRecomputed": 17,
+    "auditorReading": 17,
+    "disagreement": 0,
+    "countedButNotVisible": [],
+    "visibleButNotCounted": []
+  },
+  {
+    "mode": "PL;UB",
+    "vw": 1440,
+    "phase": "before",
+    "statedCount": "51 places",
+    "appRecomputed": 51,
+    "auditorReading": 51,
+    "disagreement": 0,
+    "countedButNotVisible": [],
+    "visibleButNotCounted": []
+  },
+  {
+    "mode": "PL;UB",
+    "vw": 1440,
+    "phase": "afterDisclosure",
+    "statedCount": "33 places",
+    "appRecomputed": 33,
+    "auditorReading": 32,
+    "disagreement": 1,
+    "countedButNotVisible": [
+      {
+        "id": "w1153316946",
+        "x": 522,
+        "y": 887,
+        "why": "covered-by:footprint-key"
+      }
+    ],
+    "visibleButNotCounted": []
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 390,
+    "phase": "before",
+    "statedCount": "329 matching",
+    "appRecomputed": 70,
+    "auditorReading": 70,
+    "disagreement": 0,
+    "countedButNotVisible": [],
+    "visibleButNotCounted": []
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 390,
+    "phase": "afterDisclosure",
+    "statedCount": "329 matching",
+    "appRecomputed": 70,
+    "auditorReading": 70,
+    "disagreement": 0,
+    "countedButNotVisible": [],
+    "visibleButNotCounted": []
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 1024,
+    "phase": "before",
+    "statedCount": "103 places",
+    "appRecomputed": 103,
+    "auditorReading": 102,
+    "disagreement": 1,
+    "countedButNotVisible": [
+      {
+        "id": "oda25dae0bbe6",
+        "x": 1011,
+        "y": 731,
+        "why": "covered-by:maplibregl-ctrl-attrib-button"
+      }
+    ],
+    "visibleButNotCounted": []
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 1024,
+    "phase": "afterDisclosure",
+    "statedCount": "78 places",
+    "appRecomputed": 78,
+    "auditorReading": 78,
+    "disagreement": 0,
+    "countedButNotVisible": [],
+    "visibleButNotCounted": []
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 1440,
+    "phase": "before",
+    "statedCount": "127 places",
+    "appRecomputed": 127,
+    "auditorReading": 127,
+    "disagreement": 0,
+    "countedButNotVisible": [],
+    "visibleButNotCounted": []
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 1440,
+    "phase": "afterDisclosure",
+    "statedCount": "117 places",
+    "appRecomputed": 117,
+    "auditorReading": 117,
+    "disagreement": 0,
+    "countedButNotVisible": [],
+    "visibleButNotCounted": []
+  }
+]

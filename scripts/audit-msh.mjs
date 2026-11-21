@@ -185,6 +185,12 @@ const MEASURE = () => {
     if (s.backgroundImage && s.backgroundImage !== 'none') return true;
     const bg = s.backgroundColor;
     if (bg && bg !== 'rgba(0, 0, 0, 0)' && bg !== ground) return true;
+    // A field paints its placeholder and its value. The reader sees "⌕ Search"
+    // in the search box; a hairline-boxed field with a label in it is a control
+    // waiting for text, not flat emptiness. Measuring it as a void made the
+    // search box the largest empty rectangle on a phone screen.
+    if ((el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')
+      && (((el.getAttribute('placeholder') || '') + (el.value || '')).trim().length)) return true;
     // A hairline rule paints its edge, not the box around it. Counting a 1px
     // border as if it filled its element marked the whole rail — 360 x 806 px —
     // as content, and the flat white below the last place vanished again.
@@ -379,6 +385,107 @@ const MEASURE = () => {
     title: document.title,
   };
 };
+
+// ---------------------------------------------------------------- the tap census
+// MSH B13 asks for "≥44px taps" and STYLE.md draws the line: 44px belongs to
+// isolated controls and full-width rows; a dense group of chips keeps its 32px.
+//
+// Nothing measured this until the fourth survey. Three audits found a 32x32
+// drawer close button by hand and never looked at the header band, where the
+// search, the wordmark and the three bar buttons sat at 36px on every screen
+// of every page. So the rule is measured here, not remembered.
+//
+// A dense group is a row of small related chips or segments: the category
+// chips, the moods and filters, the Explore action links, the walkthrough's
+// mode segments, the hotspot pills, the sort options. An inline link inside a
+// sentence is text, not a control (WCAG 2.5.8 exempts it), and a control whose
+// hit area is expanded by a pseudo-element is 44px to the finger even when its
+// box is smaller.
+const TAPS = () => {
+  // Inside the function: page.evaluate serialises it, so it cannot close over
+  // anything in this module.
+  const dense = ['.chips', '.moods', '.flags', '.chip-scroll', '.sorts', '.hotspots-row',
+    '.explore-actions', '.model-seg', '.mood-bar', '.hits', '.street-controls']
+    .map(s => document.querySelector(s)).filter(Boolean);
+  const isDense = el => dense.some(d => d === el || d.contains(el));
+  const out = [];
+  for (const el of document.querySelectorAll('button, a[href], summary, select, input, [role="button"]')) {
+    if (!el.checkVisibility()) continue;
+    const r = el.getBoundingClientRect();
+    if (r.width < 1 || r.height < 1) continue;
+    const inline = el.tagName === 'A' && !!el.closest('p, li, figcaption, td, th, blockquote, .src, dd, dt');
+    if (isDense(el) || inline) continue;
+    const after = getComputedStyle(el, '::after');
+    const expanded = after && after.content !== 'none' && after.position === 'absolute' && (parseFloat(after.inset) || 0) < 0;
+    if (expanded) continue;
+    if (r.height < 44 || r.width < 44) {
+      out.push({
+        sel: el.tagName.toLowerCase() + (el.id ? '#' + el.id : '')
+          + (typeof el.className === 'string' && el.className ? '.' + el.className.split(' ').filter(Boolean).slice(0, 2).join('.') : ''),
+        w: Math.round(r.width), h: Math.round(r.height),
+        text: (el.innerText || el.getAttribute('aria-label') || '').trim().replace(/\s+/g, ' ').slice(0, 30),
+      });
+    }
+  }
+  return out;
+};
+
+// The census in the state a reader actually meets it: the rail closed, and the
+// rail open on a phone where the rail is a drawer.
+async function censusTaps(page, open) {
+  if (open) {
+    await page.click('#list-toggle').catch(() => {});
+    await page.waitForTimeout(700);
+  }
+  const found = await page.evaluate(TAPS);
+  if (open) {
+    await page.click('.list-close').catch(() => {});
+    await page.waitForTimeout(400);
+  }
+  return found;
+}
+
+// The rail's one disclosure must keep its promise and must not cost the map.
+// Both were broken once: on a phone "Show all 48 places" delivered eight,
+// because opening the drawer covered the map and the count shrank under the
+// reader's thumb; and one click at 1024 grew the paper panel to the full
+// height of the screen, taking the map from 67% to 58%.
+async function checkDisclosure(page, phone) {
+  const btn = page.locator('#list [data-list-more]');
+  if (!(await btn.count())) return { pass: true, skipped: 'no disclosure on this surface' };
+  const label = (await btn.first().innerText()).trim();
+  const capped = /^Show\s+[\d,]+\s+of\s/.test(label);
+  const promised = Number(((label.match(capped ? /^Show\s+([\d,]+)\s+of/ : /^Show\s+all\s+([\d,]+)/) || [])[1] || '0').replace(/,/g, ''));
+  const before = await page.evaluate(MEASURE);
+  const beforeRows = await page.locator('#list .list-place').count();
+  await btn.first().click();
+  await page.waitForTimeout(1500);
+  const after = await page.evaluate(MEASURE);
+  const afterRows = await page.locator('#list .list-place').count();
+  const kept = promised ? afterRows >= promised : true;
+  // On a phone the drawer is the reader's own temporary overlay: the map's
+  // share with it open is not the first screen's share, and the floor belongs
+  // to the screen the reader arrived on. So the drawer is closed again and the
+  // arrival state is what is judged. On the desktop the rail is permanent
+  // chrome, so the share with the rail standing is the first screen's share.
+  let arrival = null;
+  if (phone) {
+    await page.click('.list-close').catch(() => {});
+    await page.waitForTimeout(900);
+    arrival = await page.evaluate(MEASURE);
+  }
+  const judged = arrival || after;
+  const mapKept = judged.mapShare >= 0.6;
+  return {
+    label, promised, beforeRows, afterRows, kept, mapKept,
+    mapBefore: +(before.mapShare * 100).toFixed(1),
+    mapAfter: +(after.mapShare * 100).toFixed(1),
+    mapArrival: arrival ? +(arrival.mapShare * 100).toFixed(1) : null,
+    pass: kept && mapKept,
+    why: [!kept && `it promised ${promised} and delivered ${afterRows}`,
+      !mapKept && `the map fell to ${(judged.mapShare * 100).toFixed(1)}%`].filter(Boolean).join('; '),
+  };
+}
 
 async function ready(page) {
   // Gate on the app's own data, not on the map's load event: 'load' waits for external tiles
@@ -843,13 +950,18 @@ function verdictFor(view, journey) {
     if (view.clip.stripHidden > 1) F('B3 box fit', `the rail hides ${view.clip.stripHidden}px of filters in a scroller with no scrollbar`);
   }
   if (view.lang !== 'en') F('B12 language', `lang is "${view.lang}"`);
+  // B13: an isolated control is a 44px tap. A dense chip row keeps its 32px,
+  // and an inline link in a sentence is text — but everything else that a
+  // finger has to hit is measured here, in every mode and at every width.
+  if (view.taps && view.taps.length) {
+    F('B13 tap target', view.taps.map(t => `${t.sel} ${t.w}x${t.h} "${t.text}"`).join('; '));
+  }
   if (view.placeSheet && (!view.placeSheet.pass || (PLANTED && view.placeSheet.plantedRejected !== true))) F('B1 place sheet', `Bridge facts or Directions failed the reading budget: ${JSON.stringify(view.placeSheet)}`);
   if (view.thaiName && !view.thaiName.pass) F('B12 Thai typography', `a Thai place name does not wear the Thai face: ${JSON.stringify(view.thaiName)}`);
   if (view.visitReading && (!view.visitReading.pass || (PLANTED && view.visitReading.plantedRejected !== true))) F('B1 visit reading order', `Bridge photo, facts and actions failed the reading budget: ${JSON.stringify(view.visitReading)}`);
   if (view.dayPlanner && (!view.dayPlanner.pass || (PLANTED && view.dayPlanner.plantedRejected !== true))) F('B1 day planner', `A planner action failed the first-screen budget: ${JSON.stringify(view.dayPlanner)}`);
   if (journey) {
-    if (!journey.places?.pass) F('B14 grouped places', 'the sidebar needs short category previews and a first-screen work action');
-    if (PLANTED && journey.ungroupedRejected !== true) F('B14 grouped places', 'the grouped-places gate accepted an ungrouped list');
+    if (!journey.places?.pass) F('B14 grouped places', 'the sidebar needs short category previews and a first-screen work action');    if (PLANTED && journey.ungroupedRejected !== true) F('B14 grouped places', 'the grouped-places gate accepted an ungrouped list');
     const walk = journey.walkthrough;
     if (!walk?.streets || walk.volumes < 10 || !walk.flat || !walk.relief || walk.options !== 12 || !walk.reachable || !walk.closed) F('B14 walkthrough', '3D must open with mapped relief, preserve the flat area and return to the map');
     if (!journey.pinsLayer) F('B14 preservation', 'the map never drew the place pins');
@@ -919,11 +1031,21 @@ try {
         o.className = 'atlas-tools';
         o.style.cssText = 'position:absolute;left:0;top:200px;width:72%;height:520px;background:#ffffff;z-index:6';
         (document.querySelector('#map') || document.body).append(o);
+        // A third known defect: a control a finger cannot hit. The tap census
+        // must catch it, or the census is decorative.
+        const t = document.createElement('button');
+        t.id = 'planted-tiny';
+        t.textContent = 'x';
+        t.style.cssText = 'position:absolute;left:8px;top:64px;width:22px;height:22px;z-index:7';
+        document.body.append(t);
       });
       await page.waitForTimeout(400);
     }
     const view = await page.evaluate(MEASURE);
     view.pinsLayer = pins;
+    // The tap census, in the state the reader meets the rail: closed on the
+    // desktop, and open on a phone where the rail is a drawer.
+    view.taps = await censusTaps(page, w === 390);
     await page.screenshot({ path: new URL(`${PLANTED ? 'planted' : 'view'}-${mode.key}-${w}.png`, outDir).pathname , timeout: 120000 });
     if (mode.full) {
       try { view.placeSheet = await checkPlaceSheet(page, base); }
@@ -977,6 +1099,24 @@ try {
     }
   }
   report.enlargedText = await checkEnlargedText(browser, base);
+  // The disclosure, in both modes, on the desktop and on a phone with the
+  // drawer open. It must keep its promise and it must not take the map.
+  report.disclosure = [];
+  for (const mode of MODES) {
+    for (const { w, h, open } of [{ w: 390, h: 844, open: true }, { w: 1440, h: 900, open: false }]) {
+      const dctx = await browser.newContext({ viewport: { width: w, height: h }, timezoneId: 'Asia/Bangkok' });
+      const dpage = await dctx.newPage();
+      await dpage.goto(mode.url, { waitUntil: 'domcontentloaded', timeout: 120000 });
+      await ready(dpage);
+      if (open) {
+        await dpage.click('#list-toggle').catch(() => {});
+        await dpage.waitForTimeout(900);
+      }
+      const res = await checkDisclosure(dpage, open);
+      report.disclosure.push({ mode: mode.key, width: w, ...res });
+      await dctx.close();
+    }
+  }
 } finally {
   await browser.close();
   if (child) child.kill();
@@ -1005,6 +1145,14 @@ if (report.enlargedText && !report.enlargedText.pass) {
 // it is hidden, and a hidden filter is a lie about what the map can show.
 for (const s of report.filterStrip || []) {
   if (!s.pass) report.fails.push({ id: 'B3 box fit', detail: `the filter strip hides filters: ${s.detail || 'the strip is missing'}`, width: `${s.mode}-${s.width}-strip` });
+}
+// The rail's one disclosure: it must keep its promise and it must not take the
+// map. A disclosure that says "Show all 48 places" and delivers eight is a
+// lie; one that takes the map below 60% is a bad trade.
+for (const d of report.disclosure || []) {
+  if (d.pass) continue;
+  if (!d.kept) report.fails.push({ id: 'B1 first-screen task', detail: `the disclosure broke its promise at ${d.mode} ${d.width}px: "${d.label}" delivered ${d.afterRows} rows`, width: `${d.mode}-${d.width}-disclosure` });
+  if (!d.mapKept) report.fails.push({ id: 'B9 map share', detail: `opening the disclosure at ${d.mode} ${d.width}px took the map from ${d.mapBefore}% to ${d.mapAfter}%`, width: `${d.mode}-${d.width}-disclosure` });
 }
 report.verdict = report.fails.length ? (report.fails.some(f => /map share|void|bleed|runtime/.test(f.id)) ? 'BLOCK' : 'REVISE') : 'PASS';
 

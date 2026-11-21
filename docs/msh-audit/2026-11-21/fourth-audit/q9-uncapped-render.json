@@ -1,0 +1,35 @@
+[
+  {
+    "surface": "PL;UB desktop 1024, camera zoomed out to z 9.2",
+    "countBefore": "19,875 places",
+    "label": "Show all 19,875 places",
+    "rowsRendered": 19875,
+    "domNodes": 151093,
+    "railScrollPx": 994923,
+    "railViewportPx": 585,
+    "railScrollScreens": 1701,
+    "clickToRenderMs": 1643
+  },
+  {
+    "surface": "PL;UB phone 390, camera zoomed out to z 9.2",
+    "countBefore": "18,589 places",
+    "label": "Show all 18,589 places",
+    "rowsRendered": 8851,
+    "domNodes": 67619,
+    "railScrollPx": 434464,
+    "railViewportPx": 391,
+    "railScrollScreens": 1111,
+    "clickToRenderMs": 677
+  },
+  {
+    "surface": "OLD CL;UB 1440 (third audit reference)",
+    "countBefore": "127 places",
+    "label": "ladder of \"Show 12 more\"",
+    "rowsRendered": "44 rows after 14 clicks",
+    "domNodes": null,
+    "railScrollPx": 2187,
+    "railViewportPx": 713,
+    "railScrollScreens": 3.1,
+    "clickToRenderMs": null
+  }
+]

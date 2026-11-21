@@ -1,0 +1,22 @@
+[
+  {
+    "mode": "CL;UB",
+    "directoryUnavailableMessages": 1,
+    "retryButtons": 1,
+    "retry": [
+      {
+        "cls": "retry",
+        "text": "Retry",
+        "visible": true,
+        "rect": {
+          "x": 121,
+          "y": 143,
+          "w": 52,
+          "h": 44
+        }
+      }
+    ],
+    "countText": "unavailable",
+    "clubHotspotsHidden": true
+  }
+]

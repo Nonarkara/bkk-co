@@ -10,14 +10,14 @@
       "vw": 390,
       "vh": 844,
       "chrome": {
-        "topPx": 95,
+        "topPx": 111,
         "bottomPx": 0,
         "columnPx": 0,
-        "share": 0.113
+        "share": 0.132
       },
-      "mapShare": 0.825,
-      "mapShareNet": 0.381,
-      "mapOverlayShare": 0.4432,
+      "mapShare": 0.806,
+      "mapShareNet": 0.376,
+      "mapOverlayShare": 0.4296,
       "mapOverlays": [
         {
           "cls": "maplibregl-ctrl footprint-key-control",
@@ -29,15 +29,15 @@
           "cls": "atlas-tools",
           "w": 281,
           "h": 520,
-          "area": 139275
+          "area": 134783
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 1.62,
+      "hierarchyRatio": 1.58,
       "top3": [
         {
           "id": "map",
-          "area": 271440
+          "area": 265200
         },
         {
           "id": "planted-defect",
@@ -45,23 +45,23 @@
         },
         {
           "id": "bar",
-          "area": 37050
+          "area": 43290
         }
       ],
-      "voidPx": 10286,
-      "voidTop": 0,
+      "voidPx": 5143,
+      "voidTop": 70,
       "voidW": 146,
-      "voidH": 70,
+      "voidH": 35,
       "band": {
-        "h": 141,
+        "h": 70,
         "w": 16
       },
       "obstruction": {
-        "area": 156780,
+        "area": 150540,
         "cls": "",
         "tag": "div"
       },
-      "obstructionShare": 0.578,
+      "obstructionShare": 0.568,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -71,9 +71,9 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 210,
-        "omTotal": 177,
-        "omLine": 115,
+        "total": 208,
+        "omTotal": 176,
+        "omLine": 114,
         "omFill": 58,
         "omSymbol": 4,
         "places": 11
@@ -85,16 +85,24 @@
       "task": {
         "search": true,
         "count": true,
-        "firstUseful": "text"
+        "firstUseful": "planted-tiny"
       },
       "lang": "en",
       "title": "PLUB · Placemaking Laboratory Urban Bureau",
       "pinsLayer": true,
+      "taps": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "text": "x"
+        }
+      ],
       "placeSheet": {
         "lines": 2,
         "textWidth": 321.765625,
-        "factsHeight": 64.89065551757812,
-        "directionsBottom": 216.18753051757812,
+        "factsHeight": 64.890625,
+        "directionsBottom": 216.1875,
         "pass": true,
         "plantedRejected": true
       },
@@ -144,13 +152,13 @@
       "vw": 1024,
       "vh": 900,
       "chrome": {
-        "topPx": 53,
+        "topPx": 61,
         "bottomPx": 0,
-        "columnPx": 89,
-        "share": 0.158
+        "columnPx": 109,
+        "share": 0.189
       },
-      "mapShare": 0.759,
-      "mapShareNet": 0.336,
+      "mapShare": 0.742,
+      "mapShareNet": 0.319,
       "mapOverlayShare": 0.4232,
       "mapOverlays": [
         {
@@ -167,11 +175,11 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 1.97,
+      "hierarchyRatio": 1.95,
       "top3": [
         {
           "id": "map",
-          "area": 867328
+          "area": 859136
         },
         {
           "id": "planted-defect",
@@ -179,23 +187,23 @@
         },
         {
           "id": "side",
-          "area": 290160
+          "area": 287280
         }
       ],
-      "voidPx": 22400,
+      "voidPx": 6400,
       "voidTop": 0,
-      "voidW": 597,
+      "voidW": 171,
       "voidH": 38,
       "band": {
         "h": 38,
-        "w": 597
+        "w": 171
       },
       "obstruction": {
         "area": 440320,
         "cls": "",
         "tag": "div"
       },
-      "obstructionShare": 0.63,
+      "obstructionShare": 0.644,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -205,10 +213,10 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 347,
-        "omTotal": 288,
+        "total": 345,
+        "omTotal": 286,
         "omLine": 172,
-        "omFill": 101,
+        "omFill": 99,
         "omSymbol": 15,
         "places": 16
       },
@@ -219,11 +227,19 @@
       "task": {
         "search": true,
         "count": true,
-        "firstUseful": "text"
+        "firstUseful": "planted-tiny"
       },
       "lang": "en",
       "title": "PLUB · Placemaking Laboratory Urban Bureau",
       "pinsLayer": true,
+      "taps": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "text": "x"
+        }
+      ],
       "placeSheet": {
         "lines": 2,
         "textWidth": 266.46875,
@@ -278,13 +294,13 @@
       "vw": 1440,
       "vh": 900,
       "chrome": {
-        "topPx": 53,
+        "topPx": 61,
         "bottomPx": 0,
-        "columnPx": 89,
-        "share": 0.158
+        "columnPx": 109,
+        "share": 0.189
       },
-      "mapShare": 0.811,
-      "mapShareNet": 0.39,
+      "mapShare": 0.797,
+      "mapShareNet": 0.376,
       "mapOverlayShare": 0.4211,
       "mapOverlays": [
         {
@@ -301,11 +317,11 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 1.97,
+      "hierarchyRatio": 1.95,
       "top3": [
         {
           "id": "map",
-          "area": 1219680
+          "area": 1208160
         },
         {
           "id": "planted-defect",
@@ -313,23 +329,23 @@
         },
         {
           "id": "side",
-          "area": 290160
+          "area": 287280
         }
       ],
-      "voidPx": 36000,
+      "voidPx": 20250,
       "voidTop": 0,
-      "voidW": 960,
+      "voidW": 540,
       "voidH": 38,
       "band": {
         "h": 38,
-        "w": 960
+        "w": 540
       },
       "obstruction": {
         "area": 619200,
         "cls": "",
         "tag": "div"
       },
-      "obstructionShare": 0.589,
+      "obstructionShare": 0.599,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -339,10 +355,10 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 416,
-        "omTotal": 347,
+        "total": 414,
+        "omTotal": 345,
         "omLine": 215,
-        "omFill": 112,
+        "omFill": 110,
         "omSymbol": 20,
         "places": 23
       },
@@ -353,11 +369,19 @@
       "task": {
         "search": true,
         "count": true,
-        "firstUseful": "text"
+        "firstUseful": "planted-tiny"
       },
       "lang": "en",
       "title": "PLUB · Placemaking Laboratory Urban Bureau",
       "pinsLayer": true,
+      "taps": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "text": "x"
+        }
+      ],
       "placeSheet": {
         "lines": 2,
         "textWidth": 266.46875,
@@ -412,13 +436,13 @@
       "vw": 390,
       "vh": 844,
       "chrome": {
-        "topPx": 103,
+        "topPx": 111,
         "bottomPx": 0,
         "columnPx": 0,
-        "share": 0.122
+        "share": 0.132
       },
-      "mapShare": 0.878,
-      "mapShareNet": 0.426,
+      "mapShare": 0.868,
+      "mapShareNet": 0.417,
       "mapOverlayShare": 0.4519,
       "mapOverlays": [
         {
@@ -435,11 +459,11 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 1.72,
+      "hierarchyRatio": 1.7,
       "top3": [
         {
           "id": "map",
-          "area": 288990
+          "area": 285870
         },
         {
           "id": "planted-defect",
@@ -447,15 +471,15 @@
         },
         {
           "id": "bar",
-          "area": 40170
+          "area": 43290
         }
       ],
-      "voidPx": 9143,
-      "voidTop": 0,
-      "voidW": 260,
+      "voidPx": 3429,
+      "voidTop": 70,
+      "voidW": 98,
       "voidH": 35,
       "band": {
-        "h": 70,
+        "h": 35,
         "w": 98
       },
       "obstruction": {
@@ -463,7 +487,7 @@
         "cls": "",
         "tag": "div"
       },
-      "obstructionShare": 0.58,
+      "obstructionShare": 0.587,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -473,11 +497,11 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 6420,
-        "omTotal": 6396,
-        "omLine": 6210,
-        "omFill": 171,
-        "omSymbol": 15,
+        "total": 6348,
+        "omTotal": 6324,
+        "omLine": 6145,
+        "omFill": 165,
+        "omSymbol": 14,
         "places": 14
       },
       "camera": {
@@ -487,11 +511,19 @@
       "task": {
         "search": true,
         "count": true,
-        "firstUseful": "text"
+        "firstUseful": "planted-tiny"
       },
       "lang": "en",
       "title": "CL;UB · Cannabis Laboratory ; Urban Bureau · Thailand",
       "pinsLayer": true,
+      "taps": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "text": "x"
+        }
+      ],
       "verdict": "BLOCK"
     },
     {
@@ -501,13 +533,13 @@
       "vw": 1024,
       "vh": 900,
       "chrome": {
-        "topPx": 53,
+        "topPx": 61,
         "bottomPx": 0,
-        "columnPx": 85,
-        "share": 0.153
+        "columnPx": 109,
+        "share": 0.189
       },
-      "mapShare": 0.716,
-      "mapShareNet": 0.297,
+      "mapShare": 0.693,
+      "mapShareNet": 0.274,
       "mapOverlayShare": 0.419,
       "mapOverlays": [
         {
@@ -524,11 +556,11 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 1.97,
+      "hierarchyRatio": 1.95,
       "top3": [
         {
           "id": "map",
-          "area": 867328
+          "area": 859136
         },
         {
           "id": "planted-defect",
@@ -536,23 +568,23 @@
         },
         {
           "id": "side",
-          "area": 304920
+          "area": 302040
         }
       ],
-      "voidPx": 22400,
+      "voidPx": 6400,
       "voidTop": 0,
-      "voidW": 597,
+      "voidW": 171,
       "voidH": 38,
       "band": {
         "h": 38,
-        "w": 597
+        "w": 171
       },
       "obstruction": {
         "area": 440320,
         "cls": "",
         "tag": "div"
       },
-      "obstructionShare": 0.667,
+      "obstructionShare": 0.689,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -562,11 +594,11 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 15928,
-        "omTotal": 15881,
-        "omLine": 15483,
-        "omFill": 360,
-        "omSymbol": 38,
+        "total": 15742,
+        "omTotal": 15695,
+        "omLine": 15321,
+        "omFill": 337,
+        "omSymbol": 37,
         "places": 33
       },
       "camera": {
@@ -576,11 +608,19 @@
       "task": {
         "search": true,
         "count": true,
-        "firstUseful": "text"
+        "firstUseful": "planted-tiny"
       },
       "lang": "en",
       "title": "CL;UB · Cannabis Laboratory ; Urban Bureau · Thailand",
       "pinsLayer": true,
+      "taps": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "text": "x"
+        }
+      ],
       "verdict": "BLOCK"
     },
     {
@@ -590,13 +630,13 @@
       "vw": 1440,
       "vh": 900,
       "chrome": {
-        "topPx": 53,
+        "topPx": 61,
         "bottomPx": 0,
-        "columnPx": 85,
-        "share": 0.153
+        "columnPx": 109,
+        "share": 0.189
       },
-      "mapShare": 0.781,
-      "mapShareNet": 0.363,
+      "mapShare": 0.762,
+      "mapShareNet": 0.344,
       "mapOverlayShare": 0.4181,
       "mapOverlays": [
         {
@@ -613,11 +653,11 @@
         }
       ],
       "mapIsFirst": true,
-      "hierarchyRatio": 1.97,
+      "hierarchyRatio": 1.95,
       "top3": [
         {
           "id": "map",
-          "area": 1219680
+          "area": 1208160
         },
         {
           "id": "planted-defect",
@@ -625,23 +665,23 @@
         },
         {
           "id": "side",
-          "area": 304920
+          "area": 302040
         }
       ],
-      "voidPx": 36000,
+      "voidPx": 20250,
       "voidTop": 0,
-      "voidW": 960,
+      "voidW": 540,
       "voidH": 38,
       "band": {
         "h": 38,
-        "w": 960
+        "w": 540
       },
       "obstruction": {
         "area": 619200,
         "cls": "",
         "tag": "div"
       },
-      "obstructionShare": 0.612,
+      "obstructionShare": 0.627,
       "inflated": [],
       "orphans": [],
       "bleed": false,
@@ -651,11 +691,11 @@
         "stripRendered": false
       },
       "mapContent": {
-        "total": 19980,
-        "omTotal": 19922,
-        "omLine": 19437,
-        "omFill": 443,
-        "omSymbol": 42,
+        "total": 19701,
+        "omTotal": 19643,
+        "omLine": 19185,
+        "omFill": 417,
+        "omSymbol": 41,
         "places": 42
       },
       "camera": {
@@ -665,11 +705,19 @@
       "task": {
         "search": true,
         "count": true,
-        "firstUseful": "text"
+        "firstUseful": "planted-tiny"
       },
       "lang": "en",
       "title": "CL;UB · Cannabis Laboratory ; Urban Bureau · Thailand",
       "pinsLayer": true,
+      "taps": [
+        {
+          "sel": "button#planted-tiny",
+          "w": 22,
+          "h": 22,
+          "text": "x"
+        }
+      ],
       "verdict": "BLOCK"
     }
   ],
@@ -677,7 +725,7 @@
     "places": {
       "groups": 2,
       "rows": 5,
-      "chrome": 89,
+      "chrome": 109,
       "pass": true
     },
     "ungroupedRejected": true,
@@ -702,7 +750,7 @@
       "pressed": "false",
       "ground": "none",
       "base": "visible",
-      "observedHandoffMs": 331
+      "observedHandoffMs": 292
     },
     "notebook": 1,
     "walkthrough": {
@@ -725,7 +773,7 @@
     "explore": {
       "present": true,
       "open": true,
-      "height": 248,
+      "height": 260,
       "destinations": 21
     },
     "moodsHidden": true,
@@ -752,17 +800,22 @@
     },
     {
       "id": "B9 map overlay chrome",
-      "detail": "PLUB's own overlays stand on 44.3% of the first screen: maplibregl-ctrl footprint-key-control 150x44; atlas-tools 281x520",
+      "detail": "PLUB's own overlays stand on 43.0% of the first screen: maplibregl-ctrl footprint-key-control 150x44; atlas-tools 281x520",
       "width": "plub-390"
     },
     {
       "id": "B9 map obstruction",
-      "detail": "div covers 58% of the map",
+      "detail": "div covers 57% of the map",
+      "width": "plub-390"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "button#planted-tiny 22x22 \"x\"",
       "width": "plub-390"
     },
     {
       "id": "B9 map share",
-      "detail": "the map holds 34% of the first screen once PLUB's own overlays are taken off it",
+      "detail": "the map holds 32% of the first screen once PLUB's own overlays are taken off it",
       "width": "plub-1024"
     },
     {
@@ -772,12 +825,17 @@
     },
     {
       "id": "B9 map obstruction",
-      "detail": "div covers 63% of the map",
+      "detail": "div covers 64% of the map",
+      "width": "plub-1024"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "button#planted-tiny 22x22 \"x\"",
       "width": "plub-1024"
     },
     {
       "id": "B9 map share",
-      "detail": "the map holds 39% of the first screen once PLUB's own overlays are taken off it",
+      "detail": "the map holds 38% of the first screen once PLUB's own overlays are taken off it",
       "width": "plub-1440"
     },
     {
@@ -787,12 +845,17 @@
     },
     {
       "id": "B9 map obstruction",
-      "detail": "div covers 59% of the map",
+      "detail": "div covers 60% of the map",
+      "width": "plub-1440"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "button#planted-tiny 22x22 \"x\"",
       "width": "plub-1440"
     },
     {
       "id": "B9 map share",
-      "detail": "the map holds 43% of the first screen once PLUB's own overlays are taken off it",
+      "detail": "the map holds 42% of the first screen once PLUB's own overlays are taken off it",
       "width": "club-390"
     },
     {
@@ -802,12 +865,17 @@
     },
     {
       "id": "B9 map obstruction",
-      "detail": "div covers 58% of the map",
+      "detail": "div covers 59% of the map",
+      "width": "club-390"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "button#planted-tiny 22x22 \"x\"",
       "width": "club-390"
     },
     {
       "id": "B9 map share",
-      "detail": "the map holds 30% of the first screen once PLUB's own overlays are taken off it",
+      "detail": "the map holds 27% of the first screen once PLUB's own overlays are taken off it",
       "width": "club-1024"
     },
     {
@@ -817,12 +885,17 @@
     },
     {
       "id": "B9 map obstruction",
-      "detail": "div covers 67% of the map",
+      "detail": "div covers 69% of the map",
+      "width": "club-1024"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "button#planted-tiny 22x22 \"x\"",
       "width": "club-1024"
     },
     {
       "id": "B9 map share",
-      "detail": "the map holds 36% of the first screen once PLUB's own overlays are taken off it",
+      "detail": "the map holds 34% of the first screen once PLUB's own overlays are taken off it",
       "width": "club-1440"
     },
     {
@@ -832,7 +905,12 @@
     },
     {
       "id": "B9 map obstruction",
-      "detail": "div covers 61% of the map",
+      "detail": "div covers 63% of the map",
+      "width": "club-1440"
+    },
+    {
+      "id": "B13 tap target",
+      "detail": "button#planted-tiny 22x22 \"x\"",
       "width": "club-1440"
     }
   ],

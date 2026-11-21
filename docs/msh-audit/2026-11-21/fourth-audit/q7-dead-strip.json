@@ -1,0 +1,88 @@
+[
+  {
+    "mode": "PL;UB",
+    "vw": 390,
+    "verdict": "NO_PANEL"
+  },
+  {
+    "mode": "PL;UB",
+    "vw": 1024,
+    "verdict": "GROUND_INTERACTIVE",
+    "point": {
+      "x": 180,
+      "y": 579.7
+    },
+    "zoomBefore": 16.8,
+    "zoomAfterWheel": 17.22362469841646,
+    "zoomDelta": 0.4236,
+    "dragMoved": true,
+    "dragDeltaLng": 0.000924,
+    "dragDeltaLat": 0.000239
+  },
+  {
+    "mode": "PL;UB",
+    "vw": 1440,
+    "verdict": "GROUND_INTERACTIVE",
+    "point": {
+      "x": 180,
+      "y": 579.7
+    },
+    "zoomBefore": 16.8,
+    "zoomAfterWheel": 17.22362469841646,
+    "zoomDelta": 0.4236,
+    "dragMoved": true,
+    "dragDeltaLng": 0.000924,
+    "dragDeltaLat": 0.000239
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 390,
+    "verdict": "NO_PANEL"
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 1024,
+    "verdict": "GROUND_INTERACTIVE",
+    "point": {
+      "x": 180,
+      "y": 688.3
+    },
+    "zoomBefore": 12,
+    "zoomAfterWheel": 12.42362469841646,
+    "zoomDelta": 0.4236,
+    "dragMoved": true,
+    "dragDeltaLng": 0.025749,
+    "dragDeltaLat": 0.00667
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 1440,
+    "verdict": "GROUND_INTERACTIVE",
+    "point": {
+      "x": 180,
+      "y": 688.3
+    },
+    "zoomBefore": 12,
+    "zoomAfterWheel": 12.42362469841646,
+    "zoomDelta": 0.4236,
+    "dragMoved": true,
+    "dragDeltaLng": 0.025749,
+    "dragDeltaLat": 0.00667
+  },
+  {
+    "mode": "OLD PL;UB (falsification)",
+    "vw": 1024,
+    "verdict": "GROUND_DEAD",
+    "zoomBefore": 16.8,
+    "zoomAfterWheel": 16.8,
+    "dragMoved": false
+  },
+  {
+    "mode": "OLD PL;UB (falsification)",
+    "vw": 1440,
+    "verdict": "GROUND_DEAD",
+    "zoomBefore": 16.8,
+    "zoomAfterWheel": 16.8,
+    "dragMoved": false
+  }
+]

@@ -1,0 +1,110 @@
+[
+  {
+    "mode": "PL;UB",
+    "vw": 390,
+    "vh": 844,
+    "mapSharePaintedPct": 77.29,
+    "mapShareUsablePct": 77.23,
+    "afterShowAll_paintedPct": 77.29,
+    "afterShowAll_usablePct": 77.23,
+    "canvas": {
+      "x": 0,
+      "y": 148,
+      "w": 390,
+      "h": 696
+    },
+    "firstScreenPx": 329160,
+    "passes60_before": true,
+    "passes60_after": true
+  },
+  {
+    "mode": "PL;UB",
+    "vw": 1024,
+    "vh": 768,
+    "mapSharePaintedPct": 68.55,
+    "mapShareUsablePct": 67.05,
+    "afterShowAll_paintedPct": 57.74,
+    "afterShowAll_usablePct": 57.74,
+    "canvas": {
+      "x": 0,
+      "y": 53,
+      "w": 1024,
+      "h": 715
+    },
+    "firstScreenPx": 786432,
+    "passes60_before": true,
+    "passes60_after": false
+  },
+  {
+    "mode": "PL;UB",
+    "vw": 1440,
+    "vh": 900,
+    "mapSharePaintedPct": 79.08,
+    "mapShareUsablePct": 77.59,
+    "afterShowAll_paintedPct": 68.78,
+    "afterShowAll_usablePct": 68.78,
+    "canvas": {
+      "x": 0,
+      "y": 53,
+      "w": 1440,
+      "h": 847
+    },
+    "firstScreenPx": 1296000,
+    "passes60_before": true,
+    "passes60_after": true
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 390,
+    "vh": 844,
+    "mapSharePaintedPct": 83.49,
+    "mapShareUsablePct": 82.97,
+    "afterShowAll_paintedPct": 83.49,
+    "afterShowAll_usablePct": 82.97,
+    "canvas": {
+      "x": 0,
+      "y": 103,
+      "w": 390,
+      "h": 749
+    },
+    "firstScreenPx": 329160,
+    "passes60_before": true,
+    "passes60_after": true
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 1024,
+    "vh": 768,
+    "mapSharePaintedPct": 63.67,
+    "mapShareUsablePct": 63.01,
+    "afterShowAll_paintedPct": 58.34,
+    "afterShowAll_usablePct": 58.34,
+    "canvas": {
+      "x": 0,
+      "y": 53,
+      "w": 1024,
+      "h": 715
+    },
+    "firstScreenPx": 786432,
+    "passes60_before": true,
+    "passes60_after": false
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 1440,
+    "vh": 900,
+    "mapSharePaintedPct": 76.11,
+    "mapShareUsablePct": 75.09,
+    "afterShowAll_paintedPct": 69.15,
+    "afterShowAll_usablePct": 69.15,
+    "canvas": {
+      "x": 0,
+      "y": 53,
+      "w": 1440,
+      "h": 847
+    },
+    "firstScreenPx": 1296000,
+    "passes60_before": true,
+    "passes60_after": true
+  }
+]

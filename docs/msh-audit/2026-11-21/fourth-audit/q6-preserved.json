@@ -1,0 +1,186 @@
+[
+  {
+    "mode": "PL;UB",
+    "reducedMotion": {
+      "mq": true,
+      "anims": [
+        "transition/1e-05s"
+      ],
+      "count": 275
+    },
+    "readerText150": [
+      {
+        "vw": 390,
+        "scrollW": 390,
+        "clientW": 390,
+        "innerW": 390,
+        "horizontalOverflow": false,
+        "mapSharePainted": 77.29,
+        "mapShareUsable": 77.23,
+        "offenders": []
+      },
+      {
+        "vw": 1024,
+        "scrollW": 1024,
+        "clientW": 1024,
+        "innerW": 1024,
+        "horizontalOverflow": false,
+        "mapSharePainted": 68.55,
+        "mapShareUsable": 67.05,
+        "offenders": []
+      },
+      {
+        "vw": 1440,
+        "scrollW": 1440,
+        "clientW": 1440,
+        "innerW": 1440,
+        "horizontalOverflow": false,
+        "mapSharePainted": 79.08,
+        "mapShareUsable": 77.59,
+        "offenders": []
+      }
+    ],
+    "crossModeFlash": {
+      "390": {
+        "samples": 41,
+        "otherModeHits": 0,
+        "firstHitIndex": null,
+        "firstTexts": [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      "1024": {
+        "samples": 41,
+        "otherModeHits": 0,
+        "firstHitIndex": null,
+        "firstTexts": [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      "1440": {
+        "samples": 41,
+        "otherModeHits": 0,
+        "firstHitIndex": null,
+        "firstTexts": [
+          "",
+          "",
+          "",
+          ""
+        ]
+      }
+    },
+    "keyboard": {
+      "steps": 50,
+      "elementsWithoutFocusIndicator": []
+    },
+    "maplibreWarnings": {
+      "390": 4,
+      "1024": 0,
+      "1440": 0
+    },
+    "pageErrors": {
+      "390": [],
+      "1024": [],
+      "1440": []
+    }
+  },
+  {
+    "mode": "CL;UB",
+    "reducedMotion": {
+      "mq": true,
+      "anims": [
+        "transition/1e-05s"
+      ],
+      "count": 396
+    },
+    "readerText150": [
+      {
+        "vw": 390,
+        "scrollW": 390,
+        "clientW": 390,
+        "innerW": 390,
+        "horizontalOverflow": false,
+        "mapSharePainted": 83.49,
+        "mapShareUsable": 82.97,
+        "offenders": []
+      },
+      {
+        "vw": 1024,
+        "scrollW": 1024,
+        "clientW": 1024,
+        "innerW": 1024,
+        "horizontalOverflow": false,
+        "mapSharePainted": 63.67,
+        "mapShareUsable": 63.01,
+        "offenders": []
+      },
+      {
+        "vw": 1440,
+        "scrollW": 1440,
+        "clientW": 1440,
+        "innerW": 1440,
+        "horizontalOverflow": false,
+        "mapSharePainted": 76.11,
+        "mapShareUsable": 75.09,
+        "offenders": []
+      }
+    ],
+    "crossModeFlash": {
+      "390": {
+        "samples": 41,
+        "otherModeHits": 0,
+        "firstHitIndex": null,
+        "firstTexts": [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      "1024": {
+        "samples": 41,
+        "otherModeHits": 5,
+        "firstHitIndex": 36,
+        "firstTexts": [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      "1440": {
+        "samples": 41,
+        "otherModeHits": 0,
+        "firstHitIndex": null,
+        "firstTexts": [
+          "",
+          "",
+          "",
+          ""
+        ]
+      }
+    },
+    "keyboard": {
+      "steps": 50,
+      "elementsWithoutFocusIndicator": []
+    },
+    "maplibreWarnings": {
+      "390": 4,
+      "1024": 0,
+      "1440": 0
+    },
+    "pageErrors": {
+      "390": [],
+      "1024": [],
+      "1440": [
+        "EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self'\".\n"
+      ]
+    }
+  }
+]

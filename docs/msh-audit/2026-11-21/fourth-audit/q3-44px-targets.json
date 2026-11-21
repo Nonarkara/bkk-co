@@ -1,0 +1,584 @@
+[
+  {
+    "mode": "PL;UB",
+    "vw": 390,
+    "phoneListToggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 99
+      },
+      "pressed": "false",
+      "visible": true
+    },
+    "phoneDrawerClose": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 334,
+        "y": 465,
+        "w": 44,
+        "h": 44,
+        "bottom": 509
+      },
+      "visible": true,
+      "aria": "Close list"
+    },
+    "desktopHidden": {
+      "listToggle": {
+        "sel": "#list-toggle",
+        "w": 44,
+        "h": 44,
+        "visible": true,
+        "display": "flex",
+        "rect": {
+          "x": 12,
+          "y": 99
+        },
+        "aria": "List, explore and filters"
+      },
+      "listClose": {
+        "sel": ".list-close",
+        "w": 0,
+        "h": 0,
+        "visible": false,
+        "display": "block",
+        "rect": {
+          "x": 0,
+          "y": 0
+        },
+        "aria": "Close list"
+      }
+    },
+    "otherUndersizedVisible": [
+      {
+        "cls": "bar-btn bar-btn-primary",
+        "id": "open-3d",
+        "text": "3D Hunt",
+        "w": 66.2,
+        "h": 36
+      },
+      {
+        "cls": "bar-btn plub-btn",
+        "id": "guide",
+        "text": "Guide",
+        "w": 78.8,
+        "h": 36
+      },
+      {
+        "cls": "bar-btn pass-btn",
+        "id": "passport",
+        "text": "Notes\n0",
+        "w": 70.9,
+        "h": 36
+      },
+      {
+        "cls": "",
+        "id": null,
+        "text": "Café",
+        "w": 63.5,
+        "h": 32
+      },
+      {
+        "cls": "",
+        "id": null,
+        "text": "Co-work",
+        "w": 84.1,
+        "h": 32
+      },
+      {
+        "cls": "",
+        "id": null,
+        "text": "Library",
+        "w": 76.8,
+        "h": 32
+      },
+      {
+        "cls": "",
+        "id": null,
+        "text": "Food",
+        "w": 65.9,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "mode": "PL;UB",
+    "vw": 1024,
+    "phoneListToggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 99
+      },
+      "pressed": "false",
+      "visible": true
+    },
+    "phoneDrawerClose": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 334,
+        "y": 465,
+        "w": 44,
+        "h": 44,
+        "bottom": 509
+      },
+      "visible": true,
+      "aria": "Close list"
+    },
+    "desktopHidden": {
+      "listToggle": {
+        "sel": "#list-toggle",
+        "w": 0,
+        "h": 0,
+        "visible": false,
+        "display": "none",
+        "rect": {
+          "x": 0,
+          "y": 0
+        },
+        "aria": "List, explore and filters"
+      },
+      "listClose": {
+        "sel": ".list-close",
+        "w": 0,
+        "h": 0,
+        "visible": false,
+        "display": "none",
+        "rect": {
+          "x": 0,
+          "y": 0
+        },
+        "aria": "Close list"
+      }
+    },
+    "otherUndersizedVisible": [
+      {
+        "cls": "bar-btn bar-btn-primary",
+        "id": "open-3d",
+        "text": "3D Hunt",
+        "w": 66.2,
+        "h": 36
+      },
+      {
+        "cls": "bar-btn plub-btn",
+        "id": "guide",
+        "text": "Guide",
+        "w": 82.8,
+        "h": 36
+      },
+      {
+        "cls": "bar-btn pass-btn",
+        "id": "passport",
+        "text": "Notes\n0",
+        "w": 82.9,
+        "h": 36
+      },
+      {
+        "cls": "",
+        "id": null,
+        "text": "Café",
+        "w": 66.5,
+        "h": 32
+      },
+      {
+        "cls": "",
+        "id": null,
+        "text": "Co-work",
+        "w": 87.1,
+        "h": 32
+      },
+      {
+        "cls": "",
+        "id": null,
+        "text": "Library",
+        "w": 79.8,
+        "h": 32
+      },
+      {
+        "cls": "",
+        "id": null,
+        "text": "Food",
+        "w": 68.9,
+        "h": 32
+      },
+      {
+        "cls": "list-find",
+        "id": null,
+        "text": "Find a work spot",
+        "w": 127.3,
+        "h": 36
+      },
+      {
+        "cls": "scope-tiles",
+        "id": null,
+        "text": "⬡ Einstein tiles",
+        "w": 90.8,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "mode": "PL;UB",
+    "vw": 1440,
+    "phoneListToggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 99
+      },
+      "pressed": "false",
+      "visible": true
+    },
+    "phoneDrawerClose": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 334,
+        "y": 465,
+        "w": 44,
+        "h": 44,
+        "bottom": 509
+      },
+      "visible": true,
+      "aria": "Close list"
+    },
+    "desktopHidden": {
+      "listToggle": {
+        "sel": "#list-toggle",
+        "w": 0,
+        "h": 0,
+        "visible": false,
+        "display": "none",
+        "rect": {
+          "x": 0,
+          "y": 0
+        },
+        "aria": "List, explore and filters"
+      },
+      "listClose": {
+        "sel": ".list-close",
+        "w": 0,
+        "h": 0,
+        "visible": false,
+        "display": "none",
+        "rect": {
+          "x": 0,
+          "y": 0
+        },
+        "aria": "Close list"
+      }
+    },
+    "otherUndersizedVisible": [
+      {
+        "cls": "bar-btn bar-btn-primary",
+        "id": "open-3d",
+        "text": "3D Hunt",
+        "w": 66.2,
+        "h": 36
+      },
+      {
+        "cls": "bar-btn plub-btn",
+        "id": "guide",
+        "text": "Guide",
+        "w": 82.8,
+        "h": 36
+      },
+      {
+        "cls": "bar-btn pass-btn",
+        "id": "passport",
+        "text": "Notes\n0",
+        "w": 82.9,
+        "h": 36
+      },
+      {
+        "cls": "",
+        "id": null,
+        "text": "Café",
+        "w": 66.5,
+        "h": 32
+      },
+      {
+        "cls": "",
+        "id": null,
+        "text": "Co-work",
+        "w": 87.1,
+        "h": 32
+      },
+      {
+        "cls": "",
+        "id": null,
+        "text": "Library",
+        "w": 79.8,
+        "h": 32
+      },
+      {
+        "cls": "",
+        "id": null,
+        "text": "Food",
+        "w": 68.9,
+        "h": 32
+      },
+      {
+        "cls": "list-find",
+        "id": null,
+        "text": "Find a work spot",
+        "w": 127.3,
+        "h": 36
+      },
+      {
+        "cls": "scope-tiles",
+        "id": null,
+        "text": "⬡ Einstein tiles",
+        "w": 90.8,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 390,
+    "phoneListToggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 50
+      },
+      "pressed": "false",
+      "visible": true
+    },
+    "phoneDrawerClose": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 334,
+        "y": 411,
+        "w": 44,
+        "h": 44,
+        "bottom": 455
+      },
+      "visible": true,
+      "aria": "Close list"
+    },
+    "desktopHidden": {
+      "listToggle": {
+        "sel": "#list-toggle",
+        "w": 44,
+        "h": 44,
+        "visible": true,
+        "display": "flex",
+        "rect": {
+          "x": 12,
+          "y": 50
+        },
+        "aria": "List, explore and filters"
+      },
+      "listClose": {
+        "sel": ".list-close",
+        "w": 0,
+        "h": 0,
+        "visible": false,
+        "display": "block",
+        "rect": {
+          "x": 0,
+          "y": 0
+        },
+        "aria": "Close list"
+      }
+    },
+    "otherUndersizedVisible": [
+      {
+        "cls": "bar-btn bar-btn-primary",
+        "id": "open-3d",
+        "text": "3D Hunt",
+        "w": 66.2,
+        "h": 36
+      },
+      {
+        "cls": "bar-btn plub-btn",
+        "id": "guide",
+        "text": "Dr Non",
+        "w": 85.2,
+        "h": 36
+      },
+      {
+        "cls": "bar-btn pass-btn",
+        "id": "passport",
+        "text": "Notes\n0",
+        "w": 70.9,
+        "h": 36
+      }
+    ]
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 1024,
+    "phoneListToggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 50
+      },
+      "pressed": "false",
+      "visible": true
+    },
+    "phoneDrawerClose": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 334,
+        "y": 411,
+        "w": 44,
+        "h": 44,
+        "bottom": 455
+      },
+      "visible": true,
+      "aria": "Close list"
+    },
+    "desktopHidden": {
+      "listToggle": {
+        "sel": "#list-toggle",
+        "w": 0,
+        "h": 0,
+        "visible": false,
+        "display": "none",
+        "rect": {
+          "x": 0,
+          "y": 0
+        },
+        "aria": "List, explore and filters"
+      },
+      "listClose": {
+        "sel": ".list-close",
+        "w": 0,
+        "h": 0,
+        "visible": false,
+        "display": "none",
+        "rect": {
+          "x": 0,
+          "y": 0
+        },
+        "aria": "Close list"
+      }
+    },
+    "otherUndersizedVisible": [
+      {
+        "cls": "bar-btn bar-btn-primary",
+        "id": "open-3d",
+        "text": "3D Hunt",
+        "w": 66.2,
+        "h": 36
+      },
+      {
+        "cls": "bar-btn plub-btn",
+        "id": "guide",
+        "text": "Dr Non",
+        "w": 89.2,
+        "h": 36
+      },
+      {
+        "cls": "bar-btn pass-btn",
+        "id": "passport",
+        "text": "Notes\n0",
+        "w": 82.9,
+        "h": 36
+      },
+      {
+        "cls": "scope-tiles",
+        "id": null,
+        "text": "⬡ Einstein tiles",
+        "w": 90.8,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "mode": "CL;UB",
+    "vw": 1440,
+    "phoneListToggle": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 12,
+        "y": 50
+      },
+      "pressed": "false",
+      "visible": true
+    },
+    "phoneDrawerClose": {
+      "w": 44,
+      "h": 44,
+      "rect": {
+        "x": 334,
+        "y": 411,
+        "w": 44,
+        "h": 44,
+        "bottom": 455
+      },
+      "visible": true,
+      "aria": "Close list"
+    },
+    "desktopHidden": {
+      "listToggle": {
+        "sel": "#list-toggle",
+        "w": 0,
+        "h": 0,
+        "visible": false,
+        "display": "none",
+        "rect": {
+          "x": 0,
+          "y": 0
+        },
+        "aria": "List, explore and filters"
+      },
+      "listClose": {
+        "sel": ".list-close",
+        "w": 0,
+        "h": 0,
+        "visible": false,
+        "display": "none",
+        "rect": {
+          "x": 0,
+          "y": 0
+        },
+        "aria": "Close list"
+      }
+    },
+    "otherUndersizedVisible": [
+      {
+        "cls": "bar-btn bar-btn-primary",
+        "id": "open-3d",
+        "text": "3D Hunt",
+        "w": 66.2,
+        "h": 36
+      },
+      {
+        "cls": "bar-btn plub-btn",
+        "id": "guide",
+        "text": "Dr Non",
+        "w": 89.2,
+        "h": 36
+      },
+      {
+        "cls": "bar-btn pass-btn",
+        "id": "passport",
+        "text": "Notes\n0",
+        "w": 82.9,
+        "h": 36
+      },
+      {
+        "cls": "scope-tiles",
+        "id": null,
+        "text": "⬡ Einstein tiles",
+        "w": 90.8,
+        "h": 32
+      }
+    ]
+  }
+]

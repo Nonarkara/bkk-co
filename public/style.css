@@ -83,8 +83,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .bar { grid-area: bar; position: relative; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
   padding: 8px var(--pad); border-bottom: 1px solid var(--rule); background: var(--paper); }
 .bar-brand { display: flex; align-items: center; padding-right: 12px; border-right: 1px solid var(--rule); flex: none; }
-/* The wordmark: PL;UB in his lettering. The semicolon is the seam between the two phrases. */
-.mark { font: 700 22px/1 "Sao Chingcha", var(--font); letter-spacing: .07em; text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; }
+/* The wordmark: PL;UB in his lettering. The semicolon is the seam between the two phrases.
+   It is also the home link — the one control that leaves the page — so it is an
+   isolated control and takes the 44px tap floor (MSH B13). The wordmark stays
+   22px; only its hit box grows. */
+.mark { font: 700 22px/1 "Sao Chingcha", var(--font); letter-spacing: .07em; text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; min-height: 44px; }
 .mark .semi { color: var(--seam); display: inline-flex; align-items: center; }
 .plub-badge { display:inline-block; width:22px; height:22px; object-fit:cover; object-position:center top; border-radius:50%; }
 .drnon-badge { display:inline-flex; align-items:center; justify-content:center; overflow:hidden; background:var(--club-guide, #b5decc); }
@@ -92,7 +95,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .brand-hero { display: block; width: 104px; height: 104px; }
 .search { flex: 1 1 92px; position: relative; display: flex; align-items: center; min-width: 0; }
 .search-lens { position: absolute; left: 10px; color: var(--muted); font-size: var(--body); pointer-events: none; line-height: 1; }
-.search input { width: 100%; min-height: 36px; padding: 6px 10px 6px 28px; font: inherit; font-size: var(--body); color: var(--ink);
+/* The search is the one finder and the one input: an isolated control, so it
+   takes the 44px tap floor. It was 36px on every screen of every page, and no
+   audit had ever censused the header band. */
+.search input { width: 100%; min-height: 44px; padding: 6px 10px 6px 28px; font: inherit; font-size: var(--body); color: var(--ink);
   border: 1px solid var(--rule); border-radius: 0; background: var(--paper); }
 /* The search field is the one finder and needs the house focus ring like every
    other control: a border-colour change alone was the weakest focus indicator
@@ -101,7 +107,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .search input:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
 
 .bar-actions { display: flex; align-items: center; gap: 6px; flex: none; }
-.bar-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 10px; border: 1px solid var(--rule);
+/* 3D Hunt, Guide and Notes are isolated controls in the header band, not chips
+   in a dense row, so they take the 44px tap floor (MSH B13). */
+.bar-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px; border: 1px solid var(--rule);
   color: var(--muted); font: 500 var(--body)/1 var(--font); white-space: nowrap; background: var(--paper); cursor: pointer; }
 .bar-btn:hover { border-color: var(--ink); color: var(--ink); }
 .bar-btn-primary { border-color: var(--ink); color: var(--ink); background: var(--wash); font-weight: 600; }
@@ -456,6 +464,12 @@ body.club-mode .rail-header .list-day { display: none; }
   .side .sheet { background: var(--paper); }
   .list-wrap h2 { padding: 10px var(--pad) 6px; }
   .list { list-style: none; padding: 0; overflow-y: auto; flex: 1; }
+  /* The list scrolls inside a bounded window. A long list used to fill the
+     whole column — the paper panel grew to the full height of the screen and
+     stood over the map, taking it below the 60% floor. The panel now ends
+     where its content ends, and when the content is longer than the window
+     the LIST scrolls and the map keeps its ground. */
+  .list { max-height: 50vh; }
   /* The map's own bottom-left control would slide under the rail's column.
      The Key stays beside the panel, where the reader last saw it. */
   .maplibregl-ctrl-bottom-left { left: 370px; }
@@ -522,7 +536,9 @@ body.club-mode #club-toggle[aria-pressed="true"] ~ [data-mood] { display: none; 
    are controls with no job behind them, so they do not stay on screen there. */
 body.club-mode .chip-scroll .moods { display: none; }
 body.club-mode .chip-scroll .seg-rule { display: none; }
-.club-hotspots summary { min-height: 32px; padding-block: 4px; cursor: pointer; }
+/* The hotspots disclosure is an isolated control on CL;UB — the only way to
+   reach the clusters — so it takes the 44px tap floor. */
+.club-hotspots summary { min-height: 44px; padding-block: 4px; cursor: pointer; }
 .club-hotspots .hotspots-row { max-height: 32vh; overflow: auto; }
 .hotspot-pill { min-height: 32px; text-align: start; }
 .hotspot-pill span { overflow-wrap: anywhere; white-space: normal; max-width: none; }

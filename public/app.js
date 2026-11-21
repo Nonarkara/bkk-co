@@ -132,7 +132,7 @@ map.getBounds = () => {
 // painted places as invisible and one invisible place as visible. The DOM can
 // say it: a place is visible when the topmost thing at its projected pixel is
 // the map canvas itself.
-function visibleOnMap(place) {
+function visibleOnMap(place, overlay) {
   const canvas = map.getCanvas();
   if (!canvas) return false;
   // MapLibre takes a LngLatLike, not a {x,y} pair: normalise or it throws.
@@ -143,8 +143,26 @@ function visibleOnMap(place) {
   const top = document.elementsFromPoint(box.left + pt.x, box.top + pt.y)[0];
   if (!top) return false;
   if (top === canvas) return true;
-  // A place painted as its own marker is visible when that marker is on top.
-  return top.closest?.('#map') === map.getContainer();
+  // The reader's own panel — the phone drawer, the place sheet — is not
+  // permanent chrome: they opened it to read the list, and it must not
+  // redefine what the map contains. Without this, opening the drawer shrank
+  // the count under the reader's thumb and broke the disclosure's own promise
+  // ("Show all 48 places" delivered eight).
+  if (overlay && (overlay === top || overlay.contains(top))) return true;
+  // Anything else standing on the canvas — the paper panel, the Key legend,
+  // the attribution button — covers the place, and the place is not visible.
+  // The places are a MapLibre layer, not DOM markers, so nothing needs an
+  // exception here.
+  return false;
+}
+// The reader's own temporary panel, if one is open. Computed once per render.
+function readerOverlay() {
+  if (!isPhone()) return null;
+  const wrap = $('#list-wrap');
+  if (wrap && wrap.classList.contains('open')) return wrap;
+  const sheet = $('#sheet');
+  if (sheet && !sheet.hidden && sheet.checkVisibility()) return sheet;
+  return null;
 }
 globalThis.visibleOnMap = visibleOnMap;
 addEventListener('resize', () => {
@@ -668,6 +686,13 @@ const listGroups = [
   ['cafe', 'Cafés'], ['coworking', 'Co-working'], ['library', 'Libraries'], ['restaurant', 'Food'], ['cannabis', 'Cannabis listings'],
 ];
 const listPreview = 3;
+// One click may not render the whole catalogue. At city zoom the map holds
+// 20,640 places and the disclosure drew them all: 20,640 rows, 151,000 DOM
+// nodes, a million pixels of scroll. The cap is the honest boundary between
+// "a list a reader can browse" and "a list that is the map again, in rows" —
+// and the disclosure says which one it is offering. A neighbourhood view
+// (20–130 places) is under the cap and shows everything.
+const MAX_LIST_ROWS = 200;
 // CL;UB's rail holds one group where PL;UB holds four. A three-row preview of
 // that one group leaves half the rail dead white space, so the cannabis
 // directory previews a page of its own: the rail's first screen should carry
@@ -704,7 +729,8 @@ function renderList() {
   // paper panel, the Key legend and the map's own controls stand over parts
   // of the canvas and the count must not claim a place the reader cannot see.
   const canvasBounds = rawGetBounds();
-  let inView = lastList.filter(p => canvasBounds.contains([p.x, p.y]) && visibleOnMap(p));
+  const overlay = readerOverlay();
+  let inView = lastList.filter(p => canvasBounds.contains([p.x, p.y]) && visibleOnMap(p, overlay));
   inView = state.sort === 'near'
     ? inView.map(p => [metres(p, centre), p]).sort((a, z) => a[0] - z[0]).map(a => a[1])
     : inView.sort(SORTS[state.sort]);
@@ -737,21 +763,31 @@ function renderList() {
   // then "Show 12 more", six times, then a 6245px scroll inside a 713px
   // window) — a smaller list, not a cheaper one. "Show all 123" is one click
   // to everything, and the same click in both modes.
+  //
+  // But one click may not render the whole catalogue: at city zoom the map
+  // holds 20,640 places, and drawing them as rows took 7.6 seconds and a
+  // million pixels of scroll. The disclosure is bounded and says so: it names
+  // the cap when the cap is smaller than the truth.
+  const expanded = groupLimits.get('all') === Infinity;
+  let budget = expanded ? MAX_LIST_ROWS : Infinity;
   let shown = 0;
   const body = inView.length ? listGroups.map(([kind, label]) => {
     const places = groups.get(kind);
     if (!places.length) return '';
-    const limit = groupLimits.get(kind) ?? previewFor(kind);
-    shown += Math.min(limit, places.length);
+    const limit = expanded
+      ? Math.min(places.length, budget)
+      : Math.min(groupLimits.get(kind) ?? previewFor(kind), places.length);
+    budget -= limit;
+    shown += limit;
     const rows = places.slice(0, limit).map(p => row(p, sortKey(p, centre), true)).join('');
     return `<li class="list-group" data-list-group="${kind}"><h3 id="list-heading-${kind}">${label} <span>${fmt(places.length)}</span></h3>
       <ol aria-labelledby="list-heading-${kind}">${rows}</ol></li>`;
   }).join('') : `<li class="meta">${loadingFood ? 'Loading food places…' : 'No matches in view. Pan, zoom out or clear a filter.'}</li>`;
-  const expanded = groupLimits.get('all') === Infinity;
+  const capped = inView.length > MAX_LIST_ROWS;
   const reveal = inView.length && (expanded || shown < inView.length)
     ? expanded
       ? `<li class="list-reveal"><button type="button" class="list-more" data-list-more="all" data-list-more-state="fewer" aria-label="Show fewer places">Show fewer</button></li>`
-      : `<li class="list-reveal"><button type="button" class="list-more" data-list-more="all" data-list-more-state="all" aria-label="Show all ${fmt(inView.length)} places">Show all ${fmt(inView.length)} places</button></li>`
+      : `<li class="list-reveal"><button type="button" class="list-more" data-list-more="all" data-list-more-state="all" aria-label="${capped ? `Show the first ${MAX_LIST_ROWS} of ${fmt(inView.length)} places` : `Show all ${fmt(inView.length)} places`}">${capped ? `Show ${MAX_LIST_ROWS} of ${fmt(inView.length)} places` : `Show all ${fmt(inView.length)} places`}</button></li>`
     : '';
   list.innerHTML = body + reveal;
   if (focusedPlace) list.querySelector(`[data-id="${CSS.escape(focusedPlace)}"] button`)?.focus({ preventScroll: true });

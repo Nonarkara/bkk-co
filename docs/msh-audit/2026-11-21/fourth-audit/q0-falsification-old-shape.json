@@ -1,0 +1,37 @@
+[
+  {
+    "fact": "map share of first screen @1024 (third audit: 60.37%)",
+    "measured": "60.37% (computed from blocking column: canvas 1024x715 minus 360px rail column)",
+    "reproduced": true
+  },
+  {
+    "fact": "flat slab below last row @1024 (third audit: 261px)",
+    "measured": "261.3px (viewport 768 - last row bottom 506.7)",
+    "reproduced": true
+  },
+  {
+    "fact": "flat slab below last row @1440 (third audit: 393px)",
+    "measured": "393.3px (viewport 900 - last row bottom 506.7)",
+    "reproduced": true
+  },
+  {
+    "fact": "\"Places in view\" count @1440 (third audit: 48)",
+    "measured": "48 places",
+    "reproduced": true
+  },
+  {
+    "fact": "count @1024 (third audit: 37)",
+    "measured": "37 places",
+    "reproduced": true
+  },
+  {
+    "fact": "dead strip: drag in ground below panel does nothing",
+    "measured": "GROUND_DEAD, zoom 16.8 -> 16.8, dragMoved=false",
+    "reproduced": true
+  },
+  {
+    "fact": "count ignores the strip below the panel (third audit: 3 places at 1440 uncounted)",
+    "measured": "auditor paint-based reading 51 visible vs interface 48 places -> 3 places painted in the strip were not counted",
+    "reproduced": true
+  }
+]
