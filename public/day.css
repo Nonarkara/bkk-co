@@ -1,7 +1,7 @@
 .day-page { display:block; height:auto; min-height:100%; overflow:visible; }
 .day-bar, .day-main { max-width:760px; margin-inline:auto; padding-inline:clamp(12px,4vw,24px); }
 .day-bar { display:flex; flex-wrap:wrap; align-items:center; gap:0 16px; border-bottom:1px solid var(--rule); }
-.day-bar a { display:inline-flex; align-items:center; min-height:44px; }
+.day-bar a { display:inline-flex; align-items:center; min-height:44px; min-width:44px; }
 .day-bar .mark { margin-inline-end:auto; }
 .day-main { padding-block:12px 24px; overflow-wrap:anywhere; }
 .day-main h1 { font-size:max(1.75rem,1.55em); line-height:1.16; font-weight:600; }
