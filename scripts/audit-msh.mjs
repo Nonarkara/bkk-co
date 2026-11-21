@@ -411,18 +411,40 @@ const TAPS = () => {
   const out = [];
   for (const el of document.querySelectorAll('button, a[href], summary, select, input, [role="button"]')) {
     if (!el.checkVisibility()) continue;
+    const cs = getComputedStyle(el);
+    if (cs.visibility === 'hidden' || cs.display === 'none') continue;
     const r = el.getBoundingClientRect();
     if (r.width < 1 || r.height < 1) continue;
-    const inline = el.tagName === 'A' && !!el.closest('p, li, figcaption, td, th, blockquote, .src, dd, dt');
+    // A control that is not on the screen cannot be tapped. A screen-reader
+    // only input is 1x1 and lives under a label that is the real control.
+    if (r.width < 4 && r.height < 4) continue;
+    // Prose is a link that flows inline with the sentence around it. A link
+    // that is a block on its own — a card's action, a row's button — is a
+    // control, however it is marked up.
+    const inline = el.tagName === 'A' && cs.display.startsWith('inline')
+      && !!el.closest('p, li, figcaption, td, th, blockquote, .src, dd, dt');
     if (isDense(el) || inline) continue;
+    // A control whose hit area is expanded by a pseudo-element is 44px to the
+    // finger even when its box is smaller — but the expansion has to be real.
+    // Measure the pseudo-element's box and add it, so a token ::after cannot
+    // pass as a 44px target.
+    let effH = r.height, effW = r.width;
     const after = getComputedStyle(el, '::after');
-    const expanded = after && after.content !== 'none' && after.position === 'absolute' && (parseFloat(after.inset) || 0) < 0;
-    if (expanded) continue;
-    if (r.height < 44 || r.width < 44) {
+    if (after && after.content !== 'none' && after.position === 'absolute') {
+      const t = parseFloat(after.top), b = parseFloat(after.bottom);
+      const l = parseFloat(after.left), ri = parseFloat(after.right);
+      if (!Number.isNaN(t) || !Number.isNaN(b)) effH = r.height + (Number.isNaN(t) ? 0 : Math.max(0, -t)) + (Number.isNaN(b) ? 0 : Math.max(0, -b));
+      if (!Number.isNaN(l) || !Number.isNaN(ri)) effW = r.width + (Number.isNaN(l) ? 0 : Math.max(0, -l)) + (Number.isNaN(ri) ? 0 : Math.max(0, -ri));
+    }
+    // Sub-pixel layout means a 44px target measures 43.94. Rounding to the
+    // nearest pixel is the difference between measuring the interface and
+    // measuring the browser's arithmetic.
+    if (Math.round(effH) < 44 || Math.round(effW) < 44) {
       out.push({
         sel: el.tagName.toLowerCase() + (el.id ? '#' + el.id : '')
           + (typeof el.className === 'string' && el.className ? '.' + el.className.split(' ').filter(Boolean).slice(0, 2).join('.') : ''),
         w: Math.round(r.width), h: Math.round(r.height),
+        effW: Math.round(effW), effH: Math.round(effH),
         text: (el.innerText || el.getAttribute('aria-label') || '').trim().replace(/\s+/g, ' ').slice(0, 30),
       });
     }
@@ -525,6 +547,56 @@ async function serverAlive(page) {
     const res = await fetch(origin + '/', { signal: AbortSignal.timeout(8000) });
     return res.ok;
   } catch { return false; }
+}
+
+// Every surface, not just the map. Three audits measured the map, the rail and
+// the header band; nobody had ever censused the guide sheet, the notebook, the
+// 3D hunt or the standalone pages — and they held the same 32px and 36px
+// controls the header band held. A census that only opens one page is a
+// census of one page.
+const STANDALONE = ['/research', '/neighbourhoods', '/privacy', '/day', '/bridge-1958'];
+const SHEETS = [['guide', '#guide'], ['notebook', '#passport'], ['3d-hunt', '#open-3d']];
+
+async function plantTiny(page) {
+  await page.evaluate(() => {
+    const t = document.createElement('button');
+    t.id = 'planted-tiny';
+    t.textContent = 'x';
+    t.style.cssText = 'position:absolute;left:8px;top:64px;width:22px;height:22px;z-index:7';
+    document.body.append(t);
+  });
+}
+
+async function censusSurfaces(browser, base, planted) {
+  const surfaces = [];
+  const widths = [{ w: 390, h: 844 }, { w: 1440, h: 900 }];
+  for (const path of STANDALONE) {
+    for (const { w, h } of widths) {
+      const ctx = await browser.newContext({ viewport: { width: w, height: h }, timezoneId: 'Asia/Bangkok' });
+      const page = await ctx.newPage();
+      await page.goto(base + path, { waitUntil: 'domcontentloaded', timeout: 120000 });
+      await page.waitForTimeout(2500);
+      if (planted) { await plantTiny(page); await page.waitForTimeout(200); }
+      const found = await page.evaluate(TAPS);
+      surfaces.push({ name: path, width: w, found });
+      await ctx.close();
+    }
+  }
+  for (const { w, h } of widths) {
+    for (const [name, sel] of SHEETS) {
+      const ctx = await browser.newContext({ viewport: { width: w, height: h }, timezoneId: 'Asia/Bangkok' });
+      const page = await ctx.newPage();
+      await page.goto(base, { waitUntil: 'domcontentloaded', timeout: 120000 });
+      await ready(page);
+      await page.click(sel).catch(() => { });
+      await page.waitForTimeout(2500);
+      if (planted) { await plantTiny(page); await page.waitForTimeout(200); }
+      const found = await page.evaluate(TAPS);
+      surfaces.push({ name, width: w, found });
+      await ctx.close();
+    }
+  }
+  return surfaces;
 }
 
 async function ready(page) {
@@ -1148,6 +1220,10 @@ try {
     }
   }
   report.enlargedText = await checkEnlargedText(browser, base);
+  // The tap census, over every surface the product has: the map's own sheets
+  // and the standalone pages. A census that opens one page is a census of one
+  // page, and the guide sheet and the notebook were never opened by anything.
+  report.surfaces = await censusSurfaces(browser, base, PLANTED);
   // The disclosure, in both modes, on the desktop and on a phone with the
   // drawer open. It must keep its promise and it must not take the map.
   report.disclosure = [];
@@ -1226,6 +1302,11 @@ for (const d of report.disclosure || []) {
 for (const e of report.drawerEscape || []) {
   if (!e.pass) report.fails.push({ id: 'B13 tap target', detail: `the phone drawer at ${e.mode} ${e.width}px has no keyboard way out: ${e.why || 'Escape did not close it'}`, width: `${e.mode}-${e.width}-escape` });
 }
+// Every surface, not only the map.
+for (const s of report.surfaces || []) {
+  if (!s.found || !s.found.length) continue;
+  report.fails.push({ id: 'B13 tap target', detail: `${s.name} at ${s.width}px has a control a finger cannot hit: ${s.found.map(t => `${t.sel} ${t.w}x${t.h} "${t.text}"`).join('; ')}`, width: `${s.name.replace(/\W+/g, '-')}-${s.width}-taps` });
+}
 report.verdict = report.fails.length ? (report.fails.some(f => /map share|void|bleed|runtime/.test(f.id)) ? 'BLOCK' : 'REVISE') : 'PASS';
 
 await writeFile(new URL(PLANTED ? 'msh-report-planted.json' : 'msh-report.json', outDir), JSON.stringify(report, null, 2) + '\n');
@@ -1236,9 +1317,12 @@ if (PLANTED) {
   // The planted drawer must be rejected too: a check that cannot fail is a
   // decoration. Both modes' drawers are swallowed, so both must be reported.
   const escRejected = (report.drawerEscape || []).length > 0 && report.drawerEscape.every(e => !e.pass);
-  console.log(`Planted defect: ${report.fails.length} failure(s) reported; the gate caught it: ${caught}; the swallowed Escape was rejected: ${escRejected}.`);
+  // The planted button must be caught on the standalone pages too, or the
+  // surface census is a census that cannot fail.
+  const surfaceRejected = (report.surfaces || []).some(s => (s.found || []).some(t => t.sel.includes('planted-tiny')));
+  console.log(`Planted defect: ${report.fails.length} failure(s) reported; the gate caught it: ${caught}; the swallowed Escape was rejected: ${escRejected}; the planted button was caught on another surface: ${surfaceRejected}.`);
   for (const f of report.fails) console.log(`  PLANTED FAIL [${f.width}] ${f.id}: ${f.detail}`);
-  if (!caught || !escRejected || report.journey.ungroupedRejected !== true || report.fails.some(f => f.width === 'journey' || f.id === 'B1 place sheet' || f.id === 'B1 visit reading order' || f.id === 'B1 day planner')) { console.error('THE PLANTED OR PRESERVATION CHECK FAILED.'); process.exit(2); }
+  if (!caught || !escRejected || !surfaceRejected || report.journey.ungroupedRejected !== true || report.fails.some(f => f.width === 'journey' || f.id === 'B1 place sheet' || f.id === 'B1 visit reading order' || f.id === 'B1 day planner')) { console.error('THE PLANTED OR PRESERVATION CHECK FAILED.'); process.exit(2); }
   console.log(`Report: ${new URL('msh-report-planted.json', outDir).pathname}`);
   process.exit(0);
 }
@@ -1253,6 +1337,7 @@ if (report.club) lines.push(`  club:   mode ${report.club.clubMode} · explore $
 if (report.enlargedText) lines.push(`  260px  enlarged text (390px phone at 150%): search ${report.enlargedText.searchWidth}px · bar overflow ${report.enlargedText.barOverflow}px · sideways ${report.enlargedText.bleed ? 'yes' : 'no'}  ${report.enlargedText.pass ? 'PASS' : 'FAIL'}`);
 for (const s of report.filterStrip || []) lines.push(`  strip  ${s.mode} ${s.width}px: ${s.chips} filters in ${s.rows} row(s) · ${s.hidden}px hidden · outside ${(s.outside || []).length}  ${s.pass ? 'PASS' : 'FAIL'}`);
 for (const e of report.drawerEscape || []) lines.push(`  escape ${e.mode} ${e.width}px: the drawer closes on Escape and returns focus to "${e.focusBack || 'nothing'}"  ${e.pass ? 'PASS' : 'FAIL'}`);
+for (const s of report.surfaces || []) lines.push(`  taps   ${s.name} ${s.width}px: ${s.found.length} control(s) under 44px  ${s.found.length ? 'FAIL' : 'PASS'}`);
 for (const f of report.fails) lines.push(`  FAIL [${f.width}] ${f.id}: ${f.detail}`);
 lines.push(`Verdict: ${report.verdict}`);
 console.log(lines.join('\n'));

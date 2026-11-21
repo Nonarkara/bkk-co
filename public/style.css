@@ -286,7 +286,7 @@ body.club-mode .rail-header .list-day { display: none; }
 .rate-open { margin-top: 8px; }
 
 .links { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--rule); }
-.links a, .links button, .links label { display: inline-flex; align-items: center; min-height: 32px; text-decoration: underline;
+.links a, .links button, .links label { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline;
   text-underline-offset: 3px; cursor: pointer; }
 .src { margin-top: 8px; color: var(--muted); font-size: var(--micro); }
 .about p { max-width: 65ch; margin-top: 8px; }
@@ -296,7 +296,7 @@ body.club-mode .rail-header .list-day { display: none; }
 .big { font-size: var(--big); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
 .big small { font-size: var(--body); color: var(--muted); font-weight: 400; }
 .data-note { color: var(--muted); font-size: var(--micro); margin-top: 6px; max-width: 65ch; }
-.linkish { text-decoration: underline; text-underline-offset: 3px; min-height: 32px; }
+.linkish { text-decoration: underline; text-underline-offset: 3px; min-height: 44px; }
 
 /* Nong Plub beside her line: art at the size it reads, standing on a hairline */
 .plub-say { display: flex; align-items: center; gap: 12px; margin-top: 8px; border-bottom: 1px solid var(--rule); }

@@ -11,7 +11,12 @@
 .notebook-sheet .stamps { margin-top:8px; }
 .notebook-actions,.moment-actions { display:flex; flex-wrap:wrap; align-items:center; gap:4px 8px; }
 .notebook-actions { margin:8px 0; }
-.notebook-actions button,.moment-actions button,.cloud-account button,.new-notebook-key button,.local-settings button,.edit-visit button { min-height:32px; padding:4px 8px; border:1px solid var(--ink); }
+/* A dense group of related actions on one saved moment keeps its 32px. Every
+   other button here is an isolated control or a full-width row, and those are
+   44px to the finger. */
+.moment-actions button { min-height:32px; padding:4px 8px; border:1px solid var(--ink); }
+.notebook-actions button,.cloud-account button,.new-notebook-key button,.local-settings button,.edit-visit button { min-height:44px; padding:4px 8px; border:1px solid var(--ink); }
+.notebook-actions a { display:inline-flex; align-items:center; min-height:44px; }
 .moment-actions { margin:4px 0 6px; }
 .moment-actions button { padding:2px 8px; }
 .cloud-state { font-size:var(--micro); color:var(--muted); }
@@ -21,7 +26,7 @@
 .notebook-sheet textarea { resize:vertical; }
 .notebook-search input { margin-top:4px; }
 .notebook-sheet details { margin-top:8px; border-top:1px solid var(--rule); padding-top:6px; }
-.notebook-sheet summary { min-height:32px; cursor:pointer; padding:4px 0; font-weight:500; }
+.notebook-sheet summary { min-height:44px; cursor:pointer; padding:4px 0; font-weight:500; }
 .notebook-sheet p,.notebook-sheet li,.notebook-sheet code { overflow-wrap:anywhere; max-width:65ch; }
 .notebook-sheet p { margin-top:6px; }
 .cloud-account form { margin:8px 0; }

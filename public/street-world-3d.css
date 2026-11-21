@@ -88,7 +88,7 @@
 
 .model-close {
   margin-left: auto;
-  min-height: 36px;
+  min-height: 44px;
   padding: 0 14px;
   border: 1px solid var(--ink, #34454c);
   background: var(--paper, #ffffff);
@@ -101,7 +101,7 @@
   color: var(--paper, #ffffff);
 }
 .model-hunt-hud {
-  display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 10px;
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px;
   border: 1px solid var(--ink, #34454c); background: var(--paper, #ffffff); color: var(--ink, #34454c);
   font: 600 var(--small)/1 var(--font); cursor: pointer; white-space: nowrap;
 }
@@ -172,6 +172,15 @@
   cursor: pointer;
   pointer-events: auto;
   white-space: nowrap;
+}
+/* A map label is a symbol, and a symbol must not be turned into a slab to make
+   it tappable. The label stays 22px tall on the map; the finger gets 44px to
+   find it, the way the house rule already allows for a control whose hit area
+   is expanded by a pseudo-element. */
+.model-pin::after {
+  content: "";
+  position: absolute;
+  inset: -12px -4px;
 }
 .pin-dot {
   width: 8px;
@@ -259,7 +268,7 @@ dialog.street-3d-stage {
 .model-bar { align-items:start; gap:5px 6px; }
 .model-area, .model-light, .model-look, .model-finish, .model-lens { max-width:100%; min-width:0; }
 .model-bar select, .model-close, .model-tool-btn, .model-start button {
-  max-width:100%; min-height:36px; padding:4px 8px; border:1px solid var(--rule);
+  max-width:100%; min-height:44px; padding:4px 8px; border:1px solid var(--rule);
   border-radius:0; background:var(--paper); color:var(--ink); font:inherit;
 }
 .model-tool-btn {
@@ -322,8 +331,10 @@ dialog.street-3d-stage {
 .model-footer .model-hint { position:static; max-width:100%; margin-right:auto; }
 .model-attribution {
   padding:4px 6px; background:var(--paper); color:var(--ink);
-  font-size:var(--micro); pointer-events:auto;
+  font-size:var(--micro); pointer-events:auto; position:relative;
 }
+/* A credit chip in the footer stays 24px tall; the finger gets 44px. */
+.model-attribution::after { content:""; position:absolute; inset:-11px -4px; }
 
 .model-bottom {
   position:absolute; left:12px; right:12px; bottom:12px; z-index:10;
@@ -335,7 +346,7 @@ dialog.street-3d-stage {
 .model-appearance { max-width: 100%; background: var(--paper); }
 .model-appearance > summary {
   cursor: pointer;
-  min-height: 32px;
+  min-height: 44px;
   padding: 4px 8px;
   border: 1px solid var(--rule);
 }
