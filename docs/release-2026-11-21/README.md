@@ -4,13 +4,13 @@ Two bureaus over one codebase: **PL;UB** at [co.nonarkara.org](https://co.nonark
 (where to work) and **CL;UB** at [club.nonarkara.org](https://club.nonarkara.org)
 (where the licensed dispensaries are).
 
-This day had **three ships**, because there were three audits to answer. The
-second independent audit returned **REVISE** with seven findings. The third
-returned **REVISE** again with five. The fourth — which falsified the third's
-own numbers against the parent commit before it measured the new build —
-returned **REVISE** a third time with **seven more, three of them HIGH, and
-all three of the HIGH ones inside the repair I had just made for the third
-audit.**
+This day had **four ships**, because there were three audits to answer and two
+defects of my own that no audit had looked for. The second independent audit
+returned **REVISE** with seven findings. The third returned **REVISE** again
+with five. The fourth — which falsified the third's own numbers against the
+parent commit before it measured the new build — returned **REVISE** a third
+time with **seven more, three of them HIGH, and all three of the HIGH ones
+inside the repair I had just made for the third audit.**
 
 That is the honest shape of the day: each repair was right in kind, and each
 one created the next defect. The disclosure I built to replace a twelve-click
@@ -28,13 +28,19 @@ thousand rows on the page.
 | Measured live | **49 / 49 checks** on the two public hosts — 27 for the third audit's five repairs, 22 for the fourth's seven |
 | Independent audits | **four.** The fourth is filed here with its instrument, its tables and its 78 screenshots: [fourth](msh-audit/2026-11-21/fourth-audit/VERDICT.md). The third is [here](msh-audit/2026-11-21/third-audit/VERDICT.md), the second is in [the morning ship record](README-morning-ship.md), the first in [the second ship's record](README-second-ship.md). |
 
-The day's earlier two ships are kept whole: the **morning ship** (Worker
-`ad014e9a`, commit `8b382ac`, also 45/45) as
+The day's earlier three ships are kept whole. The **morning ship** (Worker
+`ad014e9a`, commit `8b382ac`, 45/45) as
 [README-morning-ship.md](README-morning-ship.md) and
-[ship-report-earlier-ship.json](../release/2026-11-21/ship-report-earlier-ship.json);
-the **second ship** (Worker `86441033`, commit `d085ace`, also 45/45) as
+[ship-report-earlier-ship.json](../release/2026-11-21/ship-report-earlier-ship.json).
+The **second ship** (Worker `86441033`, commit `d085ace`, 45/45) as
 [README-second-ship.md](README-second-ship.md) and
 [ship-report-second-ship.json](../release/2026-11-21/ship-report-second-ship.json).
+The **third ship** (Worker `aeaf9097-8eb0-4669-b403-fb315eee136c`, commit
+`8e76b17`, 46/46, 412/412 and 411/411 bytes, 49/49 live checks) carried the
+fourth audit's five repairs and the Escape fix; it was superseded within the
+hour by this ship, which added the surface census. Its own report was
+overwritten by this one's before it was filed, so it is recorded here in one
+line rather than given a report it no longer has.
 
 ## What the fourth audit found
 
