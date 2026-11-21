@@ -63,6 +63,16 @@ async function main() {
   say(`\nPLUB ship gate · ${DEPLOY ? 'check, deploy, verify' : 'check only'}`);
   say(`  local: ${BASE}\n  live:  ${LIVE}\n`);
 
+  // 0. the rig must be alive before it is asked to judge anything. A local
+  // server that has died (workerd runs out of memory after a long session) makes
+  // every browser step time out, and the gate then reports a fault in the
+  // product that is really a fault in the harness. Check it in a second.
+  await (step('the local server answers', async () => {
+    const res = await fetch(BASE + '/', { signal: AbortSignal.timeout(15000) });
+    if (!res.ok) throw new Error(`${BASE} answered ${res.status}`);
+    return `${BASE} answered ${res.status}`;
+  }))();
+
   // 1. the working tree must be committed and in step with origin
   await (step('repository in step with origin', async () => {
     await run('git', ['fetch', 'origin', '-q'], { cwd: ROOT });

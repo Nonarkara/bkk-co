@@ -511,12 +511,37 @@ async function checkDrawerEscape(page) {
   };
 }
 
+
+// Is the local server still answering? A dead server and a slow catalogue look
+// identical from inside the page — both are "the data never arrived" — but they
+// mean opposite things: one is a fault in the product, the other is a fault in
+// the rig. The measurement must be able to tell them apart, or a dead server
+// gets reported as a layout failure (and it did: workerd ran out of memory
+// after eight hours, and the gate spent four minutes timing out before saying
+// so).
+async function serverAlive(page) {
+  try {
+    const origin = new URL(page.url()).origin;
+    const res = await fetch(origin + '/', { signal: AbortSignal.timeout(8000) });
+    return res.ok;
+  } catch { return false; }
+}
+
 async function ready(page) {
   // Gate on the app's own data, not on the map's load event: 'load' waits for external tiles
   // and a slow tile server must not be able to hide a layout failure.
   // `state` and `map` are top-level consts: global lexical bindings, not window properties.
-  await page.waitForFunction(() => typeof state !== 'undefined' && state.foodLoaded && state.places.length > 0
-    && !!document.querySelector('#map canvas'), {}, { timeout: 240000 });
+  const deadline = Date.now() + 240000;
+  for (;;) {
+    const ready = await page.evaluate(() => typeof state !== 'undefined' && state.foodLoaded
+      && state.places.length > 0 && !!document.querySelector('#map canvas')).catch(() => false);
+    if (ready) break;
+    if (Date.now() > deadline) throw new Error('the page never received its catalogue within 240s');
+    if (!(await serverAlive(page))) {
+      throw new Error(`the local server at ${new URL(page.url()).origin} stopped answering mid-run — it died, so this measurement is void, not a failure. Restart it and run again.`);
+    }
+    await page.waitForTimeout(2000);
+  }
   await page.waitForFunction(() => !!map.getLayer('place-icons'), {}, { timeout: 90000 }).catch(() => { });
   // The basemap must have painted before the screen is judged. A map that has not
   // drawn yet is not a layout: measuring it reported "the basemap drew nothing"
