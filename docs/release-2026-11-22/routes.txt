@@ -1,0 +1,7 @@
+200 https://co.nonarkara.org/
+200 https://club.nonarkara.org/
+200 https://co.nonarkara.org/day
+200 https://co.nonarkara.org/bridge-1958
+200 https://co.nonarkara.org/research
+200 https://co.nonarkara.org/v1
+301 https://bkkco.nonarkara.org/ https://co.nonarkara.org/
