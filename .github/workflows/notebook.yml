@@ -1,10 +1,24 @@
 name: PLUB notebook boundaries
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+  pull_request:
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+  workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: notebook-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -59,13 +73,27 @@ jobs:
 
   # MSH is a measured law, not an assertion. This job measures the shipped interface at
   # 390 / 1024 / 1440 and then proves the gate can fail, so a silent regression cannot pass.
+  # Pull requests and manual runs only. A push to main keeps the node checks and does not
+  # start this browser job; the same audit still runs on the pull request.
   msh:
+    if: github.event_name != 'push'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      actions: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      # Chromium, its headless shell, and ffmpeg land in ~/.cache/ms-playwright and were
+      # downloaded on every run. Install still runs so the OS libraries (--with-deps) stay.
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-1.61.0-chromium
       - name: Install Playwright, Chromium and Wrangler
         run: |
           mkdir -p "$RUNNER_TEMP/pw" && cd "$RUNNER_TEMP/pw"
