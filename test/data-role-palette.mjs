@@ -91,6 +91,26 @@ for (const t of tokens) {
   assert.ok(real.has(t.hex), `--${t.name} is ${t.hex}, which the catalogue does not own — an invented colour`);
 }
 
+// --- the CL;UB ink register is enforced, not asserted ------------------------------
+// All eight --club-* tokens must be colours the Sanzo Wada catalogue owns.
+const clubBlock = style.match(/body\.club-mode\s*\{([^}]*)\}/s);
+assert.ok(clubBlock, 'style.css still declares the CL;UB ink register');
+const clubTokens = [...clubBlock[1].matchAll(/--(club-[a-z]+):\s*(#[0-9a-fA-F]{6})/g)]
+  .map(m => ({ name: m[1], hex: m[2].toLowerCase() }));
+assert.ok(clubTokens.length >= 1, 'the CL;UB ink register still declares its tokens');
+for (const t of clubTokens) {
+  assert.ok(real.has(t.hex),
+    `--club-${t.name.split('-')[1]} is ${t.hex}, which the catalogue does not own — an invented colour`);
+}
+// No two CL;UB tokens may wear the same colour: a colour has one job.
+const clubSeen = new Map();
+for (const t of clubTokens) {
+  const short = t.name.replace(/^club-/, '');
+  assert.ok(!clubSeen.has(t.hex),
+    `--club-${short} and --club-${clubSeen.get(t.hex)} share ${t.hex}`);
+  clubSeen.set(t.hex, short);
+}
+
 // --- the accent has exactly one job ------------------------------------------------
 const accent = tokens.find(t => t.name === 'accent');
 assert.ok(accent, 'the accent token still exists');
