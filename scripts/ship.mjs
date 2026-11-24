@@ -175,7 +175,9 @@ async function main() {
   say(`${'─'.repeat(64)}\n`);
   if (failed) process.exit(1);
   if (DEPLOY) {
-    const stamp = new Date().toISOString().slice(0, 10);
+    // Asia/Bangkok is UTC+7 and does not observe DST: file release evidence
+    // under the local day it actually happened, not the UTC day.
+    const stamp = new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString().slice(0, 10);
     const out = path.join(ROOT, 'docs', 'release', stamp);
     await mkdir(out, { recursive: true });
     await writeFile(path.join(out, 'ship-report.json'), JSON.stringify({ stamp, base: BASE, live: LIVE, results }, null, 2) + '\n');

@@ -18,7 +18,9 @@ const require = createRequire(import.meta.url);
 const PLANTED = process.argv.includes('--planted');
 const WIDTHS = [{ w: 390, h: 844 }, { w: 1024, h: 900 }, { w: 1440, h: 900 }];
 const repo = new URL('../', import.meta.url);
-const stamp = new Date().toISOString().slice(0, 10);
+// Asia/Bangkok is UTC+7 and does not observe DST: file audit evidence under
+// the local day it actually happened, not the UTC day.
+const stamp = new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString().slice(0, 10);
 const outDir = new URL(`../docs/msh-audit/${stamp}/`, import.meta.url);
 
 // ---------------------------------------------------------------- plumbing

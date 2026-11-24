@@ -90,7 +90,9 @@ const report = {
   summary: { matched: matched.length, mismatched: mismatched.length, missing: missing.length, orphansStillServed: orphans.length },
 };
 
-const day = new Date().toISOString().slice(0, 10);
+// Asia/Bangkok is UTC+7 and does not observe DST: file byte proofs under the
+// local day the check ran, not the UTC day.
+const day = new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString().slice(0, 10);
 const outDir = new URL(`../docs/release-${day}/`, import.meta.url);
 await mkdir(outDir, { recursive: true });
 // One proof per origin. A two-domain release has two public surfaces, and a
