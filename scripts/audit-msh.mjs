@@ -556,7 +556,7 @@ async function serverAlive(page) {
 // 3D hunt or the standalone pages — and they held the same 32px and 36px
 // controls the header band held. A census that only opens one page is a
 // census of one page.
-const STANDALONE = ['/research', '/neighbourhoods', '/privacy', '/day', '/bridge-1958'];
+const STANDALONE = ['/research', '/neighbourhoods', '/privacy', '/day', '/bridge-1958', '/404'];
 const SHEETS = [['guide', '#guide'], ['notebook', '#passport'], ['3d-hunt', '#open-3d']];
 
 async function plantTiny(page) {
