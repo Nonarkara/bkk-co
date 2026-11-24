@@ -1,0 +1,36 @@
+#!/bin/sh
+# Restamp public HTML when a commit stages an asset a page points at.
+# Enable once per clone: node scripts/install-hooks.mjs
+set -eu
+
+root=$(git rev-parse --show-toplevel)
+cd "$root"
+
+match='^public/.*\.(html|css|js|woff2|png|webp|svg|ico|json|webmanifest)$'
+
+staged=$(git diff --cached --name-only --diff-filter=ACMRD | awk -v m="$match" '$0 ~ m { print; exit }')
+[ -n "$staged" ] || exit 0
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "pre-commit: node is required to restamp public asset fingerprints" >&2
+  exit 1
+fi
+
+dirty=$(git diff --name-only | awk -v m="$match" '$0 ~ m { print }')
+if [ -n "$dirty" ]; then
+  echo "pre-commit: public assets have unstaged edits, so stamps were not rewritten:" >&2
+  # shellcheck disable=SC2086
+  printf '  %s\n' $dirty >&2
+  echo "Stage or stash them, then commit. Or run: node scripts/stamp-assets.mjs" >&2
+  exit 1
+fi
+
+node scripts/stamp-assets.mjs
+changed=$(git diff --name-only -- public/*.html)
+if [ -n "$changed" ]; then
+  # shellcheck disable=SC2086
+  git add -- $changed
+  echo "pre-commit: restamped and staged:" >&2
+  # shellcheck disable=SC2086
+  printf '  %s\n' $changed >&2
+fi
