@@ -4,7 +4,7 @@ Two bureaus over one codebase: **PL;UB** at [co.nonarkara.org](https://co.nonark
 (where to work) and **CL;UB** at [club.nonarkara.org](https://club.nonarkara.org)
 (where the licensed dispensaries are).
 
-## What is deployed
+## What was deployed
 
 | | |
 |---|---|

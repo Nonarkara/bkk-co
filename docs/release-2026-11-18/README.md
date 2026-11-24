@@ -1,4 +1,4 @@
-# PL;UB and CL;UB — the release of 19 November 2026
+# PL;UB and CL;UB — the release of 18 November 2026
 
 Two bureaus over one codebase: **PL;UB** at [co.nonarkara.org](https://co.nonarkara.org)
 (where to work) and **CL;UB** at [club.nonarkara.org](https://club.nonarkara.org)
