@@ -304,10 +304,10 @@ const TH_BOUNDS = [[97.0, 5.3], [106.0, 20.8]];
 // actually fetches, and the rail says "Loading" while it does.
 async function retryDirectory() {
   if (state.clubMode) {
-    state.cannabisStatus = 'loading';
+    const loading = loadCannabis({ retry: true });
     renderClubHotspots();
     refresh();
-    await loadCannabis({ retry: true });
+    await loading;
     if (!state.clubMode) return;
     renderClubHotspots();
     // The camera never reached the listings while the directory was missing,

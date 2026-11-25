@@ -54,11 +54,36 @@ async function exercise({ kind, id, status, body, dismiss = false }) {
   }
 }
 
+async function exerciseNamedSearch({ club, name, kind, id }) {
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
+  let attempts = 0;
+  try {
+    await page.route('https://tiles.openfreemap.org/styles/positron', route => route.fulfill({ status: 503 }));
+    await page.route(`**/data/places-${kind}.json`, route =>
+      ++attempts === 1 ? route.fulfill({ status: 503 }) : route.continue());
+    await page.goto(`${origin}/${club ? '?mode=club' : ''}`, { waitUntil: 'domcontentloaded' });
+    const search = page.locator('#q');
+    await search.fill(name);
+    await page.locator('#hits').getByRole('button', { name: 'Retry' }).press('Enter');
+    await page.locator(`#hits li[data-id="${id}"]`).waitFor();
+    assert.equal(await search.evaluate(node => node === document.activeElement), true);
+    await search.press('ArrowDown');
+    await search.press('Enter');
+    await page.waitForFunction(id => window.state.selected?.id === id, id);
+    assert.equal(attempts, 2);
+    console.log(`${kind}: named search recovered with keyboard focus`);
+  } finally {
+    await page.close();
+  }
+}
+
 try {
   await exercise({ kind: 'work', id: 'o71358a621d50', status: 503, body: 'Injected failure' });
   await exercise({ kind: 'food', id: 'n10003319751', status: 200, body: '{"kinds":[],"rows":[{}]}' });
   await exercise({ kind: 'cannabis', id: 'n10057902624', status: 503, body: 'Injected failure' });
   await exercise({ kind: 'work', id: 'o71358a621d50', status: 503, body: 'Injected failure', dismiss: true });
+  await exerciseNamedSearch({ club: true, name: 'Green Thumb 420', kind: 'cannabis', id: 'n10057902624' });
+  await exerciseNamedSearch({ club: false, name: 'The Bridge 1958', kind: 'work', id: 'o71358a621d50' });
   console.log('Shared place recovery passed for Work, Food and CL;UB, with no basemap.');
 } finally {
   await browser.close();
