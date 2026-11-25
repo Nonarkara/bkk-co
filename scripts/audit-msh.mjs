@@ -894,7 +894,7 @@ const PRESERVE = async (page, base, shot) => {
     await stage.getByRole('combobox', { name: 'Neighbourhood' }).selectOption('bangkapi');
     await page.locator('#walkthrough-stage[data-area=bangkapi][data-volumes="0"]').waitFor({ timeout: 60000 });
     const relief = stage.getByRole('button', { name: 'See 3D in Sam Yan' });
-    checks.walkthrough.flat = /No mapped building heights/.test(await stage.getByRole('status').innerText()) && await relief.isVisible();
+    checks.walkthrough.flat = /Footprint view.*without mapped heights/.test(await stage.locator('.model-coverage [role=status]').innerText()) && await relief.isVisible();
     await relief.click();
     await page.locator('#walkthrough-stage[data-area=samyan]').waitFor({ timeout: 60000 });
     checks.walkthrough.relief = Number(await stage.getAttribute('data-volumes')) > 0;

@@ -249,6 +249,27 @@
     retry.textContent = 'Retry 3D';
     retry.onclick = () => { close(false); void openWalkthrough(target, trigger); };
     actions.prepend(retry);
+    if (target?.streetPilot) {
+     const sketch = document.createElement('button');
+     sketch.textContent = 'Open Sam Yan map sketch';
+     sketch.onclick = async () => {
+      sketch.disabled = true;
+      try {
+       await load();
+       if (controller.signal.aborted) return;
+       const anchor = world.areas.find(area => area.id === target.id)?.anchor;
+       if (!anchor) throw Error('Sam Yan map sketch unavailable.');
+       close(false);
+       await open(anchor);
+      } catch {
+       if (controller.signal.aborted) return;
+       stage.querySelector('[role=status]').textContent = 'Sam Yan map sketch unavailable. Try again or return to the map.';
+       sketch.disabled = false;
+       sketch.focus();
+      }
+     };
+     actions.prepend(sketch);
+    }
    }
    if (stage.open) back.focus();
   }
@@ -267,10 +288,11 @@
    ? { x: target.x, y: target.y }
    : { x: centre.lng, y: centre.lat };
   try {
-   const mod = await import('./street-world-3d.js?v=street-view-20261115');
+   const mod = await import('./street-world-3d.js?v=samyan-street-20261125');
    if (controller.signal.aborted) return;
    await mod.start(stage, {
     areaId: target?.id,
+    streetPilot: target?.streetPilot === true,
     origin,
     placeById: id => state.byId.get(canonId(id)),
     catalogues: [ensureWork(), ensureFood()],
