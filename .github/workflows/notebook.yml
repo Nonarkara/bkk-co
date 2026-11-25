@@ -1,7 +1,15 @@
 name: PLUB notebook boundaries
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
 permissions:
   contents: read
+# A newer push to the same branch, or a newer commit on the same pull request,
+# replaces the run already in progress.
+concurrency:
+  group: notebook-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -26,6 +34,7 @@ jobs:
       - run: node test/club-isolation.mjs
       - run: node test/cannabis-catalogue.mjs
       - run: node scripts/stamp-assets.mjs --check
+      - run: node test/stamp-hook.mjs
       - run: node test/work-atmosphere.mjs
       - run: node test/venue-reports.mjs
       - run: node test/neighborhood-palette.mjs
@@ -59,7 +68,9 @@ jobs:
 
   # MSH is a measured law, not an assertion. This job measures the shipped interface at
   # 390 / 1024 / 1440 and then proves the gate can fail, so a silent regression cannot pass.
+  # It waits for `check`. A failed node check does not keep this browser job running.
   msh:
+    needs: check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -10,6 +10,9 @@
  *
  *   node scripts/stamp-assets.mjs          rewrite the stamps
  *   node scripts/stamp-assets.mjs --check  fail if any stamp is out of date
+ *
+ * .githooks/pre-commit runs the rewrite when a commit stages a public asset.
+ * node scripts/install-hooks.mjs enables that hook in this clone.
  */
 import { readFile, writeFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
