@@ -1,0 +1,29 @@
+{
+  "origin": "https://club.nonarkara.org",
+  "commit": "e987fbd375ba8b04fdcbfa99a956ef1f991078ae",
+  "base": {
+    "matched": 409,
+    "mismatched": 0,
+    "missing": 0,
+    "orphansStillServed": 0,
+    "transportErrors": 2,
+    "httpErrors": 0
+  },
+  "rechecked": [
+    {
+      "path": "data/places-food.json",
+      "bytes": 3771369,
+      "sha256": "8c7cc19345b6568c0a116ff3ac91872d5e769485138267aa5fbaa20cc409c4f6",
+      "observedAt": "2026-11-25T15:27:42.684Z"
+    },
+    {
+      "path": "neighborhood-photos/commons-114619801.webp",
+      "bytes": 75912,
+      "sha256": "7027879e296f5fc867d09ef796d0cb4d48d72ed650f85a017093bdf392046222",
+      "observedAt": "2026-11-25T15:27:45.014Z"
+    }
+  ],
+  "matched": 411,
+  "rewritten": 1,
+  "verified": 412
+}

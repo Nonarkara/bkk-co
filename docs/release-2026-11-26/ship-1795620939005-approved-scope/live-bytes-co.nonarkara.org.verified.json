@@ -1,0 +1,59 @@
+{
+  "origin": "https://co.nonarkara.org",
+  "commit": "c284e6aa676b2a3ff8c1dc3ac2790482e47c4463",
+  "base": {
+    "matched": 405,
+    "mismatched": 0,
+    "missing": 0,
+    "orphansStillServed": 0,
+    "transportErrors": 7,
+    "httpErrors": 0
+  },
+  "rechecked": [
+    {
+      "path": "data/footprint-colors.json",
+      "bytes": 3117946,
+      "sha256": "f976d537bd89062c25c112ca7791dd55acfc70f4a819f696aae09ef435250d17",
+      "observedAt": "2026-11-25T15:34:54.535Z"
+    },
+    {
+      "path": "data/journey-places.json",
+      "bytes": 2346346,
+      "sha256": "0a58f6955430e5802c5782f961f6f65eb8deec594b9101e0f7b425146b5b512f",
+      "observedAt": "2026-11-25T15:35:20.134Z"
+    },
+    {
+      "path": "data/places-food.json",
+      "bytes": 3771369,
+      "sha256": "8c7cc19345b6568c0a116ff3ac91872d5e769485138267aa5fbaa20cc409c4f6",
+      "observedAt": "2026-11-25T15:35:55.930Z"
+    },
+    {
+      "path": "data/street-world/ari.json",
+      "bytes": 1117735,
+      "sha256": "27ca760d1721c088e489624c5885f18a9e1b5c8e0804a9ec44e83532cb38d433",
+      "observedAt": "2026-11-25T15:36:10.524Z"
+    },
+    {
+      "path": "data/street-world/samyan.json",
+      "bytes": 2238544,
+      "sha256": "fcc9a4887df8478e3627921a89a1d19ec6022c27cc9549b05abf3069953700ef",
+      "observedAt": "2026-11-25T15:36:38.956Z"
+    },
+    {
+      "path": "icons/plub-512.png",
+      "bytes": 218391,
+      "sha256": "a1c606c3247f09cffa974752a74087b67561bd34f5c06801ba06fa5dc619d5b7",
+      "observedAt": "2026-11-25T15:36:42.456Z"
+    },
+    {
+      "path": "media/venue-reports/the-bridge-1958/interior.jpg",
+      "bytes": 540378,
+      "sha256": "b03e2d9764e2bd89eb521fbfd9516456b9057955eb7dfe195d95edf558d2d32f",
+      "observedAt": "2026-11-25T15:36:51.296Z"
+    }
+  ],
+  "matched": 412,
+  "rewritten": 0,
+  "verified": 412
+}
