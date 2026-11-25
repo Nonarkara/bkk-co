@@ -292,6 +292,12 @@
     max-height: min(84dvh, calc(100dvh - 64px));
     overflow-wrap: anywhere;
   }
+  .journey-modes,
+  .journey-origin,
+  .journey-tasks,
+  .journey-status {
+    margin-top: 6px;
+  }
   .journey-modes button,
   .journey-tasks > button,
   .journey-options summary {
