@@ -1289,7 +1289,10 @@ function openFromUrl() {
       origin = { x, y, kind:'planned', label:(u.searchParams.get('start') || 'Starting point').slice(0, 100) };
     }
     if (plan === 'passport') window.openPassport?.();
-    else if (plan === '3d') window.StreetWorld?.openWalkthrough({ id: u.searchParams.get('area') });
+    else if (plan === '3d') {
+      const area = u.searchParams.get('area');
+      window.StreetWorld?.openWalkthrough({ id: area, streetPilot: area === 'samyan' && u.searchParams.get('view') === 'street' });
+    }
     else if (plan !== 'map') window.WorkFinder?.open(plan, { task: u.searchParams.get('task'), duration: Number(u.searchParams.get('minutes')), lang: u.searchParams.get('lang'), origin });
   } else if (u.searchParams.get('hood') && $('#sheet').hidden) window.openHood?.(u.searchParams.get('hood'), true);
   else if (u.searchParams.get('hop') && !openFromUrl.framed) { openFromUrl.framed = true; window.openHop?.(u.searchParams.get('hop')); }

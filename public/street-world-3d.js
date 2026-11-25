@@ -1020,38 +1020,41 @@ export async function start(host, options = {}) {
       currentMeshes.push(rMesh);
     }
 
-    // Screentoned, ink-outlined manga street trees (BUILD_F tier == 3, info = 6.0)
-    const trunkMat = new THREE.MeshBasicMaterial({ color: 0x3a2f29 });
-    const trunkGeo = new THREE.CylinderGeometry(0.16, 0.22, 2.4, 6);
-    const leafGeo = new THREE.DodecahedronGeometry(1.75, 1);
-    const vCount = leafGeo.attributes.position.count;
-    leafGeo.setAttribute('uw', new THREE.BufferAttribute(new Float32Array(vCount * 2), 2));
-    leafGeo.setAttribute('info', new THREE.BufferAttribute(new Float32Array(vCount).fill(6.0), 1));
-    leafGeo.setAttribute('seed', new THREE.BufferAttribute(new Float32Array(vCount).fill(0.5), 1));
-    let treeCount = 0;
-    for (let i = 0; i < streetSegments.length && treeCount < 140; i += 3) {
-      const seg = streetSegments[i];
-      if (!seg || seg.length < 2) continue;
-      const { x: x0, z: z0 } = seg[0], { x: x1, z: z1 } = seg[1];
-      const len = Math.hypot(x1 - x0, z1 - z0);
-      if (len < 12) continue;
-      const nx = -(z1 - z0) / len, nz = (x1 - x0) / len;
-      const tx = (x0 + x1) * 0.5 + nx * 4.8, tz = (z0 + z1) * 0.5 + nz * 4.8;
-      if (blocked(tx, tz)) continue;
-      const trunk = new THREE.Mesh(trunkGeo, trunkMat);
-      trunk.position.set(tx, 1.2, tz);
-      const canopy = new THREE.Mesh(leafGeo, matB);
-      canopy.position.set(tx, 3.4, tz);
-      scene.add(trunk, canopy);
-      currentMeshes.push(trunk, canopy);
-      treeCount++;
+    // The source-only pilot has no mapped trees. Keep the geometry visible.
+    if (!opt.streetPilot) {
+      // Screentoned, ink-outlined manga street trees (BUILD_F tier == 3, info = 6.0)
+      const trunkMat = new THREE.MeshBasicMaterial({ color: 0x3a2f29 });
+      const trunkGeo = new THREE.CylinderGeometry(0.16, 0.22, 2.4, 6);
+      const leafGeo = new THREE.DodecahedronGeometry(1.75, 1);
+      const vCount = leafGeo.attributes.position.count;
+      leafGeo.setAttribute('uw', new THREE.BufferAttribute(new Float32Array(vCount * 2), 2));
+      leafGeo.setAttribute('info', new THREE.BufferAttribute(new Float32Array(vCount).fill(6.0), 1));
+      leafGeo.setAttribute('seed', new THREE.BufferAttribute(new Float32Array(vCount).fill(0.5), 1));
+      let treeCount = 0;
+      for (let i = 0; i < streetSegments.length && treeCount < 140; i += 3) {
+        const seg = streetSegments[i];
+        if (!seg || seg.length < 2) continue;
+        const { x: x0, z: z0 } = seg[0], { x: x1, z: z1 } = seg[1];
+        const len = Math.hypot(x1 - x0, z1 - z0);
+        if (len < 12) continue;
+        const nx = -(z1 - z0) / len, nz = (x1 - x0) / len;
+        const tx = (x0 + x1) * 0.5 + nx * 4.8, tz = (z0 + z1) * 0.5 + nz * 4.8;
+        if (blocked(tx, tz)) continue;
+        const trunk = new THREE.Mesh(trunkGeo, trunkMat);
+        trunk.position.set(tx, 1.2, tz);
+        const canopy = new THREE.Mesh(leafGeo, matB);
+        canopy.position.set(tx, 3.4, tz);
+        scene.add(trunk, canopy);
+        currentMeshes.push(trunk, canopy);
+        treeCount++;
+      }
     }
 
     hasRelief = knownCount > 0;
     const flatCount = bList.length - knownCount;
     coverageEl.textContent = knownCount
       ? `${knownCount} mapped heights · ${flatCount} flat footprints`
-      : `No mapped building heights · ${flatCount} flat footprints`;
+      : `Footprint view · ${flatCount} buildings without mapped heights`;
     reliefBtn.hidden = hasRelief || !mostRelief.heightVolumes;
     host.dataset.area = area.id;
     host.dataset.volumes = String(knownCount);
@@ -1536,12 +1539,15 @@ export async function start(host, options = {}) {
       const [width, height] = sizes[index];
       const x = (posVec.x * 0.5 + 0.5) * w;
       const y = (-posVec.y * 0.5 + 0.5) * h - height / 2;
+      // Reserve the full target, including the transparent padding in .model-pin::after.
+      const hit = { x: x - 4, y: y - 12, right: x + width + 4, bottom: y + height + 12 };
       const overlaps = occupied.some(other =>
-        x < other.right + 4 && x + width > other.x - 4 && y < other.bottom + 4 && y + height > other.y - 4);
+        hit.x < other.right + 4 && hit.right > other.x - 4 &&
+        hit.y < other.bottom + 4 && hit.bottom > other.y - 4);
       item.btn.hidden = distance > 750 || Math.abs(posVec.z) > 1 || occupied.length >= 10 ||
-        x < 8 || x + width > w - 8 || y < top || y + height > bottom || overlaps;
+        hit.x < 4 || hit.right > w - 4 || hit.y < top || hit.bottom > bottom || overlaps;
       if (item.btn.hidden) continue;
-      occupied.push({ x, y, right: x + width, bottom: y + height });
+      occupied.push(hit);
       item.btn.style.transform = `translate(${x}px, ${y}px)`;
     }
   }
@@ -1652,7 +1658,8 @@ export async function start(host, options = {}) {
   setLook('manga');
   setFinish('tone');
   setTod(TOD[initTod] ? initTod : 'day');
-  setMode('sky');
+  setMode(opt.streetPilot && activeArea.id === 'samyan' && hasRelief &&
+    bar.querySelector('[data-mode="walk"]').disabled === false ? 'walk' : 'sky');
   resize();
   cancelAnimationFrame(raf);
   loop(performance.now());
