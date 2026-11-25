@@ -198,3 +198,20 @@ Written 7 November 2026 from the agent-first architecture brief supplied by the 
 canonical MSH law (`~/Projects/_reference/MSH.md`), PLUB's own `AGENTS.md` and `STYLE.md`, and
 the live catalogue. The API is implemented in `src/agent-api.js` and locked by
 `test/agent-api.mjs`.
+## Venue pilot evidence
+
+The venue detail and `/v1/venues/{venue_id}/evidence` include the published
+work-journey pilot facts. Each row identifies its field, value, source URL,
+check date and tier. Publisher records can be resolved by `source_id` through
+`/v1/sources`. A branch match uses the canonical ID; display-name casing alone
+does not create a second branch. Operator hours and access conditions do not
+overwrite mapped catalogue hours or change the work-readiness score.
+
+`journey_evidence_status: unavailable` means the optional snapshot could not be
+read, not that no facts exist. Mapped and visitor evidence remain available.
+
+The 25 November pilot was published at `4b0f41c` in
+`public/data/journey-evidence.json`. The checked-in builder input still
+reproduces eight branches, not the shipped ten. Do not regenerate and publish
+that artifact until the omitted branch/source records have reviewed builder
+inputs. The API test guards both published branches against accidental loss.
