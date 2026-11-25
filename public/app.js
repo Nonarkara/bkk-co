@@ -634,7 +634,9 @@ const branchTag = p => (p.branch ? `<span class="branch">· ${esc(p.branch)}</sp
 const PIN_LAYERS = ['pins-city', 'pins-street', 'pins', 'place-icons'];
 
 // ---------- map layers ----------
-map.on('load', async () => {
+// Catalogue points and planner links can start once the style is parsed.
+// Waiting for map load leaves both blocked on the first round of basemap tiles.
+map.once('style.load', async () => {
   map.addSource('places', { type: 'geojson', cluster:true, clusterRadius:72, clusterMaxZoom:19, maxzoom:20, clusterProperties:Object.fromEntries([['cafes','cafe'],['food','restaurant'],['work','coworking'],['books','library'],['late','late']].map(([key,kind])=>[key,['+',['case',['==',['get','k'],kind],1,0]]])), data: { type: 'FeatureCollection', features: [] } });
   map.addSource('sel', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
   window.addHoodLayers?.(); // views.js: neighbourhood rings sit under the pins
