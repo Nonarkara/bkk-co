@@ -87,10 +87,12 @@ check('drive: nearby private/customer/unknown parks do not assert usable parking
  const f=M.facilities(p,d,{});assert.equal(f.parking.value,true);assert.equal(f.parking.basis,'nearby_explicit_access');assert.deepEqual(f.parking.source_ids,['w3']);assert.match(f.parking.note,/Not venue\/on-site/);
  assert.equal(M.rank([p],d,{},{...options,mode:'drive',strict:true},now,isOpen).length,1);
 });
-check('stay: every15minutes plus exact endpoint, with unknown hours retained',()=>{
+check('stay: every schedule boundary plus exact endpoint, with unknown hours retained',()=>{
  const d=fixture(first({p:{hours:'Mo-Su 07:00-12:00'}}));assert.equal(M.rank([p],d,{},{...options,task:'read'},now,isOpen).length,0,'Closing exactly at the endpoint is excluded');
  assert.equal(M.rank([p],d,{},{...options,task:'read',duration:105},now,isOpen)[0].stay,true);
- const sampled=[];M.rank([p],fixture(first({p:{hours:'24/7'}})),{},{...options,task:'read',duration:32},now,(h,t)=>{sampled.push((t-now)/60000);return true});assert.deepEqual(sampled,[0,15,30,32]);
+ const sampled=[];M.rank([p],fixture(first({p:{hours:'24/7'}})),{},{...options,task:'read',duration:32},now,(h,t)=>{sampled.push((t-now)/60000);return true});assert.deepEqual(sampled,[0,32]);
+ const shortClosure=fixture(first({p:{hours:'Mo-Su 07:00-10:04,10:06-20:00'}}));
+ assert.equal(M.rank([p],shortClosure,{},{...options,task:'read'},now,isOpen).length,0,'A closure shorter than the old sample interval still splits the stay');
  assert.equal(M.rank([p],fixture(),{},{...options,task:'read'},now,isOpen)[0].stay,null);
  assert.equal(M.rank([p],fixture(first({p:{hours:'Mo-Su 09:00-09:30'}})),{},{...options,task:'read'},now,isOpen).length,0);
 });

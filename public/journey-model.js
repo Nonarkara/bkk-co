@@ -79,6 +79,43 @@
   return out;
  }
  function requireRiver(crosses){if(typeof crosses!=='function')throw new Error('River geometry unavailable; no same-bank journey can be claimed.');return crosses;}
+ // The supported schedule can change only at a listed clock time or local
+ // midnight. Check those boundaries so even a short closure splits the stay.
+ function stayStatus(hours, accessWindow, start, duration, isOpen){
+  const minute=60000,day=1440*minute,offset=7*60*minute;
+  const end=start+duration*minute;
+  const points=new Set([start,end]);
+  const clocks=new Set([0]);
+  for(const match of `${hours||''} ${accessWindow||''}`.matchAll(/(\d{1,2}):(\d{2})/g)){
+   const value=Number(match[1])*60+Number(match[2]);
+   if(Number(match[2])<60&&value<=1440)clocks.add(value%1440);
+  }
+  let midnight=Math.floor((start+offset)/day)*day-offset;
+  for(;midnight<=end;midnight+=day){
+   for(const clock of clocks){
+    const boundary=midnight+clock*minute;
+    if(boundary>start&&boundary<end)points.add(boundary);
+   }
+  }
+  const match=/^(\d{2}):(\d{2})-(\d{2}):(\d{2})$/.exec(accessWindow||'');
+  const from=match?Number(match[1])*60+Number(match[2]):-1;
+  const until=match?Number(match[3])*60+Number(match[4]):-1;
+  const validAccess=match&&from<1440&&until<=1440&&Number(match[2])<60&&Number(match[4])<60;
+  let known=!accessWindow;
+  for(const instant of points){
+   if(validAccess){
+    const t=Math.floor(((instant+offset)%day+day)%day/minute);
+    if(!(from<until?t>=from&&t<until:t>=from||t<until))return false;
+   }
+   let state=null;
+   if(hours&&typeof isOpen==='function'){
+    try{state=isOpen(hours,new Date(instant));}catch{}
+   }
+   if(state===false)return false;
+   if(state!==true)known=false;
+  }
+  return known?true:null;
+ }
  function rank(places,data,scores,opts={},now=new Date(),isOpen,crossesRiver){
   const mode=opts.mode||'nearby',task=opts.task||'laptop',origin=valid(opts.origin)?opts.origin:null;
   if(!['drive','rail','nearby'].includes(mode))return [];
@@ -87,7 +124,6 @@
   if(mode==='drive')required.push('parking');
   const start=now instanceof Date?now:new Date(now);if(!Number.isFinite(start.getTime()))return [];
   const duration=Number.isFinite(opts.duration)?Math.min(1440,Math.max(0,opts.duration)):120;
-  const samples=[];for(let m=0;m<duration;m+=15)samples.push(m);samples.push(duration);
   const radius=mode==='rail'?(opts.lastMile==='ride'?2500:800):(Number.isFinite(opts.radius)?opts.radius:mode==='drive'?5000:800);
   const out=[];
   for(const p of places){
@@ -110,24 +146,8 @@
    if(required.some(key=>f[key].value===false))continue;
    const missing=required.filter(key=>f[key].value===null);if(opts.strict&&missing.length)continue;
    const accessWindow=data.evidence?.get(p.id)?.facts?.day_pass?.value?.access_hours;
-   let stay=accessWindow?null:true,closed=false;
-   for(const minutes of samples){
-    const time=new Date(start.getTime()+minutes*60000);
-    if(accessWindow){
-     // A pass clock limits visitor admission even when full members have24/7 access.
-     // It supplies no weekdays, so inside this clock still does not establish stay=true.
-     const match=/^(\d{2}):(\d{2})-(\d{2}):(\d{2})$/.exec(accessWindow);
-     if(match){
-      const a=Number(match[1])*60+Number(match[2]),b=Number(match[3])*60+Number(match[4]);
-      const local=new Date(time.getTime()+7*3600000),t=local.getUTCHours()*60+local.getUTCMinutes();
-      if(a<1440&&b<=1440&&Number(match[2])<60&&Number(match[4])<60&&!(a<b?t>=a&&t<b:t>=a||t<b)){closed=true;break;}
-     }
-    }
-    let state=null;
-    if(typeof isOpen==='function'&&f.hours){try{state=isOpen(f.hours,time);}catch{state=null;}}
-    if(state===false){closed=true;break;}if(state!==true)stay=null;
-   }
-   if(closed)continue;
+   const stay=stayStatus(f.hours,accessWindow,start.getTime(),duration,isOpen);
+   if(stay===false)continue;
    out.push({p,d,station,stationDistance,facilities:f,missing,required:[...required],stay,matched:required.filter(key=>f[key].value===true).length});
   }
   return out.sort((a,b)=>a.missing.length-b.missing.length||Number(b.facilities.work_allowed.value===true)-Number(a.facilities.work_allowed.value===true)||a.d-b.d||(Number(b.p.idx??b.p.i)||0)-(Number(a.p.idx??a.p.i)||0)||String(a.p.id).localeCompare(String(b.p.id)));
