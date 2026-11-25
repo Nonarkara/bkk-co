@@ -65,13 +65,20 @@
   return sourcePromise;
  }
  function legend(){return `<section class="building-key"><h2>Manga building colors</h2><ul>${chord.map((c,i)=>`<li><span class="footprint-swatch" style="background-image:url('${swatches.get(1<<i)||''}');background-color:${c.color}">${PlaceTools.symbol(c.kind)}</span>${c.name}</li>`).join('')}</ul><p>Colors mark matching place pins strictly inside a mapped footprint, not the use of every room or floor. Stripes mean several categories; neutral means no confirmed match. Points outside or on an uncertain edge are left unassigned.</p><p class="src">Cobalt Green from Palette combination 202. Sulpher Yellow, Oil Green and Light Glaucous Blue from combination 320. Credited digital conversions from Palette; textures and category symbols also distinguish the groups without hue. No nearby building is guessed. Tiny footprints may be smaller than a pixel at city scale.</p><p class="src" data-footprint-source-state role="status" aria-live="polite">${sourceNotice()}</p></section>`}
- function attach(m){
+ function attach(m,{deferRetained=false}={}){
   map=m;
-  loadRetained();
+  if(!deferRetained) loadRetained();
+  else {
+   const loadAtCityScale=()=>{
+    if(!window.state?.clubMode&&window.MangaLens?.active&&map.getZoom()<15&&sourceState==='loading')loadRetained();
+   };
+   map.on('moveend',loadAtCityScale);
+   map.on('idle',loadAtCityScale);
+  }
   document.addEventListener?.('click',e=>{if(e.target.closest?.('[data-retry-footprints]'))loadRetained()});
   map.on('style.load',()=>{last='';sync()});map.on('moveend',sync);map.on('idle',sync);
   map.on('sourcedata',e=>{if(['openmaptiles','street-buildings'].includes(e.sourceId))sync()});
-  map.addControl({onAdd(){const box=document.createElement('div');box.className='maplibregl-ctrl footprint-key-control';keyBox=box;box.hidden=true;const b=document.createElement('button');b.type='button';b.className='footprint-key';b.title='Open the map key';b.setAttribute('aria-label','Map key');b.innerHTML=chord.map(c=>`<span class="footprint-swatch" style="background-color:${c.color}">${PlaceTools.symbol(c.kind)}</span>`).join('')+`<span class="footprint-club-symbol" aria-hidden="true">${PlaceTools.symbol('cannabis')}</span><span>Key</span>`;b.onclick=()=>Atlas.key();box.append(b);return box},onRemove(){}},'bottom-left');
+  map.addControl({onAdd(){const box=document.createElement('div');box.className='maplibregl-ctrl footprint-key-control';keyBox=box;box.hidden=true;const b=document.createElement('button');b.type='button';b.className='footprint-key';b.title='Open the map key';b.setAttribute('aria-label','Map key');b.innerHTML=chord.map(c=>`<span class="footprint-swatch" style="background-color:${c.color}">${PlaceTools.symbol(c.kind)}</span>`).join('')+`<span class="footprint-club-symbol" aria-hidden="true">${PlaceTools.symbol('cannabis')}</span><span>Key</span>`;b.onclick=()=>{if(deferRetained&&!window.state?.clubMode&&sourceState==='loading')loadRetained();Atlas.key()};box.append(b);return box},onRemove(){}},'bottom-left');
   sync();
  }
  window.FootprintPalette={attach,refresh,sync,legend,chord,retry:loadRetained,get sourceState(){return sourceState},get features(){return current.features}};

@@ -175,7 +175,7 @@ map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-ri
 if ('geolocation' in navigator) map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true } }), 'top-right');
 // A lens, not a second map: the same source, drawn as line and tone.
 window.MangaLens?.attach(map);
-window.FootprintPalette?.attach(map);
+window.FootprintPalette?.attach(map, { deferRetained: true });
 window.NeighborhoodPalette?.attach(map);
 
 // ---------- data ----------
@@ -323,12 +323,8 @@ async function retryDirectory() {
   try {
     await Promise.all([loadRows('work'), loadVisits()]);
     state.catalogueStatus = 'ready';
-    // The food catalogue rides on the work catalogue; if the first attempt died
-    // before it, the reader who presses Retry deserves the food rows too.
-    if (!state.foodLoaded) {
-      await loadRows('food');
-      state.foodLoaded = true;
-    }
+    if (state.kinds.has('restaurant')) await ensureFood();
+    openFromUrl();
   } catch (error) {
     state.catalogueStatus = 'failed';
     state.catalogueError = error;
@@ -482,6 +478,7 @@ async function setClubMode(on, { frame = true } = {}) {
     }
     map.setMaxBounds(BKK_BOUNDS);
     map.setMinZoom(9);
+    ensureWork();
   }
   if (switching) window.Atlas?.reset?.();
   renderClubHotspots();
@@ -579,21 +576,59 @@ const scoresReady=loadScores().then(()=>{
 // cannabis wordmark and must not be handed a café list first.
 if (isClubStartup()) setClubMode(true);
 
-const firstData = aliasesReady.then(() => Promise.all([loadRows('work'), loadVisits()]))
-  .then(() => { state.catalogueStatus = 'ready'; refresh(); })
-  // A catalogue that failed to load is not an empty catalogue. Say so, and
-  // leave the reader something to press.
-  .catch(error => { state.catalogueStatus = 'failed'; state.catalogueError = error; console.error('The catalogue did not load', error); refresh(); });
-const foodData = firstData.then(() => state.catalogueStatus === 'ready' ? loadRows('food') : null)
-  .catch(error => { console.error('The food catalogue did not load', error); })
-  .then(() => { state.foodLoaded = true; refresh(); });
-const lateNightData = firstData.then(() => loadLateNight()).then(() => { state.lateNightLoaded = true; refresh(); });
-// Branch labels for repeated names ("Starbucks Coffee · Sathupradit Rd"): the listing's own address, or its district.
-// Fetched after the map is up; scripts/build-branches.py. A place without a published address or district gets none.
-foodData.then(() => fetch('data/branches.json')).then(r => (r.ok ? r.json() : {})).then(b => {
-  for (const [id, label] of Object.entries(b)) { const p = state.byId.get(id); if (p) p.branch = label; }
-  renderList();
-}).catch(() => {});
+let workRequest, foodRequest, branchRequest;
+let foodStatus = 'idle';
+let branchLabels = {};
+function applyBranchLabels() {
+  for (const [id, label] of Object.entries(branchLabels)) {
+    const place = state.byId.get(id);
+    if (place) place.branch = label;
+  }
+}
+function loadBranches() {
+  branchRequest ??= fetch('data/branches.json').then(r => r.ok ? r.json() : {}).then(labels => {
+    branchLabels = labels;
+    applyBranchLabels();
+    renderList();
+  }).catch(() => {});
+  return branchRequest;
+}
+function ensureWork() {
+  if (state.catalogueStatus === 'ready') return Promise.resolve();
+  workRequest ??= aliasesReady.then(() => Promise.all([loadRows('work'), loadVisits()]))
+    .then(() => {
+      state.catalogueStatus = 'ready';
+      refresh();
+      loadLateNight().then(refresh);
+    })
+    .catch(error => {
+      state.catalogueStatus = 'failed';
+      state.catalogueError = error;
+      console.error('The catalogue did not load', error);
+      refresh();
+    });
+  return workRequest;
+}
+function ensureFood({ retry = false } = {}) {
+  if (state.foodLoaded || (foodStatus === 'failed' && !retry)) return Promise.resolve();
+  foodRequest ??= ensureWork().then(async () => {
+    if (state.catalogueStatus !== 'ready') return;
+    foodStatus = 'loading';
+    try {
+      await loadRows('food');
+      state.foodLoaded = true;
+      foodStatus = 'ready';
+      applyBranchLabels();
+    } catch (error) {
+      foodStatus = 'failed';
+      console.error('The food catalogue did not load', error);
+    }
+    refresh();
+  }).finally(() => { foodRequest = null; });
+  return foodRequest;
+}
+if (!isClubStartup()) ensureWork();
+
 const branchTag = p => (p.branch ? `<span class="branch">· ${esc(p.branch)}</span>` : '');
 
 const PIN_LAYERS = ['pins-city', 'pins-street', 'pins', 'place-icons'];
@@ -636,9 +671,11 @@ map.on('load', async () => {
     openFromUrl();
     return;
   }
-  await firstData;
-  refresh(); openFromUrl();
-  await foodData; refresh(); openFromUrl();
+  await ensureWork();
+  refresh();
+  const raw = new URL(location.href).searchParams.get('p');
+  if (raw && !state.byId.has(canonId(raw))) await ensureFood();
+  openFromUrl();
 });
 
 // ---------- list: in view, sorted by what people actually search by ----------
@@ -736,7 +773,8 @@ function renderList() {
     : inView.sort(SORTS[state.sort]);
   $('#list-order').value=state.sort;
   $('#list-origin').hidden = state.sort !== 'near';
-  const loadingFood = state.kinds.has('restaurant') && !state.foodLoaded;
+  const loadingFood = !state.clubMode && state.kinds.has('restaurant') && !state.foodLoaded;
+  const foodUnavailable = loadingFood && foodStatus === 'failed';
   const count = $('#count');
   const list = $('#list');
   // Three states, never confused with one another: still loading, failed, and
@@ -752,7 +790,7 @@ function renderList() {
     paintLoadingRail(failed);
     return;
   }
-  count.textContent = `${fmt(inView.length)} ${inView.length === 1 ? 'place' : 'places'}${loadingFood ? ' · food loading' : ''}`;
+  count.textContent = `${fmt(inView.length)} ${inView.length === 1 ? 'place' : 'places'}${foodUnavailable ? ' · food unavailable' : loadingFood ? ' · food loading' : ''}`;
   count.title = `${fmt(inView.length)} places the reader can see on the map right now. Distances are straight lines from the map centre.`;
   const focusedPlace = document.activeElement.closest('.list-place')?.closest('li')?.dataset.id;
   const focusedGroup = document.activeElement.dataset.listMore;
@@ -782,14 +820,17 @@ function renderList() {
     const rows = places.slice(0, limit).map(p => row(p, sortKey(p, centre), true)).join('');
     return `<li class="list-group" data-list-group="${kind}"><h3 id="list-heading-${kind}">${label} <span>${fmt(places.length)}</span></h3>
       <ol aria-labelledby="list-heading-${kind}">${rows}</ol></li>`;
-  }).join('') : `<li class="meta">${loadingFood ? 'Loading food places…' : 'No matches in view. Pan, zoom out or clear a filter.'}</li>`;
+  }).join('') : `<li class="meta">${loadingFood && !foodUnavailable ? 'Loading food places…' : foodUnavailable ? 'No other matches in view.' : 'No matches in view. Pan, zoom out or clear a filter.'}</li>`;
   const capped = inView.length > MAX_LIST_ROWS;
   const reveal = inView.length && (expanded || shown < inView.length)
     ? expanded
       ? `<li class="list-reveal"><button type="button" class="list-more" data-list-more="all" data-list-more-state="fewer" aria-label="Show fewer places">Show fewer</button></li>`
       : `<li class="list-reveal"><button type="button" class="list-more" data-list-more="all" data-list-more-state="all" aria-label="${capped ? `Show the first ${MAX_LIST_ROWS} of ${fmt(inView.length)} places` : `Show all ${fmt(inView.length)} places`}">${capped ? `Show ${MAX_LIST_ROWS} of ${fmt(inView.length)} places` : `Show all ${fmt(inView.length)} places`}</button></li>`
     : '';
-  list.innerHTML = body + reveal;
+  const foodRetry = foodUnavailable ? '<li class="meta">Food catalogue unavailable. <button type="button" data-retry-food>Retry</button></li>' : '';
+  const clubSearch = state.clubMode && expanded && inView.length > 20
+    ? '<li class="list-reveal"><button type="button" class="list-more" data-search-directory>Find a listing by name</button></li>' : '';
+  list.innerHTML = foodRetry + clubSearch + body + reveal;
   if (focusedPlace) list.querySelector(`[data-id="${CSS.escape(focusedPlace)}"] button`)?.focus({ preventScroll: true });
   if (focusedGroup) list.querySelector(`[data-list-more="${CSS.escape(focusedGroup)}"]`)?.focus({ preventScroll: true });
 
@@ -868,7 +909,7 @@ $('.list-close').addEventListener('click', () => setListOpen(false));
 function setListOpen(on) {
   $('#list-wrap').classList.toggle('open', on);
   $('#list-toggle').setAttribute('aria-pressed', on);
-  if (on) { $('#sheet').hidden = true; renderList(); }
+  if (on) { $('#sheet').hidden = true; renderList(); if (!state.clubMode) loadBranches(); }
 }
 // The phone drawer is the only surface on the phone that stands on the map, so
 // Escape must close it and hand the reader back to the button that opened it.
@@ -886,7 +927,7 @@ document.addEventListener('keydown', e => {
 
 // ---------- search ----------
 let hitIdx = -1;
-$('#q').addEventListener('input', () => {
+function renderSearch() {
   const q = PlaceTools.normalize(PlaceTools.query($('#q').value));
   const hits = $('#hits');
   if (q.length < 2) { hits.innerHTML = moodHits(); hits.hidden = false; return; }
@@ -900,11 +941,27 @@ $('#q').addEventListener('input', () => {
   const c = map.getCenter(), centre = { y: c.lat, x: c.lng };
   const rank = (a, z) => (z.idx - a.idx) * 40 + (metres(a, centre) - metres(z, centre)) / 100;
   const top = [...starts.sort(rank), ...has.sort(rank)].slice(0, 8);
+  const pendingFood = !state.clubMode && !state.foodLoaded;
   hitIdx = -1;
   const c2 = map.getCenter();
   const missing = `<li class="meta missing"><a href="${osmNote(c2.lat, c2.lng)}" target="_blank" rel="noopener">Missing a place? Tell OpenStreetMap ↗</a></li>`;
-  hits.innerHTML = (state.clubMode ? '' : window.hoodHits?.(q) || '') + (top.length ? top.map(p => row(p)).join('') : '<li class="meta">No place by that name. Try Thai or English.</li>') + missing;
+  hits.innerHTML = (state.clubMode ? '' : window.hoodHits?.(q) || '') + (top.length ? top.map(p => row(p)).join('') : pendingFood ? '' : '<li class="meta">No place by that name. Try Thai or English.</li>') + missing;
+  if (!state.clubMode && !state.foodLoaded) {
+    hits.insertAdjacentHTML('beforeend', foodStatus === 'failed'
+      ? '<li class="meta">Food catalogue unavailable. <button type="button" data-retry-food>Retry</button></li>'
+      : '<li class="meta" role="status">Checking food listings…</li>');
+  }
   hits.hidden = false;
+}
+$('#q').addEventListener('input', () => {
+  renderSearch();
+  const query = $('#q').value;
+  if (state.clubMode || PlaceTools.query(query).trim().length < 2) return;
+  const update = () => {
+    if (!state.clubMode && !$('#hits').hidden && $('#q').value === query) renderSearch();
+  };
+  ensureFood().then(update);
+  loadBranches().then(update);
 });
 $('#q').addEventListener('keydown', e => {
   const items = [...$('#hits').querySelectorAll('li[data-id], li[data-hood], li[data-mood], li[data-act]')];
@@ -936,6 +993,7 @@ document.addEventListener('click', e => {
   const set = b.dataset.kind ? state.kinds : state.flags;
   const key = b.dataset.kind || b.dataset.flag;
   on ? set.add(key) : set.delete(key);
+  if (on && key === 'restaurant') ensureFood({ retry: true });
   refresh();
   if(b.dataset.kind)window.WorkFinder?.kindsChanged();
 });
@@ -1167,12 +1225,15 @@ function openFromUrl() {
   if (['nearby', 'drive', 'rail', 'map', 'passport', '3d'].includes(plan) && !openFromUrl.framed && $('#sheet').hidden) {
     openFromUrl.framed = true;
     const point = /^(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/.exec(u.searchParams.get('at') || '');
+    let origin;
     if (point && map.getMaxBounds().contains([Number(point[2]), Number(point[1])])) {
-      map.jumpTo({center:[Number(point[2]), Number(point[1])], zoom:16});
+      const [x, y] = [Number(point[2]), Number(point[1])];
+      map.jumpTo({center:[x, y], zoom:16});
+      origin = { x, y, kind:'planned', label:(u.searchParams.get('start') || 'Starting point').slice(0, 100) };
     }
     if (plan === 'passport') window.openPassport?.();
     else if (plan === '3d') window.StreetWorld?.openWalkthrough({ id: u.searchParams.get('area') });
-    else if (plan !== 'map') window.WorkFinder?.open(plan, { task: u.searchParams.get('task'), duration: Number(u.searchParams.get('minutes')), lang: u.searchParams.get('lang') });
+    else if (plan !== 'map') window.WorkFinder?.open(plan, { task: u.searchParams.get('task'), duration: Number(u.searchParams.get('minutes')), lang: u.searchParams.get('lang'), origin });
   } else if (id && !state.selected && $('#sheet').hidden && state.byId.has(id)) select(state.byId.get(id), 'jump');
   else if (u.searchParams.get('hood') && $('#sheet').hidden) window.openHood?.(u.searchParams.get('hood'), true);
   else if (u.searchParams.get('hop') && !openFromUrl.framed) { openFromUrl.framed = true; window.openHop?.(u.searchParams.get('hop')); }
@@ -1199,6 +1260,7 @@ function setMood(key) {
   $('#hits').hidden = true;
   refresh();
   if (!state.mood) return;
+  if (state.kinds.has('restaurant')) ensureFood();
   setListOpen(true);
   // frame every match, so a short list (Past midnight) is as visible as a long one
   const xs = lastList.map(p => p.x), ys = lastList.map(p => p.y);
@@ -1247,6 +1309,12 @@ document.addEventListener('click', e => {
   if (h) window.openHood?.(h.dataset.hood);
   if (e.target.closest('[data-retry-club]')) { retryDirectory(); return; }
   if (e.target.closest('[data-retry-catalogue]')) { retryDirectory(); return; }
+  if (e.target.closest('[data-search-directory]')) {
+    if (isPhone()) setListOpen(false);
+    $('#q').focus();
+    return;
+  }
+  if (e.target.closest('[data-retry-food]')) { ensureFood({ retry: true }).then(() => { if (!state.clubMode && !$('#hits').hidden) renderSearch(); }); return; }
   const th = e.target.closest('[data-thailand]');
   if (th) {
     const bounds = clubBounds();

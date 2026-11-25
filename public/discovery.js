@@ -29,7 +29,7 @@ window.openFeatured = async function () {
   sheet.classList.add('featured-sheet');
   const generation=sheetGeneration;
   try {
-    const [d]=await Promise.all([Atlas.load(),foodData]);
+    const [d]=await Promise.all([Atlas.load(),ensureFood()]);
     if(generation!==sheetGeneration||sheet.hidden)return;
     const c=map.getCenter(),centre={x:c.lng,y:c.lat};
     const entries=d.evidence.places.filter(e=>e.editorial_count>0&&state.byId.has(e.place_id))

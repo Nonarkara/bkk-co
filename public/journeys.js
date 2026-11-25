@@ -567,9 +567,12 @@
     }
     if (Object.hasOwn(tasks, options.task)) choice.task = options.task;
     if ([60, 120, 240, 480].includes(options.duration)) choice.duration = options.duration;
-    // A start the user can no longer see is a silent lie about "near": follow the map unless the chosen start is still in view.
-    const o = choice.origin;
-    if (!o || o.kind === 'map' || !(globalThis.visibleOnMap?.(o) ?? map.getBounds().contains([o.x, o.y]))) choice.origin = centre();
+    // Selecting a result moves the camera. Returning keeps the original start.
+    if (options.origin) choice.origin = options.origin;
+    else if (!resume && (!choice.origin || choice.origin.kind === 'map' ||
+      (mode && !(globalThis.visibleOnMap?.(choice.origin) ?? map.getBounds().contains([choice.origin.x, choice.origin.y]))))) {
+      choice.origin = centre();
+    }
     const sheet = openSheet(controls());
     sheet.classList.add('journey-sheet');
     if (thai) sheet.lang = 'th';
@@ -577,11 +580,15 @@
     bind(sheet);
     const token = ++revision;
     try {
-      await Promise.all([load(), firstData]);
+      await Promise.all([load(), ensureWork()]);
       barrierChecked = !!(await (window.barriersReady || Promise.resolve(false)));
       if (!current(sheet) || revision !== token) return;
       sheet.querySelector('#journey-origin').value = originLabel();
       render(sheet);
+      if (options.focusPlace) {
+        const button = sheet.querySelector('[data-work-place="' + CSS.escape(options.focusPlace) + '"]');
+        (button || sheet.querySelector('#journey-origin')).focus({ preventScroll: true });
+      }
     } catch (e) {
       if (!current(sheet) || revision !== token) return;
       const status = sheet.querySelector('.journey-status');
@@ -613,7 +620,7 @@
     }).catch(()=>{});
   }
   document.addEventListener('click', (e) => {
-    if (e.target.closest('[data-work-back]')) open();
+    if (e.target.closest('[data-work-back]')) open(undefined, { focusPlace: state.selected?.id });
     if(e.target.closest('[data-work-preferences]')){open();const detail=document.querySelector('[data-place-preferences]');if(detail)detail.open=true;}
   });
   window.WorkFinder = {

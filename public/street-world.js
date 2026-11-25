@@ -194,7 +194,7 @@
   pause();openFromUrl.framed=true;closeSheet();createPanel().innerHTML='<header><h2>Neighbourhood stroll</h2><button class="street-close" aria-label="Close street sketch">×</button></header><p role="status">Loading mapped streets and explicit building heights…</p>';
   panel.querySelector('.street-close').onclick=exit;
   try{
-   await Promise.all([load(),firstData]);
+   await Promise.all([load(),ensureWork()]);
    if(!map.getLayer('pins-city'))await new Promise((ok,fail)=>{const timer=setTimeout(()=>{map.off('idle',check);fail(Error('Map is not ready. Try the sketch again.'))},15000);function check(){if(map.getLayer('pins-city')){clearTimeout(timer);map.off('idle',check);ok()}}map.on('idle',check);check()});
    if(!current(token))return;
    if(!active)snapshot={center:map.getCenter().toArray(),zoom:map.getZoom(),pitch:map.getPitch(),bearing:map.getBearing(),maxPitch:map.getMaxPitch(),maxZoom:map.getMaxZoom()};
@@ -273,7 +273,7 @@
     areaId: target?.id,
     origin,
     placeById: id => state.byId.get(canonId(id)),
-    catalogues: [firstData, foodData],
+    catalogues: [ensureWork(), ensureFood()],
     signal: controller.signal,
     onClose: () => close(),
     onError: () => {

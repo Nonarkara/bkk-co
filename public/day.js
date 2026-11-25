@@ -83,7 +83,7 @@
       byId('day-outing-fact').textContent = tr(`${count.format(area.mix.cafe || 0)} mapped cafés within 800 m of the area anchor.`, `มีคาเฟ่ในฐานข้อมูล ${count.format(area.mix.cafe || 0)} แห่ง ภายใน 800 ม. จากจุดอ้างอิงของย่าน`);
       byId('day-show-area').href = mapURL('map', { at });
       byId('day-hop').href = `/?${new URLSearchParams({hop:`@${at}`})}`;
-      byId('day-drive').href = mapURL('drive', { at, task:'laptop', minutes:120 });
+      byId('day-drive').href = mapURL('drive', { at, start:name(area), task:'laptop', minutes:120 });
     };
     select.onchange = render;
     render();
@@ -110,7 +110,10 @@
       start.disabled = mode === 'rail';
       const area = areas.find(a => a.id === start.value);
       const query = { task:byId('day-work').value, minutes:byId('day-minutes').value };
-      if (area && mode !== 'rail') query.at = areaAt(area);
+      if (area && mode !== 'rail') {
+        query.at = areaAt(area);
+        query.start = name(area);
+      }
       byId('day-find').href = mapURL(mode, query);
       byId('day-work-help').textContent = mode === 'rail'
         ? tr('Choose your station in the finder. Distances are straight lines.','เลือกสถานีในหน้าค้นหา ระยะทางที่แสดงเป็นระยะเส้นตรง')
