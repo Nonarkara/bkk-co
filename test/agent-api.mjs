@@ -79,6 +79,50 @@ const call = async (path, method = 'GET') => {
 
 // --- one venue, its evidence, its history -------------------------------------
 {
+  const pilot = JSON.parse(await readFile(new URL('../public/data/journey-evidence.json', import.meta.url)));
+  const { body: registry } = await call('/v1/sources');
+  assert.ok(pilot.places.n4841595724, 'a rebuild must not silently drop The Work Loft');
+  assert.ok(pilot.places.od401837f4c19, 'a rebuild must not silently drop TCDC MunMun');
+  for (const [id, place] of Object.entries(pilot.places)) {
+    const { body: detail } = await call('/v1/venues/' + id);
+    const { body } = await call('/v1/venues/' + id + '/evidence');
+    assert.equal(body.journey_evidence_status, 'available');
+    assert.equal(detail.evidence_count, body.count);
+    assert.equal(detail.name.toLowerCase(), place.name.toLowerCase());
+    assert.deepEqual(detail.evidence, body.evidence);
+    for (const [field, fact] of Object.entries(place.facts)) {
+      for (const id of fact.source_ids) {
+        const result = body.evidence.find(e => e.field === field && e.source_id === 'journey:' + id);
+        assert.ok(result, `missing source ${id} for ${place.name}/${field}`);
+        assert.deepEqual(result.value, fact.value);
+        assert.equal(result.retrieved_at, fact.checked_at);
+        assert.equal(result.claim, fact.note);
+        assert.ok(registry.sources.some(s => s.id === result.source_id && s.url === result.url && s.tier === result.tier));
+      }
+    }
+  }
+  const { body: vich } = await call('/v1/venues/oe0a5a241cfc8/evidence');
+  assert.equal(vich.evidence.find(e => e.field === 'hours').value, 'Mo-Su 07:00-20:00');
+  assert.equal(vich.evidence.find(e => e.field === 'hours').tier, 'operator_claim');
+  const { body: unmapped } = await call('/v1/venues/n2368064673/evidence');
+  assert.ok(unmapped.evidence.every(e => !e.source_id.startsWith('journey:')));
+}
+
+{
+  const { agentApi: isolatedApi } = await import('../src/agent-api.js?journey-outage');
+  const url = new URL('https://co.nonarkara.org/v1/venues/oe0a5a241cfc8/evidence');
+  const failedAsset = {
+    fetch: input => new URL(input).pathname === '/data/journey-evidence.json'
+      ? Promise.resolve(new Response('temporary outage', { status: 503 })) : ASSETS.fetch(input),
+  };
+  const response = await isolatedApi(new Request(url), { DB: binding, ASSETS: failedAsset }, url);
+  assert.equal(response.status, 200, 'optional evidence must not take down the venue');
+  const body = await response.json();
+  assert.equal(body.journey_evidence_status, 'unavailable');
+  assert.ok(body.evidence.every(e => !e.source_id.startsWith('journey:')));
+}
+
+{
   const { status, body } = await call('/v1/venues/n2368064673');
   assert.equal(status, 200);
   assert.equal(body.venue_id, 'n2368064673');

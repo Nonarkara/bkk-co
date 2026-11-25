@@ -32,6 +32,24 @@ export const TIERS = [
 ];
 
 let cache; // per-isolate snapshot of the published catalogue and its evidence
+let journeyLoad;
+let journeyRetryAt = 0;
+function loadJourney(env, url) {
+  if (journeyLoad) return journeyLoad;
+  if (Date.now() < journeyRetryAt) return null;
+  journeyLoad = (async () => {
+    const r = await env.ASSETS.fetch(new URL('/data/journey-evidence.json', url), { signal: AbortSignal.timeout(12000) });
+    if (!r.ok) throw new Error('Journey evidence unavailable');
+    const data = await r.json();
+    if (data?.version !== 1 || !data.places || !data.sources) throw new Error('Invalid journey evidence');
+    return data;
+  })().catch(() => {
+    journeyRetryAt = Date.now() + 30000;
+    journeyLoad = null;
+    return null;
+  });
+  return journeyLoad;
+}
 async function load(env, url) {
   if (cache) return cache;
   const get = async path => {
@@ -63,6 +81,31 @@ async function load(env, url) {
 
 // The data shape the browser model already understands, so one rule set serves both.
 const modelData = (c) => ({ raw: { join: { venueTags: c.tags }, geo: { manifest: { asOf: c.manifest.asOf || 'snapshot date unknown' } } } });
+
+function journeyTier(source) {
+  if (source?.tier === 'first_party') return 'operator_claim';
+  if (source?.tier === 'editorial') return 'editorial';
+  return null;
+}
+
+function journeyEvidenceFor(c, place) {
+  const record = c.journey?.places?.[place.id];
+  const displayName = value => String(value ?? '').normalize('NFC').trim().toLowerCase();
+  if (!record || displayName(record.name) !== displayName(place.name)) return [];
+  return Object.entries(record.facts || {}).flatMap(([field, fact]) =>
+    (fact.source_ids || []).flatMap(id => {
+      const source = c.journey.sources[id];
+      const tier = journeyTier(source);
+      if (!tier || !source.url || !fact.checked_at || fact.value == null ||
+          !record.source_ids?.includes(id)) return [];
+      return [{
+        source: source.publisher, tier, claim: fact.note,
+        source_id: `journey:${id}`, url: source.url,
+        retrieved_at: fact.checked_at, state: 'documented', field, value: fact.value,
+      }];
+    })
+  );
+}
 
 function evidenceFor(c, place) {
   const out = [];
@@ -103,7 +146,7 @@ function evidenceFor(c, place) {
       source_id: id, url: s.url || null, retrieved_at: s.checked_at || s.updated_at || null, state: 'documented',
     });
   }
-  return out;
+  return out.concat(journeyEvidenceFor(c, place));
 }
 
 function components(c, place) {
@@ -169,6 +212,9 @@ export async function agentApi(request, env, url) {
   const path = url.pathname.replace(/\/+$/, '') || '/v1';
   let c;
   try { c = await load(env, url); } catch (e) { return fail(e.message, 503); }
+  if (path.startsWith('/v1/venues') || path === '/v1/sources') {
+    c = { ...c, journey: await loadJourney(env, url) };
+  }
   const q = url.searchParams;
   const limit = Math.max(1, Math.min(500, Number(q.get('limit')) || 50));
 
@@ -232,6 +278,10 @@ export async function agentApi(request, env, url) {
         { id: 'overture', publisher: 'Overture Maps', tier: 'mapped', licence: 'CDLA-P-2.0', url: 'https://overturemaps.org', as_of: c.manifest.asOf || null },
         { id: 'plub_visitors', publisher: 'PLUB visitors', tier: 'visitor_reported', licence: 'PLUB community record', url: 'https://co.nonarkara.org', as_of: null },
         ...published,
+        ...Object.entries(c.journey?.sources || {}).flatMap(([id, s]) => journeyTier(s) ? [{
+          id: `journey:${id}`, publisher: s.publisher, url: s.url, tier: journeyTier(s),
+          checked_at: s.checked_at, updated_at: s.updated_at ?? null,
+        }] : []),
       ],
       tiers: TIERS,
     });
@@ -276,7 +326,10 @@ export async function agentApi(request, env, url) {
     const place = c.byId.get(id);
     if (!place) return fail('no such venue', 404);
     const evidence = evidenceFor(c, place);
-    if (vm[2] === '/evidence') return json({ venue_id: id, count: evidence.length, evidence });
+    if (vm[2] === '/evidence') return json({
+      venue_id: id, count: evidence.length, evidence,
+      journey_evidence_status: c.journey ? 'available' : 'unavailable',
+    });
     if (vm[2] === '/history') {
       const tiers = {};
       for (const e of evidence) {
@@ -290,7 +343,7 @@ export async function agentApi(request, env, url) {
         tiers: Object.values(tiers).map(t => ({ tier: t.tier, count: t.count, last_checked: t.latest, sources: [...t.sources] })),
       });
     }
-    return json({ ...venue(c, place), evidence });
+    return json({ ...venue(c, place), evidence, journey_evidence_status: c.journey ? 'available' : 'unavailable' });
   }
 
   if (path === '/v1/venues') {
