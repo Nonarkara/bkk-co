@@ -607,8 +607,11 @@ async function ready(page) {
   // `state` and `map` are top-level consts: global lexical bindings, not window properties.
   const deadline = Date.now() + 240000;
   for (;;) {
-    const ready = await page.evaluate(() => typeof state !== 'undefined' && state.foodLoaded
-      && state.places.length > 0 && !!document.querySelector('#map canvas')).catch(() => false);
+    const ready = await page.evaluate(() => {
+      if (typeof state === 'undefined' || typeof map === 'undefined' || !document.querySelector('#map canvas')) return false;
+      const directoryReady = state.clubMode ? state.cannabisLoaded : state.catalogueStatus === 'ready';
+      return directoryReady && !!map.getSource('places')?._data?.features?.length;
+    }).catch(() => false);
     if (ready) break;
     if (Date.now() > deadline) throw new Error('the page never received its catalogue within 240s');
     if (!(await serverAlive(page))) {
