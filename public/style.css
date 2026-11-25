@@ -106,7 +106,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .search input:focus { border-color: var(--ink); background: var(--paper); }
 .search input:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
 
-.bar-actions { display: flex; align-items: center; gap: 6px; flex: none; }
+.bar-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; flex: none; max-width: 100%; }
 /* 3D Hunt, Guide and Notes are isolated controls in the header band, not chips
    in a dense row, so they take the 44px tap floor (MSH B13). */
 .bar-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px; border: 1px solid var(--rule);
@@ -552,11 +552,6 @@ body.club-mode .bar-actions #list-toggle { min-height: 44px; min-width: 44px; pa
 .footprint-club-symbol { display: none; }
 body.club-mode .footprint-key .footprint-swatch { display: none; }
 body.club-mode .footprint-club-symbol { display: inline-flex; }
-
-/* The Explore disclosure stays reachable in CL;UB. Hiding the whole actions row
-   took Featured places, the source lists, the street sketch, the map views, the
-   map key and Research & data off the cannabis host with it. */
-body.club-mode .bar-actions { max-width: 100%; flex-wrap: wrap; }
 
 /* CL;UB keeps the Botanical Green register (STYLE.md). The interface ink here is
    the club's own pair — Deep Slate Olive and Dark Medici Blue, both catalogue

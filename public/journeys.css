@@ -286,3 +286,40 @@
     max-width: 112px;
   }
 }
+
+@media (max-width: 320px) {
+  .journey-sheet {
+    max-height: min(84dvh, calc(100dvh - 64px));
+    overflow-wrap: anywhere;
+  }
+  .journey-modes button,
+  .journey-tasks > button,
+  .journey-options summary {
+    font-size: var(--small);
+  }
+  .journey-tasks {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .journey-options[open] {
+    grid-column: 1 / -1;
+  }
+  .journey-options label {
+    flex-wrap: wrap;
+  }
+  .journey-options select {
+    max-width: 100%;
+  }
+  .journey-go,
+  .place-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .journey-go > button {
+    max-width: none;
+  }
+  .journey-go > a,
+  .journey-go > button,
+  .place-actions > * {
+    min-width: 0;
+  }
+}

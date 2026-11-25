@@ -1,11 +1,11 @@
 // Task-first work finder. Source points stay intact; route/traffic decisions belong to the directions provider.
 (() => {
   const M = JourneyModel,
-    labels = { drive: 'Drive + park', rail: 'By BTS / rail', nearby: '2 hours nearby' },
+    labels = { drive: 'Drive + park', rail: 'BTS / rail', nearby: 'Nearby' },
     tasks = { laptop: 'Laptop', online: 'Online', read: 'Reading' };
   let thai = false;
   const tr = (en, th) => thai ? th : en;
-  const modeNames = {drive:'ขับรถและจอดรถ',rail:'รถไฟฟ้า BTS หรือสายอื่น',nearby:'ใกล้จุดเริ่มต้น'};
+  const modeNames = {drive:'ขับรถและจอด',rail:'BTS / รถไฟฟ้า',nearby:'ใกล้จุดเริ่ม'};
   const taskNames = {laptop:'แล็ปท็อป',online:'ออนไลน์',read:'อ่านหนังสือ'};
   const facilityName = key => ({wifi:'Wi-Fi',power:tr('outlets','ปลั๊กไฟ'),parking:tr('parking','ที่จอดรถ')})[key];
   let data,
@@ -405,7 +405,7 @@
         ? `${(r.stationDistance / 1000).toFixed(2)} ${tr('km from','กม. จาก')} ${r.station.systems.join('/') || tr('rail','รถไฟฟ้า')} ${name(r.station)} · ${tr('straight line','เส้นตรง')}`
         : `${(r.d / 1000).toFixed(2)} ${tr('km straight line from','กม. เส้นตรงจาก')} ${name(choice.origin)}`;
     const match = r.missing.length ? tr('Check ', 'ควรสอบถาม ') + r.missing.map(facilityName).join(' + ') : r.required.length ? tr('Needs documented','มีข้อมูลตรงเงื่อนไข') : tr('No equipment filter','ไม่กรองตามอุปกรณ์');
-    return `<li data-journey-place="${esc(p.id)}"><div class="journey-result-head"><span class="journey-number">${i + 1}</span><button class="journey-name" data-work-place="${esc(p.id)}">${PlaceTools.name(p.n)}${p.branch ? ` <span class="branch">· ${esc(p.branch)}</span>` : ''}</button></div><p class="journey-distance">${esc(KIND_LABEL[p.k])} · ${esc(distance)}</p><div class="journey-facilities">${['wifi', 'power', ...(choice.mode === 'drive' ? ['parking'] : [])].map((k) => badge(k, f[k])).join('')}<span class="journey-match">${esc(match)}</span></div><p class="journey-hours">${hours}${entry ? ' · ' + esc(entry) : ''}</p><div class="journey-go"><a class="journey-primary" data-journey-directions href="${esc(route(p))}" target="_blank" rel="noopener">${choice.mode === 'drive' ? tr('Drive & check traffic','เส้นทางขับรถและจราจร') : choice.mode === 'rail' ? tr('Transit directions','เส้นทางรถไฟฟ้า') : tr('Walk directions','เส้นทางเดิน')} ↗</a><button data-work-place="${esc(p.id)}">${tr('Place &amp; photos','ข้อมูลและรูปสถานที่')}</button></div>${choice.mode === 'rail' ? `<a class="journey-lastmile" href="${esc(M.directions(p, r.station, choice.lastMile === 'ride' ? 'two-wheeler' : 'walking'))}" target="_blank" rel="noopener">From ${esc(r.station.name)} · ${choice.lastMile === 'ride' ? 'check motorcycle route' : 'check walking route'} ↗</a>` : ''}${r.preference?.requested.length?`<p class="src">${esc(r.preference.summary)}</p>`:''}${sourceFacts(p, f)}</li>`;
+    return `<li data-journey-place="${esc(p.id)}"><div class="journey-result-head"><span class="journey-number">${i + 1}</span><button class="journey-name" data-work-place="${esc(p.id)}">${PlaceTools.name(p.n)}${p.branch ? ` <span class="branch">· ${esc(p.branch)}</span>` : ''}</button></div><p class="journey-distance">${esc(KIND_LABEL[p.k])} · ${esc(distance)}</p><div class="journey-go"><a class="journey-primary" data-journey-directions href="${esc(route(p))}" target="_blank" rel="noopener">${choice.mode === 'drive' ? tr('Drive & check traffic','เส้นทางขับรถและจราจร') : choice.mode === 'rail' ? tr('Transit directions','เส้นทางรถไฟฟ้า') : tr('Walk directions','เส้นทางเดิน')} ↗</a><button data-work-place="${esc(p.id)}">${tr('Place &amp; photos','ข้อมูลและรูปสถานที่')}</button></div><div class="journey-facilities">${['wifi', 'power', ...(choice.mode === 'drive' ? ['parking'] : [])].map((k) => badge(k, f[k])).join('')}<span class="journey-match">${esc(match)}</span></div><p class="journey-hours">${hours}${entry ? ' · ' + esc(entry) : ''}</p>${choice.mode === 'rail' ? `<a class="journey-lastmile" href="${esc(M.directions(p, r.station, choice.lastMile === 'ride' ? 'two-wheeler' : 'walking'))}" target="_blank" rel="noopener">From ${esc(r.station.name)} · ${choice.lastMile === 'ride' ? 'check motorcycle route' : 'check walking route'} ↗</a>` : ''}${r.preference?.requested.length?`<p class="src">${esc(r.preference.summary)}</p>`:''}${sourceFacts(p, f)}</li>`;
   }
   function installMap() {
     if (!map.getLayer('pins-city') || map.getSource('journey-context')) return;
