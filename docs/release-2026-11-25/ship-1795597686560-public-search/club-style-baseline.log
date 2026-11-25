@@ -1,0 +1,13 @@
+{"url":"https://club.nonarkara.org/","visibleAfterStyle":false,"app":"app.js?v=a00ea5a0"}
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+false !== true
+
+    at /private/tmp/plub-club-style-race.cjs:33:9 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
