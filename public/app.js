@@ -260,6 +260,7 @@ async function loadCannabis({ retry = false } = {}) {
         for (const det of Object.values(d.details || {})) { const t = det.tier || 'C'; byTier[t] = (byTier[t] || 0) + 1; }
         state.cannabisStats = { total: d.total, bySub: d.bySub || {}, byProvince: d.byProvince || {}, byTier };
         state.cannabisHotspots = Array.isArray(d.hotspots) ? d.hotspots : [];
+        state.cannabisSources = d.builtFrom || [];
         state.sortedIdx = state.places.filter(p => p.k !== 'cannabis').map(p => p.idx).sort((a, b) => a - b);
         state.sortedCannabisIdx = state.places.filter(p => p.k === 'cannabis').map(p => p.idx).sort((a, b) => a - b);
         state.cannabisLoaded = true;
@@ -1157,8 +1158,10 @@ function renderSheet(p, d, visits, report) {
   if (state.selected !== p) return;
   // Late catalogue details must not replace a visit form someone is already writing.
   if (!$('#sheet').hidden && $('#sheet .been-form')?.dataset.place === p.id) return;
+  const thai = new URLSearchParams(location.search).get('lang') === 'th';
+  const tr = (english, thaiText) => thai ? thaiText : english;
   const hours = report?.place?.hours || venueHours(p);
-  const open = window.isOpen(hours, new Date());
+  const open = p.k === 'cannabis' ? null : window.isOpen(hours, new Date());
   const hood = window.hoodOf?.(p);
   const addr = report?.place?.address || d.addr;
   const tel = report?.place?.tel || d.tel;
@@ -1191,15 +1194,19 @@ function renderSheet(p, d, visits, report) {
       ${email && /^[\w.+-]+@[\w.-]+\.[a-z]+$/i.test(email) ? `<a href="mailto:${esc(email)}">Email</a>` : ''}</span>`],
     p.flags & F.OUTDOOR && ['☀', 'outdoor', 'Outdoor seating'],
     amenityList.length && ['◈', 'amenities', esc(amenityList.join(' · '))],
-    p.k === 'cannabis' && d.prov && ['⌖', 'region', esc(`${d.prov}${d.tier ? ` · Tier ${d.tier}` : ''}`)],
     d.c && ['·', 'cuisine', esc(d.c.replace(/[_;]/g, ' '))],
   ].filter(Boolean);
   const factList = (rows, label) => rows.length ? `<ul class="facts" aria-label="${label}">${rows.map(([sym, key, content]) => `<li data-fact="${key}"><span class="sym" aria-hidden="true">${sym}</span><span class="fact-value">${content}</span></li>`).join('')}</ul>` : '';
+  const clubSource = p.k === 'cannabis' && state.cannabisSources?.find(source =>
+    source.name.startsWith(p.flags & F.OVERTURE ? 'Overture' : 'OpenStreetMap'));
+  const clubRegister = p.k === 'cannabis' && d.ds?.includes('dtam') &&
+    state.cannabisSources?.find(source => source.name.startsWith('DTAM'));
+  const sourceChannels = d.ds?.filter(channel => p.k !== 'cannabis' || channel !== 'dtam') || [];
   const src = p.flags & F.HAND && !(p.flags & F.OVERTURE)
     ? `Hand pin · ${esc(d.pinned || 'a visit')} · not on OpenStreetMap yet · <a href="${osmNote(p.y, p.x)}" target="_blank" rel="noopener">add it</a>`
     : p.flags & F.OVERTURE
-    ? `Overture Maps${d.ds?.length ? ' via ' + esc(d.ds.join(', ')) : ''}${d.conf ? ` · confidence ${d.conf}` : ''}`
-    : `OpenStreetMap${d.ds?.length ? ' + ' + esc(d.ds.join(', ')) : ''} · <a href="https://www.openstreetmap.org/${{ n: 'node', w: 'way', r: 'relation' }[p.id[0]]}/${p.id.slice(1)}" target="_blank" rel="noopener">fix on OSM</a>`;
+    ? `Overture Maps${sourceChannels.length ? ' via ' + esc(sourceChannels.join(', ')) : ''}${d.conf ? ` · confidence ${d.conf}` : ''}`
+    : `OpenStreetMap${sourceChannels.length ? ' + ' + esc(sourceChannels.join(', ')) : ''} · <a href="https://www.openstreetmap.org/${{ n: 'node', w: 'way', r: 'relation' }[p.id[0]]}/${p.id.slice(1)}" target="_blank" rel="noopener">fix on OSM</a>`;
 
   const currentSheet = $('#sheet');
   const updating = !currentSheet.hidden && currentSheet.dataset.place === p.id;
@@ -1212,19 +1219,20 @@ function renderSheet(p, d, visits, report) {
   const sheet = openSheet(`
     <header>
       <h1>${nm(report?.venue || p.n)}${p.branch ? `<span class="th">${esc(p.branch)}</span>` : ''}${d.th ? `<span class="th" lang="th">${esc(d.th)}</span>` : ''}</h1>
-      <button class="close" aria-label="Close">×</button>
+      <button class="close" aria-label="${tr('Close', 'ปิด')}">×</button>
     </header>
-    <div class="kindline">${PlaceTools.symbol(p.k)}${esc(CLUB_TYPES[p.sub] || KIND_LABEL[p.k])}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ been ${visits.length}×</b>` : ''}</div>
+    <div class="kindline">${PlaceTools.symbol(p.k)}${esc(CLUB_TYPES[p.sub] || KIND_LABEL[p.k])}${p.k === 'cannabis' && p.prov ? ` · ${esc(p.prov)}` : ''}${hood ? ` · <button class="linkish" data-hood="${hood.slug}">${esc(hood.name)}</button>` : ''}${visits.length ? ` · <b>✓ ${tr('been', 'เคยไป')} ${visits.length}×</b>` : ''}</div>
     ${factList(facts, 'Hours and address')}
-    <section class="been place-actions"><a href="${esc(window.WorkFinder?.directions(p)||`https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}`)}" target="_blank" rel="noopener">Directions ↗</a><button type="button" class="send been-open" data-place-visit>✓ I've been here</button></section>
-    ${p.k === 'cannabis' ? `<details><summary>Source details · ${p.idx} of 4 fields</summary><p>Counts listed hours, website or social link, phone and address. ${p.hub ?? 0} other mapped listings within 1 km straight line.</p></details>` : `<section class="ggp">
+    <section class="been place-actions"><a href="${esc(window.WorkFinder?.directions(p)||`https://www.google.com/maps/dir/?api=1&destination=${p.y},${p.x}`)}" target="_blank" rel="noopener">${tr('Directions ↗', 'นำทาง ↗')}</a><button type="button" class="send been-open" data-place-visit>✓ ${tr("I've been here", 'เคยมาที่นี่')}</button></section>
+    ${p.k === 'cannabis' ? `<details><summary>Source details · ${p.idx} of 4 fields</summary><p>Counts listed hours, website or social link, phone and address. ${p.hub ?? 0} other mapped listings within 1 km straight line.${d.tier ? ` Listing tier ${esc(d.tier)}.` : ''}</p></details>` : `<section class="ggp">
       ${petals(p)}
       <div class="ggp-num"><span class="big">${p.idx}</span><span class="micro">Great Good Place index · top ${topShare(p)}% of Bangkok · <a href="/research">Research &amp; scoring →</a></span></div>
       <table class="ggp-table">${GGP.map(([k, sym, label]) => `<tr><td class="sym">${sym}</td><td>${label}</td><td class="raw">${esc(rawValue(k, p, d))}</td></tr>`).join('')}</table>
     </section>`}
     ${visitReportHtml(report)}
     ${factList(moreFacts, 'Contact and amenities')}
-    ${p.k === 'cannabis' ? `<p class="src">Open-data listing. Licence and current availability are unverified. <a href="https://med-cannabis.dtam.moph.go.th/law/2418/" target="_blank" rel="noopener">Thai cannabis rules ↗</a></p>` : ''}
+    ${p.k === 'cannabis' ? `<p class="src">Listed hours and current authorisation are unverified.
+      ${clubRegister ? `Matched to an archived Bangkok register entry · ${esc(clubRegister.asOf)}. <a href="https://data.go.th/dataset/dtam-serv-002" target="_blank" rel="noopener">Register ↗</a>` : ''} <a href="https://med-cannabis.dtam.moph.go.th/law/2418/" target="_blank" rel="noopener">Thai cannabis rules ↗</a></p>` : ''}
     ${d.about || d.visit ? `<div class="place-description">${d.about ? `<p>${esc(d.about)}</p>` : ''}${d.visit ? `<p class="hand">${esc(d.visit)}</p>` : ''}</div>` : ''}
     <nav class="place-social" aria-label="Place contributions"><button type="button" data-place-community>Notes &amp; photos</button><button type="button" data-place-recommend>Add recommendation</button><button type="button" class="share">Share place</button><button type="button" data-place-street>${window.StreetWorld?.active?'Back to street sketch':'Street sketch'}</button></nav>
     ${p.k === 'cannabis' ? '' : window.WorkAtmosphere?.render(p, d, { [p.id]: state.scores[p.id] }, null, report) || ''}
@@ -1237,11 +1245,12 @@ function renderSheet(p, d, visits, report) {
     <nav class="links">
       ${['cafe', 'restaurant'].includes(p.k) ? `<a href="https://www.wongnai.com/restaurants?q=${encodeURIComponent(p.n)}" target="_blank" rel="noopener nofollow" title="Photos and reviews on Wongnai, opens their site">Photos &amp; reviews ↗ Wongnai</a>` : ''}
     </nav>
-    <p class="src">Source: ${src}</p>
+    <p class="src">Source: ${src}${clubSource ? ` · ${esc(clubSource.asOf?.slice(0, 10) || clubSource.release)}` : ''}</p>
     ${d.provenance ? `<details class="src reviewed-source"><summary>Reviewed café classification · original open-data location</summary><p>Overture Maps ${esc(d.provenance.release)} · ${esc(d.provenance.licence)} · source ID ${esc(d.provenance.sourceID)}. The source called this a ${esc(d.provenance.sourceTaxonomy)}; the café identity was checked ${esc(d.provenance.checkedAt)}. Original source coordinates retained. Wi-Fi, outlets and parking remain unconfirmed.</p>${(d.provenance.sources||[]).map(v=>`<p><a href="${esc(safeLink(v.url))}" target="_blank" rel="noopener nofollow">${esc(v.publisher)}</a> · ${esc(v.published_at||v.updated_at||'date unstated')}</p>`).join('')}</details>` : ''}
     ${d.enrichment ? `<details class="src enrichment-source"><summary>Added ${Object.keys(d.enrichment).map(k=>k==='addr'?'address':'phone').join(' &amp; ')} · AllThePlaces · snapshot ${esc(Object.values(d.enrichment)[0].asOf)}</summary><p>CC0 Café Amazon export, published at the end of the 24–31 October run; venue details may have changed. <a href="https://alltheplaces-data.openaddresses.io/runs/2026-10-24-13-32-37/output/cafe_amazon.geojson" target="_blank" rel="noopener">Download source</a>. ${Object.values(d.enrichment).map(v=>`Branch ${esc(v.ref)} · ${esc(v.branch)} · record ${esc(v.id)} · matched within ${esc(v.distanceM)} m`).filter((v,i,a)=>a.indexOf(v)===i).join('; ')}</p></details>` : ''}`, { place:true, preserveFocus:updating });
 
   sheet.dataset.place = p.id;
+  if (thai) sheet.lang = 'th';
   if (wasInside) {
     const replacement = sameControl && [...sheet.querySelectorAll(focusables)].find(el => el.getAttribute(sameControl.name) === sameControl.value);
     (replacement || sheet.querySelector(active.matches('.close') ? '.close' : 'h1'))?.focus({ preventScroll: true });
@@ -1258,7 +1267,12 @@ function renderSheet(p, d, visits, report) {
   sheet.querySelector('[data-place-recommend]').onclick = () => window.Notebook?.recommend(p);
   // A shared link must say which bureau it points into, or a dispensary link
   // opened on PL;UB resolves to nothing.
-  const shareUrl = () => new URL('?p=' + encodeURIComponent(p.id) + (state.clubMode ? '&mode=club' : ''), location.origin).href;
+  const shareUrl = () => {
+    const params = new URLSearchParams({ p: p.id });
+    if (state.clubMode) params.set('mode', 'club');
+    if (thai) params.set('lang', 'th');
+    return new URL(`?${params}`, location.origin).href;
+  };
   sheet.querySelector('.share').onclick = () => PlaceTools.share({title:p.n,url:shareUrl()},sheet);
 }
 

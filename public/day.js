@@ -16,7 +16,8 @@
   const languageURL = (key, thai) => `/day?${new URLSearchParams({task:key, lang:thai ? 'th' : 'en'})}`;
   const name = (area, thaiKey = 'nameTh') => th ? area[thaiKey] || area.name : area.name;
   const areaAt = area => `${area.anchor.y},${area.anchor.x}`;
-  const mapURL = (plan, options = {}) => `/?${new URLSearchParams({plan, lang:th ? 'th' : 'en', ...options})}`;
+  const mapLink = options => `/?${new URLSearchParams({ lang:th ? 'th' : 'en', ...options })}`;
+  const mapURL = (plan, options = {}) => mapLink({ plan, ...options });
   const link = (href, label, primary = false) => `<a${primary ? ' class="day-primary"' : ''} href="${esc(href)}">${esc(label)}</a>`;
   const action = (id, href, label, primary = false) => `<a id="${id}"${primary ? ' class="day-primary"' : ''} href="${esc(href)}">${esc(label)}</a>`;
   const option = (value, label) => `<option value="${esc(value)}">${esc(label)}</option>`;
@@ -31,6 +32,7 @@
   document.documentElement.lang = th ? 'th' : 'en';
   document.title = `${title} · PLUB`;
   byId('day-title').textContent = title;
+  byId('day-map').href = mapLink({});
   byId('day-map').textContent = tr('Map ↗', 'แผนที่ ↗');
   const language = byId('day-language');
   language.href = languageURL(task, !th);
@@ -40,6 +42,7 @@
   byId('day-tasks').innerHTML = Object.entries(titles).map(([key, label]) => `<a href="${esc(languageURL(key, th))}"${key === task ? ' aria-current="page"' : ''}>${esc(label)}</a>`).join('');
   byId('day-stamps-title').textContent = tr('Neighbourhood stamps', 'ตราประทับย่าน');
   byId('day-stamp-tip').textContent = tr('Save a private visit in a stamp area to earn a stamp. If you choose to share, tell the next visitor about a socket, noise, or entry rules.', 'บันทึกการไปเยือนแบบส่วนตัวในย่านที่มีตราประทับเพื่อรับตราประทับ หากอยากแบ่งปัน ลองบอกคนถัดไปเรื่องปลั๊กไฟ เสียงรบกวน หรือเงื่อนไขการเข้าใช้');
+  byId('day-notebook').href = mapURL('passport');
   byId('day-notebook').textContent = tr('Open my notebook →', 'เปิดสมุดบันทึก →');
   byId('day-stamp-status').textContent = tr('Checking this device…', 'กำลังตรวจสอบบันทึกในอุปกรณ์นี้…');
 
@@ -47,21 +50,26 @@
     const choices = areas.map(a => option(a.id, name(a))).join('');
     node.innerHTML = `${intro(tr('Compare two areas, then try a work session in each before choosing a base.', 'เปรียบเทียบสองย่าน แล้วลองไปนั่งทำงานจริงก่อนเลือกที่อยู่'))}
       <div class="day-fields">${field('day-left', tr('First area', 'ย่านแรก'), choices)}${field('day-right', tr('Second area', 'ย่านที่สอง'), choices)}</div>
+      <div class="day-actions" id="day-compare-actions"></div>
       <div id="day-comparison"></div>
       <p class="day-source">${tr('Catalogue places within 800 m of each anchor. Rail distances are straight lines to mapped station points on the same side of the Chao Phraya. Check rent, street access and your regular trips separately.', 'นับสถานที่ในฐานข้อมูลภายใน 800 ม. จากจุดอ้างอิงของแต่ละย่าน ระยะถึงสถานีเป็นระยะเส้นตรงถึงจุดในแผนที่ฝั่งเดียวกันของแม่น้ำเจ้าพระยา ควรตรวจค่าเช่า ทางเดิน และการเดินทางประจำแยกต่างหาก')}</p>
-      <p class="day-source">${link('https://www.openstreetmap.org/copyright', '© OpenStreetMap')} · ${link('https://overturemaps.org/', 'Overture Maps')} · ${tr('Rail snapshot', 'ข้อมูลสถานี ณ วันที่')} ${esc(source.railDate)}</p>`;
+      <p class="day-source">${link('https://www.openstreetmap.org/copyright', '© OpenStreetMap')} · ${link('https://overturemaps.org/', 'Overture Maps')} · ${tr('Rail snapshot', 'ข้อมูลสถานี ณ วันที่')} ${esc(source.railDate)} · ${tr('Workplace pilot checked', 'ตรวจข้อมูลพื้นที่ทำงานนำร่องเมื่อ')} ${esc(source.workplaceEvidenceDate)}</p>`;
     const left = byId('day-left');
     const right = byId('day-right');
     left.value = 'ari'; right.value = 'samyan';
     const rail = area => `${link(`https://www.openstreetmap.org/node/${area.rail.id.slice(1)}`, name(area.rail))}<br>${esc(area.rail.systems.join('/'))} · ${area.rail.metres === 0 ? tr('At the anchor','ที่จุดอ้างอิง') : `${count.format(area.rail.metres)} ${tr('m','ม.')}`}`;
     const render = () => {
       const pair = [left, right].map(select => areas.find(a => a.id === select.value));
+      byId('day-compare-actions').innerHTML = pair.map((area, index) =>
+        link(mapURL('nearby', { at:areaAt(area), task:'laptop', minutes:120 }),
+          tr(`Try ${name(area)} ↗`, `ลองทำงานที่${name(area)} ↗`), index === 0)).join('');
       const rows = [
+        [tr('Wi-Fi + outlets in pilot', 'มีข้อมูล Wi-Fi และปลั๊ก'), a => a.laptopDocumented
+          ? count.format(a.laptopDocumented) : tr('None documented in pilot', 'โครงการนำร่องยังไม่มีข้อมูล')],
         [tr('Cafés','คาเฟ่'), a => count.format(a.mix.cafe || 0)],
         [tr('Co-working','พื้นที่ทำงานร่วมกัน'), a => count.format(a.mix.coworking || 0)],
         [tr('Libraries','ห้องสมุด'), a => count.format(a.mix.library || 0)],
-        [tr('Nearest rail','สถานีใกล้สุด'), rail],
-        [tr('Try it','ลองไป'), a => link(mapURL('nearby', { at:areaAt(a), task:'laptop', minutes:120 }), tr('Find a work spot →','หาที่นั่งทำงาน →'))]
+        [tr('Nearest rail','สถานีใกล้สุด'), rail]
       ];
       byId('day-comparison').innerHTML = `<table class="day-comparison" aria-label="${tr('Area comparison','เปรียบเทียบย่าน')}"><thead><tr><th scope="col">${tr('Within reach','ใกล้จุดอ้างอิง')}</th>${pair.map(a => `<th scope="col">${esc(name(a))}</th>`).join('')}</tr></thead><tbody>${rows.map(([label, value]) => `<tr><th scope="row">${esc(label)}</th>${pair.map(a => `<td>${value(a)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
     };
@@ -82,7 +90,7 @@
       const at = areaAt(area);
       byId('day-outing-fact').textContent = tr(`${count.format(area.mix.cafe || 0)} mapped cafés within 800 m of the area anchor.`, `มีคาเฟ่ในฐานข้อมูล ${count.format(area.mix.cafe || 0)} แห่ง ภายใน 800 ม. จากจุดอ้างอิงของย่าน`);
       byId('day-show-area').href = mapURL('map', { at });
-      byId('day-hop').href = `/?${new URLSearchParams({hop:`@${at}`})}`;
+      byId('day-hop').href = mapLink({ hop: `@${at}` });
       byId('day-drive').href = mapURL('drive', { at, start:name(area), task:'laptop', minutes:120 });
     };
     select.onchange = render;
@@ -132,7 +140,7 @@
       if (!data.areas?.length) throw new Error('Missing areas');
       ({live:compare,today,work})[task](node, data.areas, data.source);
     } catch {
-      node.innerHTML = `<p role="status">${tr('Neighbourhood data is unavailable.','ยังเปิดข้อมูลย่านไม่ได้')}</p><div class="day-actions"><button type="button" class="day-retry">${tr('Try again','ลองอีกครั้ง')}</button>${link('/?plan=nearby',tr('Open the work finder','เปิดหน้าค้นหาที่ทำงาน'))}</div>`;
+      node.innerHTML = `<p role="status">${tr('Neighbourhood data is unavailable.','ยังเปิดข้อมูลย่านไม่ได้')}</p><div class="day-actions"><button type="button" class="day-retry">${tr('Try again','ลองอีกครั้ง')}</button>${link(mapURL('nearby'),tr('Open the work finder','เปิดหน้าค้นหาที่ทำงาน'))}</div>`;
       node.querySelector('button').onclick = load;
     } finally { node.setAttribute('aria-busy','false'); }
   }

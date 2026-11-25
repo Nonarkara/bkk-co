@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checked_at": "2026-11-03",
+  "checked_at": "2026-11-25",
   "scope": "Branch-specific operator and attributed editorial working-facility facts on existing catalogue pins. Missing facts are unknown, not false.",
   "places": {
     "oe0a5a241cfc8": {
@@ -22,7 +22,7 @@
           "source_ids": [
             "vichspace"
           ],
-          "checked_at": "2026-11-03"
+          "checked_at": "2026-11-25"
         },
         "power": {
           "value": true,
@@ -30,7 +30,7 @@
           "source_ids": [
             "vichspace"
           ],
-          "checked_at": "2026-11-03"
+          "checked_at": "2026-11-25"
         },
         "parking": {
           "value": true,
@@ -38,7 +38,7 @@
           "source_ids": [
             "vichspace"
           ],
-          "checked_at": "2026-11-03"
+          "checked_at": "2026-11-25"
         },
         "work_allowed": {
           "value": true,
@@ -46,7 +46,7 @@
           "source_ids": [
             "vichspace"
           ],
-          "checked_at": "2026-11-03"
+          "checked_at": "2026-11-25"
         },
         "hours": {
           "value": "Mo-Su 07:00-20:00",
@@ -54,7 +54,7 @@
           "source_ids": [
             "vichspace"
           ],
-          "checked_at": "2026-11-03"
+          "checked_at": "2026-11-25"
         }
       }
     },
@@ -408,20 +408,94 @@
       "facts": {
         "access": {
           "value": "wifi_id_required",
-          "note": "BACC asks for a national ID card to issue a Wi-Fi code. Passport acceptance is unconfirmed. Check closing time with BACC because published library and building hours differ.",
+          "note": "The library asks for a national ID card for a Wi-Fi code. Passport acceptance is unconfirmed.",
           "source_ids": [
             "bacc-art-library"
           ],
-          "checked_at": "2026-11-12"
+          "checked_at": "2026-11-25"
         },
         "hours": {
-          "value": "unknown",
-          "note": "BACC publishes differing closing times for the library and the building. Check current library hours with staff.",
+          "value": "Tu-Su 10:00-19:00; Mo off",
+          "note": "The library schedule ends at 19:00 and the counter at 18:30. The later time in the page footer refers to the centre.",
           "source_ids": [
             "bacc-art-library"
           ],
-          "checked_at": "2026-11-12"
+          "checked_at": "2026-11-25"
+        },
+        "wifi": {
+          "value": true,
+          "note": "The library offers free Wi-Fi after a national ID card is presented at the counter.",
+          "source_ids": [
+            "bacc-art-library"
+          ],
+          "checked_at": "2026-11-25"
+        },
+        "work_allowed": {
+          "value": true,
+          "note": "The library lists workspaces and reading areas for visitors. Check the library rules before going.",
+          "source_ids": [
+            "bacc-art-library"
+          ],
+          "checked_at": "2026-11-25"
         }
+      }
+    },
+    "n4841595724": {
+      "name": "The Work Loft",
+      "area": "Silom · Sala Daeng",
+      "source_ids": [
+        "work-loft-silom"
+      ],
+      "facts": {
+        "wifi": {
+          "value": true,
+          "note": "The Silom operator lists Wi-Fi. No speed measurement is available.",
+          "source_ids": [
+            "work-loft-silom"
+          ],
+          "checked_at": "2026-11-25"
+        },
+        "work_allowed": {
+          "value": true,
+          "note": "The operator advertises coworking at the Silom branch. Check access terms for your booking.",
+          "source_ids": [
+            "work-loft-silom"
+          ],
+          "checked_at": "2026-11-25"
+        },
+        "access": {
+          "value": "Day passes offered daily. 24-hour access is for members.",
+          "note": "The operator lists daily access for day-pass customers and reserves 24-hour access for members. Confirm the pass hours and price before visiting.",
+          "checked_at": "2026-11-25",
+          "source_ids": [
+            "work-loft-silom"
+          ]
+        }
+      },
+      "identity": {
+        "publisher_address": "281/19-23, 3rd–6th floors, NST One Building, Soi Silom 1, Bang Rak, Bangkok 10500",
+        "reason": "Matches the Silom branch of The Work Loft, with the publisher citing NST One on Silom Road."
+      }
+    },
+    "od401837f4c19": {
+      "name": "TCDC COMMONS MunMun Srinakarin",
+      "area": "Seacon Square Srinakarin · Prawet",
+      "source_ids": [
+        "tcdc-munmun-hours"
+      ],
+      "facts": {
+        "hours": {
+          "value": "Mo-Su 11:00-19:00",
+          "note": "The operator lists these hours for its MunMun branch at Seacon Square Srinakarin. Check holiday closures.",
+          "source_ids": [
+            "tcdc-munmun-hours"
+          ],
+          "checked_at": "2026-11-25"
+        }
+      },
+      "identity": {
+        "publisher_address": "3rd Floor, Zone MUNx2, Seacon Square Srinakarin, 55 Srinakarin Road, Nong Bon, Prawet, Bangkok 10250",
+        "reason": "The publisher names Commons MunMun and the Seacon Square Srinakarin branch, distinct from TCDC Charoen Krung."
       }
     }
   },
@@ -430,11 +504,12 @@
       "publisher": "VichSpace",
       "url": "https://vichspace.co/",
       "published_at": null,
-      "checked_at": "2026-11-03",
+      "checked_at": "2026-11-25",
       "tier": "first_party",
-      "raw_archive": "../source-cache/journeys-2026-11-03/0136196c9b59.html",
-      "raw_sha256": "9fa1a1601d71bd83250e2e630ec0358d25501a67cb073bd453a58cae6bcd2a33",
-      "fetch_status": 200
+      "raw_archive": "../source-cache/journeys-2026-11-25/vichspace.html",
+      "raw_sha256": "e62693d4e9d47fbf689b801ea7fda01150a2a5ec70f329235048226b7277f523",
+      "fetch_status": 200,
+      "updated_at": null
     },
     "davin-faq": {
       "publisher": "Davin Cafe",
@@ -444,7 +519,8 @@
       "tier": "first_party",
       "raw_archive": "../source-cache/journeys-2026-11-03/ad7a6c601188.html",
       "raw_sha256": "b0c77444b6b01e42110392000fbe468d444787c5f7142b241f068e29fafc5848",
-      "fetch_status": 200
+      "fetch_status": 200,
+      "updated_at": null
     },
     "davin-work": {
       "publisher": "Davin Cafe",
@@ -454,7 +530,8 @@
       "tier": "first_party",
       "raw_archive": "../source-cache/journeys-2026-11-03/f59689a4cf84.html",
       "raw_sha256": "b9a91104a9a5fa6295e9692428d245600cfa7c1e96fb14555c8537bbaadc973a",
-      "fetch_status": 200
+      "fetch_status": 200,
+      "updated_at": null
     },
     "samyan-about": {
       "publisher": "Samyan Mitrtown",
@@ -464,7 +541,8 @@
       "tier": "first_party",
       "raw_archive": "../source-cache/journeys-2026-11-03/f7317688dee9.html",
       "raw_sha256": "bb8b6ccac29523825cfaa45452e30860278d856601e55a94b31da72e9184aa94",
-      "fetch_status": 200
+      "fetch_status": 200,
+      "updated_at": null
     },
     "samyan-terms": {
       "publisher": "C ASEAN Samyan CO-OP",
@@ -474,7 +552,8 @@
       "tier": "first_party",
       "raw_archive": "../source-cache/journeys-2026-11-03/4b8562ec9f10.html",
       "raw_sha256": "491cf9060dc62c3d45fc87318bcde8177db9f6f9993644fb29e1e3ecfa515139",
-      "fetch_status": 200
+      "fetch_status": 200,
+      "updated_at": null
     },
     "tk-access": {
       "publisher": "TK Park",
@@ -484,7 +563,8 @@
       "tier": "first_party",
       "raw_archive": "../source-cache/journeys-2026-11-03/d1d9ad329cc8.html",
       "raw_sha256": "60f6d344aaab9aa9edd5b5cdb34707d23600505d127a2c57b9a657e1eb3ca33c",
-      "fetch_status": 200
+      "fetch_status": 200,
+      "updated_at": null
     },
     "hive-membership": {
       "publisher": "The Hive Thonglor",
@@ -495,7 +575,8 @@
       "raw_archive": "../source-cache/journeys-2026-11-03/hive-web-response.json",
       "raw_sha256": "fe6d9d018f220bed956b2a420e10295c0d3cae6cdfbd04ae2f039b2dfeebb823",
       "fetch_status": 403,
-      "archive_note": "Direct HTTP fetch returned403; archived successful public web-tool source response without bypassing access controls."
+      "archive_note": "Direct HTTP fetch returned403; archived successful public web-tool source response without bypassing access controls.",
+      "updated_at": null
     },
     "true-asoke": {
       "publisher": "True Space",
@@ -505,7 +586,8 @@
       "tier": "first_party",
       "raw_archive": "../source-cache/journeys-2026-11-03/3889ec29c20d.html",
       "raw_sha256": "bded5adb09c602bbbb90b8f045eefa786def910bd6a8f4e60e8db3ae0dcd81a0",
-      "fetch_status": 200
+      "fetch_status": 200,
+      "updated_at": null
     },
     "true-faq": {
       "publisher": "True Space",
@@ -515,7 +597,8 @@
       "tier": "first_party",
       "raw_archive": "../source-cache/journeys-2026-11-03/68a5c19d4d6d.html",
       "raw_sha256": "2ef48a55e633d8cc0412486e2a7afd9bdd56d6bed1b801a7b440d054f511e05f",
-      "fetch_status": 200
+      "fetch_status": 200,
+      "updated_at": null
     },
     "ktc-workspaces": {
       "publisher": "KTC editorial",
@@ -547,7 +630,8 @@
       "tier": "first_party",
       "raw_archive": "../source-cache/journeys-2026-11-12/tcdc-bangkok-hours.html",
       "raw_sha256": "a7242ce944b3e298cd92369ea31502229292cd984a9e0dfcd5dc7e914e6589b4",
-      "fetch_status": 200
+      "fetch_status": 200,
+      "updated_at": null
     },
     "tcdc-bangkok-pass": {
       "publisher": "TCDC Bangkok",
@@ -557,17 +641,39 @@
       "tier": "first_party",
       "raw_archive": "../source-cache/journeys-2026-11-12/tcdc-bangkok-service.html",
       "raw_sha256": "f797dc7870dbc180d834d67545be52f48d3b397f05ef3cf87e5f394339eff9b2",
-      "fetch_status": 200
+      "fetch_status": 200,
+      "updated_at": null
     },
     "bacc-art-library": {
       "publisher": "Bangkok Art and Culture Centre",
-      "url": "https://www.bacc.or.th/en/plan-your-visit/art-library/",
+      "url": "https://www.bacc.or.th/en/plan-your-visit/art-library",
       "published_at": null,
-      "checked_at": "2026-11-12",
+      "checked_at": "2026-11-25",
       "tier": "first_party",
       "raw_archive": "../source-cache/journeys-2026-11-12/bacc-art-library.html",
       "raw_sha256": "6bee777bf6cfbd8657cd3995db6f9d309522591eb84c8c07ae7dc3220d46a6bd",
-      "fetch_status": 200
+      "fetch_status": 200,
+      "updated_at": null
+    },
+    "work-loft-silom": {
+      "publisher": "The Work Loft Silom",
+      "url": "https://www.theworkloft.com/coworking",
+      "published_at": null,
+      "updated_at": null,
+      "checked_at": "2026-11-25",
+      "tier": "first_party",
+      "raw_archive": "../source-cache/journeys-2026-11-25/work-loft-silom.html",
+      "raw_sha256": "a1b69b87473d9747455a89e651c42a02f4f9f303fba3476c4424fcfe6e264258"
+    },
+    "tcdc-munmun-hours": {
+      "publisher": "TCDC Resource Center",
+      "url": "https://library.tcdc.or.th/page/service",
+      "published_at": null,
+      "updated_at": null,
+      "checked_at": "2026-11-25",
+      "tier": "first_party",
+      "raw_archive": "../source-cache/journeys-2026-11-25/tcdc-munmun-hours.html",
+      "raw_sha256": "f797dc7870dbc180d834d67545be52f48d3b397f05ef3cf87e5f394339eff9b2"
     }
   },
   "unresolved": [

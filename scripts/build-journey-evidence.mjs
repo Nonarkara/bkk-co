@@ -41,5 +41,11 @@ for (const [id, place] of Object.entries(input.places)) {
   places[id] = { name: place.name, area: place.area, source_ids: place.source_ids, facts: place.facts };
 }
 const output = { version: input.version, checked_at: input.checked_at, scope: input.scope, places, sources };
-writeFileSync(path.join(root, 'public/data/journey-evidence.json'), `${JSON.stringify(output)}\n`);
+const target = path.join(root, 'public/data/journey-evidence.json');
+const outputBytes = `${JSON.stringify(output)}\n`;
+if (process.argv.includes('--check')) {
+  if (readFileSync(target, 'utf8') !== outputBytes) fail('published snapshot differs from reviewed inputs');
+} else {
+  writeFileSync(target, outputBytes);
+}
 console.log(`Journey evidence: ${Object.keys(places).length} existing places, ${Object.keys(sources).length} attributed sources.`);

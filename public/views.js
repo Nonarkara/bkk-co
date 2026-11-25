@@ -578,32 +578,38 @@ function planHop(start) {
 
 async function openHop(startKey) {
   await hoodsReady;
+  const thai = new URLSearchParams(location.search).get('lang') === 'th';
+  const tr = (english, thaiText) => thai ? thaiText : english;
   const starts = hoods.list.map(h => [h.slug, h.name, { y: h.anchor.y, x: h.anchor.x }]);
   const c = map.getCenter();
   const at = /^@(-?\d+\.?\d*),(-?\d+\.?\d*)$/.exec(startKey || ''); // shared "here" hops carry their own point
-  starts.push(['here', at ? 'Shared spot' : 'Here (map centre)', at ? { y: +at[1], x: +at[2] } : { y: c.lat, x: c.lng }]);
+  starts.push(['here', at ? tr('Shared spot', 'จุดที่แชร์') : tr('Here (map centre)', 'ตรงนี้ (กลางแผนที่)'), at ? { y: +at[1], x: +at[2] } : { y: c.lat, x: c.lng }]);
   hopState.start = at ? 'here' : startKey || hopState.start || 'charoenkrung';
   const [, label, origin] = starts.find(s => s[0] === hopState.start) || starts[0];
   const stops = planHop(origin);
   const legs = stops.slice(1).map((p, i) => near(stops[i], p));
   const km = legs.reduce((a, b) => a + b, 0) / 1000;
   const g = stops.length > 1 ? `https://www.google.com/maps/dir/?api=1&origin=${stops[0].y},${stops[0].x}&destination=${stops.at(-1).y},${stops.at(-1).x}&travelmode=walking${stops.length > 2 ? '&waypoints=' + stops.slice(1, -1).map(p => `${p.y},${p.x}`).join('%7C') : ''}` : '';
-  const sheet = openSheet(`<header><h1>Café hop</h1><button class="close" aria-label="Close">×</button></header>
+  const sheet = openSheet(`<header><h1>${tr('Café hop', 'แวะหลายคาเฟ่')}</h1><button class="close" aria-label="${tr('Close', 'ปิด')}">×</button></header>
 
-    <div class="feel hop-starts" role="group" aria-label="Start in">${starts.map(([k, l]) => `<button data-start="${k}" aria-pressed="${k === hopState.start}">${esc(l)}</button>`).join('')}</div>
-    ${stops.length ? `<p class="micro">${esc(label)} · ${stops.length} stops · at least ${km.toFixed(1)} km on foot · ${Math.round(km * 1000 / 80)}+ min walking</p>
+    <div class="feel hop-starts" role="group" aria-label="${tr('Start in', 'เริ่มที่')}">${starts.map(([k, l]) => `<button data-start="${k}" aria-pressed="${k === hopState.start}">${esc(l)}</button>`).join('')}</div>
+    ${stops.length ? `<p class="micro">${esc(label)} · ${stops.length} ${tr('stops', 'จุดแวะ')} · ${tr('at least', 'อย่างน้อย')} ${km.toFixed(1)} ${tr('km on foot', 'กม. เมื่อเดิน')}</p>
     <ol class="walk hop">${stops.map((p, i) => `<li data-id="${esc(p.id)}"><span class="stop">${i + 1}</span><span class="nm">${nm(p.n)}</span>${i ? `<span class="micro">${Math.round(legs[i - 1])} m</span>` : ''}<span class="idx">✦${p.idx}</span></li>`).join('')}</ol>
-    <nav class="links">${g ? `<a href="${g}" target="_blank" rel="noopener">Walk it in Google Maps ↗</a>` : ''}<button type="button" class="share">Share</button></nav>`
-    : '<p class="micro">Not enough independent cafés with a high index close together here. Try another start.</p>'}
+    <nav class="links">${g ? `<a href="${g}" target="_blank" rel="noopener">${tr('Walking directions ↗', 'เส้นทางเดิน ↗')}</a>` : ''}<button type="button" class="share">${tr('Share', 'แชร์')}</button></nav>`
+    : `<p class="micro">${tr('Few nearby independent cafés meet this hop’s criteria. Try another start.', 'คาเฟ่อิสระใกล้จุดนี้ที่ตรงเงื่อนไขมีไม่พอ ลองเลือกจุดเริ่มต้นอื่น')}</p>`}
     <button type="button" class="linkish" data-shared-hops>Shared hop notes · optional</button>
     <details class="hop-guide"><summary>Plub’s walking tip</summary><div class="plub-say">${guideArt()}<p><q>Five independent cafés, a short walk apart. Pace yourself: one coffee, one pastry, one water.</q></p></div></details>
     <p class="src">Picked from independent cafés with ✦ ≥ 70, not listed as closed at 11 am, each 250–800 m from the last. Legs never cross the Chao Phraya; they can cross big roads, so use crossings. Distances are straight lines, so the real walk is longer: Google Maps gives the path. Apple Maps takes one stop at a time: open a stop to get its link.</p>`);
   sheet.classList.add('hop-sheet');
+  if (thai) sheet.lang = 'th';
   sheet.querySelector('[data-shared-hops]').onclick=()=>window.Notebook?.showHops(stops);
   sheet.querySelector('.hop-starts').addEventListener('click', e => { const b = e.target.closest('[data-start]'); if (b) openHop(b.dataset.start); });
   sheet.querySelector('.hop')?.addEventListener('click', e => { const li = e.target.closest('li[data-id]'); if (li) select(state.byId.get(li.dataset.id), true); });
   sheet.querySelector('.share')?.addEventListener('click', async ev => {
-    const url = `${location.origin}/?hop=${hopState.start === 'here' ? `@${origin.y.toFixed(4)},${origin.x.toFixed(4)}` : hopState.start}`;
+    const params = new URLSearchParams({ hop: hopState.start === 'here'
+      ? `@${origin.y.toFixed(4)},${origin.x.toFixed(4)}` : hopState.start });
+    if (thai) params.set('lang', 'th');
+    const url = `${location.origin}/?${params}`;
     if (navigator.share) { try { await navigator.share({ title: `Café hop from ${label} · PLUB`, url }); } catch { /* cancelled */ } return; }
     await navigator.clipboard?.writeText(url); ev.target.textContent = 'Link copied';
   });

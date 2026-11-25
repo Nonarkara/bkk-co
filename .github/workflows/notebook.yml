@@ -48,6 +48,7 @@ jobs:
       - run: node test/place-tools.mjs
       - run: node test/check.mjs
       - run: node test/atlas.mjs
+      - run: node scripts/build-journey-evidence.mjs --check
       - run: node test/journeys.mjs
       - run: node test/notebook-races.mjs
       - run: node test/notebook-dates.mjs
