@@ -84,6 +84,18 @@ jobs:
           npm i playwright@1.61.0 wrangler@4.81.1 >/dev/null 2>&1
           npx playwright install --with-deps chromium
           echo "$RUNNER_TEMP/pw/node_modules/.bin" >> "$GITHUB_PATH"
+      - name: Recover shared places without a basemap
+        env:
+          PLUB_PLAYWRIGHT: ${{ runner.temp }}/pw/node_modules/playwright
+        run: |
+          npx --yes wrangler@4.81.1 dev --port 43976 > "$RUNNER_TEMP/shared-place-preview.log" 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:43976/ > /dev/null; then break; fi
+            sleep 1
+          done
+          node test/shared-place-recovery.mjs
       - name: MSH audit (chrome, task, geometry, hierarchy, preservation)
         env:
           PLUB_PLAYWRIGHT: ${{ runner.temp }}/pw/node_modules/playwright

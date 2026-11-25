@@ -28,7 +28,7 @@
      that window, so the lens is in place before the first tile is parsed. -->
 <link rel="preload" href="styles/plub-manga.json?v=f030b5e6" as="fetch" crossorigin>
 <link href="vendor/maplibre-gl-4.7.1/maplibre-gl.css?v=576b085f" rel="stylesheet">
-<link href="style.css?v=79040c09" rel="stylesheet">
+<link href="style.css?v=1633c1e3" rel="stylesheet">
 <link href="notebook.css?v=1a3f6b3a" rel="stylesheet">
 <link href="discovery.css?v=e7376b25" rel="stylesheet">
 <link href="atlas.css?v=20de4531" rel="stylesheet">
@@ -70,6 +70,11 @@
 </nav>
 
 <main id="map" aria-label="Map of Great Good Places in Bangkok"></main>
+  <div id="shared-place-status" class="shared-place-status" hidden>
+    <span role="status"></span>
+    <button type="button" data-shared-retry hidden>Retry</button>
+    <button type="button" data-shared-dismiss aria-label="Dismiss shared place">×</button>
+  </div>
 
 <aside id="side" class="side">
   <section id="list-wrap" class="list-wrap" aria-label="Places in view">
@@ -157,7 +162,7 @@
 <script src="journeys.js?v=87590513"></script>
 <script src="talk-media.js?v=5f3467b8"></script>
 <script src="work-atmosphere.js?v=d082a598"></script>
-<script src="app.js?v=63570d24"></script>
+<script src="app.js?v=8133d1f3"></script>
 <script src="views.js?v=f92f2a1f"></script>
 <script src="notebook.js?v=6f98eb10"></script>
 <script src="photos.js?v=6ba3ccb8"></script>

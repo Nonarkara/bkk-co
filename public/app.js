@@ -78,6 +78,7 @@ const state = {
 };
 window.state = state;
 const cannabisDetails = new Map();
+let sharedPlaceId = new URLSearchParams(location.search).get('p');
 const isClubStartup = () => location.hostname === 'club.nonarkara.org' || new URLSearchParams(location.search).get('mode') === 'club';
 
 // Retired place ids (merged twins, scripts/clean-catalogue.py) resolve to the venue that absorbed them, so shared
@@ -183,6 +184,12 @@ async function loadRows(name) {
   const response = await fetch(`data/places-${name}.json`);
   if (!response.ok) throw new Error(`places-${name}.json answered ${response.status}`);
   const { kinds, rows } = await response.json();
+  if (!Array.isArray(kinds) || !Array.isArray(rows) ||
+      rows.some(row => !Array.isArray(row) || typeof row[0] !== 'string' ||
+        typeof row[1] !== 'string' || !Object.hasOwn(kinds, row[2]) ||
+        !Number.isFinite(row[3]) || !Number.isFinite(row[4]) || typeof row[6] !== 'string' || !Number.isFinite(row[7]))) {
+    throw new Error(`Invalid ${name} catalogue`);
+  }
   // idx: Great Good Place index, mean of the A/S/C/F percentiles (scripts/build-places.py)
   for (const [id, n, k, y, x, flags, g, idx, hours] of rows) {
     // A retry must not load the same catalogue twice. The reader who pressed
@@ -228,7 +235,7 @@ async function cellDetail(p) {
 let cannabisPromise = null;
 async function loadCannabis({ retry = false } = {}) {
   if (state.cannabisLoaded) return;
-  if (retry) cannabisPromise = null;
+  if (retry && state.cannabisStatus === 'failed') cannabisPromise = null;
   if (!cannabisPromise) {
     state.cannabisStatus = 'loading';
     cannabisPromise = fetch('data/places-cannabis.json')
@@ -318,19 +325,9 @@ async function retryDirectory() {
     refresh();
     return;
   }
-  state.catalogueStatus = 'loading';
-  state.catalogueError = null;
-  refresh();
-  try {
-    await Promise.all([loadRows('work'), loadVisits()]);
-    state.catalogueStatus = 'ready';
-    if (state.kinds.has('restaurant')) await ensureFood();
-    openFromUrl();
-  } catch (error) {
-    state.catalogueStatus = 'failed';
-    state.catalogueError = error;
-    console.error('The catalogue did not load', error);
-  }
+  await ensureWork({ retry: true });
+  if (state.clubMode) return;
+  if (state.kinds.has('restaurant')) await ensureFood();
   refresh();
 }
 
@@ -424,6 +421,7 @@ async function setClubMode(on, { frame = true } = {}) {
   // A second initialization after the style arrives is still the same
   // directory. Preserve a search or place the reader already has open.
   if (switching) {
+    if (clubModeChange > 1) dismissSharedPlace();
     $('#hits').hidden = true;
     if (state.selected) closeSheet();
   }
@@ -459,6 +457,8 @@ async function setClubMode(on, { frame = true } = {}) {
     if (location.hostname === 'club.nonarkara.org') toggle.textContent = 'PL;UB · Work places';
   }
   if (on) {
+    map.setMaxBounds(TH_BOUNDS);
+    map.setMinZoom(5);
     if (!state.cannabisLoaded) {
       const box = $('#club-hotspots');
       box.hidden = false;
@@ -466,8 +466,6 @@ async function setClubMode(on, { frame = true } = {}) {
     }
     await loadCannabis();
     if (attempt !== clubModeChange) return;
-    map.setMaxBounds(TH_BOUNDS);
-    map.setMinZoom(5);
     if (frame && state.cannabisLoaded && !new URL(location.href).searchParams.has('p')) {
       const landing = clubLanding();
       if (landing) map.jumpTo({ center: landing.center, zoom: landing.zoom, animate: false });
@@ -598,9 +596,12 @@ function loadBranches() {
   }).catch(() => {});
   return branchRequest;
 }
-function ensureWork() {
+function ensureWork({ retry = false } = {}) {
   if (state.catalogueStatus === 'ready') return Promise.resolve();
-  workRequest ??= aliasesReady.then(() => Promise.all([loadRows('work'), loadVisits()]))
+  if (retry && state.catalogueStatus === 'failed') workRequest = null;
+  if (workRequest) return workRequest;
+  state.catalogueStatus = 'loading';
+  workRequest = aliasesReady.then(() => Promise.all([loadRows('work'), loadVisits()]))
     .then(() => {
       state.catalogueStatus = 'ready';
       refresh();
@@ -680,8 +681,6 @@ map.once('style.load', async () => {
   }
   await ensureWork();
   refresh();
-  const raw = new URL(location.href).searchParams.get('p');
-  if (raw && !state.byId.has(canonId(raw))) await ensureFood();
   openFromUrl();
 });
 
@@ -760,7 +759,7 @@ function paintLoadingRail(failed) {
   const list = $('#list');
   if (!list) return;
   list.innerHTML = failed
-    ? '<li class="meta">Directory unavailable. <button type="button" class="retry" data-retry-catalogue>Retry</button></li>'
+    ? `<li class="meta">Directory unavailable.${sharedPlaceId ? '' : ' <button type="button" class="retry" data-retry-catalogue>Retry</button>'}</li>`
     : '<li class="meta">Loading the directory…</li><li class="list-skeleton" aria-hidden="true"><span></span><span></span><span></span><span></span></li>';
 }
 
@@ -959,12 +958,18 @@ function renderSearch({ preserveSelection = false } = {}) {
   if (pinned && (pinned.k === 'cannabis') === state.clubMode && !top.some(p => p.id === pinned.id)) {
     top.splice(7, 1, pinned);
   }
-  const pendingFood = !state.clubMode && !state.foodLoaded;
+  const pendingWork = !state.clubMode && state.catalogueStatus !== 'ready';
+  const pendingFood = !state.clubMode && !pendingWork && !state.foodLoaded;
   const pendingDirectory = state.clubMode && !state.cannabisLoaded;
   const c2 = map.getCenter();
   const missing = `<li class="meta missing"><a href="${osmNote(c2.lat, c2.lng)}" target="_blank" rel="noopener">Missing a place? Tell OpenStreetMap ↗</a></li>`;
-  hits.innerHTML = (state.clubMode ? '' : window.hoodHits?.(q) || '') + (top.length ? top.map(p => row(p)).join('') : pendingFood || pendingDirectory ? '' : '<li class="meta">No place by that name. Try Thai or English.</li>') + missing;
-  if (!state.clubMode && !state.foodLoaded) {
+  hits.innerHTML = (state.clubMode ? '' : window.hoodHits?.(q) || '') + (top.length ? top.map(p => row(p)).join('') : pendingWork || pendingFood || pendingDirectory ? '' : '<li class="meta">No place by that name. Try Thai or English.</li>') + missing;
+  if (pendingWork) {
+    hits.insertAdjacentHTML('beforeend', state.catalogueStatus === 'failed'
+      ? '<li class="meta">Work listings unavailable. <button type="button" data-retry-catalogue>Retry</button></li>'
+      : '<li class="meta" role="status">Loading work listings…</li>');
+  }
+  if (pendingFood) {
     hits.insertAdjacentHTML('beforeend', foodStatus === 'failed'
       ? '<li class="meta">Food catalogue unavailable. <button type="button" data-retry-food>Retry</button></li>'
       : '<li class="meta" role="status">Checking food listings…</li>');
@@ -979,6 +984,7 @@ function renderSearch({ preserveSelection = false } = {}) {
   hits.hidden = false;
 }
 $('#q').addEventListener('input', () => {
+  dismissSharedPlace();
   const revision = ++searchRevision;
   renderSearch();
   const query = $('#q').value, club = state.clubMode;
@@ -1038,6 +1044,7 @@ document.addEventListener('click', e => {
 // ---------- sheets ----------
 let sheetGeneration=0;
 function openSheet(html, { place = false, keepRoute = false, preserveFocus = false } = {}) {
+  dismissSharedPlace();
   sheetGeneration++;
   window.MangaLens?.settle();
   window.StreetWorld?.suspend();
@@ -1256,9 +1263,8 @@ function renderSheet(p, d, visits, report) {
 }
 
 function openFromUrl() {
-  const u = new URL(location.href), raw = u.searchParams.get('p'), id = raw && canonId(raw);
+  const u = new URL(location.href), id = u.searchParams.get('p');
   const plan = u.searchParams.get('plan');
-  if (raw && id !== raw) { u.searchParams.set('p', id); history.replaceState(null, '', u); } // an old shared link lands on the survivor
   if (['nearby', 'drive', 'rail', 'map', 'passport', '3d'].includes(plan) && !openFromUrl.framed && $('#sheet').hidden) {
     openFromUrl.framed = true;
     const point = /^(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/.exec(u.searchParams.get('at') || '');
@@ -1271,8 +1277,7 @@ function openFromUrl() {
     if (plan === 'passport') window.openPassport?.();
     else if (plan === '3d') window.StreetWorld?.openWalkthrough({ id: u.searchParams.get('area') });
     else if (plan !== 'map') window.WorkFinder?.open(plan, { task: u.searchParams.get('task'), duration: Number(u.searchParams.get('minutes')), lang: u.searchParams.get('lang'), origin });
-  } else if (id && !state.selected && $('#sheet').hidden && state.byId.has(id)) select(state.byId.get(id), 'jump');
-  else if (u.searchParams.get('hood') && $('#sheet').hidden) window.openHood?.(u.searchParams.get('hood'), true);
+  } else if (u.searchParams.get('hood') && $('#sheet').hidden) window.openHood?.(u.searchParams.get('hood'), true);
   else if (u.searchParams.get('hop') && !openFromUrl.framed) { openFromUrl.framed = true; window.openHop?.(u.searchParams.get('hop')); }
   else if (MOODS[u.searchParams.get('mood')] && !state.mood && !openFromUrl.framed) { openFromUrl.framed = true; setMood(u.searchParams.get('mood')); }
   else if (!id && !u.searchParams.get('hood') && !openFromUrl.framed) { openFromUrl.framed = true; } // Keep the close manga neighbourhood; zoom controls retain the city overview.
@@ -1352,7 +1357,20 @@ document.addEventListener('click', e => {
     });
     return;
   }
-  if (e.target.closest('[data-retry-catalogue]')) { retryDirectory(); return; }
+  if (e.target.closest('[data-retry-catalogue]')) {
+    const fromSearch = !!e.target.closest('#hits');
+    if (fromSearch) $('#q').focus({ preventScroll: true });
+    const revision = searchRevision;
+    retryDirectory().then(async () => {
+      if (fromSearch && !state.clubMode && revision === searchRevision && !$('#hits').hidden) {
+        renderSearch({ preserveSelection: true });
+        if (state.catalogueStatus !== 'ready') return;
+        await ensureFood();
+        if (!state.clubMode && revision === searchRevision && !$('#hits').hidden) renderSearch({ preserveSelection: true });
+      }
+    });
+    return;
+  }
   if (e.target.closest('[data-search-directory]')) {
     if (isPhone()) setListOpen(false);
     $('#q').focus();
@@ -1410,3 +1428,64 @@ document.querySelector('.rail-header').addEventListener('click', e => {
   if (e.target.closest('.list-explore')) return;
   if (e.target.closest('[data-act],[data-mood],[data-flag],[data-proxy]')) for (const d of document.querySelectorAll('.rail-header details')) d.open = false;
 });
+
+// Resolve a shared listing independently of tiles. In PL;UB a miss in Work
+// can still be a Food listing, so only two successful reads establish a miss.
+function dismissSharedPlace() {
+  if (!sharedPlaceId) return;
+  sharedPlaceId = null;
+  $('#shared-place-status').hidden = true;
+  renderList();
+}
+
+async function resolveSharedPlace({ retry = false } = {}) {
+  const id = sharedPlaceId;
+  if (!id) return;
+  const status = $('#shared-place-status');
+  const message = status.querySelector('[role="status"]');
+  const action = status.querySelector('[data-shared-retry]');
+  const club = state.clubMode;
+  const current = () => sharedPlaceId === id && state.clubMode === club;
+  status.hidden = false;
+  action.setAttribute('aria-disabled', 'true');
+  action.hidden = !retry;
+  message.textContent = 'Opening shared place…';
+  await aliasesReady;
+  if (!current()) return;
+
+  if (club) await loadCannabis({ retry });
+  else await ensureWork({ retry });
+  if (!current()) return;
+
+  if (club && retry) {
+    renderClubHotspots();
+    refresh();
+  }
+  let place = state.byId.get(id);
+  const directoryFailed = club ? state.cannabisStatus === 'failed' : state.catalogueStatus === 'failed';
+  if (!club && !place && !directoryFailed) {
+    await ensureFood({ retry });
+    if (!current()) return;
+    place = state.byId.get(id);
+  }
+
+  if (place && (place.k === 'cannabis') === club) {
+    dismissSharedPlace();
+    select(place, 'jump');
+    return;
+  }
+  const failed = directoryFailed || (!club && foodStatus === 'failed');
+  message.textContent = failed ? 'Could not load the shared place.' : 'This place is no longer listed.';
+  action.hidden = !failed;
+  action.setAttribute('aria-disabled', String(!failed));
+}
+
+$('#shared-place-status').addEventListener('click', event => {
+  const retry = event.target.closest('[data-shared-retry]');
+  if (retry?.getAttribute('aria-disabled') === 'false') resolveSharedPlace({ retry: true });
+  if (event.target.closest('[data-shared-dismiss]')) {
+    dismissSharedPlace();
+    $('#q').focus({ preventScroll: true });
+  }
+});
+resolveSharedPlace();

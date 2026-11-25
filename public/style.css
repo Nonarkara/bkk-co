@@ -121,6 +121,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .iconbtn { flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 4px; height: 36px; min-width: 36px; }
 .plub-btn { padding: 0 8px; }
 .pass-btn { padding: 0 8px; }
+.shared-place-status:not([hidden]) {
+  grid-area: map; align-self: start; justify-self: start; z-index: 2; max-width: 100%;
+  display: flex; align-items: center; gap: 4px; padding: 0 var(--pad);
+  background: var(--paper); border-bottom: 1px solid var(--ink);
+}
+.shared-place-status span { min-width: 0; overflow-wrap: anywhere; }
+.shared-place-status button, .hits [data-retry-catalogue] { min-width: 44px; min-height: 44px; }
 .hits { position: absolute; z-index: 30; top: 100%; left: 0; right: 0; list-style: none; padding: 0;
   background: var(--paper); border-bottom: 1px solid var(--ink); max-height: 60dvh; overflow-y: auto; }
 .hits li, .list li { display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 4px var(--pad);
