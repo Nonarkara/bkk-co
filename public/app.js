@@ -301,6 +301,7 @@ async function retryDirectory() {
     renderClubHotspots();
     refresh();
     await loadCannabis({ retry: true });
+    if (!state.clubMode) return;
     renderClubHotspots();
     // The camera never reached the listings while the directory was missing,
     // because there was nothing to frame. Now there is: the map goes where the
@@ -420,8 +421,12 @@ async function setClubMode(on, { frame = true } = {}) {
     }
     state.kinds = new Set(['cannabis']);
   }
-  $('#hits').hidden = true;
-  if (state.selected) closeSheet();
+  // A second initialization after the style arrives is still the same
+  // directory. Preserve a search or place the reader already has open.
+  if (switching) {
+    $('#hits').hidden = true;
+    if (state.selected) closeSheet();
+  }
   $('#map').setAttribute('aria-label', on ? 'Map of Thailand cannabis listings' : 'Map of Great Good Places in Bangkok');
   for (const option of $('#list-order').options) {
     option.hidden = (option.value === 'hubs') ? !on : (on && !['near', 'great'].includes(option.value));
