@@ -11,7 +11,7 @@
  * Every step states what it proved. A step that cannot run says so and is marked
  * SKIP — never PASS. A check that cannot run is not a check.
  */
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir, mkdtemp } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
@@ -23,6 +23,25 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEPLOY = process.argv.includes('--deploy');
 const BASE = process.env.PLUB_URL || 'http://127.0.0.1:43827';
 const LIVE = process.env.PLUB_LIVE || 'https://co.nonarkara.org';
+const CLUB_LIVE = process.env.PLUB_CLUB_LIVE || 'https://club.nonarkara.org';
+const stamp = new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString().slice(0, 10);
+const docs = path.join(ROOT, 'docs');
+
+async function previousProof(origin) {
+  const name = 'live-bytes-' + new URL(origin).hostname + '.json';
+  const days = (await readdir(docs)).filter(d => /^release-\d{4}-\d{2}-\d{2}$/.test(d)).sort().reverse();
+  for (const day of days) {
+    const parent = path.join(docs, day);
+    const entries = await readdir(parent, { withFileTypes: true });
+    const releases = entries.filter(e => e.isDirectory() && e.name.startsWith('ship-')).map(e => e.name).sort().reverse();
+    for (const folder of [...releases, '']) {
+      const proof = path.join(parent, folder, name);
+      if (existsSync(proof)) return proof;
+    }
+  }
+  throw new Error('No prior live asset manifest for ' + origin);
+}
+
 
 const results = [];
 let failed = false;
@@ -143,23 +162,30 @@ async function main() {
   }))();
 
   // 5. ship
+  let proofDir, workerVersion;
   if (DEPLOY && !failed) {
+    const manifests = await Promise.all([LIVE, CLUB_LIVE].map(previousProof));
+    const day = path.join(docs, 'release-' + stamp);
+    await mkdir(day, { recursive: true });
+    proofDir = await mkdtemp(path.join(day, 'ship-' + Date.now() + '-'));
     await (step('deploy the Worker', async () => {
       const r = await run('npx', ['wrangler', 'deploy'], { cwd: ROOT, maxBuffer: 32 * 1024 * 1024 });
       const id = String(r.stdout).split('\n').map(l => l.trim()).filter(l => l.includes('Worker Version') || l.includes('Version ID')).pop();
+      workerVersion = id;
       return id || 'deployed';
     }))();
     if (failed) process.exit(1);
-    await (step('every deployed byte matches the repository', async () => {
-      const r = await run('node', ['scripts/verify-live-bytes.mjs', LIVE], { cwd: ROOT, maxBuffer: 32 * 1024 * 1024 });
-      const m = String(r.stdout).match(/matched (\d+) · mismatched (\d+) · missing (\d+) · orphans still served (\d+)/);
-      if (!m) throw new Error(String(r.stdout));
-      if (m[2] !== '0' || m[3] !== '0' || m[4] !== '0') throw new Error(String(r.stdout));
-      return `${m[1]} matched, ${m[2]} mismatched, ${m[3]} missing, ${m[4]} orphans`;
-    }))();
+    await Promise.all([LIVE, CLUB_LIVE].map((origin, index) =>
+      step('verify live assets on ' + origin, async () => {
+        const r = await run('node', ['scripts/verify-live-bytes.mjs', origin, manifests[index]], {
+          cwd: ROOT, env: { ...process.env, PLUB_PROOF_DIR: proofDir }, maxBuffer: 32 * 1024 * 1024
+        });
+        return r.stdout.split('\n').find(line => line.includes(' · mismatched '))?.trim() || 'verified';
+      })()
+    ));
     await (step('the live URL answers', async () => {
       for (const p of ['/', '/day', '/research', '/bridge-1958', '/v1']) {
-        const r = await run('curl', ['-s', '-o', '/dev/null', '-w', '%{http_code}', `${LIVE}${p}`]);
+        const r = await run('curl', ['-sS', '--max-time', '20', '-o', '/dev/null', '-w', '%{http_code}', `${LIVE}${p}`]);
         if (r.stdout.trim() !== '200') throw new Error(`${p} answered ${r.stdout.trim()}`);
       }
       return '5 surfaces answered 200';
@@ -173,15 +199,13 @@ async function main() {
   for (const r of results.filter(r => r.state === 'SKIP')) say(`  SKIP  ${r.name} · ${r.note}`);
   say(`  ${passed}/${results.length - skipped} steps passed${skipped ? ` · ${skipped} skipped` : ''}${failed ? ' — the ship is blocked.' : '.'}`);
   say(`${'─'.repeat(64)}\n`);
-  if (failed) process.exit(1);
-  if (DEPLOY) {
-    // Asia/Bangkok is UTC+7 and does not observe DST: file release evidence
-    // under the local day it actually happened, not the UTC day.
-    const stamp = new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString().slice(0, 10);
-    const out = path.join(ROOT, 'docs', 'release', stamp);
-    await mkdir(out, { recursive: true });
-    await writeFile(path.join(out, 'ship-report.json'), JSON.stringify({ stamp, base: BASE, live: LIVE, results }, null, 2) + '\n');
+  if (proofDir) {
+    const { stdout } = await run('git', ['rev-parse', 'HEAD'], { cwd: ROOT });
+    await writeFile(path.join(proofDir, 'ship-report.json'), JSON.stringify({
+      stamp, base: BASE, origins: [LIVE, CLUB_LIVE], sourceCommit: stdout.trim(), workerVersion, results
+    }, null, 2) + '\n');
   }
+  if (failed) process.exit(1);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

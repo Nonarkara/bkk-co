@@ -9,7 +9,8 @@
 import { createRequire } from 'node:module';
 import { readdir, readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { join, relative } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { join, relative, resolve, sep } from 'node:path';
 
 const require = createRequire(import.meta.url);
 const origin = (process.argv[2] || 'https://co.nonarkara.org').replace(/\/$/, '');
@@ -30,6 +31,19 @@ const files = await walk(new URL('.', root).pathname);
 const sha = buf => createHash('sha256').update(buf).digest('hex');
 const matched = [], mismatched = [], missing = [], rewritten = [];
 const localPaths = new Set();
+const transportErrors = [], httpErrors = [];
+const timeout = 20000;
+async function fetchAsset(path, phase) {
+  try {
+    const response = await fetch(new URL('/' + path, origin), {
+      redirect: 'follow', signal: AbortSignal.timeout(timeout)
+    });
+    return { status: response.status, body: response.ok ? Buffer.from(await response.arrayBuffer()) : null };
+  } catch (error) {
+    transportErrors.push({ path, phase, error: error.name + ': ' + error.message });
+    return null;
+  }
+}
 const withoutPreviewText = text => text
   .replace(/<title>[^<]*<\/title>/, '<title></title>')
   .replace(/(<meta (?:property="og:(?:title|description)"|name="description") content=")[^"]*(")/g, '$1$2');
@@ -38,10 +52,13 @@ for (const file of files) {
   const path = relative(new URL('.', root).pathname, file);
   localPaths.add(path);
   const local = await readFile(file);
-  let res;
-  try { res = await fetch(`${origin}/${path}`, { redirect: 'follow' }); } catch (e) { missing.push({ path, error: String(e.message) }); continue; }
-  if (!res.ok) { missing.push({ path, status: res.status }); continue; }
-  const remote = Buffer.from(await res.arrayBuffer());
+  const result = await fetchAsset(path, 'current');
+  if (!result) continue;
+  const { status, body: remote } = result;
+  if (!remote) {
+    (status === 404 || status === 410 ? missing : httpErrors).push({ path, status });
+    continue;
+  }
   const entry = { path, bytes: remote.length, sha256: sha(remote) };
   if (remote.length === local.length && sha(remote) === sha(local)) { matched.push(entry); continue; }
   // One deliberate rewrite: on club.nonarkara.org the Worker serves the same index
@@ -64,13 +81,11 @@ if (previous) {
   const before = JSON.parse(await readFile(previous, 'utf8'));
   for (const item of [...(before.matched || []), ...(before.rewritten || [])]) {
     if (localPaths.has(item.path)) continue;
-    try {
-      const res = await fetch(`${origin}/${item.path}`, { redirect: 'follow' });
-      if (res.ok) {
-        const body = Buffer.from(await res.arrayBuffer());
-        orphans.push({ path: item.path, status: res.status, bytes: body.length, sha256: sha(body), stillServed: true });
-      }
-    } catch { /* gone, which is what we want */ }
+    const result = await fetchAsset(item.path, 'removed');
+    if (!result) continue;
+    const { status, body } = result;
+    if (body) orphans.push({ path: item.path, status, bytes: body.length, sha256: sha(body), stillServed: true });
+    else if (status !== 404 && status !== 410) httpErrors.push({ path: item.path, status });
   }
 }
 
@@ -86,14 +101,17 @@ const report = {
   mismatched,
   missing,
   rewritten,
+  transportErrors,
+  httpErrors,
   orphansStillServed: orphans,
-  summary: { matched: matched.length, mismatched: mismatched.length, missing: missing.length, orphansStillServed: orphans.length },
+  summary: { matched: matched.length, mismatched: mismatched.length, missing: missing.length, orphansStillServed: orphans.length, transportErrors: transportErrors.length, httpErrors: httpErrors.length },
 };
 
 // Asia/Bangkok is UTC+7 and does not observe DST: file byte proofs under the
 // local day the check ran, not the UTC day.
 const day = new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString().slice(0, 10);
-const outDir = new URL(`../docs/release-${day}/`, import.meta.url);
+const output = process.env.PLUB_PROOF_DIR;
+const outDir = output ? pathToFileURL(resolve(output) + sep) : new URL(`../docs/release-${day}/`, import.meta.url);
 await mkdir(outDir, { recursive: true });
 // One proof per origin. A two-domain release has two public surfaces, and a
 // single file would keep only whichever host was checked last.
@@ -106,5 +124,7 @@ console.log(`  matched ${matched.length} · mismatched ${mismatched.length} · m
 for (const m of mismatched) console.log(`  MISMATCH ${m.path}: live ${m.bytes}b ${m.sha256.slice(0, 12)} vs repo ${m.localBytes}b ${m.localSha256.slice(0, 12)}`);
 for (const m of missing) console.log(`  MISSING  ${m.path}${m.status ? ' (' + m.status + ')' : ''}`);
 for (const o of orphans) console.log(`  ORPHAN   ${o.path} is still served (${o.bytes}b) but is not in the repo`);
-console.log(`Report: ${new URL(proofName, outDir).pathname}`);
-process.exit(mismatched.length || missing.length || orphans.length ? 1 : 0);
+for (const item of transportErrors) console.log('  TRANSPORT', item.path, item.phase, item.error);
+for (const item of httpErrors) console.log('  HTTP', item.path, item.status);
+console.log(`Report: ${fileURLToPath(new URL(proofName, outDir))}`);
+process.exit(mismatched.length || missing.length || orphans.length || transportErrors.length || httpErrors.length ? 1 : 0);
