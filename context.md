@@ -1,6 +1,6 @@
 # PLUB · Placemaking Laboratory Urban Bureau — project context
 
-**Live:** https://co.nonarkara.org · **Repo:** github.com/Nonarkara/bkk-co (private) · **Tier:** T1 Pilot
+**Live:** https://co.nonarkara.org · **Repo:** github.com/Nonarkara/bkk-co (public) · **Tier:** T1 Pilot
 **Name:** PLUB, Placemaking Laboratory Urban Bureau (owner's choice, 2026-11-02). Nong Plub is the bureau's guide. Earlier names, in order: Bangkok IOC (retired), BKK Co. / Bangkok Co(working). Infra ids keep `bkk-co` (Worker, D1, repo, passport file `app` field) so nothing breaks; never show them as the name.
 **Home folder:** `~/Projects/bangkok-ioc/bkk-co` (folder name is historical). Sibling checkouts there are other projects with their own deploys — never deploy them from here.
 **Domain history:** co.nonarkara.org is primary (owner's choice). bkkco.nonarkara.org, used briefly on 2026-11-02, 301-redirects to it.

@@ -928,10 +928,15 @@ document.addEventListener('keydown', e => {
 });
 
 // ---------- search ----------
-let hitIdx = -1;
-function renderSearch() {
+const searchOptions = 'li[data-id], li[data-hood], li[data-mood], li[data-act]';
+const searchKey = item => ['id', 'hood', 'mood', 'act']
+  .map(field => item?.dataset[field] || '').join('|');
+let searchRevision = 0;
+
+function renderSearch({ preserveSelection = false } = {}) {
   const q = PlaceTools.normalize(PlaceTools.query($('#q').value));
   const hits = $('#hits');
+  const previous = preserveSelection ? hits.querySelector('[aria-selected="true"]') : null;
   if (q.length < 2) { hits.innerHTML = moodHits(); hits.hidden = false; return; }
   const starts = [], has = [];
   for (const p of state.places) {
@@ -943,36 +948,61 @@ function renderSearch() {
   const c = map.getCenter(), centre = { y: c.lat, x: c.lng };
   const rank = (a, z) => (z.idx - a.idx) * 40 + (metres(a, centre) - metres(z, centre)) / 100;
   const top = [...starts.sort(rank), ...has.sort(rank)].slice(0, 8);
+  const pinned = previous?.dataset.id && state.byId.get(previous.dataset.id);
+  // A late result may outrank the highlighted venue. Keep that venue reachable
+  // until the reader types again or chooses a different row.
+  if (pinned && (pinned.k === 'cannabis') === state.clubMode && !top.some(p => p.id === pinned.id)) {
+    top.splice(7, 1, pinned);
+  }
   const pendingFood = !state.clubMode && !state.foodLoaded;
-  hitIdx = -1;
+  const pendingDirectory = state.clubMode && !state.cannabisLoaded;
   const c2 = map.getCenter();
   const missing = `<li class="meta missing"><a href="${osmNote(c2.lat, c2.lng)}" target="_blank" rel="noopener">Missing a place? Tell OpenStreetMap ↗</a></li>`;
-  hits.innerHTML = (state.clubMode ? '' : window.hoodHits?.(q) || '') + (top.length ? top.map(p => row(p)).join('') : pendingFood ? '' : '<li class="meta">No place by that name. Try Thai or English.</li>') + missing;
+  hits.innerHTML = (state.clubMode ? '' : window.hoodHits?.(q) || '') + (top.length ? top.map(p => row(p)).join('') : pendingFood || pendingDirectory ? '' : '<li class="meta">No place by that name. Try Thai or English.</li>') + missing;
   if (!state.clubMode && !state.foodLoaded) {
     hits.insertAdjacentHTML('beforeend', foodStatus === 'failed'
       ? '<li class="meta">Food catalogue unavailable. <button type="button" data-retry-food>Retry</button></li>'
       : '<li class="meta" role="status">Checking food listings…</li>');
   }
+  if (pendingDirectory) {
+    hits.insertAdjacentHTML('beforeend', state.cannabisStatus === 'failed'
+      ? '<li class="meta">Directory unavailable. <button type="button" data-retry-club>Retry</button></li>'
+      : '<li class="meta" role="status">Loading Thailand listings…</li>');
+  }
+  if (previous) [...hits.querySelectorAll(searchOptions)]
+    .find(item => searchKey(item) === searchKey(previous))?.setAttribute('aria-selected', 'true');
   hits.hidden = false;
 }
 $('#q').addEventListener('input', () => {
+  const revision = ++searchRevision;
   renderSearch();
-  const query = $('#q').value;
-  if (state.clubMode || PlaceTools.query(query).trim().length < 2) return;
+  const query = $('#q').value, club = state.clubMode;
+  if (PlaceTools.query(query).trim().length < 2) return;
   const update = () => {
-    if (!state.clubMode && !$('#hits').hidden && $('#q').value === query) renderSearch();
+    if (revision === searchRevision && state.clubMode === club && !$('#hits').hidden) {
+      renderSearch({ preserveSelection: true });
+    }
   };
-  ensureFood().then(update);
-  loadBranches().then(update);
+  if (club) {
+    if (!state.cannabisLoaded) loadCannabis().then(update);
+  } else {
+    ensureFood().then(update);
+    loadBranches().then(update);
+  }
 });
 $('#q').addEventListener('keydown', e => {
-  const items = [...$('#hits').querySelectorAll('li[data-id], li[data-hood], li[data-mood], li[data-act]')];
-  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+  const hits = $('#hits');
+  if (hits.hidden) return;
+  const items = [...hits.querySelectorAll(searchOptions)];
+  const index = items.findIndex(item => item.getAttribute('aria-selected') === 'true');
+  if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && items.length) {
     e.preventDefault();
-    hitIdx = Math.max(0, Math.min(items.length - 1, hitIdx + (e.key === 'ArrowDown' ? 1 : -1)));
-    items.forEach((li, i) => li.setAttribute('aria-selected', i === hitIdx));
+    const next = Math.max(0, Math.min(items.length - 1, index + (e.key === 'ArrowDown' ? 1 : -1)));
+    items.forEach((li, i) => li.setAttribute('aria-selected', i === next));
+    items[next].scrollIntoView({ block: 'nearest' });
   } else if (e.key === 'Enter' && items.length) {
-    items[Math.max(0, hitIdx)].click();
+    e.preventDefault();
+    items[Math.max(0, index)].click();
   } else if (e.key === 'Escape') {
     // Chrome natively CLEARS a search field on Escape, and that fires `input`, which
     // re-opens this panel over the filter chips. Dismiss the panel and keep the query.
@@ -1309,14 +1339,28 @@ document.addEventListener('click', e => {
   }
   const h = e.target.closest('#mood [data-hood]');
   if (h) window.openHood?.(h.dataset.hood);
-  if (e.target.closest('[data-retry-club]')) { retryDirectory(); return; }
+  if (e.target.closest('[data-retry-club]')) {
+    const fromSearch = !!e.target.closest('#hits');
+    if (fromSearch) $('#q').focus({ preventScroll: true });
+    retryDirectory().then(() => {
+      if (fromSearch && state.clubMode && !$('#hits').hidden) renderSearch({ preserveSelection: true });
+    });
+    return;
+  }
   if (e.target.closest('[data-retry-catalogue]')) { retryDirectory(); return; }
   if (e.target.closest('[data-search-directory]')) {
     if (isPhone()) setListOpen(false);
     $('#q').focus();
     return;
   }
-  if (e.target.closest('[data-retry-food]')) { ensureFood({ retry: true }).then(() => { if (!state.clubMode && !$('#hits').hidden) renderSearch(); }); return; }
+  if (e.target.closest('[data-retry-food]')) {
+    const fromSearch = !!e.target.closest('#hits');
+    if (fromSearch) $('#q').focus({ preventScroll: true });
+    ensureFood({ retry: true }).then(() => {
+      if (fromSearch && !state.clubMode && !$('#hits').hidden) renderSearch({ preserveSelection: true });
+    });
+    return;
+  }
   const th = e.target.closest('[data-thailand]');
   if (th) {
     const bounds = clubBounds();
