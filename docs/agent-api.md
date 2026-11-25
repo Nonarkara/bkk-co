@@ -210,8 +210,6 @@ overwrite mapped catalogue hours or change the work-readiness score.
 `journey_evidence_status: unavailable` means the optional snapshot could not be
 read, not that no facts exist. Mapped and visitor evidence remain available.
 
-The 25 November pilot was published at `4b0f41c` in
-`public/data/journey-evidence.json`. The checked-in builder input still
-reproduces eight branches, not the shipped ten. Do not regenerate and publish
-that artifact until the omitted branch/source records have reviewed builder
-inputs. The API test guards both published branches against accidental loss.
+The 25 November pilot was first published at `4b0f41c`. The checked-in review
+inputs now reproduce all ten published branches. CI checks the generated
+snapshot against those inputs. The API test also checks the two added branches.
