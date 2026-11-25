@@ -1,0 +1,23 @@
+[
+  {
+    "atMap": 0,
+    "during": "Missing a place? Tell OpenStreetMap ↗\nChecking food listings…",
+    "failed": "Missing a place? Tell OpenStreetMap ↗\nFood catalogue unavailable.\nRetry",
+    "attempts": 2,
+    "searchReached": "Baba Shuk",
+    "errors": []
+  },
+  "  - waiting for locator('#sheet:not([hidden])').getByText('Baba Shuk').first() to be visible",
+  {
+    "foodDeepLink": "n10031011340",
+    "place": "Baba Shuk"
+  },
+  {
+    "club": {
+      "rows": 329,
+      "mode": true,
+      "visibleKindButtons": 0
+    },
+    "bangkokCatalogueRequests": []
+  }
+]
