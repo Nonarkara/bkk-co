@@ -33,10 +33,20 @@ const matched = [], mismatched = [], missing = [], rewritten = [];
 const localPaths = new Set();
 const transportErrors = [], httpErrors = [];
 const timeout = 20000;
+const deadline = AbortSignal.timeout(180000);
+const parallel = 6;
+
+async function inspect(items, check) {
+  let next = 0;
+  await Promise.all(Array.from({ length: Math.min(parallel, items.length) }, async () => {
+    while (next < items.length) await check(items[next++]);
+  }));
+}
+
 async function fetchAsset(path, phase) {
   try {
     const response = await fetch(new URL('/' + path, origin), {
-      redirect: 'follow', signal: AbortSignal.timeout(timeout)
+      redirect: 'follow', signal: AbortSignal.any([deadline, AbortSignal.timeout(timeout)])
     });
     return { status: response.status, body: response.ok ? Buffer.from(await response.arrayBuffer()) : null };
   } catch (error) {
@@ -48,19 +58,19 @@ const withoutPreviewText = text => text
   .replace(/<title>[^<]*<\/title>/, '<title></title>')
   .replace(/(<meta (?:property="og:(?:title|description)"|name="description") content=")[^"]*(")/g, '$1$2');
 
-for (const file of files) {
+await inspect(files, async file => {
   const path = relative(new URL('.', root).pathname, file);
   localPaths.add(path);
   const local = await readFile(file);
   const result = await fetchAsset(path, 'current');
-  if (!result) continue;
+  if (!result) return;
   const { status, body: remote } = result;
   if (!remote) {
     (status === 404 || status === 410 ? missing : httpErrors).push({ path, status });
-    continue;
+    return;
   }
   const entry = { path, bytes: remote.length, sha256: sha(remote) };
-  if (remote.length === local.length && sha(remote) === sha(local)) { matched.push(entry); continue; }
+  if (remote.length === local.length && sha(remote) === sha(local)) { matched.push(entry); return; }
   // One deliberate rewrite: on club.nonarkara.org the Worker serves the same index
   // with the CL;UB title and description. It is the same document with different
   // words in two meta tags, so it is compared apart from the rest and reported
@@ -69,30 +79,33 @@ for (const file of files) {
     const text = remote.toString('utf8');
     const same = /<title>CL;UB · [^<]+<\/title>/.test(text) &&
       withoutPreviewText(text) === withoutPreviewText(local.toString('utf8'));
-    if (same) { rewritten.push({ ...entry, localBytes: local.length, localSha256: sha(local) }); continue; }
+    if (same) { rewritten.push({ ...entry, localBytes: local.length, localSha256: sha(local) }); return; }
   }
   mismatched.push({ ...entry, localBytes: local.length, localSha256: sha(local) });
-}
+});
 
 // Files the origin still serves that this repo no longer has. A deleted file that keeps
 // living at the edge is a silent lie about the product.
 const orphans = [];
 if (previous) {
   const before = JSON.parse(await readFile(previous, 'utf8'));
-  for (const item of [...(before.matched || []), ...(before.rewritten || [])]) {
-    if (localPaths.has(item.path)) continue;
+  const removed = [...(before.matched || []), ...(before.rewritten || [])].filter(item => !localPaths.has(item.path));
+  await inspect(removed, async item => {
     const result = await fetchAsset(item.path, 'removed');
-    if (!result) continue;
+    if (!result) return;
     const { status, body } = result;
     if (body) orphans.push({ path: item.path, status, bytes: body.length, sha256: sha(body), stillServed: true });
     else if (status !== 404 && status !== 410) httpErrors.push({ path: item.path, status });
-  }
+  });
 }
 
 const commit = (await new Promise(res => {
   const cp = require('node:child_process').execFile('git', ['rev-parse', 'HEAD'], { cwd: repoRoot.pathname }, (e, out) => res(out.trim()));
 }));
 
+for (const entries of [matched, rewritten, mismatched, missing, orphans, transportErrors, httpErrors]) {
+  entries.sort((a, b) => a.path.localeCompare(b.path));
+}
 const report = {
   observedAt: new Date().toISOString(),
   origin,
