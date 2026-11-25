@@ -739,7 +739,7 @@ async function checkVisitReadingOrder(page, base) {
 
 async function checkDayPlanner(page, base) {
   const result = {};
-  const actions = { live: '.day-comparison tbody a[href*="plan=nearby"]', today: '#day-show-area', work: '#day-find' };
+  const actions = { live: '#day-compare-actions a[href*="plan=nearby"]', today: '#day-show-area', work: '#day-find' };
   for (const [task, selector] of Object.entries(actions)) {
     await page.goto(new URL(`/day?task=${task}&lang=th`, base).href, { waitUntil: 'domcontentloaded', timeout: 120000 });
     const action = page.locator(selector).first();
